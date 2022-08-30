@@ -886,7 +886,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/ca19f649a0b01eb90cff3d4086ab949cb562da33/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/ca19f649a0b01eb90cff3d4086ab949cb562da33/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/2e070da862216c840d654f8a04ab7944662c329f/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/2e070da862216c840d654f8a04ab7944662c329f/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -1658,7 +1658,7 @@ It may or may not be mutable.</p>
 If named <code>withoutBrackets</code>, it is a <code>readonly</code> <a data-link-type="dfn" href="#slot-backed-attribute" id="ref-for-slot-backed-attribute">slot-backed attribute</a>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport data-timeline="content" id="content-timeline-property">content timeline property</dfn>
     <dd data-md>
-     <p>A property which is only accessible from the <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①">content timeline</a>.</p>
+     <p>A property which is only accessible from the <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①">content timeline</a> where the object was created.</p>
      <p>If named <code>[[with brackets]]</code>, it is an internal slot.
 If named <code>withoutBrackets</code>, it is a <a data-link-type="dfn" href="#slot-backed-attribute" id="ref-for-slot-backed-attribute①">slot-backed attribute</a>.</p>
    </dl>
@@ -1829,7 +1829,7 @@ but can live in a separate OS process.</p>
 on the compute units of the GPU. It includes actual draw, copy,
 and compute jobs that run on the GPU.</p>
    </dl>
-   <div class="example" id="example-3d60e908" style="background: white">
+   <div class="example" id="example-3d60e908" style="background: var(--bg)">
     <a class="self-link" href="#example-3d60e908"></a> The following show the styling of steps and values associated with each timeline.
     This styling is non-normative; the specification text always describes the association. 
     <dl data-timeline="const">
