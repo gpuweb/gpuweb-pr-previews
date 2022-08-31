@@ -886,7 +886,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/b50f43865822379d97d6a22281044633607609af/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/b50f43865822379d97d6a22281044633607609af/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/d26ccbb4995ddec55019cc4c4b812a8dfdd29b98/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/d26ccbb4995ddec55019cc4c4b812a8dfdd29b98/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -6570,21 +6570,21 @@ the range formed by <var>b</var>.<code class="idl"><a data-link-type="idl" href=
     <a class="self-link" href="#example-c01d3b0d"></a> <code class="idl"><a data-link-type="idl" href="#gpucomputepipeline" id="ref-for-gpucomputepipeline⑥">GPUComputePipeline</a></code> object X was created with <code class="idl"><a data-link-type="idl" href="#dom-gpupipelinelayout-bindgrouplayouts-slot" id="ref-for-dom-gpupipelinelayout-bindgrouplayouts-slot">GPUPipelineLayout.bindGroupLayouts</a></code> A, B, C. <code class="idl"><a data-link-type="idl" href="#gpucomputepipeline" id="ref-for-gpucomputepipeline⑦">GPUComputePipeline</a></code> object Y was created with <code class="idl"><a data-link-type="idl" href="#dom-gpupipelinelayout-bindgrouplayouts-slot" id="ref-for-dom-gpupipelinelayout-bindgrouplayouts-slot①">GPUPipelineLayout.bindGroupLayouts</a></code> A, D, C. Supposing the command encoding sequence has two dispatches: 
     <ol>
      <li data-md>
-      <p><a data-link-type="dfn" href="#gpubindingcommandsmixin-setbindgroup" id="ref-for-gpubindingcommandsmixin-setbindgroup⑥">setBindGroup(0, ...)</a></p>
+      <p><a data-link-type="dfn" href="#gpubindingcommandsmixin-setbindgroup" id="ref-for-gpubindingcommandsmixin-setbindgroup⑥">setBindGroup</a>(0, ...)</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="#gpubindingcommandsmixin-setbindgroup" id="ref-for-gpubindingcommandsmixin-setbindgroup⑦">setBindGroup(1, ...)</a></p>
+      <p><a data-link-type="dfn" href="#gpubindingcommandsmixin-setbindgroup" id="ref-for-gpubindingcommandsmixin-setbindgroup⑦">setBindGroup</a>(1, ...)</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="#gpubindingcommandsmixin-setbindgroup" id="ref-for-gpubindingcommandsmixin-setbindgroup⑧">setBindGroup(2, ...)</a></p>
+      <p><a data-link-type="dfn" href="#gpubindingcommandsmixin-setbindgroup" id="ref-for-gpubindingcommandsmixin-setbindgroup⑧">setBindGroup</a>(2, ...)</p>
      <li data-md>
-      <p><code class="idl"><a data-link-type="idl" href="#dom-gpucomputepassencoder-setpipeline" id="ref-for-dom-gpucomputepassencoder-setpipeline①">setPipeline(X)</a></code></p>
+      <p><code class="idl"><a data-link-type="idl" href="#dom-gpucomputepassencoder-setpipeline" id="ref-for-dom-gpucomputepassencoder-setpipeline①">setPipeline</a></code>(X)</p>
      <li data-md>
-      <p><code class="idl"><a data-link-type="idl" href="#dom-gpucomputepassencoder-dispatchworkgroups" id="ref-for-dom-gpucomputepassencoder-dispatchworkgroups③">dispatchWorkgroups()</a></code></p>
+      <p><code class="idl"><a data-link-type="idl" href="#dom-gpucomputepassencoder-dispatchworkgroups" id="ref-for-dom-gpucomputepassencoder-dispatchworkgroups③">dispatchWorkgroups</a></code>()</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="#gpubindingcommandsmixin-setbindgroup" id="ref-for-gpubindingcommandsmixin-setbindgroup⑨">setBindGroup(1, ...)</a></p>
+      <p><a data-link-type="dfn" href="#gpubindingcommandsmixin-setbindgroup" id="ref-for-gpubindingcommandsmixin-setbindgroup⑨">setBindGroup</a>(1, ...)</p>
      <li data-md>
-      <p><code class="idl"><a data-link-type="idl" href="#dom-gpucomputepassencoder-setpipeline" id="ref-for-dom-gpucomputepassencoder-setpipeline②">setPipeline(Y)</a></code></p>
+      <p><code class="idl"><a data-link-type="idl" href="#dom-gpucomputepassencoder-setpipeline" id="ref-for-dom-gpucomputepassencoder-setpipeline②">setPipeline</a></code>(Y)</p>
      <li data-md>
-      <p><code class="idl"><a data-link-type="idl" href="#dom-gpucomputepassencoder-dispatchworkgroups" id="ref-for-dom-gpucomputepassencoder-dispatchworkgroups④">dispatchWorkgroups()</a></code></p>
+      <p><code class="idl"><a data-link-type="idl" href="#dom-gpucomputepassencoder-dispatchworkgroups" id="ref-for-dom-gpucomputepassencoder-dispatchworkgroups④">dispatchWorkgroups</a></code>()</p>
     </ol>
     <p>In this scenario, the user agent would have to re-bind the group slot 2 for the second dispatch, even though neither the <code class="idl"><a data-link-type="idl" href="#gpubindgrouplayout" id="ref-for-gpubindgrouplayout②⑧">GPUBindGroupLayout</a></code> at index 2 of <code class="idl"><a data-link-type="idl" href="#dom-gpupipelinelayout-bindgrouplayouts-slot" id="ref-for-dom-gpupipelinelayout-bindgrouplayouts-slot②">GPUPipelineLayout.bindGrouplayouts</a></code>, or the <code class="idl"><a data-link-type="idl" href="#gpubindgroup" id="ref-for-gpubindgroup②⓪">GPUBindGroup</a></code> at slot 2, change.</p>
    </div>
