@@ -886,7 +886,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/42bffb309d1459a5e937562b4619b6f4492fdd55/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/42bffb309d1459a5e937562b4619b6f4492fdd55/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/f3ca467dad4da4ee725fbdd502ca963ba16666b1/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/f3ca467dad4da4ee725fbdd502ca963ba16666b1/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -1669,23 +1669,28 @@ If named <code>withoutBrackets</code>, it is a <a data-link-type="dfn" href="#sl
 };
 </pre>
    <div class="algorithm" data-algorithm="create a new WebGPU object">
-     To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-create-a-new-webgpu-object">create a new WebGPU object</dfn>(<code class="idl"><a data-link-type="idl" href="#gpuobjectbase" id="ref-for-gpuobjectbase①">GPUObjectBase</a></code> <var>parent</var>,
-    interface <var>T</var>) (where <var>T</var> extends <code class="idl"><a data-link-type="idl" href="#gpuobjectbase" id="ref-for-gpuobjectbase②">GPUObjectBase</a></code>): 
-    <ol>
-     <li data-md>
-      <p>Let <var>device</var> be <var>parent</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot">[[device]]</a></code>.</p>
-     <li data-md>
-      <p>Let <var>object</var> be a new instance of <var>T</var>.</p>
-     <li data-md>
-      <p>Let <var>internals</var> be a new (uninitialized) instance of the type of <var>T</var>.<code>[[internals]]</code> (which may override <code class="idl"><a data-link-type="idl" href="#gpuobjectbase" id="ref-for-gpuobjectbase③">GPUObjectBase</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-internals-slot" id="ref-for-dom-gpuobjectbase-internals-slot">[[internals]]</a></code>)
+    <div data-timeline="content">
+      To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-create-a-new-webgpu-object">create a new WebGPU object</dfn>(<code class="idl"><a data-link-type="idl" href="#gpuobjectbase" id="ref-for-gpuobjectbase①">GPUObjectBase</a></code> <var>parent</var>,
+        interface <var>T</var>, <code class="idl"><a data-link-type="idl" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase">GPUObjectDescriptorBase</a></code> <var>descriptor</var>)
+        (where <var>T</var> extends <code class="idl"><a data-link-type="idl" href="#gpuobjectbase" id="ref-for-gpuobjectbase②">GPUObjectBase</a></code>): 
+     <ol>
+      <li data-md>
+       <p>Let <var>device</var> be <var>parent</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot">[[device]]</a></code>.</p>
+      <li data-md>
+       <p>Let <var>object</var> be a new instance of <var>T</var>.</p>
+      <li data-md>
+       <p>Let <var>internals</var> be a new (uninitialized) instance of the type of <var>T</var>.<code>[[internals]]</code> (which may override <code class="idl"><a data-link-type="idl" href="#gpuobjectbase" id="ref-for-gpuobjectbase③">GPUObjectBase</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-internals-slot" id="ref-for-dom-gpuobjectbase-internals-slot">[[internals]]</a></code>)
 that is accessible only from the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline">device timeline</a> of <var>device</var>.</p>
-     <li data-md>
-      <p>Set <var>object</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot①">[[device]]</a></code> to <var>device</var>.</p>
-     <li data-md>
-      <p>Set <var>object</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-internals-slot" id="ref-for-dom-gpuobjectbase-internals-slot①">[[internals]]</a></code> to <var>internals</var>.</p>
-     <li data-md>
-      <p>Return <var>object</var>.</p>
-    </ol>
+      <li data-md>
+       <p>Set <var>object</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot①">[[device]]</a></code> to <var>device</var>.</p>
+      <li data-md>
+       <p>Set <var>object</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-internals-slot" id="ref-for-dom-gpuobjectbase-internals-slot①">[[internals]]</a></code> to <var>internals</var>.</p>
+      <li data-md>
+       <p>Set <var>object</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-label" id="ref-for-dom-gpuobjectbase-label①">label</a></code> to <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectdescriptorbase-label" id="ref-for-dom-gpuobjectdescriptorbase-label">label</a></code>.</p>
+      <li data-md>
+       <p>Return [<var>object</var>, <var>internals</var>].</p>
+     </ol>
+    </div>
    </div>
    <p><code class="idl"><a data-link-type="idl" href="#gpuobjectbase" id="ref-for-gpuobjectbase④">GPUObjectBase</a></code> has the following <a data-link-type="dfn" href="#immutable-property" id="ref-for-immutable-property②">immutable properties</a>:</p>
    <dl data-timeline="const">
@@ -1742,14 +1747,14 @@ single well-ordered <a data-link-type="dfn" href="#device-timeline" id="ref-for-
    <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="object-descriptor">object descriptor</dfn> holds the information needed to create an object,
 which is typically done via one of the <code>create*</code> methods of <code class="idl"><a data-link-type="idl" href="#gpudevice" id="ref-for-gpudevice③">GPUDevice</a></code>.</p>
 <pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpuobjectdescriptorbase"><code><c- g>GPUObjectDescriptorBase</c-></code></dfn> {
-    <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString③"><c- b>USVString</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="USVString " href="#dom-gpuobjectdescriptorbase-label" id="ref-for-dom-gpuobjectdescriptorbase-label"><c- g>label</c-></a>;
+    <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString③"><c- b>USVString</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="USVString " href="#dom-gpuobjectdescriptorbase-label" id="ref-for-dom-gpuobjectdescriptorbase-label①"><c- g>label</c-></a>;
 };
 </pre>
-   <p><code class="idl"><a data-link-type="idl" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase">GPUObjectDescriptorBase</a></code> has the following members:</p>
+   <p><code class="idl"><a data-link-type="idl" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase①">GPUObjectDescriptorBase</a></code> has the following members:</p>
    <dl>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUObjectDescriptorBase" data-dfn-type="dict-member" data-export id="dom-gpuobjectdescriptorbase-label"><code>label</code></dfn>, <span> of type <a data-link-type="idl-name" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString④">USVString</a></span>
     <dd data-md>
-     <p>The initial value of <code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-label" id="ref-for-dom-gpuobjectbase-label①">GPUObjectBase.label</a></code>.</p>
+     <p>The initial value of <code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-label" id="ref-for-dom-gpuobjectbase-label②">GPUObjectBase.label</a></code>.</p>
    </dl>
    <h3 class="heading settled" data-level="3.2" id="asynchrony"><span class="secno">3.2. </span><span class="content">Asynchrony</span><a class="self-link" href="#asynchrony"></a></h3>
    <h4 class="heading settled" data-level="3.2.1" id="invalidity"><span class="secno">3.2.1. </span><span class="content">Invalid Internal Objects &amp; Contagious Invalidity</span><a class="self-link" href="#invalidity"></a></h4>
@@ -3309,7 +3314,7 @@ decide which fields to unmask.</p>
    </div>
    <h4 class="heading settled" data-level="4.3.1" id="gpudevicedescriptor"><span class="secno">4.3.1. </span><span class="content"><dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpudevicedescriptor"><code>GPUDeviceDescriptor</code></dfn></span><a class="self-link" href="#gpudevicedescriptor"></a></h4>
    <p><code class="idl"><a data-link-type="idl" href="#dictdef-gpudevicedescriptor" id="ref-for-dictdef-gpudevicedescriptor③">GPUDeviceDescriptor</a></code> describes a device request.</p>
-<pre class="idl highlight def"><c- b>dictionary</c-> <a class="idl-code" data-link-type="dictionary" href="#dictdef-gpudevicedescriptor" id="ref-for-dictdef-gpudevicedescriptor④"><c- g>GPUDeviceDescriptor</c-></a> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase①"><c- n>GPUObjectDescriptorBase</c-></a> {
+<pre class="idl highlight def"><c- b>dictionary</c-> <a class="idl-code" data-link-type="dictionary" href="#dictdef-gpudevicedescriptor" id="ref-for-dictdef-gpudevicedescriptor④"><c- g>GPUDeviceDescriptor</c-></a> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase②"><c- n>GPUObjectDescriptorBase</c-></a> {
     <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence②"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="#enumdef-gpufeaturename" id="ref-for-enumdef-gpufeaturename⑦"><c- n>GPUFeatureName</c-></a>> <a class="idl-code" data-default="[]" data-link-type="dict-member" data-type="sequence<GPUFeatureName> " href="#dom-gpudevicedescriptor-requiredfeatures" id="ref-for-dom-gpudevicedescriptor-requiredfeatures②"><c- g>requiredFeatures</c-></a> = [];
     <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-record" id="ref-for-idl-record"><c- b>record</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString①③"><c- b>DOMString</c-></a>, <a data-link-type="idl-name" href="#typedefdef-gpusize64" id="ref-for-typedefdef-gpusize64③"><c- n>GPUSize64</c-></a>> <a class="idl-code" data-default="{}" data-link-type="dict-member" data-type="record<DOMString, GPUSize64> " href="#dom-gpudevicedescriptor-requiredlimits" id="ref-for-dom-gpudevicedescriptor-requiredlimits⑤"><c- g>requiredLimits</c-></a> = {};
     <a data-link-type="idl-name" href="#dictdef-gpuqueuedescriptor" id="ref-for-dictdef-gpuqueuedescriptor"><c- n>GPUQueueDescriptor</c-></a> <a class="idl-code" data-default="{}" data-link-type="dict-member" data-type="GPUQueueDescriptor " href="#dom-gpudevicedescriptor-defaultqueue" id="ref-for-dom-gpudevicedescriptor-defaultqueue"><c- g>defaultQueue</c-></a> = {};
@@ -3695,7 +3700,7 @@ extends <a data-link-type="dfn" href="#internal-object" id="ref-for-internal-obj
    </div>
    <h3 class="heading settled" data-level="5.2" id="buffer-creation"><span class="secno">5.2. </span><span class="content">Buffer Creation</span><a class="self-link" href="#buffer-creation"></a></h3>
    <h4 class="heading settled" data-level="5.2.1" id="GPUBufferDescriptor"><span class="secno">5.2.1. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#dictdef-gpubufferdescriptor" id="ref-for-dictdef-gpubufferdescriptor②">GPUBufferDescriptor</a></code></span><a class="self-link" href="#GPUBufferDescriptor"></a></h4>
-<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpubufferdescriptor"><code><c- g>GPUBufferDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase②"><c- n>GPUObjectDescriptorBase</c-></a> {
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpubufferdescriptor"><code><c- g>GPUBufferDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase③"><c- n>GPUObjectDescriptorBase</c-></a> {
     <c- b>required</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize64" id="ref-for-typedefdef-gpusize64①①"><c- n>GPUSize64</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUSize64 " href="#dom-gpubufferdescriptor-size" id="ref-for-dom-gpubufferdescriptor-size①"><c- g>size</c-></a>;
     <c- b>required</c-> <a data-link-type="idl-name" href="#typedefdef-gpubufferusageflags" id="ref-for-typedefdef-gpubufferusageflags②"><c- n>GPUBufferUsageFlags</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUBufferUsageFlags " href="#dom-gpubufferdescriptor-usage" id="ref-for-dom-gpubufferdescriptor-usage"><c- g>usage</c-></a>;
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean" id="ref-for-idl-boolean④"><c- b>boolean</c-></a> <a class="idl-code" data-default="false" data-link-type="dict-member" data-type="boolean " href="#dom-gpubufferdescriptor-mappedatcreation" id="ref-for-dom-gpubufferdescriptor-mappedatcreation①"><c- g>mappedAtCreation</c-></a> = <c- b>false</c->;
@@ -3812,7 +3817,7 @@ a <code class="idl"><a data-link-type="idl" href="#dom-gpucommandencoder-resolve
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline②⓪">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Let <var>b</var> be <a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands①">!</a> <a data-link-type="abstract-op" href="#abstract-opdef-create-a-new-webgpu-object" id="ref-for-abstract-opdef-create-a-new-webgpu-object">create a new WebGPU object</a>(<var>this</var>, <code class="idl"><a data-link-type="idl" href="#gpubuffer" id="ref-for-gpubuffer②⑦">GPUBuffer</a></code>).</p>
+         <p>Let [<var>b</var>, <var>bi</var>] be <a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands①">!</a> <a data-link-type="abstract-op" href="#abstract-opdef-create-a-new-webgpu-object" id="ref-for-abstract-opdef-create-a-new-webgpu-object">create a new WebGPU object</a>(<var>this</var>, <code class="idl"><a data-link-type="idl" href="#gpubuffer" id="ref-for-gpubuffer②⑦">GPUBuffer</a></code>, <var>descriptor</var>).</p>
         <li data-md>
          <p>Set <var>b</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-size" id="ref-for-dom-gpubuffer-size①">size</a></code> to <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubufferdescriptor-size" id="ref-for-dom-gpubufferdescriptor-size③">size</a></code>.</p>
         <li data-md>
@@ -3832,8 +3837,6 @@ a <code class="idl"><a data-link-type="idl" href="#dom-gpucommandencoder-resolve
       <div data-timeline="device">
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑧">Device timeline</a> <var>initialization steps</var>: 
        <ol>
-        <li data-md>
-         <p>Let <var>bi</var> be <var>b</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-internals-slot" id="ref-for-dom-gpubuffer-internals-slot">[[internals]]</a></code>.</p>
         <li data-md>
          <p>If any of the following conditions are unsatisfied <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①">generate a validation error</a>, make <var>bi</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid①②">invalid</a>, and stop.</p>
          <div class="validusage">
@@ -3928,7 +3931,7 @@ unmaps it, freeing any memory allocated for the mapping.</p>
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline②⓪">Device timeline</a> steps: 
        <ol>
         <li data-md>
-         <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-internals-slot" id="ref-for-dom-gpubuffer-internals-slot①">[[internals]]</a></code>.<a data-link-type="dfn" href="#buffer-internals-state" id="ref-for-buffer-internals-state②">state</a> to
+         <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-internals-slot" id="ref-for-dom-gpubuffer-internals-slot">[[internals]]</a></code>.<a data-link-type="dfn" href="#buffer-internals-state" id="ref-for-buffer-internals-state②">state</a> to
 "<a data-link-type="dfn" href="#buffer-internals-state-destroyed" id="ref-for-buffer-internals-state-destroyed①">destroyed</a>".</p>
        </ol>
       </div>
@@ -4061,7 +4064,7 @@ on <code class="idl"><a data-link-type="idl" href="#gpubuffer" id="ref-for-gpubu
            <li data-md>
             <p><var>offset</var> + <var>rangeSize</var> ≤ <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-size" id="ref-for-dom-gpubuffer-size③">size</a></code></p>
            <li data-md>
-            <p><var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-internals-slot" id="ref-for-dom-gpubuffer-internals-slot②">[[internals]]</a></code>.<a data-link-type="dfn" href="#buffer-internals-state" id="ref-for-buffer-internals-state③">state</a> is "<a data-link-type="dfn" href="#buffer-internals-state-available" id="ref-for-buffer-internals-state-available①">available</a>".</p>
+            <p><var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-internals-slot" id="ref-for-dom-gpubuffer-internals-slot①">[[internals]]</a></code>.<a data-link-type="dfn" href="#buffer-internals-state" id="ref-for-buffer-internals-state③">state</a> is "<a data-link-type="dfn" href="#buffer-internals-state-available" id="ref-for-buffer-internals-state-available①">available</a>".</p>
            <li data-md>
             <p><var>mode</var> contains exactly one of <code class="idl"><a data-link-type="idl" href="#dom-gpumapmode-read" id="ref-for-dom-gpumapmode-read②">READ</a></code> or <code class="idl"><a data-link-type="idl" href="#dom-gpumapmode-write" id="ref-for-dom-gpumapmode-write③">WRITE</a></code>.</p>
            <li data-md>
@@ -4103,7 +4106,7 @@ on <code class="idl"><a data-link-type="idl" href="#gpubuffer" id="ref-for-gpubu
            <p>Return.</p>
          </ol>
         <li data-md>
-         <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-internals-slot" id="ref-for-dom-gpubuffer-internals-slot③">[[internals]]</a></code>.<a data-link-type="dfn" href="#buffer-internals-state" id="ref-for-buffer-internals-state④">state</a> to "<a data-link-type="dfn" href="#buffer-internals-state-unavailable" id="ref-for-buffer-internals-state-unavailable①">unavailable</a>".</p>
+         <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-internals-slot" id="ref-for-dom-gpubuffer-internals-slot②">[[internals]]</a></code>.<a data-link-type="dfn" href="#buffer-internals-state" id="ref-for-buffer-internals-state④">state</a> to "<a data-link-type="dfn" href="#buffer-internals-state-unavailable" id="ref-for-buffer-internals-state-unavailable①">unavailable</a>".</p>
         <li data-md>
          <p>At an unspecified point:</p>
          <ul>
@@ -4120,7 +4123,7 @@ on <code class="idl"><a data-link-type="idl" href="#gpubuffer" id="ref-for-gpubu
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline②⑤">Device timeline</a> steps: 
        <ol>
         <li data-md>
-         <p>Let <var>internalStateAtCompletion</var> be <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-internals-slot" id="ref-for-dom-gpubuffer-internals-slot④">[[internals]]</a></code>.<a data-link-type="dfn" href="#buffer-internals-state" id="ref-for-buffer-internals-state⑤">state</a>.</p>
+         <p>Let <var>internalStateAtCompletion</var> be <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-internals-slot" id="ref-for-dom-gpubuffer-internals-slot③">[[internals]]</a></code>.<a data-link-type="dfn" href="#buffer-internals-state" id="ref-for-buffer-internals-state⑤">state</a>.</p>
          <p class="note" role="note"><span>Note:</span> If, and only if, at this point the buffer has become "<a data-link-type="dfn" href="#buffer-internals-state-available" id="ref-for-buffer-internals-state-available②">available</a>"
 again due to an <code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-unmap" id="ref-for-dom-gpubuffer-unmap①⓪">unmap()</a></code> call, then <code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-pending_map-slot" id="ref-for-dom-gpubuffer-pending_map-slot⑦">[[pending_map]]</a></code> below will be null,
 so mapping will not succeed in the steps below.</p>
@@ -4313,7 +4316,7 @@ unmapped, any local modifications done by the application to the mapped ranges <
            </div>
          </ol>
         <li data-md>
-         <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-internals-slot" id="ref-for-dom-gpubuffer-internals-slot⑤">[[internals]]</a></code>.<a data-link-type="dfn" href="#buffer-internals-state" id="ref-for-buffer-internals-state⑥">state</a> to "<a data-link-type="dfn" href="#buffer-internals-state-available" id="ref-for-buffer-internals-state-available④">available</a>".</p>
+         <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-internals-slot" id="ref-for-dom-gpubuffer-internals-slot④">[[internals]]</a></code>.<a data-link-type="dfn" href="#buffer-internals-state" id="ref-for-buffer-internals-state⑥">state</a> to "<a data-link-type="dfn" href="#buffer-internals-state-available" id="ref-for-buffer-internals-state-available④">available</a>".</p>
        </ol>
       </div>
      </div>
@@ -4405,7 +4408,7 @@ and its underlying memory can be freed.</p>
    </div>
    <p class="issue" id="issue-6e64275c"><a class="self-link" href="#issue-6e64275c"></a> share this definition with the part of the specification that describes sampling.</p>
    <h4 class="heading settled" data-level="6.1.1" id="texture-creation"><span class="secno">6.1.1. </span><span class="content">Texture Creation</span><a class="self-link" href="#texture-creation"></a></h4>
-<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gputexturedescriptor"><code><c- g>GPUTextureDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase③"><c- n>GPUObjectDescriptorBase</c-></a> {
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gputexturedescriptor"><code><c- g>GPUTextureDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase④"><c- n>GPUObjectDescriptorBase</c-></a> {
     <c- b>required</c-> <a data-link-type="idl-name" href="#typedefdef-gpuextent3d" id="ref-for-typedefdef-gpuextent3d②"><c- n>GPUExtent3D</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUExtent3D " href="#dom-gputexturedescriptor-size" id="ref-for-dom-gputexturedescriptor-size①⑤"><c- g>size</c-></a>;
     <a data-link-type="idl-name" href="#typedefdef-gpuintegercoordinate" id="ref-for-typedefdef-gpuintegercoordinate⑧"><c- n>GPUIntegerCoordinate</c-></a> <a class="idl-code" data-default="1" data-link-type="dict-member" data-type="GPUIntegerCoordinate " href="#dom-gputexturedescriptor-miplevelcount" id="ref-for-dom-gputexturedescriptor-miplevelcount"><c- g>mipLevelCount</c-></a> = 1;
     <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32③③"><c- n>GPUSize32</c-></a> <a class="idl-code" data-default="1" data-link-type="dict-member" data-type="GPUSize32 " href="#dom-gputexturedescriptor-samplecount" id="ref-for-dom-gputexturedescriptor-samplecount"><c- g>sampleCount</c-></a> = 1;
@@ -4764,7 +4767,7 @@ all previously submitted operations using it are complete.</p>
      <p class="note" role="note"><span>Note:</span> this extent depends on the <code class="idl"><a data-link-type="idl" href="#dom-gputextureviewdescriptor-basemiplevel" id="ref-for-dom-gputextureviewdescriptor-basemiplevel">baseMipLevel</a></code>.</p>
    </dl>
    <h4 class="heading settled" data-level="6.2.1" id="texture-view-creation"><span class="secno">6.2.1. </span><span class="content">Texture View Creation</span><a class="self-link" href="#texture-view-creation"></a></h4>
-<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gputextureviewdescriptor"><code><c- g>GPUTextureViewDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase④"><c- n>GPUObjectDescriptorBase</c-></a> {
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gputextureviewdescriptor"><code><c- g>GPUTextureViewDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase⑤"><c- n>GPUObjectDescriptorBase</c-></a> {
     <a data-link-type="idl-name" href="#enumdef-gputextureformat" id="ref-for-enumdef-gputextureformat①②"><c- n>GPUTextureFormat</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUTextureFormat " href="#dom-gputextureviewdescriptor-format" id="ref-for-dom-gputextureviewdescriptor-format②"><c- g>format</c-></a>;
     <a data-link-type="idl-name" href="#enumdef-gputextureviewdimension" id="ref-for-enumdef-gputextureviewdimension"><c- n>GPUTextureViewDimension</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUTextureViewDimension " href="#dom-gputextureviewdescriptor-dimension" id="ref-for-dom-gputextureviewdescriptor-dimension"><c- g>dimension</c-></a>;
     <a data-link-type="idl-name" href="#enumdef-gputextureaspect" id="ref-for-enumdef-gputextureaspect"><c- n>GPUTextureAspect</c-></a> <a class="idl-code" data-default="&quot;all&quot;" data-link-type="dict-member" data-type="GPUTextureAspect " href="#dom-gputextureviewdescriptor-aspect" id="ref-for-dom-gputextureviewdescriptor-aspect"><c- g>aspect</c-></a> = "all";
@@ -5466,7 +5469,7 @@ frame is no longer current, instead of manually or upon garbage collection like 
 When an external texture expires, its <code class="idl"><a data-link-type="idl" href="#dom-gpuexternaltexture-expired" id="ref-for-dom-gpuexternaltexture-expired①">expired</a></code> attribute changes to <code>true</code>.
 Applications can use this to determine whether to re-import or not, if their execution is not
 already scheduled to match the video’s frame rate.</p>
-<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpuexternaltexturedescriptor"><code><c- g>GPUExternalTextureDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase⑤"><c- n>GPUObjectDescriptorBase</c-></a> {
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpuexternaltexturedescriptor"><code><c- g>GPUExternalTextureDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase⑥"><c- n>GPUObjectDescriptorBase</c-></a> {
     <c- b>required</c-> <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/media.html#htmlvideoelement" id="ref-for-htmlvideoelement①"><c- n>HTMLVideoElement</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="GPUExternalTextureDescriptor" data-dfn-type="dict-member" data-export data-type="HTMLVideoElement " id="dom-gpuexternaltexturedescriptor-source"><code><c- g>source</c-></code></dfn>;
     <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/canvas.html#predefinedcolorspace" id="ref-for-predefinedcolorspace①"><c- n>PredefinedColorSpace</c-></a> <dfn class="dfn-paneled idl-code" data-default="&quot;srgb&quot;" data-dfn-for="GPUExternalTextureDescriptor" data-dfn-type="dict-member" data-export data-type="PredefinedColorSpace " id="dom-gpuexternaltexturedescriptor-colorspace"><code><c- g>colorSpace</c-></code></dfn> = "srgb";
 };
@@ -5631,7 +5634,7 @@ be used in a shader to interpret texture resource data.</p>
    <h3 class="heading settled" data-level="7.2" id="sampler-creation"><span class="secno">7.2. </span><span class="content">Sampler Creation</span><a class="self-link" href="#sampler-creation"></a></h3>
    <h4 class="heading settled" data-level="7.2.1" id="GPUSamplerDescriptor"><span class="secno">7.2.1. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#dictdef-gpusamplerdescriptor" id="ref-for-dictdef-gpusamplerdescriptor③">GPUSamplerDescriptor</a></code></span><a class="self-link" href="#GPUSamplerDescriptor"></a></h4>
    <p>A <code class="idl"><a data-link-type="idl" href="#dictdef-gpusamplerdescriptor" id="ref-for-dictdef-gpusamplerdescriptor④">GPUSamplerDescriptor</a></code> specifies the options to use to create a <code class="idl"><a data-link-type="idl" href="#gpusampler" id="ref-for-gpusampler①⓪">GPUSampler</a></code>.</p>
-<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpusamplerdescriptor"><code><c- g>GPUSamplerDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase⑥"><c- n>GPUObjectDescriptorBase</c-></a> {
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpusamplerdescriptor"><code><c- g>GPUSamplerDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase⑦"><c- n>GPUObjectDescriptorBase</c-></a> {
     <a data-link-type="idl-name" href="#enumdef-gpuaddressmode" id="ref-for-enumdef-gpuaddressmode"><c- n>GPUAddressMode</c-></a> <a class="idl-code" data-default="&quot;clamp-to-edge&quot;" data-link-type="dict-member" data-type="GPUAddressMode " href="#dom-gpusamplerdescriptor-addressmodeu" id="ref-for-dom-gpusamplerdescriptor-addressmodeu"><c- g>addressModeU</c-></a> = "clamp-to-edge";
     <a data-link-type="idl-name" href="#enumdef-gpuaddressmode" id="ref-for-enumdef-gpuaddressmode①"><c- n>GPUAddressMode</c-></a> <a class="idl-code" data-default="&quot;clamp-to-edge&quot;" data-link-type="dict-member" data-type="GPUAddressMode " href="#dom-gpusamplerdescriptor-addressmodev" id="ref-for-dom-gpusamplerdescriptor-addressmodev"><c- g>addressModeV</c-></a> = "clamp-to-edge";
     <a data-link-type="idl-name" href="#enumdef-gpuaddressmode" id="ref-for-enumdef-gpuaddressmode②"><c- n>GPUAddressMode</c-></a> <a class="idl-code" data-default="&quot;clamp-to-edge&quot;" data-link-type="dict-member" data-type="GPUAddressMode " href="#dom-gpusamplerdescriptor-addressmodew" id="ref-for-dom-gpusamplerdescriptor-addressmodew"><c- g>addressModeW</c-></a> = "clamp-to-edge";
@@ -5861,7 +5864,7 @@ and <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-g
    </dl>
    <h4 class="heading settled" data-level="8.1.1" id="bind-group-layout-creation"><span class="secno">8.1.1. </span><span class="content">Bind Group Layout Creation</span><a class="self-link" href="#bind-group-layout-creation"></a></h4>
    <p>A <code class="idl"><a data-link-type="idl" href="#gpubindgrouplayout" id="ref-for-gpubindgrouplayout⑦">GPUBindGroupLayout</a></code> is created via <code class="idl"><a data-link-type="idl" href="#dom-gpudevice-createbindgrouplayout" id="ref-for-dom-gpudevice-createbindgrouplayout①">GPUDevice.createBindGroupLayout()</a></code>.</p>
-<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpubindgrouplayoutdescriptor"><code><c- g>GPUBindGroupLayoutDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase⑦"><c- n>GPUObjectDescriptorBase</c-></a> {
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpubindgrouplayoutdescriptor"><code><c- g>GPUBindGroupLayoutDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase⑧"><c- n>GPUObjectDescriptorBase</c-></a> {
     <c- b>required</c-> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence④"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="#dictdef-gpubindgrouplayoutentry" id="ref-for-dictdef-gpubindgrouplayoutentry①②"><c- n>GPUBindGroupLayoutEntry</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="GPUBindGroupLayoutDescriptor" data-dfn-type="dict-member" data-export data-type="sequence<GPUBindGroupLayoutEntry> " id="dom-gpubindgrouplayoutdescriptor-entries"><code><c- g>entries</c-></code></dfn>;
 };
 </pre>
@@ -6306,7 +6309,7 @@ associated with lists of the <a data-link-type="dfn" href="#internal-usage" id="
    </dl>
    <h4 class="heading settled" data-level="8.2.1" id="bind-group-creation"><span class="secno">8.2.1. </span><span class="content">Bind Group Creation</span><a class="self-link" href="#bind-group-creation"></a></h4>
    <p>A <code class="idl"><a data-link-type="idl" href="#gpubindgroup" id="ref-for-gpubindgroup①①">GPUBindGroup</a></code> is created via <code class="idl"><a data-link-type="idl" href="#dom-gpudevice-createbindgroup" id="ref-for-dom-gpudevice-createbindgroup②">GPUDevice.createBindGroup()</a></code>.</p>
-<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpubindgroupdescriptor"><code><c- g>GPUBindGroupDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase⑧"><c- n>GPUObjectDescriptorBase</c-></a> {
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpubindgroupdescriptor"><code><c- g>GPUBindGroupDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase⑨"><c- n>GPUObjectDescriptorBase</c-></a> {
     <c- b>required</c-> <a data-link-type="idl-name" href="#gpubindgrouplayout" id="ref-for-gpubindgrouplayout②②"><c- n>GPUBindGroupLayout</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUBindGroupLayout " href="#dom-gpubindgroupdescriptor-layout" id="ref-for-dom-gpubindgroupdescriptor-layout"><c- g>layout</c-></a>;
     <c- b>required</c-> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence⑤"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="#dictdef-gpubindgroupentry" id="ref-for-dictdef-gpubindgroupentry③"><c- n>GPUBindGroupEntry</c-></a>> <a class="idl-code" data-link-type="dict-member" data-type="sequence<GPUBindGroupEntry> " href="#dom-gpubindgroupdescriptor-entries" id="ref-for-dom-gpubindgroupdescriptor-entries"><c- g>entries</c-></a>;
 };
@@ -6614,7 +6617,7 @@ the range formed by <var>b</var>.<code class="idl"><a data-link-type="idl" href=
    <p class="note" role="note"><span>Note:</span> the expected usage of the <code class="idl"><a data-link-type="idl" href="#gpupipelinelayout" id="ref-for-gpupipelinelayout①④">GPUPipelineLayout</a></code> is placing the most common and the least frequently changing bind groups at the "bottom" of the layout, meaning lower bind group slot numbers, like 0 or 1. The more frequently a bind group needs to change between draw calls, the higher its index should be. This general guideline allows the user agent to minimize state changes between draw calls, and consequently lower the CPU overhead.</p>
    <h4 class="heading settled" data-level="8.3.1" id="pipeline-layout-creation"><span class="secno">8.3.1. </span><span class="content">Pipeline Layout Creation</span><a class="self-link" href="#pipeline-layout-creation"></a></h4>
    <p>A <code class="idl"><a data-link-type="idl" href="#gpupipelinelayout" id="ref-for-gpupipelinelayout①⑤">GPUPipelineLayout</a></code> is created via <code class="idl"><a data-link-type="idl" href="#dom-gpudevice-createpipelinelayout" id="ref-for-dom-gpudevice-createpipelinelayout①">GPUDevice.createPipelineLayout()</a></code>.</p>
-<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpupipelinelayoutdescriptor"><code><c- g>GPUPipelineLayoutDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase⑨"><c- n>GPUObjectDescriptorBase</c-></a> {
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpupipelinelayoutdescriptor"><code><c- g>GPUPipelineLayoutDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase①⓪"><c- n>GPUObjectDescriptorBase</c-></a> {
     <c- b>required</c-> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence⑥"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="#gpubindgrouplayout" id="ref-for-gpubindgrouplayout②⑨"><c- n>GPUBindGroupLayout</c-></a>> <a class="idl-code" data-link-type="dict-member" data-type="sequence<GPUBindGroupLayout> " href="#dom-gpupipelinelayoutdescriptor-bindgrouplayouts" id="ref-for-dom-gpupipelinelayoutdescriptor-bindgrouplayouts②"><c- g>bindGroupLayouts</c-></a>;
 };
 </pre>
@@ -6737,7 +6740,7 @@ if their internal <code class="idl"><a data-link-type="idl" href="#dom-gpupipeli
 </pre>
    <p><code class="idl"><a data-link-type="idl" href="#gpushadermodule" id="ref-for-gpushadermodule①④">GPUShaderModule</a></code> is a reference to an internal shader module object.</p>
    <h4 class="heading settled" data-level="9.1.1" id="shader-module-creation"><span class="secno">9.1.1. </span><span class="content">Shader Module Creation</span><a class="self-link" href="#shader-module-creation"></a></h4>
-<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpushadermoduledescriptor"><code><c- g>GPUShaderModuleDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase①⓪"><c- n>GPUObjectDescriptorBase</c-></a> {
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpushadermoduledescriptor"><code><c- g>GPUShaderModuleDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase①①"><c- n>GPUObjectDescriptorBase</c-></a> {
     <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString⑤"><c- b>USVString</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="USVString " href="#dom-gpushadermoduledescriptor-code" id="ref-for-dom-gpushadermoduledescriptor-code"><c- g>code</c-></a>;
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-object" id="ref-for-idl-object"><c- b>object</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="object " href="#dom-gpushadermoduledescriptor-sourcemap" id="ref-for-dom-gpushadermoduledescriptor-sourcemap"><c- g>sourceMap</c-></a>;
     <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-record" id="ref-for-idl-record①"><c- b>record</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString⑥"><c- b>USVString</c-></a>, <a data-link-type="idl-name" href="#dictdef-gpushadermodulecompilationhint" id="ref-for-dictdef-gpushadermodulecompilationhint"><c- n>GPUShaderModuleCompilationHint</c-></a>> <a class="idl-code" data-link-type="dict-member" data-type="record<USVString, GPUShaderModuleCompilationHint> " href="#dom-gpushadermoduledescriptor-hints" id="ref-for-dom-gpushadermoduledescriptor-hints"><c- g>hints</c-></a>;
@@ -6973,7 +6976,7 @@ and switched as one
     <dfn class="dfn-paneled idl-code" data-dfn-for="GPUAutoLayoutMode" data-dfn-type="enum-value" data-export id="dom-gpuautolayoutmode-auto"><code><c- s>"auto"</c-></code></dfn>
 };
 
-<c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpupipelinedescriptorbase"><code><c- g>GPUPipelineDescriptorBase</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase①①"><c- n>GPUObjectDescriptorBase</c-></a> {
+<c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpupipelinedescriptorbase"><code><c- g>GPUPipelineDescriptorBase</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase①②"><c- n>GPUObjectDescriptorBase</c-></a> {
     <c- b>required</c-> (<a data-link-type="idl-name" href="#gpupipelinelayout" id="ref-for-gpupipelinelayout②④"><c- n>GPUPipelineLayout</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#enumdef-gpuautolayoutmode" id="ref-for-enumdef-gpuautolayoutmode①"><c- n>GPUAutoLayoutMode</c-></a>) <dfn class="dfn-paneled idl-code" data-dfn-for="GPUPipelineDescriptorBase" data-dfn-type="dict-member" data-export data-type="(GPUPipelineLayout or GPUAutoLayoutMode) " id="dom-gpupipelinedescriptorbase-layout"><code><c- g>layout</c-></code></dfn>;
 };
 
@@ -9171,7 +9174,7 @@ To reuse rendering commands across multiple submissions, use <code class="idl"><
 buffer is submitted.</p>
    </dl>
    <h4 class="heading settled" data-level="11.1.1" id="command-buffer-creation"><span class="secno">11.1.1. </span><span class="content">Command Buffer Creation</span><a class="self-link" href="#command-buffer-creation"></a></h4>
-<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpucommandbufferdescriptor"><code><c- g>GPUCommandBufferDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase①②"><c- n>GPUObjectDescriptorBase</c-></a> {
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpucommandbufferdescriptor"><code><c- g>GPUCommandBufferDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase①③"><c- n>GPUObjectDescriptorBase</c-></a> {
 };
 </pre>
    <h2 class="heading settled" data-level="12" id="command-encoding"><span class="secno">12. </span><span class="content">Command Encoding</span><a class="self-link" href="#command-encoding"></a></h2>
@@ -9269,7 +9272,7 @@ The encoder becomes "<a data-link-type="dfn" href="#encoder-state-open" id="ref-
 <a data-link-type="idl-name" href="#gpucommandencoder" id="ref-for-gpucommandencoder⑧"><c- n>GPUCommandEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpudebugcommandsmixin" id="ref-for-gpudebugcommandsmixin"><c- n>GPUDebugCommandsMixin</c-></a>;
 </pre>
    <h4 class="heading settled" data-level="12.2.1" id="command-encoder-creation"><span class="secno">12.2.1. </span><span class="content">Command Encoder Creation</span><a class="self-link" href="#command-encoder-creation"></a></h4>
-<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpucommandencoderdescriptor"><code><c- g>GPUCommandEncoderDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase①③"><c- n>GPUObjectDescriptorBase</c-></a> {
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpucommandencoderdescriptor"><code><c- g>GPUCommandEncoderDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase①④"><c- n>GPUObjectDescriptorBase</c-></a> {
 };
 </pre>
    <dl>
@@ -10883,7 +10886,7 @@ where the latter indicates whether the resource was used as writable.</p>
    <p><dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="gpudebugcommandsmixin"><code>GPUDebugCommandsMixin</code></dfn> provides methods to apply debug labels to groups
 of commands or insert a single label into the command sequence.</p>
    <p>Debug groups can be nested to create a hierarchy of labeled commands, and must be well-balanced.</p>
-   <p>Like <code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-label" id="ref-for-dom-gpuobjectbase-label②">object labels</a></code>, these labels have no required behavior, but may be shown
+   <p>Like <code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-label" id="ref-for-dom-gpuobjectbase-label③">object labels</a></code>, these labels have no required behavior, but may be shown
 in error messages and browser developer tools, and may be passed to native API backends.</p>
 <pre class="idl highlight def"><c- b>interface</c-> <c- b>mixin</c-> <a class="idl-code" data-link-type="interface" href="#gpudebugcommandsmixin" id="ref-for-gpudebugcommandsmixin①"><c- g>GPUDebugCommandsMixin</c-></a> {
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined②⑦"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpudebugcommandsmixin-pushdebuggroup" id="ref-for-dom-gpudebugcommandsmixin-pushdebuggroup"><c- g>pushDebugGroup</c-></a>(<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString①③"><c- b>USVString</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpudebugcommandsmixin-pushdebuggroup-grouplabel-grouplabel" id="ref-for-dom-gpudebugcommandsmixin-pushdebuggroup-grouplabel-grouplabel"><c- g>groupLabel</c-></a>);
@@ -11054,7 +11057,7 @@ It must only be included by interfaces which also include those mixins.</p>
 
 <c- b>typedef</c-> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence①①"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="#dictdef-gpucomputepasstimestampwrite" id="ref-for-dictdef-gpucomputepasstimestampwrite"><c- n>GPUComputePassTimestampWrite</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-type="typedef" data-export id="typedefdef-gpucomputepasstimestampwrites"><code><c- g>GPUComputePassTimestampWrites</c-></code></dfn>;
 
-<c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpucomputepassdescriptor"><code><c- g>GPUComputePassDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase①④"><c- n>GPUObjectDescriptorBase</c-></a> {
+<c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpucomputepassdescriptor"><code><c- g>GPUComputePassDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase①⑤"><c- n>GPUObjectDescriptorBase</c-></a> {
     <a data-link-type="idl-name" href="#typedefdef-gpucomputepasstimestampwrites" id="ref-for-typedefdef-gpucomputepasstimestampwrites①"><c- n>GPUComputePassTimestampWrites</c-></a> <a class="idl-code" data-default="[]" data-link-type="dict-member" data-type="GPUComputePassTimestampWrites " href="#dom-gpucomputepassdescriptor-timestampwrites" id="ref-for-dom-gpucomputepassdescriptor-timestampwrites③"><c- g>timestampWrites</c-></a> = [];
 };
 </pre>
@@ -11447,7 +11450,7 @@ index in <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" hre
 
 <c- b>typedef</c-> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence①③"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="#dictdef-gpurenderpasstimestampwrite" id="ref-for-dictdef-gpurenderpasstimestampwrite"><c- n>GPURenderPassTimestampWrite</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-type="typedef" data-export id="typedefdef-gpurenderpasstimestampwrites"><code><c- g>GPURenderPassTimestampWrites</c-></code></dfn>;
 
-<c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpurenderpassdescriptor"><code><c- g>GPURenderPassDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase①⑤"><c- n>GPUObjectDescriptorBase</c-></a> {
+<c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpurenderpassdescriptor"><code><c- g>GPURenderPassDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase①⑥"><c- n>GPUObjectDescriptorBase</c-></a> {
     <c- b>required</c-> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence①④"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="#dictdef-gpurenderpasscolorattachment" id="ref-for-dictdef-gpurenderpasscolorattachment①"><c- n>GPURenderPassColorAttachment</c-></a>?> <a class="idl-code" data-link-type="dict-member" data-type="sequence<GPURenderPassColorAttachment?> " href="#dom-gpurenderpassdescriptor-colorattachments" id="ref-for-dom-gpurenderpassdescriptor-colorattachments③"><c- g>colorAttachments</c-></a>;
     <a data-link-type="idl-name" href="#dictdef-gpurenderpassdepthstencilattachment" id="ref-for-dictdef-gpurenderpassdepthstencilattachment①"><c- n>GPURenderPassDepthStencilAttachment</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPURenderPassDepthStencilAttachment " href="#dom-gpurenderpassdescriptor-depthstencilattachment" id="ref-for-dom-gpurenderpassdescriptor-depthstencilattachment①③"><c- g>depthStencilAttachment</c-></a>;
     <a data-link-type="idl-name" href="#gpuqueryset" id="ref-for-gpuqueryset①⓪"><c- n>GPUQuerySet</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUQuerySet " href="#dom-gpurenderpassdescriptor-occlusionqueryset" id="ref-for-dom-gpurenderpassdescriptor-occlusionqueryset①"><c- g>occlusionQuerySet</c-></a>;
@@ -11858,7 +11861,7 @@ initial value doesn’t matter (e.g. the render target will be cleared using a s
    <h5 class="heading settled" data-level="16.1.1.4" id="render-pass-layout"><span class="secno">16.1.1.4. </span><span class="content">Render Pass Layout</span><a class="self-link" href="#render-pass-layout"></a></h5>
    <p><code class="idl"><a data-link-type="idl" href="#dictdef-gpurenderpasslayout" id="ref-for-dictdef-gpurenderpasslayout①">GPURenderPassLayout</a></code> contains the layout of the render targets for the current pass,
 which determines the compatibility of the pass with render pipelines.</p>
-<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpurenderpasslayout"><code><c- g>GPURenderPassLayout</c-></code></dfn>: <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase①⑥"><c- n>GPUObjectDescriptorBase</c-></a> {
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpurenderpasslayout"><code><c- g>GPURenderPassLayout</c-></code></dfn>: <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase①⑦"><c- n>GPUObjectDescriptorBase</c-></a> {
     <c- b>required</c-> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence①⑤"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="#enumdef-gputextureformat" id="ref-for-enumdef-gputextureformat③④"><c- n>GPUTextureFormat</c-></a>?> <dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderPassLayout" data-dfn-type="dict-member" data-export data-type="sequence<GPUTextureFormat?> " id="dom-gpurenderpasslayout-colorformats"><code><c- g>colorFormats</c-></code></dfn>;
     <a data-link-type="idl-name" href="#enumdef-gputextureformat" id="ref-for-enumdef-gputextureformat③⑤"><c- n>GPUTextureFormat</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderPassLayout" data-dfn-type="dict-member" data-export data-type="GPUTextureFormat " id="dom-gpurenderpasslayout-depthstencilformat"><code><c- g>depthStencilFormat</c-></code></dfn>;
     <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑥①"><c- n>GPUSize32</c-></a> <dfn class="dfn-paneled idl-code" data-default="1" data-dfn-for="GPURenderPassLayout" data-dfn-type="dict-member" data-export data-type="GPUSize32 " id="dom-gpurenderpasslayout-samplecount"><code><c- g>sampleCount</c-></code></dfn> = 1;
@@ -13099,7 +13102,7 @@ This occurs even if zero <code class="idl"><a data-link-type="idl" href="#gpuren
      <p>The number of draw commands in this <code class="idl"><a data-link-type="idl" href="#gpurenderbundle" id="ref-for-gpurenderbundle①①">GPURenderBundle</a></code>.</p>
    </dl>
    <h4 class="heading settled" data-level="17.1.1" id="render-bundle-creation"><span class="secno">17.1.1. </span><span class="content">Render Bundle Creation</span><a class="self-link" href="#render-bundle-creation"></a></h4>
-<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpurenderbundledescriptor"><code><c- g>GPURenderBundleDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase①⑦"><c- n>GPUObjectDescriptorBase</c-></a> {
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpurenderbundledescriptor"><code><c- g>GPURenderBundleDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase①⑧"><c- n>GPUObjectDescriptorBase</c-></a> {
 };
 </pre>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed②⑨"><c- g>Exposed</c-></a>=(<c- n>Window</c->, <c- n>DedicatedWorker</c->), <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext②⑤"><c- g>SecureContext</c-></a>]
@@ -13289,7 +13292,7 @@ This occurs even if zero <code class="idl"><a data-link-type="idl" href="#gpuren
    <h2 class="heading settled" data-level="18" id="queues"><span class="secno">18. </span><span class="content">Queues</span><a class="self-link" href="#queues"></a></h2>
    <h3 class="heading settled" data-level="18.1" id="gpuqueuedescriptor"><span class="secno">18.1. </span><span class="content"><dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpuqueuedescriptor"><code>GPUQueueDescriptor</code></dfn></span><a class="self-link" href="#gpuqueuedescriptor"></a></h3>
    <p><code class="idl"><a data-link-type="idl" href="#dictdef-gpuqueuedescriptor" id="ref-for-dictdef-gpuqueuedescriptor②">GPUQueueDescriptor</a></code> describes a queue request.</p>
-<pre class="idl highlight def"><c- b>dictionary</c-> <a class="idl-code" data-link-type="dictionary" href="#dictdef-gpuqueuedescriptor" id="ref-for-dictdef-gpuqueuedescriptor③"><c- g>GPUQueueDescriptor</c-></a> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase①⑧"><c- n>GPUObjectDescriptorBase</c-></a> {
+<pre class="idl highlight def"><c- b>dictionary</c-> <a class="idl-code" data-link-type="dictionary" href="#dictdef-gpuqueuedescriptor" id="ref-for-dictdef-gpuqueuedescriptor③"><c- g>GPUQueueDescriptor</c-></a> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase①⑨"><c- n>GPUObjectDescriptorBase</c-></a> {
 };
 </pre>
    <h3 class="heading settled" data-level="18.2" id="gpu-queue"><span class="secno">18.2. </span><span class="content"><dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="gpuqueue"><code>GPUQueue</code></dfn></span><a class="self-link" href="#gpu-queue"></a></h3>
@@ -13413,7 +13416,7 @@ an offset of <var>dataOffset</var> elements.</p>
            <li data-md>
             <p><var>buffer</var> is <a data-link-type="abstract-op" href="#abstract-opdef-valid-to-use-with" id="ref-for-abstract-opdef-valid-to-use-with②⑦">valid to use with</a> <var>this</var>.</p>
            <li data-md>
-            <p><var>buffer</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-internals-slot" id="ref-for-dom-gpubuffer-internals-slot⑥">[[internals]]</a></code>.<a data-link-type="dfn" href="#buffer-internals-state" id="ref-for-buffer-internals-state⑦">state</a> is "<a data-link-type="dfn" href="#buffer-internals-state-available" id="ref-for-buffer-internals-state-available⑤">available</a>".</p>
+            <p><var>buffer</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-internals-slot" id="ref-for-dom-gpubuffer-internals-slot⑤">[[internals]]</a></code>.<a data-link-type="dfn" href="#buffer-internals-state" id="ref-for-buffer-internals-state⑦">state</a> is "<a data-link-type="dfn" href="#buffer-internals-state-available" id="ref-for-buffer-internals-state-available⑤">available</a>".</p>
            <li data-md>
             <p><var>buffer</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-usage" id="ref-for-dom-gpubuffer-usage①⑤">usage</a></code> includes <code class="idl"><a data-link-type="idl" href="#dom-gpubufferusage-copy_dst" id="ref-for-dom-gpubufferusage-copy_dst⑦">COPY_DST</a></code>.</p>
            <li data-md>
@@ -13706,7 +13709,7 @@ formats (which all support <code class="idl"><a data-link-type="idl" href="#dom-
            <li data-md>
             <p>Every <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer①⑧">GPUCommandBuffer</a></code> in <var>commandBuffers</var> is <a data-link-type="abstract-op" href="#abstract-opdef-valid-to-use-with" id="ref-for-abstract-opdef-valid-to-use-with②⑨">valid to use with</a> <var>this</var>.</p>
            <li data-md>
-            <p>For every <code class="idl"><a data-link-type="idl" href="#gpubuffer" id="ref-for-gpubuffer⑨⑧">GPUBuffer</a></code> <var>b</var> referenced in any element of <var>commandBuffers</var>, <var>b</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-internals-slot" id="ref-for-dom-gpubuffer-internals-slot⑦">[[internals]]</a></code>.<a data-link-type="dfn" href="#buffer-internals-state" id="ref-for-buffer-internals-state⑧">state</a> is "<a data-link-type="dfn" href="#buffer-internals-state-available" id="ref-for-buffer-internals-state-available⑥">available</a>".</p>
+            <p>For every <code class="idl"><a data-link-type="idl" href="#gpubuffer" id="ref-for-gpubuffer⑨⑧">GPUBuffer</a></code> <var>b</var> referenced in any element of <var>commandBuffers</var>, <var>b</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-internals-slot" id="ref-for-dom-gpubuffer-internals-slot⑥">[[internals]]</a></code>.<a data-link-type="dfn" href="#buffer-internals-state" id="ref-for-buffer-internals-state⑧">state</a> is "<a data-link-type="dfn" href="#buffer-internals-state-available" id="ref-for-buffer-internals-state-available⑥">available</a>".</p>
            <li data-md>
             <p>Every <code class="idl"><a data-link-type="idl" href="#gpuqueryset" id="ref-for-gpuqueryset①③">GPUQuerySet</a></code> referenced in a command in any element of <var>commandBuffers</var> is
 in the <a data-link-type="dfn" href="#query-set-state-available" id="ref-for-query-set-state-available">available</a> state. For occlusion queries, <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassdescriptor-occlusionqueryset" id="ref-for-dom-gpurenderpassdescriptor-occlusionqueryset④">occlusionQuerySet</a></code> in <code class="idl"><a data-link-type="idl" href="#dom-gpucommandencoder-beginrenderpass" id="ref-for-dom-gpucommandencoder-beginrenderpass④">beginRenderPass()</a></code> does not constitute a reference, while <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-beginocclusionquery" id="ref-for-dom-gpurenderpassencoder-beginocclusionquery②">beginOcclusionQuery()</a></code> does.</p>
@@ -13813,7 +13816,7 @@ on <code class="idl"><a data-link-type="idl" href="#gpubuffer" id="ref-for-gpubu
    </dl>
    <h4 class="heading settled" data-level="19.1.1" id="queryset-creation"><span class="secno">19.1.1. </span><span class="content">QuerySet Creation</span><a class="self-link" href="#queryset-creation"></a></h4>
    <p>A <code class="idl"><a data-link-type="idl" href="#dictdef-gpuquerysetdescriptor" id="ref-for-dictdef-gpuquerysetdescriptor①">GPUQuerySetDescriptor</a></code> specifies the options to use in creating a <code class="idl"><a data-link-type="idl" href="#gpuqueryset" id="ref-for-gpuqueryset②④">GPUQuerySet</a></code>.</p>
-<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpuquerysetdescriptor"><code><c- g>GPUQuerySetDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase①⑨"><c- n>GPUObjectDescriptorBase</c-></a> {
+<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpuquerysetdescriptor"><code><c- g>GPUQuerySetDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase②⓪"><c- n>GPUObjectDescriptorBase</c-></a> {
     <c- b>required</c-> <a data-link-type="idl-name" href="#enumdef-gpuquerytype" id="ref-for-enumdef-gpuquerytype②"><c- n>GPUQueryType</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUQueryType " href="#dom-gpuquerysetdescriptor-type" id="ref-for-dom-gpuquerysetdescriptor-type"><c- g>type</c-></a>;
     <c- b>required</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑧①"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUSize32 " href="#dom-gpuquerysetdescriptor-count" id="ref-for-dom-gpuquerysetdescriptor-count"><c- g>count</c-></a>;
 };
@@ -20979,9 +20982,9 @@ restriction entirely and allow writable bindings to alias with undefined results
   <aside class="dfn-panel" data-for="dom-gpuobjectbase-label">
    <b><a href="#dom-gpuobjectbase-label">#dom-gpuobjectbase-label</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-gpuobjectbase-label">3.1.2. WebGPU Interfaces</a>
-    <li><a href="#ref-for-dom-gpuobjectbase-label①">3.1.4. Object Descriptors</a>
-    <li><a href="#ref-for-dom-gpuobjectbase-label②">14. Debug Markers</a>
+    <li><a href="#ref-for-dom-gpuobjectbase-label">3.1.2. WebGPU Interfaces</a> <a href="#ref-for-dom-gpuobjectbase-label①">(2)</a>
+    <li><a href="#ref-for-dom-gpuobjectbase-label②">3.1.4. Object Descriptors</a>
+    <li><a href="#ref-for-dom-gpuobjectbase-label③">14. Debug Markers</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="internal-object">
@@ -21010,32 +21013,34 @@ restriction entirely and allow writable bindings to alias with undefined results
   <aside class="dfn-panel" data-for="dictdef-gpuobjectdescriptorbase">
    <b><a href="#dictdef-gpuobjectdescriptorbase">#dictdef-gpuobjectdescriptorbase</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase">3.1.4. Object Descriptors</a>
-    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase①">4.3.1. GPUDeviceDescriptor</a>
-    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase②">5.2.1. GPUBufferDescriptor</a>
-    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase③">6.1.1. Texture Creation</a>
-    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase④">6.2.1. Texture View Creation</a>
-    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase⑤">6.4.1. Importing External Textures</a>
-    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase⑥">7.2.1. GPUSamplerDescriptor</a>
-    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase⑦">8.1.1. Bind Group Layout Creation</a>
-    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase⑧">8.2.1. Bind Group Creation</a>
-    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase⑨">8.3.1. Pipeline Layout Creation</a>
-    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase①⓪">9.1.1. Shader Module Creation</a>
-    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase①①">10.1. Base pipelines</a>
-    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase①②">11.1.1. Command Buffer Creation</a>
-    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase①③">12.2.1. Command Encoder Creation</a>
-    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase①④">15.1.1. Compute Pass Encoder Creation</a>
-    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase①⑤">16.1.1. Render Pass Encoder Creation</a>
-    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase①⑥">16.1.1.4. Render Pass Layout</a>
-    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase①⑦">17.1.1. Render Bundle Creation</a>
-    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase①⑧">18.1. GPUQueueDescriptor</a>
-    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase①⑨">19.1.1. QuerySet Creation</a>
+    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase">3.1.2. WebGPU Interfaces</a>
+    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase①">3.1.4. Object Descriptors</a>
+    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase②">4.3.1. GPUDeviceDescriptor</a>
+    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase③">5.2.1. GPUBufferDescriptor</a>
+    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase④">6.1.1. Texture Creation</a>
+    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase⑤">6.2.1. Texture View Creation</a>
+    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase⑥">6.4.1. Importing External Textures</a>
+    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase⑦">7.2.1. GPUSamplerDescriptor</a>
+    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase⑧">8.1.1. Bind Group Layout Creation</a>
+    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase⑨">8.2.1. Bind Group Creation</a>
+    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase①⓪">8.3.1. Pipeline Layout Creation</a>
+    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase①①">9.1.1. Shader Module Creation</a>
+    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase①②">10.1. Base pipelines</a>
+    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase①③">11.1.1. Command Buffer Creation</a>
+    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase①④">12.2.1. Command Encoder Creation</a>
+    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase①⑤">15.1.1. Compute Pass Encoder Creation</a>
+    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase①⑥">16.1.1. Render Pass Encoder Creation</a>
+    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase①⑦">16.1.1.4. Render Pass Layout</a>
+    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase①⑧">17.1.1. Render Bundle Creation</a>
+    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase①⑨">18.1. GPUQueueDescriptor</a>
+    <li><a href="#ref-for-dictdef-gpuobjectdescriptorbase②⓪">19.1.1. QuerySet Creation</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpuobjectdescriptorbase-label">
    <b><a href="#dom-gpuobjectdescriptorbase-label">#dom-gpuobjectdescriptorbase-label</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-gpuobjectdescriptorbase-label">3.1.4. Object Descriptors</a>
+    <li><a href="#ref-for-dom-gpuobjectdescriptorbase-label">3.1.2. WebGPU Interfaces</a>
+    <li><a href="#ref-for-dom-gpuobjectdescriptorbase-label①">3.1.4. Object Descriptors</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="valid">
@@ -22237,10 +22242,9 @@ restriction entirely and allow writable bindings to alias with undefined results
   <aside class="dfn-panel" data-for="dom-gpubuffer-internals-slot">
    <b><a href="#dom-gpubuffer-internals-slot">#dom-gpubuffer-internals-slot</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-gpubuffer-internals-slot">5.2.2. Buffer Usage</a>
-    <li><a href="#ref-for-dom-gpubuffer-internals-slot①">5.3. Buffer Destruction</a>
-    <li><a href="#ref-for-dom-gpubuffer-internals-slot②">5.4. Buffer Mapping</a> <a href="#ref-for-dom-gpubuffer-internals-slot③">(2)</a> <a href="#ref-for-dom-gpubuffer-internals-slot④">(3)</a> <a href="#ref-for-dom-gpubuffer-internals-slot⑤">(4)</a>
-    <li><a href="#ref-for-dom-gpubuffer-internals-slot⑥">18.2. GPUQueue</a> <a href="#ref-for-dom-gpubuffer-internals-slot⑦">(2)</a>
+    <li><a href="#ref-for-dom-gpubuffer-internals-slot">5.3. Buffer Destruction</a>
+    <li><a href="#ref-for-dom-gpubuffer-internals-slot①">5.4. Buffer Mapping</a> <a href="#ref-for-dom-gpubuffer-internals-slot②">(2)</a> <a href="#ref-for-dom-gpubuffer-internals-slot③">(3)</a> <a href="#ref-for-dom-gpubuffer-internals-slot④">(4)</a>
+    <li><a href="#ref-for-dom-gpubuffer-internals-slot⑤">18.2. GPUQueue</a> <a href="#ref-for-dom-gpubuffer-internals-slot⑥">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpubuffer-mapstate">
