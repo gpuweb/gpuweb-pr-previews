@@ -880,13 +880,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-08-31">31 August 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-09-01">1 September 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/172a12854df434fca3b58fcc90daab5f0126eab3/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/172a12854df434fca3b58fcc90daab5f0126eab3/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/22564024ec6a8106aacc9f35b3f082be095e0b5a/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/22564024ec6a8106aacc9f35b3f082be095e0b5a/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -1673,13 +1673,13 @@ If named <code>withoutBrackets</code>, it is a <a data-link-type="dfn" href="#sl
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUObjectBase" data-dfn-type="attribute" data-export id="dom-gpuobjectbase-internals-slot"><code>[[internals]]</code></dfn>, of type <a data-link-type="dfn" href="#internal-object" id="ref-for-internal-object">internal object</a>, readonly, overridable
     <dd data-md>
      <p>The <a data-link-type="dfn" href="#internal-object" id="ref-for-internal-object①">internal object</a>.</p>
-     <p>Operations on this value <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#assert" id="ref-for-assert">assert</a> they are running on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline">device timeline</a>, and that the device is <a data-link-type="dfn" href="#valid" id="ref-for-valid">valid</a>.</p>
+     <p>Operations on the contents of this object <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#assert" id="ref-for-assert">assert</a> they are running on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline">device timeline</a>, and that the device is <a data-link-type="dfn" href="#valid" id="ref-for-valid">valid</a>.</p>
      <p>For each interface that subtypes <code class="idl"><a data-link-type="idl" href="#gpuobjectbase" id="ref-for-gpuobjectbase②">GPUObjectBase</a></code>, this may be overridden with a subtype
 of <a data-link-type="dfn" href="#internal-object" id="ref-for-internal-object②">internal object</a>. This slot is initially set to an uninitialized object of that type.</p>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUObjectBase" data-dfn-type="attribute" data-export id="dom-gpuobjectbase-device-slot"><code>[[device]]</code></dfn>, of type <a data-link-type="dfn" href="#device" id="ref-for-device">device</a>, readonly
     <dd data-md>
      <p>The <a data-link-type="dfn" href="#device" id="ref-for-device①">device</a> that owns the <a data-link-type="dfn" href="#internal-object" id="ref-for-internal-object③">internal object</a>.</p>
-     <p>Operations on this value <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#assert" id="ref-for-assert①">assert</a> they are running on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①">device timeline</a>, and that the device is <a data-link-type="dfn" href="#valid" id="ref-for-valid①">valid</a>.</p>
+     <p>Operations on the contents of this object <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#assert" id="ref-for-assert①">assert</a> they are running on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①">device timeline</a>, and that the device is <a data-link-type="dfn" href="#valid" id="ref-for-valid①">valid</a>.</p>
    </dl>
    <p><code class="idl"><a data-link-type="idl" href="#gpuobjectbase" id="ref-for-gpuobjectbase③">GPUObjectBase</a></code> has the following <a data-link-type="dfn" href="#content-timeline-property" id="ref-for-content-timeline-property">content timeline properties</a>:</p>
    <dl data-timeline="content">
