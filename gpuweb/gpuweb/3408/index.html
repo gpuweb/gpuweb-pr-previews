@@ -886,7 +886,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/09b6d8dc2e28964a248490f09ff56b6bb49b0db1/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/09b6d8dc2e28964a248490f09ff56b6bb49b0db1/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/4c8c50cfa642f6b5b1da8ca469bc6b6ddca3b294/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/4c8c50cfa642f6b5b1da8ca469bc6b6ddca3b294/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -7814,7 +7814,7 @@ of the <a data-link-type="dfn" href="#render-stages" id="ref-for-render-stages">
          <p>If <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment②">fragment</a></code> is not <code>undefined</code>:</p>
          <ol>
           <li data-md>
-           <p>For each non-<code>null</code> <var>colorState</var> layout descriptor in the list <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment③">fragment</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpufragmentstate-targets" id="ref-for-dom-gpufragmentstate-targets②">targets</a></code>:</p>
+           <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate">For each</a> non-<code>null</code> <var>colorState</var> of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment③">fragment</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpufragmentstate-targets" id="ref-for-dom-gpufragmentstate-targets②">targets</a></code>:</p>
            <ol>
             <li data-md>
              <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-texture-format-required-features" id="ref-for-abstract-opdef-validate-texture-format-required-features④">Validate texture format required features</a> of <var>colorState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucolortargetstate-format" id="ref-for-dom-gpucolortargetstate-format">format</a></code> with <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot②⓪">[[device]]</a></code>.</p>
@@ -8258,7 +8258,7 @@ coverage mask.</p>
      <li data-md>
       <p><var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpufragmentstate-targets" id="ref-for-dom-gpufragmentstate-targets③">targets</a></code>.length must be ≤ <var>device</var>.<code class="idl"><a data-link-type="idl" href="#dom-device-limits-slot" id="ref-for-dom-device-limits-slot⑧">[[limits]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxcolorattachments" id="ref-for-dom-supported-limits-maxcolorattachments">maxColorAttachments</a></code>.</p>
      <li data-md>
-      <p>For each index <var>index</var> and non-<code>null</code> value <var>colorState</var> layout descriptor in the list <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpufragmentstate-targets" id="ref-for-dom-gpufragmentstate-targets④">targets</a></code>:</p>
+      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①">For each</a> <var>index</var> of the <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-get-the-indices" id="ref-for-list-get-the-indices">indices</a> of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpufragmentstate-targets" id="ref-for-dom-gpufragmentstate-targets④">targets</a></code> containing a non-<code>null</code> value <var>colorState</var>:</p>
       <ul>
        <li data-md>
         <p><var>colorState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucolortargetstate-format" id="ref-for-dom-gpucolortargetstate-format①">format</a></code> must be listed in <a href="#plain-color-formats">§ 25.1.1 Plain color formats</a> with <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-render_attachment" id="ref-for-dom-gputextureusage-render_attachment⑧">RENDER_ATTACHMENT</a></code> capability.</p>
@@ -18511,6 +18511,19 @@ for (const dataLink of dataLinks) {
     <li><a href="#ref-for-list-extend①">16.1.2. Finalization</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-list-iterate">
+   <a href="https://infra.spec.whatwg.org/#list-iterate">https://infra.spec.whatwg.org/#list-iterate</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-list-iterate">10.3.1. Render Pipeline Creation</a>
+    <li><a href="#ref-for-list-iterate①">10.3.4. Fragment State</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-list-get-the-indices">
+   <a href="https://infra.spec.whatwg.org/#list-get-the-indices">https://infra.spec.whatwg.org/#list-get-the-indices</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-list-get-the-indices">10.3.4. Fragment State</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-list-is-empty">
    <a href="https://infra.spec.whatwg.org/#list-is-empty">https://infra.spec.whatwg.org/#list-is-empty</a><b>Referenced in:</b>
    <ul>
@@ -19349,6 +19362,8 @@ for (const dataLink of dataLinks) {
      <li><span class="dfn-paneled" id="term-for-list-empty">empty</span>
      <li><span class="dfn-paneled" id="term-for-map-exists①">exist</span>
      <li><span class="dfn-paneled" id="term-for-list-extend">extend</span>
+     <li><span class="dfn-paneled" id="term-for-list-iterate">for each</span>
+     <li><span class="dfn-paneled" id="term-for-list-get-the-indices">indices</span>
      <li><span class="dfn-paneled" id="term-for-list-is-empty">is empty</span>
      <li><span class="dfn-paneled" id="term-for-list-item">item</span>
      <li><span class="dfn-paneled" id="term-for-map-getting-the-keys">keys</span>
