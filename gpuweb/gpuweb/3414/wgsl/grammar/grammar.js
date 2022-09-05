@@ -69,10 +69,10 @@ module.exports = grammar({
             $.hex_float_literal
         ),
         decimal_float_literal: $ => choice(
+            token(/0[fh]/),
             token(/[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/),
             token(/[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/),
             token(/[0-9]+[eE][+-]?[0-9]+[fh]?/),
-            token(/0[fh]/),
             token(/[1-9][0-9]*[fh]/)
         ),
         hex_float_literal: $ => choice(
