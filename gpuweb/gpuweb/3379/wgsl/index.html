@@ -645,13 +645,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-09-01">1 September 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-09-06">6 September 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/3e00fe12dcb71d844b7196d5c2fbaa0babe98313/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/3e00fe12dcb71d844b7196d5c2fbaa0babe98313/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/abb060097121cdaf74328a2058cd5b4504973a29/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/abb060097121cdaf74328a2058cd5b4504973a29/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -10175,13 +10175,13 @@ being connected to CF_start).
 That is, the control flow is once again uniform after the if statement (because
 it is guaranteed to start as uniform control flow at the beginning of the entry
 point).
-If the <code>textureSample</code> function call been moved outside the if statement the
-program would have been valid.
+If the <code>textureSample</code> function call had been moved outside the if statement
+the program would have been valid.
 Likewise, if the condition of the if statement were a uniform value (e.g. each
 invocation read the same value from a <a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer①③">uniform buffer</a>), the program would
 also have been valid.</p>
    <h5 class="heading settled" data-level="13.2.9.2" id="uniformity-example2"><span class="secno">13.2.9.2. </span><span class="content">Function-scope Variable Uniformity</span><a class="self-link" href="#uniformity-example2"></a></h5>
-   <p>This example show both a valid and an invalid <a href="#sync-builtin-functions">barrier</a> function call that depend on the value of a
+   <p>This example shows both a valid and an invalid <a href="#sync-builtin-functions">barrier</a> function call that depend on the value of a
 function-scope variable.
 The <code>workgroupBarrier</code> is invalid because the value of <code>x</code> is derived from the
 mutable module-scope variable <code>a</code>.
@@ -10189,9 +10189,10 @@ The <code>storageBarrier</code> is valid because the value of <code>x</code> is 
 immutable module-scope variable <code>b</code>. 
 This example highlights the <a href="#func-var-value-analysis">value analysis'</a> ability to separate different periods of uniformity in a function-scope
 variable’s lifetime.
-This example also clearly shows that uniformity returns to the control flow
-after the first <a data-link-type="dfn" href="#statement-if" id="ref-for-statement-if①">if</a> statement as that section of the graph is
-independent from the second if statement.</p>
+This example also clearly shows that control flow becomes uniform again after
+the end of the first <a data-link-type="dfn" href="#statement-if" id="ref-for-statement-if①">if</a> statement.
+We know this because that section of the graph is independent from the second
+if statement.</p>
    <div class="example wgsl no-marker" id="example-7820373a">
     <a class="self-link" href="#example-7820373a"></a>
     <div class="marker">EXAMPLE: WGSL using function variable</div>
@@ -10289,7 +10290,7 @@ despite the fact that it appears after the barrier in the loop.
 This occurs, because on later iterations some of the invocations in the
 workgroup will have exited the loop prematurely while others attempt to execute
 the barrier.
-The analysis models the inter-iteration dependencies as edge where the control
+The analysis models the inter-iteration dependencies as an edge, where the control
 at the start of the loop body (CF_loop_body) depends on the control flow at the
 end of the loop body (CF_after_if).</p>
    <div class="example wgsl no-marker" id="example-fdbd092e">
@@ -10313,10 +10314,10 @@ end of the loop body (CF_after_if).</p>
     </figure>
    </div>
    <h5 class="heading settled" data-level="13.2.9.5" id="uniformity-example5"><span class="secno">13.2.9.5. </span><span class="content">User-defined Function Calls</span><a class="self-link" href="#uniformity-example5"></a></h5>
-   <p>This example is modification of the <a href="#uniformity-example1">first example</a> that
+   <p>This example is modification of the <a href="#uniformity-example1">first example</a>, but
 uses a user-defined function call.
 The analysis tags both parameters of <code>scale</code> as <a data-link-type="dfn" href="#parameterrequiredtobeuniformforreturnvalue" id="ref-for-parameterrequiredtobeuniformforreturnvalue③">ParameterRequiredToBeUniformForReturnValue</a>.
-This leads to the path in <code>main</code> between the return value of the <code>scale</code> function call and the built-in value position.
+This leads to the path in <code>main</code> between the return value of the <code>scale</code> function call and the <code>position</code> built-in value.
 That path is a subpath of the overall invalid path from RequiredToBeUniform to
 MayBeNonUniform.</p>
    <div class="example wgsl no-marker" id="example-e99aa91f">
