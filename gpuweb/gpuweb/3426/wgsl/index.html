@@ -651,7 +651,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/10b5c51937616c1b44a3e0913413a10b39981657/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/10b5c51937616c1b44a3e0913413a10b39981657/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/0b1bdffee7d190b086e87a584cc17d155645f757/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/0b1bdffee7d190b086e87a584cc17d155645f757/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -4017,12 +4017,10 @@ and vice versa,
 where <var>p</var> and <var>r</var> describe the same memory view. </blockquote>
    <h4 class="heading settled" data-level="5.4.2" id="access-mode-defaults"><span class="secno">5.4.2. </span><span class="content">Access Mode Defaults</span><a class="self-link" href="#access-mode-defaults"></a></h4>
    <p>The access mode for a memory view is often determined by context:</p>
-   <ul>
-    <li data-md>
-     <p>The <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage⑦">storage</a> address space supports both <a data-link-type="dfn" href="#access-read" id="ref-for-access-read①">read</a> and <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②">read_write</a> access modes.</p>
-    <li data-md>
-     <p>Each other address space supports only one access mode, as follows:</p>
-   </ul>
+   <p>The <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage⑦">storage</a> address spaces supports both <a data-link-type="dfn" href="#access-read" id="ref-for-access-read①">read</a> and <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②">read_write</a> access modes.
+Each other address space supports only one access mode.
+The default access mode for each address space is described in the following
+table.</p>
    <table class="data">
     <caption> Access Mode Defaults. </caption>
     <thead>
