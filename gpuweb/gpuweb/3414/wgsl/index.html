@@ -645,13 +645,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-09-05">5 September 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-09-08">8 September 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/mehmetoguzderin/gpuweb/blob/37be3a7e188d16d19dc291d618042fa4119f0d27/wgsl/index.bs">https://github.com/mehmetoguzderin/gpuweb/blob/37be3a7e188d16d19dc291d618042fa4119f0d27/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/mehmetoguzderin/gpuweb/blob/a3c5401eb7a1367adaca896e76021785f405ee4c/wgsl/index.bs">https://github.com/mehmetoguzderin/gpuweb/blob/a3c5401eb7a1367adaca896e76021785f405ee4c/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -1616,7 +1616,7 @@ This is a consequence of the Pumping Lemma for Regular Languages.</p>
 and is used to represent a number.</p>
    </ul>
    <div class="syntax">
-     <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-const_literal">const_literal</dfn> : 
+     <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-literal">literal</dfn> : 
     <p>| <a data-link-type="dfn" href="#syntax-int_literal" id="ref-for-syntax-int_literal">int_literal</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-float_literal" id="ref-for-syntax-float_literal">float_literal</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-bool_literal" id="ref-for-syntax-bool_literal">bool_literal</a></p>
@@ -7157,7 +7157,7 @@ as part of a <a href="#type-constructor-expr">constructor expression</a>.</p>
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-primary_expression">primary_expression</dfn> : 
     <p>| <a data-link-type="dfn" href="#syntax-ident" id="ref-for-syntax-ident⑦">ident</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-callable" id="ref-for-syntax-callable①">callable</a> <a data-link-type="dfn" href="#syntax-argument_expression_list" id="ref-for-syntax-argument_expression_list">argument_expression_list</a></p>
-    <p>| <a data-link-type="dfn" href="#syntax-const_literal" id="ref-for-syntax-const_literal">const_literal</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-literal" id="ref-for-syntax-literal">literal</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-paren_expression" id="ref-for-syntax-paren_expression">paren_expression</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-bitcast" id="ref-for-syntax-bitcast">bitcast</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than⑨">less_than</a> <a data-link-type="dfn" href="#syntax-type_decl" id="ref-for-syntax-type_decl①⓪">type_decl</a> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than⑨">greater_than</a> <a data-link-type="dfn" href="#syntax-paren_expression" id="ref-for-syntax-paren_expression①">paren_expression</a></p>
    </div>
@@ -15093,12 +15093,6 @@ Use token definitions from the main part of the specification.</p>
     <p>| <a data-link-type="dfn" href="#syntax-brace_left" id="ref-for-syntax-brace_left⑤">brace_left</a> <a data-link-type="dfn" href="#recursive-descent-syntax-statement" id="ref-for-recursive-descent-syntax-statement">statement</a> * <a data-link-type="dfn" href="#syntax-brace_right" id="ref-for-syntax-brace_right⑤">brace_right</a></p>
    </div>
    <div class="syntax">
-     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-const_literal">const_literal</dfn>: 
-    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-bool_literal" id="ref-for-recursive-descent-syntax-bool_literal">bool_literal</a></p>
-    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-float_literal" id="ref-for-recursive-descent-syntax-float_literal">float_literal</a></p>
-    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-int_literal" id="ref-for-recursive-descent-syntax-int_literal">int_literal</a></p>
-   </div>
-   <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-core_lhs_expression">core_lhs_expression</dfn>: 
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①">ident</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-paren_left" id="ref-for-syntax-paren_left②⑨">paren_left</a> <a data-link-type="dfn" href="#recursive-descent-syntax-lhs_expression" id="ref-for-recursive-descent-syntax-lhs_expression">lhs_expression</a> <a data-link-type="dfn" href="#syntax-paren_right" id="ref-for-syntax-paren_right①⑧">paren_right</a></p>
@@ -15196,6 +15190,12 @@ Use token definitions from the main part of the specification.</p>
     <p>| ( <a data-link-type="dfn" href="#syntax-star" id="ref-for-syntax-star③">star</a> | <a data-link-type="dfn" href="#syntax-and" id="ref-for-syntax-and⑥">and</a> ) * <a data-link-type="dfn" href="#recursive-descent-syntax-core_lhs_expression" id="ref-for-recursive-descent-syntax-core_lhs_expression">core_lhs_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-postfix_expression" id="ref-for-recursive-descent-syntax-postfix_expression">postfix_expression</a> ?</p>
    </div>
    <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-literal">literal</dfn>: 
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-bool_literal" id="ref-for-recursive-descent-syntax-bool_literal">bool_literal</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-float_literal" id="ref-for-recursive-descent-syntax-float_literal">float_literal</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-int_literal" id="ref-for-recursive-descent-syntax-int_literal">int_literal</a></p>
+   </div>
+   <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-mat_prefix">mat_prefix</dfn>: 
     <p>| <code>'mat2x2'</code></p>
     <p>| <code>'mat2x3'</code></p>
@@ -15231,8 +15231,8 @@ Use token definitions from the main part of the specification.</p>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-primary_expression">primary_expression</dfn>: 
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-callable" id="ref-for-recursive-descent-syntax-callable">callable</a> <a data-link-type="dfn" href="#syntax-paren_left" id="ref-for-syntax-paren_left③②">paren_left</a> ( <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②⓪">expression</a> ( <a data-link-type="dfn" href="#syntax-comma" id="ref-for-syntax-comma④①">comma</a> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②①">expression</a> )* <a data-link-type="dfn" href="#syntax-comma" id="ref-for-syntax-comma④②">comma</a> ? )? <a data-link-type="dfn" href="#syntax-paren_right" id="ref-for-syntax-paren_right②①">paren_right</a></p>
-    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-const_literal" id="ref-for-recursive-descent-syntax-const_literal">const_literal</a></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①⓪">ident</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-literal" id="ref-for-recursive-descent-syntax-literal">literal</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-paren_left" id="ref-for-syntax-paren_left③③">paren_left</a> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②②">expression</a> <a data-link-type="dfn" href="#syntax-paren_right" id="ref-for-syntax-paren_right②②">paren_right</a></p>
     <p>| <code>'bitcast'</code> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than①②">less_than</a> <a data-link-type="dfn" href="#recursive-descent-syntax-type_decl" id="ref-for-recursive-descent-syntax-type_decl⑦">type_decl</a> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than①②">greater_than</a> <a data-link-type="dfn" href="#syntax-paren_left" id="ref-for-syntax-paren_left③④">paren_left</a> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②③">expression</a> <a data-link-type="dfn" href="#syntax-paren_right" id="ref-for-syntax-paren_right②③">paren_right</a></p>
    </div>
@@ -15616,12 +15616,6 @@ Use token definitions from the main part of the specification.</p>
    <li><a href="#const-declaration">const-declaration</a><span>, in § 6.2.1</span>
    <li><a href="#const-expressions">const-expressions</a><span>, in § 7.1.1</span>
    <li><a href="#const-functions">const-functions</a><span>, in § 9.3</span>
-   <li>
-    const_literal
-    <ul>
-     <li><a href="#recursive-descent-syntax-const_literal">dfn for recursive descent syntax</a><span>, in § 18</span>
-     <li><a href="#syntax-const_literal">dfn for syntax</a><span>, in § 3.5</span>
-    </ul>
    <li><a href="#constructible">constructible</a><span>, in § 5.2.12</span>
    <li><a href="#context-dependent-name">context-dependent name</a><span>, in § 3.8</span>
    <li>
@@ -15890,7 +15884,13 @@ Use token definitions from the main part of the specification.</p>
    <li><a href="#lifetime">lifetime</a><span>, in § 6.3</span>
    <li><a href="#line-break">line break</a><span>, in § 3.2</span>
    <li><a href="#line-ending-comment">line-ending comment</a><span>, in § 3.3</span>
-   <li><a href="#literal">literal</a><span>, in § 3.5</span>
+   <li>
+    literal
+    <ul>
+     <li><a href="#literal">definition of</a><span>, in § 3.5</span>
+     <li><a href="#recursive-descent-syntax-literal">dfn for recursive descent syntax</a><span>, in § 18</span>
+     <li><a href="#syntax-literal">dfn for syntax</a><span>, in § 3.5</span>
+    </ul>
    <li><a href="#load-rule">Load Rule</a><span>, in § 5.4.5</span>
    <li><a href="#local-invocation-id">local invocation ID</a><span>, in § 13.3</span>
    <li><a href="#built-in-values-local_invocation_id">local_invocation_id</a><span>, in § 16</span>
@@ -16800,10 +16800,10 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-numeric-literal②">5.2.1. Abstract Numeric Types</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="syntax-const_literal">
-   <b><a href="#syntax-const_literal">#syntax-const_literal</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="syntax-literal">
+   <b><a href="#syntax-literal">#syntax-literal</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-syntax-const_literal">7.17. Expression Grammar Summary</a>
+    <li><a href="#ref-for-syntax-literal">7.17. Expression Grammar Summary</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-bool_literal">
@@ -20948,12 +20948,6 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-recursive-descent-syntax-compound_statement">18. Grammar for Recursive Descent Parsing</a> <a href="#ref-for-recursive-descent-syntax-compound_statement①">(2)</a> <a href="#ref-for-recursive-descent-syntax-compound_statement②">(3)</a> <a href="#ref-for-recursive-descent-syntax-compound_statement③">(4)</a> <a href="#ref-for-recursive-descent-syntax-compound_statement④">(5)</a> <a href="#ref-for-recursive-descent-syntax-compound_statement⑤">(6)</a> <a href="#ref-for-recursive-descent-syntax-compound_statement⑥">(7)</a> <a href="#ref-for-recursive-descent-syntax-compound_statement⑦">(8)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="recursive-descent-syntax-const_literal">
-   <b><a href="#recursive-descent-syntax-const_literal">#recursive-descent-syntax-const_literal</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-recursive-descent-syntax-const_literal">18. Grammar for Recursive Descent Parsing</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="recursive-descent-syntax-core_lhs_expression">
    <b><a href="#recursive-descent-syntax-core_lhs_expression">#recursive-descent-syntax-core_lhs_expression</a></b><b>Referenced in:</b>
    <ul>
@@ -21054,6 +21048,12 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <b><a href="#recursive-descent-syntax-lhs_expression">#recursive-descent-syntax-lhs_expression</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-recursive-descent-syntax-lhs_expression">18. Grammar for Recursive Descent Parsing</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="recursive-descent-syntax-literal">
+   <b><a href="#recursive-descent-syntax-literal">#recursive-descent-syntax-literal</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-recursive-descent-syntax-literal">18. Grammar for Recursive Descent Parsing</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="recursive-descent-syntax-mat_prefix">

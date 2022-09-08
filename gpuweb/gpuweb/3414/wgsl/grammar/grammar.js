@@ -46,11 +46,6 @@ module.exports = grammar({
             $.function_decl,
             seq($.static_assert_statement, $.semicolon)
         ),
-        const_literal: $ => choice(
-            $.int_literal,
-            $.float_literal,
-            $.bool_literal
-        ),
         bool_literal: $ => choice(
             $.true,
             $.false
@@ -79,6 +74,11 @@ module.exports = grammar({
             token(/0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/),
             token(/0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/),
             token(/0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/)
+        ),
+        literal: $ => choice(
+            $.int_literal,
+            $.float_literal,
+            $.bool_literal
         ),
         member_ident: $ => $.ident_pattern_token,
         attribute: $ => choice(
@@ -193,7 +193,7 @@ module.exports = grammar({
         primary_expression: $ => choice(
             $.ident,
             seq($.callable, $.argument_expression_list),
-            $.const_literal,
+            $.literal,
             $.paren_expression,
             seq($.bitcast, $.less_than, $.type_decl, $.greater_than, $.paren_expression)
         ),
