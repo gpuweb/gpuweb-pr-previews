@@ -645,13 +645,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-09-08">8 September 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-09-09">9 September 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/23d6e671e4d3410befedb940c043dfdee26aadd6/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/23d6e671e4d3410befedb940c043dfdee26aadd6/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/987b63e4ba7c294bb9e2329696b16ef0cfb50f97/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/987b63e4ba7c294bb9e2329696b16ef0cfb50f97/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -12668,7 +12668,8 @@ but a value may infer the type.</p>
       <td>Returns the reciprocal of <code>sqrt(e)</code>. <a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise⑦⑤">Component-wise</a> when <code>T</code> is a vector. 
      <tr>
       <td>
-      <td> Note: The result is not mathematically meaningful if <code>e</code> &amp;le 0. 
+      <td>
+       <p class="note" role="note"><span>Note:</span> The result is not mathematically meaningful if <code>e</code> ≤ 0.</p>
    </table>
    <h4 class="heading settled" data-level="17.3.35" id="ldexp-builtin"><span class="secno">17.3.35. </span><span class="content"><code>ldexp</code></span><a class="self-link" href="#ldexp-builtin"></a></h4>
    <table class="data builtin">
@@ -12705,7 +12706,8 @@ but a value may infer the type.</p>
         which may unnecessarily overflow or lose accuracy.</p>
      <tr>
       <td>
-      <td> Note: The result is not mathematically meaningful if <code>e</code> ≤ -0. 
+      <td>
+       <p class="note" role="note"><span>Note:</span> The result is not mathematically meaningful if <code>e</code> ≤ -0.</p>
    </table>
    <h4 class="heading settled" data-level="17.3.37" id="log-builtin"><span class="secno">17.3.37. </span><span class="content"><code>log</code></span><a class="self-link" href="#log-builtin"></a></h4>
    <table class="data builtin">
@@ -12723,7 +12725,8 @@ but a value may infer the type.</p>
       <td>Returns the natural logarithm of <code>e</code>. <a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise⑦⑦">Component-wise</a> when <code>T</code> is a vector. 
      <tr>
       <td>
-      <td> Note: The result is not mathematically meaningful if <code>e</code> &lt; 0. 
+      <td>
+       <p class="note" role="note"><span>Note:</span> The result is not mathematically meaningful if <code>e</code> &lt; 0.</p>
    </table>
    <h4 class="heading settled" data-level="17.3.38" id="log2-builtin"><span class="secno">17.3.38. </span><span class="content"><code>log2</code></span><a class="self-link" href="#log2-builtin"></a></h4>
    <table class="data builtin">
@@ -12741,7 +12744,8 @@ but a value may infer the type.</p>
       <td>Returns the base-2 logarithm of <code>e</code>. <a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise⑦⑧">Component-wise</a> when <code>T</code> is a vector. 
      <tr>
       <td>
-      <td> Note: The result is not mathematically meaningful if <code>e</code> &lt; 0. 
+      <td>
+       <p class="note" role="note"><span>Note:</span> The result is not mathematically meaningful if <code>e</code> &lt; 0.</p>
    </table>
    <h4 class="heading settled" data-level="17.3.39" id="max-float-builtin"><span class="secno">17.3.39. </span><span class="content"><code>max</code></span><a class="self-link" href="#max-float-builtin"></a></h4>
    <table class="data builtin">
