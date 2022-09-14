@@ -651,7 +651,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/597797050dc8df72887e3a0e5cf61b3b043d377d/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/597797050dc8df72887e3a0e5cf61b3b043d377d/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/e9978296676b965424c5a3402127916faa57859c/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/e9978296676b965424c5a3402127916faa57859c/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -3075,17 +3075,17 @@ are always positive.)</p>
    </div>
    <p class="note" role="note"><span>Note:</span> The only valid use of an array sized by an overridable constant is as the store type
 of a variable in <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup④">workgroup</a> space.</p>
-   <div class="example wgsl global-scope no-marker" id="example-d962cb0b">
-    <a class="self-link" href="#example-d962cb0b"></a>
+   <div class="example wgsl global-scope no-marker" id="example-6eb2964b">
+    <a class="self-link" href="#example-6eb2964b"></a>
     <div class="marker">EXAMPLE: Workgroup variables sized by overridable constants</div>
 <pre class="highlight"><c- kr>override</c-> <c- n>blockSize</c-> <c- o>=</c-> <c- mi>16</c-><c- p>;</c->
 
 <c- n>var</c-><c- o>&lt;</c-><c- n>workgroup</c-><c- o>></c-> <c- n>odds</c->: <c- nc>array</c-><c- o>&lt;</c-><c- b>i32</c-><c- p>,</c-><c- n>blockSize</c-><c- o>></c-><c- p>;</c->
 <c- n>var</c-><c- o>&lt;</c-><c- n>workgroup</c-><c- o>></c-> <c- n>evens</c->: <c- nc>array</c-><c- o>&lt;</c-><c- b>i32</c-><c- p>,</c-><c- n>blockSize</c-><c- o>></c-><c- p>;</c-> <c- c1>// Same type</c->
 
-<c- c1>// None of the following have the same type as &lt;code data-opaque bs-autolink-syntax='`odds`'>odds&lt;/code> and &lt;code data-opaque bs-autolink-syntax='`evens`'>evens&lt;/code>.</c->
+<c- c1>// None of the following have the same type as 'odds' and 'evens'.</c->
 
-<c- c1>// Different type: Not the identifier &lt;code data-opaque bs-autolink-syntax='`blockSize`'>blockSize&lt;/code></c->
+<c- c1>// Different type: Not the identifier 'blockSize'</c->
 <c- n>var</c-><c- o>&lt;</c-><c- n>workgroup</c-><c- o>></c-> <c- n>evens_0</c->: <c- nc>array</c-><c- o>&lt;</c-><c- b>i32</c-><c- p>,</c-><c- mi>16</c-><c- o>></c-><c- p>;</c->
 <c- c1>// Different type: Uses arithmetic to express the element count.</c->
 <c- n>var</c-><c- o>&lt;</c-><c- n>workgroup</c-><c- o>></c-> <c- n>evens_1</c->: <c- nc>array</c-><c- o>&lt;</c-><c- b>i32</c-><c- p>,(</c-><c- n>blockSize</c-> <c- o>*</c-> <c- mi>2</c-> <c- o>/</c-> <c- mi>2</c-><c- p>)</c-><c- o>></c-><c- p>;</c->
