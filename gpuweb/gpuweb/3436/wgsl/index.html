@@ -645,13 +645,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-09-13">13 September 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-09-14">14 September 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/mehmetoguzderin/gpuweb/blob/dcf83dd6e9c113e01245d06ade98a4121355682a/wgsl/index.bs">https://github.com/mehmetoguzderin/gpuweb/blob/dcf83dd6e9c113e01245d06ade98a4121355682a/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/mehmetoguzderin/gpuweb/blob/a7eef4252f935181990a0e7a50ff2ba2d1b9071c/wgsl/index.bs">https://github.com/mehmetoguzderin/gpuweb/blob/a7eef4252f935181990a0e7a50ff2ba2d1b9071c/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -3093,7 +3093,7 @@ of a variable in <a data-link-type="dfn" href="#address-spaces-workgroup" id="re
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-array_type">array_type</dfn> : 
-    <p>| <a data-link-type="dfn" href="#syntax-array" id="ref-for-syntax-array">array</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than">less_than</a> <a data-link-type="dfn" href="#syntax-type" id="ref-for-syntax-type">type</a> ( <a data-link-type="dfn" href="#syntax-comma" id="ref-for-syntax-comma⑤">comma</a> <a data-link-type="dfn" href="#syntax-element_count_expression" id="ref-for-syntax-element_count_expression">element_count_expression</a> ) ? <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than">greater_than</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-array" id="ref-for-syntax-array">array</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than">less_than</a> <a data-link-type="dfn" href="#syntax-type_specifier" id="ref-for-syntax-type_specifier">type_specifier</a> ( <a data-link-type="dfn" href="#syntax-comma" id="ref-for-syntax-comma⑤">comma</a> <a data-link-type="dfn" href="#syntax-element_count_expression" id="ref-for-syntax-element_count_expression">element_count_expression</a> ) ? <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than">greater_than</a></p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-element_count_expression">element_count_expression</dfn> : 
@@ -3171,7 +3171,7 @@ as the last element of a structure, which itself cannot be part of an enclosing 
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-struct_member">struct_member</dfn> : 
-    <p>| <a data-link-type="dfn" href="#syntax-attribute" id="ref-for-syntax-attribute">attribute</a> * <a data-link-type="dfn" href="#syntax-member_ident" id="ref-for-syntax-member_ident②">member_ident</a> <a data-link-type="dfn" href="#syntax-colon" id="ref-for-syntax-colon">colon</a> <a data-link-type="dfn" href="#syntax-type" id="ref-for-syntax-type①">type</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-attribute" id="ref-for-syntax-attribute">attribute</a> * <a data-link-type="dfn" href="#syntax-member_ident" id="ref-for-syntax-member_ident②">member_ident</a> <a data-link-type="dfn" href="#syntax-colon" id="ref-for-syntax-colon">colon</a> <a data-link-type="dfn" href="#syntax-type_specifier" id="ref-for-syntax-type_specifier①">type_specifier</a></p>
    </div>
    <p>The following attributes can be applied to structure members:</p>
    <ul>
@@ -4943,8 +4943,8 @@ sampler_comparison
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-texture_and_sampler_types">texture_and_sampler_types</dfn> : 
     <p>| <a data-link-type="dfn" href="#syntax-sampler_type" id="ref-for-syntax-sampler_type">sampler_type</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-depth_texture_type" id="ref-for-syntax-depth_texture_type">depth_texture_type</a></p>
-    <p>| <a data-link-type="dfn" href="#syntax-sampled_texture_type" id="ref-for-syntax-sampled_texture_type">sampled_texture_type</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than①">less_than</a> <a data-link-type="dfn" href="#syntax-type" id="ref-for-syntax-type②">type</a> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than①">greater_than</a></p>
-    <p>| <a data-link-type="dfn" href="#syntax-multisampled_texture_type" id="ref-for-syntax-multisampled_texture_type">multisampled_texture_type</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than②">less_than</a> <a data-link-type="dfn" href="#syntax-type" id="ref-for-syntax-type③">type</a> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than②">greater_than</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-sampled_texture_type" id="ref-for-syntax-sampled_texture_type">sampled_texture_type</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than①">less_than</a> <a data-link-type="dfn" href="#syntax-type_specifier" id="ref-for-syntax-type_specifier②">type_specifier</a> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than①">greater_than</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-multisampled_texture_type" id="ref-for-syntax-multisampled_texture_type">multisampled_texture_type</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than②">less_than</a> <a data-link-type="dfn" href="#syntax-type_specifier" id="ref-for-syntax-type_specifier③">type_specifier</a> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than②">greater_than</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-storage_texture_type" id="ref-for-syntax-storage_texture_type">storage_texture_type</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than③">less_than</a> <a data-link-type="dfn" href="#syntax-texel_format" id="ref-for-syntax-texel_format">texel_format</a> <a data-link-type="dfn" href="#syntax-comma" id="ref-for-syntax-comma⑧">comma</a> <a data-link-type="dfn" href="#syntax-access_mode" id="ref-for-syntax-access_mode①">access_mode</a> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than③">greater_than</a></p>
    </div>
    <div class="syntax">
@@ -4987,7 +4987,7 @@ The declaration <a data-link-type="dfn" href="#shader-creation-error" id="ref-fo
 all properties of the members of <em>S</em>, including attributes, carry over to the members of <em>T</em>.</p>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-type_alias_decl">type_alias_decl</dfn> : 
-    <p>| <code>'type'</code> <a data-link-type="dfn" href="#syntax-ident" id="ref-for-syntax-ident④">ident</a> <a data-link-type="dfn" href="#syntax-equal" id="ref-for-syntax-equal">equal</a> <a data-link-type="dfn" href="#syntax-type" id="ref-for-syntax-type④">type</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-type" id="ref-for-syntax-type">type</a> <a data-link-type="dfn" href="#syntax-ident" id="ref-for-syntax-ident④">ident</a> <a data-link-type="dfn" href="#syntax-equal" id="ref-for-syntax-equal">equal</a> <a data-link-type="dfn" href="#syntax-type_specifier" id="ref-for-syntax-type_specifier④">type_specifier</a></p>
    </div>
    <div class="example wgsl global-scope no-marker" id="example-dde1f139">
     <a class="self-link" href="#example-dde1f139"></a>
@@ -5005,7 +5005,7 @@ all properties of the members of <em>S</em>, including attributes, carry over to
    </div>
    <h3 class="heading settled" data-level="5.7" id="type-specifiers"><span class="secno">5.7. </span><span class="content">Type Specifier Grammar</span><a class="self-link" href="#type-specifiers"></a></h3>
    <div class="syntax">
-     <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-type">type</dfn> : 
+     <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-type_specifier">type_specifier</dfn> : 
     <p>| <a data-link-type="dfn" href="#syntax-ident" id="ref-for-syntax-ident⑤">ident</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-type_without_ident" id="ref-for-syntax-type_without_ident">type_without_ident</a></p>
    </div>
@@ -5016,11 +5016,11 @@ all properties of the members of <em>S</em>, including attributes, carry over to
     <p>| <a data-link-type="dfn" href="#syntax-float16" id="ref-for-syntax-float16">float16</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-int32" id="ref-for-syntax-int32">int32</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-uint32" id="ref-for-syntax-uint32">uint32</a></p>
-    <p>| <a data-link-type="dfn" href="#syntax-vec_prefix" id="ref-for-syntax-vec_prefix">vec_prefix</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than④">less_than</a> <a data-link-type="dfn" href="#syntax-type" id="ref-for-syntax-type⑤">type</a> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than④">greater_than</a></p>
-    <p>| <a data-link-type="dfn" href="#syntax-mat_prefix" id="ref-for-syntax-mat_prefix">mat_prefix</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than⑤">less_than</a> <a data-link-type="dfn" href="#syntax-type" id="ref-for-syntax-type⑥">type</a> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than⑤">greater_than</a></p>
-    <p>| <a data-link-type="dfn" href="#syntax-pointer" id="ref-for-syntax-pointer">pointer</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than⑥">less_than</a> <a data-link-type="dfn" href="#syntax-address_space" id="ref-for-syntax-address_space①">address_space</a> <a data-link-type="dfn" href="#syntax-comma" id="ref-for-syntax-comma⑨">comma</a> <a data-link-type="dfn" href="#syntax-type" id="ref-for-syntax-type⑦">type</a> ( <a data-link-type="dfn" href="#syntax-comma" id="ref-for-syntax-comma①⓪">comma</a> <a data-link-type="dfn" href="#syntax-access_mode" id="ref-for-syntax-access_mode②">access_mode</a> ) ? <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than⑥">greater_than</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-vec_prefix" id="ref-for-syntax-vec_prefix">vec_prefix</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than④">less_than</a> <a data-link-type="dfn" href="#syntax-type_specifier" id="ref-for-syntax-type_specifier⑤">type_specifier</a> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than④">greater_than</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-mat_prefix" id="ref-for-syntax-mat_prefix">mat_prefix</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than⑤">less_than</a> <a data-link-type="dfn" href="#syntax-type_specifier" id="ref-for-syntax-type_specifier⑥">type_specifier</a> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than⑤">greater_than</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-pointer" id="ref-for-syntax-pointer">pointer</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than⑥">less_than</a> <a data-link-type="dfn" href="#syntax-address_space" id="ref-for-syntax-address_space①">address_space</a> <a data-link-type="dfn" href="#syntax-comma" id="ref-for-syntax-comma⑨">comma</a> <a data-link-type="dfn" href="#syntax-type_specifier" id="ref-for-syntax-type_specifier⑦">type_specifier</a> ( <a data-link-type="dfn" href="#syntax-comma" id="ref-for-syntax-comma①⓪">comma</a> <a data-link-type="dfn" href="#syntax-access_mode" id="ref-for-syntax-access_mode②">access_mode</a> ) ? <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than⑥">greater_than</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-array_type" id="ref-for-syntax-array_type">array_type</a></p>
-    <p>| <a data-link-type="dfn" href="#syntax-atomic" id="ref-for-syntax-atomic">atomic</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than⑦">less_than</a> <a data-link-type="dfn" href="#syntax-type" id="ref-for-syntax-type⑧">type</a> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than⑦">greater_than</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-atomic" id="ref-for-syntax-atomic">atomic</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than⑦">less_than</a> <a data-link-type="dfn" href="#syntax-type_specifier" id="ref-for-syntax-type_specifier⑧">type_specifier</a> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than⑦">greater_than</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-texture_and_sampler_types" id="ref-for-syntax-texture_and_sampler_types">texture_and_sampler_types</a></p>
    </div>
    <div class="syntax">
@@ -5573,7 +5573,7 @@ such that the redundant loads are eliminated.
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-optionally_typed_ident">optionally_typed_ident</dfn> : 
-    <p>| <a data-link-type="dfn" href="#syntax-ident" id="ref-for-syntax-ident⑥">ident</a> ( <a data-link-type="dfn" href="#syntax-colon" id="ref-for-syntax-colon①">colon</a> <a data-link-type="dfn" href="#syntax-type" id="ref-for-syntax-type⑨">type</a> ) ?</p>
+    <p>| <a data-link-type="dfn" href="#syntax-ident" id="ref-for-syntax-ident⑥">ident</a> ( <a data-link-type="dfn" href="#syntax-colon" id="ref-for-syntax-colon①">colon</a> <a data-link-type="dfn" href="#syntax-type_specifier" id="ref-for-syntax-type_specifier⑨">type_specifier</a> ) ?</p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-variable_qualifier">variable_qualifier</dfn> : 
@@ -7259,7 +7259,7 @@ as part of a <a href="#type-constructor-expr">constructor expression</a>.</p>
     <p>| <a data-link-type="dfn" href="#syntax-callable" id="ref-for-syntax-callable①">callable</a> <a data-link-type="dfn" href="#syntax-argument_expression_list" id="ref-for-syntax-argument_expression_list">argument_expression_list</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-literal" id="ref-for-syntax-literal">literal</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-paren_expression" id="ref-for-syntax-paren_expression">paren_expression</a></p>
-    <p>| <a data-link-type="dfn" href="#syntax-bitcast" id="ref-for-syntax-bitcast">bitcast</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than⑨">less_than</a> <a data-link-type="dfn" href="#syntax-type" id="ref-for-syntax-type①⓪">type</a> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than⑨">greater_than</a> <a data-link-type="dfn" href="#syntax-paren_expression" id="ref-for-syntax-paren_expression①">paren_expression</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-bitcast" id="ref-for-syntax-bitcast">bitcast</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than⑨">less_than</a> <a data-link-type="dfn" href="#syntax-type_specifier" id="ref-for-syntax-type_specifier①⓪">type_specifier</a> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than⑨">greater_than</a> <a data-link-type="dfn" href="#syntax-paren_expression" id="ref-for-syntax-paren_expression①">paren_expression</a></p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-callable">callable</dfn> : 
@@ -8660,7 +8660,7 @@ parameters and return types:</p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-function_header">function_header</dfn> : 
-    <p>| <a data-link-type="dfn" href="#syntax-fn" id="ref-for-syntax-fn">fn</a> <a data-link-type="dfn" href="#syntax-ident" id="ref-for-syntax-ident①①">ident</a> <a data-link-type="dfn" href="#syntax-paren_left" id="ref-for-syntax-paren_left①⑥">paren_left</a> <a data-link-type="dfn" href="#syntax-param_list" id="ref-for-syntax-param_list">param_list</a> ? <a data-link-type="dfn" href="#syntax-paren_right" id="ref-for-syntax-paren_right⑤">paren_right</a> ( <a data-link-type="dfn" href="#syntax-arrow" id="ref-for-syntax-arrow">arrow</a> <a data-link-type="dfn" href="#syntax-attribute" id="ref-for-syntax-attribute④">attribute</a> * <a data-link-type="dfn" href="#syntax-type" id="ref-for-syntax-type①①">type</a> ) ?</p>
+    <p>| <a data-link-type="dfn" href="#syntax-fn" id="ref-for-syntax-fn">fn</a> <a data-link-type="dfn" href="#syntax-ident" id="ref-for-syntax-ident①①">ident</a> <a data-link-type="dfn" href="#syntax-paren_left" id="ref-for-syntax-paren_left①⑥">paren_left</a> <a data-link-type="dfn" href="#syntax-param_list" id="ref-for-syntax-param_list">param_list</a> ? <a data-link-type="dfn" href="#syntax-paren_right" id="ref-for-syntax-paren_right⑤">paren_right</a> ( <a data-link-type="dfn" href="#syntax-arrow" id="ref-for-syntax-arrow">arrow</a> <a data-link-type="dfn" href="#syntax-attribute" id="ref-for-syntax-attribute④">attribute</a> * <a data-link-type="dfn" href="#syntax-type_specifier" id="ref-for-syntax-type_specifier①①">type_specifier</a> ) ?</p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-param_list">param_list</dfn> : 
@@ -8668,7 +8668,7 @@ parameters and return types:</p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-param">param</dfn> : 
-    <p>| <a data-link-type="dfn" href="#syntax-attribute" id="ref-for-syntax-attribute⑤">attribute</a> * <a data-link-type="dfn" href="#syntax-ident" id="ref-for-syntax-ident①②">ident</a> <a data-link-type="dfn" href="#syntax-colon" id="ref-for-syntax-colon④">colon</a> <a data-link-type="dfn" href="#syntax-type" id="ref-for-syntax-type①②">type</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-attribute" id="ref-for-syntax-attribute⑤">attribute</a> * <a data-link-type="dfn" href="#syntax-ident" id="ref-for-syntax-ident①②">ident</a> <a data-link-type="dfn" href="#syntax-colon" id="ref-for-syntax-colon④">colon</a> <a data-link-type="dfn" href="#syntax-type_specifier" id="ref-for-syntax-type_specifier①②">type_specifier</a></p>
    </div>
    <div class="example wgsl no-marker" id="example-4e3a03f6">
     <a class="self-link" href="#example-4e3a03f6"></a>
@@ -11410,6 +11410,10 @@ with <code>NonPrivatePointer | MakePointerAvailable</code> memory operands with 
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-true">true</dfn> : 
     <p>| <code>'true'</code></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-type">type</dfn> : 
+    <p>| <code>'type'</code></p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-uniform">uniform</dfn> : 
@@ -15520,14 +15524,14 @@ Use token definitions from the main part of the specification.</p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-global_decl">global_decl</dfn>: 
-    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute">attribute</a> * <code>'fn'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident④">ident</a> <a data-link-type="dfn" href="#syntax-paren_left" id="ref-for-syntax-paren_left③①">paren_left</a> ( <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute①">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑤">ident</a> <a data-link-type="dfn" href="#syntax-colon" id="ref-for-syntax-colon⑤">colon</a> <code>'type'</code> ( <a data-link-type="dfn" href="#syntax-comma" id="ref-for-syntax-comma③⑥">comma</a> <a data-link-type="dfn" href="#recursive-descent-syntax-param" id="ref-for-recursive-descent-syntax-param">param</a> )* <a data-link-type="dfn" href="#syntax-comma" id="ref-for-syntax-comma③⑦">comma</a> ? )? <a data-link-type="dfn" href="#syntax-paren_right" id="ref-for-syntax-paren_right②⓪">paren_right</a> ( <a data-link-type="dfn" href="#syntax-arrow" id="ref-for-syntax-arrow①">arrow</a> <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute②">attribute</a> * <code>'type'</code> )? <a data-link-type="dfn" href="#syntax-brace_left" id="ref-for-syntax-brace_left⑥">brace_left</a> <a data-link-type="dfn" href="#recursive-descent-syntax-statement" id="ref-for-recursive-descent-syntax-statement①">statement</a> * <a data-link-type="dfn" href="#syntax-brace_right" id="ref-for-syntax-brace_right⑥">brace_right</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute">attribute</a> * <code>'fn'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident④">ident</a> <a data-link-type="dfn" href="#syntax-paren_left" id="ref-for-syntax-paren_left③①">paren_left</a> ( <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute①">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑤">ident</a> <a data-link-type="dfn" href="#syntax-colon" id="ref-for-syntax-colon⑤">colon</a> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier">type_specifier</a> ( <a data-link-type="dfn" href="#syntax-comma" id="ref-for-syntax-comma③⑥">comma</a> <a data-link-type="dfn" href="#recursive-descent-syntax-param" id="ref-for-recursive-descent-syntax-param">param</a> )* <a data-link-type="dfn" href="#syntax-comma" id="ref-for-syntax-comma③⑦">comma</a> ? )? <a data-link-type="dfn" href="#syntax-paren_right" id="ref-for-syntax-paren_right②⓪">paren_right</a> ( <a data-link-type="dfn" href="#syntax-arrow" id="ref-for-syntax-arrow①">arrow</a> <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute②">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier①">type_specifier</a> )? <a data-link-type="dfn" href="#syntax-brace_left" id="ref-for-syntax-brace_left⑥">brace_left</a> <a data-link-type="dfn" href="#recursive-descent-syntax-statement" id="ref-for-recursive-descent-syntax-statement①">statement</a> * <a data-link-type="dfn" href="#syntax-brace_right" id="ref-for-syntax-brace_right⑥">brace_right</a></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute③">attribute</a> * <code>'override'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-optionally_typed_ident" id="ref-for-recursive-descent-syntax-optionally_typed_ident">optionally_typed_ident</a> ( <a data-link-type="dfn" href="#syntax-equal" id="ref-for-syntax-equal①⓪">equal</a> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①⑤">expression</a> )? <a data-link-type="dfn" href="#syntax-semicolon" id="ref-for-syntax-semicolon①⑧">semicolon</a></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute④">attribute</a> * <code>'var'</code> ( <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than①①">less_than</a> <a data-link-type="dfn" href="#recursive-descent-syntax-address_space" id="ref-for-recursive-descent-syntax-address_space">address_space</a> ( <a data-link-type="dfn" href="#syntax-comma" id="ref-for-syntax-comma③⑧">comma</a> <a data-link-type="dfn" href="#recursive-descent-syntax-access_mode" id="ref-for-recursive-descent-syntax-access_mode">access_mode</a> )? <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than①①">greater_than</a> )? <a data-link-type="dfn" href="#recursive-descent-syntax-optionally_typed_ident" id="ref-for-recursive-descent-syntax-optionally_typed_ident①">optionally_typed_ident</a> ( <a data-link-type="dfn" href="#syntax-equal" id="ref-for-syntax-equal①①">equal</a> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①⑥">expression</a> )? <a data-link-type="dfn" href="#syntax-semicolon" id="ref-for-syntax-semicolon①⑨">semicolon</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-semicolon" id="ref-for-syntax-semicolon②⓪">semicolon</a></p>
     <p>| <code>'const'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-optionally_typed_ident" id="ref-for-recursive-descent-syntax-optionally_typed_ident②">optionally_typed_ident</a> <a data-link-type="dfn" href="#syntax-equal" id="ref-for-syntax-equal①②">equal</a> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①⑦">expression</a> <a data-link-type="dfn" href="#syntax-semicolon" id="ref-for-syntax-semicolon②①">semicolon</a></p>
     <p>| <code>'static_assert'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①⑧">expression</a> <a data-link-type="dfn" href="#syntax-semicolon" id="ref-for-syntax-semicolon②②">semicolon</a></p>
-    <p>| <code>'struct'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑥">ident</a> <a data-link-type="dfn" href="#syntax-brace_left" id="ref-for-syntax-brace_left⑦">brace_left</a> <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute⑤">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-member_ident" id="ref-for-recursive-descent-syntax-member_ident">member_ident</a> <a data-link-type="dfn" href="#syntax-colon" id="ref-for-syntax-colon⑥">colon</a> <code>'type'</code> ( <a data-link-type="dfn" href="#syntax-comma" id="ref-for-syntax-comma③⑨">comma</a> <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute⑥">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-member_ident" id="ref-for-recursive-descent-syntax-member_ident①">member_ident</a> <a data-link-type="dfn" href="#syntax-colon" id="ref-for-syntax-colon⑦">colon</a> <code>'type'</code> )* <a data-link-type="dfn" href="#syntax-comma" id="ref-for-syntax-comma④⓪">comma</a> ? <a data-link-type="dfn" href="#syntax-brace_right" id="ref-for-syntax-brace_right⑦">brace_right</a></p>
-    <p>| <code>'type'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑦">ident</a> <a data-link-type="dfn" href="#syntax-equal" id="ref-for-syntax-equal①③">equal</a> <code>'type'</code> <a data-link-type="dfn" href="#syntax-semicolon" id="ref-for-syntax-semicolon②③">semicolon</a></p>
+    <p>| <code>'struct'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑥">ident</a> <a data-link-type="dfn" href="#syntax-brace_left" id="ref-for-syntax-brace_left⑦">brace_left</a> <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute⑤">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-member_ident" id="ref-for-recursive-descent-syntax-member_ident">member_ident</a> <a data-link-type="dfn" href="#syntax-colon" id="ref-for-syntax-colon⑥">colon</a> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier②">type_specifier</a> ( <a data-link-type="dfn" href="#syntax-comma" id="ref-for-syntax-comma③⑨">comma</a> <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute⑥">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-member_ident" id="ref-for-recursive-descent-syntax-member_ident①">member_ident</a> <a data-link-type="dfn" href="#syntax-colon" id="ref-for-syntax-colon⑦">colon</a> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier③">type_specifier</a> )* <a data-link-type="dfn" href="#syntax-comma" id="ref-for-syntax-comma④⓪">comma</a> ? <a data-link-type="dfn" href="#syntax-brace_right" id="ref-for-syntax-brace_right⑦">brace_right</a></p>
+    <p>| <code>'type'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑦">ident</a> <a data-link-type="dfn" href="#syntax-equal" id="ref-for-syntax-equal①③">equal</a> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier④">type_specifier</a> <a data-link-type="dfn" href="#syntax-semicolon" id="ref-for-syntax-semicolon②③">semicolon</a></p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-hex_float_literal">hex_float_literal</dfn>: 
@@ -15584,11 +15588,11 @@ Use token definitions from the main part of the specification.</p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-optionally_typed_ident">optionally_typed_ident</dfn>: 
-    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑧">ident</a> ( <a data-link-type="dfn" href="#syntax-colon" id="ref-for-syntax-colon⑧">colon</a> <code>'type'</code> )?</p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑧">ident</a> ( <a data-link-type="dfn" href="#syntax-colon" id="ref-for-syntax-colon⑧">colon</a> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier⑤">type_specifier</a> )?</p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-param">param</dfn>: 
-    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute⑦">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑨">ident</a> <a data-link-type="dfn" href="#syntax-colon" id="ref-for-syntax-colon⑨">colon</a> <code>'type'</code></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute⑦">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑨">ident</a> <a data-link-type="dfn" href="#syntax-colon" id="ref-for-syntax-colon⑨">colon</a> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier⑥">type_specifier</a></p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-postfix_expression">postfix_expression</dfn>: 
@@ -15602,7 +15606,7 @@ Use token definitions from the main part of the specification.</p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①⓪">ident</a></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-literal" id="ref-for-recursive-descent-syntax-literal">literal</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-paren_left" id="ref-for-syntax-paren_left③③">paren_left</a> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②②">expression</a> <a data-link-type="dfn" href="#syntax-paren_right" id="ref-for-syntax-paren_right②②">paren_right</a></p>
-    <p>| <code>'bitcast'</code> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than①②">less_than</a> <code>'type'</code> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than①②">greater_than</a> <a data-link-type="dfn" href="#syntax-paren_left" id="ref-for-syntax-paren_left③④">paren_left</a> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②③">expression</a> <a data-link-type="dfn" href="#syntax-paren_right" id="ref-for-syntax-paren_right②③">paren_right</a></p>
+    <p>| <code>'bitcast'</code> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than①②">less_than</a> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier⑦">type_specifier</a> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than①②">greater_than</a> <a data-link-type="dfn" href="#syntax-paren_left" id="ref-for-syntax-paren_left③④">paren_left</a> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②③">expression</a> <a data-link-type="dfn" href="#syntax-paren_right" id="ref-for-syntax-paren_right②③">paren_right</a></p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-relational_expressionpostunary_expression">relational_expression.post.unary_expression</dfn>: 
@@ -15697,27 +15701,32 @@ Use token definitions from the main part of the specification.</p>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-texture_and_sampler_types">texture_and_sampler_types</dfn>: 
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-depth_texture_type" id="ref-for-recursive-descent-syntax-depth_texture_type">depth_texture_type</a></p>
-    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-sampled_texture_type" id="ref-for-recursive-descent-syntax-sampled_texture_type">sampled_texture_type</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than①④">less_than</a> <code>'type'</code> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than①④">greater_than</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-sampled_texture_type" id="ref-for-recursive-descent-syntax-sampled_texture_type">sampled_texture_type</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than①④">less_than</a> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier⑧">type_specifier</a> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than①④">greater_than</a></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-sampler_type" id="ref-for-recursive-descent-syntax-sampler_type">sampler_type</a></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-storage_texture_type" id="ref-for-recursive-descent-syntax-storage_texture_type">storage_texture_type</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than①⑤">less_than</a> <a data-link-type="dfn" href="#recursive-descent-syntax-texel_format" id="ref-for-recursive-descent-syntax-texel_format">texel_format</a> <a data-link-type="dfn" href="#syntax-comma" id="ref-for-syntax-comma④⑦">comma</a> <a data-link-type="dfn" href="#recursive-descent-syntax-access_mode" id="ref-for-recursive-descent-syntax-access_mode①">access_mode</a> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than①⑤">greater_than</a></p>
-    <p>| <a data-link-type="dfn" href="#syntax-multisampled_texture_type" id="ref-for-syntax-multisampled_texture_type①">multisampled_texture_type</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than①⑥">less_than</a> <code>'type'</code> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than①⑥">greater_than</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-multisampled_texture_type" id="ref-for-syntax-multisampled_texture_type①">multisampled_texture_type</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than①⑥">less_than</a> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier⑨">type_specifier</a> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than①⑥">greater_than</a></p>
    </div>
    <div class="syntax">
      <dfn data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-translation_unit">translation_unit<a class="self-link" href="#recursive-descent-syntax-translation_unit"></a></dfn>: 
     <p>| ( <code>'enable'</code> <a data-link-type="dfn" href="#syntax-float16" id="ref-for-syntax-float16①">float16</a> <a data-link-type="dfn" href="#syntax-semicolon" id="ref-for-syntax-semicolon③⑥">semicolon</a> )* <a data-link-type="dfn" href="#recursive-descent-syntax-global_decl" id="ref-for-recursive-descent-syntax-global_decl">global_decl</a> *</p>
    </div>
    <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-type_specifier">type_specifier</dfn>: 
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①②">ident</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-type_without_ident" id="ref-for-recursive-descent-syntax-type_without_ident①">type_without_ident</a></p>
+   </div>
+   <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-type_without_ident">type_without_ident</dfn>: 
-    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-mat_prefix" id="ref-for-recursive-descent-syntax-mat_prefix①">mat_prefix</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than①⑦">less_than</a> <code>'type'</code> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than①⑦">greater_than</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-mat_prefix" id="ref-for-recursive-descent-syntax-mat_prefix①">mat_prefix</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than①⑦">less_than</a> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier①⓪">type_specifier</a> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than①⑦">greater_than</a></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-texture_and_sampler_types" id="ref-for-recursive-descent-syntax-texture_and_sampler_types">texture_and_sampler_types</a></p>
-    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-vec_prefix" id="ref-for-recursive-descent-syntax-vec_prefix①">vec_prefix</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than①⑧">less_than</a> <code>'type'</code> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than①⑧">greater_than</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-vec_prefix" id="ref-for-recursive-descent-syntax-vec_prefix①">vec_prefix</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than①⑧">less_than</a> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier①①">type_specifier</a> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than①⑧">greater_than</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-float16" id="ref-for-syntax-float16②">float16</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-float32" id="ref-for-syntax-float32①">float32</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-int32" id="ref-for-syntax-int32①">int32</a></p>
-    <p>| <a data-link-type="dfn" href="#syntax-pointer" id="ref-for-syntax-pointer①">pointer</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than①⑨">less_than</a> <a data-link-type="dfn" href="#recursive-descent-syntax-address_space" id="ref-for-recursive-descent-syntax-address_space①">address_space</a> <a data-link-type="dfn" href="#syntax-comma" id="ref-for-syntax-comma④⑧">comma</a> <code>'type'</code> ( <a data-link-type="dfn" href="#syntax-comma" id="ref-for-syntax-comma④⑨">comma</a> <a data-link-type="dfn" href="#recursive-descent-syntax-access_mode" id="ref-for-recursive-descent-syntax-access_mode②">access_mode</a> )? <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than①⑨">greater_than</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-pointer" id="ref-for-syntax-pointer①">pointer</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than①⑨">less_than</a> <a data-link-type="dfn" href="#recursive-descent-syntax-address_space" id="ref-for-recursive-descent-syntax-address_space①">address_space</a> <a data-link-type="dfn" href="#syntax-comma" id="ref-for-syntax-comma④⑧">comma</a> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier①②">type_specifier</a> ( <a data-link-type="dfn" href="#syntax-comma" id="ref-for-syntax-comma④⑨">comma</a> <a data-link-type="dfn" href="#recursive-descent-syntax-access_mode" id="ref-for-recursive-descent-syntax-access_mode②">access_mode</a> )? <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than①⑨">greater_than</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-uint32" id="ref-for-syntax-uint32①">uint32</a></p>
-    <p>| <code>'array'</code> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than②⓪">less_than</a> <code>'type'</code> ( <a data-link-type="dfn" href="#syntax-comma" id="ref-for-syntax-comma⑤⓪">comma</a> <a data-link-type="dfn" href="#recursive-descent-syntax-element_count_expression" id="ref-for-recursive-descent-syntax-element_count_expression">element_count_expression</a> )? <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than②⓪">greater_than</a></p>
-    <p>| <code>'atomic'</code> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than②①">less_than</a> <code>'type'</code> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than②①">greater_than</a></p>
+    <p>| <code>'array'</code> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than②⓪">less_than</a> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier①③">type_specifier</a> ( <a data-link-type="dfn" href="#syntax-comma" id="ref-for-syntax-comma⑤⓪">comma</a> <a data-link-type="dfn" href="#recursive-descent-syntax-element_count_expression" id="ref-for-recursive-descent-syntax-element_count_expression">element_count_expression</a> )? <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than②⓪">greater_than</a></p>
+    <p>| <code>'atomic'</code> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than②①">less_than</a> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier①④">type_specifier</a> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than②①">greater_than</a></p>
     <p>| <code>'bool'</code></p>
    </div>
    <div class="syntax">
@@ -16594,7 +16603,7 @@ Use token definitions from the main part of the specification.</p>
     type
     <ul>
      <li><a href="#type">definition of</a><span>, in § 5</span>
-     <li><a href="#syntax-type">dfn for syntax</a><span>, in § 5.7</span>
+     <li><a href="#syntax-type">dfn for syntax</a><span>, in § 15.1.2</span>
     </ul>
    <li><a href="#type-alias">type alias</a><span>, in § 5.6</span>
    <li><a href="#syntax-type_alias_decl">type_alias_decl</a><span>, in § 5.6</span>
@@ -16607,6 +16616,12 @@ Use token definitions from the main part of the specification.</p>
    <li><a href="#type-rule-conclusion">type rule conclusion</a><span>, in § 5.1</span>
    <li><a href="#type-rule-preconditions">type rule preconditions</a><span>, in § 5.1</span>
    <li><a href="#type-rule-tables">type rule tables</a><span>, in § 5.1.1</span>
+   <li>
+    type_specifier
+    <ul>
+     <li><a href="#recursive-descent-syntax-type_specifier">dfn for recursive descent syntax</a><span>, in § 18</span>
+     <li><a href="#syntax-type_specifier">dfn for syntax</a><span>, in § 5.7</span>
+    </ul>
    <li>
     type_without_ident
     <ul>
@@ -16858,9 +16873,9 @@ Use token definitions from the main part of the specification.</p>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://datatracker.ietf.org/doc/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>
    <dt id="biblio-uax14">[UAX14]
-   <dd>Christopher Chapman. <a href="https://www.unicode.org/reports/tr14/tr14-47.html"><cite>Unicode Line Breaking Algorithm</cite></a>. 23 August 2021. Unicode Standard Annex #14. URL: <a href="https://www.unicode.org/reports/tr14/tr14-47.html">https://www.unicode.org/reports/tr14/tr14-47.html</a>
+   <dd>Christopher Chapman. <a href="https://www.unicode.org/reports/tr14/tr14-49.html"><cite>Unicode Line Breaking Algorithm</cite></a>. 16 August 2022. Unicode Standard Annex #14. URL: <a href="https://www.unicode.org/reports/tr14/tr14-49.html">https://www.unicode.org/reports/tr14/tr14-49.html</a>
    <dt id="biblio-uax31">[UAX31]
-   <dd>Mark Davis. <a href="https://www.unicode.org/reports/tr31/tr31-35.html"><cite>Unicode Identifier and Pattern Syntax</cite></a>. 26 August 2021. Unicode Standard Annex #31. URL: <a href="https://www.unicode.org/reports/tr31/tr31-35.html">https://www.unicode.org/reports/tr31/tr31-35.html</a>
+   <dd>Mark Davis; Robin Leroy. <a href="https://www.unicode.org/reports/tr31/tr31-37.html"><cite>Unicode Identifier and Pattern Syntax</cite></a>. 31 August 2022. Unicode Standard Annex #31. URL: <a href="https://www.unicode.org/reports/tr31/tr31-37.html">https://www.unicode.org/reports/tr31/tr31-37.html</a>
    <dt id="biblio-unicodeversion14">[UnicodeVersion14]
    <dd><a href="http://www.unicode.org/versions/Unicode14.0.0/"><cite>The Unicode Standard, Version 14.0.0</cite></a>. URL: <a href="http://www.unicode.org/versions/Unicode14.0.0/">http://www.unicode.org/versions/Unicode14.0.0/</a>
    <dt id="biblio-vanwyk2007">[VanWyk2007]
@@ -18843,17 +18858,17 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-syntax-type_alias_decl">12. WGSL Program</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="syntax-type">
-   <b><a href="#syntax-type">#syntax-type</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="syntax-type_specifier">
+   <b><a href="#syntax-type_specifier">#syntax-type_specifier</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-syntax-type">5.2.9. Array Types</a>
-    <li><a href="#ref-for-syntax-type①">5.2.10. Structure Types</a>
-    <li><a href="#ref-for-syntax-type②">5.5.8. Texture and Sampler Types Grammar</a> <a href="#ref-for-syntax-type③">(2)</a>
-    <li><a href="#ref-for-syntax-type④">5.6. Type Aliases</a>
-    <li><a href="#ref-for-syntax-type⑤">5.7. Type Specifier Grammar</a> <a href="#ref-for-syntax-type⑥">(2)</a> <a href="#ref-for-syntax-type⑦">(3)</a> <a href="#ref-for-syntax-type⑧">(4)</a>
-    <li><a href="#ref-for-syntax-type⑨">6.4. Variable and Value Declaration Grammar Summary</a>
-    <li><a href="#ref-for-syntax-type①⓪">7.17. Expression Grammar Summary</a>
-    <li><a href="#ref-for-syntax-type①①">9.1. Declaring a User-defined Function</a> <a href="#ref-for-syntax-type①②">(2)</a>
+    <li><a href="#ref-for-syntax-type_specifier">5.2.9. Array Types</a>
+    <li><a href="#ref-for-syntax-type_specifier①">5.2.10. Structure Types</a>
+    <li><a href="#ref-for-syntax-type_specifier②">5.5.8. Texture and Sampler Types Grammar</a> <a href="#ref-for-syntax-type_specifier③">(2)</a>
+    <li><a href="#ref-for-syntax-type_specifier④">5.6. Type Aliases</a>
+    <li><a href="#ref-for-syntax-type_specifier⑤">5.7. Type Specifier Grammar</a> <a href="#ref-for-syntax-type_specifier⑥">(2)</a> <a href="#ref-for-syntax-type_specifier⑦">(3)</a> <a href="#ref-for-syntax-type_specifier⑧">(4)</a>
+    <li><a href="#ref-for-syntax-type_specifier⑨">6.4. Variable and Value Declaration Grammar Summary</a>
+    <li><a href="#ref-for-syntax-type_specifier①⓪">7.17. Expression Grammar Summary</a>
+    <li><a href="#ref-for-syntax-type_specifier①①">9.1. Declaring a User-defined Function</a> <a href="#ref-for-syntax-type_specifier①②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-type_without_ident">
@@ -20779,6 +20794,12 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-syntax-true">3.5.1. Boolean Literals</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="syntax-type">
+   <b><a href="#syntax-type">#syntax-type</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-syntax-type">5.6. Type Aliases</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="syntax-uniform">
    <b><a href="#syntax-uniform">#syntax-uniform</a></b><b>Referenced in:</b>
    <ul>
@@ -21410,7 +21431,7 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
   <aside class="dfn-panel" data-for="recursive-descent-syntax-ident">
    <b><a href="#recursive-descent-syntax-ident">#recursive-descent-syntax-ident</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-recursive-descent-syntax-ident">18. Grammar for Recursive Descent Parsing</a> <a href="#ref-for-recursive-descent-syntax-ident①">(2)</a> <a href="#ref-for-recursive-descent-syntax-ident②">(3)</a> <a href="#ref-for-recursive-descent-syntax-ident③">(4)</a> <a href="#ref-for-recursive-descent-syntax-ident④">(5)</a> <a href="#ref-for-recursive-descent-syntax-ident⑤">(6)</a> <a href="#ref-for-recursive-descent-syntax-ident⑥">(7)</a> <a href="#ref-for-recursive-descent-syntax-ident⑦">(8)</a> <a href="#ref-for-recursive-descent-syntax-ident⑧">(9)</a> <a href="#ref-for-recursive-descent-syntax-ident⑨">(10)</a> <a href="#ref-for-recursive-descent-syntax-ident①⓪">(11)</a> <a href="#ref-for-recursive-descent-syntax-ident①①">(12)</a>
+    <li><a href="#ref-for-recursive-descent-syntax-ident">18. Grammar for Recursive Descent Parsing</a> <a href="#ref-for-recursive-descent-syntax-ident①">(2)</a> <a href="#ref-for-recursive-descent-syntax-ident②">(3)</a> <a href="#ref-for-recursive-descent-syntax-ident③">(4)</a> <a href="#ref-for-recursive-descent-syntax-ident④">(5)</a> <a href="#ref-for-recursive-descent-syntax-ident⑤">(6)</a> <a href="#ref-for-recursive-descent-syntax-ident⑥">(7)</a> <a href="#ref-for-recursive-descent-syntax-ident⑦">(8)</a> <a href="#ref-for-recursive-descent-syntax-ident⑧">(9)</a> <a href="#ref-for-recursive-descent-syntax-ident⑨">(10)</a> <a href="#ref-for-recursive-descent-syntax-ident①⓪">(11)</a> <a href="#ref-for-recursive-descent-syntax-ident①①">(12)</a> <a href="#ref-for-recursive-descent-syntax-ident①②">(13)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="recursive-descent-syntax-int_literal">
@@ -21545,10 +21566,16 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-recursive-descent-syntax-texture_and_sampler_types">18. Grammar for Recursive Descent Parsing</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="recursive-descent-syntax-type_specifier">
+   <b><a href="#recursive-descent-syntax-type_specifier">#recursive-descent-syntax-type_specifier</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-recursive-descent-syntax-type_specifier">18. Grammar for Recursive Descent Parsing</a> <a href="#ref-for-recursive-descent-syntax-type_specifier①">(2)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier②">(3)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier③">(4)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier④">(5)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier⑤">(6)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier⑥">(7)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier⑦">(8)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier⑧">(9)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier⑨">(10)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier①⓪">(11)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier①①">(12)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier①②">(13)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier①③">(14)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier①④">(15)</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="recursive-descent-syntax-type_without_ident">
    <b><a href="#recursive-descent-syntax-type_without_ident">#recursive-descent-syntax-type_without_ident</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-recursive-descent-syntax-type_without_ident">18. Grammar for Recursive Descent Parsing</a>
+    <li><a href="#ref-for-recursive-descent-syntax-type_without_ident">18. Grammar for Recursive Descent Parsing</a> <a href="#ref-for-recursive-descent-syntax-type_without_ident①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="recursive-descent-syntax-unary_expression">
