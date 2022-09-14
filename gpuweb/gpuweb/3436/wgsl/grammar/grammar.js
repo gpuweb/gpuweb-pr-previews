@@ -145,9 +145,9 @@ module.exports = grammar({
         type_alias_decl: $ => seq($.type, $.ident, $.equal, $.type_specifier),
         type_specifier: $ => choice(
             $.ident,
-            $.type_without_ident
+            $.type_specifier_without_ident
         ),
-        type_without_ident: $ => choice(
+        type_specifier_without_ident: $ => choice(
             $.bool,
             $.float32,
             $.float16,
@@ -199,7 +199,7 @@ module.exports = grammar({
         ),
         callable: $ => choice(
             $.ident,
-            $.type_without_ident,
+            $.type_specifier_without_ident,
             $.vec_prefix,
             $.mat_prefix,
             $.array

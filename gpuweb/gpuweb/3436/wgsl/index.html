@@ -651,7 +651,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/mehmetoguzderin/gpuweb/blob/a7eef4252f935181990a0e7a50ff2ba2d1b9071c/wgsl/index.bs">https://github.com/mehmetoguzderin/gpuweb/blob/a7eef4252f935181990a0e7a50ff2ba2d1b9071c/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/mehmetoguzderin/gpuweb/blob/b833f3c540ac42d976d6b24b617d5a389eca67a9/wgsl/index.bs">https://github.com/mehmetoguzderin/gpuweb/blob/b833f3c540ac42d976d6b24b617d5a389eca67a9/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -5007,10 +5007,10 @@ all properties of the members of <em>S</em>, including attributes, carry over to
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-type_specifier">type_specifier</dfn> : 
     <p>| <a data-link-type="dfn" href="#syntax-ident" id="ref-for-syntax-ident⑤">ident</a></p>
-    <p>| <a data-link-type="dfn" href="#syntax-type_without_ident" id="ref-for-syntax-type_without_ident">type_without_ident</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-type_specifier_without_ident" id="ref-for-syntax-type_specifier_without_ident">type_specifier_without_ident</a></p>
    </div>
    <div class="syntax">
-     <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-type_without_ident">type_without_ident</dfn> : 
+     <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-type_specifier_without_ident">type_specifier_without_ident</dfn> : 
     <p>| <a data-link-type="dfn" href="#syntax-bool" id="ref-for-syntax-bool">bool</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-float32" id="ref-for-syntax-float32">float32</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-float16" id="ref-for-syntax-float16">float16</a></p>
@@ -7264,7 +7264,7 @@ as part of a <a href="#type-constructor-expr">constructor expression</a>.</p>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-callable">callable</dfn> : 
     <p>| <a data-link-type="dfn" href="#syntax-ident" id="ref-for-syntax-ident⑧">ident</a></p>
-    <p>| <a data-link-type="dfn" href="#syntax-type_without_ident" id="ref-for-syntax-type_without_ident①">type_without_ident</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-type_specifier_without_ident" id="ref-for-syntax-type_specifier_without_ident①">type_specifier_without_ident</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-vec_prefix" id="ref-for-syntax-vec_prefix①">vec_prefix</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-mat_prefix" id="ref-for-syntax-mat_prefix①">mat_prefix</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-array" id="ref-for-syntax-array①">array</a></p>
@@ -15438,7 +15438,7 @@ Use token definitions from the main part of the specification.</p>
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-callable">callable</dfn>: 
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident">ident</a></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-mat_prefix" id="ref-for-recursive-descent-syntax-mat_prefix">mat_prefix</a></p>
-    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-type_without_ident" id="ref-for-recursive-descent-syntax-type_without_ident">type_without_ident</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier_without_ident" id="ref-for-recursive-descent-syntax-type_specifier_without_ident">type_specifier_without_ident</a></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-vec_prefix" id="ref-for-recursive-descent-syntax-vec_prefix">vec_prefix</a></p>
     <p>| <code>'array'</code></p>
    </div>
@@ -15713,10 +15713,10 @@ Use token definitions from the main part of the specification.</p>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-type_specifier">type_specifier</dfn>: 
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①②">ident</a></p>
-    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-type_without_ident" id="ref-for-recursive-descent-syntax-type_without_ident①">type_without_ident</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier_without_ident" id="ref-for-recursive-descent-syntax-type_specifier_without_ident①">type_specifier_without_ident</a></p>
    </div>
    <div class="syntax">
-     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-type_without_ident">type_without_ident</dfn>: 
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-type_specifier_without_ident">type_specifier_without_ident</dfn>: 
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-mat_prefix" id="ref-for-recursive-descent-syntax-mat_prefix①">mat_prefix</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than①⑦">less_than</a> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier①⓪">type_specifier</a> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than①⑦">greater_than</a></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-texture_and_sampler_types" id="ref-for-recursive-descent-syntax-texture_and_sampler_types">texture_and_sampler_types</a></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-vec_prefix" id="ref-for-recursive-descent-syntax-vec_prefix①">vec_prefix</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than①⑧">less_than</a> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier①①">type_specifier</a> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than①⑧">greater_than</a></p>
@@ -16623,10 +16623,10 @@ Use token definitions from the main part of the specification.</p>
      <li><a href="#syntax-type_specifier">dfn for syntax</a><span>, in § 5.7</span>
     </ul>
    <li>
-    type_without_ident
+    type_specifier_without_ident
     <ul>
-     <li><a href="#recursive-descent-syntax-type_without_ident">dfn for recursive descent syntax</a><span>, in § 18</span>
-     <li><a href="#syntax-type_without_ident">dfn for syntax</a><span>, in § 5.7</span>
+     <li><a href="#recursive-descent-syntax-type_specifier_without_ident">dfn for recursive descent syntax</a><span>, in § 18</span>
+     <li><a href="#syntax-type_specifier_without_ident">dfn for syntax</a><span>, in § 5.7</span>
     </ul>
    <li><a href="#u32">u32</a><span>, in § 5.2.3</span>
    <li><a href="#syntax-uint32">uint32</a><span>, in § 15.1.1</span>
@@ -18871,11 +18871,11 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-syntax-type_specifier①①">9.1. Declaring a User-defined Function</a> <a href="#ref-for-syntax-type_specifier①②">(2)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="syntax-type_without_ident">
-   <b><a href="#syntax-type_without_ident">#syntax-type_without_ident</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="syntax-type_specifier_without_ident">
+   <b><a href="#syntax-type_specifier_without_ident">#syntax-type_specifier_without_ident</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-syntax-type_without_ident">5.7. Type Specifier Grammar</a>
-    <li><a href="#ref-for-syntax-type_without_ident①">7.17. Expression Grammar Summary</a>
+    <li><a href="#ref-for-syntax-type_specifier_without_ident">5.7. Type Specifier Grammar</a>
+    <li><a href="#ref-for-syntax-type_specifier_without_ident①">7.17. Expression Grammar Summary</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-vec_prefix">
@@ -21572,10 +21572,10 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-recursive-descent-syntax-type_specifier">18. Grammar for Recursive Descent Parsing</a> <a href="#ref-for-recursive-descent-syntax-type_specifier①">(2)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier②">(3)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier③">(4)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier④">(5)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier⑤">(6)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier⑥">(7)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier⑦">(8)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier⑧">(9)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier⑨">(10)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier①⓪">(11)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier①①">(12)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier①②">(13)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier①③">(14)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier①④">(15)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="recursive-descent-syntax-type_without_ident">
-   <b><a href="#recursive-descent-syntax-type_without_ident">#recursive-descent-syntax-type_without_ident</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="recursive-descent-syntax-type_specifier_without_ident">
+   <b><a href="#recursive-descent-syntax-type_specifier_without_ident">#recursive-descent-syntax-type_specifier_without_ident</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-recursive-descent-syntax-type_without_ident">18. Grammar for Recursive Descent Parsing</a> <a href="#ref-for-recursive-descent-syntax-type_without_ident①">(2)</a>
+    <li><a href="#ref-for-recursive-descent-syntax-type_specifier_without_ident">18. Grammar for Recursive Descent Parsing</a> <a href="#ref-for-recursive-descent-syntax-type_specifier_without_ident①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="recursive-descent-syntax-unary_expression">
