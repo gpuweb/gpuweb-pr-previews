@@ -651,7 +651,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/c515bf5dd2f14d477acb5ba0157e44cbc2416e3c/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/c515bf5dd2f14d477acb5ba0157e44cbc2416e3c/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/81e0805a19d0855a9fc782479a0395a7c36676f9/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/81e0805a19d0855a9fc782479a0395a7c36676f9/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -7134,9 +7134,16 @@ where 0 ≤ <var>r</var> &lt; <var>e2</var>.</p>
       <td>
        Shift right (concrete). 
        <p>Shift <var>e1</var> right, discarding the least significant bits.</p>
-       <p>If <var>S</var> is an unsigned type, insert zero bits at the most significant positions.
-        If <var>S</var> is a signed type, each inserted bit is a copy of the sign bit of <var>e1</var>.</p>
-       <p>The number of bits to shift is the value of <var>e2</var>, modulo the bit width of <var>e1</var>.<br> If <var>e2</var> is greater than or equal to the bit width or <var>e1</var>, then:</p>
+       <p>If <var>S</var> is an unsigned type, insert zero bits at the most significant positions.</p>
+       <p>If <var>S</var> is a signed type:</p>
+       <ul>
+        <li data-md>
+         <p>If <var>e1</var> is negative, each inserted bit is 1, and so the result is also negative.</p>
+        <li data-md>
+         <p>Otherwise, each inserted bit is 0.</p>
+       </ul>
+       <p>The number of bits to shift is the value of <var>e2</var>, modulo the bit width of <var>e1</var>.</p>
+       <p>If <var>e2</var> is greater than or equal to the bit width or <var>e1</var>, then:</p>
        <ul>
         <li data-md>
          <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①②③">shader-creation error</a> if <var>e2</var> is a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions③⑦">const-expression</a>.</p>
