@@ -651,7 +651,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/c2f4239bfaff32930795a605d030cada2ee8fdf2/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/c2f4239bfaff32930795a605d030cada2ee8fdf2/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/c515bf5dd2f14d477acb5ba0157e44cbc2416e3c/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/c515bf5dd2f14d477acb5ba0157e44cbc2416e3c/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -7134,9 +7134,9 @@ where 0 ≤ <var>r</var> &lt; <var>e2</var>.</p>
       <td>
        Shift right (concrete). 
        <p>Shift <var>e1</var> right, discarding the least significant bits.</p>
-       <p>If <var>e1</var> is an unsigned type, insert zero bits at the most significant positions.
-        If <var>e1</var> is a signed type, each inserted bits is a copy of the sign bit of <var>e1</var>.</p>
-       <p>The number of bits to shift is the value of <var>e2</var>, modulo the bit width of <var>e1</var>.<br> If <var>e2</var> is greater or equal to the bit width or <var>e1</var>, then:</p>
+       <p>If <var>S</var> is an unsigned type, insert zero bits at the most significant positions.
+        If <var>S</var> is a signed type, each inserted bit is a copy of the sign bit of <var>e1</var>.</p>
+       <p>The number of bits to shift is the value of <var>e2</var>, modulo the bit width of <var>e1</var>.<br> If <var>e2</var> is greater than or equal to the bit width or <var>e1</var>, then:</p>
        <ul>
         <li data-md>
          <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①②③">shader-creation error</a> if <var>e2</var> is a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions③⑦">const-expression</a>.</p>
@@ -7149,12 +7149,9 @@ where 0 ≤ <var>r</var> &lt; <var>e2</var>.</p>
       <td class="nowrap"><var>e1</var> >> <var>e2</var>: <var>T</var> 
       <td>
        Shift right (abstract). 
-       <p>Shift <var>e1</var> right, discarding the least significant bits.
-        If <var>e1</var> is negative, each inserted bit is 1, and so the result is also negative.
-        Otherwise, each inserted bit is 0.</p>
        <p>Shift <var>e1</var> right, discarding the least significant bits.</p>
-       <p>If <var>e1</var> is an unsigned type, insert zero bits at the most significant positions.
-        If <var>e1</var> is a signed type, the inserted bits are copies of the sign bit of <var>e1</var>.</p>
+       <p>If <var>e1</var> is negative, each inserted bit is 1, and so the result is also negative.
+        Otherwise, each inserted bit is 0.</p>
        <p>The number of bits to shift is the value of <var>e2</var>.</p>
        <p><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise④⑥">Component-wise</a> when <var>T</var> is a vector.</p>
        <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①②④">shader-creation error</a> if any of the <var>e2</var> values are less than 0.</p>
