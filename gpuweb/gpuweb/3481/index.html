@@ -880,13 +880,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-09-29">29 September 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-09-30">30 September 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/2f64bd46a8d730749e4134761763794f52e3d074/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/2f64bd46a8d730749e4134761763794f52e3d074/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/eeda4b3aa27977a51c5a39ce50a0161ce2235d89/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/eeda4b3aa27977a51c5a39ce50a0161ce2235d89/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -2897,9 +2897,9 @@ them to WGSL values (<code>bool</code>, <code>i32</code>, <code>u32</code>, <cod
        <dt data-md>If <var>T</var> is <code>bool</code>
        <dd data-md>
         <p>Return the WGSL <code>bool</code> value corresponding to the result of <a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands①">!</a> converting <var>v</var> to <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-convert-ecmascript-to-idl-value" id="ref-for-dfn-convert-ecmascript-to-idl-value">an IDL value</a> of type <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-boolean" id="ref-for-idl-boolean">boolean</a></code>.</p>
-        <p class="note" role="note"><span>Note:</span> Because of the intermediate conversion through <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double②">double</a></code> or <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-float" id="ref-for-idl-float②">float</a></code>,
-non-numeric, non-boolean values like <code>[]</code> and <code>{}</code> convert differently than they
-would directly to IDL <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-boolean" id="ref-for-idl-boolean①">boolean</a></code>.</p>
+        <p class="note" role="note"><span>Note:</span> This algorithm is called after the conversion from an ECMAScript value to an IDL <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double②">double</a></code> or <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-float" id="ref-for-idl-float②">float</a></code> value. If the original ECMAScript value was a non-numeric,
+non-boolean value like <code>[]</code> or <code>{}</code>, then the WGSL <code>bool</code> result may be different
+than if the ECMAScript value had been converted to IDL <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-boolean" id="ref-for-idl-boolean①">boolean</a></code> directly.</p>
        <dt data-md>If <var>T</var> is <code>i32</code>
        <dd data-md>
         <p>Return the WGSL <code>i32</code> value corresponding to the result of <a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands②">?</a> converting <var>v</var> to <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-convert-ecmascript-to-idl-value" id="ref-for-dfn-convert-ecmascript-to-idl-value①">an IDL value</a> of type [<code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#EnforceRange" id="ref-for-EnforceRange">EnforceRange</a></code>] <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-long" id="ref-for-idl-long">long</a></code>.</p>
