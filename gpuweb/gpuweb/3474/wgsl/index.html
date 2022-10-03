@@ -651,7 +651,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/531f6837c21b6453e2f9df760201880bcb2100f1/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/531f6837c21b6453e2f9df760201880bcb2100f1/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/b33dd3e5fc46f4a5113d69be9ef31f43d0ab145d/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/b33dd3e5fc46f4a5113d69be9ef31f43d0ab145d/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -1318,7 +1318,7 @@ This is a portability hazard, as different implementations may exhibit the diffe
 The design of WGSL aims to minimize such cases, but is constrained by feasibility,
 and goals for achieving high performance across a broad range of devices.</p>
    <h3 class="heading settled" data-level="1.2" id="terms-and-notation"><span class="secno">1.2. </span><span class="content">Mathematical Terms and Notation</span><a class="self-link" href="#terms-and-notation"></a></h3>
-   <p><dfn data-dfn-type="dfn" data-noexport id="angles">Angles<a class="self-link" href="#angles"></a></dfn>:</p>
+   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="angles">Angles</dfn>:</p>
    <ul>
     <li data-md>
      <p>By convention, angles are measured in radians.</p>
@@ -12380,7 +12380,7 @@ See <a href="#function-calls">§ 9.2 Function Calls</a>.</p>
       <td>Description 
       <td>
        Returns the inverse hyperbolic cosine (cosh<sup>-1</sup>) of <code>e</code>, as a
-    hyperbolic angle in radians.<br> That is, approximates <code>x</code> with 0 ≤ x ≤ ∞, such that <code>cosh</code>(<code>x</code>) = <code>e</code>. 
+    hyperbolic <a data-link-type="dfn" href="#angles" id="ref-for-angles">angle</a> in radians.<br> That is, approximates <code>x</code> with 0 ≤ x ≤ ∞, such that <code>cosh</code>(<code>x</code>) = <code>e</code>. 
        <p>The result is 0 when <code>e</code> &lt; 1.</p>
        <p><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise⑤⓪">Component-wise</a> when <code>T</code> is a vector.</p>
      <tr>
@@ -12423,7 +12423,7 @@ See <a href="#function-calls">§ 9.2 Function Calls</a>.</p>
      <tr>
       <td>Description 
       <td>
-       Returns the inverse hyperbolic sine (sinh<sup>-1</sup>) of <code>e</code>, as a hyperbolic angle in radians.<br> That is, approximates <code>x</code> such that <code>sinh</code>(<code>x</code>) = <code>e</code>. 
+       Returns the inverse hyperbolic sine (sinh<sup>-1</sup>) of <code>e</code>, as a hyperbolic <a data-link-type="dfn" href="#angles" id="ref-for-angles①">angle</a> in radians.<br> That is, approximates <code>x</code> such that <code>sinh</code>(<code>x</code>) = <code>e</code>. 
        <p><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise⑤②">Component-wise</a> when <code>T</code> is a vector.</p>
    </table>
    <h4 class="heading settled" data-level="17.3.6" id="atan-builtin"><span class="secno">17.3.6. </span><span class="content"><code>atan</code></span><a class="self-link" href="#atan-builtin"></a></h4>
@@ -12457,7 +12457,7 @@ See <a href="#function-calls">§ 9.2 Function Calls</a>.</p>
      <tr>
       <td>Description 
       <td>
-       Returns the inverse hyperbolic tangent (tanh<sup>-1</sup>) of <code>e</code>, as a hyperbolic angle in radians.<br> That is, approximates <code>x</code> such that <code>tanh</code>(<code>x</code>) = <code>e</code>. 
+       Returns the inverse hyperbolic tangent (tanh<sup>-1</sup>) of <code>e</code>, as a hyperbolic <a data-link-type="dfn" href="#angles" id="ref-for-angles②">angle</a> in radians.<br> That is, approximates <code>x</code> such that <code>tanh</code>(<code>x</code>) = <code>e</code>. 
        <p>The result is 0 when <code>abs(e)</code> ≥ 1.<br></p>
        <p><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise⑤④">Component-wise</a> when <code>T</code> is a vector.</p>
      <tr>
@@ -12480,7 +12480,7 @@ See <a href="#function-calls">§ 9.2 Function Calls</a>.</p>
      <tr>
       <td>Description 
       <td>
-       Returns an angle, in radians, in the interval [-π, π] whose tangent is <code>y</code>÷<code>x</code>. 
+       Returns an <a data-link-type="dfn" href="#angles" id="ref-for-angles③">angle</a>, in radians, in the interval [-π, π] whose tangent is <code>y</code>÷<code>x</code>. 
        <p>The quadrant selected by the result depends on the signs of <code>y</code> and <code>x</code>.
     For example, the function may be implemented as:</p>
        <ul>
@@ -12564,7 +12564,7 @@ See <a href="#function-calls">§ 9.2 Function Calls</a>.</p>
      <tr>
       <td>Description 
       <td>
-       Returns the hyperbolic cosine of <code>arg</code>, where <code>arg</code> is a hyperbolic angle in radians.
+       Returns the hyperbolic cosine of <code>arg</code>, where <code>arg</code> is a hyperbolic <a data-link-type="dfn" href="#angles" id="ref-for-angles④">angle</a> in radians.
     Approximates the pure mathematical function (<em>e</em><sup>arg</sup> + <em>e</em><sup>−arg</sup>)÷2,
     but not necessarily computed that way. 
        <p><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise⑤⑨">Component-wise</a> when <code>T</code> is a vector</p>
@@ -13609,7 +13609,7 @@ but a value may infer the type.</p>
      <tr>
       <td>Description 
       <td>
-       Returns the hyperbolic sine of <code>e</code>, where <code>e</code> is a hyperbolic angle in radians.
+       Returns the hyperbolic sine of <code>e</code>, where <code>e</code> is a hyperbolic <a data-link-type="dfn" href="#angles" id="ref-for-angles⑤">angle</a> in radians.
     Approximates the pure mathematical function
     (<em>e</em><sup>arg</sup> − <em>e</em><sup>−arg</sup>)÷2,
     but not necessarily computed that way. 
@@ -13695,7 +13695,7 @@ but a value may infer the type.</p>
      <tr>
       <td>Description 
       <td>
-       Returns the hyperbolic tangent of <code>e</code>, where <code>e</code> is a hyperbolic angle in radians.
+       Returns the hyperbolic tangent of <code>e</code>, where <code>e</code> is a hyperbolic <a data-link-type="dfn" href="#angles" id="ref-for-angles⑥">angle</a> in radians.
     Approximates the pure mathematical function
     (<em>e</em><sup>arg</sup> − <em>e</em><sup>−arg</sup>) ÷ (<em>e</em><sup>arg</sup> + <em>e</em><sup>−arg</sup>)
     but not necessarily computed that way. 
@@ -17125,6 +17125,18 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <ul>
     <li><a href="#ref-for-invocations">2. Shader Lifecycle</a>
     <li><a href="#ref-for-invocations①">13. Execution</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="angles">
+   <b><a href="#angles">#angles</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-angles">17.3.3. acosh</a>
+    <li><a href="#ref-for-angles①">17.3.5. asinh</a>
+    <li><a href="#ref-for-angles②">17.3.7. atanh</a>
+    <li><a href="#ref-for-angles③">17.3.8. atan2</a>
+    <li><a href="#ref-for-angles④">17.3.12. cosh</a>
+    <li><a href="#ref-for-angles⑤">17.3.54. sinh</a>
+    <li><a href="#ref-for-angles⑥">17.3.59. tanh</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="floor-expression">
