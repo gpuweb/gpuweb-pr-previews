@@ -886,7 +886,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/94e0a3286519183ed19c924caf5db7a53e1230e5/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/94e0a3286519183ed19c924caf5db7a53e1230e5/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/6871b5ea6645797a7eb93c53c2997e01b7e9388d/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/6871b5ea6645797a7eb93c53c2997e01b7e9388d/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -6125,7 +6125,7 @@ to be used.</p>
      <p>Indicates whether this binding requires a dynamic offset.</p>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUBufferBindingLayout" data-dfn-type="dict-member" data-export id="dom-gpubufferbindinglayout-minbindingsize"><code>minBindingSize</code></dfn>, <span> of type <a data-link-type="idl-name" href="#typedefdef-gpusize64" id="ref-for-typedefdef-gpusize64①⑧">GPUSize64</a>, defaulting to <code>0</code></span>
     <dd data-md>
-     <p>Indicates the minimum size, in bytes, of a buffer bound to this binding.</p>
+     <p>Indicates the minimum <code class="idl"><a data-link-type="idl" href="#dom-gpubufferbinding-size" id="ref-for-dom-gpubufferbinding-size②">size</a></code> of a buffer binding used with this bind point.</p>
      <p>Bindings are always validated against this size in <code class="idl"><a data-link-type="idl" href="#dom-gpudevice-createbindgroup" id="ref-for-dom-gpudevice-createbindgroup①">createBindGroup()</a></code>.</p>
      <p>If this <em>is not</em> <code>0</code>, pipeline creation additionally <a data-link-type="abstract-op" href="#abstract-opdef-validating-shader-binding" id="ref-for-abstract-opdef-validating-shader-binding">validates</a> that this value ≥ the <a data-link-type="dfn" href="#minimum-buffer-binding-size" id="ref-for-minimum-buffer-binding-size">minimum buffer binding size</a> of the variable.</p>
      <p>If this <em>is</em> <code>0</code>, it is ignored, and instead draw/dispatch commands <a data-link-type="abstract-op" href="#abstract-opdef-validate-encoder-bind-groups" id="ref-for-abstract-opdef-validate-encoder-bind-groups">validate</a> that each binding in the <code class="idl"><a data-link-type="idl" href="#gpubindgroup" id="ref-for-gpubindgroup③">GPUBindGroup</a></code> satisfies the <a data-link-type="dfn" href="#minimum-buffer-binding-size" id="ref-for-minimum-buffer-binding-size①">minimum buffer binding size</a> of the variable.</p>
@@ -6417,7 +6417,7 @@ following members:</p>
 <pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpubufferbinding"><code><c- g>GPUBufferBinding</c-></code></dfn> {
     <c- b>required</c-> <a data-link-type="idl-name" href="#gpubuffer" id="ref-for-gpubuffer⑤②"><c- n>GPUBuffer</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUBuffer " href="#dom-gpubufferbinding-buffer" id="ref-for-dom-gpubufferbinding-buffer"><c- g>buffer</c-></a>;
     <a data-link-type="idl-name" href="#typedefdef-gpusize64" id="ref-for-typedefdef-gpusize64①⑨"><c- n>GPUSize64</c-></a> <a class="idl-code" data-default="0" data-link-type="dict-member" data-type="GPUSize64 " href="#dom-gpubufferbinding-offset" id="ref-for-dom-gpubufferbinding-offset②"><c- g>offset</c-></a> = 0;
-    <a data-link-type="idl-name" href="#typedefdef-gpusize64" id="ref-for-typedefdef-gpusize64②⓪"><c- n>GPUSize64</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUSize64 " href="#dom-gpubufferbinding-size" id="ref-for-dom-gpubufferbinding-size②"><c- g>size</c-></a>;
+    <a data-link-type="idl-name" href="#typedefdef-gpusize64" id="ref-for-typedefdef-gpusize64②⓪"><c- n>GPUSize64</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUSize64 " href="#dom-gpubufferbinding-size" id="ref-for-dom-gpubufferbinding-size③"><c- g>size</c-></a>;
 };
 </pre>
    <p>A <code class="idl"><a data-link-type="idl" href="#dictdef-gpubufferbinding" id="ref-for-dictdef-gpubufferbinding⑨">GPUBufferBinding</a></code> describes a buffer and optional range to bind as a resource, and has the
@@ -6559,7 +6559,7 @@ the number of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" hr
                <li data-md>
                 <p><var>resource</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubufferbinding-buffer" id="ref-for-dom-gpubufferbinding-buffer③">buffer</a></code> is <a data-link-type="abstract-op" href="#abstract-opdef-valid-to-use-with" id="ref-for-abstract-opdef-valid-to-use-with⑤">valid to use with</a> <var>this</var>.</p>
                <li data-md>
-                <p>The bound part designated by <var>resource</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubufferbinding-offset" id="ref-for-dom-gpubufferbinding-offset④">offset</a></code> and <var>resource</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubufferbinding-size" id="ref-for-dom-gpubufferbinding-size③">size</a></code> resides inside the buffer and has non-zero size.</p>
+                <p>The bound part designated by <var>resource</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubufferbinding-offset" id="ref-for-dom-gpubufferbinding-offset④">offset</a></code> and <var>resource</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubufferbinding-size" id="ref-for-dom-gpubufferbinding-size④">size</a></code> resides inside the buffer and has non-zero size.</p>
                <li data-md>
                 <p><a data-link-type="abstract-op" href="#abstract-opdef-effective-buffer-binding-size" id="ref-for-abstract-opdef-effective-buffer-binding-size">effective buffer binding size</a>(<var>resource</var>) ≥ <var>layoutBinding</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindgrouplayoutentry-buffer" id="ref-for-dom-gpubindgrouplayoutentry-buffer②⓪">buffer</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpubufferbindinglayout-minbindingsize" id="ref-for-dom-gpubufferbindinglayout-minbindingsize③">minBindingSize</a></code>.</p>
                <li data-md>
@@ -6620,13 +6620,13 @@ the number of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" hr
      <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-effective-buffer-binding-size">effective buffer binding size</dfn>(binding) 
     <ol>
      <li data-md>
-      <p>If <var>binding</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubufferbinding-size" id="ref-for-dom-gpubufferbinding-size④">size</a></code> is <code>undefined</code>:</p>
+      <p>If <var>binding</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubufferbinding-size" id="ref-for-dom-gpubufferbinding-size⑤">size</a></code> is <code>undefined</code>:</p>
       <ol>
        <li data-md>
         <p>Return max(0, <var>binding</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubufferbinding-buffer" id="ref-for-dom-gpubufferbinding-buffer⑥">buffer</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-size" id="ref-for-dom-gpubuffer-size⑤">size</a></code> - <var>binding</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubufferbinding-offset" id="ref-for-dom-gpubufferbinding-offset⑦">offset</a></code>);</p>
       </ol>
      <li data-md>
-      <p>Return <var>binding</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubufferbinding-size" id="ref-for-dom-gpubufferbinding-size⑤">size</a></code>.</p>
+      <p>Return <var>binding</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubufferbinding-size" id="ref-for-dom-gpubufferbinding-size⑥">size</a></code>.</p>
     </ol>
    </div>
    <div class="algorithm" data-algorithm="buffer-binding-aliasing">
@@ -6635,8 +6635,8 @@ the number of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" hr
      <li data-md>
       <p><var>a</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubufferbinding-buffer" id="ref-for-dom-gpubufferbinding-buffer⑦">buffer</a></code> == <var>b</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubufferbinding-buffer" id="ref-for-dom-gpubufferbinding-buffer⑧">buffer</a></code></p>
      <li data-md>
-      <p>The range formed by <var>a</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubufferbinding-offset" id="ref-for-dom-gpubufferbinding-offset⑧">offset</a></code> and <var>a</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubufferbinding-size" id="ref-for-dom-gpubufferbinding-size⑥">size</a></code> intersects
-the range formed by <var>b</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubufferbinding-offset" id="ref-for-dom-gpubufferbinding-offset⑨">offset</a></code> and <var>b</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubufferbinding-size" id="ref-for-dom-gpubufferbinding-size⑦">size</a></code>.</p>
+      <p>The range formed by <var>a</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubufferbinding-offset" id="ref-for-dom-gpubufferbinding-offset⑧">offset</a></code> and <var>a</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubufferbinding-size" id="ref-for-dom-gpubufferbinding-size⑦">size</a></code> intersects
+the range formed by <var>b</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubufferbinding-offset" id="ref-for-dom-gpubufferbinding-offset⑨">offset</a></code> and <var>b</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubufferbinding-size" id="ref-for-dom-gpubufferbinding-size⑧">size</a></code>.</p>
     </ul>
     <p class="issue" id="issue-955ecf80"><a class="self-link" href="#issue-955ecf80"></a> Define how a range is formed by offset/size when size can be undefined.</p>
    </div>
@@ -19577,7 +19577,7 @@ for (const dataLink of dataLinks) {
    <dt id="biblio-webidl">[WEBIDL]
    <dd>Edgar Chen; Timothy Gu. <a href="https://webidl.spec.whatwg.org/"><cite>Web IDL Standard</cite></a>. Living Standard. URL: <a href="https://webidl.spec.whatwg.org/">https://webidl.spec.whatwg.org/</a>
    <dt id="biblio-wgsl">[WGSL]
-   <dd>Alan Baker; Mehmet Oguz Derin; David Neto. <a href="https://www.w3.org/TR/WGSL/"><cite>WebGPU Shading Language</cite></a>. 3 October 2022. WD. URL: <a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
+   <dd>Alan Baker; Mehmet Oguz Derin; David Neto. <a href="https://www.w3.org/TR/WGSL/"><cite>WebGPU Shading Language</cite></a>. 4 October 2022. WD. URL: <a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
   </dl>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
@@ -25053,7 +25053,8 @@ restriction entirely and allow writable bindings to alias with undefined results
    <b><a href="#dom-gpubufferbinding-size">#dom-gpubufferbinding-size</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-gpubufferbinding-size">3.6.2. Limits</a> <a href="#ref-for-dom-gpubufferbinding-size①">(2)</a>
-    <li><a href="#ref-for-dom-gpubufferbinding-size②">8.2.1. Bind Group Creation</a> <a href="#ref-for-dom-gpubufferbinding-size③">(2)</a> <a href="#ref-for-dom-gpubufferbinding-size④">(3)</a> <a href="#ref-for-dom-gpubufferbinding-size⑤">(4)</a> <a href="#ref-for-dom-gpubufferbinding-size⑥">(5)</a> <a href="#ref-for-dom-gpubufferbinding-size⑦">(6)</a>
+    <li><a href="#ref-for-dom-gpubufferbinding-size②">8.1.1. Bind Group Layout Creation</a>
+    <li><a href="#ref-for-dom-gpubufferbinding-size③">8.2.1. Bind Group Creation</a> <a href="#ref-for-dom-gpubufferbinding-size④">(2)</a> <a href="#ref-for-dom-gpubufferbinding-size⑤">(3)</a> <a href="#ref-for-dom-gpubufferbinding-size⑥">(4)</a> <a href="#ref-for-dom-gpubufferbinding-size⑦">(5)</a> <a href="#ref-for-dom-gpubufferbinding-size⑧">(6)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpudevice-createbindgroup">
