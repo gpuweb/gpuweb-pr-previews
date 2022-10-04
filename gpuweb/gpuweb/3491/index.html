@@ -886,7 +886,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/6871b5ea6645797a7eb93c53c2997e01b7e9388d/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/6871b5ea6645797a7eb93c53c2997e01b7e9388d/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/35051e83c7af376ec51646912cd7a47642703dc5/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/35051e83c7af376ec51646912cd7a47642703dc5/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -6128,7 +6128,7 @@ to be used.</p>
      <p>Indicates the minimum <code class="idl"><a data-link-type="idl" href="#dom-gpubufferbinding-size" id="ref-for-dom-gpubufferbinding-size②">size</a></code> of a buffer binding used with this bind point.</p>
      <p>Bindings are always validated against this size in <code class="idl"><a data-link-type="idl" href="#dom-gpudevice-createbindgroup" id="ref-for-dom-gpudevice-createbindgroup①">createBindGroup()</a></code>.</p>
      <p>If this <em>is not</em> <code>0</code>, pipeline creation additionally <a data-link-type="abstract-op" href="#abstract-opdef-validating-shader-binding" id="ref-for-abstract-opdef-validating-shader-binding">validates</a> that this value ≥ the <a data-link-type="dfn" href="#minimum-buffer-binding-size" id="ref-for-minimum-buffer-binding-size">minimum buffer binding size</a> of the variable.</p>
-     <p>If this <em>is</em> <code>0</code>, it is ignored, and instead draw/dispatch commands <a data-link-type="abstract-op" href="#abstract-opdef-validate-encoder-bind-groups" id="ref-for-abstract-opdef-validate-encoder-bind-groups">validate</a> that each binding in the <code class="idl"><a data-link-type="idl" href="#gpubindgroup" id="ref-for-gpubindgroup③">GPUBindGroup</a></code> satisfies the <a data-link-type="dfn" href="#minimum-buffer-binding-size" id="ref-for-minimum-buffer-binding-size①">minimum buffer binding size</a> of the variable.</p>
+     <p>If this <em>is</em> <code>0</code>, it is ignored by pipeline creation, and instead draw/dispatch commands <a data-link-type="abstract-op" href="#abstract-opdef-validate-encoder-bind-groups" id="ref-for-abstract-opdef-validate-encoder-bind-groups">validate</a> that each binding in the <code class="idl"><a data-link-type="idl" href="#gpubindgroup" id="ref-for-gpubindgroup③">GPUBindGroup</a></code> satisfies the <a data-link-type="dfn" href="#minimum-buffer-binding-size" id="ref-for-minimum-buffer-binding-size①">minimum buffer binding size</a> of the variable.</p>
      <p class="note" role="note"><span>Note:</span> Similar execution-time validation is theoretically possible for other
 binding-related fields specified for early validation, like <code class="idl"><a data-link-type="idl" href="#dom-gputexturebindinglayout-sampletype" id="ref-for-dom-gputexturebindinglayout-sampletype">sampleType</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-gpustoragetexturebindinglayout-format" id="ref-for-dom-gpustoragetexturebindinglayout-format">format</a></code>,
 which currently can only be validated in pipeline creation.
