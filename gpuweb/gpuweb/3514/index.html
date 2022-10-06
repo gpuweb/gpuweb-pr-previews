@@ -896,7 +896,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/42c14a2e1dec9744412f49ee431160ec5aa42830/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/42c14a2e1dec9744412f49ee431160ec5aa42830/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/6819bb5edbd79597f467475c808895d91883a93b/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/6819bb5edbd79597f467475c808895d91883a93b/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -15045,7 +15045,7 @@ especially when it is easy to detect (like in non-indirect indexed draw calls).<
     <p class="note" role="note"><span>Note:</span> in case of indirect draw calls, the <code>indexCount</code>, <code>vertexCount</code>,
     and other properties of <var>drawCall</var> are read from the indirect buffer
     instead of the draw command itself.</p>
-    <p class="issue" id="issue-a07e0a80"><a class="self-link" href="#issue-a07e0a80"></a> specify indirect commands better.</p>
+    <p class="note editorial" role="note">Editorial: specify indirect commands better. </p>
    </div>
    <div class="algorithm" data-algorithm="fetch index">
      <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-fetch-index">fetch index</dfn>(i, buffer, offset, format) 
@@ -15243,7 +15243,7 @@ Each subsequent primitive takes 1 vertices.</p>
    <h4 class="heading settled" data-level="22.3.4" id="primitive-clipping"><span class="secno">22.3.4. </span><span class="content">Primitive Clipping</span><a class="self-link" href="#primitive-clipping"></a></h4>
    <p>Vertex shaders have to produce a built-in "position" (of type <code>vec4&lt;f32></code>),
 which denotes the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="clip-position">clip position</dfn> of a vertex.</p>
-   <p class="issue" id="issue-42bfc88c"><a class="self-link" href="#issue-42bfc88c"></a> link to WGSL built-ins</p>
+   <p class="note editorial" role="note">Editorial: link to WGSL built-ins </p>
    <p>Primitives are clipped to the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="clip-volume">clip volume</dfn>, which, for any <a data-link-type="dfn" href="#clip-position" id="ref-for-clip-position">clip position</a> <var>p</var> inside a primitive, is defined by the following inequalities:</p>
    <ul>
     <li data-md>
@@ -15286,7 +15286,7 @@ for the whole primitive, and matches the vertex output of the <a data-link-type=
      <p>The value is linearly interpolated in clip space, producing perspective-correct values:</p>
      <p><var>c</var>.v = <var>t</var> × <var>a</var>.v + (1 − <var>t</var>) × <var>b</var>.v</p>
    </dl>
-   <p class="issue" id="issue-d5d68c47"><a class="self-link" href="#issue-d5d68c47"></a> link to interpolation qualifiers in WGSL</p>
+   <p class="note editorial" role="note">Editorial: link to interpolation qualifiers in WGSL </p>
    <p>The result of primitive clipping is a new set of primitives, which are contained
 within the <a data-link-type="dfn" href="#clip-volume" id="ref-for-clip-volume⑤">clip volume</a>.</p>
    <h4 class="heading settled" data-level="22.3.5" id="rasterization"><span class="secno">22.3.5. </span><span class="content">Rasterization</span><a class="self-link" href="#rasterization"></a></h4>
@@ -20970,9 +20970,6 @@ restriction entirely and allow writable bindings to alias with undefined results
    <div class="issue"> Because timestamp query provides high-resolution GPU timestamp, we need to decide what constraints, if any, are on its availability. <a class="issue-return" href="#issue-19235327" title="Jump to section">↵</a></div>
    <div class="issue"> <a href="https://github.com/WICG/canvas-color-space/blob/6bc492d2564abec316e2c5663aec9f9fa523a6a2/CanvasColorSpaceProposal.md#compositing-of-the-htmlcanvaselement">Unless</a> high dynamic range is explicitly enabled for the canvas element. <a class="issue-return" href="#issue-5f7c1b6b" title="Jump to section">↵</a></div>
    <div class="issue"> This section is incomplete. <a class="issue-return" href="#issue-96bfad03" title="Jump to section">↵</a></div>
-   <div class="issue"> specify indirect commands better. <a class="issue-return" href="#issue-a07e0a80" title="Jump to section">↵</a></div>
-   <div class="issue"> link to WGSL built-ins <a class="issue-return" href="#issue-42bfc88c" title="Jump to section">↵</a></div>
-   <div class="issue"> link to interpolation qualifiers in WGSL <a class="issue-return" href="#issue-d5d68c47" title="Jump to section">↵</a></div>
    <div class="issue"> do we want to force-enable the "Standard sample locations" in Vulkan? <a class="issue-return" href="#issue-3dbf56b0" title="Jump to section">↵</a></div>
    <div class="issue"> reword the "goes into" part <a class="issue-return" href="#issue-a0695745" title="Jump to section">↵</a></div>
   </div>
