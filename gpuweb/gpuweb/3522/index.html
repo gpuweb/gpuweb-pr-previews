@@ -896,7 +896,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/dneto0/gpuweb/blob/22feb0344385da94b6b85100e84d42e70ecb6edd/spec/index.bs">https://github.com/dneto0/gpuweb/blob/22feb0344385da94b6b85100e84d42e70ecb6edd/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/dneto0/gpuweb/blob/f4a0da858c82a2fb8a5723c44a4dd94c20069009/spec/index.bs">https://github.com/dneto0/gpuweb/blob/f4a0da858c82a2fb8a5723c44a4dd94c20069009/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -7735,7 +7735,7 @@ and <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-g
            <li data-md>
             <p><a data-link-type="abstract-op" href="#abstract-opdef-validating-gpuprogrammablestage" id="ref-for-abstract-opdef-validating-gpuprogrammablestage">validating GPUProgrammableStage</a>(<code class="idl"><a data-link-type="idl" href="#dom-gpushaderstage-compute" id="ref-for-dom-gpushaderstage-compute②">COMPUTE</a></code>, <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepipelinedescriptor-compute" id="ref-for-dom-gpucomputepipelinedescriptor-compute①">compute</a></code>, <var>layout</var>) must succeed.</p>
            <li data-md>
-            <p>Let <var>workgroupStorageUsed</var> be the sum of <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#roundup" id="ref-for-roundup">roundUp</a>(16,<a data-link-type="abstract-op" href="https://gpuweb.github.io/gpuweb/wgsl/#sizeof" id="ref-for-sizeof①">SizeOf</a>(<var>T</var>)) over each
+            <p>Let <var>workgroupStorageUsed</var> be the sum of <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#roundup" id="ref-for-roundup">roundUp</a>(16, <a data-link-type="abstract-op" href="https://gpuweb.github.io/gpuweb/wgsl/#sizeof" id="ref-for-sizeof①">SizeOf</a>(<var>T</var>)) over each
 type <var>T</var> of all variables with address space "<a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#address-spaces-workgroup" id="ref-for-address-spaces-workgroup">workgroup</a>" <a data-link-type="dfn" href="#statically-used" id="ref-for-statically-used⑤">statically used</a> by <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepipelinedescriptor-compute" id="ref-for-dom-gpucomputepipelinedescriptor-compute②">compute</a></code>.</p>
             <p><var>workgroupStorageUsed</var> must be ≤ <var>device</var>.limits.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxcomputeworkgroupstoragesize" id="ref-for-dom-supported-limits-maxcomputeworkgroupstoragesize">maxComputeWorkgroupStorageSize</a></code>.</p>
             <p class="issue" id="issue-db34a936"><a class="self-link" href="#issue-db34a936"></a> Does this need to account for padding? <a href="https://github.com/gpuweb/gpuweb/issues/3485">[Issue #gpuweb/gpuweb#3485]</a></p>
