@@ -645,13 +645,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-10-11">11 October 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-10-12">12 October 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/5c19b5f8815d739f11a8fb3b49b74d54c83aff50/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/5c19b5f8815d739f11a8fb3b49b74d54c83aff50/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/6d9d2548aa945ef73d73b6ac397b79a60284cc2f/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/6d9d2548aa945ef73d73b6ac397b79a60284cc2f/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -5782,14 +5782,14 @@ of <a data-link-type="dfn" href="#i32" id="ref-for-i32②⑧">i32</a> (<code>vec
    </ul>
    <h3 class="heading settled" data-level="7.2" id="indeterminate-values"><span class="secno">7.2. </span><span class="content">Indeterminate values</span><a class="self-link" href="#indeterminate-values"></a></h3>
    <p>In limited cases, an evaluation of a <a data-link-type="dfn" href="#runtime-expression" id="ref-for-runtime-expression②">runtime expression</a> can occur
-using nonsense or unsupported values for its <a data-link-type="dfn" href="#subexpressions" id="ref-for-subexpressions①">subexpressions</a>.</p>
+using unsupported values for its <a data-link-type="dfn" href="#subexpressions" id="ref-for-subexpressions①">subexpressions</a>.</p>
    <p>In such a case, WGSL specifies that the result of that evaluation is
 an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="indeterminate-value">indeterminate value</dfn> of the expression’s <a data-link-type="dfn" href="#static-type" id="ref-for-static-type">static type</a>,
 meaning some arbitrary implementation-chosen value of the static type.</p>
-   <p>Each distinct evaluation of the expression may yield a distinct value.
+   <p>A distinct value may be produced for each unique <a data-link-type="dfn" href="#dynamic-context" id="ref-for-dynamic-context④">dynamic context</a> in which the expression is evaluated.
 For example, if the evaluation occurs once per iteration of a loop, a distinct
 value may be computed for each loop iteration.</p>
-   <p class="note" role="note"><span>Note:</span> If the type is a floating point type supporting a NaN value, then
+   <p class="note" role="note"><span>Note:</span> If the type is a floating point type and the implementation supports NaN values, then
 the indeterminate value produced at runtime may be a NaN value.</p>
    <div class="example wgsl global-scope no-marker" id="example-747dda7b">
     <a class="self-link" href="#example-747dda7b"></a>
@@ -8926,7 +8926,7 @@ If the called function <a data-link-type="dfn" href="#return-value" id="ref-for-
 value of the function call expression.</p>
    </ol>
    <p>The location of a function call is referred to as a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="call-site">call site</dfn>.
-Call sites are a <a data-link-type="dfn" href="#dynamic-context" id="ref-for-dynamic-context④">dynamic context</a>.
+Call sites are a <a data-link-type="dfn" href="#dynamic-context" id="ref-for-dynamic-context⑤">dynamic context</a>.
 As such, the same textual location may represent multiple call sites.</p>
    <p class="note" role="note"><span>Note:</span> It is possible that a function call in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment②">fragment</a> shader never
 returns if all of the invocations in a <a data-link-type="dfn" href="#quad" id="ref-for-quad">quad</a> are <a data-link-type="dfn" href="#statement-discard" id="ref-for-statement-discard">discarded</a>.
@@ -17961,7 +17961,8 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-dynamic-context">6. Variable and Value Declarations</a>
     <li><a href="#ref-for-dynamic-context①">6.2.3. let Declarations</a>
     <li><a href="#ref-for-dynamic-context②">6.3. var Declarations</a> <a href="#ref-for-dynamic-context③">(2)</a>
-    <li><a href="#ref-for-dynamic-context④">9.2. Function Calls</a>
+    <li><a href="#ref-for-dynamic-context④">7.2. Indeterminate values</a>
+    <li><a href="#ref-for-dynamic-context⑤">9.2. Function Calls</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="static-type">
