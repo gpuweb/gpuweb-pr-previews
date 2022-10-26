@@ -645,13 +645,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-10-25">25 October 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-10-26">26 October 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/ec1a510ebe686dec272242dee9e79dd5470f61d1/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/ec1a510ebe686dec272242dee9e79dd5470f61d1/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/d54301977c7adced3e0b55e0f3e3fee734312183/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/d54301977c7adced3e0b55e0f3e3fee734312183/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -13983,41 +13983,41 @@ but a value may infer the type.</p>
       <th>Overload 
     <tbody>
      <tr class="algorithm" data-algorithm="textureDimensions 1d">
-      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32③①">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32②⑤">u32</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32②①">f32</a><br> <var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format①">texel format</a><br> <var>A</var> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode①⑨">access mode</a><br><br> <var>T</var> is <code>texture_1d&lt;ST></code> or <code>texture_storage_1d&lt;F,A></code> 
+      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32③①">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32②⑤">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32②①">f32</a><br> <var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format①">texel format</a><br> <var>A</var> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode①⑨">access mode</a><br><br> <var>T</var> is <code>texture_1d&lt;ST></code> or <code>texture_storage_1d&lt;F,A></code> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureDimensions</c-><c- p>(</c-><c- n>t</c->: <c- nc>T</c-><c- p>)</c-> -> <c- b>u32</c-></pre>
      <tr class="algorithm" data-algorithm="textureDimensions 1d level">
       <td>
-       <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32③②">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32②⑥">u32</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32②②">f32</a><br><br> <var>T</var> is <code>texture_1d&lt;ST></code> 
-       <p><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32③③">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32②⑦">u32</a></p>
+       <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32③②">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32②⑥">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32②②">f32</a><br><br> <var>T</var> is <code>texture_1d&lt;ST></code> 
+       <p><var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32③③">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32②⑦">u32</a></p>
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureDimensions</c-><c- p>(</c-><c- n>t</c->: <c- nc>T</c-><c- p>,</c->
-                     <c- n>level</c->: <c- nc>C</c-><c- p>)</c-> -> <c- b>u32</c->
+                     <c- n>level</c->: <c- nc>L</c-><c- p>)</c-> -> <c- b>u32</c->
 </pre>
      <tr class="algorithm" data-algorithm="textureDimensions 2d">
-      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32③④">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32②⑧">u32</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32②③">f32</a><br> <var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format②">texel format</a><br> <var>A</var> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②⓪">access mode</a><br><br> <var>T</var> is <code>texture_2d&lt;ST></code>, <code>texture_2d_array&lt;ST></code>, <code>texture_cube&lt;ST></code>, <code>texture_cube_array&lt;ST></code>, <code>texture_multisampled_2d&lt;ST></code>, <code>texture_depth_2d</code>, <code>texture_depth_2d_array</code>, <code>texture_depth_cube</code>, <code>texture_depth_cube_array</code>, <code>texture_depth_multisampled_2d</code>, <code>texture_storage_2d&lt;F,A></code>, <code>texture_storage_2d_array&lt;F,A></code>,
+      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32③④">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32②⑧">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32②③">f32</a><br> <var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format②">texel format</a><br> <var>A</var> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②⓪">access mode</a><br><br> <var>T</var> is <code>texture_2d&lt;ST></code>, <code>texture_2d_array&lt;ST></code>, <code>texture_cube&lt;ST></code>, <code>texture_cube_array&lt;ST></code>, <code>texture_multisampled_2d&lt;ST></code>, <code>texture_depth_2d</code>, <code>texture_depth_2d_array</code>, <code>texture_depth_cube</code>, <code>texture_depth_cube_array</code>, <code>texture_depth_multisampled_2d</code>, <code>texture_storage_2d&lt;F,A></code>, <code>texture_storage_2d_array&lt;F,A></code>,
                or <code>texture_external</code> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureDimensions</c-><c- p>(</c-><c- n>t</c->: <c- nc>T</c-><c- p>)</c-> -> <c- nc>vec2</c-><c- o>&lt;</c-><c- b>u32</c-><c- o>></c-></pre>
      <tr class="algorithm" data-algorithm="textureDimensions 2d level">
       <td>
-       <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32③⑤">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32②⑨">u32</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32②④">f32</a><br><br> <var>T</var> is <code>texture_2d&lt;ST></code>, <code>texture_2d_array&lt;ST></code>, <code>texture_cube&lt;ST></code>, <code>texture_cube_array&lt;ST></code>, <code>texture_depth_2d</code>, <code>texture_depth_2d_array</code>, <code>texture_depth_cube</code>, or <code>texture_depth_cube_array</code> 
-       <p><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32③⑥">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32③⓪">u32</a></p>
+       <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32③⑤">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32②⑨">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32②④">f32</a><br><br> <var>T</var> is <code>texture_2d&lt;ST></code>, <code>texture_2d_array&lt;ST></code>, <code>texture_cube&lt;ST></code>, <code>texture_cube_array&lt;ST></code>, <code>texture_depth_2d</code>, <code>texture_depth_2d_array</code>, <code>texture_depth_cube</code>, or <code>texture_depth_cube_array</code> 
+       <p><var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32③⑥">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32③⓪">u32</a></p>
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureDimensions</c-><c- p>(</c-><c- n>t</c->: <c- nc>T</c-><c- p>,</c->
-                     <c- n>level</c->: <c- nc>C</c-><c- p>)</c-> -> <c- nc>vec2</c-><c- o>&lt;</c-><c- b>u32</c-><c- o>></c->
+                     <c- n>level</c->: <c- nc>L</c-><c- p>)</c-> -> <c- nc>vec2</c-><c- o>&lt;</c-><c- b>u32</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureDimensions 3d">
-      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32③⑦">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③①">u32</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32②⑤">f32</a><br> <var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format③">texel format</a><br> <var>A</var> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②①">access mode</a><br><br> <var>T</var> is <code>texture_3d&lt;ST></code> or <code>texture_storage_3d&lt;F,A></code> 
+      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32③⑦">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③①">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32②⑤">f32</a><br> <var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format③">texel format</a><br> <var>A</var> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②①">access mode</a><br><br> <var>T</var> is <code>texture_3d&lt;ST></code> or <code>texture_storage_3d&lt;F,A></code> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureDimensions</c-><c- p>(</c-><c- n>t</c->: <c- nc>T</c-><c- p>)</c-> -> <c- nc>vec3</c-><c- o>&lt;</c-><c- b>u32</c-><c- o>></c-></pre>
      <tr class="algorithm" data-algorithm="textureDimensions 3d level">
       <td>
-       <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32③⑧">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③②">u32</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32②⑥">f32</a><br><br> <var>T</var> is <code>texture_3d&lt;ST></code> 
-       <p><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32③⑨">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32③③">u32</a></p>
+       <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32③⑧">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③②">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32②⑥">f32</a><br><br> <var>T</var> is <code>texture_3d&lt;ST></code> 
+       <p><var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32③⑨">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32③③">u32</a></p>
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureDimensions</c-><c- p>(</c-><c- n>t</c->: <c- nc>T</c-><c- p>,</c->
-                     <c- n>level</c->: <c- nc>C</c-><c- p>)</c-> -> <c- nc>vec3</c-><c- o>&lt;</c-><c- b>u32</c-><c- o>></c->
+                     <c- n>level</c->: <c- nc>L</c-><c- p>)</c-> -> <c- nc>vec3</c-><c- o>&lt;</c-><c- b>u32</c-><c- o>></c->
 </pre>
    </table>
    <p><strong>Parameters:</strong></p>
@@ -14110,7 +14110,7 @@ https://github.com/gpuweb/gpuweb/issues/2343</p>
       <th>Overload 
     <tbody>
      <tr class="algorithm" data-algorithm="textureGather 2d">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⓪">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32③④">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④①">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③⑤">u32</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32②⑦">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⓪">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32③④">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④①">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③⑤">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32②⑦">f32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureGather</c-><c- p>(</c-><c- n>component</c->: <c- nc>C</c-><c- p>,</c->
                  <c- n>t</c->: <c- nc>texture_2d</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
@@ -14118,7 +14118,7 @@ https://github.com/gpuweb/gpuweb/issues/2343</p>
                  <c- n>coords</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureGather 2d offset">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④②">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32③⑥">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④③">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③⑦">u32</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32②⑧">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④②">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32③⑥">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④③">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③⑦">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32②⑧">f32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureGather</c-><c- p>(</c-><c- n>component</c->: <c- nc>C</c-><c- p>,</c->
                  <c- n>t</c->: <c- nc>texture_2d</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
@@ -14127,7 +14127,7 @@ https://github.com/gpuweb/gpuweb/issues/2343</p>
                  <c- n>offset</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- b>i32</c-><c- o>></c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureGather 2d array">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④④">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32③⑧">u32</a><br> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑤">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32③⑨">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑥">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32④⓪">u32</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32②⑨">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④④">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32③⑧">u32</a><br> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑤">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32③⑨">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑥">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32④⓪">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32②⑨">f32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureGather</c-><c- p>(</c-><c- n>component</c->: <c- nc>C</c-><c- p>,</c->
                  <c- n>t</c->: <c- nc>texture_2d_array</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
@@ -14136,7 +14136,7 @@ https://github.com/gpuweb/gpuweb/issues/2343</p>
                  <c- n>array_index</c->: <c- nc>A</c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureGather 2d array offset">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑦">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32④①">u32</a><br> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑧">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32④②">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑨">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32④③">u32</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⓪">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑦">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④①">u32</a><br> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑧">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④②">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑨">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32④③">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⓪">f32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureGather</c-><c- p>(</c-><c- n>component</c->: <c- nc>C</c-><c- p>,</c->
                  <c- n>t</c->: <c- nc>texture_2d_array</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
@@ -14146,7 +14146,7 @@ https://github.com/gpuweb/gpuweb/issues/2343</p>
                  <c- n>offset</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- b>i32</c-><c- o>></c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureGather cube">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⓪">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32④④">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤①">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑤">u32</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32③①">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⓪">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④④">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤①">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑤">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③①">f32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureGather</c-><c- p>(</c-><c- n>component</c->: <c- nc>C</c-><c- p>,</c->
                  <c- n>t</c->: <c- nc>texture_cube</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
@@ -14154,7 +14154,7 @@ https://github.com/gpuweb/gpuweb/issues/2343</p>
                  <c- n>coords</c->: <c- nc>vec3</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureGather cube array">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤②">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑥">u32</a><br> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤③">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑦">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤④">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑧">u32</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32③②">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤②">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑥">u32</a><br> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤③">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑦">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤④">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑧">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③②">f32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureGather</c-><c- p>(</c-><c- n>component</c->: <c- nc>C</c-><c- p>,</c->
                  <c- n>t</c->: <c- nc>texture_cube_array</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
@@ -14185,7 +14185,7 @@ https://github.com/gpuweb/gpuweb/issues/2343</p>
                  <c- n>coords</c->: <c- nc>vec3</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureGather 2d depth array">
-      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑤">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑨">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑤">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑨">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureGather</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_depth_2d_array</c-><c- p>,</c->
                  <c- n>s</c->: <c- nc>sampler</c-><c- p>,</c->
@@ -14193,7 +14193,7 @@ https://github.com/gpuweb/gpuweb/issues/2343</p>
                  <c- n>array_index</c->: <c- nc>A</c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureGather 2d depth array offset">
-      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑥">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤⓪">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑥">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤⓪">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureGather</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_depth_2d_array</c-><c- p>,</c->
                  <c- n>s</c->: <c- nc>sampler</c-><c- p>,</c->
@@ -14202,7 +14202,7 @@ https://github.com/gpuweb/gpuweb/issues/2343</p>
                  <c- n>offset</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- b>i32</c-><c- o>></c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureGather cube depth array">
-      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑦">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤①">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑦">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤①">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureGather</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_depth_cube_array</c-><c- p>,</c->
                  <c- n>s</c->: <c- nc>sampler</c-><c- p>,</c->
@@ -14328,7 +14328,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
                         <c- n>offset</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- b>i32</c-><c- o>></c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureGatherCompare 2d depth array">
-      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑧">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤②">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑧">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤②">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureGatherCompare</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_depth_2d_array</c-><c- p>,</c->
                         <c- n>s</c->: <c- nc>sampler_comparison</c-><c- p>,</c->
@@ -14337,7 +14337,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
                         <c- n>depth_ref</c->: <c- b>f32</c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureGatherCompare 2d depth array offset">
-      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑨">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤③">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑨">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤③">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureGatherCompare</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_depth_2d_array</c-><c- p>,</c->
                         <c- n>s</c->: <c- nc>sampler_comparison</c-><c- p>,</c->
@@ -14355,7 +14355,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
                         <c- n>depth_ref</c->: <c- b>f32</c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureGatherCompare 2d depth cube array">
-      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥⓪">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤④">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥⓪">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤④">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureGatherCompare</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_depth_cube_array</c-><c- p>,</c->
                         <c- n>s</c->: <c- nc>sampler_comparison</c-><c- p>,</c->
@@ -14411,21 +14411,21 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
       <th>Overload 
     <tbody>
      <tr class="algorithm" data-algorithm="textureLoad 1d">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥①">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤⑤">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥②">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤⑥">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥③">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤⑦">u32</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32③③">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥①">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤⑤">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥②">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤⑥">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥③">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤⑦">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③③">f32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureLoad</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_1d</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
                <c- n>coords</c->: <c- nc>C</c-><c- p>,</c->
                <c- n>level</c->: <c- nc>L</c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureLoad 2d">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥④">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤⑧">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥⑤">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤⑨">u32</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32③④">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥④">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤⑧">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥⑤">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤⑨">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥⑥">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⓪">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③④">f32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureLoad</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_2d</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
                <c- n>coords</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- n>C</c-><c- o>></c-><c- p>,</c->
                <c- n>level</c->: <c- nc>L</c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureLoad 2d array">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥⑥">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⓪">u32</a><br> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥⑦">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥①">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥⑧">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥②">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥⑨">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥③">u32</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑤">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥⑦">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥①">u32</a><br> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥⑧">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥②">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥⑨">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥③">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⓪">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥④">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑤">f32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureLoad</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_2d_array</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
               <c- n>coords</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- n>C</c-><c- o>></c-><c- p>,</c->
@@ -14433,28 +14433,28 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
               <c- n>level</c->: <c- nc>L</c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureLoad 3d">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⓪">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥④">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦①">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑤">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦②">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑥">u32</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑥">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦①">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑤">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦②">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑥">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦③">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑦">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑥">f32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureLoad</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_3d</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
                <c- n>coords</c->: <c- nc>vec3</c-><c- o>&lt;</c-><c- n>C</c-><c- o>></c-><c- p>,</c->
                <c- n>level</c->: <c- nc>L</c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureLoad 2d multisampled">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦③">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑦">u32</a><br> <var>S</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦④">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑧">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑤">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑨">u32</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑦">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦④">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑧">u32</a><br> <var>S</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑤">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑨">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑥">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦⓪">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑦">f32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureLoad</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_multisampled_2d</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
                <c- n>coords</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- n>C</c-><c- o>></c-><c- p>,</c->
                <c- n>sample_index</c->: <c- nc>S</c-><c- p>)</c->-> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureLoad 2d depth">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑥">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦⓪">u32</a> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑦">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦①">u32</a><br> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑦">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦①">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑧">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦②">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureLoad</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_depth_2d</c-><c- p>,</c->
                <c- n>coords</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- n>C</c-><c- o>></c-><c- p>,</c->
                <c- n>level</c->: <c- nc>L</c-><c- p>)</c-> -> <c- b>f32</c->
 </pre>
      <tr class="algorithm" data-algorithm="textureLoad 2d depth array">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑧">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦②">u32</a> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑨">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦③">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧⓪">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦④">u32</a><br> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑨">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦③">u32</a><br> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧⓪">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦④">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧①">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦⑤">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureLoad</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_depth_2d_array</c-><c- p>,</c->
                <c- n>coords</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- n>C</c-><c- o>></c-><c- p>,</c->
@@ -14462,14 +14462,14 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
                <c- n>level</c->: <c- nc>L</c-><c- p>)</c-> -> <c- b>f32</c->
 </pre>
      <tr class="algorithm" data-algorithm="textureLoad 2d depth multisampled">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧①">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦⑤">u32</a> <var>S</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧②">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦⑥">u32</a><br> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧②">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦⑥">u32</a><br> <var>S</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧③">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦⑦">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureLoad</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_depth_multisampled_2d</c-><c- p>,</c->
                <c- n>coords</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- n>C</c-><c- o>></c-><c- p>,</c->
                <c- n>sample_index</c->: <c- nc>S</c-><c- p>)</c->-> <c- b>f32</c->
 </pre>
      <tr class="algorithm" data-algorithm="textureLoad external">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧③">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦⑦">u32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧④">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦⑧">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureLoad</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_external</c-><c- p>,</c->
                <c- n>coords</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- n>C</c-><c- o>></c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c->
@@ -14526,7 +14526,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
       <th>Overload 
     <tbody>
      <tr class="algorithm" data-algorithm="texturenumlayers">
-      <td><var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format④">texel format</a><br> <var>A</var> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②②">access mode</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧④">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦⑧">u32</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑧">f32</a><br><br> <var>T</var> is <code>texture_2d_array&lt;ST></code>, <code>texture_cube_array&lt;ST></code>, <code>texture_depth_2d_array</code>, <code>texture_depth_cube_array</code>,
+      <td><var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format④">texel format</a><br> <var>A</var> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②②">access mode</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧⑤">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦⑨">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑧">f32</a><br><br> <var>T</var> is <code>texture_2d_array&lt;ST></code>, <code>texture_cube_array&lt;ST></code>, <code>texture_depth_2d_array</code>, <code>texture_depth_cube_array</code>,
                                or <code>texture_storage_2d_array&lt;F,A></code> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureNumLayers</c-><c- p>(</c-><c- n>t</c->: <c- nc>T</c-><c- p>)</c-> -> <c- b>u32</c->
@@ -14550,7 +14550,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
       <th>Overload 
     <tbody>
      <tr class="algorithm" data-algorithm="texturenumlevels">
-      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧⑤">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦⑨">u32</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑨">f32</a><br><br> <var>T</var> is <code>texture_1d&lt;ST></code>, <code>texture_2d&lt;ST></code>, <code>texture_2d_array&lt;ST></code>, <code>texture_3d&lt;ST></code>, <code>texture_cube&lt;ST></code>, <code>texture_cube_array&lt;ST></code>, <code>texture_depth_2d</code>, <code>texture_depth_2d_array</code>, <code>texture_depth_cube</code>, or <code>texture_depth_cube_array</code> 
+      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧⑥">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧⓪">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑨">f32</a><br><br> <var>T</var> is <code>texture_1d&lt;ST></code>, <code>texture_2d&lt;ST></code>, <code>texture_2d_array&lt;ST></code>, <code>texture_3d&lt;ST></code>, <code>texture_cube&lt;ST></code>, <code>texture_cube_array&lt;ST></code>, <code>texture_depth_2d</code>, <code>texture_depth_2d_array</code>, <code>texture_depth_cube</code>, or <code>texture_depth_cube_array</code> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureNumLevels</c-><c- p>(</c-><c- n>t</c->: <c- nc>T</c-><c- p>)</c-> -> <c- b>u32</c->
 </pre>
@@ -14573,7 +14573,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
       <th>Overload 
     <tbody>
      <tr class="algorithm" data-algorithm="texturenumsamples">
-      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧⑥">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧⓪">u32</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⓪">f32</a><br><br> <var>T</var> is <code>texture_multisampled_2d&lt;ST></code> or <code>texture_depth_multisampled_2d</code> 
+      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧⑦">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧①">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⓪">f32</a><br><br> <var>T</var> is <code>texture_multisampled_2d&lt;ST></code> or <code>texture_depth_multisampled_2d</code> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureNumSamples</c-><c- p>(</c-><c- n>t</c->: <c- nc>T</c-><c- p>)</c-> -> <c- b>u32</c->
 </pre>
@@ -14619,7 +14619,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
                  <c- n>offset</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- b>i32</c-><c- o>></c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureSample 2d array">
-      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧⑦">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧①">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧⑧">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧②">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureSample</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_2d_array</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-><c- p>,</c->
                  <c- n>s</c->: <c- nc>sampler</c-><c- p>,</c->
@@ -14627,7 +14627,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
                  <c- n>array_index</c->: <c- nc>A</c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureSample 2d array offset">
-      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧⑧">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧②">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧⑨">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧③">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureSample</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_2d_array</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-><c- p>,</c->
                  <c- n>s</c->: <c- nc>sampler</c-><c- p>,</c->
@@ -14651,7 +14651,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
                  <c- n>offset</c->: <c- nc>vec3</c-><c- o>&lt;</c-><c- b>i32</c-><c- o>></c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureSample cube array">
-      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧⑨">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧③">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨⓪">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧④">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureSample</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_cube_array</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-><c- p>,</c->
                  <c- n>s</c->: <c- nc>sampler</c-><c- p>,</c->
@@ -14674,7 +14674,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
                  <c- n>offset</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- b>i32</c-><c- o>></c-><c- p>)</c-> -> <c- b>f32</c->
 </pre>
      <tr class="algorithm" data-algorithm="textureSample 2d depth array">
-      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨⓪">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧④">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨①">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧⑤">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureSample</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_depth_2d_array</c-><c- p>,</c->
                  <c- n>s</c->: <c- nc>sampler</c-><c- p>,</c->
@@ -14682,7 +14682,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
                  <c- n>array_index</c->: <c- nc>A</c-><c- p>)</c-> -> <c- b>f32</c->
 </pre>
      <tr class="algorithm" data-algorithm="textureSample 2d depth array offset">
-      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨①">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧⑤">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨②">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧⑥">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureSample</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_depth_2d_array</c-><c- p>,</c->
                  <c- n>s</c->: <c- nc>sampler</c-><c- p>,</c->
@@ -14698,7 +14698,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
                  <c- n>coords</c->: <c- nc>vec3</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-><c- p>)</c-> -> <c- b>f32</c->
 </pre>
      <tr class="algorithm" data-algorithm="textureSample cube depth array">
-      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨②">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧⑥">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨③">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧⑦">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureSample</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_depth_cube_array</c-><c- p>,</c->
                  <c- n>s</c->: <c- nc>sampler</c-><c- p>,</c->
@@ -14757,7 +14757,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
                      <c- n>offset</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- b>i32</c-><c- o>></c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureSampleBias 2d array">
-      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨③">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧⑦">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨④">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧⑧">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureSampleBias</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_2d_array</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-><c- p>,</c->
                      <c- n>s</c->: <c- nc>sampler</c-><c- p>,</c->
@@ -14766,7 +14766,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
                      <c- n>bias</c->: <c- b>f32</c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureSampleBias 2d array offset">
-      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨④">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧⑧">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨⑤">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧⑨">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureSampleBias</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_2d_array</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-><c- p>,</c->
                      <c- n>s</c->: <c- nc>sampler</c-><c- p>,</c->
@@ -14793,7 +14793,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
                      <c- n>offset</c->: <c- nc>vec3</c-><c- o>&lt;</c-><c- b>i32</c-><c- o>></c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureSampleBias cube array">
-      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨⑤">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧⑨">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨⑥">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑨⓪">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureSampleBias</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_cube_array</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-><c- p>,</c->
                      <c- n>s</c->: <c- nc>sampler</c-><c- p>,</c->
@@ -14856,7 +14856,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
                         <c- n>offset</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- b>i32</c-><c- o>></c-><c- p>)</c-> -> <c- b>f32</c->
 </pre>
      <tr class="algorithm" data-algorithm="textureSampleCompare 2d array">
-      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨⑥">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑨⓪">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨⑦">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑨①">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureSampleCompare</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_depth_2d_array</c-><c- p>,</c->
                         <c- n>s</c->: <c- nc>sampler_comparison</c-><c- p>,</c->
@@ -14865,7 +14865,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
                         <c- n>depth_ref</c->: <c- b>f32</c-><c- p>)</c-> -> <c- b>f32</c->
 </pre>
      <tr class="algorithm" data-algorithm="textureSampleCompare 2d depth array">
-      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨⑦">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑨①">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨⑧">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑨②">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureSampleCompare</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_depth_2d_array</c-><c- p>,</c->
                         <c- n>s</c->: <c- nc>sampler_comparison</c-><c- p>,</c->
@@ -14883,7 +14883,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
                         <c- n>depth_ref</c->: <c- b>f32</c-><c- p>)</c-> -> <c- b>f32</c->
 </pre>
      <tr class="algorithm" data-algorithm="textureSampleCompare cube depth array">
-      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨⑧">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑨②">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨⑨">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑨③">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureSampleCompare</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_depth_cube_array</c-><c- p>,</c->
                         <c- n>s</c->: <c- nc>sampler_comparison</c-><c- p>,</c->
@@ -14950,7 +14950,7 @@ single texel is returned.</p>
                              <c- n>offset</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- b>i32</c-><c- o>></c-><c- p>)</c-> -> <c- b>f32</c->
 </pre>
      <tr class="algorithm" data-algorithm="textureSampleCompareLevel 2d depth array">
-      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨⑨">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑨③">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①⓪⓪">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑨④">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureSampleCompareLevel</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_depth_2d_array</c-><c- p>,</c->
                              <c- n>s</c->: <c- nc>sampler_comparison</c-><c- p>,</c->
@@ -14959,7 +14959,7 @@ single texel is returned.</p>
                              <c- n>depth_ref</c->: <c- b>f32</c-><c- p>)</c-> -> <c- b>f32</c->
 </pre>
      <tr class="algorithm" data-algorithm="textureSampleCompareLevel 2d depth array offset">
-      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①⓪⓪">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑨④">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①⓪①">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑨⑤">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureSampleCompareLevel</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_depth_2d_array</c-><c- p>,</c->
                              <c- n>s</c->: <c- nc>sampler_comparison</c-><c- p>,</c->
@@ -14977,7 +14977,7 @@ single texel is returned.</p>
                              <c- n>depth_ref</c->: <c- b>f32</c-><c- p>)</c-> -> <c- b>f32</c->
 </pre>
      <tr class="algorithm" data-algorithm="textureSampleCompareLevel cube depth array">
-      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①⓪①">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑨⑤">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①⓪②">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑨⑥">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureSampleCompareLevel</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_depth_cube_array</c-><c- p>,</c->
                              <c- n>s</c->: <c- nc>sampler_comparison</c-><c- p>,</c->
@@ -15054,7 +15054,7 @@ single texel is returned.</p>
                      <c- n>offset</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- b>i32</c-><c- o>></c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureSampleGrad 2d array">
-      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①⓪②">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑨⑥">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①⓪③">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑨⑦">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureSampleGrad</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_2d_array</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-><c- p>,</c->
                      <c- n>s</c->: <c- nc>sampler</c-><c- p>,</c->
@@ -15064,7 +15064,7 @@ single texel is returned.</p>
                      <c- n>ddy</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureSampleGrad 2d array offset">
-      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①⓪③">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑨⑦">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①⓪④">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑨⑧">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureSampleGrad</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_2d_array</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-><c- p>,</c->
                      <c- n>s</c->: <c- nc>sampler</c-><c- p>,</c->
@@ -15094,7 +15094,7 @@ single texel is returned.</p>
                      <c- n>offset</c->: <c- nc>vec3</c-><c- o>&lt;</c-><c- b>i32</c-><c- o>></c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureSampleGrad cube array">
-      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①⓪④">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑨⑧">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①⓪⑤">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑨⑨">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureSampleGrad</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_cube_array</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-><c- p>,</c->
                      <c- n>s</c->: <c- nc>sampler</c-><c- p>,</c->
@@ -15160,7 +15160,7 @@ single texel is returned.</p>
                       <c- n>offset</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- b>i32</c-><c- o>></c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureSampleLevel 2d array">
-      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①⓪⑤">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑨⑨">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①⓪⑥">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①⓪⓪">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureSampleLevel</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_2d_array</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-><c- p>,</c->
                       <c- n>s</c->: <c- nc>sampler</c-><c- p>,</c->
@@ -15169,7 +15169,7 @@ single texel is returned.</p>
                       <c- n>level</c->: <c- b>f32</c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureSampleLevel 2d array offset">
-      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①⓪⑥">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①⓪⓪">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①⓪⑦">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①⓪①">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureSampleLevel</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_2d_array</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-><c- p>,</c->
                       <c- n>s</c->: <c- nc>sampler</c-><c- p>,</c->
@@ -15196,7 +15196,7 @@ single texel is returned.</p>
                       <c- n>offset</c->: <c- nc>vec3</c-><c- o>&lt;</c-><c- b>i32</c-><c- o>></c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureSampleLevel cube array">
-      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①⓪⑦">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①⓪①">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①⓪⑧">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①⓪②">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureSampleLevel</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_cube_array</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-><c- p>,</c->
                       <c- n>s</c->: <c- nc>sampler</c-><c- p>,</c->
@@ -15205,7 +15205,7 @@ single texel is returned.</p>
                       <c- n>level</c->: <c- b>f32</c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureSampleLevel 2d depth">
-      <td><var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①⓪⑧">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①⓪②">u32</a> 
+      <td><var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①⓪⑨">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①⓪③">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureSampleLevel</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_depth_2d</c-><c- p>,</c->
                       <c- n>s</c->: <c- nc>sampler</c-><c- p>,</c->
@@ -15213,7 +15213,7 @@ single texel is returned.</p>
                       <c- n>level</c->: <c- nc>L</c-><c- p>)</c-> -> <c- b>f32</c->
 </pre>
      <tr class="algorithm" data-algorithm="textureSampleLevel 2d depth offset">
-      <td><var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①⓪⑨">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①⓪③">u32</a> 
+      <td><var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①①⓪">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①⓪④">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureSampleLevel</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_depth_2d</c-><c- p>,</c->
                       <c- n>s</c->: <c- nc>sampler</c-><c- p>,</c->
@@ -15222,16 +15222,16 @@ single texel is returned.</p>
                       <c- n>offset</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- b>i32</c-><c- o>></c-><c- p>)</c-> -> <c- b>f32</c->
 </pre>
      <tr class="algorithm" data-algorithm="textureSampleLevel 2d depth array">
-      <td><var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①①⓪">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①⓪④">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①①①">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①⓪⑤">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①①②">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①⓪⑥">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureSampleLevel</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_depth_2d_array</c-><c- p>,</c->
                       <c- n>s</c->: <c- nc>sampler</c-><c- p>,</c->
                       <c- n>coords</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-><c- p>,</c->
-                      <c- n>array_index</c->: <c- nc>C</c-><c- p>,</c->
+                      <c- n>array_index</c->: <c- nc>A</c-><c- p>,</c->
                       <c- n>level</c->: <c- nc>L</c-><c- p>)</c-> -> <c- b>f32</c->
 </pre>
      <tr class="algorithm" data-algorithm="textureSampleLevel 2d depth array offset">
-      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①①①">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①⓪⑤">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①①②">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①⓪⑥">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①①③">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①⓪⑦">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①①④">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①⓪⑧">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureSampleLevel</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_depth_2d_array</c-><c- p>,</c->
                       <c- n>s</c->: <c- nc>sampler</c-><c- p>,</c->
@@ -15241,7 +15241,7 @@ single texel is returned.</p>
                       <c- n>offset</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- b>i32</c-><c- o>></c-><c- p>)</c-> -> <c- b>f32</c->
 </pre>
      <tr class="algorithm" data-algorithm="textureSampleLevel cube depth">
-      <td><var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①①③">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①⓪⑦">u32</a> 
+      <td><var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①①⑤">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①⓪⑨">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureSampleLevel</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_depth_cube</c-><c- p>,</c->
                       <c- n>s</c->: <c- nc>sampler</c-><c- p>,</c->
@@ -15249,12 +15249,12 @@ single texel is returned.</p>
                       <c- n>level</c->: <c- nc>L</c-><c- p>)</c-> -> <c- b>f32</c->
 </pre>
      <tr class="algorithm" data-algorithm="textureSampleLevel cube depth array">
-      <td><var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①①④">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①⓪⑧">u32</a> 
+      <td><var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①①⑥">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①①⓪">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①①⑦">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①①①">u32</a> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureSampleLevel</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_depth_cube_array</c-><c- p>,</c->
                       <c- n>s</c->: <c- nc>sampler</c-><c- p>,</c->
                       <c- n>coords</c->: <c- nc>vec3</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-><c- p>,</c->
-                      <c- n>array_index</c->: <c- nc>C</c-><c- p>,</c->
+                      <c- n>array_index</c->: <c- nc>A</c-><c- p>,</c->
                       <c- n>level</c->: <c- nc>L</c-><c- p>)</c-> -> <c- b>f32</c->
 </pre>
    </table>
@@ -15343,7 +15343,7 @@ with texture coordinates clamped to the edge as described below.</p>
       <th>Overload 
     <tbody>
      <tr class="algorithm" data-algorithm="textureStore 1d">
-      <td><var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format⑤">texel format</a><br> <var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①①⑤">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①⓪⑨">u32</a><br> <var>CF</var> depends on the storage texel format <var>F</var>. <a href="#storage-texel-formats" id="ref-for-storage-texel-formats②">See the texel format table</a> for the mapping of texel
+      <td><var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format⑤">texel format</a><br> <var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①①⑧">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①①②">u32</a><br> <var>CF</var> depends on the storage texel format <var>F</var>. <a href="#storage-texel-formats" id="ref-for-storage-texel-formats②">See the texel format table</a> for the mapping of texel
         format to channel format. 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureStore</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_storage_1d</c-><c- o>&lt;</c-><c- n>F</c-><c- p>,</c-><c- n>write</c-><c- o>></c-><c- p>,</c->
@@ -15351,7 +15351,7 @@ with texture coordinates clamped to the edge as described below.</p>
                 <c- n>value</c->: <c- nc>vec4</c-><c- o>&lt;</c-><c- n>CF</c-><c- o>></c-><c- p>)</c->
 </pre>
      <tr class="algorithm" data-algorithm="textureStore 2d">
-      <td><var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format⑥">texel format</a><br> <var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①①⑥">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①①⓪">u32</a><br> <var>CF</var> depends on the storage texel format <var>F</var>. <a href="#storage-texel-formats" id="ref-for-storage-texel-formats③">See the texel format table</a> for the mapping of texel
+      <td><var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format⑥">texel format</a><br> <var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①①⑨">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①①③">u32</a><br> <var>CF</var> depends on the storage texel format <var>F</var>. <a href="#storage-texel-formats" id="ref-for-storage-texel-formats③">See the texel format table</a> for the mapping of texel
         format to channel format. 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureStore</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_storage_2d</c-><c- o>&lt;</c-><c- n>F</c-><c- p>,</c-><c- n>write</c-><c- o>></c-><c- p>,</c->
@@ -15359,7 +15359,7 @@ with texture coordinates clamped to the edge as described below.</p>
                 <c- n>value</c->: <c- nc>vec4</c-><c- o>&lt;</c-><c- n>CF</c-><c- o>></c-><c- p>)</c->
 </pre>
      <tr class="algorithm" data-algorithm="textureStore 2d array">
-      <td><var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format⑦">texel format</a><br> <var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①①⑦">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①①①">u32</a><br> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①①⑧">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①①②">u32</a><br> <var>CF</var> depends on the storage texel format <var>F</var>. <a href="#storage-texel-formats" id="ref-for-storage-texel-formats④">See the texel format table</a> for the mapping of texel
+      <td><var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format⑦">texel format</a><br> <var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①②⓪">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①①④">u32</a><br> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①②①">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①①⑤">u32</a><br> <var>CF</var> depends on the storage texel format <var>F</var>. <a href="#storage-texel-formats" id="ref-for-storage-texel-formats④">See the texel format table</a> for the mapping of texel
         format to channel format. 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureStore</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_storage_2d_array</c-><c- o>&lt;</c-><c- n>F</c-><c- p>,</c-><c- n>write</c-><c- o>></c-><c- p>,</c->
@@ -15368,7 +15368,7 @@ with texture coordinates clamped to the edge as described below.</p>
                 <c- n>value</c->: <c- nc>vec4</c-><c- o>&lt;</c-><c- n>CF</c-><c- o>></c-><c- p>)</c->
 </pre>
      <tr class="algorithm" data-algorithm="textureStore 3d">
-      <td><var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format⑧">texel format</a><br> <var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①①⑨">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①①③">u32</a><br> <var>CF</var> depends on the storage texel format <var>F</var>. <a href="#storage-texel-formats" id="ref-for-storage-texel-formats⑤">See the texel format table</a> for the mapping of texel
+      <td><var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format⑧">texel format</a><br> <var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①②②">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①①⑥">u32</a><br> <var>CF</var> depends on the storage texel format <var>F</var>. <a href="#storage-texel-formats" id="ref-for-storage-texel-formats⑤">See the texel format table</a> for the mapping of texel
         format to channel format. 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureStore</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_storage_3d</c-><c- o>&lt;</c-><c- n>F</c-><c- p>,</c-><c- n>write</c-><c- o>></c-><c- p>,</c->
@@ -15418,7 +15418,7 @@ between atomic accesses acting on different memory locations.</p>
    <p>Atomic built-in functions <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④⑦">must not</a> be used in a <a data-link-type="dfn" href="#vertex" id="ref-for-vertex④">vertex</a> shader stage.</p>
    <p>The address space <code>AS</code> of the <code>atomic_ptr</code> parameter in all atomic built-in
 functions <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④⑧">must</a> be either <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage②①">storage</a> or <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup①⑦">workgroup</a>.</p>
-   <p><var>T</var> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④⑨">must</a> be either <a data-link-type="dfn" href="#u32" id="ref-for-u32①①④">u32</a> or <a data-link-type="dfn" href="#i32" id="ref-for-i32①②⓪">i32</a></p>
+   <p><var>T</var> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④⑨">must</a> be either <a data-link-type="dfn" href="#u32" id="ref-for-u32①①⑦">u32</a> or <a data-link-type="dfn" href="#i32" id="ref-for-i32①②③">i32</a></p>
    <h4 class="heading settled" data-level="17.6.1" id="atomic-load"><span class="secno">17.6.1. </span><span class="content">Atomic Load</span><a class="self-link" href="#atomic-load"></a></h4>
 <pre class="language-rust highlight"><c- k>fn</c-> <c- nf>atomicLoad</c-><c- p>(</c-><c- n>atomic_ptr</c->: <c- nc>ptr</c-><c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> <c- n>atomic</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> <c- n>read_write</c-><c- o>></c-><c- p>)</c-> -> <c- nc>T</c->
 </pre>
@@ -18205,18 +18205,18 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-u32②⑤">17.5.1. textureDimensions</a> <a href="#ref-for-u32②⑥">(2)</a> <a href="#ref-for-u32②⑦">(3)</a> <a href="#ref-for-u32②⑧">(4)</a> <a href="#ref-for-u32②⑨">(5)</a> <a href="#ref-for-u32③⓪">(6)</a> <a href="#ref-for-u32③①">(7)</a> <a href="#ref-for-u32③②">(8)</a> <a href="#ref-for-u32③③">(9)</a>
     <li><a href="#ref-for-u32③④">17.5.2. textureGather</a> <a href="#ref-for-u32③⑤">(2)</a> <a href="#ref-for-u32③⑥">(3)</a> <a href="#ref-for-u32③⑦">(4)</a> <a href="#ref-for-u32③⑧">(5)</a> <a href="#ref-for-u32③⑨">(6)</a> <a href="#ref-for-u32④⓪">(7)</a> <a href="#ref-for-u32④①">(8)</a> <a href="#ref-for-u32④②">(9)</a> <a href="#ref-for-u32④③">(10)</a> <a href="#ref-for-u32④④">(11)</a> <a href="#ref-for-u32④⑤">(12)</a> <a href="#ref-for-u32④⑥">(13)</a> <a href="#ref-for-u32④⑦">(14)</a> <a href="#ref-for-u32④⑧">(15)</a> <a href="#ref-for-u32④⑨">(16)</a> <a href="#ref-for-u32⑤⓪">(17)</a> <a href="#ref-for-u32⑤①">(18)</a>
     <li><a href="#ref-for-u32⑤②">17.5.3. textureGatherCompare</a> <a href="#ref-for-u32⑤③">(2)</a> <a href="#ref-for-u32⑤④">(3)</a>
-    <li><a href="#ref-for-u32⑤⑤">17.5.4. textureLoad</a> <a href="#ref-for-u32⑤⑥">(2)</a> <a href="#ref-for-u32⑤⑦">(3)</a> <a href="#ref-for-u32⑤⑧">(4)</a> <a href="#ref-for-u32⑤⑨">(5)</a> <a href="#ref-for-u32⑥⓪">(6)</a> <a href="#ref-for-u32⑥①">(7)</a> <a href="#ref-for-u32⑥②">(8)</a> <a href="#ref-for-u32⑥③">(9)</a> <a href="#ref-for-u32⑥④">(10)</a> <a href="#ref-for-u32⑥⑤">(11)</a> <a href="#ref-for-u32⑥⑥">(12)</a> <a href="#ref-for-u32⑥⑦">(13)</a> <a href="#ref-for-u32⑥⑧">(14)</a> <a href="#ref-for-u32⑥⑨">(15)</a> <a href="#ref-for-u32⑦⓪">(16)</a> <a href="#ref-for-u32⑦①">(17)</a> <a href="#ref-for-u32⑦②">(18)</a> <a href="#ref-for-u32⑦③">(19)</a> <a href="#ref-for-u32⑦④">(20)</a> <a href="#ref-for-u32⑦⑤">(21)</a> <a href="#ref-for-u32⑦⑥">(22)</a> <a href="#ref-for-u32⑦⑦">(23)</a>
-    <li><a href="#ref-for-u32⑦⑧">17.5.5. textureNumLayers</a>
-    <li><a href="#ref-for-u32⑦⑨">17.5.6. textureNumLevels</a>
-    <li><a href="#ref-for-u32⑧⓪">17.5.7. textureNumSamples</a>
-    <li><a href="#ref-for-u32⑧①">17.5.8. textureSample</a> <a href="#ref-for-u32⑧②">(2)</a> <a href="#ref-for-u32⑧③">(3)</a> <a href="#ref-for-u32⑧④">(4)</a> <a href="#ref-for-u32⑧⑤">(5)</a> <a href="#ref-for-u32⑧⑥">(6)</a>
-    <li><a href="#ref-for-u32⑧⑦">17.5.9. textureSampleBias</a> <a href="#ref-for-u32⑧⑧">(2)</a> <a href="#ref-for-u32⑧⑨">(3)</a>
-    <li><a href="#ref-for-u32⑨⓪">17.5.10. textureSampleCompare</a> <a href="#ref-for-u32⑨①">(2)</a> <a href="#ref-for-u32⑨②">(3)</a>
-    <li><a href="#ref-for-u32⑨③">17.5.11. textureSampleCompareLevel</a> <a href="#ref-for-u32⑨④">(2)</a> <a href="#ref-for-u32⑨⑤">(3)</a>
-    <li><a href="#ref-for-u32⑨⑥">17.5.12. textureSampleGrad</a> <a href="#ref-for-u32⑨⑦">(2)</a> <a href="#ref-for-u32⑨⑧">(3)</a>
-    <li><a href="#ref-for-u32⑨⑨">17.5.13. textureSampleLevel</a> <a href="#ref-for-u32①⓪⓪">(2)</a> <a href="#ref-for-u32①⓪①">(3)</a> <a href="#ref-for-u32①⓪②">(4)</a> <a href="#ref-for-u32①⓪③">(5)</a> <a href="#ref-for-u32①⓪④">(6)</a> <a href="#ref-for-u32①⓪⑤">(7)</a> <a href="#ref-for-u32①⓪⑥">(8)</a> <a href="#ref-for-u32①⓪⑦">(9)</a> <a href="#ref-for-u32①⓪⑧">(10)</a>
-    <li><a href="#ref-for-u32①⓪⑨">17.5.15. textureStore</a> <a href="#ref-for-u32①①⓪">(2)</a> <a href="#ref-for-u32①①①">(3)</a> <a href="#ref-for-u32①①②">(4)</a> <a href="#ref-for-u32①①③">(5)</a>
-    <li><a href="#ref-for-u32①①④">17.6. Atomic Built-in Functions</a>
+    <li><a href="#ref-for-u32⑤⑤">17.5.4. textureLoad</a> <a href="#ref-for-u32⑤⑥">(2)</a> <a href="#ref-for-u32⑤⑦">(3)</a> <a href="#ref-for-u32⑤⑧">(4)</a> <a href="#ref-for-u32⑤⑨">(5)</a> <a href="#ref-for-u32⑥⓪">(6)</a> <a href="#ref-for-u32⑥①">(7)</a> <a href="#ref-for-u32⑥②">(8)</a> <a href="#ref-for-u32⑥③">(9)</a> <a href="#ref-for-u32⑥④">(10)</a> <a href="#ref-for-u32⑥⑤">(11)</a> <a href="#ref-for-u32⑥⑥">(12)</a> <a href="#ref-for-u32⑥⑦">(13)</a> <a href="#ref-for-u32⑥⑧">(14)</a> <a href="#ref-for-u32⑥⑨">(15)</a> <a href="#ref-for-u32⑦⓪">(16)</a> <a href="#ref-for-u32⑦①">(17)</a> <a href="#ref-for-u32⑦②">(18)</a> <a href="#ref-for-u32⑦③">(19)</a> <a href="#ref-for-u32⑦④">(20)</a> <a href="#ref-for-u32⑦⑤">(21)</a> <a href="#ref-for-u32⑦⑥">(22)</a> <a href="#ref-for-u32⑦⑦">(23)</a> <a href="#ref-for-u32⑦⑧">(24)</a>
+    <li><a href="#ref-for-u32⑦⑨">17.5.5. textureNumLayers</a>
+    <li><a href="#ref-for-u32⑧⓪">17.5.6. textureNumLevels</a>
+    <li><a href="#ref-for-u32⑧①">17.5.7. textureNumSamples</a>
+    <li><a href="#ref-for-u32⑧②">17.5.8. textureSample</a> <a href="#ref-for-u32⑧③">(2)</a> <a href="#ref-for-u32⑧④">(3)</a> <a href="#ref-for-u32⑧⑤">(4)</a> <a href="#ref-for-u32⑧⑥">(5)</a> <a href="#ref-for-u32⑧⑦">(6)</a>
+    <li><a href="#ref-for-u32⑧⑧">17.5.9. textureSampleBias</a> <a href="#ref-for-u32⑧⑨">(2)</a> <a href="#ref-for-u32⑨⓪">(3)</a>
+    <li><a href="#ref-for-u32⑨①">17.5.10. textureSampleCompare</a> <a href="#ref-for-u32⑨②">(2)</a> <a href="#ref-for-u32⑨③">(3)</a>
+    <li><a href="#ref-for-u32⑨④">17.5.11. textureSampleCompareLevel</a> <a href="#ref-for-u32⑨⑤">(2)</a> <a href="#ref-for-u32⑨⑥">(3)</a>
+    <li><a href="#ref-for-u32⑨⑦">17.5.12. textureSampleGrad</a> <a href="#ref-for-u32⑨⑧">(2)</a> <a href="#ref-for-u32⑨⑨">(3)</a>
+    <li><a href="#ref-for-u32①⓪⓪">17.5.13. textureSampleLevel</a> <a href="#ref-for-u32①⓪①">(2)</a> <a href="#ref-for-u32①⓪②">(3)</a> <a href="#ref-for-u32①⓪③">(4)</a> <a href="#ref-for-u32①⓪④">(5)</a> <a href="#ref-for-u32①⓪⑤">(6)</a> <a href="#ref-for-u32①⓪⑥">(7)</a> <a href="#ref-for-u32①⓪⑦">(8)</a> <a href="#ref-for-u32①⓪⑧">(9)</a> <a href="#ref-for-u32①⓪⑨">(10)</a> <a href="#ref-for-u32①①⓪">(11)</a> <a href="#ref-for-u32①①①">(12)</a>
+    <li><a href="#ref-for-u32①①②">17.5.15. textureStore</a> <a href="#ref-for-u32①①③">(2)</a> <a href="#ref-for-u32①①④">(3)</a> <a href="#ref-for-u32①①⑤">(4)</a> <a href="#ref-for-u32①①⑥">(5)</a>
+    <li><a href="#ref-for-u32①①⑦">17.6. Atomic Built-in Functions</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="i32">
@@ -18238,18 +18238,18 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-i32③①">17.5.1. textureDimensions</a> <a href="#ref-for-i32③②">(2)</a> <a href="#ref-for-i32③③">(3)</a> <a href="#ref-for-i32③④">(4)</a> <a href="#ref-for-i32③⑤">(5)</a> <a href="#ref-for-i32③⑥">(6)</a> <a href="#ref-for-i32③⑦">(7)</a> <a href="#ref-for-i32③⑧">(8)</a> <a href="#ref-for-i32③⑨">(9)</a>
     <li><a href="#ref-for-i32④⓪">17.5.2. textureGather</a> <a href="#ref-for-i32④①">(2)</a> <a href="#ref-for-i32④②">(3)</a> <a href="#ref-for-i32④③">(4)</a> <a href="#ref-for-i32④④">(5)</a> <a href="#ref-for-i32④⑤">(6)</a> <a href="#ref-for-i32④⑥">(7)</a> <a href="#ref-for-i32④⑦">(8)</a> <a href="#ref-for-i32④⑧">(9)</a> <a href="#ref-for-i32④⑨">(10)</a> <a href="#ref-for-i32⑤⓪">(11)</a> <a href="#ref-for-i32⑤①">(12)</a> <a href="#ref-for-i32⑤②">(13)</a> <a href="#ref-for-i32⑤③">(14)</a> <a href="#ref-for-i32⑤④">(15)</a> <a href="#ref-for-i32⑤⑤">(16)</a> <a href="#ref-for-i32⑤⑥">(17)</a> <a href="#ref-for-i32⑤⑦">(18)</a>
     <li><a href="#ref-for-i32⑤⑧">17.5.3. textureGatherCompare</a> <a href="#ref-for-i32⑤⑨">(2)</a> <a href="#ref-for-i32⑥⓪">(3)</a>
-    <li><a href="#ref-for-i32⑥①">17.5.4. textureLoad</a> <a href="#ref-for-i32⑥②">(2)</a> <a href="#ref-for-i32⑥③">(3)</a> <a href="#ref-for-i32⑥④">(4)</a> <a href="#ref-for-i32⑥⑤">(5)</a> <a href="#ref-for-i32⑥⑥">(6)</a> <a href="#ref-for-i32⑥⑦">(7)</a> <a href="#ref-for-i32⑥⑧">(8)</a> <a href="#ref-for-i32⑥⑨">(9)</a> <a href="#ref-for-i32⑦⓪">(10)</a> <a href="#ref-for-i32⑦①">(11)</a> <a href="#ref-for-i32⑦②">(12)</a> <a href="#ref-for-i32⑦③">(13)</a> <a href="#ref-for-i32⑦④">(14)</a> <a href="#ref-for-i32⑦⑤">(15)</a> <a href="#ref-for-i32⑦⑥">(16)</a> <a href="#ref-for-i32⑦⑦">(17)</a> <a href="#ref-for-i32⑦⑧">(18)</a> <a href="#ref-for-i32⑦⑨">(19)</a> <a href="#ref-for-i32⑧⓪">(20)</a> <a href="#ref-for-i32⑧①">(21)</a> <a href="#ref-for-i32⑧②">(22)</a> <a href="#ref-for-i32⑧③">(23)</a>
-    <li><a href="#ref-for-i32⑧④">17.5.5. textureNumLayers</a>
-    <li><a href="#ref-for-i32⑧⑤">17.5.6. textureNumLevels</a>
-    <li><a href="#ref-for-i32⑧⑥">17.5.7. textureNumSamples</a>
-    <li><a href="#ref-for-i32⑧⑦">17.5.8. textureSample</a> <a href="#ref-for-i32⑧⑧">(2)</a> <a href="#ref-for-i32⑧⑨">(3)</a> <a href="#ref-for-i32⑨⓪">(4)</a> <a href="#ref-for-i32⑨①">(5)</a> <a href="#ref-for-i32⑨②">(6)</a>
-    <li><a href="#ref-for-i32⑨③">17.5.9. textureSampleBias</a> <a href="#ref-for-i32⑨④">(2)</a> <a href="#ref-for-i32⑨⑤">(3)</a>
-    <li><a href="#ref-for-i32⑨⑥">17.5.10. textureSampleCompare</a> <a href="#ref-for-i32⑨⑦">(2)</a> <a href="#ref-for-i32⑨⑧">(3)</a>
-    <li><a href="#ref-for-i32⑨⑨">17.5.11. textureSampleCompareLevel</a> <a href="#ref-for-i32①⓪⓪">(2)</a> <a href="#ref-for-i32①⓪①">(3)</a>
-    <li><a href="#ref-for-i32①⓪②">17.5.12. textureSampleGrad</a> <a href="#ref-for-i32①⓪③">(2)</a> <a href="#ref-for-i32①⓪④">(3)</a>
-    <li><a href="#ref-for-i32①⓪⑤">17.5.13. textureSampleLevel</a> <a href="#ref-for-i32①⓪⑥">(2)</a> <a href="#ref-for-i32①⓪⑦">(3)</a> <a href="#ref-for-i32①⓪⑧">(4)</a> <a href="#ref-for-i32①⓪⑨">(5)</a> <a href="#ref-for-i32①①⓪">(6)</a> <a href="#ref-for-i32①①①">(7)</a> <a href="#ref-for-i32①①②">(8)</a> <a href="#ref-for-i32①①③">(9)</a> <a href="#ref-for-i32①①④">(10)</a>
-    <li><a href="#ref-for-i32①①⑤">17.5.15. textureStore</a> <a href="#ref-for-i32①①⑥">(2)</a> <a href="#ref-for-i32①①⑦">(3)</a> <a href="#ref-for-i32①①⑧">(4)</a> <a href="#ref-for-i32①①⑨">(5)</a>
-    <li><a href="#ref-for-i32①②⓪">17.6. Atomic Built-in Functions</a>
+    <li><a href="#ref-for-i32⑥①">17.5.4. textureLoad</a> <a href="#ref-for-i32⑥②">(2)</a> <a href="#ref-for-i32⑥③">(3)</a> <a href="#ref-for-i32⑥④">(4)</a> <a href="#ref-for-i32⑥⑤">(5)</a> <a href="#ref-for-i32⑥⑥">(6)</a> <a href="#ref-for-i32⑥⑦">(7)</a> <a href="#ref-for-i32⑥⑧">(8)</a> <a href="#ref-for-i32⑥⑨">(9)</a> <a href="#ref-for-i32⑦⓪">(10)</a> <a href="#ref-for-i32⑦①">(11)</a> <a href="#ref-for-i32⑦②">(12)</a> <a href="#ref-for-i32⑦③">(13)</a> <a href="#ref-for-i32⑦④">(14)</a> <a href="#ref-for-i32⑦⑤">(15)</a> <a href="#ref-for-i32⑦⑥">(16)</a> <a href="#ref-for-i32⑦⑦">(17)</a> <a href="#ref-for-i32⑦⑧">(18)</a> <a href="#ref-for-i32⑦⑨">(19)</a> <a href="#ref-for-i32⑧⓪">(20)</a> <a href="#ref-for-i32⑧①">(21)</a> <a href="#ref-for-i32⑧②">(22)</a> <a href="#ref-for-i32⑧③">(23)</a> <a href="#ref-for-i32⑧④">(24)</a>
+    <li><a href="#ref-for-i32⑧⑤">17.5.5. textureNumLayers</a>
+    <li><a href="#ref-for-i32⑧⑥">17.5.6. textureNumLevels</a>
+    <li><a href="#ref-for-i32⑧⑦">17.5.7. textureNumSamples</a>
+    <li><a href="#ref-for-i32⑧⑧">17.5.8. textureSample</a> <a href="#ref-for-i32⑧⑨">(2)</a> <a href="#ref-for-i32⑨⓪">(3)</a> <a href="#ref-for-i32⑨①">(4)</a> <a href="#ref-for-i32⑨②">(5)</a> <a href="#ref-for-i32⑨③">(6)</a>
+    <li><a href="#ref-for-i32⑨④">17.5.9. textureSampleBias</a> <a href="#ref-for-i32⑨⑤">(2)</a> <a href="#ref-for-i32⑨⑥">(3)</a>
+    <li><a href="#ref-for-i32⑨⑦">17.5.10. textureSampleCompare</a> <a href="#ref-for-i32⑨⑧">(2)</a> <a href="#ref-for-i32⑨⑨">(3)</a>
+    <li><a href="#ref-for-i32①⓪⓪">17.5.11. textureSampleCompareLevel</a> <a href="#ref-for-i32①⓪①">(2)</a> <a href="#ref-for-i32①⓪②">(3)</a>
+    <li><a href="#ref-for-i32①⓪③">17.5.12. textureSampleGrad</a> <a href="#ref-for-i32①⓪④">(2)</a> <a href="#ref-for-i32①⓪⑤">(3)</a>
+    <li><a href="#ref-for-i32①⓪⑥">17.5.13. textureSampleLevel</a> <a href="#ref-for-i32①⓪⑦">(2)</a> <a href="#ref-for-i32①⓪⑧">(3)</a> <a href="#ref-for-i32①⓪⑨">(4)</a> <a href="#ref-for-i32①①⓪">(5)</a> <a href="#ref-for-i32①①①">(6)</a> <a href="#ref-for-i32①①②">(7)</a> <a href="#ref-for-i32①①③">(8)</a> <a href="#ref-for-i32①①④">(9)</a> <a href="#ref-for-i32①①⑤">(10)</a> <a href="#ref-for-i32①①⑥">(11)</a> <a href="#ref-for-i32①①⑦">(12)</a>
+    <li><a href="#ref-for-i32①①⑧">17.5.15. textureStore</a> <a href="#ref-for-i32①①⑨">(2)</a> <a href="#ref-for-i32①②⓪">(3)</a> <a href="#ref-for-i32①②①">(4)</a> <a href="#ref-for-i32①②②">(5)</a>
+    <li><a href="#ref-for-i32①②③">17.6. Atomic Built-in Functions</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="f32">
