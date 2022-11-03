@@ -645,13 +645,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-11-02">2 November 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-11-03">3 November 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/3f515c352569f0e1d7f92f2bee79abe5bc03d528/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/3f515c352569f0e1d7f92f2bee79abe5bc03d528/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/2712c3464f2ef976cac4545cf872012a40d399a4/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/2712c3464f2ef976cac4545cf872012a40d399a4/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -1863,21 +1863,21 @@ The mantissa represents a fraction in base 16 notation.</p>
       <p>Compute <em>effective_mantissa</em> from <em>mantissa</em>:</p>
       <ul>
        <li data-md>
-        <p>If <em>mantissa</em> has 17 or fewer <a data-link-type="dfn" href="#mantissa-significant" id="ref-for-mantissa-significant①">significant</a> digits, then <em>effective_mantissa</em> is <em>mantissa</em>.</p>
+        <p>If <em>mantissa</em> has 16 or fewer <a data-link-type="dfn" href="#mantissa-significant" id="ref-for-mantissa-significant①">significant</a> digits, then <em>effective_mantissa</em> is <em>mantissa</em>.</p>
        <li data-md>
         <p>Otherwise:</p>
         <ul>
          <li data-md>
           <p>Let <var>truncated_mantissa</var> be the same as <var>mantissa</var> except each digit to the
- right of the 17th significant digit is replaced with 0.</p>
+ right of the 16th significant digit is replaced with 0.</p>
          <li data-md>
           <p>Let <var>truncated_mantissa_next</var> be the same as <var>mantissa</var> except:</p>
           <ul>
            <li data-md>
-            <p>the 17th significant digit is incremented by 1, and carries are propagated to the left as needed
+            <p>the 16th significant digit is incremented by 1, and carries are propagated to the left as needed
  needed to ensure each digit remains in the range 0 through <code>f</code>, and</p>
            <li data-md>
-            <p>each digit to the right of the 17th significant digit is replaced with 0.</p>
+            <p>each digit to the right of the 16th significant digit is replaced with 0.</p>
           </ul>
          <li data-md>
           <p>Set <var>effective_mantissa</var> to either <var>truncated_mantissa</var> or <var>truncated_mantissa_next</var>.
@@ -1890,7 +1890,7 @@ multiplied by 2 to the power of the exponent.
 When no exponent is specified, an exponent of 0 is assumed.</p>
     </ul>
    </div>
-   <p class="note" role="note"><span>Note:</span> The hexadecimal mantissa is truncated after 17 hexadecimal digits, preserving approximately 4 ×17 = 68 significant bits in the fraction.</p>
+   <p class="note" role="note"><span>Note:</span> The hexadecimal mantissa is truncated after 16 hexadecimal digits, preserving approximately 4 ×16 = 64 significant bits in the fraction.</p>
    <p>When a <a data-link-type="dfn" href="#numeric-literal" id="ref-for-numeric-literal①">numeric literal</a> has a suffix, the literal denotes a value in a specific <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②">concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar①">scalar</a> type.
 Otherwise, the literal denotes a value one of the <a data-link-type="dfn" href="#abstract-numeric-types" id="ref-for-abstract-numeric-types">abstract numeric types</a> defined below.
 In either case, the value denoted by the literal is its mathematical value after conversion to the target type,
