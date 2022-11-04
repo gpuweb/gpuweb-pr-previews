@@ -651,7 +651,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/ab3bdae05aecfbc07ba9dfe1f078855d6d1e0a10/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/ab3bdae05aecfbc07ba9dfe1f078855d6d1e0a10/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/b93ea384e91a9a868e8d194c782099fe15e84251/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/b93ea384e91a9a868e8d194c782099fe15e84251/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -13077,7 +13077,8 @@ For example, if <code>e</code> is a very small negative number, then <code>fract
      <tr>
       <td>Description 
       <td>
-       Splits <code>e</code> into a significand and exponent so that <code>e</code> = <code>significand * 2</code><sup><code>exponent</code></sup> The magnitude of the significand is in the range of [0.5, 1.0) or 0. 
+       Splits <code>e</code> into a significand and exponent so that <code>e</code> = <code>significand * 2</code><sup><code>exponent</code></sup>.
+    The significand is 0.0 or its magnitude is in the range [0.5, 1.0). 
        <p>Returns the <code>__frexp_result</code> built-in structure, defined as follows:</p>
 <pre class="language-rust highlight"><c- k>struct</c-> <c- nc>__frexp_result</c-> <c- p>{</c->
   <c- n>sig</c-> : <c- b>f32</c-><c- p>,</c-> <c- c1>// significand part</c->
@@ -13117,7 +13118,7 @@ but a value may infer the type.</p>
       <td>Description 
       <td>
        Splits <code>e</code> into a significand and exponent so that <code>e</code> = <code>significand * 2</code><sup><code>exponent</code></sup>.
-    The magnitude of the significand is in the range of [0.5, 1.0) or 0. 
+    The significand is 0.0 or its magnitude is in the range [0.5, 1.0). 
        <p>Returns the <code>__frexp_result_f16</code> built-in structure, defined as if as follows:</p>
 <pre class="language-rust highlight"><c- k>struct</c-> <c- nc>__frexp_result_f16</c-> <c- p>{</c->
   <c- n>sig</c-> : <c- nc>f16</c-><c- p>,</c-> <c- c1>// significand part</c->
@@ -13145,7 +13146,7 @@ but a value may infer the type.</p>
       <td>Description 
       <td>
        Splits <code>e</code> into a significand and exponent so that <code>e</code> = <code>significand * 2</code><sup><code>exponent</code></sup>.
-    The magnitude of each component of the significand is in the range of [0.5, 1.0) or 0. 
+    Each component of the significand is 0.0, or has a magnitude in the range [0.5, 1.0). 
        <p>Returns the <code>__frexp_result_vecN</code> built-in structure, defined as follows:</p>
 <pre class="language-rust highlight"><c- k>struct</c-> <c- nc>__frexp_result_vecN</c-> <c- p>{</c->
   <c- n>sig</c-> : <c- nc>vecN</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-><c- p>,</c-> <c- c1>// significand part</c->
@@ -13173,7 +13174,7 @@ but a value may infer the type.</p>
       <td>Description 
       <td>
        Splits <code>e</code> into a significand and exponent so that <code>e</code> = <code>significand * 2</code><sup><code>exponent</code></sup>.
-    The magnitude of each component of the significand is in the range of [0.5, 1.0) or 0. 
+    Each component of the significand is 0.0, or has a magnitude in the range [0.5, 1.0). 
        <p>Returns the <code>__frexp_result_vecN</code> built-in structure, defined as if as follows:</p>
 <pre class="language-rust highlight"><c- k>struct</c-> <c- nc>__frexp_result_vecN_f16</c-> <c- p>{</c->
   <c- n>sig</c-> : <c- nc>vecN</c-><c- o>&lt;</c-><c- n>f16</c-><c- o>></c-><c- p>,</c-> <c- c1>// significand part</c->
