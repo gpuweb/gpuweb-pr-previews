@@ -651,7 +651,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/c8136b43b313ccc4b48020915bcfdb4214525842/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/c8136b43b313ccc4b48020915bcfdb4214525842/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/fc16e2f11dca755877a90e3bba5dff4a5caec897/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/fc16e2f11dca755877a90e3bba5dff4a5caec897/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -9083,8 +9083,8 @@ argument back through all the <a data-link-type="dfn" href="#let-declaration" id
    </ul>
    <p class="note" role="note"><span>Note:</span> Recursion is disallowed because cycles are not permitted among any kinds
 of declarations.</p>
-   <div class="example wgsl no-marker" id="example-dc2b3e73">
-    <a class="self-link" href="#example-dc2b3e73"></a>
+   <div class="example wgsl no-marker" id="example-cf627c42">
+    <a class="self-link" href="#example-cf627c42"></a>
     <div class="marker">EXAMPLE: Valid and invalid pointer arguments</div>
 <pre class="highlight"><c- k>fn</c-> <c- nf>bar</c-><c- p>(</c-><c- n>p</c-> : <c- nc>ptr</c-><c- o>&lt;</c-><c- n>function</c-><c- p>,</c-> <c- b>f32</c-><c- o>></c-><c- p>)</c-> <c- p>{</c->
 <c- p>}</c->
@@ -9093,7 +9093,7 @@ of declarations.</p>
 <c- p>}</c->
 
 <c- k>fn</c-> <c- nf>bar2</c-><c- p>(</c-><c- n>p</c-> : <c- nc>ptr</c-><c- o>&lt;</c-><c- n>function</c-><c- p>,</c-> <c- b>f32</c-><c- o>></c-><c- p>)</c-> <c- p>{</c->
-  <c- a>let</c-> <c- n>a</c-> <c- o>=</c-> <c- o>&amp;*&amp;*&amp;</c-><c- p>(</c-><c- n>p</c-><c- p>);</c->
+  <c- a>let</c-> <c- n>a</c-> <c- o>=</c-> <c- o>&amp;*&amp;*</c-><c- p>(</c-><c- n>p</c-><c- p>);</c->
 
   <c- n>bar</c-><c- p>(</c-><c- n>p</c-><c- p>);</c-> <c- c1>// Valid</c->
   <c- n>bar</c-><c- p>(</c-><c- n>a</c-><c- p>);</c-> <c- c1>// Valid</c->
