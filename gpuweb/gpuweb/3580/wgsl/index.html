@@ -651,7 +651,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/979d38d5f648dc641aeb6057343fb6e4ce0f65fc/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/979d38d5f648dc641aeb6057343fb6e4ce0f65fc/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/22a1cfdf36503a3972cef4f15e8d37bef747e546/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/22a1cfdf36503a3972cef4f15e8d37bef747e546/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -9164,11 +9164,11 @@ but each expression has a statically determinable root identifier.</p>
      <p></p>
    </ul>
    <h5 class="heading settled" data-level="9.4.1.2" id="aliasing"><span class="secno">9.4.1.2. </span><span class="content">Aliasing</span><a class="self-link" href="#aliasing"></a></h5>
-   <p>While the <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable①⑤">originating variable</a> of a root identifier is a dynamic concept that
+   <p>While the <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable①⑤">originating variable</a> of a <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier②">root identifier</a> is a dynamic concept that
 depends on the <a data-link-type="dfn" href="#call-site" id="ref-for-call-site⑤">call sites</a> for the function, WGSL programs can be
 statically analyzed to determine the set of all possible <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable①⑥">originating
 variables</a> for each root identifier.</p>
-   <p>Two <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier②">root identifiers</a> <dfn data-dfn-type="dfn" data-noexport id="alias">alias<a class="self-link" href="#alias"></a></dfn> when they have the same <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable①⑦">originating variable</a>.
+   <p>Two <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier③">root identifiers</a> <dfn data-dfn-type="dfn" data-noexport id="alias">alias<a class="self-link" href="#alias"></a></dfn> when they have the same <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable①⑦">originating variable</a>.
 Execution of a WGSL function <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑦③">must not</a> potentially
 access memory through aliased root identifiers, where one access is a write and
 the other is a read or a write.
@@ -20421,7 +20421,7 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <ul>
     <li><a href="#ref-for-root-identifier">9.4. Restrictions on Functions</a>
     <li><a href="#ref-for-root-identifier①">9.4.1.1. Root Identifier</a>
-    <li><a href="#ref-for-root-identifier②">9.4.1.2. Aliasing</a>
+    <li><a href="#ref-for-root-identifier②">9.4.1.2. Aliasing</a> <a href="#ref-for-root-identifier③">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="entry-point">
