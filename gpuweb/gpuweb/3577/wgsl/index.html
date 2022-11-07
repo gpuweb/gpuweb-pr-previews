@@ -651,7 +651,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/17bf3a364bbf41d2d4c8f4498d486856512ae819/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/17bf3a364bbf41d2d4c8f4498d486856512ae819/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/7ae975aebf5c24ba319e706074fbd072c045d161/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/7ae975aebf5c24ba319e706074fbd072c045d161/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -9090,8 +9090,8 @@ from the argument back through all the <a data-link-type="dfn" href="#let-declar
    </ul>
    <p class="note" role="note"><span>Note:</span> Recursion is disallowed because cycles are not permitted among any kinds
 of declarations.</p>
-   <div class="example wgsl no-marker" id="example-08632fab">
-    <a class="self-link" href="#example-08632fab"></a>
+   <div class="example wgsl no-marker" id="example-dc2b3e73">
+    <a class="self-link" href="#example-dc2b3e73"></a>
     <div class="marker">EXAMPLE: Valid and invalid pointer arguments</div>
 <pre class="highlight"><c- k>fn</c-> <c- nf>bar</c-><c- p>(</c-><c- n>p</c-> : <c- nc>ptr</c-><c- o>&lt;</c-><c- n>function</c-><c- p>,</c-> <c- b>f32</c-><c- o>></c-><c- p>)</c-> <c- p>{</c->
 <c- p>}</c->
@@ -9130,6 +9130,7 @@ of declarations.</p>
 
   <c- n>baz</c-><c- p>(</c-><c- o>&amp;</c-><c- n>usable_priv</c-><c- p>);</c-> <c- c1>// Valid, address-of a variable.</c->
   <c- n>baz</c-><c- p>(</c-><c- n>a_priv</c-><c- p>);</c->       <c- c1>// Valid, effectively address-of a variable.</c->
+  <c- n>baz</c-><c- p>(</c-><c- n>b_priv</c-><c- p>);</c->       <c- c1>// Valid, effectively address-of a variable.</c->
   <c- n>baz</c-><c- p>(</c-><c- n>c_priv</c-><c- p>);</c->       <c- c1>// Valid, effectively address-of a variable.</c->
   <c- n>baz</c-><c- p>(</c-><c- n>d_priv</c-><c- p>);</c->       <c- c1>// Invalid, memory view has changed.</c->
   <c- n>baz</c-><c- p>(</c-><c- n>e_priv</c-><c- p>);</c->       <c- c1>// Invalid, memory view has changed.</c->
