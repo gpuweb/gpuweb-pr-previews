@@ -651,7 +651,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/7ae975aebf5c24ba319e706074fbd072c045d161/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/7ae975aebf5c24ba319e706074fbd072c045d161/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/c8136b43b313ccc4b48020915bcfdb4214525842/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/c8136b43b313ccc4b48020915bcfdb4214525842/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -9072,20 +9072,13 @@ the following address spaces:</p>
        <p><a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage①⑥">storage</a></p>
      </ul>
     <li data-md>
-     <p>Each argument of pointer type to a <a data-link-type="dfn" href="#user-defined-function" id="ref-for-user-defined-function⑦">user-defined function</a> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑦②">must</a> be one of:</p>
+     <p>Each argument of pointer type to a <a data-link-type="dfn" href="#user-defined-function" id="ref-for-user-defined-function⑦">user-defined function</a> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑦②">must</a> have the same <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view⑨">memory view</a> as its <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier">root
+identifier</a>.</p>
      <ul>
       <li data-md>
-       <p>An <a href="#address-of-expr">address-of expression</a> of a <a href="#var-identifier-expr">variable identifier expression</a></p>
-      <li data-md>
-       <p>A <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter①②">function parameter</a></p>
-      <li data-md>
-       <p>A <a href="#constant-identifier-expr">constant identifier expression</a> or <a href="#address-of-expr">address-of expression</a> where the only expressions
-applied to the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier">root identifier</a> would satisfy the previous two
-rules.
-That is, the <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view⑨">memory view</a> of the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier①">root identifier</a> is unchanged.
-This means no <a href="#vector-access-expr">vector</a>, <a href="#matrix-access-expr">matrix</a>, <a href="#array-access-expr">array</a>, or <a href="#struct-access-expr">struct</a> access expressions can be applied to
-produce a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view①⓪">memory view</a> into the root identifier when traced
-from the argument back through all the <a data-link-type="dfn" href="#let-declaration" id="ref-for-let-declaration⑤">let-declarations</a>.</p>
+       <p class="note" role="note"><span>Note:</span> This means no <a href="#vector-access-expr">vector</a>, <a href="#matrix-access-expr">matrix</a>, <a href="#array-access-expr">array</a>, or <a href="#struct-access-expr">struct</a> access expressions can be applied to
+produce a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view①⓪">memory view</a> into the root identifier when traced from the
+argument back through all the <a data-link-type="dfn" href="#let-declaration" id="ref-for-let-declaration⑤">let-declarations</a>.</p>
      </ul>
    </ul>
    <p class="note" role="note"><span>Note:</span> Recursion is disallowed because cycles are not permitted among any kinds
@@ -9145,7 +9138,7 @@ of declarations.</p>
    <h4 class="heading settled" data-level="9.4.1" id="alias-analysis"><span class="secno">9.4.1. </span><span class="content">Alias Analysis</span><a class="self-link" href="#alias-analysis"></a></h4>
    <p><a data-link-type="dfn" href="#memory-locations" id="ref-for-memory-locations①④">Memory locations</a> can be accessed during the execution of a function using <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view①①">memory views</a>.
 Within a function, each <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view①②">memory view</a> has a particular <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="root-identifier">root identifier</dfn>.
-The root identifier can be an <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable①④">originating variable</a> or a <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter①③">formal parameter</a> of <a data-link-type="dfn" href="#pointer-type" id="ref-for-pointer-type⑥">pointer type</a>.</p>
+The root identifier can be an <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable①④">originating variable</a> or a <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter①②">formal parameter</a> of <a data-link-type="dfn" href="#pointer-type" id="ref-for-pointer-type⑥">pointer type</a>.</p>
    <p>Locally derived expressions of <a data-link-type="dfn" href="#reference-type" id="ref-for-reference-type⑦">reference</a> or <a data-link-type="dfn" href="#pointer-type" id="ref-for-pointer-type⑦">pointer</a> type may introduce new names for a particular root identifier,
 but each expression has a statically determinable root identifier.
 While the <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable①⑤">originating variable</a> of a root identifier is a dynamic concept that
@@ -9292,7 +9285,7 @@ programmable parts of pipelines:</p>
    <p>To create an <a data-link-type="dfn" href="#entry-point" id="ref-for-entry-point①⓪">entry point</a>, declare a <a data-link-type="dfn" href="#user-defined-function" id="ref-for-user-defined-function⑨">user-defined function</a> with a <a data-link-type="dfn" href="#shader-stage-attributes" id="ref-for-shader-stage-attributes①">shader stage attribute</a>.</p>
    <p>When configuring a <a data-link-type="dfn" href="#pipeline" id="ref-for-pipeline①">pipeline</a> in the WebGPU API,
 the entry point’s function name maps to the <code>entryPoint</code> attribute of the <a href="https://gpuweb.github.io/gpuweb/#GPUProgrammableStage">WebGPU § GPUProgrammableStage</a> object.</p>
-   <p>The entry point’s <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter①④">formal parameters</a> denote the stage’s <a data-link-type="dfn" href="#shader-stage-input" id="ref-for-shader-stage-input③">shader stage inputs</a>.
+   <p>The entry point’s <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter①③">formal parameters</a> denote the stage’s <a data-link-type="dfn" href="#shader-stage-input" id="ref-for-shader-stage-input③">shader stage inputs</a>.
 The entry point’s <a data-link-type="dfn" href="#return-value" id="ref-for-return-value③">return value</a>, if specified, denotes the stage’s <a data-link-type="dfn" href="#shader-stage-output" id="ref-for-shader-stage-output②">shader stage outputs</a>.</p>
    <p>The type of each formal parameter, and the entry point’s return type, <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑦⑤">must</a> be one of:</p>
    <ul>
@@ -9399,7 +9392,7 @@ or even execute the statement that may enclose the expression.</p>
    <p>More precisely, the <dfn data-dfn-type="dfn" data-noexport id="interface-of-a-shader-stage">interface of a shader stage<a class="self-link" href="#interface-of-a-shader-stage"></a></dfn> consists of:</p>
    <ul>
     <li data-md>
-     <p>All <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter①⑤">formal parameters</a> of the <a data-link-type="dfn" href="#entry-point" id="ref-for-entry-point①①">entry point</a>.
+     <p>All <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter①④">formal parameters</a> of the <a data-link-type="dfn" href="#entry-point" id="ref-for-entry-point①①">entry point</a>.
  These denote the shader stage inputs.</p>
     <li data-md>
      <p>The <a data-link-type="dfn" href="#return-value" id="ref-for-return-value④">return value</a> of the entry point.
@@ -9431,7 +9424,7 @@ The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="io-attributes
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="built-in-input-value">built-in input value</dfn> provides access to system-generated control information.
 The set of built-in inputs are listed in <a href="#builtin-values">§ 16 Built-in Values</a>.
 An entry point <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑦⑥">must</a> not contain duplicated built-in inputs.</p>
-   <p>A built-in input for stage <em>S</em> with name <em>X</em> and type <em>T</em><sub><em>X</em></sub> is accessed via a <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter①⑥">formal parameter</a> to an <a data-link-type="dfn" href="#entry-point" id="ref-for-entry-point①②">entry point</a> for <a data-link-type="dfn" href="#shader-stages" id="ref-for-shader-stages⑧">shader stage</a> <em>S</em>, in one of two ways:</p>
+   <p>A built-in input for stage <em>S</em> with name <em>X</em> and type <em>T</em><sub><em>X</em></sub> is accessed via a <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter①⑤">formal parameter</a> to an <a data-link-type="dfn" href="#entry-point" id="ref-for-entry-point①②">entry point</a> for <a data-link-type="dfn" href="#shader-stages" id="ref-for-shader-stages⑧">shader stage</a> <em>S</em>, in one of two ways:</p>
    <ol>
     <li data-md>
      <p>The parameter has attribute <code>builtin(</code><em>X</em><code>)</code> and is of type <em>T</em><sub><em>X</em></sub>.</p>
@@ -9836,7 +9829,7 @@ shader that goes beyond the specified limits.</p>
       <td>Maximum nesting depth of brace-enclosed statements in a function
       <td>127 
      <tr>
-      <td>Maximum number of <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter①⑦">parameters</a> for a function
+      <td>Maximum number of <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter①⑥">parameters</a> for a function
       <td>255 
      <tr>
       <td>Maximum number of case selector values in a <a data-link-type="dfn" href="#statement-switch" id="ref-for-statement-switch②">switch</a> statement
@@ -9976,7 +9969,7 @@ The second phase explores that graph, resulting in either rejecting the program,
     <li data-md>
      <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="function-tag">function tag</dfn> describing the function’s effects on uniformity.</p>
    </ul>
-   <p>Additionally, for each <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter①⑧">formal parameter</a> of a function, a parameter tag is
+   <p>Additionally, for each <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter①⑦">formal parameter</a> of a function, a parameter tag is
 computed and, if the parameter is a <a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function①①">function</a> address space
 pointer, a pointer parameter tag is also computed.
 The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="parameter-tag">parameter tag</dfn> describes the uniformity requirement of
@@ -10232,7 +10225,7 @@ notations:</p>
 to <em>Vout</em>(<em>prev</em>).</p>
    <p class="note" role="note"><span>Note:</span> The same desugarings apply as in <a href="#behaviors">statement behavior analysis</a>.</p>
    <h5 class="heading settled" data-level="13.2.4.1" id="pointer-func-vars-values"><span class="secno">13.2.4.1. </span><span class="content">Pointers to Function-scope Variables</span><a class="self-link" href="#pointer-func-vars-values"></a></h5>
-   <p>Each pointer <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter①⑨">parameter</a> in the <a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function①③">function</a> address space is desugared as a local variable declaration whose initial value
+   <p>Each pointer <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter①⑧">parameter</a> in the <a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function①③">function</a> address space is desugared as a local variable declaration whose initial value
 is equivalent to dereferencing the parameter.</p>
    <p>Whenever a <a data-link-type="dfn" href="#let-declaration" id="ref-for-let-declaration⑦">let-declaration</a>'s <a data-link-type="dfn" href="#effective-value-type" id="ref-for-effective-value-type①①">effective-value-type</a> is a <a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function①④">function</a> address space pointer, the initializer expression is recorded
 and any <a data-link-type="dfn" href="#identifier" id="ref-for-identifier①⑧">identifier</a> that <a data-link-type="dfn" href="#resolves" id="ref-for-resolves①⑦">resolves</a> to the declaration is substituted with
@@ -12402,7 +12395,7 @@ A WGSL program <a data-link-type="dfn" href="#shader-creation-error" id="ref-for
 therefore always available for use in a WGSL program.
 These are called <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="built-in-functions">built-in functions</dfn>.</p>
    <p>A built-in function is a family of functions, all with the same name,
-but distinguished by the number, order, and types of their <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter②⓪">formal parameters</a>.
+but distinguished by the number, order, and types of their <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter①⑨">formal parameters</a>.
 Each of these distinct function variations is an <a data-link-type="dfn" href="#overload" id="ref-for-overload③">overload</a>.</p>
    <p class="note" role="note"><span>Note:</span> Each <a data-link-type="dfn" href="#user-defined-function" id="ref-for-user-defined-function①⓪">user-defined function</a> only has one <a data-link-type="dfn" href="#overload" id="ref-for-overload④">overload</a>.</p>
    <p>Each <a data-link-type="dfn" href="#overload" id="ref-for-overload⑤">overload</a> is described below via:</p>
@@ -12410,7 +12403,7 @@ Each of these distinct function variations is an <a data-link-type="dfn" href="#
     <li data-md>
      <p>Type parameterizations, if any.</p>
     <li data-md>
-     <p>The built-in function name, a parenthesized list of <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter②①">formal parameters</a>, and optionally a <a data-link-type="dfn" href="#return-type" id="ref-for-return-type①①">return type</a>.</p>
+     <p>The built-in function name, a parenthesized list of <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter②⓪">formal parameters</a>, and optionally a <a data-link-type="dfn" href="#return-type" id="ref-for-return-type①①">return type</a>.</p>
     <li data-md>
      <p>The behavior of this overload of the function.</p>
    </ul>
@@ -20305,15 +20298,15 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-formal-parameter⑦">6.2. Value Declarations</a> <a href="#ref-for-formal-parameter⑧">(2)</a>
     <li><a href="#ref-for-formal-parameter⑨">9.1. Declaring a User-defined Function</a>
     <li><a href="#ref-for-formal-parameter①⓪">9.2. Function Calls</a>
-    <li><a href="#ref-for-formal-parameter①①">9.4. Restrictions on Functions</a> <a href="#ref-for-formal-parameter①②">(2)</a>
-    <li><a href="#ref-for-formal-parameter①③">9.4.1. Alias Analysis</a>
-    <li><a href="#ref-for-formal-parameter①④">10.2. Entry Point Declaration</a>
-    <li><a href="#ref-for-formal-parameter①⑤">10.3. Shader Interface</a>
-    <li><a href="#ref-for-formal-parameter①⑥">10.3.1.1. Built-in Inputs and Outputs</a>
-    <li><a href="#ref-for-formal-parameter①⑦">12.1. Limits</a>
-    <li><a href="#ref-for-formal-parameter①⑧">13.2.3. Analyzing the Uniformity Requirements of a Function</a>
-    <li><a href="#ref-for-formal-parameter①⑨">13.2.4.1. Pointers to Function-scope Variables</a>
-    <li><a href="#ref-for-formal-parameter②⓪">17. Built-in Functions</a> <a href="#ref-for-formal-parameter②①">(2)</a>
+    <li><a href="#ref-for-formal-parameter①①">9.4. Restrictions on Functions</a>
+    <li><a href="#ref-for-formal-parameter①②">9.4.1. Alias Analysis</a>
+    <li><a href="#ref-for-formal-parameter①③">10.2. Entry Point Declaration</a>
+    <li><a href="#ref-for-formal-parameter①④">10.3. Shader Interface</a>
+    <li><a href="#ref-for-formal-parameter①⑤">10.3.1.1. Built-in Inputs and Outputs</a>
+    <li><a href="#ref-for-formal-parameter①⑥">12.1. Limits</a>
+    <li><a href="#ref-for-formal-parameter①⑦">13.2.3. Analyzing the Uniformity Requirements of a Function</a>
+    <li><a href="#ref-for-formal-parameter①⑧">13.2.4.1. Pointers to Function-scope Variables</a>
+    <li><a href="#ref-for-formal-parameter①⑨">17. Built-in Functions</a> <a href="#ref-for-formal-parameter②⓪">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-function_decl">
@@ -20395,7 +20388,7 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
   <aside class="dfn-panel" data-for="root-identifier">
    <b><a href="#root-identifier">#root-identifier</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-root-identifier">9.4. Restrictions on Functions</a> <a href="#ref-for-root-identifier①">(2)</a>
+    <li><a href="#ref-for-root-identifier">9.4. Restrictions on Functions</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="entry-point">
