@@ -651,7 +651,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/795dab8decc5cf1c7ff88a9fb4c1e343c2b8c144/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/795dab8decc5cf1c7ff88a9fb4c1e343c2b8c144/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/d9d48bb4df6dee5bb6ab147092e667099f9e777f/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/d9d48bb4df6dee5bb6ab147092e667099f9e777f/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -13248,7 +13248,7 @@ For example, if <code>e</code> is a very small negative number, then <code>fract
      <tr>
       <td>Description 
       <td>
-       Splits <code>e</code> into a fraction and exponent so that <code>e</code> = <code>fraction * 2</code><sup><code>exponent</code></sup>.
+       Splits <code>e</code> into a fraction and an exponent so that <code>e</code> = <code>fraction * 2</code><sup><code>exponent</code></sup>.
     The fraction is 0.0 or its magnitude is in the range [0.5, 1.0). 
        <p>Returns the <code>__frexp_result</code> built-in structure, defined as follows:</p>
 <pre class="language-rust highlight"><c- k>struct</c-> <c- nc>__frexp_result</c-> <c- p>{</c->
@@ -13288,7 +13288,7 @@ but a value may infer the type.</p>
      <tr>
       <td>Description 
       <td>
-       Splits <code>e</code> into a fraction and exponent so that <code>e</code> = <code>fraction * 2</code><sup><code>exponent</code></sup>.
+       Splits <code>e</code> into a fraction and an exponent so that <code>e</code> = <code>fraction * 2</code><sup><code>exponent</code></sup>.
     The fraction is 0.0 or its magnitude is in the range [0.5, 1.0). 
        <p>Returns the <code>__frexp_result_f16</code> built-in structure, defined as if as follows:</p>
 <pre class="language-rust highlight"><c- k>struct</c-> <c- nc>__frexp_result_f16</c-> <c- p>{</c->
@@ -13316,7 +13316,7 @@ but a value may infer the type.</p>
      <tr>
       <td>Description 
       <td>
-       Splits <code>e</code> into a fraction and exponent so that <code>e</code> = <code>fraction * 2</code><sup><code>exponent</code></sup>.
+       Splits <code>e</code> into a fraction and an exponent so that <code>e</code> = <code>fraction * 2</code><sup><code>exponent</code></sup>.
     Each component of the fraction is 0.0, or has a magnitude in the range [0.5, 1.0). 
        <p>Returns the <code>__frexp_result_vecN</code> built-in structure, defined as follows:</p>
 <pre class="language-rust highlight"><c- k>struct</c-> <c- nc>__frexp_result_vecN</c-> <c- p>{</c->
@@ -13344,7 +13344,7 @@ but a value may infer the type.</p>
      <tr>
       <td>Description 
       <td>
-       Splits <code>e</code> into a fraction and exponent so that <code>e</code> = <code>fraction * 2</code><sup><code>exponent</code></sup>.
+       Splits <code>e</code> into a fraction and an exponent so that <code>e</code> = <code>fraction * 2</code><sup><code>exponent</code></sup>.
     Each component of the fraction is 0.0, or has a magnitude in the range [0.5, 1.0). 
        <p>Returns the <code>__frexp_result_vecN</code> built-in structure, defined as if as follows:</p>
 <pre class="language-rust highlight"><c- k>struct</c-> <c- nc>__frexp_result_vecN_f16</c-> <c- p>{</c->
