@@ -651,7 +651,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/0176496e3f4c5743bbb51877acdc9f628c832261/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/0176496e3f4c5743bbb51877acdc9f628c832261/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/a0c251600ccabd97df986f33b13143f53edf99c3/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/a0c251600ccabd97df986f33b13143f53edf99c3/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -15780,9 +15780,9 @@ reduce a shader’s memory bandwidth demand.</p>
    <h3 class="heading settled" data-level="17.9" id="sync-builtin-functions"><span class="secno">17.9. </span><span class="content">Synchronization Built-in Functions</span><a class="self-link" href="#sync-builtin-functions"></a></h3>
    <p>All synchronization functions execute a <a data-link-type="dfn" href="#control-barrier" id="ref-for-control-barrier">control barrier</a> with
 Acquire/Release <a href="#memory-semantics">memory ordering</a>.
-That is, all synchronization functions, and affect memory and atomic operations
-are ordered <a href="#program-order">program order</a> relative to the synchronization
-function.
+That is, all synchronization functions, and affected memory and atomic
+operations are ordered <a href="#program-order">program order</a> relative to the
+synchronization function.
 Additionally, the affected memory and atomic operations program-ordered before
 the synchronization function must be visible to all other threads in the
 workgroup before any affected memory or atomic operation program-ordered after
@@ -15837,7 +15837,7 @@ the <a data-link-type="dfn" href="#compute" id="ref-for-compute③">compute</a> 
        <p>Executes a <a data-link-type="dfn" href="#control-barrier" id="ref-for-control-barrier③">control barrier</a> synchronization function that affects
     memory and atomic operations in the <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup①⑨">workgroup</a> address
     space.</p>
-       <p>Each static instance of this built-in allocates <a data-link-type="dfn" href="#roundup" id="ref-for-roundup①⓪">roundUp</a><code>(</code><a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①③">sizeof</a><code>(T), 16)</code> bytes of workgroup memory.</p>
+       <p>Each static instance of this built-in may allocate <a data-link-type="dfn" href="#roundup" id="ref-for-roundup①⓪">roundUp</a><code>(16,</code><a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①③">sizeof</a><code>(T))</code> bytes of workgroup memory.</p>
        <p><code>id</code> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑤③">must</a> be an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions④⓪">override-expression</a>.
     It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error③①">pipeline-creation error</a> if any component of <code>id</code> is greater
     than or equal to the corresponding component of the <a data-link-type="dfn" href="#attribute-workgroup_size" id="ref-for-attribute-workgroup_size③">workgroup size</a> (see also <a data-link-type="dfn" href="#workgroup-grid" id="ref-for-workgroup-grid④">workgroup grid</a>).</p>
