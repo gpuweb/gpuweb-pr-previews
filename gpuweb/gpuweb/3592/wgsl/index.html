@@ -651,7 +651,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/a6b0f3a3dea1bc871ac0ecbb0be35fdfb62d9eaf/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/a6b0f3a3dea1bc871ac0ecbb0be35fdfb62d9eaf/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/766de16617beec57124b4d7919614d3bcfff4518/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/766de16617beec57124b4d7919614d3bcfff4518/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -5826,7 +5826,7 @@ An expression is a const-expression if all its <a data-link-type="dfn" href="#id
     <li data-md>
      <p><var>E</var> is <a data-link-type="dfn" href="#top-level-expression" id="ref-for-top-level-expression④">top-level expression</a>, or</p>
     <li data-md>
-     <p><var>E</var> is a <a data-link-type="dfn" href="#subexpressions" id="ref-for-subexpressions①">subexpression</a> of a <a data-link-type="dfn" href="#top-level-expression" id="ref-for-top-level-expression⑤">top-level expression</a> <var>TE</var>, and evaluation of <var>TE</var> requires <var>E</var> to be evaluated.</p>
+     <p><var>E</var> is a <a data-link-type="dfn" href="#subexpressions" id="ref-for-subexpressions①">subexpression</a> of an expression <var>OuterE</var>, and <var>OuterE</var> will be evaluated, and evaluation of <var>OuterE</var> requires <var>E</var> to be evaluated.</p>
    </ul>
    <p class="note" role="note"><span>Note:</span> The evaluation rule implies that short-circuting operators <code>&amp;&amp;</code> and <code>||</code> guard evaluation of their right-hand
 side subexpressions.</p>
@@ -5906,9 +5906,9 @@ An expression is a const-expression if all its <a data-link-type="dfn" href="#id
    <p>An override-expression <var>E</var> will be evaluated if and only if:</p>
    <ul>
     <li data-md>
-     <p><var>E</var> is <a data-link-type="dfn" href="#top-level-expression" id="ref-for-top-level-expression⑥">top-level expression</a>, or</p>
+     <p><var>E</var> is <a data-link-type="dfn" href="#top-level-expression" id="ref-for-top-level-expression⑤">top-level expression</a>, or</p>
     <li data-md>
-     <p><var>E</var> is a <a data-link-type="dfn" href="#subexpressions" id="ref-for-subexpressions②">subexpression</a> of a <a data-link-type="dfn" href="#top-level-expression" id="ref-for-top-level-expression⑦">top-level expression</a> <var>TE</var>, and evaluation of <var>TE</var> requires <var>E</var> to be evaluated.</p>
+     <p><var>E</var> is a <a data-link-type="dfn" href="#subexpressions" id="ref-for-subexpressions②">subexpression</a> of an expression <var>OuterE</var>, and <var>OuterE</var> will be evaluated, and evaluation of <var>OuterE</var> requires <var>E</var> to be evaluated.</p>
    </ul>
    <p class="note" role="note"><span>Note:</span> An override-expression may not be usable as the initializer for an <a data-link-type="dfn" href="#override-declaration" id="ref-for-override-declaration⑥">override-declaration</a>, because such initializers must <a data-link-type="dfn" href="#type-rule" id="ref-for-type-rule①⓪">resolve</a> to a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②④">concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar①③">scalar</a> type.</p>
    <p>Example: <code>override x = 42;</code> is analyzed as follows:</p>
@@ -18222,8 +18222,8 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <ul>
     <li><a href="#ref-for-top-level-expression">5.1. Type Checking</a> <a href="#ref-for-top-level-expression①">(2)</a> <a href="#ref-for-top-level-expression②">(3)</a>
     <li><a href="#ref-for-top-level-expression③">5.1.3. Overload Resolution</a>
-    <li><a href="#ref-for-top-level-expression④">7.1.1. const Expressions</a> <a href="#ref-for-top-level-expression⑤">(2)</a>
-    <li><a href="#ref-for-top-level-expression⑥">7.1.2. override Expressions</a> <a href="#ref-for-top-level-expression⑦">(2)</a>
+    <li><a href="#ref-for-top-level-expression④">7.1.1. const Expressions</a>
+    <li><a href="#ref-for-top-level-expression⑤">7.1.2. override Expressions</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="static-context">
