@@ -645,13 +645,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-11-16">16 November 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-11-17">17 November 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/369c463167f49d3aaa77a1ee0a51a62e542444a0/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/369c463167f49d3aaa77a1ee0a51a62e542444a0/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/90f49e0156aed611f3fc572c05119f30a226d4ad/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/90f49e0156aed611f3fc572c05119f30a226d4ad/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -9530,15 +9530,15 @@ The interface includes:</p>
     <li data-md>
      <p>An identifier <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#resolve" id="ref-for-resolve⑤">resolving</a> to <em>D</em> is used in the initializer for a <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed④">statically accessed</a> declaration.</p>
     <li data-md>
-     <p>An identifier <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#resolve" id="ref-for-resolve⑥">resolving</a> to <em>D</em> is by an attribute used by a <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed⑤">statically accessed</a> declaration.</p>
+     <p>An identifier <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#resolve" id="ref-for-resolve⑥">resolving</a> to <em>D</em> is used by an attribute used by a <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed⑤">statically accessed</a> declaration.</p>
    </ul>
    <div class="note" role="note">
     Note: Static access is recursively defined, taking into account the following: 
     <ul>
      <li data-md>
-      <p>All the parts of a function declaration including attributes, formal parameters, return type, and function body</p>
+      <p>All the parts of a <a data-link-type="dfn" href="#function-declaration" id="ref-for-function-declaration④">function declaration</a> including attributes, formal parameters, return type, and function body.</p>
      <li data-md>
-      <p>Any type needed to define the above, including following type aliases.</p>
+      <p>Any type needed to define the above, including following <a data-link-type="dfn" href="#type-alias" id="ref-for-type-alias⑥">type aliases</a>.</p>
      <li data-md>
       <p>As a particular case of helping to define a type,
 any <a data-link-type="dfn" href="#override-declaration" id="ref-for-override-declaration①②">override-declaration</a> used in an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③①">override-expression</a> that is the <a data-link-type="dfn" href="#element-count" id="ref-for-element-count⑥">element count</a> of an <a data-link-type="dfn" href="#array" id="ref-for-array①⓪">array</a> type for a variable in the <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup①①">workgroup</a> address space,
@@ -9552,7 +9552,7 @@ when that variable itself is statically accessed.</p>
    <p>We can now precisely define the <dfn data-dfn-type="dfn" data-noexport id="interface-of-a-shader">interface of a shader<a class="self-link" href="#interface-of-a-shader"></a></dfn> as consisting of:</p>
    <ul>
     <li data-md>
-     <p>All <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter①④">formal parameters</a> of the <a data-link-type="dfn" href="#entry-point" id="ref-for-entry-point①①">entry point</a>.
+     <p>The <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter①④">formal parameters</a> of the <a data-link-type="dfn" href="#entry-point" id="ref-for-entry-point①①">entry point</a>.
  These denote the shader stage inputs.</p>
     <li data-md>
      <p>The <a data-link-type="dfn" href="#return-value" id="ref-for-return-value④">return value</a> of the entry point.
@@ -19519,6 +19519,7 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-type-alias③">7.1.1. const Expressions</a>
     <li><a href="#ref-for-type-alias④">7.1.2. override Expressions</a>
     <li><a href="#ref-for-type-alias⑤">7.5. Type Constructor Expressions</a>
+    <li><a href="#ref-for-type-alias⑥">10.3. Shader Interface</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-type_alias_decl">
@@ -20478,7 +20479,7 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <ul>
     <li><a href="#ref-for-function-declaration">3.9. Attributes</a>
     <li><a href="#ref-for-function-declaration①">4. Declaration and Scope</a> <a href="#ref-for-function-declaration②">(2)</a>
-    <li><a href="#ref-for-function-declaration③">10.3. Shader Interface</a>
+    <li><a href="#ref-for-function-declaration③">10.3. Shader Interface</a> <a href="#ref-for-function-declaration④">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="return-type">
