@@ -205,11 +205,12 @@ module.exports = grammar({
             $.array
         ),
         paren_expression: $ => seq($.paren_left, $.expression, $.paren_right),
-        argument_expression_list: $ => seq($.paren_left, optional(seq($.expression, optional(repeat1(seq($.comma, $.expression))), optional($.comma))), $.paren_right),
-        postfix_expression: $ => choice(
-            seq($.bracket_left, $.expression, $.bracket_right, optional($.postfix_expression)),
-            seq($.period, $.member_ident, optional($.postfix_expression)),
-            seq($.period, $.swizzle_name, optional($.postfix_expression))
+        argument_expression_list: $ => seq($.paren_left, optional($.expression_comma_list), $.paren_right),
+        expression_comma_list: $ => seq($.expression, optional(repeat1(seq($.comma, $.expression))), optional($.comma)),
+        component_or_swizzle_specifier: $ => choice(
+            seq($.bracket_left, $.expression, $.bracket_right, optional($.component_or_swizzle_specifier)),
+            seq($.period, $.member_ident, optional($.component_or_swizzle_specifier)),
+            seq($.period, $.swizzle_name, optional($.component_or_swizzle_specifier))
         ),
         unary_expression: $ => choice(
             $.singular_expression,
@@ -219,8 +220,12 @@ module.exports = grammar({
             seq($.star, $.unary_expression),
             seq($.and, $.unary_expression)
         ),
-        singular_expression: $ => seq($.primary_expression, optional($.postfix_expression)),
-        lhs_expression: $ => seq(optional(repeat1(choice($.star, $.and))), $.core_lhs_expression, optional($.postfix_expression)),
+        singular_expression: $ => seq($.primary_expression, optional($.component_or_swizzle_specifier)),
+        lhs_expression: $ => choice(
+            seq($.core_lhs_expression, optional($.component_or_swizzle_specifier)),
+            seq($.star, $.lhs_expression),
+            seq($.and, $.lhs_expression)
+        ),
         core_lhs_expression: $ => choice(
             $.ident,
             seq($.paren_left, $.lhs_expression, $.paren_right)
@@ -616,8 +621,6 @@ module.exports = grammar({
             token('instanceof'),
             token('interface'),
             token('layout'),
-            token('line'),
-            token('lineadj'),
             token('lowp'),
             token('macro'),
             token('macro_rules'),
@@ -646,7 +649,6 @@ module.exports = grammar({
             token('pass'),
             token('patch'),
             token('pixelfragment'),
-            token('point'),
             token('precise'),
             token('precision'),
             token('premerge'),
