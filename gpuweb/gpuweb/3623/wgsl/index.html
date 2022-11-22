@@ -651,7 +651,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/fd4a87896c5f4b22119703b05cde5dee63f9e5e0/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/fd4a87896c5f4b22119703b05cde5dee63f9e5e0/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/7ad26f4f6a777eb3ed91ee9d540af0f1a86fdb40/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/7ad26f4f6a777eb3ed91ee9d540af0f1a86fdb40/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -2706,42 +2706,42 @@ Second, when a load from a reference-to-memory occurs, yielding the value stored
       <td>__frexp_result_abstract 
       <td>__frexp_result 
       <td>1 
-      <td>Inherit conversion rank from input type. 
+      <td>
      <tr class="algorithm" data-algorithm="conversion rank for frexp result f16">
       <td>__frexp_result_abstract 
       <td>__frexp_result_f16 
       <td>2 
-      <td>Inherit conversion rank from input type. 
+      <td>
      <tr class="algorithm" data-algorithm="conversion rank for frexp result vector">
       <td>__frexp_result_vecN_abstract 
       <td>__frexp_result_vecN 
       <td>1 
-      <td>Inherit conversion rank from input type. 
+      <td>
      <tr class="algorithm" data-algorithm="conversion rank for frexp result vector f16">
       <td>__frexp_result_vecN_abstract 
       <td>__frexp_result_vecN_f16 
       <td>2 
-      <td>Inherit conversion rank from input type. 
+      <td>
      <tr class="algorithm" data-algorithm="conversion rank for modf result">
       <td>__modf_result_abstract 
       <td>__modf_result 
       <td>1 
-      <td>Inherit conversion rank from input type. 
+      <td>
      <tr class="algorithm" data-algorithm="conversion rank for modf result f16">
       <td>__modf_result_abstract 
       <td>__modf_result_f16 
       <td>2 
-      <td>Inherit conversion rank from input type. 
+      <td>
      <tr class="algorithm" data-algorithm="conversion rank for modf result vector">
       <td>__modf_result_vecN_abstract 
       <td>__modf_result_vecN 
       <td>1 
-      <td>Inherit conversion rank from input type. 
+      <td>
      <tr class="algorithm" data-algorithm="conversion rank for modf result vector f16">
       <td>__modf_result_vecN_abstract 
       <td>__modf_result_vecN_f16 
       <td>2 
-      <td>Inherit conversion rank from input type. 
+      <td>
      <tr class="algorithm" data-algorithm="conversion rank for non-convertible cases">
       <td><var>S</var> 
       <td><var>T</var><br>where above cases don’t apply 
@@ -13951,8 +13951,8 @@ but a value may infer the type.</p>
     of <code>modf(e[i])</code>.</p>
        <p>Returns the <code>__modf_result_vecN</code> built-in structure, defined as follows:</p>
 <pre class="language-rust highlight"><c- k>struct</c-> <c- nc>__modf_result_vecN_abstract</c-> <c- p>{</c->
-  <c- n>fract</c-> : <c- nc>vecN</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-><c- p>,</c-> <c- c1>// fractional part</c->
-  <c- n>whole</c-> : <c- nc>vecN</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c->  <c- c1>// whole part</c->
+  <c- n>fract</c-> : <c- nc>vecN</c-><c- o>&lt;</c-><c- n>AbstractFloat</c-><c- o>></c-><c- p>,</c-> <c- c1>// fractional part</c->
+  <c- n>whole</c-> : <c- nc>vecN</c-><c- o>&lt;</c-><c- n>AbstractFloat</c-><c- o>></c->  <c- c1>// whole part</c->
 <c- p>}</c->
 </pre>
      <tr>
