@@ -621,7 +621,6 @@ module.exports = grammar({
             token('instanceof'),
             token('interface'),
             token('layout'),
-            token('lineadj'),
             token('lowp'),
             token('macro'),
             token('macro_rules'),
