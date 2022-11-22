@@ -896,7 +896,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/f08340ac7a2aa156ccd0fc1dd25168e63115e8a7/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/f08340ac7a2aa156ccd0fc1dd25168e63115e8a7/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/99a5f204d044c80013ce339a0a2c8a07ab01846f/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/99a5f204d044c80013ce339a0a2c8a07ab01846f/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -7101,14 +7101,14 @@ completed.</p>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed②①"><c- g>Exposed</c-></a>=(<c- n>Window</c->, <c- n>DedicatedWorker</c->), <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext①⑧"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://html.spec.whatwg.org/multipage/structured-data.html#serializable" id="ref-for-serializable②"><c- g>Serializable</c-></a>]
 <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="#gpupipelineerror" id="ref-for-gpupipelineerror①"><c- g>GPUPipelineError</c-></a> : <a data-link-type="idl-name" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException"><c- n>DOMException</c-></a> {
     <dfn class="idl-code" data-dfn-for="GPUPipelineError" data-dfn-type="constructor" data-export data-lt="GPUPipelineError(message, options)|constructor(message, options)" id="dom-gpupipelineerror-gpupipelineerror"><code><c- g>constructor</c-></code><a class="self-link" href="#dom-gpupipelineerror-gpupipelineerror"></a></dfn>(<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString①⑦"><c- b>DOMString</c-></a> <dfn class="idl-code" data-dfn-for="GPUPipelineError/GPUPipelineError(message, options), GPUPipelineError/constructor(message, options)" data-dfn-type="argument" data-export id="dom-gpupipelineerror-gpupipelineerror-message-options-message"><code><c- g>message</c-></code><a class="self-link" href="#dom-gpupipelineerror-gpupipelineerror-message-options-message"></a></dfn>, <a data-link-type="idl-name" href="#dictdef-gpupipelineerrorinit" id="ref-for-dictdef-gpupipelineerrorinit"><c- n>GPUPipelineErrorInit</c-></a> <dfn class="idl-code" data-dfn-for="GPUPipelineError/GPUPipelineError(message, options), GPUPipelineError/constructor(message, options)" data-dfn-type="argument" data-export id="dom-gpupipelineerror-gpupipelineerror-message-options-options"><code><c- g>options</c-></code><a class="self-link" href="#dom-gpupipelineerror-gpupipelineerror-message-options-options"></a></dfn>);
-    <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#enumdef-gpupipelineerrorreason" id="ref-for-enumdef-gpupipelineerrorreason"><c- n>GPUPipelineErrorReason</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="GPUPipelineError" data-dfn-type="attribute" data-export data-readonly data-type="GPUPipelineErrorReason" id="dom-gpupipelineerror-reason"><code><c- g>reason</c-></code></dfn>;
+    <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#enumdef-gpupipelineerrorreason" id="ref-for-enumdef-gpupipelineerrorreason"><c- n>GPUPipelineErrorReason</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="GPUPipelineErrorReason" href="#dom-gpupipelineerror-reason" id="ref-for-dom-gpupipelineerror-reason"><c- g>reason</c-></a>;
 };
 
 <c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpupipelineerrorinit"><code><c- g>GPUPipelineErrorInit</c-></code></dfn> {
     <c- b>required</c-> <a data-link-type="idl-name" href="#enumdef-gpupipelineerrorreason" id="ref-for-enumdef-gpupipelineerrorreason①"><c- n>GPUPipelineErrorReason</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="GPUPipelineErrorInit" data-dfn-type="dict-member" data-export data-type="GPUPipelineErrorReason " id="dom-gpupipelineerrorinit-reason"><code><c- g>reason</c-></code></dfn>;
 };
 
-<c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-gpupipelineerrorreason"><code><c- g>GPUPipelineErrorReason</c-></code></dfn> {
+<c- b>enum</c-> <a class="idl-code" data-link-type="enum" href="#enumdef-gpupipelineerrorreason" id="ref-for-enumdef-gpupipelineerrorreason②"><c- g>GPUPipelineErrorReason</c-></a> {
     <dfn class="dfn-paneled idl-code" data-dfn-for="GPUPipelineErrorReason" data-dfn-type="enum-value" data-export id="dom-gpupipelineerrorreason-validation"><code><c- s>"validation"</c-></code></dfn>,
     <dfn class="dfn-paneled idl-code" data-dfn-for="GPUPipelineErrorReason" data-dfn-type="enum-value" data-export id="dom-gpupipelineerrorreason-internal"><code><c- s>"internal"</c-></code></dfn>
 };
@@ -7147,11 +7147,24 @@ completed.</p>
        <li data-md>
         <p>Set <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①">this</a>.<code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#dom-domexception-message" id="ref-for-dom-domexception-message">message</a></code> to <var>message</var>.</p>
        <li data-md>
-        <p>Set <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②">this</a>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerror-reason" id="ref-for-dom-gpupipelineerror-reason">reason</a></code> to <var>options</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorinit-reason" id="ref-for-dom-gpupipelineerrorinit-reason">reason</a></code>.</p>
+        <p>Set <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②">this</a>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerror-reason" id="ref-for-dom-gpupipelineerror-reason①">reason</a></code> to <var>options</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorinit-reason" id="ref-for-dom-gpupipelineerrorinit-reason">reason</a></code>.</p>
       </ol>
      </div>
    </dl>
-   <p><code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror④">GPUPipelineError</a></code> objects are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/structured-data.html#serializable-objects" id="ref-for-serializable-objects">serializable objects</a>.</p>
+   <p><code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror④">GPUPipelineError</a></code> has the following attributes:</p>
+   <dl>
+    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUPipelineError" data-dfn-type="attribute" data-export id="dom-gpupipelineerror-reason"><code>reason</code></dfn>, <span> of type <a data-link-type="idl-name" href="#enumdef-gpupipelineerrorreason" id="ref-for-enumdef-gpupipelineerrorreason③">GPUPipelineErrorReason</a>, readonly</span>
+    <dd data-md>
+     <p>A read-only <a data-link-type="dfn" href="#slot-backed-attribute" id="ref-for-slot-backed-attribute②">slot-backed attribute</a> exposing the type of error encountered in pipeline creation
+as a <dfn class="dfn-paneled idl-code" data-dfn-for data-dfn-type="enum" data-export id="enumdef-gpupipelineerrorreason"><code>GPUPipelineErrorReason</code></dfn>:</p>
+     <ul for="GPUPipelineErrorReason">
+      <li data-md>
+       <p><dfn class="idl-code" data-dfn-for="GPUPipelineError" data-dfn-type="enum-value" data-export id="dom-gpupipelineerror-validation"><code>"validation"</code><a class="self-link" href="#dom-gpupipelineerror-validation"></a></dfn>: A <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑤">validation error</a>.</p>
+      <li data-md>
+       <p><dfn class="idl-code" data-dfn-for="GPUPipelineError" data-dfn-type="enum-value" data-export id="dom-gpupipelineerror-internal"><code>"internal"</code><a class="self-link" href="#dom-gpupipelineerror-internal"></a></dfn>: An <a data-link-type="abstract-op" href="#abstract-opdef-generate-an-internal-error" id="ref-for-abstract-opdef-generate-an-internal-error①">internal error</a>.</p>
+     </ul>
+   </dl>
+   <p><code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror⑤">GPUPipelineError</a></code> objects are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/structured-data.html#serializable-objects" id="ref-for-serializable-objects">serializable objects</a>.</p>
    <div class="algorithm" data-algorithm="GPUPipelineError serialization steps" data-timeline="content">
      Their <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/structured-data.html#serialization-steps" id="ref-for-serialization-steps">serialization steps</a>, given <var>value</var> and <var>serialized</var>, are: 
     <ol>
@@ -7226,7 +7239,7 @@ completed.</p>
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline④⑤">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑤">generate a validation error</a>, make <var>layout</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid②④">invalid</a>, and stop.</p>
+         <p>If any of the following conditions are unsatisfied <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑥">generate a validation error</a>, make <var>layout</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid②④">invalid</a>, and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -7818,7 +7831,7 @@ The outputs correspond to <code class="idl"><a data-link-type="idl" href="#dom-g
          <p>Let <var>layout</var> be a new <a data-link-type="abstract-op" href="#abstract-opdef-default-pipeline-layout" id="ref-for-abstract-opdef-default-pipeline-layout①">default pipeline layout</a> for <var>pipeline</var> if <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelinedescriptorbase-layout" id="ref-for-dom-gpupipelinedescriptorbase-layout①">layout</a></code> is <code class="idl"><a data-link-type="idl" href="#dom-gpuautolayoutmode-auto" id="ref-for-dom-gpuautolayoutmode-auto②">"auto"</a></code>,
 and <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelinedescriptorbase-layout" id="ref-for-dom-gpupipelinedescriptorbase-layout②">layout</a></code> otherwise.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑥">generate a validation error</a>, make <var>pipeline</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid②⑤">invalid</a>, and stop.</p>
+         <p>If any of the following conditions are unsatisfied <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑦">generate a validation error</a>, make <var>pipeline</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid②⑤">invalid</a>, and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -7903,12 +7916,12 @@ subsequent steps on <var data-timeline="content">contentTimeline</var>.</p>
           <dt data-md><a data-link-type="dfn" href="#valid" id="ref-for-valid①⑥">valid</a>
           <dd data-md>
            <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#resolve" id="ref-for-resolve⑥">Resolve</a> <var>promise</var> with <var>pipeline</var>.</p>
-          <dt data-md><a data-link-type="dfn" href="#invalid" id="ref-for-invalid②⑦">invalid</a> due to an <a data-link-type="abstract-op" href="#abstract-opdef-generate-an-internal-error" id="ref-for-abstract-opdef-generate-an-internal-error①">internal error</a>
+          <dt data-md><a data-link-type="dfn" href="#invalid" id="ref-for-invalid②⑦">invalid</a> due to an <a data-link-type="abstract-op" href="#abstract-opdef-generate-an-internal-error" id="ref-for-abstract-opdef-generate-an-internal-error②">internal error</a>
           <dd data-md>
-           <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑥">Reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror⑤">GPUPipelineError</a></code> with <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorinit-reason" id="ref-for-dom-gpupipelineerrorinit-reason①">reason</a></code> <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorreason-internal" id="ref-for-dom-gpupipelineerrorreason-internal">"internal"</a></code>.</p>
-          <dt data-md><a data-link-type="dfn" href="#invalid" id="ref-for-invalid②⑧">invalid</a> due to an <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑦">validation error</a>
+           <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑥">Reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror⑥">GPUPipelineError</a></code> with <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorinit-reason" id="ref-for-dom-gpupipelineerrorinit-reason①">reason</a></code> <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorreason-internal" id="ref-for-dom-gpupipelineerrorreason-internal">"internal"</a></code>.</p>
+          <dt data-md><a data-link-type="dfn" href="#invalid" id="ref-for-invalid②⑧">invalid</a> due to an <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑧">validation error</a>
           <dd data-md>
-           <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑦">Reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror⑥">GPUPipelineError</a></code> with <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorinit-reason" id="ref-for-dom-gpupipelineerrorinit-reason②">reason</a></code> <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorreason-validation" id="ref-for-dom-gpupipelineerrorreason-validation">"validation"</a></code>.</p>
+           <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑦">Reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror⑦">GPUPipelineError</a></code> with <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorinit-reason" id="ref-for-dom-gpupipelineerrorinit-reason②">reason</a></code> <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorreason-validation" id="ref-for-dom-gpupipelineerrorreason-validation">"validation"</a></code>.</p>
          </dl>
        </ol>
       </div>
@@ -8076,7 +8089,7 @@ of the <a data-link-type="dfn" href="#render-stages" id="ref-for-render-stages">
          <p>Let <var>layout</var> be a new <a data-link-type="abstract-op" href="#abstract-opdef-default-pipeline-layout" id="ref-for-abstract-opdef-default-pipeline-layout②">default pipeline layout</a> for <var>pipeline</var> if <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelinedescriptorbase-layout" id="ref-for-dom-gpupipelinedescriptorbase-layout③">layout</a></code> is <code class="idl"><a data-link-type="idl" href="#dom-gpuautolayoutmode-auto" id="ref-for-dom-gpuautolayoutmode-auto③">"auto"</a></code>,
 and <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelinedescriptorbase-layout" id="ref-for-dom-gpupipelinedescriptorbase-layout④">layout</a></code> otherwise.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied: <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑧">generate a validation error</a>, make <var>pipeline</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid②⑨">invalid</a>, and stop.</p>
+         <p>If any of the following conditions are unsatisfied: <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑨">generate a validation error</a>, make <var>pipeline</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid②⑨">invalid</a>, and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -8189,7 +8202,7 @@ subsequent steps on <var data-timeline="content">contentTimeline</var>.</p>
            <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#resolve" id="ref-for-resolve⑦">Resolve</a> <var>promise</var> with <var>pipeline</var>.</p>
           <dt data-md><a data-link-type="dfn" href="#invalid" id="ref-for-invalid③①">invalid</a>
           <dd data-md>
-           <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑧">Reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror⑦">GPUPipelineError</a></code>.</p>
+           <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑧">Reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror⑧">GPUPipelineError</a></code>.</p>
          </dl>
        </ol>
       </div>
@@ -9812,7 +9825,7 @@ The encoder becomes "<a data-link-type="dfn" href="#encoder-state-open" id="ref-
     <dt data-md>"<dfn class="dfn-paneled" data-dfn-for="encoder state" data-dfn-type="dfn" data-noexport id="encoder-state-ended">ended</dfn>"
     <dd data-md>
      <p>The encoder has been ended and new commands can no longer be encoded.</p>
-     <p>Any command issued in this state will <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑨">generate a validation error</a>.</p>
+     <p>Any command issued in this state will <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⓪">generate a validation error</a>.</p>
    </dl>
    <div class="algorithm" data-algorithm="Validate the encoder state">
      To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-validate-the-encoder-state">Validate the encoder state</dfn> of <code class="idl"><a data-link-type="idl" href="#gpucommandsmixin" id="ref-for-gpucommandsmixin③">GPUCommandsMixin</a></code> <var>encoder</var>: 
@@ -9826,7 +9839,7 @@ The encoder becomes "<a data-link-type="dfn" href="#encoder-state-open" id="ref-
       <p>Make <var>encoder</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③④">invalid</a>, and return <code>false</code>.</p>
      <dt data-md>"<a data-link-type="dfn" href="#encoder-state-ended" id="ref-for-encoder-state-ended">ended</a>"
      <dd data-md>
-      <p><a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⓪">Generate a validation error</a>, and return <code>false</code>.</p>
+      <p><a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②①">Generate a validation error</a>, and return <code>false</code>.</p>
     </dl>
    </div>
    <h3 class="heading settled" data-level="13.2" id="command-encoder"><span class="secno">13.2. </span><span class="content"><dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="gpucommandencoder"><code>GPUCommandEncoder</code></dfn></span><a class="self-link" href="#command-encoder"></a></h3>
@@ -9921,7 +9934,7 @@ The encoder becomes "<a data-link-type="dfn" href="#encoder-state-open" id="ref-
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑤⑥">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②①">generate a validation error</a>, make <var>e</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③⑤">invalid</a>, and stop.</p>
+         <p>If any of the following conditions are unsatisfied <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②②">generate a validation error</a>, make <var>e</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③⑤">invalid</a>, and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -9984,7 +9997,7 @@ gpuDevice<c- p>.</c->queue<c- p>.</c->submit<c- p>([</c->commandBuffer<c- p>]);<
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑤⑧">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
-         <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②②">generate a validation error</a>, make <var>pass</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③⑥">invalid</a>, and stop.</p>
+         <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②③">generate a validation error</a>, make <var>pass</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③⑥">invalid</a>, and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -10094,7 +10107,7 @@ index in <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" hre
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑥⓪">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
-         <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②③">generate a validation error</a>, make <var>pass</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③⑦">invalid</a>, and stop.</p>
+         <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②④">generate a validation error</a>, make <var>pass</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③⑦">invalid</a>, and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -10808,7 +10821,7 @@ command encoder can no longer be used.</p>
          <p>If <var>validationSucceeded</var> is <code>false</code>, then:</p>
          <ol>
           <li data-md>
-           <p><a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②④">Generate a validation error</a>.</p>
+           <p><a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⑤">Generate a validation error</a>.</p>
           <li data-md>
            <p>Return a new <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④⑤">invalid</a> <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer①⑥">GPUCommandBuffer</a></code>.</p>
          </ol>
@@ -11565,7 +11578,7 @@ called the compute pass encoder can no longer be used.</p>
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨②">Device timeline</a> steps: 
        <ol>
         <li data-md>
-         <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⑤">generate a validation error</a> and stop.</p>
+         <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⑥">generate a validation error</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -12185,7 +12198,7 @@ called the render pass encoder can no longer be used.</p>
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨④">Device timeline</a> steps: 
        <ol>
         <li data-md>
-         <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⑥">generate a validation error</a> and stop.</p>
+         <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⑦">generate a validation error</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -13377,7 +13390,7 @@ This occurs even if zero <code class="idl"><a data-link-type="idl" href="#gpuren
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①⑧">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⑦">generate a validation error</a>, make <var>e</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑤">invalid</a>, and stop.</p>
+         <p>If any of the following conditions are unsatisfied <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⑧">generate a validation error</a>, make <var>e</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑤">invalid</a>, and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -13496,7 +13509,7 @@ must be ≤ <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom
          <p>If <var>validationSucceeded</var> is <code>false</code>, then:</p>
          <ol>
           <li data-md>
-           <p><a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⑧">Generate a validation error</a>.</p>
+           <p><a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⑨">Generate a validation error</a>.</p>
           <li data-md>
            <p>Return a new <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑥">invalid</a> <code class="idl"><a data-link-type="idl" href="#gpurenderbundle" id="ref-for-gpurenderbundle①⑤">GPURenderBundle</a></code>.</p>
          </ol>
@@ -13629,7 +13642,7 @@ an offset of <var>dataOffset</var> elements.</p>
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②②">Device timeline</a> steps: 
        <ol>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⑨">generate a validation error</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error③⓪">generate a validation error</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -13706,7 +13719,7 @@ an offset of <var>dataOffset</var> elements.</p>
         <li data-md>
          <p>Let <var>texture</var> be <var>destination</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-texture" id="ref-for-dom-gpuimagecopytexture-texture①⑦">texture</a></code>.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error③⓪">generate a validation error</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error③①">generate a validation error</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -13830,7 +13843,7 @@ throw a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.what
         <li data-md>
          <p>Let <var>texture</var> be <var>destination</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-texture" id="ref-for-dom-gpuimagecopytexture-texture①⑧">texture</a></code>.</p>
         <li data-md>
-         <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error③①">generate a validation error</a> and stop.</p>
+         <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error③②">generate a validation error</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -13921,7 +13934,7 @@ formats (which all support <code class="idl"><a data-link-type="idl" href="#dom-
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②⑧">Device timeline</a> steps: 
        <ol>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error③②">generate a validation error</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error③③">generate a validation error</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -14098,7 +14111,7 @@ but <code class="idl"><a data-link-type="idl" href="#dom-gpufeaturename-timestam
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①③④">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
-         <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error③③">generate a validation error</a>,
+         <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error③④">generate a validation error</a>,
 make <var>q</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑧">invalid</a>, and stop.</p>
          <div class="validusage">
           <ul>
@@ -14301,7 +14314,7 @@ This clears the drawing buffer to transparent black (in <a data-link-type="abstr
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①③⑥">Device timeline</a> steps: 
        <ol>
         <li data-md>
-         <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error③④">generate a validation error</a> and stop.</p>
+         <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error③⑤">generate a validation error</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -14639,7 +14652,7 @@ compositing, because the intermediate format for compositing is not specified.</
    <dl>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUDevice" data-dfn-type="attribute" data-export id="dom-gpudevice-lost"><code>lost</code></dfn>, <span> of type Promise&lt;<a data-link-type="idl-name" href="#gpudevicelostinfo" id="ref-for-gpudevicelostinfo②">GPUDeviceLostInfo</a>>, readonly</span>
     <dd data-md>
-     <p>A <a data-link-type="dfn" href="#slot-backed-attribute" id="ref-for-slot-backed-attribute②">slot-backed attribute</a> holding a promise which is created with the device, remains
+     <p>A <a data-link-type="dfn" href="#slot-backed-attribute" id="ref-for-slot-backed-attribute③">slot-backed attribute</a> holding a promise which is created with the device, remains
 pending for the lifetime of the device, then resolves when the device is lost.</p>
      <p>Upon initialization, it is set to <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-new-promise" id="ref-for-a-new-promise⑥">a new promise</a>.</p>
    </dl>
@@ -15011,7 +15024,7 @@ normal operation of an application. Prefer using <code class="idl"><a data-link-
    <dl>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUUncapturedErrorEvent" data-dfn-type="attribute" data-export id="dom-gpuuncapturederrorevent-error"><code>error</code></dfn>, <span> of type <a data-link-type="idl-name" href="#gpuerror" id="ref-for-gpuerror②④">GPUError</a>, readonly</span>
     <dd data-md>
-     <p>A <a data-link-type="dfn" href="#slot-backed-attribute" id="ref-for-slot-backed-attribute③">slot-backed attribute</a> holding an object representing the error that was uncaptured.
+     <p>A <a data-link-type="dfn" href="#slot-backed-attribute" id="ref-for-slot-backed-attribute④">slot-backed attribute</a> holding an object representing the error that was uncaptured.
 This has the same type as errors returned by <code class="idl"><a data-link-type="idl" href="#dom-gpudevice-poperrorscope" id="ref-for-dom-gpudevice-poperrorscope⑤">popErrorScope()</a></code>.</p>
    </dl>
 <pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="#gpudevice" id="ref-for-gpudevice⑦⑧"><c- g>GPUDevice</c-></a> {
@@ -17617,6 +17630,7 @@ for (const dataLink of dataLinks) {
     "internal"
     <ul>
      <li><a href="#dom-gpuerrorfilter-internal">enum-value for GPUErrorFilter</a><span>, in § 22.3</span>
+     <li><a href="#dom-gpupipelineerror-internal">enum-value for GPUPipelineError</a><span>, in § 10</span>
      <li><a href="#dom-gpupipelineerrorreason-internal">enum-value for GPUPipelineErrorReason</a><span>, in § 10</span>
     </ul>
    <li><a href="#abstract-opdef-generate-an-internal-error">internal error</a><span>, in § 22.2</span>
@@ -18342,6 +18356,7 @@ for (const dataLink of dataLinks) {
     "validation"
     <ul>
      <li><a href="#dom-gpuerrorfilter-validation">enum-value for GPUErrorFilter</a><span>, in § 22.3</span>
+     <li><a href="#dom-gpupipelineerror-validation">enum-value for GPUPipelineError</a><span>, in § 10</span>
      <li><a href="#dom-gpupipelineerrorreason-validation">enum-value for GPUPipelineErrorReason</a><span>, in § 10</span>
     </ul>
    <li><a href="#abstract-opdef-generate-a-validation-error">validation error</a><span>, in § 22.2</span>
@@ -20469,14 +20484,14 @@ for (const dataLink of dataLinks) {
 [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed"><c- g>Exposed</c-></a>=(<c- n>Window</c->, <c- n>DedicatedWorker</c->), <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://html.spec.whatwg.org/multipage/structured-data.html#serializable"><c- g>Serializable</c-></a>]
 <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="#gpupipelineerror"><c- g>GPUPipelineError</c-></a> : <a data-link-type="idl-name" href="https://webidl.spec.whatwg.org/#idl-DOMException"><c- n>DOMException</c-></a> {
     <a href="#dom-gpupipelineerror-gpupipelineerror"><code><c- g>constructor</c-></code></a>(<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString"><c- b>DOMString</c-></a> <a href="#dom-gpupipelineerror-gpupipelineerror-message-options-message"><code><c- g>message</c-></code></a>, <a data-link-type="idl-name" href="#dictdef-gpupipelineerrorinit"><c- n>GPUPipelineErrorInit</c-></a> <a href="#dom-gpupipelineerror-gpupipelineerror-message-options-options"><code><c- g>options</c-></code></a>);
-    <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#enumdef-gpupipelineerrorreason"><c- n>GPUPipelineErrorReason</c-></a> <a data-readonly data-type="GPUPipelineErrorReason" href="#dom-gpupipelineerror-reason"><code><c- g>reason</c-></code></a>;
+    <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#enumdef-gpupipelineerrorreason"><c- n>GPUPipelineErrorReason</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="GPUPipelineErrorReason" href="#dom-gpupipelineerror-reason"><c- g>reason</c-></a>;
 };
 
 <c- b>dictionary</c-> <a href="#dictdef-gpupipelineerrorinit"><code><c- g>GPUPipelineErrorInit</c-></code></a> {
     <c- b>required</c-> <a data-link-type="idl-name" href="#enumdef-gpupipelineerrorreason"><c- n>GPUPipelineErrorReason</c-></a> <a data-type="GPUPipelineErrorReason " href="#dom-gpupipelineerrorinit-reason"><code><c- g>reason</c-></code></a>;
 };
 
-<c- b>enum</c-> <a href="#enumdef-gpupipelineerrorreason"><code><c- g>GPUPipelineErrorReason</c-></code></a> {
+<c- b>enum</c-> <a class="idl-code" data-link-type="enum" href="#enumdef-gpupipelineerrorreason"><c- g>GPUPipelineErrorReason</c-></a> {
     <a href="#dom-gpupipelineerrorreason-validation"><code><c- s>"validation"</c-></code></a>,
     <a href="#dom-gpupipelineerrorreason-internal"><code><c- s>"internal"</c-></code></a>
 };
@@ -21234,8 +21249,9 @@ restriction entirely and allow writable bindings to alias with undefined results
    <b><a href="#slot-backed-attribute">#slot-backed-attribute</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-slot-backed-attribute">3.1.2. WebGPU Interfaces</a> <a href="#ref-for-slot-backed-attribute①">(2)</a>
-    <li><a href="#ref-for-slot-backed-attribute②">22.1. Fatal Errors</a>
-    <li><a href="#ref-for-slot-backed-attribute③">22.4. Telemetry</a>
+    <li><a href="#ref-for-slot-backed-attribute②">10. Pipelines</a>
+    <li><a href="#ref-for-slot-backed-attribute③">22.1. Fatal Errors</a>
+    <li><a href="#ref-for-slot-backed-attribute④">22.4. Telemetry</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="webgpu-interface">
@@ -25635,15 +25651,9 @@ restriction entirely and allow writable bindings to alias with undefined results
   <aside class="dfn-panel" data-for="gpupipelineerror">
    <b><a href="#gpupipelineerror">#gpupipelineerror</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-gpupipelineerror">10. Pipelines</a> <a href="#ref-for-gpupipelineerror①">(2)</a> <a href="#ref-for-gpupipelineerror②">(3)</a> <a href="#ref-for-gpupipelineerror③">(4)</a> <a href="#ref-for-gpupipelineerror④">(5)</a>
-    <li><a href="#ref-for-gpupipelineerror⑤">10.2.1. Compute Pipeline Creation</a> <a href="#ref-for-gpupipelineerror⑥">(2)</a>
-    <li><a href="#ref-for-gpupipelineerror⑦">10.3.1. Render Pipeline Creation</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-gpupipelineerror-reason">
-   <b><a href="#dom-gpupipelineerror-reason">#dom-gpupipelineerror-reason</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-gpupipelineerror-reason">10. Pipelines</a>
+    <li><a href="#ref-for-gpupipelineerror">10. Pipelines</a> <a href="#ref-for-gpupipelineerror①">(2)</a> <a href="#ref-for-gpupipelineerror②">(3)</a> <a href="#ref-for-gpupipelineerror③">(4)</a> <a href="#ref-for-gpupipelineerror④">(5)</a> <a href="#ref-for-gpupipelineerror⑤">(6)</a>
+    <li><a href="#ref-for-gpupipelineerror⑥">10.2.1. Compute Pipeline Creation</a> <a href="#ref-for-gpupipelineerror⑦">(2)</a>
+    <li><a href="#ref-for-gpupipelineerror⑧">10.3.1. Render Pipeline Creation</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dictdef-gpupipelineerrorinit">
@@ -25657,12 +25667,6 @@ restriction entirely and allow writable bindings to alias with undefined results
    <ul>
     <li><a href="#ref-for-dom-gpupipelineerrorinit-reason">10. Pipelines</a>
     <li><a href="#ref-for-dom-gpupipelineerrorinit-reason①">10.2.1. Compute Pipeline Creation</a> <a href="#ref-for-dom-gpupipelineerrorinit-reason②">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="enumdef-gpupipelineerrorreason">
-   <b><a href="#enumdef-gpupipelineerrorreason">#enumdef-gpupipelineerrorreason</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-enumdef-gpupipelineerrorreason">10. Pipelines</a> <a href="#ref-for-enumdef-gpupipelineerrorreason①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpupipelineerrorreason-validation">
@@ -25681,6 +25685,18 @@ restriction entirely and allow writable bindings to alias with undefined results
    <b><a href="#dom-gpupipelineerror-constructor">#dom-gpupipelineerror-constructor</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-gpupipelineerror-constructor">10. Pipelines</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-gpupipelineerror-reason">
+   <b><a href="#dom-gpupipelineerror-reason">#dom-gpupipelineerror-reason</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gpupipelineerror-reason">10. Pipelines</a> <a href="#ref-for-dom-gpupipelineerror-reason①">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="enumdef-gpupipelineerrorreason">
+   <b><a href="#enumdef-gpupipelineerrorreason">#enumdef-gpupipelineerrorreason</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-enumdef-gpupipelineerrorreason">10. Pipelines</a> <a href="#ref-for-enumdef-gpupipelineerrorreason①">(2)</a> <a href="#ref-for-enumdef-gpupipelineerrorreason②">(3)</a> <a href="#ref-for-enumdef-gpupipelineerrorreason③">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="enumdef-gpuautolayoutmode">
@@ -29537,21 +29553,21 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-abstract-opdef-generate-a-validation-error①①">8.2.1. Bind Group Creation</a>
     <li><a href="#ref-for-abstract-opdef-generate-a-validation-error①②">8.3.1. Pipeline Layout Creation</a>
     <li><a href="#ref-for-abstract-opdef-generate-a-validation-error①③">9.1.1. Shader Module Creation</a>
-    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error①④">10. Pipelines</a>
-    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error①⑤">10.1. Base pipelines</a>
-    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error①⑥">10.2.1. Compute Pipeline Creation</a> <a href="#ref-for-abstract-opdef-generate-a-validation-error①⑦">(2)</a>
-    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error①⑧">10.3.1. Render Pipeline Creation</a>
-    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error①⑨">13.1. GPUCommandsMixin</a> <a href="#ref-for-abstract-opdef-generate-a-validation-error②⓪">(2)</a>
-    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②①">13.2.1. Command Encoder Creation</a>
-    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②②">13.3. Pass Encoding</a> <a href="#ref-for-abstract-opdef-generate-a-validation-error②③">(2)</a>
-    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②④">13.7. Finalization</a>
-    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②⑤">16.1.3. Finalization</a>
-    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②⑥">17.1.2. Finalization</a>
-    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②⑦">18.1.1. Render Bundle Creation</a>
-    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②⑧">18.1.3. Finalization</a>
-    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②⑨">19.2. GPUQueue</a> <a href="#ref-for-abstract-opdef-generate-a-validation-error③⓪">(2)</a> <a href="#ref-for-abstract-opdef-generate-a-validation-error③①">(3)</a> <a href="#ref-for-abstract-opdef-generate-a-validation-error③②">(4)</a>
-    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error③③">20.1.1. QuerySet Creation</a>
-    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error③④">21.2. GPUCanvasContext</a>
+    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error①④">10. Pipelines</a> <a href="#ref-for-abstract-opdef-generate-a-validation-error①⑤">(2)</a>
+    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error①⑥">10.1. Base pipelines</a>
+    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error①⑦">10.2.1. Compute Pipeline Creation</a> <a href="#ref-for-abstract-opdef-generate-a-validation-error①⑧">(2)</a>
+    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error①⑨">10.3.1. Render Pipeline Creation</a>
+    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②⓪">13.1. GPUCommandsMixin</a> <a href="#ref-for-abstract-opdef-generate-a-validation-error②①">(2)</a>
+    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②②">13.2.1. Command Encoder Creation</a>
+    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②③">13.3. Pass Encoding</a> <a href="#ref-for-abstract-opdef-generate-a-validation-error②④">(2)</a>
+    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②⑤">13.7. Finalization</a>
+    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②⑥">16.1.3. Finalization</a>
+    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②⑦">17.1.2. Finalization</a>
+    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②⑧">18.1.1. Render Bundle Creation</a>
+    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②⑨">18.1.3. Finalization</a>
+    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error③⓪">19.2. GPUQueue</a> <a href="#ref-for-abstract-opdef-generate-a-validation-error③①">(2)</a> <a href="#ref-for-abstract-opdef-generate-a-validation-error③②">(3)</a> <a href="#ref-for-abstract-opdef-generate-a-validation-error③③">(4)</a>
+    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error③④">20.1.1. QuerySet Creation</a>
+    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error③⑤">21.2. GPUCanvasContext</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="gpuoutofmemoryerror">
@@ -29577,8 +29593,8 @@ restriction entirely and allow writable bindings to alias with undefined results
   <aside class="dfn-panel" data-for="abstract-opdef-generate-an-internal-error">
    <b><a href="#abstract-opdef-generate-an-internal-error">#abstract-opdef-generate-an-internal-error</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-abstract-opdef-generate-an-internal-error">10. Pipelines</a>
-    <li><a href="#ref-for-abstract-opdef-generate-an-internal-error①">10.2.1. Compute Pipeline Creation</a>
+    <li><a href="#ref-for-abstract-opdef-generate-an-internal-error">10. Pipelines</a> <a href="#ref-for-abstract-opdef-generate-an-internal-error①">(2)</a>
+    <li><a href="#ref-for-abstract-opdef-generate-an-internal-error②">10.2.1. Compute Pipeline Creation</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="gpu-error-scope">
