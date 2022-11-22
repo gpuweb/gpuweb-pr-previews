@@ -645,13 +645,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-11-21">21 November 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-11-22">22 November 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/mehmetoguzderin/gpuweb/blob/cb29088536c567d4169a0b24c809d096f1a71f63/wgsl/index.bs">https://github.com/mehmetoguzderin/gpuweb/blob/cb29088536c567d4169a0b24c809d096f1a71f63/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/mehmetoguzderin/gpuweb/blob/76aecb99afba1004fbe564a69fb4d2c881fd3ec1/wgsl/index.bs">https://github.com/mehmetoguzderin/gpuweb/blob/76aecb99afba1004fbe564a69fb4d2c881fd3ec1/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -7785,65 +7785,65 @@ to bind with this operator. This column is necessary for linearly listing operat
       <th>Binding 
     <tbody>
      <tr>
-      <td>Parenthesized 
+      <td><a data-link-type="dfn" href="#syntax-paren_expression" id="ref-for-syntax-paren_expression②">Parenthesized</a> 
       <td><code>(...)</code> 
       <td>
       <td>
      <tr>
-      <td>Primary 
+      <td><a data-link-type="dfn" href="#syntax-primary_expression" id="ref-for-syntax-primary_expression①">Primary</a> 
       <td><code>a()</code>, <code>a[]</code>, <code>a.b</code> 
       <td>Left-to-right 
       <td>
      <tr>
-      <td>Unary 
+      <td><a data-link-type="dfn" href="#syntax-unary_expression" id="ref-for-syntax-unary_expression②④">Unary</a> 
       <td><code>-a</code>, <code>!a</code>, <code>~a</code>, <code>*a</code>, <code>&amp;a</code> 
       <td>Right-to-left 
       <td>All above 
      <tr>
-      <td>Multiplicative 
+      <td><a data-link-type="dfn" href="#syntax-multiplicative_expression" id="ref-for-syntax-multiplicative_expression③">Multiplicative</a> 
       <td><code>a*b</code>, <code>a/b</code>, <code>a%b</code> 
       <td>Left-to-right 
       <td>All above 
      <tr>
-      <td>Additive 
+      <td><a data-link-type="dfn" href="#syntax-additive_expression" id="ref-for-syntax-additive_expression④">Additive</a> 
       <td><code>a+b</code>, <code>a-b</code> 
       <td>Left-to-right 
       <td>All above 
      <tr>
-      <td>Shift 
+      <td><a data-link-type="dfn" href="#syntax-shift_expression" id="ref-for-syntax-shift_expression①⑤">Shift</a> 
       <td><code>a&lt;&lt;b</code>, <code>a>>b</code> 
       <td>Requires parentheses 
       <td>Unary 
      <tr>
-      <td>Relational 
+      <td><a data-link-type="dfn" href="#syntax-relational_expression" id="ref-for-syntax-relational_expression①⓪">Relational</a> 
       <td><code>a&lt;b</code>, <code>a>b</code>, <code>a&lt;=b</code>, <code>a>=b</code>, <code>a==b</code>, <code>a!=b</code> 
       <td>Requires parentheses 
       <td>All above 
      <tr>
-      <td>Short-circuit AND 
-      <td><code>a&amp;&amp;b</code> 
-      <td>Left-to-right 
-      <td>All above 
-     <tr>
-      <td>Short-circuit OR 
-      <td><code>a||b</code> 
-      <td>Left-to-right 
-      <td>Relational 
-     <tr>
-      <td>Binary AND 
+      <td><a data-link-type="dfn" href="#syntax-binary_and_expression" id="ref-for-syntax-binary_and_expression④">Binary AND</a> 
       <td><code>a&amp;b</code> 
       <td>Left-to-right 
       <td>Unary 
      <tr>
-      <td>Binary OR 
+      <td><a data-link-type="dfn" href="#syntax-binary_xor_expression" id="ref-for-syntax-binary_xor_expression④">Binary XOR</a> 
+      <td><code>a^b</code> 
+      <td>Left-to-right 
+      <td>Unary 
+     <tr>
+      <td><a data-link-type="dfn" href="#syntax-binary_or_expression" id="ref-for-syntax-binary_or_expression④">Binary OR</a> 
       <td><code>a|b</code> 
       <td>Left-to-right 
       <td>Unary 
      <tr>
-      <td>Binary XOR 
-      <td><code>a^b</code> 
+      <td><a data-link-type="dfn" href="#syntax-short_circuit_and_expression" id="ref-for-syntax-short_circuit_and_expression④">Short-circuit AND</a> 
+      <td><code>a&amp;&amp;b</code> 
       <td>Left-to-right 
-      <td>Unary 
+      <td>Relational 
+     <tr>
+      <td><a data-link-type="dfn" href="#syntax-short_circuit_or_expression" id="ref-for-syntax-short_circuit_or_expression④">Short-circuit OR</a> 
+      <td><code>a||b</code> 
+      <td>Left-to-right 
+      <td>Relational 
    </table>
    <h2 class="heading settled" data-level="8" id="statements"><span class="secno">8. </span><span class="content">Statements</span><a class="self-link" href="#statements"></a></h2>
    <p>Statements are program fragments that control its execution.
@@ -20010,6 +20010,7 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <b><a href="#syntax-primary_expression">#syntax-primary_expression</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-syntax-primary_expression">7.18. Expression Grammar Summary</a>
+    <li><a href="#ref-for-syntax-primary_expression①">7.19. Operator Precedence and Associativity</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-callable">
@@ -20022,6 +20023,7 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <b><a href="#syntax-paren_expression">#syntax-paren_expression</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-syntax-paren_expression">7.18. Expression Grammar Summary</a> <a href="#ref-for-syntax-paren_expression①">(2)</a>
+    <li><a href="#ref-for-syntax-paren_expression②">7.19. Operator Precedence and Associativity</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-argument_expression_list">
@@ -20041,7 +20043,7 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <b><a href="#syntax-unary_expression">#syntax-unary_expression</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-syntax-unary_expression">7.18. Expression Grammar Summary</a> <a href="#ref-for-syntax-unary_expression①">(2)</a> <a href="#ref-for-syntax-unary_expression②">(3)</a> <a href="#ref-for-syntax-unary_expression③">(4)</a> <a href="#ref-for-syntax-unary_expression④">(5)</a> <a href="#ref-for-syntax-unary_expression⑤">(6)</a> <a href="#ref-for-syntax-unary_expression⑥">(7)</a> <a href="#ref-for-syntax-unary_expression⑦">(8)</a> <a href="#ref-for-syntax-unary_expression⑧">(9)</a> <a href="#ref-for-syntax-unary_expression⑨">(10)</a> <a href="#ref-for-syntax-unary_expression①⓪">(11)</a> <a href="#ref-for-syntax-unary_expression①①">(12)</a> <a href="#ref-for-syntax-unary_expression①②">(13)</a> <a href="#ref-for-syntax-unary_expression①③">(14)</a> <a href="#ref-for-syntax-unary_expression①④">(15)</a> <a href="#ref-for-syntax-unary_expression①⑤">(16)</a> <a href="#ref-for-syntax-unary_expression①⑥">(17)</a> <a href="#ref-for-syntax-unary_expression①⑦">(18)</a> <a href="#ref-for-syntax-unary_expression①⑧">(19)</a> <a href="#ref-for-syntax-unary_expression①⑨">(20)</a>
-    <li><a href="#ref-for-syntax-unary_expression②⓪">7.19. Operator Precedence and Associativity</a> <a href="#ref-for-syntax-unary_expression②①">(2)</a> <a href="#ref-for-syntax-unary_expression②②">(3)</a> <a href="#ref-for-syntax-unary_expression②③">(4)</a>
+    <li><a href="#ref-for-syntax-unary_expression②⓪">7.19. Operator Precedence and Associativity</a> <a href="#ref-for-syntax-unary_expression②①">(2)</a> <a href="#ref-for-syntax-unary_expression②②">(3)</a> <a href="#ref-for-syntax-unary_expression②③">(4)</a> <a href="#ref-for-syntax-unary_expression②④">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-singular_expression">
@@ -20068,6 +20070,7 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <b><a href="#syntax-multiplicative_expression">#syntax-multiplicative_expression</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-syntax-multiplicative_expression">7.18. Expression Grammar Summary</a> <a href="#ref-for-syntax-multiplicative_expression①">(2)</a> <a href="#ref-for-syntax-multiplicative_expression②">(3)</a>
+    <li><a href="#ref-for-syntax-multiplicative_expression③">7.19. Operator Precedence and Associativity</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-multiplicative_operator">
@@ -20081,7 +20084,7 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <ul>
     <li><a href="#ref-for-syntax-additive_expression">5.2.9. Array Types</a>
     <li><a href="#ref-for-syntax-additive_expression①">7.18. Expression Grammar Summary</a> <a href="#ref-for-syntax-additive_expression②">(2)</a>
-    <li><a href="#ref-for-syntax-additive_expression③">7.19. Operator Precedence and Associativity</a>
+    <li><a href="#ref-for-syntax-additive_expression③">7.19. Operator Precedence and Associativity</a> <a href="#ref-for-syntax-additive_expression④">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-additive_operator">
@@ -20094,49 +20097,49 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <b><a href="#syntax-shift_expression">#syntax-shift_expression</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-syntax-shift_expression">7.18. Expression Grammar Summary</a> <a href="#ref-for-syntax-shift_expression①">(2)</a> <a href="#ref-for-syntax-shift_expression②">(3)</a> <a href="#ref-for-syntax-shift_expression③">(4)</a> <a href="#ref-for-syntax-shift_expression④">(5)</a> <a href="#ref-for-syntax-shift_expression⑤">(6)</a> <a href="#ref-for-syntax-shift_expression⑥">(7)</a> <a href="#ref-for-syntax-shift_expression⑦">(8)</a> <a href="#ref-for-syntax-shift_expression⑧">(9)</a> <a href="#ref-for-syntax-shift_expression⑨">(10)</a> <a href="#ref-for-syntax-shift_expression①⓪">(11)</a> <a href="#ref-for-syntax-shift_expression①①">(12)</a> <a href="#ref-for-syntax-shift_expression①②">(13)</a>
-    <li><a href="#ref-for-syntax-shift_expression①③">7.19. Operator Precedence and Associativity</a> <a href="#ref-for-syntax-shift_expression①④">(2)</a>
+    <li><a href="#ref-for-syntax-shift_expression①③">7.19. Operator Precedence and Associativity</a> <a href="#ref-for-syntax-shift_expression①④">(2)</a> <a href="#ref-for-syntax-shift_expression①⑤">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-relational_expression">
    <b><a href="#syntax-relational_expression">#syntax-relational_expression</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-syntax-relational_expression">7.18. Expression Grammar Summary</a> <a href="#ref-for-syntax-relational_expression①">(2)</a> <a href="#ref-for-syntax-relational_expression②">(3)</a> <a href="#ref-for-syntax-relational_expression③">(4)</a> <a href="#ref-for-syntax-relational_expression④">(5)</a> <a href="#ref-for-syntax-relational_expression⑤">(6)</a> <a href="#ref-for-syntax-relational_expression⑥">(7)</a>
-    <li><a href="#ref-for-syntax-relational_expression⑦">7.19. Operator Precedence and Associativity</a> <a href="#ref-for-syntax-relational_expression⑧">(2)</a> <a href="#ref-for-syntax-relational_expression⑨">(3)</a>
+    <li><a href="#ref-for-syntax-relational_expression⑦">7.19. Operator Precedence and Associativity</a> <a href="#ref-for-syntax-relational_expression⑧">(2)</a> <a href="#ref-for-syntax-relational_expression⑨">(3)</a> <a href="#ref-for-syntax-relational_expression①⓪">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-short_circuit_and_expression">
    <b><a href="#syntax-short_circuit_and_expression">#syntax-short_circuit_and_expression</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-syntax-short_circuit_and_expression">7.18. Expression Grammar Summary</a> <a href="#ref-for-syntax-short_circuit_and_expression①">(2)</a>
-    <li><a href="#ref-for-syntax-short_circuit_and_expression②">7.19. Operator Precedence and Associativity</a> <a href="#ref-for-syntax-short_circuit_and_expression③">(2)</a>
+    <li><a href="#ref-for-syntax-short_circuit_and_expression②">7.19. Operator Precedence and Associativity</a> <a href="#ref-for-syntax-short_circuit_and_expression③">(2)</a> <a href="#ref-for-syntax-short_circuit_and_expression④">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-short_circuit_or_expression">
    <b><a href="#syntax-short_circuit_or_expression">#syntax-short_circuit_or_expression</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-syntax-short_circuit_or_expression">7.18. Expression Grammar Summary</a> <a href="#ref-for-syntax-short_circuit_or_expression①">(2)</a>
-    <li><a href="#ref-for-syntax-short_circuit_or_expression②">7.19. Operator Precedence and Associativity</a> <a href="#ref-for-syntax-short_circuit_or_expression③">(2)</a>
+    <li><a href="#ref-for-syntax-short_circuit_or_expression②">7.19. Operator Precedence and Associativity</a> <a href="#ref-for-syntax-short_circuit_or_expression③">(2)</a> <a href="#ref-for-syntax-short_circuit_or_expression④">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-binary_or_expression">
    <b><a href="#syntax-binary_or_expression">#syntax-binary_or_expression</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-syntax-binary_or_expression">7.18. Expression Grammar Summary</a> <a href="#ref-for-syntax-binary_or_expression①">(2)</a>
-    <li><a href="#ref-for-syntax-binary_or_expression②">7.19. Operator Precedence and Associativity</a> <a href="#ref-for-syntax-binary_or_expression③">(2)</a>
+    <li><a href="#ref-for-syntax-binary_or_expression②">7.19. Operator Precedence and Associativity</a> <a href="#ref-for-syntax-binary_or_expression③">(2)</a> <a href="#ref-for-syntax-binary_or_expression④">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-binary_and_expression">
    <b><a href="#syntax-binary_and_expression">#syntax-binary_and_expression</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-syntax-binary_and_expression">7.18. Expression Grammar Summary</a> <a href="#ref-for-syntax-binary_and_expression①">(2)</a>
-    <li><a href="#ref-for-syntax-binary_and_expression②">7.19. Operator Precedence and Associativity</a> <a href="#ref-for-syntax-binary_and_expression③">(2)</a>
+    <li><a href="#ref-for-syntax-binary_and_expression②">7.19. Operator Precedence and Associativity</a> <a href="#ref-for-syntax-binary_and_expression③">(2)</a> <a href="#ref-for-syntax-binary_and_expression④">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-binary_xor_expression">
    <b><a href="#syntax-binary_xor_expression">#syntax-binary_xor_expression</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-syntax-binary_xor_expression">7.18. Expression Grammar Summary</a> <a href="#ref-for-syntax-binary_xor_expression①">(2)</a>
-    <li><a href="#ref-for-syntax-binary_xor_expression②">7.19. Operator Precedence and Associativity</a> <a href="#ref-for-syntax-binary_xor_expression③">(2)</a>
+    <li><a href="#ref-for-syntax-binary_xor_expression②">7.19. Operator Precedence and Associativity</a> <a href="#ref-for-syntax-binary_xor_expression③">(2)</a> <a href="#ref-for-syntax-binary_xor_expression④">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-bitwise_expression">
