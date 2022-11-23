@@ -645,13 +645,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-11-22">22 November 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-11-23">23 November 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/68a22d40157e7e432497b7d4c341523362ab0c0c/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/68a22d40157e7e432497b7d4c341523362ab0c0c/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/b54065bcfe3c4fa0d616e55888596641d4d637ea/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/b54065bcfe3c4fa0d616e55888596641d4d637ea/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -943,7 +943,7 @@ Learn more about <a href="http://www.w3.org/community/">W3C Community and Busine
      <a href="#language-extensions"><span class="secno">11</span> <span class="content">Language Extensions</span></a>
      <ol class="toc">
       <li><a href="#enable-directive-section"><span class="secno">11.1</span> <span class="content">Enable Directive</span></a>
-      <li><a href="#extension-list"><span class="secno">11.2</span> <span class="content">Extensions list</span></a>
+      <li><a href="#extension-list"><span class="secno">11.2</span> <span class="content">Extensions List</span></a>
      </ol>
     <li>
      <a href="#wgsl-program"><span class="secno">12</span> <span class="content">WGSL Program</span></a>
@@ -2702,6 +2702,46 @@ Second, when a load from a reference-to-memory occurs, yielding the value stored
       <td>ConversionRank(<var>S</var>,<var>T</var>) 
       <td>Inherit conversion rank from component type.
       Note: Only <a data-link-type="dfn" href="#fixed-size-array" id="ref-for-fixed-size-array">fixed-size arrays</a> may have an <a data-link-type="dfn" href="#type-abstract" id="ref-for-type-abstract①">abstract</a> component type. 
+     <tr class="algorithm" data-algorithm="conversion rank for frexp result">
+      <td>__frexp_result_abstract 
+      <td>__frexp_result 
+      <td>1 
+      <td>
+     <tr class="algorithm" data-algorithm="conversion rank for frexp result f16">
+      <td>__frexp_result_abstract 
+      <td>__frexp_result_f16 
+      <td>2 
+      <td>
+     <tr class="algorithm" data-algorithm="conversion rank for frexp result vector">
+      <td>__frexp_result_vecN_abstract 
+      <td>__frexp_result_vecN 
+      <td>1 
+      <td>
+     <tr class="algorithm" data-algorithm="conversion rank for frexp result vector f16">
+      <td>__frexp_result_vecN_abstract 
+      <td>__frexp_result_vecN_f16 
+      <td>2 
+      <td>
+     <tr class="algorithm" data-algorithm="conversion rank for modf result">
+      <td>__modf_result_abstract 
+      <td>__modf_result 
+      <td>1 
+      <td>
+     <tr class="algorithm" data-algorithm="conversion rank for modf result f16">
+      <td>__modf_result_abstract 
+      <td>__modf_result_f16 
+      <td>2 
+      <td>
+     <tr class="algorithm" data-algorithm="conversion rank for modf result vector">
+      <td>__modf_result_vecN_abstract 
+      <td>__modf_result_vecN 
+      <td>1 
+      <td>
+     <tr class="algorithm" data-algorithm="conversion rank for modf result vector f16">
+      <td>__modf_result_vecN_abstract 
+      <td>__modf_result_vecN_f16 
+      <td>2 
+      <td>
      <tr class="algorithm" data-algorithm="conversion rank for non-convertible cases">
       <td><var>S</var> 
       <td><var>T</var><br>where above cases don’t apply 
@@ -3329,7 +3369,7 @@ See <a href="#declaration-and-scope">§ 4 Declaration and Scope</a>.</p>
     <li data-md>
      <p>a <a data-link-type="dfn" href="#structure" id="ref-for-structure⑦">structure</a> type that has a <a data-link-type="dfn" href="#creation-fixed-footprint" id="ref-for-creation-fixed-footprint⑤">creation-fixed footprint</a></p>
    </ul>
-   <p class="note" role="note"><span>Note:</span> All structure types are <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑤">concrete</a>.</p>
+   <p class="note" role="note"><span>Note:</span> All user-declared structure types are <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑤">concrete</a>.</p>
    <p class="note" role="note"><span>Note:</span> Each member type must be a <a data-link-type="dfn" href="#plain-type" id="ref-for-plain-type②">plain type</a>.</p>
    <p>Some consequences of the restrictions structure member and array element types are:</p>
    <ul>
@@ -7769,7 +7809,7 @@ In this case the value of the <a data-link-type="dfn" href="#right-hand-side" id
       <td class="nowrap"><var>r</var> = <var>e</var> 
       <td>Evaluates <var>e</var>, evaluates <var>r</var>, then writes the value computed for <var>e</var> into
         the <a data-link-type="dfn" href="#memory-locations" id="ref-for-memory-locations①③">memory locations</a> referenced by <var>r</var>.
-        Note: if the reference is an <a data-link-type="dfn" href="#invalid-memory-reference" id="ref-for-invalid-memory-reference⑥">invalid memory reference</a>, the write
+        Note: If the reference is an <a data-link-type="dfn" href="#invalid-memory-reference" id="ref-for-invalid-memory-reference⑥">invalid memory reference</a>, the write
         may not execute, or may write to a different memory location than
         expected. 
    </table>
@@ -9909,7 +9949,7 @@ The grammar rules imply that all enable directives <a data-link-type="dfn" href=
    <p>The directive uses a <a data-link-type="dfn" href="#context-dependent-name" id="ref-for-context-dependent-name⑨">context-dependent name</a> to name the extension.</p>
    <p>In particular, an extension name may be spelled the same as a <a data-link-type="dfn" href="#keyword" id="ref-for-keyword②">keyword</a> or <a data-link-type="dfn" href="#reserved-word" id="ref-for-reserved-word②">reserved word</a>,
 but is not interpreted as any of those.</p>
-   <p>The valid extensions are listed in <a href="#extension-list">§ 11.2 Extensions list</a>.</p>
+   <p>The valid extensions are listed in <a href="#extension-list">§ 11.2 Extensions List</a>.</p>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-enable_directive">enable_directive</dfn> : 
     <p>| <a data-link-type="dfn" href="#syntax-enable" id="ref-for-syntax-enable">enable</a> <a data-link-type="dfn" href="#syntax-extension_name" id="ref-for-syntax-extension_name">extension_name</a> <a data-link-type="dfn" href="#syntax-semicolon" id="ref-for-syntax-semicolon①②">semicolon</a></p>
@@ -9942,7 +9982,7 @@ the implementation can issue a clear diagnostic.</p>
 <c- p>}</c->
 </pre>
    </div>
-   <h3 class="heading settled" data-level="11.2" id="extension-list"><span class="secno">11.2. </span><span class="content">Extensions list</span><a class="self-link" href="#extension-list"></a></h3>
+   <h3 class="heading settled" data-level="11.2" id="extension-list"><span class="secno">11.2. </span><span class="content">Extensions List</span><a class="self-link" href="#extension-list"></a></h3>
    <table class="data">
     <caption>Extension identifier</caption>
     <thead>
@@ -10105,13 +10145,13 @@ control flow</a>.</p>
 This means that the call graph must first be built, and functions must be analyzed from the leaves upwards, i.e. from functions that call no function outside the standard library toward the entry point.
 This way, whenever a function is analyzed, the metadata for all of its callees has already been computed.
 There is no risk of being trapped in a cycle, as recurrence is forbidden in the language.</p>
-   <p class="note" role="note"><span>Note:</span> another way of saying the same thing is that we do a topological sort of functions ordered by the "is a (possibly indirect) callee of" partial order, and analyze them in that order.</p>
+   <p class="note" role="note"><span>Note:</span> Another way of saying the same thing is that we do a topological sort of functions ordered by the "is a (possibly indirect) callee of" partial order, and analyze them in that order.</p>
    <h4 class="heading settled" data-level="13.2.3" id="uniformity-function"><span class="secno">13.2.3. </span><span class="content">Analyzing the Uniformity Requirements of a Function</span><a class="self-link" href="#uniformity-function"></a></h4>
    <p>Each function is analyzed in two phases.</p>
    <p>The first phase walks over the syntax of the function, building a directed graph along the way based on the rules in the following subsections.
 The second phase explores that graph, resulting in either rejecting the program, or computing the constraints on calling this function.</p>
    <div class="note" role="note">
-    Note: apart from two special nodes RequiredToBeUniform and MayBeNonUniform, all nodes can be understood as having one of the following meanings: 
+    Note: Apart from two special nodes RequiredToBeUniform and MayBeNonUniform, all nodes can be understood as having one of the following meanings: 
     <ul>
      <li data-md>
       <p>A specific point of the program <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑨⑥">must</a> be executed in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②">uniform control flow</a></p>
@@ -10293,12 +10333,13 @@ As such, a partial reference is either:</p>
 for the corresponding <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable①⑨">originating variable</a>, or</p>
     <li data-md>
      <p>a memory view the with same set of locations as the corresponding
-originating variable, but with a different <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②③">store type</a>.
-This subcase is called a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="degenerate-partial-reference">degenerate partial reference</dfn>.</p>
+originating variable, but with a different <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②③">store type</a>.</p>
    </ul>
    <div class="note" role="note">
-     Note: <a data-link-type="dfn" href="#degenerate-partial-reference" id="ref-for-degenerate-partial-reference">Degenerate partial references</a> occur with structure types having one member, and array types with one
-element. 
+     Note: A <a data-link-type="dfn" href="#partial-reference" id="ref-for-partial-reference">partial reference</a> can still cover all the same memory locations
+as a full reference, i.e. all the locations used by a variable declaration.
+This can occur when the store type is a structure type having only one member,
+or when the store type is an array type with one element. 
     <p>Consider a structure type with a single member, and a variable storing that type:</p>
 <pre class="language-rust highlight"><c- k>struct</c-> <c- nc>S</c-> <c- p>{</c-> <c- n>member</c->: <c- b>i32</c-><c- p>;</c-> <c- p>}</c->
 <c- k>fn</c-> <c- nf>foo</c-> <c- p>()</c-> <c- p>{</c->
@@ -10313,16 +10354,16 @@ locations, but the store type for <code>v</code> is <code>S</code> and the store
    <c- n>var</c-> <c- n>arr</c->: <c- nc>array</c-><c- o>&lt;</c-><c- b>i32</c-><c- p>,</c-><c- mi>1</c-><c- o>></c-><c- p>;</c->
 <c- p>}</c->
 </pre>
-    <p>Then <code>arr</code> is a full reference, <code>arr[0]</code> is a partial reference.
+    <p>Then <code>arr</code> is a full reference and <code>arr[0]</code> is a partial reference.
 Their memory views cover the same memory
 locations, but the store type for <code>arr</code> is <code>array&lt;i32,1></code> and the store type of <code>arr[0]</code> is <code>i32</code>.</p>
-    <p>To simplify the analysis, an assignment via a <a data-link-type="dfn" href="#degenerate-partial-reference" id="ref-for-degenerate-partial-reference①">degenerate partial reference</a> is treated as if
+    <p>To simplify analysis, an assignment via <em>any</em> kind of <a data-link-type="dfn" href="#partial-reference" id="ref-for-partial-reference①">partial reference</a> is treated as if
 it does <em>not</em> modify every memory location in the associated <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable②⓪">originating variable</a>.
 This causes the analysis to be conservative, potentially rejecting
 more programs than strictly necessary.</p>
    </div>
    <p>An assignment through a <a data-link-type="dfn" href="#full-reference" id="ref-for-full-reference④">full reference</a> is a <a data-link-type="dfn" href="#full-assignment" id="ref-for-full-assignment">full assignment</a>.</p>
-   <p>An assignment through a <a data-link-type="dfn" href="#partial-reference" id="ref-for-partial-reference">partial reference</a> is a <a data-link-type="dfn" href="#partial-assignment" id="ref-for-partial-assignment">partial assignment</a>.</p>
+   <p>An assignment through a <a data-link-type="dfn" href="#partial-reference" id="ref-for-partial-reference②">partial reference</a> is a <a data-link-type="dfn" href="#partial-assignment" id="ref-for-partial-assignment">partial assignment</a>.</p>
    <p>When the uniformity rules in subsequent sections refer to the value for a
 function-scope variable used as an RValue, it means the value of the variable
 prior to evaluation of the RValue expression.
@@ -10374,17 +10415,14 @@ notations:</p>
      <tr>
       <td> <em>r</em> = <em>e</em>;<br> where <em>r</em> is a <a data-link-type="dfn" href="#full-reference" id="ref-for-full-reference⑤">full reference</a> to variable <em>x</em> 
      <tr>
-      <td> <em>r</em> = <em>e</em>;<br> where <em>r</em> is a <a data-link-type="dfn" href="#partial-reference" id="ref-for-partial-reference①">partial reference</a> to variable <em>x</em> 
+      <td> <em>r</em> = <em>e</em>;<br> where <em>r</em> is a <a data-link-type="dfn" href="#partial-reference" id="ref-for-partial-reference③">partial reference</a> to variable <em>x</em> 
       <td><em>Vout</em>(<em>s</em>) 
       <td>
        <em>V</em>(<em>e</em>), <em>V</em>(<em>prev</em>) 
        <p class="note" role="note"><span>Note:</span> This is a <a data-link-type="dfn" href="#partial-assignment" id="ref-for-partial-assignment①">partial assignment</a> to <em>x</em>.</p>
-       <p class="note" role="note"><span>Note:</span> Partial assignments include the previous value since,
-          in the non-<a data-link-type="dfn" href="#degenerate-partial-reference" id="ref-for-degenerate-partial-reference②">degenerate partial reference</a> case,
-          only a subset of components are updated.</p>
-       <p class="note" role="note"><span>Note:</span> An assignment through a <a data-link-type="dfn" href="#degenerate-partial-reference" id="ref-for-degenerate-partial-reference③">degenerate partial reference</a> is analyzed
-          as if it does not modify all the locations in the
-          associated <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable②①">originating variable</a>.</p>
+       <p class="note" role="note"><span>Note:</span> Partial assignments include the previous value.
+          The assignment either writes only a subset of the stored components,
+          or the type of the written value differs from the <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②④">store type</a> of the <a data-link-type="dfn" href="https://drafts.csswg.org/css-tables-3/#originate" id="ref-for-originate">originating</a> variable.</p>
      <tr>
       <td>
        <em>s1</em> <em>s2</em><br> where <em>Next</em> is in behavior of <em>s1</em>. 
@@ -12041,8 +12079,6 @@ A WGSL program <a data-link-type="dfn" href="#shader-creation-error" id="ref-for
     <p>| <code>'instanceof'</code> </p>
     <p>| <code>'interface'</code> </p>
     <p>| <code>'layout'</code> </p>
-    <p>| <code>'line'</code> </p>
-    <p>| <code>'lineadj'</code> </p>
     <p>| <code>'lowp'</code> </p>
     <p>| <code>'macro'</code> </p>
     <p>| <code>'macro_rules'</code> </p>
@@ -12071,7 +12107,6 @@ A WGSL program <a data-link-type="dfn" href="#shader-creation-error" id="ref-for
     <p>| <code>'pass'</code> </p>
     <p>| <code>'patch'</code> </p>
     <p>| <code>'pixelfragment'</code> </p>
-    <p>| <code>'point'</code> </p>
     <p>| <code>'precise'</code> </p>
     <p>| <code>'precision'</code> </p>
     <p>| <code>'premerge'</code> </p>
@@ -13399,6 +13434,46 @@ but a value may infer the type.</p>
    </table>
    <table class="data builtin">
     <tbody>
+     <tr class="algorithm" data-algorithm="scalar case, abstract, frexp">
+      <td style="width:10%">Overload 
+      <td class="nowrap">
+<pre class="highlight"><c- o>@</c-><c- k>const</c-> <c- k>fn</c-> <c- nf>frexp</c-><c- p>(</c-><c- n>e</c->: <c- nc>T</c-><c- p>)</c-> -> <c- nc>__frexp_result_abstract</c->
+</pre>
+     <tr>
+      <td style="width:10%">Parameterization 
+      <td><code>T</code> is AbstractFloat 
+     <tr>
+      <td>Description 
+      <td>
+       Splits <code>e</code> into a fraction and an exponent so that <code>e</code> = <code>fraction * 2</code><sup><code>exponent</code></sup>.
+    The fraction is 0.0 or its magnitude is in the range [0.5, 1.0). 
+       <p>Returns the <code>__frexp_result_abstract</code> built-in structure, defined as follows:</p>
+<pre class="language-rust highlight"><c- k>struct</c-> <c- nc>__frexp_result_abstract</c-> <c- p>{</c->
+  <c- n>fract</c-> : <c- nc>AbstractFloat</c-><c- p>,</c-> <c- c1>// fraction part</c->
+  <c- n>exp</c-> : <c- nc>AbstractInt</c->      <c- c1>// exponent part</c->
+<c- p>}</c->
+</pre>
+       <p class="note" role="note"><span>Note:</span> A mnemonic for the name <code>frexp</code> is "<strong>fr</strong>action and <strong>exp</strong>onent".</p>
+     <tr>
+      <td>
+      <td>
+       <div class="example wgsl function-scope no-marker" id="example-2820d825">
+        <a class="self-link" href="#example-2820d825"></a>
+        <div class="marker">EXAMPLE: abstract frexp usage</div>
+<pre class="highlight"><c- c1>// Infers result type</c->
+<c- k>const</c-> <c- n>fraction_and_exponent</c-> <c- o>=</c-> <c- n>frexp</c-><c- p>(</c-><c- mf>1.5</c-><c- p>);</c->
+<c- c1>// Sets fraction_only to 0.75</c->
+<c- k>const</c-> <c- n>fraction_only</c-> <c- o>=</c-> <c- n>frexp</c-><c- p>(</c-><c- mf>1.5</c-><c- p>).</c-><c- n>fract</c-><c- p>;</c->
+</pre>
+       </div>
+     <tr>
+      <td>
+      <td>
+       <p class="note" role="note"><span>Note:</span> A value cannot be explicitly declared with the type <code>__frexp_result_abstract</code>,
+but a value may infer the type.</p>
+   </table>
+   <table class="data builtin">
+    <tbody>
      <tr class="algorithm" data-algorithm="vector case, binary32, frexp">
       <td style="width:10%">Overload 
       <td class="nowrap">
@@ -13451,6 +13526,34 @@ but a value may infer the type.</p>
       <td>
       <td>
        <p class="note" role="note"><span>Note:</span> A value cannot be explicitly declared with the type <code>__frexp_result_vecN_f16</code>,
+but a value may infer the type.</p>
+   </table>
+   <table class="data builtin">
+    <tbody>
+     <tr class="algorithm" data-algorithm="vector case, abstract, frexp">
+      <td style="width:10%">Overload 
+      <td class="nowrap">
+<pre class="highlight"><c- o>@</c-><c- k>const</c-> <c- k>fn</c-> <c- nf>frexp</c-><c- p>(</c-><c- n>e</c->: <c- nc>T</c-><c- p>)</c-> -> <c- nc>__frexp_result_vecN_abstract</c->
+</pre>
+     <tr>
+      <td style="width:10%">Parameterization 
+      <td><code>T</code> is vecN&lt;AbstractFloat> 
+     <tr>
+      <td>Description 
+      <td>
+       Splits <code>e</code> into a fraction and an exponent so that <code>e</code> = <code>fraction * 2</code><sup><code>exponent</code></sup>.
+    Each component of the fraction is 0.0, or has a magnitude in the range [0.5, 1.0). 
+       <p>Returns the <code>__frexp_result_vecN_abstract</code> built-in structure, defined as follows:</p>
+<pre class="language-rust highlight"><c- k>struct</c-> <c- nc>__frexp_result_vecN_abstract</c-> <c- p>{</c->
+  <c- n>fract</c-> : <c- nc>vecN</c-><c- o>&lt;</c-><c- n>AbstractFloat</c-><c- o>></c-><c- p>,</c-> <c- c1>// fraction part</c->
+  <c- n>exp</c-> : <c- nc>vecN</c-><c- o>&lt;</c-><c- n>AbstractInt</c-><c- o>></c->      <c- c1>// exponent part</c->
+<c- p>}</c->
+</pre>
+       <p class="note" role="note"><span>Note:</span> A mnemonic for the name <code>frexp</code> is "<strong>fr</strong>action and <strong>exp</strong>onent".</p>
+     <tr>
+      <td>
+      <td>
+       <p class="note" role="note"><span>Note:</span> A value cannot be explicitly declared with the type <code>__frexp_result_vecN_abstract</code>,
 but a value may infer the type.</p>
    </table>
    <h4 class="heading settled" data-level="17.3.33" id="insertBits-builtin"><span class="secno">17.3.33. </span><span class="content"><code>insertBits</code></span><a class="self-link" href="#insertBits-builtin"></a></h4>
@@ -13549,7 +13652,7 @@ but a value may infer the type.</p>
          <p>1023 for AbstractFloat, when AbstractFloat is <a data-link-type="biblio" href="#biblio-ieee-754">IEEE-754</a> binary64</p>
        </ul>
        <p>If <code>x</code> is zero or a finite normal value for its type, then:</p>
-       <blockquote> x = ldexp(frexp(x).sig, frexp(x).exp) </blockquote>
+       <blockquote> x = ldexp(frexp(x).fract, frexp(x).exp) </blockquote>
        <p><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise⑦⑥">Component-wise</a> when <code>T</code> is a vector.</p>
        <p class="note" role="note"><span>Note:</span> A mnemonic for the name <code>ldexp</code> is "load exponent".
     The name may have been taken from the corresponding instruction in the floating point unit of
@@ -13768,6 +13871,47 @@ but a value may infer the type.</p>
    </table>
    <table class="data builtin">
     <tbody>
+     <tr class="algorithm" data-algorithm="scalar case, abstract, modf">
+      <td style="width:10%">Overload 
+      <td class="nowrap">
+<pre class="highlight"><c- o>@</c-><c- k>const</c-> <c- k>fn</c-> <c- nf>modf</c-><c- p>(</c-><c- n>e</c->: <c- nc>T</c-><c- p>)</c-> -> <c- nc>__modf_result_abstract</c->
+</pre>
+     <tr>
+      <td style="width:10%">Parameterization 
+      <td><code>T</code> is AbstractFloat 
+     <tr>
+      <td>Description 
+      <td>
+       Splits <code>e</code> into fractional and whole number parts. 
+       <p>The fractional part is (<code>e</code> % 1.0), and the whole part is <code>e</code> minus the fractional part.</p>
+       <p>Returns the <code>__modf_result_abstract</code> built-in structure, defined as follows:</p>
+<pre class="language-rust highlight"><c- k>struct</c-> <c- nc>__modf_result</c-> <c- p>{</c->
+  <c- n>fract</c-> : <c- nc>AbstractFloat</c-><c- p>,</c-> <c- c1>// fractional part</c->
+  <c- n>whole</c-> : <c- nc>AbstractFloat</c->  <c- c1>// whole part</c->
+<c- p>}</c->
+</pre>
+     <tr>
+      <td>
+      <td>
+       <div class="example wgsl function-scope no-marker" id="example-ccf734df">
+        <a class="self-link" href="#example-ccf734df"></a>
+        <div class="marker">EXAMPLE: modf abstract usage</div>
+<pre class="highlight"><c- c1>// Infers result type</c->
+<c- k>const</c-> <c- n>fract_and_whole</c-> <c- o>=</c-> <c- n>modf</c-><c- p>(</c-><c- mf>1.5</c-><c- p>);</c->
+<c- c1>// Sets fract_only to 0.5</c->
+<c- k>const</c-> <c- n>fract_only</c-> <c- o>=</c-> <c- n>modf</c-><c- p>(</c-><c- mf>1.5</c-><c- p>).</c-><c- n>fract</c-><c- p>;</c->
+<c- c1>// Sets whole_only to 1.0</c->
+<c- k>const</c-> <c- n>whole_only</c-> <c- o>=</c-> <c- n>modf</c-><c- p>(</c-><c- mf>1.5</c-><c- p>).</c-><c- n>whole</c-><c- p>;</c->
+</pre>
+       </div>
+     <tr>
+      <td>
+      <td>
+       <p class="note" role="note"><span>Note:</span> A value cannot be explicitly declared with the type <code>__modf_result</code>,
+but a value may infer the type.</p>
+   </table>
+   <table class="data builtin">
+    <tbody>
      <tr class="algorithm" data-algorithm="vector case, binary32, modf">
       <td style="width:10%">Overload 
       <td class="nowrap">
@@ -13820,6 +13964,34 @@ but a value may infer the type.</p>
       <td>
       <td>
        <p class="note" role="note"><span>Note:</span> A value cannot be explicitly declared with the type <code>__modf_result_vecN_f16</code>,
+but a value may infer the type.</p>
+   </table>
+   <table class="data builtin">
+    <tbody>
+     <tr class="algorithm" data-algorithm="vector case, abstract, modf">
+      <td style="width:10%">Overload 
+      <td class="nowrap">
+<pre class="highlight"><c- o>@</c-><c- k>const</c-> <c- k>fn</c-> <c- nf>modf</c-><c- p>(</c-><c- n>e</c->: <c- nc>T</c-><c- p>)</c-> -> <c- nc>__modf_result_vecN_abstract</c->
+</pre>
+     <tr>
+      <td style="width:10%">Parameterization 
+      <td><code>T</code> is vecN&lt;AbstractFloat> 
+     <tr>
+      <td>Description 
+      <td>
+       Splits the components of <code>e</code> into fractional and whole number parts. 
+       <p>The <code>i</code>'th component of the whole and fractional parts equal the whole and fractional parts
+    of <code>modf(e[i])</code>.</p>
+       <p>Returns the <code>__modf_result_vecN</code> built-in structure, defined as follows:</p>
+<pre class="language-rust highlight"><c- k>struct</c-> <c- nc>__modf_result_vecN_abstract</c-> <c- p>{</c->
+  <c- n>fract</c-> : <c- nc>vecN</c-><c- o>&lt;</c-><c- n>AbstractFloat</c-><c- o>></c-><c- p>,</c-> <c- c1>// fractional part</c->
+  <c- n>whole</c-> : <c- nc>vecN</c-><c- o>&lt;</c-><c- n>AbstractFloat</c-><c- o>></c->  <c- c1>// whole part</c->
+<c- p>}</c->
+</pre>
+     <tr>
+      <td>
+      <td>
+       <p class="note" role="note"><span>Note:</span> A value cannot be explicitly declared with the type <code>__modf_result_vecN_abstract</code>,
 but a value may infer the type.</p>
    </table>
    <h4 class="heading settled" data-level="17.3.43" id="normalize-builtin"><span class="secno">17.3.43. </span><span class="content"><code>normalize</code></span><a class="self-link" href="#normalize-builtin"></a></h4>
@@ -15807,7 +15979,7 @@ name with the value <var>v</var>.</p>
    <p>Returns a two member structure, where the first member, <code>old_value</code>, is the
 original value of the atomic object and the second member, <code>exchanged</code>, is
 whether or not the comparison succeeded.</p>
-   <p class="note" role="note"><span>Note:</span> the equality comparison may spuriously fail on some implementations. That
+   <p class="note" role="note"><span>Note:</span> The equality comparison may spuriously fail on some implementations. That
 is, the second component of the result vector may be <code>false</code> even if the first
 component of the result vector equals <code>cmp</code>.</p>
    <h3 class="heading settled" data-level="17.7" id="pack-builtin-functions"><span class="secno">17.7. </span><span class="content">Data Packing Built-in Functions</span><a class="self-link" href="#pack-builtin-functions"></a></h3>
@@ -16729,7 +16901,6 @@ Use token definitions from the main part of the specification.</p>
    <li><a href="#syntax-default_alone_clause">default_alone_clause</a><span>, in § 8.4.2</span>
    <li><a href="#default-clause">default clause</a><span>, in § 8.4.2</span>
    <li><a href="#default-initial-value">default initial value</a><span>, in § 6.3</span>
-   <li><a href="#degenerate-partial-reference">degenerate partial reference</a><span>, in § 13.2.4</span>
    <li>
     depth_texture_type
     <ul>
@@ -17394,6 +17565,12 @@ Use token definitions from the main part of the specification.</p>
    <li><a href="#syntax-xor_equal">xor_equal</a><span>, in § 15.3</span>
    <li><a href="#zero-value">zero value</a><span>, in § 7.5.2</span>
   </ul>
+  <aside class="dfn-panel" data-for="term-for-originate">
+   <a href="https://drafts.csswg.org/css-tables-3/#originate">https://drafts.csswg.org/css-tables-3/#originate</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-originate">13.2.4. Function-scope Variable Value Analysis</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-LB4">
    <a href="https://www.unicode.org/reports/tr14#LB4">https://www.unicode.org/reports/tr14#LB4</a><b>Referenced in:</b>
    <ul>
@@ -17482,6 +17659,11 @@ Use token definitions from the main part of the specification.</p>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
    <li>
+    <a data-link-type="biblio">[css-tables-3]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="term-for-originate">originate</span>
+    </ul>
+   <li>
     <a data-link-type="biblio">[UAX14]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-LB4">uax14 lb4</span>
@@ -17542,6 +17724,8 @@ Use token definitions from the main part of the specification.</p>
   <dl>
    <dt id="biblio-charmod-norm">[CHARMOD-NORM]
    <dd>Addison Phillips; et al. <a href="https://www.w3.org/TR/charmod-norm/"><cite>Character Model for the World Wide Web: String Matching</cite></a>. 11 August 2021. NOTE. URL: <a href="https://www.w3.org/TR/charmod-norm/">https://www.w3.org/TR/charmod-norm/</a>
+   <dt id="biblio-css-tables-3">[CSS-TABLES-3]
+   <dd>François Remy; Greg Whitworth; David Baron. <a href="https://www.w3.org/TR/css-tables-3/"><cite>CSS Table Module Level 3</cite></a>. 27 July 2019. WD. URL: <a href="https://www.w3.org/TR/css-tables-3/">https://www.w3.org/TR/css-tables-3/</a>
   </dl>
   <h2 class="no-num no-ref heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
   <div style="counter-reset:issue">
@@ -17739,7 +17923,7 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-shader-creation-error①⑧⑦">10.3.1.4. Interpolation</a> <a href="#ref-for-shader-creation-error①⑧⑧">(2)</a> <a href="#ref-for-shader-creation-error①⑧⑨">(3)</a> <a href="#ref-for-shader-creation-error①⑨⓪">(4)</a> <a href="#ref-for-shader-creation-error①⑨①">(5)</a>
     <li><a href="#ref-for-shader-creation-error①⑨②">10.3.2. Resource Interface</a> <a href="#ref-for-shader-creation-error①⑨③">(2)</a>
     <li><a href="#ref-for-shader-creation-error①⑨④">11.1. Enable Directive</a>
-    <li><a href="#ref-for-shader-creation-error①⑨⑤">11.2. Extensions list</a>
+    <li><a href="#ref-for-shader-creation-error①⑨⑤">11.2. Extensions List</a>
     <li><a href="#ref-for-shader-creation-error①⑨⑥">13.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-shader-creation-error①⑨⑦">(2)</a> <a href="#ref-for-shader-creation-error①⑨⑧">(3)</a> <a href="#ref-for-shader-creation-error①⑨⑨">(4)</a> <a href="#ref-for-shader-creation-error②⓪⓪">(5)</a> <a href="#ref-for-shader-creation-error②⓪①">(6)</a>
     <li><a href="#ref-for-shader-creation-error②⓪②">13.5.1. Barriers</a>
     <li><a href="#ref-for-shader-creation-error②⓪③">13.5.2. Derivatives</a>
@@ -17911,7 +18095,7 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-floating-point-literal①">3.5.2. Numeric Literals</a> <a href="#ref-for-floating-point-literal②">(2)</a> <a href="#ref-for-floating-point-literal③">(3)</a> <a href="#ref-for-floating-point-literal④">(4)</a> <a href="#ref-for-floating-point-literal⑤">(5)</a>
     <li><a href="#ref-for-floating-point-literal⑥">5.2.1. Abstract Numeric Types</a>
     <li><a href="#ref-for-floating-point-literal⑦">7.3. Literal Value Expressions</a> <a href="#ref-for-floating-point-literal⑧">(2)</a> <a href="#ref-for-floating-point-literal⑨">(3)</a>
-    <li><a href="#ref-for-floating-point-literal①⓪">11.2. Extensions list</a> <a href="#ref-for-floating-point-literal①①">(2)</a>
+    <li><a href="#ref-for-floating-point-literal①⓪">11.2. Extensions List</a> <a href="#ref-for-floating-point-literal①①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-float_literal">
@@ -19367,7 +19551,7 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-store-type②⓪">7.13. Variable Identifier Expression</a>
     <li><a href="#ref-for-store-type②①">8.3. Increment and Decrement Statements</a>
     <li><a href="#ref-for-store-type②②">9.4. Restrictions on Functions</a>
-    <li><a href="#ref-for-store-type②③">13.2.4. Function-scope Variable Value Analysis</a>
+    <li><a href="#ref-for-store-type②③">13.2.4. Function-scope Variable Value Analysis</a> <a href="#ref-for-store-type②④">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="reference-type">
@@ -19406,7 +19590,7 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-originating-variable①③">7.7.4. Structure Access Expression</a>
     <li><a href="#ref-for-originating-variable①④">9.4.1.1. Root Identifier</a>
     <li><a href="#ref-for-originating-variable①⑤">9.4.1.2. Aliasing</a> <a href="#ref-for-originating-variable①⑥">(2)</a> <a href="#ref-for-originating-variable①⑦">(3)</a>
-    <li><a href="#ref-for-originating-variable①⑧">13.2.4. Function-scope Variable Value Analysis</a> <a href="#ref-for-originating-variable①⑨">(2)</a> <a href="#ref-for-originating-variable②⓪">(3)</a> <a href="#ref-for-originating-variable②①">(4)</a>
+    <li><a href="#ref-for-originating-variable①⑧">13.2.4. Function-scope Variable Value Analysis</a> <a href="#ref-for-originating-variable①⑨">(2)</a> <a href="#ref-for-originating-variable②⓪">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="invalid-memory-reference">
@@ -21082,13 +21266,7 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
   <aside class="dfn-panel" data-for="partial-reference">
    <b><a href="#partial-reference">#partial-reference</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-partial-reference">13.2.4. Function-scope Variable Value Analysis</a> <a href="#ref-for-partial-reference①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="degenerate-partial-reference">
-   <b><a href="#degenerate-partial-reference">#degenerate-partial-reference</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-degenerate-partial-reference">13.2.4. Function-scope Variable Value Analysis</a> <a href="#ref-for-degenerate-partial-reference①">(2)</a> <a href="#ref-for-degenerate-partial-reference②">(3)</a> <a href="#ref-for-degenerate-partial-reference③">(4)</a>
+    <li><a href="#ref-for-partial-reference">13.2.4. Function-scope Variable Value Analysis</a> <a href="#ref-for-partial-reference①">(2)</a> <a href="#ref-for-partial-reference②">(3)</a> <a href="#ref-for-partial-reference③">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="compute-shader-stage-workgroup">
