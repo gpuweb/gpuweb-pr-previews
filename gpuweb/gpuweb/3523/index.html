@@ -890,13 +890,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-11-22">22 November 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-11-23">23 November 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/99a5f204d044c80013ce339a0a2c8a07ab01846f/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/99a5f204d044c80013ce339a0a2c8a07ab01846f/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/e2e15aad7161186f356ef33b39364ea4d50fe6e3/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/e2e15aad7161186f356ef33b39364ea4d50fe6e3/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -7109,8 +7109,8 @@ completed.</p>
 };
 
 <c- b>enum</c-> <a class="idl-code" data-link-type="enum" href="#enumdef-gpupipelineerrorreason" id="ref-for-enumdef-gpupipelineerrorreason②"><c- g>GPUPipelineErrorReason</c-></a> {
-    <dfn class="dfn-paneled idl-code" data-dfn-for="GPUPipelineErrorReason" data-dfn-type="enum-value" data-export id="dom-gpupipelineerrorreason-validation"><code><c- s>"validation"</c-></code></dfn>,
-    <dfn class="dfn-paneled idl-code" data-dfn-for="GPUPipelineErrorReason" data-dfn-type="enum-value" data-export id="dom-gpupipelineerrorreason-internal"><code><c- s>"internal"</c-></code></dfn>
+    <a class="idl-code" data-link-type="enum-value" href="#dom-gpupipelineerrorreason-validation" id="ref-for-dom-gpupipelineerrorreason-validation"><c- s>"validation"</c-></a>,
+    <a class="idl-code" data-link-type="enum-value" href="#dom-gpupipelineerrorreason-internal" id="ref-for-dom-gpupipelineerrorreason-internal"><c- s>"internal"</c-></a>
 };
 </pre>
    <p><code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror②">GPUPipelineError</a></code> constructor:</p>
@@ -7157,11 +7157,11 @@ completed.</p>
     <dd data-md>
      <p>A read-only <a data-link-type="dfn" href="#slot-backed-attribute" id="ref-for-slot-backed-attribute②">slot-backed attribute</a> exposing the type of error encountered in pipeline creation
 as a <dfn class="dfn-paneled idl-code" data-dfn-for data-dfn-type="enum" data-export id="enumdef-gpupipelineerrorreason"><code>GPUPipelineErrorReason</code></dfn>:</p>
-     <ul for="GPUPipelineErrorReason">
+     <ul>
       <li data-md>
-       <p><dfn class="idl-code" data-dfn-for="GPUPipelineError" data-dfn-type="enum-value" data-export id="dom-gpupipelineerror-validation"><code>"validation"</code><a class="self-link" href="#dom-gpupipelineerror-validation"></a></dfn>: A <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑤">validation error</a>.</p>
+       <p><dfn class="dfn-paneled idl-code" data-dfn-for="GPUPipelineErrorReason" data-dfn-type="enum-value" data-export id="dom-gpupipelineerrorreason-validation"><code>"validation"</code></dfn>: A <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑤">validation error</a>.</p>
       <li data-md>
-       <p><dfn class="idl-code" data-dfn-for="GPUPipelineError" data-dfn-type="enum-value" data-export id="dom-gpupipelineerror-internal"><code>"internal"</code><a class="self-link" href="#dom-gpupipelineerror-internal"></a></dfn>: An <a data-link-type="abstract-op" href="#abstract-opdef-generate-an-internal-error" id="ref-for-abstract-opdef-generate-an-internal-error①">internal error</a>.</p>
+       <p><dfn class="dfn-paneled idl-code" data-dfn-for="GPUPipelineErrorReason" data-dfn-type="enum-value" data-export id="dom-gpupipelineerrorreason-internal"><code>"internal"</code></dfn>: An <a data-link-type="abstract-op" href="#abstract-opdef-generate-an-internal-error" id="ref-for-abstract-opdef-generate-an-internal-error①">internal error</a>.</p>
      </ul>
    </dl>
    <p><code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror⑤">GPUPipelineError</a></code> objects are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/structured-data.html#serializable-objects" id="ref-for-serializable-objects">serializable objects</a>.</p>
@@ -7918,10 +7918,10 @@ subsequent steps on <var data-timeline="content">contentTimeline</var>.</p>
            <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#resolve" id="ref-for-resolve⑥">Resolve</a> <var>promise</var> with <var>pipeline</var>.</p>
           <dt data-md><a data-link-type="dfn" href="#invalid" id="ref-for-invalid②⑦">invalid</a> due to an <a data-link-type="abstract-op" href="#abstract-opdef-generate-an-internal-error" id="ref-for-abstract-opdef-generate-an-internal-error②">internal error</a>
           <dd data-md>
-           <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑥">Reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror⑥">GPUPipelineError</a></code> with <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorinit-reason" id="ref-for-dom-gpupipelineerrorinit-reason①">reason</a></code> <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorreason-internal" id="ref-for-dom-gpupipelineerrorreason-internal">"internal"</a></code>.</p>
+           <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑥">Reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror⑥">GPUPipelineError</a></code> with <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorinit-reason" id="ref-for-dom-gpupipelineerrorinit-reason①">reason</a></code> <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorreason-internal" id="ref-for-dom-gpupipelineerrorreason-internal①">"internal"</a></code>.</p>
           <dt data-md><a data-link-type="dfn" href="#invalid" id="ref-for-invalid②⑧">invalid</a> due to an <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑧">validation error</a>
           <dd data-md>
-           <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑦">Reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror⑦">GPUPipelineError</a></code> with <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorinit-reason" id="ref-for-dom-gpupipelineerrorinit-reason②">reason</a></code> <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorreason-validation" id="ref-for-dom-gpupipelineerrorreason-validation">"validation"</a></code>.</p>
+           <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑦">Reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror⑦">GPUPipelineError</a></code> with <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorinit-reason" id="ref-for-dom-gpupipelineerrorinit-reason②">reason</a></code> <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorreason-validation" id="ref-for-dom-gpupipelineerrorreason-validation①">"validation"</a></code>.</p>
          </dl>
        </ol>
       </div>
@@ -17630,7 +17630,6 @@ for (const dataLink of dataLinks) {
     "internal"
     <ul>
      <li><a href="#dom-gpuerrorfilter-internal">enum-value for GPUErrorFilter</a><span>, in § 22.3</span>
-     <li><a href="#dom-gpupipelineerror-internal">enum-value for GPUPipelineError</a><span>, in § 10</span>
      <li><a href="#dom-gpupipelineerrorreason-internal">enum-value for GPUPipelineErrorReason</a><span>, in § 10</span>
     </ul>
    <li><a href="#abstract-opdef-generate-an-internal-error">internal error</a><span>, in § 22.2</span>
@@ -18356,7 +18355,6 @@ for (const dataLink of dataLinks) {
     "validation"
     <ul>
      <li><a href="#dom-gpuerrorfilter-validation">enum-value for GPUErrorFilter</a><span>, in § 22.3</span>
-     <li><a href="#dom-gpupipelineerror-validation">enum-value for GPUPipelineError</a><span>, in § 10</span>
      <li><a href="#dom-gpupipelineerrorreason-validation">enum-value for GPUPipelineErrorReason</a><span>, in § 10</span>
     </ul>
    <li><a href="#abstract-opdef-generate-a-validation-error">validation error</a><span>, in § 22.2</span>
@@ -20492,8 +20490,8 @@ for (const dataLink of dataLinks) {
 };
 
 <c- b>enum</c-> <a class="idl-code" data-link-type="enum" href="#enumdef-gpupipelineerrorreason"><c- g>GPUPipelineErrorReason</c-></a> {
-    <a href="#dom-gpupipelineerrorreason-validation"><code><c- s>"validation"</c-></code></a>,
-    <a href="#dom-gpupipelineerrorreason-internal"><code><c- s>"internal"</c-></code></a>
+    <a class="idl-code" data-link-type="enum-value" href="#dom-gpupipelineerrorreason-validation"><c- s>"validation"</c-></a>,
+    <a class="idl-code" data-link-type="enum-value" href="#dom-gpupipelineerrorreason-internal"><c- s>"internal"</c-></a>
 };
 
 <c- b>enum</c-> <a href="#enumdef-gpuautolayoutmode"><code><c- g>GPUAutoLayoutMode</c-></code></a> {
@@ -25669,18 +25667,6 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-dom-gpupipelineerrorinit-reason①">10.2.1. Compute Pipeline Creation</a> <a href="#ref-for-dom-gpupipelineerrorinit-reason②">(2)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-gpupipelineerrorreason-validation">
-   <b><a href="#dom-gpupipelineerrorreason-validation">#dom-gpupipelineerrorreason-validation</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-gpupipelineerrorreason-validation">10.2.1. Compute Pipeline Creation</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-gpupipelineerrorreason-internal">
-   <b><a href="#dom-gpupipelineerrorreason-internal">#dom-gpupipelineerrorreason-internal</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-gpupipelineerrorreason-internal">10.2.1. Compute Pipeline Creation</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="dom-gpupipelineerror-constructor">
    <b><a href="#dom-gpupipelineerror-constructor">#dom-gpupipelineerror-constructor</a></b><b>Referenced in:</b>
    <ul>
@@ -25697,6 +25683,20 @@ restriction entirely and allow writable bindings to alias with undefined results
    <b><a href="#enumdef-gpupipelineerrorreason">#enumdef-gpupipelineerrorreason</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-enumdef-gpupipelineerrorreason">10. Pipelines</a> <a href="#ref-for-enumdef-gpupipelineerrorreason①">(2)</a> <a href="#ref-for-enumdef-gpupipelineerrorreason②">(3)</a> <a href="#ref-for-enumdef-gpupipelineerrorreason③">(4)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-gpupipelineerrorreason-validation">
+   <b><a href="#dom-gpupipelineerrorreason-validation">#dom-gpupipelineerrorreason-validation</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gpupipelineerrorreason-validation">10. Pipelines</a>
+    <li><a href="#ref-for-dom-gpupipelineerrorreason-validation①">10.2.1. Compute Pipeline Creation</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-gpupipelineerrorreason-internal">
+   <b><a href="#dom-gpupipelineerrorreason-internal">#dom-gpupipelineerrorreason-internal</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gpupipelineerrorreason-internal">10. Pipelines</a>
+    <li><a href="#ref-for-dom-gpupipelineerrorreason-internal①">10.2.1. Compute Pipeline Creation</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="enumdef-gpuautolayoutmode">
