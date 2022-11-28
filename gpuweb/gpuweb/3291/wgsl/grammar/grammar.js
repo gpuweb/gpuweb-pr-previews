@@ -51,27 +51,31 @@ module.exports = grammar({
             $.false
         ),
         int_literal: $ => choice(
-            token(/0[xX][0-9a-fA-F]+[iu]?/),
+            $.decimal_int_literal,
+            $.hex_int_literal
+        ),
+        decimal_int_literal: $ => choice(
             token(/0[iu]?/),
             token(/[1-9][0-9]*[iu]?/)
         ),
+        hex_int_literal: $ => token(/0[xX][0-9a-fA-F]+[iu]?/),
         float_literal: $ => choice(
             $.decimal_float_literal,
             $.hex_float_literal
         ),
         decimal_float_literal: $ => choice(
+            token(/0[fh]/),
+            token(/[1-9][0-9]*[fh]/),
             token(/[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/),
             token(/[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/),
-            token(/[0-9]+[eE][+-]?[0-9]+[fh]?/),
-            token(/0[fh]/),
-            token(/[1-9][0-9]*[fh]/)
+            token(/[0-9]+[eE][+-]?[0-9]+[fh]?/)
         ),
         hex_float_literal: $ => choice(
             token(/0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/),
             token(/0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/),
             token(/0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/)
         ),
-        const_literal: $ => choice(
+        literal: $ => choice(
             $.int_literal,
             $.float_literal,
             $.bool_literal
@@ -97,19 +101,19 @@ module.exports = grammar({
             seq($.attr, token('compute'))
         ),
         attrib_end: $ => seq(optional($.comma), $.paren_right),
-        array_type_decl: $ => seq($.array, $.less_than, $.type_decl, optional(seq($.comma, $.element_count_expression)), $.greater_than),
+        array_type_specifier: $ => seq($.array, $.less_than, $.type_specifier, optional(seq($.comma, $.element_count_expression)), $.greater_than),
         element_count_expression: $ => choice(
             $.additive_expression,
             $.bitwise_expression
         ),
         struct_decl: $ => seq($.struct, $.ident, $.struct_body_decl),
-        struct_body_decl: $ => seq($.brace_left, optional(repeat1(seq($.struct_member, $.comma))), $.struct_member, optional($.comma), $.brace_right),
-        struct_member: $ => seq(optional(repeat1($.attribute)), $.member_ident, $.colon, $.type_decl),
+        struct_body_decl: $ => seq($.brace_left, $.struct_member, optional(repeat1(seq($.comma, $.struct_member))), optional($.comma), $.brace_right),
+        struct_member: $ => seq(optional(repeat1($.attribute)), $.member_ident, $.colon, $.type_specifier),
         texture_and_sampler_types: $ => choice(
             $.sampler_type,
             $.depth_texture_type,
-            seq($.sampled_texture_type, $.less_than, $.type_decl, $.greater_than),
-            seq($.multisampled_texture_type, $.less_than, $.type_decl, $.greater_than),
+            seq($.sampled_texture_type, $.less_than, $.type_specifier, $.greater_than),
+            seq($.multisampled_texture_type, $.less_than, $.type_specifier, $.greater_than),
             seq($.storage_texture_type, $.less_than, $.texel_format, $.comma, $.access_mode, $.greater_than)
         ),
         sampler_type: $ => choice(
@@ -138,22 +142,22 @@ module.exports = grammar({
             $.texture_depth_cube_array,
             $.texture_depth_multisampled_2d
         ),
-        type_alias_decl: $ => seq($.type, $.ident, $.equal, $.type_decl),
-        type_decl: $ => choice(
+        type_alias_decl: $ => seq($.type, $.ident, $.equal, $.type_specifier),
+        type_specifier: $ => choice(
             $.ident,
-            $.type_decl_without_ident
+            $.type_specifier_without_ident
         ),
-        type_decl_without_ident: $ => choice(
+        type_specifier_without_ident: $ => choice(
             $.bool,
             $.float32,
             $.float16,
             $.int32,
             $.uint32,
-            seq($.vec_prefix, $.less_than, $.type_decl, $.greater_than),
-            seq($.mat_prefix, $.less_than, $.type_decl, $.greater_than),
-            seq($.pointer, $.less_than, $.address_space, $.comma, $.type_decl, optional(seq($.comma, $.access_mode)), $.greater_than),
-            $.array_type_decl,
-            seq($.atomic, $.less_than, $.type_decl, $.greater_than),
+            seq($.vec_prefix, $.less_than, $.type_specifier, $.greater_than),
+            seq($.mat_prefix, $.less_than, $.type_specifier, $.greater_than),
+            seq($.pointer, $.less_than, $.address_space, $.comma, $.type_specifier, optional(seq($.comma, $.access_mode)), $.greater_than),
+            $.array_type_specifier,
+            seq($.atomic, $.less_than, $.type_specifier, $.greater_than),
             $.texture_and_sampler_types
         ),
         vec_prefix: $ => choice(
@@ -175,37 +179,38 @@ module.exports = grammar({
         variable_statement: $ => choice(
             $.variable_decl,
             seq($.variable_decl, $.equal, $.expression),
-            seq($.let, choice($.ident, $.variable_ident_decl), $.equal, $.expression),
-            seq($.const, choice($.ident, $.variable_ident_decl), $.equal, $.expression)
+            seq($.let, $.optionally_typed_ident, $.equal, $.expression),
+            seq($.const, $.optionally_typed_ident, $.equal, $.expression)
         ),
-        variable_decl: $ => seq($.var, optional($.variable_qualifier), choice($.ident, $.variable_ident_decl)),
-        variable_ident_decl: $ => seq($.ident, $.colon, $.type_decl),
+        variable_decl: $ => seq($.var, optional($.variable_qualifier), $.optionally_typed_ident),
+        optionally_typed_ident: $ => seq($.ident, optional(seq($.colon, $.type_specifier))),
         variable_qualifier: $ => seq($.less_than, $.address_space, optional(seq($.comma, $.access_mode)), $.greater_than),
         global_variable_decl: $ => seq(optional(repeat1($.attribute)), $.variable_decl, optional(seq($.equal, $.expression))),
         global_constant_decl: $ => choice(
-            seq($.const, choice($.ident, $.variable_ident_decl), $.equal, $.expression),
-            seq(optional(repeat1($.attribute)), $.override, choice($.ident, $.variable_ident_decl), optional(seq($.equal, $.expression)))
+            seq($.const, $.optionally_typed_ident, $.equal, $.expression),
+            seq(optional(repeat1($.attribute)), $.override, $.optionally_typed_ident, optional(seq($.equal, $.expression)))
         ),
         primary_expression: $ => choice(
             $.ident,
             seq($.callable, $.argument_expression_list),
-            $.const_literal,
+            $.literal,
             $.paren_expression,
-            seq($.bitcast, $.less_than, $.type_decl, $.greater_than, $.paren_expression)
+            seq($.bitcast, $.less_than, $.type_specifier, $.greater_than, $.paren_expression)
         ),
         callable: $ => choice(
             $.ident,
-            $.type_decl_without_ident,
+            $.type_specifier_without_ident,
             $.vec_prefix,
             $.mat_prefix,
             $.array
         ),
         paren_expression: $ => seq($.paren_left, $.expression, $.paren_right),
-        argument_expression_list: $ => seq($.paren_left, optional(seq(optional(repeat1(seq($.expression, $.comma))), $.expression, optional($.comma))), $.paren_right),
-        postfix_expression: $ => choice(
-            seq($.bracket_left, $.expression, $.bracket_right, optional($.postfix_expression)),
-            seq($.period, $.member_ident, optional($.postfix_expression)),
-            seq($.period, $.swizzle_name, optional($.postfix_expression))
+        argument_expression_list: $ => seq($.paren_left, optional($.expression_comma_list), $.paren_right),
+        expression_comma_list: $ => seq($.expression, optional(repeat1(seq($.comma, $.expression))), optional($.comma)),
+        component_or_swizzle_specifier: $ => choice(
+            seq($.bracket_left, $.expression, $.bracket_right, optional($.component_or_swizzle_specifier)),
+            seq($.period, $.member_ident, optional($.component_or_swizzle_specifier)),
+            seq($.period, $.swizzle_name, optional($.component_or_swizzle_specifier))
         ),
         unary_expression: $ => choice(
             $.singular_expression,
@@ -215,22 +220,32 @@ module.exports = grammar({
             seq($.star, $.unary_expression),
             seq($.and, $.unary_expression)
         ),
-        singular_expression: $ => seq($.primary_expression, optional($.postfix_expression)),
-        lhs_expression: $ => seq(optional(repeat1(choice($.star, $.and))), $.core_lhs_expression, optional($.postfix_expression)),
+        singular_expression: $ => seq($.primary_expression, optional($.component_or_swizzle_specifier)),
+        lhs_expression: $ => choice(
+            seq($.core_lhs_expression, optional($.component_or_swizzle_specifier)),
+            seq($.star, $.lhs_expression),
+            seq($.and, $.lhs_expression)
+        ),
         core_lhs_expression: $ => choice(
             $.ident,
             seq($.paren_left, $.lhs_expression, $.paren_right)
         ),
         multiplicative_expression: $ => choice(
             $.unary_expression,
-            seq($.multiplicative_expression, $.star, $.unary_expression),
-            seq($.multiplicative_expression, $.forward_slash, $.unary_expression),
-            seq($.multiplicative_expression, $.modulo, $.unary_expression)
+            seq($.multiplicative_expression, $.multiplicative_operator, $.unary_expression)
+        ),
+        multiplicative_operator: $ => choice(
+            $.star,
+            $.forward_slash,
+            $.modulo
         ),
         additive_expression: $ => choice(
             $.multiplicative_expression,
-            seq($.additive_expression, $.plus, $.multiplicative_expression),
-            seq($.additive_expression, $.minus, $.multiplicative_expression)
+            seq($.additive_expression, $.additive_operator, $.multiplicative_expression)
+        ),
+        additive_operator: $ => choice(
+            $.plus,
+            $.minus
         ),
         shift_expression: $ => choice(
             $.additive_expression,
@@ -302,26 +317,26 @@ module.exports = grammar({
         else_clause: $ => seq($.else, $.compound_statement),
         switch_statement: $ => seq($.switch, $.expression, $.brace_left, repeat1($.switch_body), $.brace_right),
         switch_body: $ => choice(
-            seq($.case, $.case_selectors, optional($.colon), $.case_compound_statement),
-            seq($.default, optional($.colon), $.case_compound_statement)
+            $.case_clause,
+            $.default_alone_clause
         ),
-        case_selectors: $ => seq($.expression, optional(repeat1(seq($.comma, $.expression))), optional($.comma)),
-        case_compound_statement: $ => seq($.brace_left, optional(repeat1($.statement)), optional($.fallthrough_statement), $.brace_right),
-        fallthrough_statement: $ => seq($.fallthrough, $.semicolon),
+        case_clause: $ => seq($.case, $.case_selectors, optional($.colon), $.compound_statement),
+        default_alone_clause: $ => seq($.default, optional($.colon), $.compound_statement),
+        case_selectors: $ => seq($.case_selector, optional(repeat1(seq($.comma, $.case_selector))), optional($.comma)),
+        case_selector: $ => choice(
+            $.default,
+            $.expression
+        ),
         loop_statement: $ => seq($.loop, $.brace_left, optional(repeat1($.statement)), optional($.continuing_statement), $.brace_right),
         for_statement: $ => seq($.for, $.paren_left, $.for_header, $.paren_right, $.compound_statement),
         for_header: $ => seq(optional($.for_init), $.semicolon, optional($.expression), $.semicolon, optional($.for_update)),
         for_init: $ => choice(
             $.variable_statement,
-            $.increment_statement,
-            $.decrement_statement,
-            $.assignment_statement,
+            $.variable_updating_statement,
             $.func_call_statement
         ),
         for_update: $ => choice(
-            $.increment_statement,
-            $.decrement_statement,
-            $.assignment_statement,
+            $.variable_updating_statement,
             $.func_call_statement
         ),
         while_statement: $ => seq($.while, $.expression, $.compound_statement),
@@ -346,24 +361,20 @@ module.exports = grammar({
             seq($.break_statement, $.semicolon),
             seq($.continue_statement, $.semicolon),
             seq($.discard, $.semicolon),
-            seq($.assignment_statement, $.semicolon),
+            seq($.variable_updating_statement, $.semicolon),
             $.compound_statement,
-            seq($.increment_statement, $.semicolon),
-            seq($.decrement_statement, $.semicolon),
             seq($.static_assert_statement, $.semicolon)
         ),
-        function_decl: $ => seq(optional(repeat1($.attribute)), $.function_header, $.compound_statement),
-        function_header: $ => seq($.fn, $.ident, $.paren_left, optional($.param_list), $.paren_right, optional(seq($.arrow, optional(repeat1($.attribute)), $.type_decl))),
-        param_list: $ => seq(optional(repeat1(seq($.param, $.comma))), $.param, optional($.comma)),
-        param: $ => seq(optional(repeat1($.attribute)), $.variable_ident_decl),
-        enable_directive: $ => seq($.enable, $.extension_name, $.semicolon),
-        address_space: $ => choice(
-            $.function,
-            $.private,
-            $.workgroup,
-            $.uniform,
-            $.storage
+        variable_updating_statement: $ => choice(
+            $.assignment_statement,
+            $.increment_statement,
+            $.decrement_statement
         ),
+        function_decl: $ => seq(optional(repeat1($.attribute)), $.function_header, $.compound_statement),
+        function_header: $ => seq($.fn, $.ident, $.paren_left, optional($.param_list), $.paren_right, optional(seq($.arrow, optional(repeat1($.attribute)), $.type_specifier))),
+        param_list: $ => seq($.param, optional(repeat1(seq($.comma, $.param))), optional($.comma)),
+        param: $ => seq(optional(repeat1($.attribute)), $.ident, $.colon, $.type_specifier),
+        enable_directive: $ => seq($.enable, $.extension_name, $.semicolon),
         ident_pattern_token: $ => token(/([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/uy),
         array: $ => token('array'),
         atomic: $ => token('atomic'),
@@ -413,27 +424,21 @@ module.exports = grammar({
         discard: $ => token('discard'),
         else: $ => token('else'),
         enable: $ => token('enable'),
-        fallthrough: $ => token('fallthrough'),
         false: $ => token('false'),
         fn: $ => token('fn'),
         for: $ => token('for'),
-        function: $ => token('function'),
         if: $ => token('if'),
         let: $ => token('let'),
         loop: $ => token('loop'),
         override: $ => token('override'),
-        private: $ => token('private'),
         return: $ => token('return'),
         static_assert: $ => token('static_assert'),
-        storage: $ => token('storage'),
         struct: $ => token('struct'),
         switch: $ => token('switch'),
         true: $ => token('true'),
         type: $ => token('type'),
-        uniform: $ => token('uniform'),
         var: $ => token('var'),
         while: $ => token('while'),
-        workgroup: $ => token('workgroup'),
         and: $ => token('&'),
         and_and: $ => token('&&'),
         arrow: $ => token('->'),
@@ -508,6 +513,13 @@ module.exports = grammar({
             token('read'),
             token('write'),
             token('read_write')
+        ),
+        address_space: $ => choice(
+            token('function'),
+            token('private'),
+            token('workgroup'),
+            token('uniform'),
+            token('storage')
         ),
         texel_format: $ => choice(
             token('rgba8unorm'),
@@ -589,6 +601,7 @@ module.exports = grammar({
             token('extends'),
             token('extern'),
             token('external'),
+            token('fallthrough'),
             token('filter'),
             token('final'),
             token('finally'),
@@ -607,10 +620,7 @@ module.exports = grammar({
             token('inout'),
             token('instanceof'),
             token('interface'),
-            token('invariant'),
             token('layout'),
-            token('line'),
-            token('lineadj'),
             token('lowp'),
             token('macro'),
             token('macro_rules'),
@@ -639,7 +649,6 @@ module.exports = grammar({
             token('pass'),
             token('patch'),
             token('pixelfragment'),
-            token('point'),
             token('precise'),
             token('precision'),
             token('premerge'),
