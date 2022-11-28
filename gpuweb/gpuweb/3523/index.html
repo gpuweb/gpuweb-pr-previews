@@ -890,13 +890,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-11-23">23 November 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-11-28">28 November 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/e2e15aad7161186f356ef33b39364ea4d50fe6e3/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/e2e15aad7161186f356ef33b39364ea4d50fe6e3/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/c8c51c5120504ce6b35f82ffcc04a0328bdf42b8/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/c8c51c5120504ce6b35f82ffcc04a0328bdf42b8/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -7861,7 +7861,7 @@ workgroup.</p>
      <p>Creates a <code class="idl"><a data-link-type="idl" href="#gpucomputepipeline" id="ref-for-gpucomputepipeline①⑧">GPUComputePipeline</a></code> using <a data-link-type="dfn" href="#promised-pipeline-creation" id="ref-for-promised-pipeline-creation">promised pipeline creation</a>.
 The returned <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise①⑨">Promise</a></code> resolves when the created pipeline
 is ready to be used without additional delay.</p>
-     <p>If pipeline creation fails, the returned <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise②⓪">Promise</a></code> rejects with an <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#operationerror" id="ref-for-operationerror④">OperationError</a></code>.</p>
+     <p>If pipeline creation fails, the returned <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise②⓪">Promise</a></code> rejects with an <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror⑥">GPUPipelineError</a></code>.</p>
      <p class="note" role="note"><span>Note:</span> Use of this method is preferred whenever possible, as it prevents blocking the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline⑧">queue timeline</a> work on pipeline compilation.</p>
      <div class="algorithm" data-algorithm="GPUDevice.createComputePipelineAsync">
       <div data-timeline="content">
@@ -7918,10 +7918,10 @@ subsequent steps on <var data-timeline="content">contentTimeline</var>.</p>
            <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#resolve" id="ref-for-resolve⑥">Resolve</a> <var>promise</var> with <var>pipeline</var>.</p>
           <dt data-md><a data-link-type="dfn" href="#invalid" id="ref-for-invalid②⑦">invalid</a> due to an <a data-link-type="abstract-op" href="#abstract-opdef-generate-an-internal-error" id="ref-for-abstract-opdef-generate-an-internal-error②">internal error</a>
           <dd data-md>
-           <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑥">Reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror⑥">GPUPipelineError</a></code> with <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorinit-reason" id="ref-for-dom-gpupipelineerrorinit-reason①">reason</a></code> <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorreason-internal" id="ref-for-dom-gpupipelineerrorreason-internal①">"internal"</a></code>.</p>
+           <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑥">Reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror⑦">GPUPipelineError</a></code> with <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorinit-reason" id="ref-for-dom-gpupipelineerrorinit-reason①">reason</a></code> <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorreason-internal" id="ref-for-dom-gpupipelineerrorreason-internal①">"internal"</a></code>.</p>
           <dt data-md><a data-link-type="dfn" href="#invalid" id="ref-for-invalid②⑧">invalid</a> due to an <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑧">validation error</a>
           <dd data-md>
-           <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑦">Reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror⑦">GPUPipelineError</a></code> with <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorinit-reason" id="ref-for-dom-gpupipelineerrorinit-reason②">reason</a></code> <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorreason-validation" id="ref-for-dom-gpupipelineerrorreason-validation①">"validation"</a></code>.</p>
+           <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑦">Reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror⑧">GPUPipelineError</a></code> with <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorinit-reason" id="ref-for-dom-gpupipelineerrorinit-reason②">reason</a></code> <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorreason-validation" id="ref-for-dom-gpupipelineerrorreason-validation①">"validation"</a></code>.</p>
          </dl>
        </ol>
       </div>
@@ -8145,7 +8145,7 @@ and <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-g
      <p>Creates a <code class="idl"><a data-link-type="idl" href="#gpurenderpipeline" id="ref-for-gpurenderpipeline②⓪">GPURenderPipeline</a></code> using <a data-link-type="dfn" href="#promised-pipeline-creation" id="ref-for-promised-pipeline-creation①">promised pipeline creation</a>.
 The returned <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise②②">Promise</a></code> resolves when the created pipeline
 is ready to be used without additional delay.</p>
-     <p>If pipeline creation fails, the returned <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise②③">Promise</a></code> rejects with an <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#operationerror" id="ref-for-operationerror⑤">OperationError</a></code>.</p>
+     <p>If pipeline creation fails, the returned <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise②③">Promise</a></code> rejects with an <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror⑨">GPUPipelineError</a></code>.</p>
      <p class="note" role="note"><span>Note:</span> Use of this method is preferred whenever possible, as it prevents blocking the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline⑨">queue timeline</a> work on pipeline compilation.</p>
      <div class="algorithm" data-algorithm="GPUDevice.createRenderPipelineAsync">
       <div data-timeline="content">
@@ -8202,7 +8202,7 @@ subsequent steps on <var data-timeline="content">contentTimeline</var>.</p>
            <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#resolve" id="ref-for-resolve⑦">Resolve</a> <var>promise</var> with <var>pipeline</var>.</p>
           <dt data-md><a data-link-type="dfn" href="#invalid" id="ref-for-invalid③①">invalid</a>
           <dd data-md>
-           <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑧">Reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror⑧">GPUPipelineError</a></code>.</p>
+           <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑧">Reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror①⓪">GPUPipelineError</a></code>.</p>
          </dl>
        </ol>
       </div>
@@ -13618,7 +13618,7 @@ let <var>contentsSize</var> be <var>dataSize</var> − <var>dataOffset</var>.
 Otherwise, let <var>contentsSize</var> be <var>size</var>.</p>
         <li data-md>
          <p>If any of the following conditions are unsatisfied,
-throw <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#operationerror" id="ref-for-operationerror⑥">OperationError</a></code> and stop.</p>
+throw <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#operationerror" id="ref-for-operationerror④">OperationError</a></code> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -13820,7 +13820,7 @@ different results depending on whether its format is <code>-srgb</code>, all els
          <p>If <var>sourceImage</var> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/canvas.html#the-image-argument-is-not-origin-clean" id="ref-for-the-image-argument-is-not-origin-clean②">is not origin-clean</a>,
 throw a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#securityerror" id="ref-for-securityerror①">SecurityError</a></code> and stop.</p>
         <li data-md>
-         <p>If any of the following requirements are unmet, throw an <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#operationerror" id="ref-for-operationerror⑦">OperationError</a></code> and stop.</p>
+         <p>If any of the following requirements are unmet, throw an <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#operationerror" id="ref-for-operationerror⑤">OperationError</a></code> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -14933,7 +14933,7 @@ of WebGPU calls, typically for debugging purposes or to make an operation more f
            <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①⓪①">Content timeline</a> steps: 
           <ol>
            <li data-md>
-            <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑨">Reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#operationerror" id="ref-for-operationerror⑧">OperationError</a></code>.</p>
+            <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑨">Reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#operationerror" id="ref-for-operationerror⑥">OperationError</a></code>.</p>
           </ol>
          </div>
         <li data-md>
@@ -19110,10 +19110,8 @@ for (const dataLink of dataLinks) {
    <ul>
     <li><a href="#ref-for-operationerror">4.3. GPUAdapter</a>
     <li><a href="#ref-for-operationerror①">5.4. Buffer Mapping</a> <a href="#ref-for-operationerror②">(2)</a> <a href="#ref-for-operationerror③">(3)</a>
-    <li><a href="#ref-for-operationerror④">10.2.1. Compute Pipeline Creation</a>
-    <li><a href="#ref-for-operationerror⑤">10.3.1. Render Pipeline Creation</a>
-    <li><a href="#ref-for-operationerror⑥">19.2. GPUQueue</a> <a href="#ref-for-operationerror⑦">(2)</a>
-    <li><a href="#ref-for-operationerror⑧">22.3. Error Scopes</a>
+    <li><a href="#ref-for-operationerror④">19.2. GPUQueue</a> <a href="#ref-for-operationerror⑤">(2)</a>
+    <li><a href="#ref-for-operationerror⑥">22.3. Error Scopes</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-idl-promise">
@@ -19889,7 +19887,7 @@ for (const dataLink of dataLinks) {
    <dt id="biblio-webidl">[WEBIDL]
    <dd>Edgar Chen; Timothy Gu. <a href="https://webidl.spec.whatwg.org/"><cite>Web IDL Standard</cite></a>. Living Standard. URL: <a href="https://webidl.spec.whatwg.org/">https://webidl.spec.whatwg.org/</a>
    <dt id="biblio-wgsl">[WGSL]
-   <dd>Alan Baker; Mehmet Oguz Derin; David Neto. <a href="https://www.w3.org/TR/WGSL/"><cite>WebGPU Shading Language</cite></a>. 9 November 2022. WD. URL: <a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
+   <dd>Alan Baker; Mehmet Oguz Derin; David Neto. <a href="https://www.w3.org/TR/WGSL/"><cite>WebGPU Shading Language</cite></a>. 28 November 2022. WD. URL: <a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
   </dl>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
@@ -25650,8 +25648,8 @@ restriction entirely and allow writable bindings to alias with undefined results
    <b><a href="#gpupipelineerror">#gpupipelineerror</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-gpupipelineerror">10. Pipelines</a> <a href="#ref-for-gpupipelineerror①">(2)</a> <a href="#ref-for-gpupipelineerror②">(3)</a> <a href="#ref-for-gpupipelineerror③">(4)</a> <a href="#ref-for-gpupipelineerror④">(5)</a> <a href="#ref-for-gpupipelineerror⑤">(6)</a>
-    <li><a href="#ref-for-gpupipelineerror⑥">10.2.1. Compute Pipeline Creation</a> <a href="#ref-for-gpupipelineerror⑦">(2)</a>
-    <li><a href="#ref-for-gpupipelineerror⑧">10.3.1. Render Pipeline Creation</a>
+    <li><a href="#ref-for-gpupipelineerror⑥">10.2.1. Compute Pipeline Creation</a> <a href="#ref-for-gpupipelineerror⑦">(2)</a> <a href="#ref-for-gpupipelineerror⑧">(3)</a>
+    <li><a href="#ref-for-gpupipelineerror⑨">10.3.1. Render Pipeline Creation</a> <a href="#ref-for-gpupipelineerror①⓪">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dictdef-gpupipelineerrorinit">
