@@ -645,13 +645,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-11-30">30 November 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-12-01">1 December 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/64d8443d3d6c2eaacc5200a5ed74cf68c21133cb/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/64d8443d3d6c2eaacc5200a5ed74cf68c21133cb/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/6198f55baf5d85dfcd6afbca162d8c3a3750b310/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/6198f55baf5d85dfcd6afbca162d8c3a3750b310/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -960,7 +960,7 @@ Learn more about <a href="http://www.w3.org/community/">W3C Community and Busine
         <li><a href="#uniformity-concepts"><span class="secno">13.2.1</span> <span class="content">Terminology and Concepts</span></a>
         <li><a href="#uniformity-overview"><span class="secno">13.2.2</span> <span class="content">Uniformity Analysis Overview</span></a>
         <li><a href="#uniformity-function"><span class="secno">13.2.3</span> <span class="content">Analyzing the Uniformity Requirements of a Function</span></a>
-        <li><a href="#pointer-desguar"><span class="secno">13.2.4</span> <span class="content">Pointer Desugaring</span></a>
+        <li><a href="#pointer-desugar"><span class="secno">13.2.4</span> <span class="content">Pointer Desugaring</span></a>
         <li><a href="#func-var-value-analysis"><span class="secno">13.2.5</span> <span class="content">Function-scope Variable Value Analysis</span></a>
         <li><a href="#uniformity-statements"><span class="secno">13.2.6</span> <span class="content">Uniformity Rules for Statements</span></a>
         <li><a href="#uniformity-function-calls"><span class="secno">13.2.7</span> <span class="content">Uniformity Rules for Function Calls</span></a>
@@ -10310,10 +10310,11 @@ stored in the memory pointed to by the parameter becomes <a data-link-type="dfn"
     <li data-md>
      <p>Create one node for each parameter of the function which we’ll call "arg_i".</p>
     <li data-md>
-     <p>Desugar pointer parameters in the <a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function①②">function</a> address space as described in <a href="#func-var-value-analysis">§ 13.2.5 Function-scope Variable Value Analysis</a>.</p>
+     <p>Desugar pointers as described in <a href="#pointer-desugar">§ 13.2.4 Pointer Desugaring</a>.</p>
      <ul>
       <li data-md>
-       <p>For each of these parameters, create a "Value_return_i" node.</p>
+       <p>For each pointer parameter in the <a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function①②">function</a> address space,
+create a "Value_return_i" node.</p>
      </ul>
     <li data-md>
      <p>Walk over the syntax of the function, adding nodes and edges to the graph following the rules of the next sections (<a href="#func-var-value-analysis">§ 13.2.5 Function-scope Variable Value Analysis</a>, <a href="#uniformity-statements">§ 13.2.6 Uniformity Rules for Statements</a>, <a href="#uniformity-function-calls">§ 13.2.7 Uniformity Rules for Function Calls</a>, <a href="#uniformity-expressions">§ 13.2.8 Uniformity Rules for Expressions</a>), using "CF_start" as the starting control-flow for the function’s body.</p>
@@ -10355,38 +10356,57 @@ stored in the memory pointed to by the parameter becomes <a data-link-type="dfn"
      <p>For each parameter, if it has not been assigned a <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag③">parameter tag</a>, then it is <a data-link-type="dfn" href="#parameternorestriction" id="ref-for-parameternorestriction">ParameterNoRestriction</a>.</p>
    </ul>
    <p class="note" role="note"><span>Note:</span> The entire graph can be destroyed at this point. The tags listed above are all that we need to remember to analyze callers of this function.</p>
-   <h4 class="heading settled" data-level="13.2.4" id="pointer-desguar"><span class="secno">13.2.4. </span><span class="content">Pointer Desugaring</span><a class="self-link" href="#pointer-desguar"></a></h4>
+   <h4 class="heading settled" data-level="13.2.4" id="pointer-desugar"><span class="secno">13.2.4. </span><span class="content">Pointer Desugaring</span><a class="self-link" href="#pointer-desugar"></a></h4>
    <p>Each <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter①⑧">parameter</a> of <a data-link-type="dfn" href="#pointer-type" id="ref-for-pointer-type⑨">pointer type</a> in the <a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function①③">function</a> address space is desugared as a local variable declaration
 whose initial value is equivalent to dereferencing the parameter.
 That is, function address space pointers are viewed as aliases to a local
 variable declaration.</p>
-   <p>Each <a data-link-type="dfn" href="#let-declaration" id="ref-for-let-declaration⑨">let-declaration</a> with an <a data-link-type="dfn" href="#effective-value-type" id="ref-for-effective-value-type⑧">effective-value-type</a> that is a <a data-link-type="dfn" href="#pointer-type" id="ref-for-pointer-type①⓪">pointer
+   <p>Each <a data-link-type="dfn" href="#let-declaration" id="ref-for-let-declaration⑨">let-declaration</a>, <em>L</em>, with an <a data-link-type="dfn" href="#effective-value-type" id="ref-for-effective-value-type⑧">effective-value-type</a> that is a <a data-link-type="dfn" href="#pointer-type" id="ref-for-pointer-type①⓪">pointer
 type</a> is desugared as follows:</p>
    <ul>
     <li data-md>
-     <p>The initializer expression of the declaration is recorded.</p>
+     <p>Visit each subexpression, <em>SE</em>, of the initializer expression of <em>L</em> in a postorder depth-first traversal:</p>
+     <ul>
+      <li data-md>
+       <p>If <em>SE</em> invokes the <a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule②">load rule</a> during <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking①">type checking</a> and the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier④">root identifier</a> is a mutable variable then:</p>
+       <ul>
+        <li data-md>
+         <p>Create a new let-declaration, <em>LSE</em>, immediately prior to <em>L</em> initialized with <em>SE</em>.</p>
+        <li data-md>
+         <p>Replace <em>SE</em> in <em>L</em> with a <a href="#value-identifier-expr">value identifier expression</a> composed of <em>LSE</em>.</p>
+       </ul>
+     </ul>
     <li data-md>
-     <p>Each <a data-link-type="dfn" href="#identifier" id="ref-for-identifier①⑧">identifier</a> that <a data-link-type="dfn" href="#resolves" id="ref-for-resolves②④">resolves</a> is substituted with the recorded
+     <p>Record the, possibly updated, initializer expression of <em>L</em>.</p>
+    <li data-md>
+     <p>Substitute each <a data-link-type="dfn" href="#identifier" id="ref-for-identifier①⑧">identifier</a> that <a data-link-type="dfn" href="#resolves" id="ref-for-resolves②④">resolves</a> to <em>L</em> with the recorded
 initializer expression (wrapped in a <a href="#parenthesized-expressions">parenthesized expression</a>).</p>
    </ul>
-   <p>This desugaring simplifies the subsequent analyses by exposing the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier④">root identifier</a> of the pointer directly at each of its uses.</p>
-   <div class="example wgsl no-marker" id="example-b801db53">
-    <a class="self-link" href="#example-b801db53"></a>
+   <p>This desugaring simplifies the subsequent analyses by exposing the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier⑤">root identifier</a> of the pointer directly at each of its uses.</p>
+   <p class="note" role="note"><span>Note:</span> For the purposes of uniformity analysis <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking②">type checking</a> is described to
+occur both before and after this desugaring has occurred.</p>
+   <div class="example wgsl no-marker" id="example-d8e729cc">
+    <a class="self-link" href="#example-d8e729cc"></a>
     <div class="marker">EXAMPLE: pointers in the uniformity analysis</div>
-<pre class="highlight"><c- k>fn</c-> <c- nf>foo</c-><c- p>(</c-><c- n>p</c-> : <c- nc>ptr</c-><c- o>&lt;</c-><c- n>function</c-><c- p>,</c-> <c- n>array</c-><c- o>&lt;</c-><c- b>f32</c-><c- p>,</c-> <c- mi>4</c-><c- o>>></c-><c- p>)</c-> -> <c- b>f32</c-> <c- p>{</c->
+<pre class="highlight"><c- k>fn</c-> <c- nf>foo</c-><c- p>(</c-><c- n>p</c-> : <c- nc>ptr</c-><c- o>&lt;</c-><c- n>function</c-><c- p>,</c-> <c- n>array</c-><c- o>&lt;</c-><c- b>f32</c-><c- p>,</c-> <c- mi>4</c-><c- o>>></c-><c- p>,</c-> <c- n>i</c-> : <c- b>i32</c-><c- p>)</c-> -> <c- b>f32</c-> <c- p>{</c->
   <c- a>let</c-> <c- n>p1</c-> <c- o>=</c-> <c- n>p</c-><c- p>;</c->
-  <c- a>let</c-> <c- n>p2</c-> <c- o>=</c-> <c- o>&amp;</c-><c- p>((</c-><c- o>*</c-><c- n>p1</c-><c- p>)[</c-><c- mi>1</c-><c- p>]);</c->
+  <c- n>var</c-> <c- n>x</c-> <c- o>=</c-> <c- n>i</c-><c- p>;</c->
+  <c- a>let</c-> <c- n>p2</c-> <c- o>=</c-> <c- o>&amp;</c-><c- p>((</c-><c- o>*</c-><c- n>p1</c-><c- p>)[</c-><c- n>x</c-><c- p>]);</c->
+  <c- n>x</c-> <c- o>=</c-> <c- mi>0</c-><c- p>;</c->
   <c- o>*</c-><c- n>p2</c-> <c- o>=</c-> <c- mi>5</c-><c- p>;</c->
-  <c- k>return</c-> <c- p>(</c-><c- o>*</c-><c- n>p1</c-><c- p>)[</c-><c- mi>0</c-><c- p>];</c->
+  <c- k>return</c-> <c- p>(</c-><c- o>*</c-><c- n>p1</c-><c- p>)[</c-><c- n>x</c-><c- p>];</c->
 <c- p>}</c->
 
 <c- c1>// This is the equivalent version of foo for the analysis.</c->
-<c- k>fn</c-> <c- nf>foo_for_analysis</c-><c- p>(</c-><c- n>p</c-> : <c- nc>ptr</c-><c- o>&lt;</c-><c- n>function</c-><c- p>,</c-> <c- n>array</c-><c- o>&lt;</c-><c- b>f32</c-><c- p>,</c-> <c- mi>4</c-><c- o>>></c-><c- p>)</c-> -> <c- b>f32</c-> <c- p>{</c->
-  <c- n>var</c-> <c- n>p_var</c-> <c- o>=</c-> <c- o>*</c-><c- n>p</c-><c- p>;</c->         <c- c1>// Introduce variable for p.</c->
-  <c- a>let</c-> <c- n>p1</c-> <c- o>=</c-> <c- o>&amp;</c-><c- n>p_var</c-><c- p>;</c->        <c- c1>// Use the variable for p1</c->
-  <c- a>let</c-> <c- n>p2</c-> <c- o>=</c-> <c- o>&amp;</c-><c- p>(</c-><c- n>p_var</c-><c- p>[</c-><c- mi>1</c-><c- p>]);</c->   <c- c1>// Substitute p1’s initializer</c->
-  <c- o>*</c-><c- p>(</c-><c- o>&amp;</c-><c- p>(</c-><c- n>p_var</c-><c- p>[</c-><c- mi>1</c-><c- p>]))</c-> <c- o>=</c-> <c- mi>5</c-><c- p>;</c->     <c- c1>// Substitute p2’s initializer</c->
-  <c- k>return</c-> <c- p>(</c-><c- o>*</c-><c- p>(</c-><c- o>&amp;</c-><c- n>p_var</c-><c- p>))[</c-><c- mi>0</c-><c- p>];</c->  <c- c1>// Substitute p1’s initializer</c->
+<c- k>fn</c-> <c- nf>foo_for_analysis</c-><c- p>(</c-><c- n>p</c-> : <c- nc>ptr</c-><c- o>&lt;</c-><c- n>function</c-><c- p>,</c-> <c- n>array</c-><c- o>&lt;</c-><c- b>f32</c-><c- p>,</c-> <c- mi>4</c-><c- o>>></c-><c- p>,</c-> <c- n>i</c-> : <c- b>i32</c-><c- p>)</c-> -> <c- b>f32</c-> <c- p>{</c->
+  <c- n>var</c-> <c- n>p_var</c-> <c- o>=</c-> <c- o>*</c-><c- n>p</c-><c- p>;</c->            <c- c1>// Introduce variable for p.</c->
+  <c- a>let</c-> <c- n>p1</c-> <c- o>=</c-> <c- o>&amp;</c-><c- n>p_var</c-><c- p>;</c->           <c- c1>// Use the variable for p1</c->
+  <c- n>var</c-> <c- n>x</c-> <c- o>=</c-> <c- n>i</c-><c- p>;</c->
+  <c- a>let</c-> <c- n>x_tmp1</c-> <c- o>=</c-> <c- n>x</c-><c- p>;</c->            <c- c1>// Capture value of x</c->
+  <c- a>let</c-> <c- n>p2</c-> <c- o>=</c-> <c- o>&amp;</c-><c- p>(</c-><c- n>p_var</c-><c- p>[</c-><c- n>x_tmp1</c-><c- p>]);</c-> <c- c1>// Substitute p1’s initializer</c->
+  <c- n>x</c-> <c- o>=</c-> <c- mi>0</c-><c- p>;</c->
+  <c- o>*</c-><c- p>(</c-><c- o>&amp;</c-><c- p>(</c-><c- n>p_var</c-><c- p>[</c-><c- n>x_tmp1</c-><c- p>]))</c-> <c- o>=</c-> <c- mi>5</c-><c- p>;</c->   <c- c1>// Substitute p2’s initializer</c->
+  <c- k>return</c-> <c- p>(</c-><c- o>*</c-><c- p>(</c-><c- o>&amp;</c-><c- n>p_var</c-><c- p>))[</c-><c- n>x</c-><c- p>];</c->     <c- c1>// Substitute p1’s initializer</c->
 <c- p>}</c->
 </pre>
    </div>
@@ -10806,8 +10826,8 @@ after the function call.</p>
       <td class="nowrap"><em>CF</em>, <em>CF</em> 
       <td>
      <tr>
-      <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves②⑦">resolving</a> to function-scope variable "x"
-      where the <a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule②">load rule</a> is invoked during <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking①">type checking</a> with "x" as <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier⑤">root identifier</a> of the <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view①④">memory view</a> 
+      <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves②⑦">resolving</a> to function-scope variable "x",
+      where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier⑥">root identifier</a> of a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view①④">memory view</a> expression, <em>MVE</em>, and the <a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule③">load rule</a> is invoked on <em>MVE</em> during <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking③">type checking</a> 
       <td><em>Result</em> 
       <td class><em>X</em> is the node corresponding to the value of "x" at the input to the statement containing this expression 
       <td class="nowrap"><em>CF</em>, <em>Result</em> 
@@ -10815,9 +10835,8 @@ after the function call.</p>
        <em>Result</em> -> {<em>CF</em>, <em>X</em>} 
        <p class="note" role="note"><span>Note:</span> <em>X</em> is equivalent to <em>Vout</em>(<em>prev</em>) for "x"<br> (see <a href="#func-var-value-analysis">§ 13.2.5 Function-scope Variable Value Analysis</a>)</p>
      <tr>
-      <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves②⑧">resolving</a> to function-scope variable "x"
-      where the <a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule③">load rule</a> is not invoked during <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking②">type checking</a> with "x" as
-      the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier⑥">root identifier</a> of the <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view①⑤">memory view</a> 
+      <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves②⑧">resolving</a> to function-scope variable "x",
+      where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier⑦">root identifier</a> of a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view①⑤">memory view</a> expression, <em>MVE</em>, and the <a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule④">load rule</a> is not invoked on <em>MVE</em> during <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking④">type checking</a> 
       <td>
       <td class>
       <td class="nowrap"><em>CF</em>, <em>CF</em> 
@@ -10848,15 +10867,14 @@ after the function call.</p>
       <td>
      <tr>
       <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves③③">resolving</a> to non-read-only module-scope
-      variable "x" where the <a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule④">load rule</a> is invoked during <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking③">type checking</a> with "x" as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier⑦">root identifier</a> of the <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view①⑥">memory view</a> 
+      variable "x" where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier⑧">root identifier</a> of a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view①⑥">memory view</a> expression, <em>MVE</em>, and the <a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule⑤">load rule</a> is invoked on <em>MVE</em> during <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking⑤">type checking</a> 
       <td>
       <td>
       <td class="nowrap"><em>CF</em>,<br> <em>MayBeNonUniform</em> 
       <td>
      <tr>
       <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves③④">resolving</a> to non-read-only module-scope
-      variable "x" where the <a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule⑤">load rule</a> is not invoked during <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking④">type
-      checking</a> with "x" as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier⑧">root identifier</a> of the <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view①⑦">memory view</a> 
+      variable "x" where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier⑨">root identifier</a> of a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view①⑦">memory view</a> expression, <em>MVE</em>, and the <a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule⑥">load rule</a> is not invoked on <em>MVE</em> during <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking⑥">type checking</a> 
       <td>
       <td>
       <td class="nowrap"><em>CF</em>,<em>CF</em> 
@@ -11743,7 +11761,7 @@ the Vulkan Memory Model.</p>
    <p>A <a data-link-type="dfn" href="#read-access" id="ref-for-read-access⑥">read access</a> occurs when an invocation executes one of the following:</p>
    <ul>
     <li data-md>
-     <p>An evaluation of the <a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule⑥">Load Rule</a></p>
+     <p>An evaluation of the <a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule⑦">Load Rule</a></p>
     <li data-md>
      <p>Any <a href="#texture-builtin-functions">texture builtin function</a> except:</p>
      <ul>
@@ -16255,7 +16273,7 @@ reduce a shader’s memory bandwidth demand.</p>
    <p>All synchronization functions execute a <a data-link-type="dfn" href="#control-barrier" id="ref-for-control-barrier">control barrier</a> with
 Acquire/Release <a href="#memory-semantics">memory ordering</a>.
 That is, all synchronization functions, and affected memory and atomic
-operations are ordered <a href="#program-order">program order</a> relative to the
+operations are ordered in <a href="#program-order">program order</a> relative to the
 synchronization function.
 Additionally, the affected memory and atomic operations program-ordered before
 the synchronization function must be visible to all other threads in the
@@ -18665,7 +18683,8 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <b><a href="#type-checking">#type-checking</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-type-checking">5.2.1. Abstract Numeric Types</a>
-    <li><a href="#ref-for-type-checking①">13.2.8. Uniformity Rules for Expressions</a> <a href="#ref-for-type-checking②">(2)</a> <a href="#ref-for-type-checking③">(3)</a> <a href="#ref-for-type-checking④">(4)</a>
+    <li><a href="#ref-for-type-checking①">13.2.4. Pointer Desugaring</a> <a href="#ref-for-type-checking②">(2)</a>
+    <li><a href="#ref-for-type-checking③">13.2.8. Uniformity Rules for Expressions</a> <a href="#ref-for-type-checking④">(2)</a> <a href="#ref-for-type-checking⑤">(3)</a> <a href="#ref-for-type-checking⑥">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="type-error">
@@ -19762,8 +19781,9 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <ul>
     <li><a href="#ref-for-load-rule">5.1.2. Conversion Rank</a>
     <li><a href="#ref-for-load-rule①">5.4.4. Invalid Memory Reference</a>
-    <li><a href="#ref-for-load-rule②">13.2.8. Uniformity Rules for Expressions</a> <a href="#ref-for-load-rule③">(2)</a> <a href="#ref-for-load-rule④">(3)</a> <a href="#ref-for-load-rule⑤">(4)</a>
-    <li><a href="#ref-for-load-rule⑥">14.1. Memory Operation</a>
+    <li><a href="#ref-for-load-rule②">13.2.4. Pointer Desugaring</a>
+    <li><a href="#ref-for-load-rule③">13.2.8. Uniformity Rules for Expressions</a> <a href="#ref-for-load-rule④">(2)</a> <a href="#ref-for-load-rule⑤">(3)</a> <a href="#ref-for-load-rule⑥">(4)</a>
+    <li><a href="#ref-for-load-rule⑦">14.1. Memory Operation</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="texel">
@@ -21003,8 +21023,8 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-root-identifier">9.4. Restrictions on Functions</a>
     <li><a href="#ref-for-root-identifier①">9.4.1.1. Root Identifier</a>
     <li><a href="#ref-for-root-identifier②">9.4.1.2. Aliasing</a> <a href="#ref-for-root-identifier③">(2)</a>
-    <li><a href="#ref-for-root-identifier④">13.2.4. Pointer Desugaring</a>
-    <li><a href="#ref-for-root-identifier⑤">13.2.8. Uniformity Rules for Expressions</a> <a href="#ref-for-root-identifier⑥">(2)</a> <a href="#ref-for-root-identifier⑦">(3)</a> <a href="#ref-for-root-identifier⑧">(4)</a>
+    <li><a href="#ref-for-root-identifier④">13.2.4. Pointer Desugaring</a> <a href="#ref-for-root-identifier⑤">(2)</a>
+    <li><a href="#ref-for-root-identifier⑥">13.2.8. Uniformity Rules for Expressions</a> <a href="#ref-for-root-identifier⑦">(2)</a> <a href="#ref-for-root-identifier⑧">(3)</a> <a href="#ref-for-root-identifier⑨">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="entry-point">
