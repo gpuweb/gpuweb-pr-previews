@@ -645,13 +645,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-12-08">8 December 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-12-09">9 December 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/77110b43e024def3bcc1878aaf2b7c9404de0ce1/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/77110b43e024def3bcc1878aaf2b7c9404de0ce1/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/15b120f8ae0a7c1454325332e78f6fbaf9d8ca53/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/15b120f8ae0a7c1454325332e78f6fbaf9d8ca53/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -3256,7 +3256,7 @@ In this interpretation, the vectors of a matrix are treated as column vectors.</
       <td>
      <tr>
       <td><dfn data-dfn-type="dfn" data-noexport id="mat2x4f">mat2x4f<a class="self-link" href="#mat2x4f"></a></dfn> 
-      <td>mat2x3&lt;f32> 
+      <td>mat2x4&lt;f32> 
       <td>
      <tr>
       <td><dfn data-dfn-type="dfn" data-noexport id="mat3x2f">mat3x2f<a class="self-link" href="#mat3x2f"></a></dfn> 
@@ -3268,19 +3268,19 @@ In this interpretation, the vectors of a matrix are treated as column vectors.</
       <td>
      <tr>
       <td><dfn data-dfn-type="dfn" data-noexport id="mat3x4f">mat3x4f<a class="self-link" href="#mat3x4f"></a></dfn> 
-      <td>mat3x3&lt;f32> 
+      <td>mat3x4&lt;f32> 
       <td>
      <tr>
       <td><dfn data-dfn-type="dfn" data-noexport id="mat4x2f">mat4x2f<a class="self-link" href="#mat4x2f"></a></dfn> 
-      <td>mat2x2&lt;f32> 
+      <td>mat4x2&lt;f32> 
       <td>
      <tr>
       <td><dfn data-dfn-type="dfn" data-noexport id="mat4x3f">mat4x3f<a class="self-link" href="#mat4x3f"></a></dfn> 
-      <td>mat2x3&lt;f32> 
+      <td>mat4x3&lt;f32> 
       <td>
      <tr>
       <td><dfn data-dfn-type="dfn" data-noexport id="mat4x4f">mat4x4f<a class="self-link" href="#mat4x4f"></a></dfn> 
-      <td>mat2x3&lt;f32> 
+      <td>mat4x4&lt;f32> 
       <td>
      <tr>
       <td><dfn data-dfn-type="dfn" data-noexport id="mat2x2h">mat2x2h<a class="self-link" href="#mat2x2h"></a></dfn> 
@@ -3291,7 +3291,7 @@ In this interpretation, the vectors of a matrix are treated as column vectors.</
       <td>mat2x3&lt;f16> 
      <tr>
       <td><dfn data-dfn-type="dfn" data-noexport id="mat2x4h">mat2x4h<a class="self-link" href="#mat2x4h"></a></dfn> 
-      <td>mat2x3&lt;f16> 
+      <td>mat2x4&lt;f16> 
      <tr>
       <td><dfn data-dfn-type="dfn" data-noexport id="mat3x2h">mat3x2h<a class="self-link" href="#mat3x2h"></a></dfn> 
       <td>mat3x2&lt;f16> 
@@ -3300,16 +3300,16 @@ In this interpretation, the vectors of a matrix are treated as column vectors.</
       <td>mat3x3&lt;f16> 
      <tr>
       <td><dfn data-dfn-type="dfn" data-noexport id="mat3x4h">mat3x4h<a class="self-link" href="#mat3x4h"></a></dfn> 
-      <td>mat3x3&lt;f16> 
+      <td>mat3x4&lt;f16> 
      <tr>
       <td><dfn data-dfn-type="dfn" data-noexport id="mat4x2h">mat4x2h<a class="self-link" href="#mat4x2h"></a></dfn> 
-      <td>mat2x2&lt;f16> 
+      <td>mat4x2&lt;f16> 
      <tr>
       <td><dfn data-dfn-type="dfn" data-noexport id="mat4x3h">mat4x3h<a class="self-link" href="#mat4x3h"></a></dfn> 
-      <td>mat2x3&lt;f16> 
+      <td>mat4x3&lt;f16> 
      <tr>
       <td><dfn data-dfn-type="dfn" data-noexport id="mat4x4h">mat4x4h<a class="self-link" href="#mat4x4h"></a></dfn> 
-      <td>mat2x3&lt;f16> 
+      <td>mat4x4&lt;f16> 
    </table>
    <h4 class="heading settled" data-level="5.2.8" id="atomic-types"><span class="secno">5.2.8. </span><span class="content">Atomic Types</span><a class="self-link" href="#atomic-types"></a></h4>
    <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="atomic-type">atomic type</dfn> encapsulates a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar③">integer scalar</a> type such that:</p>
