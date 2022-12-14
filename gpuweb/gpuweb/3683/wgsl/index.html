@@ -651,7 +651,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/a29a72535f0251d387f81a10112dd8f26f883d03/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/a29a72535f0251d387f81a10112dd8f26f883d03/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/d8e6f6077511bca40eb108f3517dc956c465465e/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/d8e6f6077511bca40eb108f3517dc956c465465e/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -2300,7 +2300,7 @@ some attribute parameters are also context-dependent names.</p>
        <p class="note" role="note"><span>Note:</span> This attribute is used as a notational convention to describe which
     built-in functions can be used in <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions②">const-expressions</a>.</p>
      <tr>
-      <td><dfn class="dfn-paneled" data-dfn-for="attribute" data-dfn-type="dfn" data-noexport id="attribute-diagnostic"><code>diagnostic</code></dfn> 
+      <td><dfn data-dfn-for="attribute" data-dfn-type="dfn" data-noexport id="attribute-diagnostic"><code>diagnostic</code><a class="self-link" href="#attribute-diagnostic"></a></dfn> 
       <td>
        Two parameters. 
        <p>The first parameter is a <a data-link-type="dfn" href="#syntax-severity_control_name" id="ref-for-syntax-severity_control_name">severity_control_name</a>.</p>
@@ -8989,8 +8989,6 @@ the fragment will be thrown away.</p>
    </div>
    <p>A function call statement executes a <a data-link-type="dfn" href="#function-call" id="ref-for-function-call④">function call</a>.</p>
    <p class="note" role="note"><span>Note:</span> If the function <a data-link-type="dfn" href="#return-value" id="ref-for-return-value①">returns a value</a>, that value is ignored.</p>
-   <p class="note" role="note"><span>Note:</span> The only attribute that can be applied is the <a data-link-type="dfn" href="#attribute-diagnostic" id="ref-for-attribute-diagnostic">diagnostic</a> attribute,
-and only when calling a <a data-link-type="dfn" href="#builtin-functions-that-compute-a-derivative" id="ref-for-builtin-functions-that-compute-a-derivative①">builtin function that computes a derivative</a>.</p>
    <h3 class="heading settled" data-level="8.6" id="static-assert-statement"><span class="secno">8.6. </span><span class="content">Static Assertion Statement</span><a class="self-link" href="#static-assert-statement"></a></h3>
    <p>A static assertion statement produces a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑤⑥">shader-creation error</a> if the
 expression evaluates to <code>false</code>.
@@ -10540,7 +10538,7 @@ Subsequent subsections describe the analysis.</p>
    <p>If <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis①">uniformity analysis</a> cannot prove that a particular <a href="#collective-operations">collective operation</a> executes in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow③">uniform control flow</a>, then</p>
    <ul>
     <li data-md>
-     <p>If the operation is a <a data-link-type="dfn" href="#builtin-functions-that-compute-a-derivative" id="ref-for-builtin-functions-that-compute-a-derivative②">builtin function that computes a derivative</a>, then
+     <p>If the operation is a <a data-link-type="dfn" href="#builtin-functions-that-compute-a-derivative" id="ref-for-builtin-functions-that-compute-a-derivative①">builtin function that computes a derivative</a>, then
 a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity①">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic⑤">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered②">triggered</a>.</p>
     <li data-md>
      <p>If the operation is a <a href="#sync-builtin-functions">synchronization builtin</a>, a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪⓪">shader-creation error</a> results.</p>
@@ -19108,12 +19106,6 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-attribute-const">9.3. const Functions</a> <a href="#ref-for-attribute-const①">(2)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="attribute-diagnostic">
-   <b><a href="#attribute-diagnostic">#attribute-diagnostic</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-attribute-diagnostic">8.5. Function Call Statement</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="attribute-group">
    <b><a href="#attribute-group">#attribute-group</a></b><b>Referenced in:</b>
    <ul>
@@ -22319,8 +22311,7 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <b><a href="#builtin-functions-that-compute-a-derivative">#builtin-functions-that-compute-a-derivative</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-builtin-functions-that-compute-a-derivative">2.2.1. Filterable Triggering Rules</a>
-    <li><a href="#ref-for-builtin-functions-that-compute-a-derivative①">8.5. Function Call Statement</a>
-    <li><a href="#ref-for-builtin-functions-that-compute-a-derivative②">13.2. Uniformity</a>
+    <li><a href="#ref-for-builtin-functions-that-compute-a-derivative①">13.2. Uniformity</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="flush-to-zero">
