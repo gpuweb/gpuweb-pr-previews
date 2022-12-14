@@ -651,7 +651,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/4622fc7dff827f9b17dd5ff965b048b021a5fbb2/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/4622fc7dff827f9b17dd5ff965b048b021a5fbb2/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/a29a72535f0251d387f81a10112dd8f26f883d03/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/a29a72535f0251d387f81a10112dd8f26f883d03/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -1659,19 +1659,14 @@ A range diagnostic filter is specified as a <code>@diagnostic</code> <a data-lin
 the <a data-link-type="dfn" href="#affected-range" id="ref-for-affected-range①">affected range</a> is the entire phrase (e.g. including the function call arguments).</p>
    </ul>
    <p class="issue" id="issue-5be9a487"><a class="self-link" href="#issue-5be9a487"></a> <a href="https://github.com/gpuweb/gpuweb/issues/3689">#3689</a> Refine range diagnostic filters: where they can be applied, and associated affected ranges.</p>
-   <div class="example wgsl global-scope no-marker" id="example-537a8e59">
-    <a class="self-link" href="#example-537a8e59"></a>
+   <div class="example wgsl global-scope no-marker" id="example-7f83f3ae">
+    <a class="self-link" href="#example-7f83f3ae"></a>
     <div class="marker">EXAMPLE: Range diagnostic filter on texture sampling</div>
 <pre class="highlight"><c- n>var</c-><c- o>&lt;</c-><c- n>private</c-><c- o>></c-> <c- n>d</c->: <c- b>f32</c-><c- p>;</c->
 <c- k>fn</c-> <c- nf>helper</c-><c- p>()</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-> <c- p>{</c->
   <c- k>if</c-> <c- p>(</c-><c- n>d</c-> <c- o>&lt;</c-> <c- mf>0.5</c-><c- p>)</c-> <c- p>{</c->
     <c- c1>// Disable the derivative_uniformity diagnostic.</c->
     <c- k>return</c-> <c- o>@</c-><c- n>diagnostic</c-><c- p>(</c-><c- n>off</c-><c- p>,</c-><c- n>derivative_uniformity</c-><c- p>)</c-> <c- n>textureSample</c-><c- p>(</c-><c- n>t</c-><c- p>,</c-><c- n>s</c-><c- p>,</c-><c- n>vec2</c-><c- p>(</c-><c- mi>0</c-><c- p>,</c-><c- mi>0</c-><c- p>));</c->
-  <c- p>}</c-> <c- k>else</c-> <c- p>{</c->
-    <c- c1>// Lower the severity of the the derivative_uniformity diagnostic to "warning"</c->
-    <c- c1>// within the arguments to the call to 'max'.</c->
-    <c- k>return</c-> <c- o>@</c-><c- n>diagnostic</c-><c- p>(</c-><c- n>warning</c-><c- p>,</c-><c- n>derivative_uniformity</c-><c- p>)</c->
-               <c- n>max</c-><c- p>(</c-><c- n>vec4</c-><c- p>(</c-><c- mf>0.5</c-><c- p>,</c-><c- mf>0.5</c-><c- p>),</c-> <c- n>textureSample</c-><c- p>(</c-><c- n>t</c-><c- p>,</c-><c- n>s</c-><c- p>,</c-><c- n>vec2</c-><c- p>(</c-><c- mi>0</c-><c- p>,</c-><c- mi>0</c-><c- p>)));</c->
   <c- p>}</c->
   <c- k>return</c-> <c- n>vec4</c-><c- p>(</c-><c- mf>0.0</c-><c- p>);</c->
 <c- p>}</c->
@@ -1680,8 +1675,8 @@ the <a data-link-type="dfn" href="#affected-range" id="ref-for-affected-range①
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="global-diagnostic-filter">global diagnostic filter</dfn> is a diagnostic filter whose <a data-link-type="dfn" href="#affected-range" id="ref-for-affected-range②">affected range</a> is the whole WGSL program.
 It is a <a data-link-type="dfn" href="#directive" id="ref-for-directive">directive</a>, thus appearing before any <a data-link-type="dfn" href="#module-scope" id="ref-for-module-scope②">module-scope</a> declarations.
 It is spelled like the attribute form, but without the leading <code>@</code> (U+0040) codepoint, and with a terminating semicolon.</p>
-   <div class="example wgsl global-scope no-marker" id="example-4af3bd97">
-    <a class="self-link" href="#example-4af3bd97"></a>
+   <div class="example wgsl global-scope no-marker" id="example-d3cb23b4">
+    <a class="self-link" href="#example-d3cb23b4"></a>
     <div class="marker">EXAMPLE: Global diagnostic filter for derivative uniformity</div>
 <pre class="highlight"><c- n>diagnostic</c-><c- p>(</c-><c- n>off</c-><c- p>,</c-><c- n>derivative_uniformity</c-><c- p>);</c->
 <c- n>var</c-><c- o>&lt;</c-><c- n>private</c-><c- o>></c-> <c- n>d</c->: <c- b>f32</c-><c- p>;</c->
@@ -1691,10 +1686,9 @@ It is spelled like the attribute form, but without the leading <code>@</code> (U
     <c- c1>// by the global diagnostic filter.</c->
     <c- k>return</c-> <c- n>textureSample</c-><c- p>(</c-><c- n>t</c-><c- p>,</c-><c- n>s</c-><c- p>,</c-><c- n>vec2</c-><c- p>(</c-><c- mi>0</c-><c- p>,</c-><c- mi>0</c-><c- p>));</c->
   <c- p>}</c-> <c- k>else</c-> <c- p>{</c->
-    <c- c1>// The derivative_uniformity diagnostic is set to 'warning' severity</c->
-    <c- c1>// within within the arguments to the call to 'max'.</c->
+    <c- c1>// The derivative_uniformity diagnostic is set to 'warning' severity.</c->
     <c- k>return</c-> <c- o>@</c-><c- n>diagnostic</c-><c- p>(</c-><c- n>warning</c-><c- p>,</c-><c- n>derivative_uniformity</c-><c- p>)</c->
-               <c- n>max</c-><c- p>(</c-><c- n>vec4</c-><c- p>(</c-><c- mf>0.5</c-><c- p>,</c-><c- mf>0.5</c-><c- p>),</c-> <c- n>textureSample</c-><c- p>(</c-><c- n>t</c-><c- p>,</c-><c- n>s</c-><c- p>,</c-><c- n>vec2</c-><c- p>(</c-><c- mi>0</c-><c- p>,</c-><c- mi>0</c-><c- p>)));</c->
+        <c- n>textureSample</c-><c- p>(</c-><c- n>t</c-><c- p>,</c-><c- n>s</c-><c- p>,</c-><c- n>vec2</c-><c- p>(</c-><c- mi>0</c-><c- p>,</c-><c- mi>0</c-><c- p>));</c->
   <c- p>}</c->
   <c- k>return</c-> <c- n>vec4</c-><c- p>(</c-><c- mf>0.0</c-><c- p>);</c->
 <c- p>}</c->
