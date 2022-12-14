@@ -645,13 +645,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-12-13">13 December 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-12-14">14 December 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/d08ab7d134308a51c2ec1b2619927b3004f9bdf8/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/d08ab7d134308a51c2ec1b2619927b3004f9bdf8/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/1a5ba152bda4d39a7b1b41309e93490fa658adcc/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/1a5ba152bda4d39a7b1b41309e93490fa658adcc/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -1537,7 +1537,7 @@ The place in the source text where the condition is met, expressed as a point or
    <dl>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="severity" data-dfn-type="dfn" data-noexport id="severity-error">error</dfn>
     <dd data-md>
-     <p>The diagnostic an error.
+     <p>The diagnostic is an error.
  This is the greatest severity, and corresponds to a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①">shader-creation error</a> or to a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error①">pipeline-creation error</a>.</p>
     <dt data-md><dfn data-dfn-for="severity" data-dfn-type="dfn" data-noexport id="severity-warning">warning<a class="self-link" href="#severity-warning"></a></dfn>
     <dd data-md>
@@ -1560,12 +1560,13 @@ This is the lowest severity.</p>
        <p>Otherwise <em>D</em> remains unchanged.</p>
      </ul>
     <li data-md>
-     <p>If there is at least one remaining diagnostic with <a data-link-type="dfn" href="#severity-error" id="ref-for-severity-error">error</a> severity, then other diagnostics <em>may</em> be discarded.</p>
+     <p>If there is at least one remaining diagnostic with <a data-link-type="dfn" href="#severity-error" id="ref-for-severity-error">error</a> severity, then other diagnostics <em>may</em> be discarded,
+including other diagnostics with <a data-link-type="dfn" href="#severity-error" id="ref-for-severity-error①">error</a> severity.</p>
     <li data-md>
      <p>All remaining diagnostics are collected and made available to the application via the <a href="https://w3.org/TR/webgpu#dom-gpucompilationinfo-messages">messages</a> member of the <a href="https://w3.org/TR/webgpu#gpucompilationinfo">WebGPU GPUCompilationInfo</a> object.</p>
      <p class="note" role="note"><span>Note:</span> TODO: Adjust for #3682</p>
     <li data-md>
-     <p>A <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error③">shader-creation error</a> results if any remaining diagnostic has <a data-link-type="dfn" href="#severity-error" id="ref-for-severity-error①">error</a> severity.</p>
+     <p>A <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error③">shader-creation error</a> results if any remaining diagnostic has <a data-link-type="dfn" href="#severity-error" id="ref-for-severity-error②">error</a> severity.</p>
      <p class="note" role="note"><span>Note:</span> TODO: Adjust for #3682</p>
    </ol>
    <p class="note" role="note"><span>Note:</span> The rules allow an implementation to stop processing a WGSL program as soon as it encounters an error.</p>
@@ -1583,7 +1584,7 @@ The following table defines the standard triggering rules.</p>
     <tbody>
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-for="trigger" data-dfn-type="dfn" data-noexport id="trigger-derivative_uniformity">derivative_uniformity</dfn> 
-      <td><a data-link-type="dfn" href="#severity-error" id="ref-for-severity-error②">error</a> 
+      <td><a data-link-type="dfn" href="#severity-error" id="ref-for-severity-error③">error</a> 
       <td>
        A call to a <a data-link-type="dfn" href="#builtin-functions-that-compute-a-derivative" id="ref-for-builtin-functions-that-compute-a-derivative">builtin function that computes a derivative</a>.
         That is, a call to any of: 
@@ -1599,7 +1600,7 @@ The following table defines the standard triggering rules.</p>
        </ul>
       <td>
        A call to a builtin function computes derivatives, but <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis">uniformity analysis</a> cannot prove that the call occurs in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow">uniform control flow</a>. 
-       <p>See <a href="#uniformity">§ 13.2 Uniformity</a></p>
+       <p>See <a href="#uniformity">§ 13.2 Uniformity</a>.</p>
    </table>
    <p>An implementation may support triggering rules not specified here, provided they are spelled differently from the standard triggering rules.
 A <a data-link-type="dfn" href="#diagnostic-filter" id="ref-for-diagnostic-filter①">diagnostic filter</a> with an unrecognized <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule④">triggering rule</a> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②">will</a> be ignored.</p>
@@ -1633,7 +1634,7 @@ Set <em>D</em>'s <a data-link-type="dfn" href="#diagnostic-severity" id="ref-for
      <p>Otherwise, <em>D</em> is unchanged.</p>
    </ul>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="range-diagnostic-filter">range diagnostic filter</dfn> is a <a data-link-type="dfn" href="#diagnostic-filter" id="ref-for-diagnostic-filter②">diagnostic filter</a> that is applied to each
-diagnostic whose <a data-link-type="dfn" href="#diagnostic-triggering-location" id="ref-for-diagnostic-triggering-location③">triggering location</a> in a specified range of source text.
+diagnostic whose <a data-link-type="dfn" href="#diagnostic-triggering-location" id="ref-for-diagnostic-triggering-location③">triggering location</a> falls within a specified range of source text.
 A range diagnostic filter is specified as a <code>@diagnostic</code> <a data-link-type="dfn" href="#attribute" id="ref-for-attribute">attribute</a> immediately before the affected source range:</p>
    <ul>
     <li data-md>
@@ -18748,8 +18749,8 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
   <aside class="dfn-panel" data-for="severity-error">
    <b><a href="#severity-error">#severity-error</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-severity-error">2.2. Diagnostics</a> <a href="#ref-for-severity-error①">(2)</a>
-    <li><a href="#ref-for-severity-error②">2.2.1. Diagnostic Triggering Rules</a>
+    <li><a href="#ref-for-severity-error">2.2. Diagnostics</a> <a href="#ref-for-severity-error①">(2)</a> <a href="#ref-for-severity-error②">(3)</a>
+    <li><a href="#ref-for-severity-error③">2.2.1. Diagnostic Triggering Rules</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="diagnostic-triggering-rule">
