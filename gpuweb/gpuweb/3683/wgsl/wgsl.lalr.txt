@@ -94,7 +94,7 @@ builtin_value_name:
  | 'sample_mask'
  | 'vertex_index'
  | 'workgroup_id'
-call_expr:call_phrase
+call_expression:call_phrase
 call_phrase:
    callable argument_expression_list
 callable:
@@ -335,7 +335,7 @@ plus_plus:'++'
 pointer:'ptr'
 primary_expression:
    'bitcast' less_than type_specifier greater_than paren_expression
- | attribute * ? call_expr
+ | attribute * ? call_expression
  | ident
  | literal
  | paren_expression
@@ -809,7 +809,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' ';' '||'}
@@ -1096,7 +1096,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 singular_expression -> · primary_expression singular_expression/0.1 : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' ']' '^' '{' '|' '||'}
@@ -1160,7 +1160,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 singular_expression -> · primary_expression singular_expression/0.1 : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' ']' '^' '{' '|' '||'}
@@ -1224,7 +1224,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 singular_expression -> · primary_expression singular_expression/0.1 : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' ']' '^' '{' '|' '||'}
@@ -1288,7 +1288,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 singular_expression -> · primary_expression singular_expression/0.1 : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' ']' '^' '{' '|' '||'}
@@ -1352,7 +1352,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 singular_expression -> · primary_expression singular_expression/0.1 : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' ']' '^' '{' '|' '||'}
@@ -1393,9 +1393,9 @@ and -> '&' · : {'!' '&' '(' '*' '-' '@' 'array' 'atomic' 'bitcast' 'bool' 'f16'
 primary_expression -> ident · : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
 
 #82
-primary_expression -> primary_expression/1.0 · call_expr : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
+primary_expression -> primary_expression/1.0 · call_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
 array_type_specifier -> · 'array' less_than type_specifier array_type_specifier/0.3 greater_than : {'('}
-call_expr -> · callable argument_expression_list : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
+call_expression -> · callable argument_expression_list : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
 callable -> · 'array' : {'('}
 callable -> · ident : {'('}
 callable -> · mat_prefix : {'('}
@@ -1547,7 +1547,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' ')' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' ')' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' ')' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' ')' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' ')' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' ')' '||'}
@@ -1822,7 +1822,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' ';' '||'}
@@ -1984,7 +1984,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' ';' '||'}
@@ -2255,10 +2255,10 @@ vec_prefix -> · 'vec3' : {'<'}
 vec_prefix -> · 'vec4' : {'<'}
 
 #154
-primary_expression -> primary_expression/1.0 call_expr · : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
+primary_expression -> primary_expression/1.0 call_expression · : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
 
 #155
-call_expr -> callable · argument_expression_list : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
+call_expression -> callable · argument_expression_list : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
 argument_expression_list -> · paren_left argument_expression_list/0.1 paren_right : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
 paren_left -> · '(' : {'!' '&' '(' ')' '*' '-' '@' 'array' 'atomic' 'bitcast' 'bool' 'f16' 'f32' 'false' 'i32' 'mat2x2' 'mat2x3' 'mat2x4' 'mat3x2' 'mat3x3' 'mat3x4' 'mat4x2' 'mat4x3' 'mat4x4' 'ptr' 'sampler' 'sampler_comparison' 'texture_1d' 'texture_2d' 'texture_2d_array' 'texture_3d' 'texture_cube' 'texture_cube_array' 'texture_depth_2d' 'texture_depth_2d_array' 'texture_depth_cube' 'texture_depth_cube_array' 'texture_depth_multisampled_2d' 'texture_multisampled_2d' 'texture_storage_1d' 'texture_storage_2d' 'texture_storage_2d_array' 'texture_storage_3d' 'true' 'u32' 'vec2' 'vec3' 'vec4' '~' /0[xX][0-9a-fA-F]+[iu]?/}
 
@@ -2509,7 +2509,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' ']' '||'}
@@ -2621,7 +2621,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<=' '==' '>' '>=' '[' ']' '{' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<=' '==' '>' '>=' '[' ']' '{' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<=' '==' '>' '>=' '[' ']' '{' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<=' '==' '>' '>=' '[' ']' '{' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<=' '==' '>' '>=' '[' ']' '{' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 singular_expression -> · primary_expression singular_expression/0.1 : {'!=' '%' '&&' ')' '*' '+' ',' '-' '/' ':' ';' '<' '<=' '==' '>' '>=' ']' '{' '||'}
@@ -2700,7 +2700,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '&&' ')' ',' '.' ':' ';' '<' '<=' '==' '>' '>=' '[' ']' '{' '||'}
 primary_expression -> · literal : {'!=' '&&' ')' ',' '.' ':' ';' '<' '<=' '==' '>' '>=' '[' ']' '{' '||'}
 primary_expression -> · paren_expression : {'!=' '&&' ')' ',' '.' ':' ';' '<' '<=' '==' '>' '>=' '[' ']' '{' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '&&' ')' ',' '.' ':' ';' '<' '<=' '==' '>' '>=' '[' ']' '{' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '&&' ')' ',' '.' ':' ';' '<' '<=' '==' '>' '>=' '[' ']' '{' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 singular_expression -> · primary_expression singular_expression/0.1 : {'!=' '&&' ')' ',' ':' ';' '<' '<=' '==' '>' '>=' ']' '{' '||'}
@@ -2764,7 +2764,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '&&' ')' ',' '.' ':' ';' '<' '<=' '==' '>' '>=' '[' ']' '{' '||'}
 primary_expression -> · literal : {'!=' '&&' ')' ',' '.' ':' ';' '<' '<=' '==' '>' '>=' '[' ']' '{' '||'}
 primary_expression -> · paren_expression : {'!=' '&&' ')' ',' '.' ':' ';' '<' '<=' '==' '>' '>=' '[' ']' '{' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '&&' ')' ',' '.' ':' ';' '<' '<=' '==' '>' '>=' '[' ']' '{' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '&&' ')' ',' '.' ':' ';' '<' '<=' '==' '>' '>=' '[' ']' '{' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 singular_expression -> · primary_expression singular_expression/0.1 : {'!=' '&&' ')' ',' ':' ';' '<' '<=' '==' '>' '>=' ']' '{' '||'}
@@ -2836,7 +2836,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<=' '==' '>' '>=' '[' ']' '{' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<=' '==' '>' '>=' '[' ']' '{' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<=' '==' '>' '>=' '[' ']' '{' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<=' '==' '>' '>=' '[' ']' '{' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<=' '==' '>' '>=' '[' ']' '{' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 singular_expression -> · primary_expression singular_expression/0.1 : {'!=' '%' '&&' ')' '*' '+' ',' '-' '/' ':' ';' '<' '<=' '==' '>' '>=' ']' '{' '||'}
@@ -2910,7 +2910,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {')' ',' '.' ':' ';' '>' '[' ']' '^' '{'}
 primary_expression -> · literal : {')' ',' '.' ':' ';' '>' '[' ']' '^' '{'}
 primary_expression -> · paren_expression : {')' ',' '.' ':' ';' '>' '[' ']' '^' '{'}
-primary_expression -> · primary_expression/1.0 call_expr : {')' ',' '.' ':' ';' '>' '[' ']' '^' '{'}
+primary_expression -> · primary_expression/1.0 call_expression : {')' ',' '.' ':' ';' '>' '[' ']' '^' '{'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 singular_expression -> · primary_expression singular_expression/0.1 : {')' ',' ':' ';' '>' ']' '^' '{'}
@@ -2978,7 +2978,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {')' ',' '.' ':' ';' '>' '[' ']' '{' '|'}
 primary_expression -> · literal : {')' ',' '.' ':' ';' '>' '[' ']' '{' '|'}
 primary_expression -> · paren_expression : {')' ',' '.' ':' ';' '>' '[' ']' '{' '|'}
-primary_expression -> · primary_expression/1.0 call_expr : {')' ',' '.' ':' ';' '>' '[' ']' '{' '|'}
+primary_expression -> · primary_expression/1.0 call_expression : {')' ',' '.' ':' ';' '>' '[' ']' '{' '|'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 singular_expression -> · primary_expression singular_expression/0.1 : {')' ',' ':' ';' '>' ']' '{' '|'}
@@ -3046,7 +3046,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'&' ')' ',' '.' ':' ';' '>' '[' ']' '{'}
 primary_expression -> · literal : {'&' ')' ',' '.' ':' ';' '>' '[' ']' '{'}
 primary_expression -> · paren_expression : {'&' ')' ',' '.' ':' ';' '>' '[' ']' '{'}
-primary_expression -> · primary_expression/1.0 call_expr : {'&' ')' ',' '.' ':' ';' '>' '[' ']' '{'}
+primary_expression -> · primary_expression/1.0 call_expression : {'&' ')' ',' '.' ':' ';' '>' '[' ']' '{'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 singular_expression -> · primary_expression singular_expression/0.1 : {'&' ')' ',' ':' ';' '>' ']' '{'}
@@ -3114,7 +3114,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
 primary_expression -> · literal : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
 primary_expression -> · paren_expression : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 shift_expression -> · additive_expression : {'&&' ')' ',' ':' ';' ']' '{' '||'}
@@ -3185,7 +3185,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
 primary_expression -> · literal : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
 primary_expression -> · paren_expression : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 shift_expression -> · additive_expression : {'&&' ')' ',' ':' ';' ']' '{' '||'}
@@ -3256,7 +3256,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
 primary_expression -> · literal : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
 primary_expression -> · paren_expression : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 shift_expression -> · additive_expression : {'&&' ')' ',' ':' ';' ']' '{' '||'}
@@ -3327,7 +3327,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
 primary_expression -> · literal : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
 primary_expression -> · paren_expression : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 shift_expression -> · additive_expression : {'&&' ')' ',' ':' ';' ']' '{' '||'}
@@ -3398,7 +3398,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
 primary_expression -> · literal : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
 primary_expression -> · paren_expression : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 shift_expression -> · additive_expression : {'&&' ')' ',' ':' ';' ']' '{' '||'}
@@ -3469,7 +3469,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
 primary_expression -> · literal : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
 primary_expression -> · paren_expression : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<<' '>>' '[' ']' '{' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 shift_expression -> · additive_expression : {'&&' ')' ',' ':' ';' ']' '{' '||'}
@@ -3556,7 +3556,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '{'}
 primary_expression -> · literal : {'!=' '%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '{'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '{'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '{'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '{'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' ')' ',' ':' ';' ']' '{'}
@@ -3638,7 +3638,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '{' '||'}
 primary_expression -> · literal : {'!=' '%' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '{' '||'}
 primary_expression -> · paren_expression : {'!=' '%' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '{' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '{' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '{' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {')' ',' ':' ';' ']' '{' '||'}
@@ -3734,7 +3734,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' ')' ',' '||'}
@@ -3829,7 +3829,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' ')' ',' '||'}
@@ -3924,7 +3924,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' ')' ',' '||'}
@@ -4026,7 +4026,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' ')' ',' '||'}
@@ -4121,7 +4121,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' ')' ',' '||'}
@@ -4234,7 +4234,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' ')' ',' '||'}
@@ -4329,7 +4329,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' ')' ',' '||'}
@@ -4950,7 +4950,7 @@ vec_prefix -> · 'vec3' : {'<'}
 vec_prefix -> · 'vec4' : {'<'}
 
 #326
-call_expr -> callable argument_expression_list · : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
+call_expression -> callable argument_expression_list · : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
 
 #327
 argument_expression_list -> paren_left · argument_expression_list/0.1 paren_right : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' ':' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' ']' '^' '{' '|' '||'}
@@ -5022,7 +5022,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' ')' ',' '||'}
@@ -5281,7 +5281,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' ';' '||'}
@@ -5383,7 +5383,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' '{' '||'}
@@ -5486,7 +5486,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' '{' '||'}
@@ -5673,7 +5673,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' '{' '||'}
@@ -5949,7 +5949,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' ';' '||'}
@@ -6217,7 +6217,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' ')' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' ')' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' ')' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' ')' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' ')' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' ')' ';' '||'}
@@ -6312,7 +6312,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' ')' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' ')' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' ')' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' ')' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' ')' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' ')' ';' '||'}
@@ -6498,7 +6498,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' ';' '||'}
@@ -6923,7 +6923,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' ')' ',' '||'}
@@ -7152,7 +7152,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'%' '&' '*' '+' '-' '.' '/' '>' '[' '^' '|'}
 primary_expression -> · literal : {'%' '&' '*' '+' '-' '.' '/' '>' '[' '^' '|'}
 primary_expression -> · paren_expression : {'%' '&' '*' '+' '-' '.' '/' '>' '[' '^' '|'}
-primary_expression -> · primary_expression/1.0 call_expr : {'%' '&' '*' '+' '-' '.' '/' '>' '[' '^' '|'}
+primary_expression -> · primary_expression/1.0 call_expression : {'%' '&' '*' '+' '-' '.' '/' '>' '[' '^' '|'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 singular_expression -> · primary_expression singular_expression/0.1 : {'%' '&' '*' '+' '-' '/' '>' '^' '|'}
@@ -7253,7 +7253,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' ')' ',' '||'}
@@ -7354,7 +7354,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' '{' '||'}
@@ -7585,7 +7585,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' ';' '||'}
@@ -7680,7 +7680,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' ';' '||'}
@@ -8040,7 +8040,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' ';' '||'}
@@ -8179,7 +8179,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' '*' '+' ',' '-' '.' '/' ':' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' '*' '+' ',' '-' '.' '/' ':' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' '*' '+' ',' '-' '.' '/' ':' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' '*' '+' ',' '-' '.' '/' ':' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' '*' '+' ',' '-' '.' '/' ':' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' ',' ':' '{' '||'}
@@ -8335,7 +8335,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' ')' '*' '+' ',' '-' '.' '/' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' ')' ',' '||'}
@@ -8818,7 +8818,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' '*' '+' ',' '-' '.' '/' ':' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' '*' '+' ',' '-' '.' '/' ':' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' '*' '+' ',' '-' '.' '/' ':' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' '*' '+' ',' '-' '.' '/' ':' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' '*' '+' ',' '-' '.' '/' ':' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '{' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' ',' ':' '{' '||'}
@@ -8973,7 +8973,7 @@ primary_expression -> · 'bitcast' less_than type_specifier greater_than paren_e
 primary_expression -> · ident : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · literal : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression -> · paren_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
-primary_expression -> · primary_expression/1.0 call_expr : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
+primary_expression -> · primary_expression/1.0 call_expression : {'!=' '%' '&&' '&' '*' '+' '-' '.' '/' ';' '<' '<<' '<=' '==' '>' '>=' '>>' '[' '^' '|' '||'}
 primary_expression/1.0 -> · primary_expression/1.0/0 : {}
 primary_expression/1.0/0 -> · attribute primary_expression/1.0/0 : {}
 relational_expression -> · shift_expression : {'&&' ';' '||'}
@@ -9098,7 +9098,7 @@ r#82 colon -> ':' ·
 r#83 struct_decl -> 'struct' ident struct_body_decl ·
 r#84 brace_left -> '{' ·
 r#85 function_decl -> function_decl/0.0 function_header compound_statement ·
-r#86 primary_expression -> primary_expression/1.0 call_expr ·
+r#86 primary_expression -> primary_expression/1.0 call_expression ·
 r#87 callable -> ident ·
 r#88 callable -> type_specifier_without_ident ·
 r#89 callable -> vec_prefix ·
@@ -9220,7 +9220,7 @@ r#204 swizzle_name -> '/[xyzw]/' ·
 r#205 swizzle_name -> '/[xyzw][xyzw]/' ·
 r#206 swizzle_name -> '/[xyzw][xyzw][xyzw]/' ·
 r#207 swizzle_name -> '/[xyzw][xyzw][xyzw][xyzw]/' ·
-r#208 call_expr -> callable argument_expression_list ·
+r#208 call_expression -> callable argument_expression_list ·
 r#209 type_specifier -> ident ·
 r#210 type_specifier -> type_specifier_without_ident ·
 r#211 paren_expression -> paren_left expression paren_right ·
@@ -19998,7 +19998,7 @@ r#422 break_if_statement -> 'break' 'if' expression semicolon ·
 [#75 period]: #213
 [#75 singular_expression/0.1]: #210
 [#82 array_type_specifier]: #167
-[#82 call_expr]: #154
+[#82 call_expression]: #154
 [#82 callable]: #155
 [#82 depth_texture_type]: #188
 [#82 float16]: #163

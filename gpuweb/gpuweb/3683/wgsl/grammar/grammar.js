@@ -199,12 +199,12 @@ module.exports = grammar({
         ),
         primary_expression: $ => choice(
             $.ident,
-            seq(optional(repeat1($.attribute)), $.call_expr),
+            seq(optional(repeat1($.attribute)), $.call_expression),
             $.literal,
             $.paren_expression,
             seq($.bitcast, $.less_than, $.type_specifier, $.greater_than, $.paren_expression)
         ),
-        call_expr: $ => $.call_phrase,
+        call_expression: $ => $.call_phrase,
         call_phrase: $ => seq($.callable, $.argument_expression_list),
         callable: $ => choice(
             $.ident,
