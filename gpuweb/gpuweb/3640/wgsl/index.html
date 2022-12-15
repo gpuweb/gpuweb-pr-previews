@@ -645,13 +645,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-11-28">28 November 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-12-15">15 December 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/Jiawei-Shao/gpuweb/blob/26cc1706337ebcb597e3b6eff0bc81f2ae366f09/wgsl/index.bs">https://github.com/Jiawei-Shao/gpuweb/blob/26cc1706337ebcb597e3b6eff0bc81f2ae366f09/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/Jiawei-Shao/gpuweb/blob/7c474970fa928c72d831380a7f092d307e8556f2/wgsl/index.bs">https://github.com/Jiawei-Shao/gpuweb/blob/7c474970fa928c72d831380a7f092d307e8556f2/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -4967,7 +4967,6 @@ This is also known as the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noex
 correspond to the <a href="https://gpuweb.github.io/gpuweb/#plain-color-formats">WebGPU plain color formats</a> which support the <a href="https://gpuweb.github.io/gpuweb/#dom-gputextureusage-storage">WebGPU STORAGE</a> usage.
 These texel formats are used to parameterize the storage texture types defined
 in <a href="#texture-storage">§ 5.5.5 Storage Texture Types</a>.</p>
-   <p>Note that <code>bgra8unorm</code> can only be used when the extension <code>bgra8unorm_storage</code> is enabled.</p>
    <p>When the texel format does not have all four channels, then:</p>
    <ul>
     <li data-md>
@@ -10001,10 +10000,6 @@ the implementation can issue a clear diagnostic.</p>
       <td><dfn class="dfn-paneled" data-dfn-for="extension" data-dfn-type="dfn" data-noexport id="extension-f16"><code>f16</code></dfn> 
       <td><code>"shader-f16"</code> 
       <td>Keyword <code>f16</code> and any <a data-link-type="dfn" href="#floating-point-literal" id="ref-for-floating-point-literal①⓪">floating point literal</a> with a <code>h</code> suffix is valid if and only if this extension is enabled. Otherwise, using <code>f16</code> keyword or any <a data-link-type="dfn" href="#floating-point-literal" id="ref-for-floating-point-literal①①">floating point literal</a> with a <code>h</code> suffix will result in a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑨⑤">shader-creation error</a>. 
-     <tr>
-      <td><dfn data-dfn-for="extension" data-dfn-type="dfn" data-noexport id="extension-bgra8unorm_storage"><code>bgra8unorm_storage</code><a class="self-link" href="#extension-bgra8unorm_storage"></a></dfn> 
-      <td><code>"bgra8unorm-storage"</code> 
-      <td> Using <code>bgra8unorm</code> as a texel format if and only if this extension is enabled. Otherwise, it will result in a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑨⑥">shader-creation error</a>. 
    </table>
    <h2 class="heading settled" data-level="12" id="wgsl-program"><span class="secno">12. </span><span class="content">WGSL Program</span><a class="self-link" href="#wgsl-program"></a></h2>
    <p>A WGSL program is a sequence of optional <a data-link-type="dfn" href="#directive" id="ref-for-directive">directives</a> followed by <a data-link-type="dfn" href="#module-scope" id="ref-for-module-scope②⑥">module scope</a> <a data-link-type="dfn" href="#declaration" id="ref-for-declaration①⓪">declarations</a>.</p>
@@ -10164,11 +10159,11 @@ The second phase explores that graph, resulting in either rejecting the program,
     Note: Apart from two special nodes RequiredToBeUniform and MayBeNonUniform, all nodes can be understood as having one of the following meanings: 
     <ul>
      <li data-md>
-      <p>A specific point of the program <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑨⑦">must</a> be executed in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②">uniform control flow</a></p>
+      <p>A specific point of the program <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑨⑥">must</a> be executed in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②">uniform control flow</a></p>
      <li data-md>
-      <p>An expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑨⑧">must</a> be a <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value①">uniform value</a></p>
+      <p>An expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑨⑦">must</a> be a <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value①">uniform value</a></p>
      <li data-md>
-      <p>A variable <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑨⑨">must</a> be a <a data-link-type="dfn" href="#uniform-variable" id="ref-for-uniform-variable">uniform variable</a></p>
+      <p>A variable <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑨⑧">must</a> be a <a data-link-type="dfn" href="#uniform-variable" id="ref-for-uniform-variable">uniform variable</a></p>
     </ul>
     <p>An edge can be understood as an implication from the statement corresponding to its source node to the statement corresponding to its target node.</p>
     <p>To express that uniformity requirement (e.g. the control flow at the call site of a derivative), we add an edge from RequiredToBeUniform to the corresponding node.
@@ -10200,7 +10195,7 @@ stored in the memory pointed to by the parameter becomes <a data-link-type="dfn"
     <tbody>
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="callsiterequiredtobeuniform">CallSiteRequiredToBeUniform</dfn> 
-      <td>The function <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪⓪">must</a> only be called from <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow③">uniform control flow</a>. 
+      <td>The function <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑨⑨">must</a> only be called from <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow③">uniform control flow</a>. 
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="callsitenorestriction">CallSiteNoRestriction</dfn> 
       <td>The function may be called from <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow④">non-uniform control flow</a>. 
@@ -10228,10 +10223,10 @@ stored in the memory pointed to by the parameter becomes <a data-link-type="dfn"
     <tbody>
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="parameterrequiredtobeuniform">ParameterRequiredToBeUniform</dfn> 
-      <td>The parameter <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪①">must</a> be a <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value③">uniform value</a>. 
+      <td>The parameter <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪⓪">must</a> be a <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value③">uniform value</a>. 
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="parameterrequiredtobeuniformforreturnvalue">ParameterRequiredToBeUniformForReturnValue</dfn> 
-      <td>The parameter <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪②">must</a> be a <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value④">uniform value</a> in order for the <a data-link-type="dfn" href="#return-value" id="ref-for-return-value⑦">return value</a> to be a uniform value. 
+      <td>The parameter <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪①">must</a> be a <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value④">uniform value</a> in order for the <a data-link-type="dfn" href="#return-value" id="ref-for-return-value⑦">return value</a> to be a uniform value. 
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="parameternorestriction">ParameterNoRestriction</dfn> 
       <td>The parameter value has no uniformity requirement. 
@@ -11188,7 +11183,7 @@ terminated; however, such termination is not considered to produce <a data-link-
    <p>A barrier is a <a href="#sync-builtin-functions">synchronization built-in function</a> that orders memory operations in a program.
 A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="control-barrier">control barrier</dfn> is executed by all invocations in the
 same <a data-link-type="dfn" href="#compute-shader-stage-workgroup" id="ref-for-compute-shader-stage-workgroup④">workgroup</a> as if it were executed concurrently.
-As such, control barriers <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪③">must</a> only be executed in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow⑧">uniform control flow</a> in a <a data-link-type="dfn" href="#compute-shader-stage" id="ref-for-compute-shader-stage⑥">compute</a> shader.</p>
+As such, control barriers <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪②">must</a> only be executed in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow⑧">uniform control flow</a> in a <a data-link-type="dfn" href="#compute-shader-stage" id="ref-for-compute-shader-stage⑥">compute</a> shader.</p>
    <h4 class="heading settled" data-level="13.5.2" id="derivatives"><span class="secno">13.5.2. </span><span class="content">Derivatives</span><a class="self-link" href="#derivatives"></a></h4>
    <p>A <dfn data-dfn-type="dfn" data-noexport id="partial-derivative">partial derivative<a class="self-link" href="#partial-derivative"></a></dfn> is the rate of change of a value along an axis.
 Fragment shader invocations within the same <a data-link-type="dfn" href="#quad" id="ref-for-quad①">quad</a> collaborate to compute
@@ -11215,7 +11210,7 @@ built-in functions described in <a href="#derivative-builtin-functions">§ 17.
      <p><code>fwidth</code>, <code>fwidthCoarse</code>, and <code>fwidthFine</code> compute the Manhattan metric over the associated x and y partial derivatives.</p>
    </ul>
    <p>Because neighbouring invocations collaborate to compute derivatives, these
-functions <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪④">must</a> only be invoked in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow⑨">uniform control
+functions <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪③">must</a> only be invoked in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow⑨">uniform control
 flow</a> in a fragment shader.</p>
    <h3 class="heading settled" data-level="13.6" id="floating-point-evaluation"><span class="secno">13.6. </span><span class="content">Floating Point Evaluation</span><a class="self-link" href="#floating-point-evaluation"></a></h3>
    <p>WGSL follows the <a data-link-type="biblio" href="#biblio-ieee-754">IEEE-754</a> standard for floating point computation with
@@ -11233,7 +11228,7 @@ Any signaling NaN may be converted to a quiet NaN.</p>
        <p>In such an implementation, when an expression evaluation would produce an
 infinity or a NaN, an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value⑤">indeterminate value</a> of the target type is produced instead.</p>
       <li data-md>
-       <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪⑤">shader-creation error</a> if any <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑤②">const-expression</a> of
+       <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪④">shader-creation error</a> if any <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑤②">const-expression</a> of
 floating-point type evaluates to NaN or infinity.</p>
       <li data-md>
        <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error②②">pipeline-creation error</a> if any <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③②">override-expression</a> of
@@ -11614,7 +11609,7 @@ Therefore the maximum u32 value resulting from a floating point conversion is 42
        <p>Otherwise, the original value lies outside the finite range of the destination type:</p>
        <ul>
         <li data-md>
-         <p>A <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪⑥">shader-creation error</a> results if the original expression is a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑤③">const-expression</a>.</p>
+         <p>A <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪⑤">shader-creation error</a> results if the original expression is a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑤③">const-expression</a>.</p>
         <li data-md>
          <p>A <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error②③">pipeline-creation error</a> results if the original expression is an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③③">override-expression</a>.</p>
         <li data-md>
@@ -12015,7 +12010,7 @@ with <code>NonPrivatePointer | MakePointerAvailable</code> memory operands with 
    </div>
    <h3 class="heading settled" data-level="15.2" id="reserved-words"><span class="secno">15.2. </span><span class="content">Reserved Words</span><a class="self-link" href="#reserved-words"></a></h3>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="reserved-word">reserved word</dfn> is a <a data-link-type="dfn" href="#token" id="ref-for-token⑨">token</a> which is reserved for future use.
-A WGSL program <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪⑦">must not</a> contain a reserved word.</p>
+A WGSL program <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪⑥">must not</a> contain a reserved word.</p>
    <p>The following are reserved words:</p>
    <div class="syntax">
      <dfn data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-_reserved">_reserved<a class="self-link" href="#syntax-_reserved"></a></dfn> : 
@@ -12468,7 +12463,6 @@ A WGSL program <a data-link-type="dfn" href="#shader-creation-error" id="ref-for
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-extension_name">extension_name</dfn> : 
     <p>| <code>'f16'</code></p>
-    <p>| <code>'bgra8unorm_storage'</code></p>
    </div>
    <p>The <a data-link-type="dfn" href="#swizzle" id="ref-for-swizzle①">swizzle</a> names are used in <a href="#vector-access-expr">vector access expressions</a>:</p>
    <div class="syntax">
@@ -12963,7 +12957,7 @@ See <a href="#function-calls">§ 9.2 Function Calls</a>.</p>
        <p>If <code>low</code> is greater than <code>high</code>, then:</p>
        <ul>
         <li data-md>
-         <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪⑧">shader-creation error</a> if <code>low</code> and <code>high</code> are <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑤④">const-expressions</a>.</p>
+         <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪⑦">shader-creation error</a> if <code>low</code> and <code>high</code> are <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑤④">const-expressions</a>.</p>
         <li data-md>
          <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error②④">pipeline-creation error</a> if <code>low</code> and <code>high</code> are <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③④">override-expressions</a>.</p>
        </ul>
@@ -13187,7 +13181,7 @@ See <a href="#function-calls">§ 9.2 Function Calls</a>.</p>
        <p>If <code>count</code> + <code>offset</code> is greater than <code>w</code>, then:</p>
        <ul>
         <li data-md>
-         <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪⑨">shader-creation error</a> if <code>count</code> and <code>offset</code> are <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑤⑤">const-expressions</a>.</p>
+         <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪⑧">shader-creation error</a> if <code>count</code> and <code>offset</code> are <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑤⑤">const-expressions</a>.</p>
         <li data-md>
          <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error②⑤">pipeline-creation error</a> if <code>count</code> and <code>offset</code> are <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③⑤">override-expressions</a>.</p>
        </ul>
@@ -13222,7 +13216,7 @@ See <a href="#function-calls">§ 9.2 Function Calls</a>.</p>
        <p>If <code>count</code> + <code>offset</code> is greater than <code>w</code>, then:</p>
        <ul>
         <li data-md>
-         <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①⓪">shader-creation error</a> if <code>count</code> and <code>offset</code> are <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑤⑥">const-expressions</a>.</p>
+         <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪⑨">shader-creation error</a> if <code>count</code> and <code>offset</code> are <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑤⑥">const-expressions</a>.</p>
         <li data-md>
          <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error②⑥">pipeline-creation error</a> if <code>count</code> and <code>offset</code> are <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③⑥">override-expressions</a>.</p>
        </ul>
@@ -13600,7 +13594,7 @@ but a value may infer the type.</p>
        <p>If <code>count</code> + <code>offset</code> is greater than <code>w</code>, then:</p>
        <ul>
         <li data-md>
-         <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①①">shader-creation error</a> if <code>count</code> and <code>offset</code> are <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑤⑦">const-expressions</a>.</p>
+         <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①⓪">shader-creation error</a> if <code>count</code> and <code>offset</code> are <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑤⑦">const-expressions</a>.</p>
         <li data-md>
          <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error②⑦">pipeline-creation error</a> if <code>count</code> and <code>offset</code> are <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③⑦">override-expressions</a>.</p>
        </ul>
@@ -13647,7 +13641,7 @@ but a value may infer the type.</p>
          <p>If <code>e2</code> > <em>bias</em> + 1</p>
          <ul>
           <li data-md>
-           <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①②">shader-creation error</a> if <code>e2</code> is a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑤⑧">const-expression</a>.</p>
+           <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①①">shader-creation error</a> if <code>e2</code> is a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑤⑧">const-expression</a>.</p>
           <li data-md>
            <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error②⑧">pipeline-creation error</a> if <code>e2</code> is an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③⑧">override-expression</a>.</p>
           <li data-md>
@@ -14057,7 +14051,7 @@ but a value may infer the type.</p>
        <p>If <code>e</code> is outside the finite range of binary16, then:</p>
        <ul>
         <li data-md>
-         <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①③">shader-creation error</a> if <code>e</code> is a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑤⑨">const-expression</a>.</p>
+         <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①②">shader-creation error</a> if <code>e</code> is a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑤⑨">const-expression</a>.</p>
         <li data-md>
          <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error②⑨">pipeline-creation error</a> if <code>e</code> is an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③⑨">override-expression</a>.</p>
         <li data-md>
@@ -14349,9 +14343,9 @@ but a value may infer the type.</p>
    <p>These functions:</p>
    <ul>
     <li data-md>
-     <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①④">Must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment⑥">fragment</a> shader stage.</p>
+     <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①③">Must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment⑥">fragment</a> shader stage.</p>
     <li data-md>
-     <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①⑤">Must</a> only be invoked in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①⓪">uniform control flow</a>.</p>
+     <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①④">Must</a> only be invoked in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①⓪">uniform control flow</a>.</p>
    </ul>
    <h4 class="heading settled" data-level="17.4.1" id="dpdx-builtin"><span class="secno">17.4.1. </span><span class="content"><code>dpdx</code></span><a class="self-link" href="#dpdx-builtin"></a></h4>
    <table class="data builtin">
@@ -14493,7 +14487,7 @@ but a value may infer the type.</p>
       <td>Returns <code>abs(dpdxFine(e)) + abs(dpdyFine(e))</code>. 
    </table>
    <h3 class="heading settled" data-level="17.5" id="texture-builtin-functions"><span class="secno">17.5. </span><span class="content">Texture Built-in Functions</span><a class="self-link" href="#texture-builtin-functions"></a></h3>
-   <p>Parameter values <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①⑥">must</a> be valid for the respective texture types.</p>
+   <p>Parameter values <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①⑤">must</a> be valid for the respective texture types.</p>
    <h4 class="heading settled" data-level="17.5.1" id="texturedimensions"><span class="secno">17.5.1. </span><span class="content"><code>textureDimensions</code></span><a class="self-link" href="#texturedimensions"></a></h4>
    <p>Returns the dimensions of a texture, or texture’s mip level in texels.</p>
    <table class="data">
@@ -14735,8 +14729,8 @@ https://github.com/gpuweb/gpuweb/issues/2343</p>
     <tbody>
      <tr>
       <td><code>component</code>
-      <td> Only applies to non-depth textures. <br>The index of the channel to read from the selected texels. <br>When provided, the <code>component</code> expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①⑦">must</a> be a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑥⓪">const-expression</a> (e.g. <code>1</code>).<br> Its value must be at least 0 and at most 3.
-  Values outside of this range will result in a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①⑧">shader-creation error</a>. 
+      <td> Only applies to non-depth textures. <br>The index of the channel to read from the selected texels. <br>When provided, the <code>component</code> expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①⑥">must</a> be a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑥⓪">const-expression</a> (e.g. <code>1</code>).<br> Its value must be at least 0 and at most 3.
+  Values outside of this range will result in a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①⑦">shader-creation error</a>. 
      <tr>
       <td><code>t</code>
       <td> The <a href="#sampled-texture-type">sampled</a> or <a href="#texture-depth">depth</a> texture to read from. 
@@ -14753,8 +14747,8 @@ https://github.com/gpuweb/gpuweb/issues/2343</p>
       <td><code>offset</code>
       <td> The optional texel offset applied to the unnormalized texture coordinate
   before sampling the texture. This offset is applied before applying any
-  texture wrapping modes.<br> The <code>offset</code> expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①⑨">must</a> be a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑥①">const-expression</a> (e.g. <code>vec2&lt;i32>(1, 2)</code>).<br> Each <code>offset</code> component <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②⓪">must</a> be at least <code>-8</code> and at most <code>7</code>. Values outside
-  of this range will result in a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②①">shader-creation error</a>. 
+  texture wrapping modes.<br> The <code>offset</code> expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①⑧">must</a> be a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑥①">const-expression</a> (e.g. <code>vec2&lt;i32>(1, 2)</code>).<br> Each <code>offset</code> component <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①⑨">must</a> be at least <code>-8</code> and at most <code>7</code>. Values outside
+  of this range will result in a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②⓪">shader-creation error</a>. 
    </table>
    <p><strong>Returns:</strong></p>
    <p>A four component vector with components extracted from the specified channel from the selected texels, as described above.</p>
@@ -14906,8 +14900,8 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
       <td><code>offset</code>
       <td> The optional texel offset applied to the unnormalized texture coordinate
   before sampling the texture. This offset is applied before applying any
-  texture wrapping modes.<br> The <code>offset</code> expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②②">must</a> be a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑥②">const-expression</a> (e.g. <code>vec2&lt;i32>(1, 2)</code>).<br> Each <code>offset</code> component <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②③">must</a> be at least <code>-8</code> and at most <code>7</code>. Values outside
-  of this range will result in a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②④">shader-creation error</a>. 
+  texture wrapping modes.<br> The <code>offset</code> expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②①">must</a> be a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑥②">const-expression</a> (e.g. <code>vec2&lt;i32>(1, 2)</code>).<br> Each <code>offset</code> component <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②②">must</a> be at least <code>-8</code> and at most <code>7</code>. Values outside
+  of this range will result in a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②③">shader-creation error</a>. 
    </table>
    <p><strong>Returns:</strong></p>
    <p>A four component vector with comparison result for the selected texels, as described above.</p>
@@ -15109,7 +15103,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
    <p>The number of samples per texel in the multisampled texture.</p>
    <h4 class="heading settled" data-level="17.5.8" id="texturesample"><span class="secno">17.5.8. </span><span class="content"><code>textureSample</code></span><a class="self-link" href="#texturesample"></a></h4>
    <p>Samples a texture.</p>
-   <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②⑤">Must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment⑦">fragment</a> shader stage. <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②⑥">Must</a> only be invoked in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①①">uniform control flow</a>.</p>
+   <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②④">Must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment⑦">fragment</a> shader stage. <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②⑤">Must</a> only be invoked in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①①">uniform control flow</a>.</p>
    <table class="data">
     <thead>
      <tr>
@@ -15245,14 +15239,14 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
       <td><code>offset</code>
       <td> The optional texel offset applied to the unnormalized texture coordinate
   before sampling the texture. This offset is applied before applying any
-  texture wrapping modes.<br> The <code>offset</code> expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②⑦">must</a> be a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑥③">const-expression</a> (e.g. <code>vec2&lt;i32>(1, 2)</code>).<br> Each <code>offset</code> component <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②⑧">must</a> be at least <code>-8</code> and at most <code>7</code>. Values outside
-  of this range will result in a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②⑨">shader-creation error</a>. 
+  texture wrapping modes.<br> The <code>offset</code> expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②⑥">must</a> be a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑥③">const-expression</a> (e.g. <code>vec2&lt;i32>(1, 2)</code>).<br> Each <code>offset</code> component <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②⑦">must</a> be at least <code>-8</code> and at most <code>7</code>. Values outside
+  of this range will result in a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②⑧">shader-creation error</a>. 
    </table>
    <p><strong>Returns:</strong></p>
    <p>The sampled value.</p>
    <h4 class="heading settled" data-level="17.5.9" id="texturesamplebias"><span class="secno">17.5.9. </span><span class="content"><code>textureSampleBias</code></span><a class="self-link" href="#texturesamplebias"></a></h4>
    <p>Samples a texture with a bias to the mip level.</p>
-   <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③⓪">Must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment⑧">fragment</a> shader stage. <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③①">Must</a> only be invoked in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①②">uniform control flow</a>.</p>
+   <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②⑨">Must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment⑧">fragment</a> shader stage. <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③⓪">Must</a> only be invoked in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①②">uniform control flow</a>.</p>
    <table class="data">
     <thead>
      <tr>
@@ -15339,19 +15333,19 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
       <td> The 0-based texture array index to sample. 
      <tr>
       <td><code>bias</code>
-      <td> The bias to apply to the mip level before sampling. <code>bias</code> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③②">must</a> be between <code>-16.0</code> and <code>15.99</code>. 
+      <td> The bias to apply to the mip level before sampling. <code>bias</code> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③①">must</a> be between <code>-16.0</code> and <code>15.99</code>. 
      <tr>
       <td><code>offset</code>
       <td> The optional texel offset applied to the unnormalized texture coordinate
   before sampling the texture. This offset is applied before applying any
-  texture wrapping modes.<br> The <code>offset</code> expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③③">must</a> be a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑥④">const-expression</a> (e.g. <code>vec2&lt;i32>(1, 2)</code>).<br> Each <code>offset</code> component <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③④">must</a> be at least <code>-8</code> and at most <code>7</code>. Values outside
-  of this range will result in a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③⑤">shader-creation error</a>. 
+  texture wrapping modes.<br> The <code>offset</code> expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③②">must</a> be a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑥④">const-expression</a> (e.g. <code>vec2&lt;i32>(1, 2)</code>).<br> Each <code>offset</code> component <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③③">must</a> be at least <code>-8</code> and at most <code>7</code>. Values outside
+  of this range will result in a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③④">shader-creation error</a>. 
    </table>
    <p><strong>Returns:</strong></p>
    <p>The sampled value.</p>
    <h4 class="heading settled" data-level="17.5.10" id="texturesamplecompare"><span class="secno">17.5.10. </span><span class="content"><code>textureSampleCompare</code></span><a class="self-link" href="#texturesamplecompare"></a></h4>
    <p>Samples a depth texture and compares the sampled depth values against a reference value.</p>
-   <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③⑥">Must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment⑨">fragment</a> shader stage. <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③⑦">Must</a> only be invoked in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①③">uniform control flow</a>.</p>
+   <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③⑤">Must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment⑨">fragment</a> shader stage. <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③⑥">Must</a> only be invoked in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①③">uniform control flow</a>.</p>
    <table class="data">
     <thead>
      <tr>
@@ -15434,8 +15428,8 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
       <td><code>offset</code>
       <td> The optional texel offset applied to the unnormalized texture coordinate
   before sampling the texture. This offset is applied before applying any
-  texture wrapping modes.<br> The <code>offset</code> expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③⑧">must</a> be a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑥⑤">const-expression</a> (e.g. <code>vec2&lt;i32>(1, 2)</code>).<br> Each <code>offset</code> component <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③⑨">must</a> be at least <code>-8</code> and at most <code>7</code>. Values outside
-  of this range will result in a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④⓪">shader-creation error</a>. 
+  texture wrapping modes.<br> The <code>offset</code> expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③⑦">must</a> be a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑥⑤">const-expression</a> (e.g. <code>vec2&lt;i32>(1, 2)</code>).<br> Each <code>offset</code> component <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③⑧">must</a> be at least <code>-8</code> and at most <code>7</code>. Values outside
+  of this range will result in a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③⑨">shader-creation error</a>. 
    </table>
    <p><strong>Returns:</strong></p>
    <p>A value in the range <code>[0.0..1.0]</code>.</p>
@@ -15528,8 +15522,8 @@ single texel is returned.</p>
       <td><code>offset</code>
       <td> The optional texel offset applied to the unnormalized texture coordinate
   before sampling the texture. This offset is applied before applying any
-  texture wrapping modes.<br> The <code>offset</code> expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④①">must</a> be a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑥⑥">const-expression</a> (e.g. <code>vec2&lt;i32>(1, 2)</code>).<br> Each <code>offset</code> component <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④②">must</a> be at least <code>-8</code> and at most <code>7</code>. Values outside
-  of this range will result in a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④③">shader-creation error</a>. 
+  texture wrapping modes.<br> The <code>offset</code> expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④⓪">must</a> be a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑥⑥">const-expression</a> (e.g. <code>vec2&lt;i32>(1, 2)</code>).<br> Each <code>offset</code> component <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④①">must</a> be at least <code>-8</code> and at most <code>7</code>. Values outside
+  of this range will result in a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④②">shader-creation error</a>. 
    </table>
    <p><strong>Returns:</strong></p>
    <p>A value in the range <code>[0.0..1.0]</code>.</p>
@@ -15649,8 +15643,8 @@ single texel is returned.</p>
       <td><code>offset</code>
       <td> The optional texel offset applied to the unnormalized texture coordinate
   before sampling the texture. This offset is applied before applying any
-  texture wrapping modes.<br> The <code>offset</code> expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④④">must</a> be a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑥⑦">const-expression</a> (e.g. <code>vec2&lt;i32>(1, 2)</code>).<br> Each <code>offset</code> component <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④⑤">must</a> be at least <code>-8</code> and at most <code>7</code>. Values outside
-  of this range will result in a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④⑥">shader-creation error</a>. 
+  texture wrapping modes.<br> The <code>offset</code> expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④③">must</a> be a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑥⑦">const-expression</a> (e.g. <code>vec2&lt;i32>(1, 2)</code>).<br> Each <code>offset</code> component <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④④">must</a> be at least <code>-8</code> and at most <code>7</code>. Values outside
+  of this range will result in a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④⑤">shader-creation error</a>. 
    </table>
    <p><strong>Returns:</strong></p>
    <p>The sampled value.</p>
@@ -15803,8 +15797,8 @@ single texel is returned.</p>
       <td><code>offset</code>
       <td> The optional texel offset applied to the unnormalized texture coordinate
   before sampling the texture. This offset is applied before applying any
-  texture wrapping modes.<br> The <code>offset</code> expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④⑦">must</a> be a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑥⑧">const-expression</a> (e.g. <code>vec2&lt;i32>(1, 2)</code>).<br> Each <code>offset</code> component <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④⑧">must</a> be at least <code>-8</code> and at most <code>7</code>. Values outside
-  of this range will result in a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④⑨">shader-creation error</a>. 
+  texture wrapping modes.<br> The <code>offset</code> expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④⑥">must</a> be a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑥⑧">const-expression</a> (e.g. <code>vec2&lt;i32>(1, 2)</code>).<br> Each <code>offset</code> component <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④⑦">must</a> be at least <code>-8</code> and at most <code>7</code>. Values outside
+  of this range will result in a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④⑧">shader-creation error</a>. 
    </table>
    <p><strong>Returns:</strong></p>
    <p>The sampled value.</p>
@@ -15935,10 +15929,10 @@ ordering</a>.  This means synchronization and ordering guarantees only apply amo
 atomic operations acting on the same <a data-link-type="dfn" href="#memory-locations" id="ref-for-memory-locations①⑥">memory locations</a>.  No synchronization
 or ordering guarantees apply between atomic and non-atomic memory accesses, or
 between atomic accesses acting on different memory locations.</p>
-   <p>Atomic built-in functions <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑤⓪">must not</a> be used in a <a data-link-type="dfn" href="#vertex" id="ref-for-vertex④">vertex</a> shader stage.</p>
+   <p>Atomic built-in functions <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④⑨">must not</a> be used in a <a data-link-type="dfn" href="#vertex" id="ref-for-vertex④">vertex</a> shader stage.</p>
    <p>The address space <code>AS</code> of the <code>atomic_ptr</code> parameter in all atomic built-in
-functions <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑤①">must</a> be either <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage②①">storage</a> or <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup①⑨">workgroup</a>.</p>
-   <p><var>T</var> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑤②">must</a> be either <a data-link-type="dfn" href="#u32" id="ref-for-u32①①⑦">u32</a> or <a data-link-type="dfn" href="#i32" id="ref-for-i32①②④">i32</a></p>
+functions <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑤⓪">must</a> be either <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage②①">storage</a> or <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup①⑨">workgroup</a>.</p>
+   <p><var>T</var> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑤①">must</a> be either <a data-link-type="dfn" href="#u32" id="ref-for-u32①①⑦">u32</a> or <a data-link-type="dfn" href="#i32" id="ref-for-i32①②④">i32</a></p>
    <h4 class="heading settled" data-level="17.6.1" id="atomic-load"><span class="secno">17.6.1. </span><span class="content">Atomic Load</span><a class="self-link" href="#atomic-load"></a></h4>
 <pre class="language-rust highlight"><c- k>fn</c-> <c- nf>atomicLoad</c-><c- p>(</c-><c- n>atomic_ptr</c->: <c- nc>ptr</c-><c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> <c- n>atomic</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> <c- n>read_write</c-><c- o>></c-><c- p>)</c-> -> <c- nc>T</c->
 </pre>
@@ -16087,7 +16081,7 @@ their results into a single output value.</p>
        <p>If either <code>e[0]</code> or <code>e[1]</code> is outside the finite range of binary16 then:</p>
        <ul>
         <li data-md>
-         <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑤③">shader-creation error</a> if <code>e</code> is a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑥⑨">const-expression</a>.</p>
+         <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑤②">shader-creation error</a> if <code>e</code> is a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑥⑨">const-expression</a>.</p>
         <li data-md>
          <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error③⓪">pipeline-creation error</a> if <code>e</code> is an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions④⓪">override-expression</a>.</p>
         <li data-md>
@@ -16183,7 +16177,7 @@ Additionally, the affected memory and atomic operations program-ordered before
 the synchronization function must be visible to all other threads in the
 workgroup before any affected memory or atomic operation program-ordered after
 the synchronization function is executed by a member of the workgroup.</p>
-   <p>All synchronization functions use the <code>Workgroup</code> <a data-link-type="dfn" href="#memory-scope" id="ref-for-memory-scope①">memory scope</a>.<br> All synchronization functions have a <code>Workgroup</code> <a data-link-type="dfn" href="#execution-scope" id="ref-for-execution-scope">execution scope</a>.<br> All synchronization functions <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑤④">must</a> only be used in
+   <p>All synchronization functions use the <code>Workgroup</code> <a data-link-type="dfn" href="#memory-scope" id="ref-for-memory-scope①">memory scope</a>.<br> All synchronization functions have a <code>Workgroup</code> <a data-link-type="dfn" href="#execution-scope" id="ref-for-execution-scope">execution scope</a>.<br> All synchronization functions <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑤③">must</a> only be used in
 the <a data-link-type="dfn" href="#compute" id="ref-for-compute③">compute</a> shader stage.</p>
    <h4 class="heading settled" data-level="17.9.1" id="storageBarrier-builtin"><span class="secno">17.9.1. </span><span class="content"><code>storageBarrier</code></span><a class="self-link" href="#storageBarrier-builtin"></a></h4>
    <table class="data builtin">
@@ -16374,11 +16368,6 @@ Use token definitions from the main part of the specification.</p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①②">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-relational_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-relational_expressionpostunary_expression">relational_expression.post.unary_expression</a></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①③">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-relational_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-relational_expressionpostunary_expression①">relational_expression.post.unary_expression</a> <a data-link-type="dfn" href="#syntax-and_and" id="ref-for-syntax-and_and②">and_and</a> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①④">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-relational_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-relational_expressionpostunary_expression②">relational_expression.post.unary_expression</a> ( <a data-link-type="dfn" href="#syntax-and_and" id="ref-for-syntax-and_and③">and_and</a> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①⑤">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-relational_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-relational_expressionpostunary_expression③">relational_expression.post.unary_expression</a> )*</p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①⑥">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-relational_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-relational_expressionpostunary_expression④">relational_expression.post.unary_expression</a> <a data-link-type="dfn" href="#syntax-or_or" id="ref-for-syntax-or_or②">or_or</a> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①⑦">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-relational_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-relational_expressionpostunary_expression⑤">relational_expression.post.unary_expression</a> ( <a data-link-type="dfn" href="#syntax-or_or" id="ref-for-syntax-or_or③">or_or</a> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①⑧">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-relational_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-relational_expressionpostunary_expression⑥">relational_expression.post.unary_expression</a> )*</p>
-   </div>
-   <div class="syntax">
-     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-extension_name">extension_name</dfn>: 
-    <p>| <code>'bgra8unorm_storage'</code></p>
-    <p>| <code>'f16'</code></p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-float_literal">float_literal</dfn>: 
@@ -16583,7 +16572,7 @@ Use token definitions from the main part of the specification.</p>
    </div>
    <div class="syntax">
      <dfn data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-translation_unit">translation_unit<a class="self-link" href="#recursive-descent-syntax-translation_unit"></a></dfn>: 
-    <p>| ( <code>'enable'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-extension_name" id="ref-for-recursive-descent-syntax-extension_name">extension_name</a> <a data-link-type="dfn" href="#syntax-semicolon" id="ref-for-syntax-semicolon③⑥">semicolon</a> )* <a data-link-type="dfn" href="#recursive-descent-syntax-global_decl" id="ref-for-recursive-descent-syntax-global_decl">global_decl</a> *</p>
+    <p>| ( <code>'enable'</code> <a data-link-type="dfn" href="#syntax-float16" id="ref-for-syntax-float16①">float16</a> <a data-link-type="dfn" href="#syntax-semicolon" id="ref-for-syntax-semicolon③⑥">semicolon</a> )* <a data-link-type="dfn" href="#recursive-descent-syntax-global_decl" id="ref-for-recursive-descent-syntax-global_decl">global_decl</a> *</p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-type_specifier">type_specifier</dfn>: 
@@ -16595,7 +16584,7 @@ Use token definitions from the main part of the specification.</p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-mat_prefix" id="ref-for-recursive-descent-syntax-mat_prefix①">mat_prefix</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than①⑦">less_than</a> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier①⓪">type_specifier</a> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than①⑦">greater_than</a></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-texture_and_sampler_types" id="ref-for-recursive-descent-syntax-texture_and_sampler_types">texture_and_sampler_types</a></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-vec_prefix" id="ref-for-recursive-descent-syntax-vec_prefix①">vec_prefix</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than①⑧">less_than</a> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier①①">type_specifier</a> <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than①⑧">greater_than</a></p>
-    <p>| <a data-link-type="dfn" href="#syntax-float16" id="ref-for-syntax-float16①">float16</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-float16" id="ref-for-syntax-float16②">float16</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-float32" id="ref-for-syntax-float32①">float32</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-int32" id="ref-for-syntax-int32①">int32</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-pointer" id="ref-for-syntax-pointer①">pointer</a> <a data-link-type="dfn" href="#syntax-less_than" id="ref-for-syntax-less_than①⑨">less_than</a> <a data-link-type="dfn" href="#recursive-descent-syntax-address_space" id="ref-for-recursive-descent-syntax-address_space①">address_space</a> <a data-link-type="dfn" href="#syntax-comma" id="ref-for-syntax-comma④⑧">comma</a> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier①②">type_specifier</a> ( <a data-link-type="dfn" href="#syntax-comma" id="ref-for-syntax-comma④⑨">comma</a> <a data-link-type="dfn" href="#recursive-descent-syntax-access_mode" id="ref-for-recursive-descent-syntax-access_mode②">access_mode</a> )? <a data-link-type="dfn" href="#syntax-greater_than" id="ref-for-syntax-greater_than①⑨">greater_than</a></p>
@@ -16745,7 +16734,6 @@ Use token definitions from the main part of the specification.</p>
     </ul>
    <li><a href="#syntax-bang">bang</a><span>, in § 15.3</span>
    <li><a href="#behavior">behavior</a><span>, in § 8.8.1</span>
-   <li><a href="#extension-bgra8unorm_storage">bgra8unorm_storage</a><span>, in § 11.2</span>
    <li><a href="#syntax-binary_and_expression">binary_and_expression</a><span>, in § 7.18</span>
    <li><a href="#syntax-binary_or_expression">binary_or_expression</a><span>, in § 7.18</span>
    <li><a href="#syntax-binary_xor_expression">binary_xor_expression</a><span>, in § 7.18</span>
@@ -16968,12 +16956,7 @@ Use token definitions from the main part of the specification.</p>
     </ul>
    <li><a href="#syntax-expression_comma_list">expression_comma_list</a><span>, in § 7.18</span>
    <li><a href="#extension">extension</a><span>, in § 11</span>
-   <li>
-    extension_name
-    <ul>
-     <li><a href="#recursive-descent-syntax-extension_name">dfn for recursive descent syntax</a><span>, in § 18</span>
-     <li><a href="#syntax-extension_name">dfn for syntax</a><span>, in § 15.4</span>
-    </ul>
+   <li><a href="#syntax-extension_name">extension_name</a><span>, in § 15.4</span>
    <li>
     f16
     <ul>
@@ -17947,32 +17930,32 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-shader-creation-error①⑧⑦">10.3.1.4. Interpolation</a> <a href="#ref-for-shader-creation-error①⑧⑧">(2)</a> <a href="#ref-for-shader-creation-error①⑧⑨">(3)</a> <a href="#ref-for-shader-creation-error①⑨⓪">(4)</a> <a href="#ref-for-shader-creation-error①⑨①">(5)</a>
     <li><a href="#ref-for-shader-creation-error①⑨②">10.3.2. Resource Interface</a> <a href="#ref-for-shader-creation-error①⑨③">(2)</a>
     <li><a href="#ref-for-shader-creation-error①⑨④">11.1. Enable Directive</a>
-    <li><a href="#ref-for-shader-creation-error①⑨⑤">11.2. Extensions List</a> <a href="#ref-for-shader-creation-error①⑨⑥">(2)</a>
-    <li><a href="#ref-for-shader-creation-error①⑨⑦">13.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-shader-creation-error①⑨⑧">(2)</a> <a href="#ref-for-shader-creation-error①⑨⑨">(3)</a> <a href="#ref-for-shader-creation-error②⓪⓪">(4)</a> <a href="#ref-for-shader-creation-error②⓪①">(5)</a> <a href="#ref-for-shader-creation-error②⓪②">(6)</a>
-    <li><a href="#ref-for-shader-creation-error②⓪③">13.5.1. Barriers</a>
-    <li><a href="#ref-for-shader-creation-error②⓪④">13.5.2. Derivatives</a>
-    <li><a href="#ref-for-shader-creation-error②⓪⑤">13.6. Floating Point Evaluation</a>
-    <li><a href="#ref-for-shader-creation-error②⓪⑥">13.6.2. Floating Point Conversion</a>
-    <li><a href="#ref-for-shader-creation-error②⓪⑦">15.2. Reserved Words</a>
-    <li><a href="#ref-for-shader-creation-error②⓪⑧">17.3.10. clamp</a>
-    <li><a href="#ref-for-shader-creation-error②⓪⑨">17.3.23. extractBits (signed)</a>
-    <li><a href="#ref-for-shader-creation-error②①⓪">17.3.24. extractBits (unsigned)</a>
-    <li><a href="#ref-for-shader-creation-error②①①">17.3.33. insertBits</a>
-    <li><a href="#ref-for-shader-creation-error②①②">17.3.35. ldexp</a>
-    <li><a href="#ref-for-shader-creation-error②①③">17.3.45. quantizeToF16</a>
-    <li><a href="#ref-for-shader-creation-error②①④">17.4. Derivative Built-in Functions</a> <a href="#ref-for-shader-creation-error②①⑤">(2)</a>
-    <li><a href="#ref-for-shader-creation-error②①⑥">17.5. Texture Built-in Functions</a>
-    <li><a href="#ref-for-shader-creation-error②①⑦">17.5.2. textureGather</a> <a href="#ref-for-shader-creation-error②①⑧">(2)</a> <a href="#ref-for-shader-creation-error②①⑨">(3)</a> <a href="#ref-for-shader-creation-error②②⓪">(4)</a> <a href="#ref-for-shader-creation-error②②①">(5)</a>
-    <li><a href="#ref-for-shader-creation-error②②②">17.5.3. textureGatherCompare</a> <a href="#ref-for-shader-creation-error②②③">(2)</a> <a href="#ref-for-shader-creation-error②②④">(3)</a>
-    <li><a href="#ref-for-shader-creation-error②②⑤">17.5.8. textureSample</a> <a href="#ref-for-shader-creation-error②②⑥">(2)</a> <a href="#ref-for-shader-creation-error②②⑦">(3)</a> <a href="#ref-for-shader-creation-error②②⑧">(4)</a> <a href="#ref-for-shader-creation-error②②⑨">(5)</a>
-    <li><a href="#ref-for-shader-creation-error②③⓪">17.5.9. textureSampleBias</a> <a href="#ref-for-shader-creation-error②③①">(2)</a> <a href="#ref-for-shader-creation-error②③②">(3)</a> <a href="#ref-for-shader-creation-error②③③">(4)</a> <a href="#ref-for-shader-creation-error②③④">(5)</a> <a href="#ref-for-shader-creation-error②③⑤">(6)</a>
-    <li><a href="#ref-for-shader-creation-error②③⑥">17.5.10. textureSampleCompare</a> <a href="#ref-for-shader-creation-error②③⑦">(2)</a> <a href="#ref-for-shader-creation-error②③⑧">(3)</a> <a href="#ref-for-shader-creation-error②③⑨">(4)</a> <a href="#ref-for-shader-creation-error②④⓪">(5)</a>
-    <li><a href="#ref-for-shader-creation-error②④①">17.5.11. textureSampleCompareLevel</a> <a href="#ref-for-shader-creation-error②④②">(2)</a> <a href="#ref-for-shader-creation-error②④③">(3)</a>
-    <li><a href="#ref-for-shader-creation-error②④④">17.5.12. textureSampleGrad</a> <a href="#ref-for-shader-creation-error②④⑤">(2)</a> <a href="#ref-for-shader-creation-error②④⑥">(3)</a>
-    <li><a href="#ref-for-shader-creation-error②④⑦">17.5.13. textureSampleLevel</a> <a href="#ref-for-shader-creation-error②④⑧">(2)</a> <a href="#ref-for-shader-creation-error②④⑨">(3)</a>
-    <li><a href="#ref-for-shader-creation-error②⑤⓪">17.6. Atomic Built-in Functions</a> <a href="#ref-for-shader-creation-error②⑤①">(2)</a> <a href="#ref-for-shader-creation-error②⑤②">(3)</a>
-    <li><a href="#ref-for-shader-creation-error②⑤③">17.7.5. pack2x16float</a>
-    <li><a href="#ref-for-shader-creation-error②⑤④">17.9. Synchronization Built-in Functions</a>
+    <li><a href="#ref-for-shader-creation-error①⑨⑤">11.2. Extensions List</a>
+    <li><a href="#ref-for-shader-creation-error①⑨⑥">13.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-shader-creation-error①⑨⑦">(2)</a> <a href="#ref-for-shader-creation-error①⑨⑧">(3)</a> <a href="#ref-for-shader-creation-error①⑨⑨">(4)</a> <a href="#ref-for-shader-creation-error②⓪⓪">(5)</a> <a href="#ref-for-shader-creation-error②⓪①">(6)</a>
+    <li><a href="#ref-for-shader-creation-error②⓪②">13.5.1. Barriers</a>
+    <li><a href="#ref-for-shader-creation-error②⓪③">13.5.2. Derivatives</a>
+    <li><a href="#ref-for-shader-creation-error②⓪④">13.6. Floating Point Evaluation</a>
+    <li><a href="#ref-for-shader-creation-error②⓪⑤">13.6.2. Floating Point Conversion</a>
+    <li><a href="#ref-for-shader-creation-error②⓪⑥">15.2. Reserved Words</a>
+    <li><a href="#ref-for-shader-creation-error②⓪⑦">17.3.10. clamp</a>
+    <li><a href="#ref-for-shader-creation-error②⓪⑧">17.3.23. extractBits (signed)</a>
+    <li><a href="#ref-for-shader-creation-error②⓪⑨">17.3.24. extractBits (unsigned)</a>
+    <li><a href="#ref-for-shader-creation-error②①⓪">17.3.33. insertBits</a>
+    <li><a href="#ref-for-shader-creation-error②①①">17.3.35. ldexp</a>
+    <li><a href="#ref-for-shader-creation-error②①②">17.3.45. quantizeToF16</a>
+    <li><a href="#ref-for-shader-creation-error②①③">17.4. Derivative Built-in Functions</a> <a href="#ref-for-shader-creation-error②①④">(2)</a>
+    <li><a href="#ref-for-shader-creation-error②①⑤">17.5. Texture Built-in Functions</a>
+    <li><a href="#ref-for-shader-creation-error②①⑥">17.5.2. textureGather</a> <a href="#ref-for-shader-creation-error②①⑦">(2)</a> <a href="#ref-for-shader-creation-error②①⑧">(3)</a> <a href="#ref-for-shader-creation-error②①⑨">(4)</a> <a href="#ref-for-shader-creation-error②②⓪">(5)</a>
+    <li><a href="#ref-for-shader-creation-error②②①">17.5.3. textureGatherCompare</a> <a href="#ref-for-shader-creation-error②②②">(2)</a> <a href="#ref-for-shader-creation-error②②③">(3)</a>
+    <li><a href="#ref-for-shader-creation-error②②④">17.5.8. textureSample</a> <a href="#ref-for-shader-creation-error②②⑤">(2)</a> <a href="#ref-for-shader-creation-error②②⑥">(3)</a> <a href="#ref-for-shader-creation-error②②⑦">(4)</a> <a href="#ref-for-shader-creation-error②②⑧">(5)</a>
+    <li><a href="#ref-for-shader-creation-error②②⑨">17.5.9. textureSampleBias</a> <a href="#ref-for-shader-creation-error②③⓪">(2)</a> <a href="#ref-for-shader-creation-error②③①">(3)</a> <a href="#ref-for-shader-creation-error②③②">(4)</a> <a href="#ref-for-shader-creation-error②③③">(5)</a> <a href="#ref-for-shader-creation-error②③④">(6)</a>
+    <li><a href="#ref-for-shader-creation-error②③⑤">17.5.10. textureSampleCompare</a> <a href="#ref-for-shader-creation-error②③⑥">(2)</a> <a href="#ref-for-shader-creation-error②③⑦">(3)</a> <a href="#ref-for-shader-creation-error②③⑧">(4)</a> <a href="#ref-for-shader-creation-error②③⑨">(5)</a>
+    <li><a href="#ref-for-shader-creation-error②④⓪">17.5.11. textureSampleCompareLevel</a> <a href="#ref-for-shader-creation-error②④①">(2)</a> <a href="#ref-for-shader-creation-error②④②">(3)</a>
+    <li><a href="#ref-for-shader-creation-error②④③">17.5.12. textureSampleGrad</a> <a href="#ref-for-shader-creation-error②④④">(2)</a> <a href="#ref-for-shader-creation-error②④⑤">(3)</a>
+    <li><a href="#ref-for-shader-creation-error②④⑥">17.5.13. textureSampleLevel</a> <a href="#ref-for-shader-creation-error②④⑦">(2)</a> <a href="#ref-for-shader-creation-error②④⑧">(3)</a>
+    <li><a href="#ref-for-shader-creation-error②④⑨">17.6. Atomic Built-in Functions</a> <a href="#ref-for-shader-creation-error②⑤⓪">(2)</a> <a href="#ref-for-shader-creation-error②⑤①">(3)</a>
+    <li><a href="#ref-for-shader-creation-error②⑤②">17.7.5. pack2x16float</a>
+    <li><a href="#ref-for-shader-creation-error②⑤③">17.9. Synchronization Built-in Functions</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="pipeline-creation-error">
@@ -21430,7 +21413,7 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <b><a href="#syntax-float16">#syntax-float16</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-syntax-float16">5.7. Type Specifier Grammar</a>
-    <li><a href="#ref-for-syntax-float16①">18. Grammar for Recursive Descent Parsing</a>
+    <li><a href="#ref-for-syntax-float16①">18. Grammar for Recursive Descent Parsing</a> <a href="#ref-for-syntax-float16②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-int32">
@@ -22359,12 +22342,6 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <b><a href="#recursive-descent-syntax-expression">#recursive-descent-syntax-expression</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-recursive-descent-syntax-expression">18. Grammar for Recursive Descent Parsing</a> <a href="#ref-for-recursive-descent-syntax-expression①">(2)</a> <a href="#ref-for-recursive-descent-syntax-expression②">(3)</a> <a href="#ref-for-recursive-descent-syntax-expression③">(4)</a> <a href="#ref-for-recursive-descent-syntax-expression④">(5)</a> <a href="#ref-for-recursive-descent-syntax-expression⑤">(6)</a> <a href="#ref-for-recursive-descent-syntax-expression⑥">(7)</a> <a href="#ref-for-recursive-descent-syntax-expression⑦">(8)</a> <a href="#ref-for-recursive-descent-syntax-expression⑧">(9)</a> <a href="#ref-for-recursive-descent-syntax-expression⑨">(10)</a> <a href="#ref-for-recursive-descent-syntax-expression①⓪">(11)</a> <a href="#ref-for-recursive-descent-syntax-expression①①">(12)</a> <a href="#ref-for-recursive-descent-syntax-expression①②">(13)</a> <a href="#ref-for-recursive-descent-syntax-expression①③">(14)</a> <a href="#ref-for-recursive-descent-syntax-expression①④">(15)</a> <a href="#ref-for-recursive-descent-syntax-expression①⑤">(16)</a> <a href="#ref-for-recursive-descent-syntax-expression①⑥">(17)</a> <a href="#ref-for-recursive-descent-syntax-expression①⑦">(18)</a> <a href="#ref-for-recursive-descent-syntax-expression①⑧">(19)</a> <a href="#ref-for-recursive-descent-syntax-expression①⑨">(20)</a> <a href="#ref-for-recursive-descent-syntax-expression②⓪">(21)</a> <a href="#ref-for-recursive-descent-syntax-expression②①">(22)</a> <a href="#ref-for-recursive-descent-syntax-expression②②">(23)</a> <a href="#ref-for-recursive-descent-syntax-expression②③">(24)</a> <a href="#ref-for-recursive-descent-syntax-expression②④">(25)</a> <a href="#ref-for-recursive-descent-syntax-expression②⑤">(26)</a> <a href="#ref-for-recursive-descent-syntax-expression②⑥">(27)</a> <a href="#ref-for-recursive-descent-syntax-expression②⑦">(28)</a> <a href="#ref-for-recursive-descent-syntax-expression②⑧">(29)</a> <a href="#ref-for-recursive-descent-syntax-expression②⑨">(30)</a> <a href="#ref-for-recursive-descent-syntax-expression③⓪">(31)</a> <a href="#ref-for-recursive-descent-syntax-expression③①">(32)</a> <a href="#ref-for-recursive-descent-syntax-expression③②">(33)</a> <a href="#ref-for-recursive-descent-syntax-expression③③">(34)</a> <a href="#ref-for-recursive-descent-syntax-expression③④">(35)</a> <a href="#ref-for-recursive-descent-syntax-expression③⑤">(36)</a> <a href="#ref-for-recursive-descent-syntax-expression③⑥">(37)</a> <a href="#ref-for-recursive-descent-syntax-expression③⑦">(38)</a> <a href="#ref-for-recursive-descent-syntax-expression③⑧">(39)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="recursive-descent-syntax-extension_name">
-   <b><a href="#recursive-descent-syntax-extension_name">#recursive-descent-syntax-extension_name</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-recursive-descent-syntax-extension_name">18. Grammar for Recursive Descent Parsing</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="recursive-descent-syntax-float_literal">

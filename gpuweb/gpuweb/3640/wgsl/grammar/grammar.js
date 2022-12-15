@@ -540,10 +540,7 @@ module.exports = grammar({
             token('rgba32float'),
             token('bgra8unorm')
         ),
-        extension_name: $ => choice(
-            token('f16'),
-            token('bgra8unorm_storage')
-        ),
+        extension_name: $ => token('f16'),
         swizzle_name: $ => choice(
             token('/[rgba]/'),
             token('/[rgba][rgba]/'),
