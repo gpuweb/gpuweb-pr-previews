@@ -890,13 +890,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-12-20">20 December 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-12-21">21 December 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/381958f497859629846eae59026a3ee9c6feee31/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/381958f497859629846eae59026a3ee9c6feee31/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/69c559e388a4e6ef8e4936a315aa840fec41bf2b/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/69c559e388a4e6ef8e4936a315aa840fec41bf2b/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -9819,6 +9819,13 @@ The encoder becomes "<a data-link-type="dfn" href="#encoder-state-open" id="ref-
       <p><a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑧">Generate a validation error</a>, and return <code>false</code>.</p>
     </dl>
    </div>
+   <div class="algorithm" data-algorithm="Enqueue a command">
+     To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-enqueue-a-command">Enqueue a command</dfn> on <code class="idl"><a data-link-type="idl" href="#gpucommandsmixin" id="ref-for-gpucommandsmixin④">GPUCommandsMixin</a></code> <var>encoder</var> which issues the steps of a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command⑥">GPU Command</a> <var>command</var>: 
+    <ol>
+     <li data-md>
+      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append③">Append</a> <var>command</var> to <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot">[[commands]]</a></code>.</p>
+    </ol>
+   </div>
    <h3 class="heading settled" data-level="13.2" id="command-encoder"><span class="secno">13.2. </span><span class="content"><dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="gpucommandencoder"><code>GPUCommandEncoder</code></dfn></span><a class="self-link" href="#command-encoder"></a></h3>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed②⑤"><c- g>Exposed</c-></a>=(<c- n>Window</c->, <c- n>DedicatedWorker</c->), <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext②①"><c- g>SecureContext</c-></a>]
 <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="#gpucommandencoder" id="ref-for-gpucommandencoder⑦"><c- g>GPUCommandEncoder</c-></a> {
@@ -9864,7 +9871,7 @@ The encoder becomes "<a data-link-type="dfn" href="#encoder-state-open" id="ref-
     <a data-link-type="idl-name" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer⑨"><c- n>GPUCommandBuffer</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpucommandencoder-finish" id="ref-for-dom-gpucommandencoder-finish①"><c- g>finish</c-></a>(<c- b>optional</c-> <a data-link-type="idl-name" href="#dictdef-gpucommandbufferdescriptor" id="ref-for-dictdef-gpucommandbufferdescriptor"><c- n>GPUCommandBufferDescriptor</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpucommandencoder-finish-descriptor-descriptor" id="ref-for-dom-gpucommandencoder-finish-descriptor-descriptor"><c- g>descriptor</c-></a> = {});
 };
 <a data-link-type="idl-name" href="#gpucommandencoder" id="ref-for-gpucommandencoder⑧"><c- n>GPUCommandEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpuobjectbase" id="ref-for-gpuobjectbase②④"><c- n>GPUObjectBase</c-></a>;
-<a data-link-type="idl-name" href="#gpucommandencoder" id="ref-for-gpucommandencoder⑨"><c- n>GPUCommandEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpucommandsmixin" id="ref-for-gpucommandsmixin④"><c- n>GPUCommandsMixin</c-></a>;
+<a data-link-type="idl-name" href="#gpucommandencoder" id="ref-for-gpucommandencoder⑨"><c- n>GPUCommandEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpucommandsmixin" id="ref-for-gpucommandsmixin⑤"><c- n>GPUCommandsMixin</c-></a>;
 <a data-link-type="idl-name" href="#gpucommandencoder" id="ref-for-gpucommandencoder①⓪"><c- n>GPUCommandEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpudebugcommandsmixin" id="ref-for-gpudebugcommandsmixin"><c- n>GPUDebugCommandsMixin</c-></a>;
 </pre>
    <h4 class="heading settled" data-level="13.2.1" id="command-encoder-creation"><span class="secno">13.2.1. </span><span class="content">Command Encoder Creation</span><a class="self-link" href="#command-encoder-creation"></a></h4>
@@ -10031,10 +10038,10 @@ duration of the render pass.</p>
          <p>For each <var>timestampWrite</var> in <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassdescriptor-timestampwrites" id="ref-for-dom-gpurenderpassdescriptor-timestampwrites②">timestampWrites</a></code>,</p>
          <ol>
           <li data-md>
-           <p>If <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasstimestampwrite-location" id="ref-for-dom-gpurenderpasstimestampwrite-location">location</a></code> is <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasstimestamplocation-beginning" id="ref-for-dom-gpurenderpasstimestamplocation-beginning">"beginning"</a></code>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append③">append</a> a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command⑥">GPU command</a> to <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot">[[commands]]</a></code> that writes the GPU’s timestamp value into the <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasstimestampwrite-queryindex" id="ref-for-dom-gpurenderpasstimestampwrite-queryindex">queryIndex</a></code>th
+           <p>If <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasstimestampwrite-location" id="ref-for-dom-gpurenderpasstimestampwrite-location">location</a></code> is <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasstimestamplocation-beginning" id="ref-for-dom-gpurenderpasstimestamplocation-beginning">"beginning"</a></code>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append④">append</a> a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command⑦">GPU command</a> to <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot①">[[commands]]</a></code> that writes the GPU’s timestamp value into the <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasstimestampwrite-queryindex" id="ref-for-dom-gpurenderpasstimestampwrite-queryindex">queryIndex</a></code>th
 index in <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasstimestampwrite-queryset" id="ref-for-dom-gpurenderpasstimestampwrite-queryset①">querySet</a></code>.</p>
           <li data-md>
-           <p>Otherwise, if <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasstimestampwrite-location" id="ref-for-dom-gpurenderpasstimestampwrite-location①">location</a></code> is <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasstimestamplocation-end" id="ref-for-dom-gpurenderpasstimestamplocation-end">"end"</a></code>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append④">Append</a> <var>timestampWrite</var> to <var>pass</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-endtimestampwrites-slot" id="ref-for-dom-gpurenderpassencoder-endtimestampwrites-slot">[[endTimestampWrites]]</a></code>.</p>
+           <p>Otherwise, if <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasstimestampwrite-location" id="ref-for-dom-gpurenderpasstimestampwrite-location①">location</a></code> is <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasstimestamplocation-end" id="ref-for-dom-gpurenderpasstimestamplocation-end">"end"</a></code>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append⑤">Append</a> <var>timestampWrite</var> to <var>pass</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-endtimestampwrites-slot" id="ref-for-dom-gpurenderpassencoder-endtimestampwrites-slot">[[endTimestampWrites]]</a></code>.</p>
          </ol>
         <li data-md>
          <p>Set <var>pass</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawcount-slot" id="ref-for-dom-gpurendercommandsmixin-drawcount-slot">[[drawCount]]</a></code> to 0.</p>
@@ -10111,10 +10118,10 @@ If it returns false, make <var>pass</var> <a data-link-type="dfn" href="#invalid
          <p>For each <var>timestampWrite</var> in <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepassdescriptor-timestampwrites" id="ref-for-dom-gpucomputepassdescriptor-timestampwrites①">timestampWrites</a></code>,</p>
          <ol>
           <li data-md>
-           <p>If <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepasstimestampwrite-location" id="ref-for-dom-gpucomputepasstimestampwrite-location">location</a></code> is <code class="idl"><a data-link-type="idl" href="#dom-gpucomputepasstimestamplocation-beginning" id="ref-for-dom-gpucomputepasstimestamplocation-beginning">"beginning"</a></code>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append⑤">append</a> a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command⑦">GPU command</a> to <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot①">[[commands]]</a></code> that writes the GPU’s timestamp value into the <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepasstimestampwrite-queryindex" id="ref-for-dom-gpucomputepasstimestampwrite-queryindex">queryIndex</a></code>th
+           <p>If <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepasstimestampwrite-location" id="ref-for-dom-gpucomputepasstimestampwrite-location">location</a></code> is <code class="idl"><a data-link-type="idl" href="#dom-gpucomputepasstimestamplocation-beginning" id="ref-for-dom-gpucomputepasstimestamplocation-beginning">"beginning"</a></code>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append⑥">append</a> a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command⑧">GPU command</a> to <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot②">[[commands]]</a></code> that writes the GPU’s timestamp value into the <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepasstimestampwrite-queryindex" id="ref-for-dom-gpucomputepasstimestampwrite-queryindex">queryIndex</a></code>th
 index in <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepasstimestampwrite-queryset" id="ref-for-dom-gpucomputepasstimestampwrite-queryset①">querySet</a></code>.</p>
           <li data-md>
-           <p>Otherwise, if <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepasstimestampwrite-location" id="ref-for-dom-gpucomputepasstimestampwrite-location①">location</a></code> is <code class="idl"><a data-link-type="idl" href="#dom-gpucomputepasstimestamplocation-end" id="ref-for-dom-gpucomputepasstimestamplocation-end">"end"</a></code>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append⑥">Append</a> <var>timestampWrite</var> to <var>pass</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepassencoder-endtimestampwrites-slot" id="ref-for-dom-gpucomputepassencoder-endtimestampwrites-slot">[[endTimestampWrites]]</a></code>.</p>
+           <p>Otherwise, if <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepasstimestampwrite-location" id="ref-for-dom-gpucomputepasstimestampwrite-location①">location</a></code> is <code class="idl"><a data-link-type="idl" href="#dom-gpucomputepasstimestamplocation-end" id="ref-for-dom-gpucomputepasstimestamplocation-end">"end"</a></code>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append⑦">Append</a> <var>timestampWrite</var> to <var>pass</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepassencoder-endtimestampwrites-slot" id="ref-for-dom-gpucomputepassencoder-endtimestampwrites-slot">[[endTimestampWrites]]</a></code>.</p>
          </ol>
        </ol>
       </div>
@@ -10214,8 +10221,7 @@ index in <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" hre
           <p class="issue" id="issue-b925324f"><a class="self-link" href="#issue-b925324f"></a> figure out how to handle overflows in the spec. <a href="https://github.com/gpuweb/gpuweb/issues/69">[Issue #gpuweb/gpuweb#69]</a></p>
          </div>
         <li data-md>
-         <p>Enqueue a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command⑧">GPU Command</a> on <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot②">[[commands]]</a></code> which
-issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①②">Queue timeline</a> when executed.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①②">Queue timeline</a> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
@@ -10294,8 +10300,7 @@ beginning at <var>destinationOffset</var>.</p>
           </ul>
          </div>
         <li data-md>
-         <p>Enqueue a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command⑨">GPU Command</a> on <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot③">[[commands]]</a></code> which
-issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①④">Queue timeline</a> when executed.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command①">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①④">Queue timeline</a> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
@@ -10658,8 +10663,16 @@ the <a data-link-type="abstract-op" href="#abstract-opdef-set-of-subresources-fo
             <p><var>queryIndex</var> &lt; <var>querySet</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuqueryset-count" id="ref-for-dom-gpuqueryset-count">count</a></code>.</p>
           </ul>
          </div>
+        <li data-md>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command②">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①⑥">Queue timeline</a> when executed.</p>
        </ol>
-       <p class="issue" id="issue-9a99c7f4"><a class="self-link" href="#issue-9a99c7f4"></a> Describe <code class="idl"><a data-link-type="idl" href="#dom-gpucommandencoder-writetimestamp" id="ref-for-dom-gpucommandencoder-writetimestamp②">writeTimestamp()</a></code> algorithm steps.</p>
+      </div>
+      <div data-timeline="queue">
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①⑦">Queue timeline</a> steps: 
+       <ol>
+        <li data-md>
+         <p>Write the current timestamp for the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①⑧">Queue timeline</a>, in nanoseconds, into <var>querySet</var> at index <var>queryIndex</var>.</p>
+       </ol>
       </div>
      </div>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUCommandEncoder" data-dfn-type="method" data-export id="dom-gpucommandencoder-resolvequeryset"><code>resolveQuerySet(querySet, firstQuery, queryCount, destination, destinationOffset)</code></dfn>
@@ -10742,8 +10755,28 @@ the <a data-link-type="abstract-op" href="#abstract-opdef-set-of-subresources-fo
             <p><var>destinationOffset</var> + 8 × <var>queryCount</var> ≤ <var>destination</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-size" id="ref-for-dom-gpubuffer-size①①">size</a></code>.</p>
           </ul>
          </div>
+        <li data-md>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command③">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①⑨">Queue timeline</a> when executed.</p>
        </ol>
-       <p class="issue" id="issue-be3ae455"><a class="self-link" href="#issue-be3ae455"></a> Describe <code class="idl"><a data-link-type="idl" href="#dom-gpucommandencoder-resolvequeryset" id="ref-for-dom-gpucommandencoder-resolvequeryset③">resolveQuerySet()</a></code> algorithm steps.</p>
+      </div>
+      <div data-timeline="queue">
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⓪">Queue timeline</a> steps: 
+       <ol>
+        <li data-md>
+         <p>Let <var>queryIndex</var> be <var>firstQuery</var>.</p>
+        <li data-md>
+         <p>Let <var>offset</var> be <var>destinationOffset</var>.</p>
+        <li data-md>
+         <p>While <var>queryIndex</var> &lt; <var>firstQuery</var> + <var>queryCount</var>:</p>
+         <ol>
+          <li data-md>
+           <p>Set 8 bytes of <var>destination</var>, beginning at <var>offset</var>, to be the value of <var>querySet</var> at <var>queryIndex</var>.</p>
+          <li data-md>
+           <p>Set <var>queryIndex</var> to be <var>queryIndex</var> + 1.</p>
+          <li data-md>
+           <p>Set <var>offset</var> to be <var>offset</var> + 8.</p>
+         </ol>
+       </ol>
       </div>
      </div>
    </dl>
@@ -10815,7 +10848,7 @@ command encoder can no longer be used.</p>
            <p>Return a new <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④④">invalid</a> <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer①⑤">GPUCommandBuffer</a></code>.</p>
          </ol>
         <li data-md>
-         <p>Set <var>commandBuffer</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandbuffer-command_list-slot" id="ref-for-dom-gpucommandbuffer-command_list-slot">[[command_list]]</a></code> to <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot④">[[commands]]</a></code>.</p>
+         <p>Set <var>commandBuffer</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandbuffer-command_list-slot" id="ref-for-dom-gpucommandbuffer-command_list-slot">[[command_list]]</a></code> to <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot③">[[commands]]</a></code>.</p>
        </ol>
       </div>
      </div>
@@ -10831,7 +10864,7 @@ command encoder can no longer be used.</p>
         <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32④⑨"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpubindingcommandsmixin-setbindgroup-index-bindgroup-dynamicoffsetsdata-dynamicoffsetsdatastart-dynamicoffsetsdatalength-dynamicoffsetsdatalength" id="ref-for-dom-gpubindingcommandsmixin-setbindgroup-index-bindgroup-dynamicoffsetsdata-dynamicoffsetsdatastart-dynamicoffsetsdatalength-dynamicoffsetsdatalength"><c- g>dynamicOffsetsDataLength</c-></a>);
 };
 </pre>
-   <p><code class="idl"><a data-link-type="idl" href="#gpubindingcommandsmixin" id="ref-for-gpubindingcommandsmixin">GPUBindingCommandsMixin</a></code> assumes the presence of <code class="idl"><a data-link-type="idl" href="#gpuobjectbase" id="ref-for-gpuobjectbase②⑤">GPUObjectBase</a></code> and <code class="idl"><a data-link-type="idl" href="#gpucommandsmixin" id="ref-for-gpucommandsmixin⑤">GPUCommandsMixin</a></code> members on the same object.
+   <p><code class="idl"><a data-link-type="idl" href="#gpubindingcommandsmixin" id="ref-for-gpubindingcommandsmixin">GPUBindingCommandsMixin</a></code> assumes the presence of <code class="idl"><a data-link-type="idl" href="#gpuobjectbase" id="ref-for-gpuobjectbase②⑤">GPUObjectBase</a></code> and <code class="idl"><a data-link-type="idl" href="#gpucommandsmixin" id="ref-for-gpucommandsmixin⑥">GPUCommandsMixin</a></code> members on the same object.
 It must only be included by interfaces which also include those mixins.</p>
    <p><code class="idl"><a data-link-type="idl" href="#gpubindingcommandsmixin" id="ref-for-gpubindingcommandsmixin①">GPUBindingCommandsMixin</a></code> has the following internal slots:</p>
    <dl>
@@ -11107,7 +11140,7 @@ where the latter indicates whether the resource was used as writable.</p>
                 <p>If (<var>resourceWritable</var> or <var>pastResourceWritable</var>) is true, and <var>pastResource</var> and <var>resource</var> are <a data-link-type="dfn" href="#buffer-binding-aliasing" id="ref-for-buffer-binding-aliasing">buffer-binding-aliasing</a>, return <code>true</code>.</p>
               </ol>
              <li data-md>
-              <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append⑦">Append</a> ([<var>resource</var>], <var>resourceWritable</var>) to <var>bufferBindings</var>.</p>
+              <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append⑧">Append</a> ([<var>resource</var>], <var>resourceWritable</var>) to <var>bufferBindings</var>.</p>
             </ol>
             <p>Otherwise, if <var>bindGroupEntry</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindgroupentry-resource" id="ref-for-dom-gpubindgroupentry-resource⑤">resource</a></code> is a <code class="idl"><a data-link-type="idl" href="#gputextureview" id="ref-for-gputextureview②③">GPUTextureView</a></code>:</p>
             <ol>
@@ -11124,7 +11157,7 @@ where the latter indicates whether the resource was used as writable.</p>
                 <p>If (<var>resourceWritable</var> or <var>pastResourceWritable</var>) is true, and <var>pastResource</var> and <var>resource</var> is <a data-link-type="dfn" href="#texture-view-aliasing" id="ref-for-texture-view-aliasing">texture-view-aliasing</a>, return <code>true</code>.</p>
               </ol>
              <li data-md>
-              <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append⑧">Append</a> ([<var>resource</var>], <var>resourceWritable</var>) to <var>textureViews</var>.</p>
+              <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append⑨">Append</a> ([<var>resource</var>], <var>resourceWritable</var>) to <var>textureViews</var>.</p>
             </ol>
             <p>Otherwise, continue.</p>
           </ol>
@@ -11146,7 +11179,7 @@ in error messages and browser developer tools, and may be passed to native API b
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined②⑨"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpudebugcommandsmixin-insertdebugmarker" id="ref-for-dom-gpudebugcommandsmixin-insertdebugmarker"><c- g>insertDebugMarker</c-></a>(<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString①④"><c- b>USVString</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpudebugcommandsmixin-insertdebugmarker-markerlabel-markerlabel" id="ref-for-dom-gpudebugcommandsmixin-insertdebugmarker-markerlabel-markerlabel"><c- g>markerLabel</c-></a>);
 };
 </pre>
-   <p><code class="idl"><a data-link-type="idl" href="#gpudebugcommandsmixin" id="ref-for-gpudebugcommandsmixin②">GPUDebugCommandsMixin</a></code> assumes the presence of <code class="idl"><a data-link-type="idl" href="#gpuobjectbase" id="ref-for-gpuobjectbase②⑥">GPUObjectBase</a></code> and <code class="idl"><a data-link-type="idl" href="#gpucommandsmixin" id="ref-for-gpucommandsmixin⑥">GPUCommandsMixin</a></code> members on the same object.
+   <p><code class="idl"><a data-link-type="idl" href="#gpudebugcommandsmixin" id="ref-for-gpudebugcommandsmixin②">GPUDebugCommandsMixin</a></code> assumes the presence of <code class="idl"><a data-link-type="idl" href="#gpuobjectbase" id="ref-for-gpuobjectbase②⑥">GPUObjectBase</a></code> and <code class="idl"><a data-link-type="idl" href="#gpucommandsmixin" id="ref-for-gpucommandsmixin⑦">GPUCommandsMixin</a></code> members on the same object.
 It must only be included by interfaces which also include those mixins.</p>
    <p><code class="idl"><a data-link-type="idl" href="#gpudebugcommandsmixin" id="ref-for-gpudebugcommandsmixin③">GPUDebugCommandsMixin</a></code> adds the following internal slots to interfaces which include it:</p>
    <dl>
@@ -11279,7 +11312,7 @@ It must only be included by interfaces which also include those mixins.</p>
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined③⑥"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpucomputepassencoder-end" id="ref-for-dom-gpucomputepassencoder-end"><c- g>end</c-></a>();
 };
 <a data-link-type="idl-name" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder⑦"><c- n>GPUComputePassEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpuobjectbase" id="ref-for-gpuobjectbase②⑦"><c- n>GPUObjectBase</c-></a>;
-<a data-link-type="idl-name" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder⑧"><c- n>GPUComputePassEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpucommandsmixin" id="ref-for-gpucommandsmixin⑦"><c- n>GPUCommandsMixin</c-></a>;
+<a data-link-type="idl-name" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder⑧"><c- n>GPUComputePassEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpucommandsmixin" id="ref-for-gpucommandsmixin⑧"><c- n>GPUCommandsMixin</c-></a>;
 <a data-link-type="idl-name" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder⑨"><c- n>GPUComputePassEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpudebugcommandsmixin" id="ref-for-gpudebugcommandsmixin⑧"><c- n>GPUDebugCommandsMixin</c-></a>;
 <a data-link-type="idl-name" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder①⓪"><c- n>GPUComputePassEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpubindingcommandsmixin" id="ref-for-gpubindingcommandsmixin⑥"><c- n>GPUBindingCommandsMixin</c-></a>;
 </pre>
@@ -11457,7 +11490,7 @@ is <code>true</code>.</p>
         <li data-md>
          <p>Let <var>passState</var> be a snapshot of <var>this</var>’s current state.</p>
         <li data-md>
-         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append⑨">Append</a> a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command①⓪">GPU command</a> to <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot⑤">[[commands]]</a></code> executing the following <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①⑥">queue timeline</a> steps:</p>
+         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①⓪">Append</a> a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command⑨">GPU command</a> to <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot④">[[commands]]</a></code> executing the following <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②①">queue timeline</a> steps:</p>
          <div class="queue-timeline">
           <ol>
            <li data-md>
@@ -11593,14 +11626,14 @@ called the compute pass encoder can no longer be used.</p>
           </ul>
          </div>
         <li data-md>
-         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-extend" id="ref-for-list-extend">Extend</a> <var>parentEncoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot⑥">[[commands]]</a></code> with <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot⑦">[[commands]]</a></code>.</p>
+         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-extend" id="ref-for-list-extend">Extend</a> <var>parentEncoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot⑤">[[commands]]</a></code> with <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot⑥">[[commands]]</a></code>.</p>
         <li data-md>
          <p>For each <var>timestampWrite</var> in <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepassencoder-endtimestampwrites-slot" id="ref-for-dom-gpucomputepassencoder-endtimestampwrites-slot①">[[endTimestampWrites]]</a></code>:</p>
          <ol>
           <li data-md>
            <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#assert" id="ref-for-assert①①">Assert</a>: <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepasstimestampwrite-location" id="ref-for-dom-gpucomputepasstimestampwrite-location③">location</a></code> is <code class="idl"><a data-link-type="idl" href="#dom-gpucomputepasstimestamplocation-end" id="ref-for-dom-gpucomputepasstimestamplocation-end①">"end"</a></code>.</p>
           <li data-md>
-           <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①⓪">Append</a> a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command①①">GPU command</a> to <var>parentEncoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot⑧">[[commands]]</a></code> that writes the GPU’s timestamp value into the <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepasstimestampwrite-queryindex" id="ref-for-dom-gpucomputepasstimestampwrite-queryindex②">queryIndex</a></code>th
+           <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①①">Append</a> a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command①⓪">GPU command</a> to <var>parentEncoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot⑦">[[commands]]</a></code> that writes the GPU’s timestamp value into the <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepasstimestampwrite-queryindex" id="ref-for-dom-gpucomputepasstimestampwrite-queryindex②">queryIndex</a></code>th
 index in <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepasstimestampwrite-queryset" id="ref-for-dom-gpucomputepasstimestampwrite-queryset④">querySet</a></code>.</p>
          </ol>
        </ol>
@@ -11628,7 +11661,7 @@ index in <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" hre
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined④⑧"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpurenderpassencoder-end" id="ref-for-dom-gpurenderpassencoder-end"><c- g>end</c-></a>();
 };
 <a data-link-type="idl-name" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder⑨"><c- n>GPURenderPassEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpuobjectbase" id="ref-for-gpuobjectbase②⑧"><c- n>GPUObjectBase</c-></a>;
-<a data-link-type="idl-name" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder①⓪"><c- n>GPURenderPassEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpucommandsmixin" id="ref-for-gpucommandsmixin⑧"><c- n>GPUCommandsMixin</c-></a>;
+<a data-link-type="idl-name" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder①⓪"><c- n>GPURenderPassEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpucommandsmixin" id="ref-for-gpucommandsmixin⑨"><c- n>GPUCommandsMixin</c-></a>;
 <a data-link-type="idl-name" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder①①"><c- n>GPURenderPassEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpudebugcommandsmixin" id="ref-for-gpudebugcommandsmixin⑨"><c- n>GPUDebugCommandsMixin</c-></a>;
 <a data-link-type="idl-name" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder①②"><c- n>GPURenderPassEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpubindingcommandsmixin" id="ref-for-gpubindingcommandsmixin⑦"><c- n>GPUBindingCommandsMixin</c-></a>;
 <a data-link-type="idl-name" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder①③"><c- n>GPURenderPassEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin"><c- n>GPURenderCommandsMixin</c-></a>;
@@ -11648,9 +11681,13 @@ index in <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" hre
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderPassEncoder" data-dfn-type="attribute" data-export id="dom-gpurenderpassencoder-occlusion_query_set-slot"><code>[[occlusion_query_set]]</code></dfn>, of type <code class="idl"><a data-link-type="idl" href="#gpuqueryset" id="ref-for-gpuqueryset⑦">GPUQuerySet</a></code>.
     <dd data-md>
      <p>The <code class="idl"><a data-link-type="idl" href="#gpuqueryset" id="ref-for-gpuqueryset⑧">GPUQuerySet</a></code> to store occlusion query results for the pass, which is initialized with <code class="idl"><a data-link-type="idl" href="#dictdef-gpurenderpassdescriptor" id="ref-for-dictdef-gpurenderpassdescriptor④">GPURenderPassDescriptor</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassdescriptor-occlusionqueryset" id="ref-for-dom-gpurenderpassdescriptor-occlusionqueryset">occlusionQuerySet</a></code> at pass creation time.</p>
+    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderPassEncoder" data-dfn-type="attribute" data-export id="dom-gpurenderpassencoder-occlusion_query_index-slot"><code>[[occlusion_query_index]]</code></dfn>, of type <code class="idl"><a data-link-type="idl" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑤⑨">GPUSize32</a></code>.
+    <dd data-md>
+     <p>The index into <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-occlusion_query_set-slot" id="ref-for-dom-gpurenderpassencoder-occlusion_query_set-slot">[[occlusion_query_set]]</a></code> at which to store the
+occlusion query results.</p>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderPassEncoder" data-dfn-type="attribute" data-export id="dom-gpurenderpassencoder-occlusion_query_active-slot"><code>[[occlusion_query_active]]</code></dfn>, of type <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-boolean" id="ref-for-idl-boolean②⑨">boolean</a></code>.
     <dd data-md>
-     <p>Whether the pass’s <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-occlusion_query_set-slot" id="ref-for-dom-gpurenderpassencoder-occlusion_query_set-slot">[[occlusion_query_set]]</a></code> is being written.</p>
+     <p>Whether the pass’s <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-occlusion_query_set-slot" id="ref-for-dom-gpurenderpassencoder-occlusion_query_set-slot①">[[occlusion_query_set]]</a></code> is being written.</p>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderPassEncoder" data-dfn-type="attribute" data-export id="dom-gpurenderpassencoder-viewport-slot"><code>[[viewport]]</code></dfn>
     <dd data-md>
      <p>Current viewport rectangle and depth range.</p>
@@ -11696,7 +11733,7 @@ index in <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" hre
 
 <c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpurenderpasstimestampwrite"><code><c- g>GPURenderPassTimestampWrite</c-></code></dfn> {
     <c- b>required</c-> <a data-link-type="idl-name" href="#gpuqueryset" id="ref-for-gpuqueryset⑨"><c- n>GPUQuerySet</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderPassTimestampWrite" data-dfn-type="dict-member" data-export data-type="GPUQuerySet " id="dom-gpurenderpasstimestampwrite-queryset"><code><c- g>querySet</c-></code></dfn>;
-    <c- b>required</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑤⑨"><c- n>GPUSize32</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderPassTimestampWrite" data-dfn-type="dict-member" data-export data-type="GPUSize32 " id="dom-gpurenderpasstimestampwrite-queryindex"><code><c- g>queryIndex</c-></code></dfn>;
+    <c- b>required</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑥⓪"><c- n>GPUSize32</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderPassTimestampWrite" data-dfn-type="dict-member" data-export data-type="GPUSize32 " id="dom-gpurenderpasstimestampwrite-queryindex"><code><c- g>queryIndex</c-></code></dfn>;
     <c- b>required</c-> <a data-link-type="idl-name" href="#enumdef-gpurenderpasstimestamplocation" id="ref-for-enumdef-gpurenderpasstimestamplocation"><c- n>GPURenderPassTimestampLocation</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderPassTimestampWrite" data-dfn-type="dict-member" data-export data-type="GPURenderPassTimestampLocation " id="dom-gpurenderpasstimestampwrite-location"><code><c- g>location</c-></code></dfn>;
 };
 
@@ -11799,7 +11836,7 @@ if present, the <code class="idl"><a data-link-type="idl" href="#dom-gputexturev
        <li data-md>
         <p>If <var>colorAttachment</var> is <code>undefined</code>, continue.</p>
        <li data-md>
-        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①①">Append</a> <var>colorAttachment</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasscolorattachment-view" id="ref-for-dom-gpurenderpasscolorattachment-view⑤">view</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gputextureview-descriptor-slot" id="ref-for-dom-gputextureview-descriptor-slot④">[[descriptor]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gputextureviewdescriptor-format" id="ref-for-dom-gputextureviewdescriptor-format①④">format</a></code> to <var>formats</var>.</p>
+        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①②">Append</a> <var>colorAttachment</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasscolorattachment-view" id="ref-for-dom-gpurenderpasscolorattachment-view⑤">view</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gputextureview-descriptor-slot" id="ref-for-dom-gputextureview-descriptor-slot④">[[descriptor]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gputextureviewdescriptor-format" id="ref-for-dom-gputextureviewdescriptor-format①④">format</a></code> to <var>formats</var>.</p>
       </ol>
      <li data-md>
       <p><a data-link-type="abstract-op" href="#abstract-opdef-calculating-color-attachment-bytes-per-sample" id="ref-for-abstract-opdef-calculating-color-attachment-bytes-per-sample①">Calculating color attachment bytes per sample</a>(<var>formats</var>) must be ≤ <var>device</var>.<code class="idl"><a data-link-type="idl" href="#dom-device-limits-slot" id="ref-for-dom-device-limits-slot①⑥">[[limits]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxcolorattachmentbytespersample" id="ref-for-dom-supported-limits-maxcolorattachmentbytespersample①">maxColorAttachmentBytesPerSample</a></code>.</p>
@@ -11912,7 +11949,7 @@ the corresponding WGSL primitive type (<code>f32</code>, <code>i32</code>, or <c
      <li data-md>
       <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence②②">sequence</a>&lt;<code class="idl"><a data-link-type="idl" href="#enumdef-gputextureformat" id="ref-for-enumdef-gputextureformat③③">GPUTextureFormat</a></code>?> <var>formats</var></p>
     </ul>
-    <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑥⓪">GPUSize32</a></code></p>
+    <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑥①">GPUSize32</a></code></p>
     <ol>
      <li data-md>
       <p>Let <var>total</var> be 0.</p>
@@ -12082,7 +12119,7 @@ which determines the compatibility of the pass with render pipelines.</p>
 <pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpurenderpasslayout"><code><c- g>GPURenderPassLayout</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase①⑦"><c- n>GPUObjectDescriptorBase</c-></a> {
     <c- b>required</c-> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence②③"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="#enumdef-gputextureformat" id="ref-for-enumdef-gputextureformat③④"><c- n>GPUTextureFormat</c-></a>?> <dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderPassLayout" data-dfn-type="dict-member" data-export data-type="sequence<GPUTextureFormat?> " id="dom-gpurenderpasslayout-colorformats"><code><c- g>colorFormats</c-></code></dfn>;
     <a data-link-type="idl-name" href="#enumdef-gputextureformat" id="ref-for-enumdef-gputextureformat③⑤"><c- n>GPUTextureFormat</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderPassLayout" data-dfn-type="dict-member" data-export data-type="GPUTextureFormat " id="dom-gpurenderpasslayout-depthstencilformat"><code><c- g>depthStencilFormat</c-></code></dfn>;
-    <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑥①"><c- n>GPUSize32</c-></a> <dfn class="dfn-paneled idl-code" data-default="1" data-dfn-for="GPURenderPassLayout" data-dfn-type="dict-member" data-export data-type="GPUSize32 " id="dom-gpurenderpasslayout-samplecount"><code><c- g>sampleCount</c-></code></dfn> = 1;
+    <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑥②"><c- n>GPUSize32</c-></a> <dfn class="dfn-paneled idl-code" data-default="1" data-dfn-for="GPURenderPassLayout" data-dfn-type="dict-member" data-export data-type="GPUSize32 " id="dom-gpurenderpasslayout-samplecount"><code><c- g>sampleCount</c-></code></dfn> = 1;
 };
 </pre>
    <p>Two <code class="idl"><a data-link-type="idl" href="#dictdef-gpurenderpasslayout" id="ref-for-dictdef-gpurenderpasslayout②">GPURenderPassLayout</a></code> values are <dfn class="dfn-paneled" data-dfn-for="render pass layout" data-dfn-type="dfn" data-lt="equals|equal" data-noexport id="render-pass-layout-equals">equal</dfn> if their <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasslayout-depthstencilformat" id="ref-for-dom-gpurenderpasslayout-depthstencilformat">depthStencilFormat</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasslayout-samplecount" id="ref-for-dom-gpurenderpasslayout-samplecount">sampleCount</a></code> are equal,
@@ -12217,14 +12254,14 @@ called the render pass encoder can no longer be used.</p>
           </ul>
          </div>
         <li data-md>
-         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-extend" id="ref-for-list-extend①">Extend</a> <var>parentEncoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot⑨">[[commands]]</a></code> with <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot①⓪">[[commands]]</a></code>.</p>
+         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-extend" id="ref-for-list-extend①">Extend</a> <var>parentEncoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot⑧">[[commands]]</a></code> with <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot⑨">[[commands]]</a></code>.</p>
         <li data-md>
          <p>For each <var>timestampWrite</var> in <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-endtimestampwrites-slot" id="ref-for-dom-gpurenderpassencoder-endtimestampwrites-slot①">[[endTimestampWrites]]</a></code>:</p>
          <ol>
           <li data-md>
            <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#assert" id="ref-for-assert①③">Assert</a>: <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasstimestampwrite-location" id="ref-for-dom-gpurenderpasstimestampwrite-location③">location</a></code> is <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasstimestamplocation-end" id="ref-for-dom-gpurenderpasstimestamplocation-end①">"end"</a></code>.</p>
           <li data-md>
-           <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①②">Append</a> a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command①②">GPU command</a> to <var>parentEncoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot①①">[[commands]]</a></code> that writes the GPU’s timestamp value into the <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasstimestampwrite-queryindex" id="ref-for-dom-gpurenderpasstimestampwrite-queryindex③">queryIndex</a></code>th
+           <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①③">Append</a> a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command①①">GPU command</a> to <var>parentEncoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot①⓪">[[commands]]</a></code> that writes the GPU’s timestamp value into the <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasstimestampwrite-queryindex" id="ref-for-dom-gpurenderpasstimestampwrite-queryindex③">queryIndex</a></code>th
 index in <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasstimestampwrite-queryset" id="ref-for-dom-gpurenderpasstimestampwrite-queryset⑤">querySet</a></code>.</p>
          </ol>
         <li data-md>
@@ -12241,18 +12278,18 @@ index in <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" hre
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑤①"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpurendercommandsmixin-setindexbuffer" id="ref-for-dom-gpurendercommandsmixin-setindexbuffer④"><c- g>setIndexBuffer</c-></a>(<a data-link-type="idl-name" href="#gpubuffer" id="ref-for-gpubuffer⑧②"><c- n>GPUBuffer</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-setindexbuffer-buffer-indexformat-offset-size-buffer" id="ref-for-dom-gpurendercommandsmixin-setindexbuffer-buffer-indexformat-offset-size-buffer"><c- g>buffer</c-></a>, <a data-link-type="idl-name" href="#enumdef-gpuindexformat" id="ref-for-enumdef-gpuindexformat②"><c- n>GPUIndexFormat</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-setindexbuffer-buffer-indexformat-offset-size-indexformat" id="ref-for-dom-gpurendercommandsmixin-setindexbuffer-buffer-indexformat-offset-size-indexformat"><c- g>indexFormat</c-></a>, <c- b>optional</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize64" id="ref-for-typedefdef-gpusize64⑤①"><c- n>GPUSize64</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-setindexbuffer-buffer-indexformat-offset-size-offset" id="ref-for-dom-gpurendercommandsmixin-setindexbuffer-buffer-indexformat-offset-size-offset"><c- g>offset</c-></a> = 0, <c- b>optional</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize64" id="ref-for-typedefdef-gpusize64⑤②"><c- n>GPUSize64</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-setindexbuffer-buffer-indexformat-offset-size-size" id="ref-for-dom-gpurendercommandsmixin-setindexbuffer-buffer-indexformat-offset-size-size"><c- g>size</c-></a>);
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑤②"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpurendercommandsmixin-setvertexbuffer" id="ref-for-dom-gpurendercommandsmixin-setvertexbuffer②"><c- g>setVertexBuffer</c-></a>(<a data-link-type="idl-name" href="#typedefdef-gpuindex32" id="ref-for-typedefdef-gpuindex32①④"><c- n>GPUIndex32</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-setvertexbuffer-slot-buffer-offset-size-slot" id="ref-for-dom-gpurendercommandsmixin-setvertexbuffer-slot-buffer-offset-size-slot"><c- g>slot</c-></a>, <a data-link-type="idl-name" href="#gpubuffer" id="ref-for-gpubuffer⑧③"><c- n>GPUBuffer</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-setvertexbuffer-slot-buffer-offset-size-buffer" id="ref-for-dom-gpurendercommandsmixin-setvertexbuffer-slot-buffer-offset-size-buffer"><c- g>buffer</c-></a>, <c- b>optional</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize64" id="ref-for-typedefdef-gpusize64⑤③"><c- n>GPUSize64</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-setvertexbuffer-slot-buffer-offset-size-offset" id="ref-for-dom-gpurendercommandsmixin-setvertexbuffer-slot-buffer-offset-size-offset"><c- g>offset</c-></a> = 0, <c- b>optional</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize64" id="ref-for-typedefdef-gpusize64⑤④"><c- n>GPUSize64</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-setvertexbuffer-slot-buffer-offset-size-size" id="ref-for-dom-gpurendercommandsmixin-setvertexbuffer-slot-buffer-offset-size-size"><c- g>size</c-></a>);
 
-    <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑤③"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpurendercommandsmixin-draw" id="ref-for-dom-gpurendercommandsmixin-draw"><c- g>draw</c-></a>(<a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑥②"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-draw-vertexcount-instancecount-firstvertex-firstinstance-vertexcount" id="ref-for-dom-gpurendercommandsmixin-draw-vertexcount-instancecount-firstvertex-firstinstance-vertexcount"><c- g>vertexCount</c-></a>, <c- b>optional</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑥③"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-draw-vertexcount-instancecount-firstvertex-firstinstance-instancecount" id="ref-for-dom-gpurendercommandsmixin-draw-vertexcount-instancecount-firstvertex-firstinstance-instancecount"><c- g>instanceCount</c-></a> = 1,
-        <c- b>optional</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑥④"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-draw-vertexcount-instancecount-firstvertex-firstinstance-firstvertex" id="ref-for-dom-gpurendercommandsmixin-draw-vertexcount-instancecount-firstvertex-firstinstance-firstvertex"><c- g>firstVertex</c-></a> = 0, <c- b>optional</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑥⑤"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-draw-vertexcount-instancecount-firstvertex-firstinstance-firstinstance" id="ref-for-dom-gpurendercommandsmixin-draw-vertexcount-instancecount-firstvertex-firstinstance-firstinstance"><c- g>firstInstance</c-></a> = 0);
-    <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑤④"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpurendercommandsmixin-drawindexed" id="ref-for-dom-gpurendercommandsmixin-drawindexed①"><c- g>drawIndexed</c-></a>(<a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑥⑥"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-drawindexed-indexcount-instancecount-firstindex-basevertex-firstinstance-indexcount" id="ref-for-dom-gpurendercommandsmixin-drawindexed-indexcount-instancecount-firstindex-basevertex-firstinstance-indexcount"><c- g>indexCount</c-></a>, <c- b>optional</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑥⑦"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-drawindexed-indexcount-instancecount-firstindex-basevertex-firstinstance-instancecount" id="ref-for-dom-gpurendercommandsmixin-drawindexed-indexcount-instancecount-firstindex-basevertex-firstinstance-instancecount"><c- g>instanceCount</c-></a> = 1,
-        <c- b>optional</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑥⑧"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-drawindexed-indexcount-instancecount-firstindex-basevertex-firstinstance-firstindex" id="ref-for-dom-gpurendercommandsmixin-drawindexed-indexcount-instancecount-firstindex-basevertex-firstinstance-firstindex"><c- g>firstIndex</c-></a> = 0,
+    <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑤③"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpurendercommandsmixin-draw" id="ref-for-dom-gpurendercommandsmixin-draw"><c- g>draw</c-></a>(<a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑥③"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-draw-vertexcount-instancecount-firstvertex-firstinstance-vertexcount" id="ref-for-dom-gpurendercommandsmixin-draw-vertexcount-instancecount-firstvertex-firstinstance-vertexcount"><c- g>vertexCount</c-></a>, <c- b>optional</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑥④"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-draw-vertexcount-instancecount-firstvertex-firstinstance-instancecount" id="ref-for-dom-gpurendercommandsmixin-draw-vertexcount-instancecount-firstvertex-firstinstance-instancecount"><c- g>instanceCount</c-></a> = 1,
+        <c- b>optional</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑥⑤"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-draw-vertexcount-instancecount-firstvertex-firstinstance-firstvertex" id="ref-for-dom-gpurendercommandsmixin-draw-vertexcount-instancecount-firstvertex-firstinstance-firstvertex"><c- g>firstVertex</c-></a> = 0, <c- b>optional</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑥⑥"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-draw-vertexcount-instancecount-firstvertex-firstinstance-firstinstance" id="ref-for-dom-gpurendercommandsmixin-draw-vertexcount-instancecount-firstvertex-firstinstance-firstinstance"><c- g>firstInstance</c-></a> = 0);
+    <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑤④"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpurendercommandsmixin-drawindexed" id="ref-for-dom-gpurendercommandsmixin-drawindexed①"><c- g>drawIndexed</c-></a>(<a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑥⑦"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-drawindexed-indexcount-instancecount-firstindex-basevertex-firstinstance-indexcount" id="ref-for-dom-gpurendercommandsmixin-drawindexed-indexcount-instancecount-firstindex-basevertex-firstinstance-indexcount"><c- g>indexCount</c-></a>, <c- b>optional</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑥⑧"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-drawindexed-indexcount-instancecount-firstindex-basevertex-firstinstance-instancecount" id="ref-for-dom-gpurendercommandsmixin-drawindexed-indexcount-instancecount-firstindex-basevertex-firstinstance-instancecount"><c- g>instanceCount</c-></a> = 1,
+        <c- b>optional</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑥⑨"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-drawindexed-indexcount-instancecount-firstindex-basevertex-firstinstance-firstindex" id="ref-for-dom-gpurendercommandsmixin-drawindexed-indexcount-instancecount-firstindex-basevertex-firstinstance-firstindex"><c- g>firstIndex</c-></a> = 0,
         <c- b>optional</c-> <a data-link-type="idl-name" href="#typedefdef-gpusignedoffset32" id="ref-for-typedefdef-gpusignedoffset32"><c- n>GPUSignedOffset32</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-drawindexed-indexcount-instancecount-firstindex-basevertex-firstinstance-basevertex" id="ref-for-dom-gpurendercommandsmixin-drawindexed-indexcount-instancecount-firstindex-basevertex-firstinstance-basevertex"><c- g>baseVertex</c-></a> = 0,
-        <c- b>optional</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑥⑨"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-drawindexed-indexcount-instancecount-firstindex-basevertex-firstinstance-firstinstance" id="ref-for-dom-gpurendercommandsmixin-drawindexed-indexcount-instancecount-firstindex-basevertex-firstinstance-firstinstance"><c- g>firstInstance</c-></a> = 0);
+        <c- b>optional</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑦⓪"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-drawindexed-indexcount-instancecount-firstindex-basevertex-firstinstance-firstinstance" id="ref-for-dom-gpurendercommandsmixin-drawindexed-indexcount-instancecount-firstindex-basevertex-firstinstance-firstinstance"><c- g>firstInstance</c-></a> = 0);
 
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑤⑤"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpurendercommandsmixin-drawindirect" id="ref-for-dom-gpurendercommandsmixin-drawindirect①"><c- g>drawIndirect</c-></a>(<a data-link-type="idl-name" href="#gpubuffer" id="ref-for-gpubuffer⑧④"><c- n>GPUBuffer</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-drawindirect-indirectbuffer-indirectoffset-indirectbuffer" id="ref-for-dom-gpurendercommandsmixin-drawindirect-indirectbuffer-indirectoffset-indirectbuffer"><c- g>indirectBuffer</c-></a>, <a data-link-type="idl-name" href="#typedefdef-gpusize64" id="ref-for-typedefdef-gpusize64⑤⑤"><c- n>GPUSize64</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-drawindirect-indirectbuffer-indirectoffset-indirectoffset" id="ref-for-dom-gpurendercommandsmixin-drawindirect-indirectbuffer-indirectoffset-indirectoffset"><c- g>indirectOffset</c-></a>);
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑤⑥"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpurendercommandsmixin-drawindexedindirect" id="ref-for-dom-gpurendercommandsmixin-drawindexedindirect①"><c- g>drawIndexedIndirect</c-></a>(<a data-link-type="idl-name" href="#gpubuffer" id="ref-for-gpubuffer⑧⑤"><c- n>GPUBuffer</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-drawindexedindirect-indirectbuffer-indirectoffset-indirectbuffer" id="ref-for-dom-gpurendercommandsmixin-drawindexedindirect-indirectbuffer-indirectoffset-indirectbuffer"><c- g>indirectBuffer</c-></a>, <a data-link-type="idl-name" href="#typedefdef-gpusize64" id="ref-for-typedefdef-gpusize64⑤⑥"><c- n>GPUSize64</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-drawindexedindirect-indirectbuffer-indirectoffset-indirectoffset" id="ref-for-dom-gpurendercommandsmixin-drawindexedindirect-indirectbuffer-indirectoffset-indirectoffset"><c- g>indirectOffset</c-></a>);
 };
 </pre>
-   <p><code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin③">GPURenderCommandsMixin</a></code> assumes the presence of <code class="idl"><a data-link-type="idl" href="#gpuobjectbase" id="ref-for-gpuobjectbase②⑨">GPUObjectBase</a></code> and <code class="idl"><a data-link-type="idl" href="#gpucommandsmixin" id="ref-for-gpucommandsmixin⑨">GPUCommandsMixin</a></code> members on the same object.
+   <p><code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin③">GPURenderCommandsMixin</a></code> assumes the presence of <code class="idl"><a data-link-type="idl" href="#gpuobjectbase" id="ref-for-gpuobjectbase②⑨">GPUObjectBase</a></code> and <code class="idl"><a data-link-type="idl" href="#gpucommandsmixin" id="ref-for-gpucommandsmixin①⓪">GPUCommandsMixin</a></code> members on the same object.
 It must only be included by interfaces which also include those mixins.</p>
    <p><code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin④">GPURenderCommandsMixin</a></code> has the following internal slots:</p>
    <dl>
@@ -12289,6 +12326,17 @@ empty.</p>
     <dd data-md>
      <p>The number of draw commands recorded in this encoder.</p>
    </dl>
+   <div class="algorithm" data-algorithm="enqueuing a render command">
+     To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export data-lt="enqueuing a render command" id="abstract-opdef-enqueuing-a-render-command">Enqueue a render command</dfn> on <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin⑤">GPURenderCommandsMixin</a></code> <var>encoder</var> which issues the steps of a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command①②">GPU Command</a> <var>command</var>: 
+    <ol>
+     <li data-md>
+      <p>Let <var>commandState</var> be a snapshot <var>encoder</var> current state.</p>
+     <li data-md>
+      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①④">Append</a> <var>command</var> to <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot①①">[[commands]]</a></code>.</p>
+     <li data-md>
+      <p>Return <var>commandState</var>.</p>
+    </ol>
+   </div>
    <h4 class="heading settled" data-level="17.2.1" id="render-pass-encoder-drawing"><span class="secno">17.2.1. </span><span class="content">Drawing</span><a class="self-link" href="#render-pass-encoder-drawing"></a></h4>
    <dl>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderCommandsMixin" data-dfn-type="method" data-export id="dom-gpurendercommandsmixin-setpipeline"><code>setPipeline(pipeline)</code></dfn>
@@ -12296,7 +12344,7 @@ empty.</p>
      <p>Sets the current <code class="idl"><a data-link-type="idl" href="#gpurenderpipeline" id="ref-for-gpurenderpipeline③⑥">GPURenderPipeline</a></code>.</p>
      <div class="algorithm" data-algorithm="GPURenderCommandsMixin.setPipeline">
       <div data-timeline="content">
-        <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin⑤">GPURenderCommandsMixin</a></code> this. 
+        <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin⑥">GPURenderCommandsMixin</a></code> this. 
        <p><strong>Arguments:</strong></p>
        <table class="argumentdef data">
         <caption>Arguments for the <a data-link-type="idl" href="#dom-gpurendercommandsmixin-setpipeline" id="ref-for-dom-gpurendercommandsmixin-setpipeline③">GPURenderCommandsMixin.setPipeline(pipeline)</a> method.</caption>
@@ -12352,7 +12400,7 @@ empty.</p>
     <dd data-md>
      <p>Sets the current index buffer.</p>
      <div class="algorithm" data-algorithm="GPURenderCommandsMixin.setIndexBuffer">
-       <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin⑥">GPURenderCommandsMixin</a></code> this. 
+       <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin⑦">GPURenderCommandsMixin</a></code> this. 
       <p><strong>Arguments:</strong></p>
       <table class="argumentdef data">
        <caption>Arguments for the <a data-link-type="idl" href="#dom-gpurendercommandsmixin-setindexbuffer" id="ref-for-dom-gpurendercommandsmixin-setindexbuffer⑤">GPURenderCommandsMixin.setIndexBuffer(buffer, indexFormat, offset, size)</a> method.</caption>
@@ -12426,7 +12474,7 @@ empty.</p>
     <dd data-md>
      <p>Sets the current vertex buffer for the given slot.</p>
      <div class="algorithm" data-algorithm="GPURenderCommandsMixin.setVertexBuffer">
-       <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin⑦">GPURenderCommandsMixin</a></code> this. 
+       <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin⑧">GPURenderCommandsMixin</a></code> this. 
       <p><strong>Arguments:</strong></p>
       <table class="argumentdef data">
        <caption>Arguments for the <a data-link-type="idl" href="#dom-gpurendercommandsmixin-setvertexbuffer" id="ref-for-dom-gpurendercommandsmixin-setvertexbuffer③">GPURenderCommandsMixin.setVertexBuffer(slot, buffer, offset, size)</a> method.</caption>
@@ -12501,7 +12549,7 @@ empty.</p>
      <p>Draws primitives.
 See <a href="#rendering-operations">§ 23.3 Rendering</a> for the detailed specification.</p>
      <div class="algorithm" data-algorithm="GPURenderCommandsMixin.draw">
-       <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin⑧">GPURenderCommandsMixin</a></code> this. 
+       <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin⑨">GPURenderCommandsMixin</a></code> this. 
       <p><strong>Arguments:</strong></p>
       <table class="argumentdef data">
        <caption>Arguments for the <a data-link-type="idl" href="#dom-gpurendercommandsmixin-draw" id="ref-for-dom-gpurendercommandsmixin-draw①">GPURenderCommandsMixin.draw(vertexCount, instanceCount, firstVertex, firstInstance)</a> method.</caption>
@@ -12515,25 +12563,25 @@ See <a href="#rendering-operations">§ 23.3 Rendering</a> for the detailed spe
        <tbody>
         <tr>
          <td><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderCommandsMixin/draw(vertexCount, instanceCount, firstVertex, firstInstance)" data-dfn-type="argument" data-export id="dom-gpurendercommandsmixin-draw-vertexcount-instancecount-firstvertex-firstinstance-vertexcount"><code><var>vertexCount</var></code></dfn> 
-         <td> <code class="idl"><a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑦⓪">GPUSize32</a></code>
+         <td> <code class="idl"><a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑦①">GPUSize32</a></code>
          <td style="text-align:center"> <span class="no">✘</span>
          <td style="text-align:center"> <span class="no">✘</span>
          <td>The number of vertices to draw. 
         <tr>
          <td><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderCommandsMixin/draw(vertexCount, instanceCount, firstVertex, firstInstance)" data-dfn-type="argument" data-export id="dom-gpurendercommandsmixin-draw-vertexcount-instancecount-firstvertex-firstinstance-instancecount"><code><var>instanceCount</var></code></dfn> 
-         <td> <code class="idl"><a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑦①">GPUSize32</a></code>
+         <td> <code class="idl"><a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑦②">GPUSize32</a></code>
          <td style="text-align:center"> <span class="no">✘</span>
          <td style="text-align:center"> <span class="yes">✔</span>
          <td>The number of instances to draw. 
         <tr>
          <td><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderCommandsMixin/draw(vertexCount, instanceCount, firstVertex, firstInstance)" data-dfn-type="argument" data-export id="dom-gpurendercommandsmixin-draw-vertexcount-instancecount-firstvertex-firstinstance-firstvertex"><code><var>firstVertex</var></code></dfn> 
-         <td> <code class="idl"><a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑦②">GPUSize32</a></code>
+         <td> <code class="idl"><a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑦③">GPUSize32</a></code>
          <td style="text-align:center"> <span class="no">✘</span>
          <td style="text-align:center"> <span class="yes">✔</span>
          <td>Offset into the vertex buffers, in vertices, to begin drawing from. 
         <tr>
          <td><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderCommandsMixin/draw(vertexCount, instanceCount, firstVertex, firstInstance)" data-dfn-type="argument" data-export id="dom-gpurendercommandsmixin-draw-vertexcount-instancecount-firstvertex-firstinstance-firstinstance"><code><var>firstInstance</var></code></dfn> 
-         <td> <code class="idl"><a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑦③">GPUSize32</a></code>
+         <td> <code class="idl"><a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑦④">GPUSize32</a></code>
          <td style="text-align:center"> <span class="no">✘</span>
          <td style="text-align:center"> <span class="yes">✔</span>
          <td>First instance to draw. 
@@ -12593,7 +12641,7 @@ for each <var>attribute</var> in <var>buffers</var>[<var>slot</var>].<code class
      <p>Draws indexed primitives.
 See <a href="#rendering-operations">§ 23.3 Rendering</a> for the detailed specification.</p>
      <div class="algorithm" data-algorithm="GPURenderCommandsMixin.drawIndexed">
-       <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin⑨">GPURenderCommandsMixin</a></code> this. 
+       <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①⓪">GPURenderCommandsMixin</a></code> this. 
       <p><strong>Arguments:</strong></p>
       <table class="argumentdef data">
        <caption>Arguments for the <a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawindexed" id="ref-for-dom-gpurendercommandsmixin-drawindexed②">GPURenderCommandsMixin.drawIndexed(indexCount, instanceCount, firstIndex, baseVertex, firstInstance)</a> method.</caption>
@@ -12607,19 +12655,19 @@ See <a href="#rendering-operations">§ 23.3 Rendering</a> for the detailed spe
        <tbody>
         <tr>
          <td><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderCommandsMixin/drawIndexed(indexCount, instanceCount, firstIndex, baseVertex, firstInstance)" data-dfn-type="argument" data-export id="dom-gpurendercommandsmixin-drawindexed-indexcount-instancecount-firstindex-basevertex-firstinstance-indexcount"><code><var>indexCount</var></code></dfn> 
-         <td> <code class="idl"><a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑦④">GPUSize32</a></code>
+         <td> <code class="idl"><a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑦⑤">GPUSize32</a></code>
          <td style="text-align:center"> <span class="no">✘</span>
          <td style="text-align:center"> <span class="no">✘</span>
          <td>The number of indices to draw. 
         <tr>
          <td><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderCommandsMixin/drawIndexed(indexCount, instanceCount, firstIndex, baseVertex, firstInstance)" data-dfn-type="argument" data-export id="dom-gpurendercommandsmixin-drawindexed-indexcount-instancecount-firstindex-basevertex-firstinstance-instancecount"><code><var>instanceCount</var></code></dfn> 
-         <td> <code class="idl"><a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑦⑤">GPUSize32</a></code>
+         <td> <code class="idl"><a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑦⑥">GPUSize32</a></code>
          <td style="text-align:center"> <span class="no">✘</span>
          <td style="text-align:center"> <span class="yes">✔</span>
          <td>The number of instances to draw. 
         <tr>
          <td><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderCommandsMixin/drawIndexed(indexCount, instanceCount, firstIndex, baseVertex, firstInstance)" data-dfn-type="argument" data-export id="dom-gpurendercommandsmixin-drawindexed-indexcount-instancecount-firstindex-basevertex-firstinstance-firstindex"><code><var>firstIndex</var></code></dfn> 
-         <td> <code class="idl"><a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑦⑥">GPUSize32</a></code>
+         <td> <code class="idl"><a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑦⑦">GPUSize32</a></code>
          <td style="text-align:center"> <span class="no">✘</span>
          <td style="text-align:center"> <span class="yes">✔</span>
          <td>Offset into the index buffer, in indices, begin drawing from. 
@@ -12631,7 +12679,7 @@ See <a href="#rendering-operations">§ 23.3 Rendering</a> for the detailed spe
          <td>Added to each index value before indexing into the vertex buffers. 
         <tr>
          <td><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderCommandsMixin/drawIndexed(indexCount, instanceCount, firstIndex, baseVertex, firstInstance)" data-dfn-type="argument" data-export id="dom-gpurendercommandsmixin-drawindexed-indexcount-instancecount-firstindex-basevertex-firstinstance-firstinstance"><code><var>firstInstance</var></code></dfn> 
-         <td> <code class="idl"><a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑦⑦">GPUSize32</a></code>
+         <td> <code class="idl"><a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑦⑧">GPUSize32</a></code>
          <td style="text-align:center"> <span class="no">✘</span>
          <td style="text-align:center"> <span class="yes">✔</span>
          <td>First instance to draw. 
@@ -12700,7 +12748,7 @@ drawIndirectParameters<c- p>[</c-><c- mf>3</c-><c- p>]</c-> <c- o>=</c-> firstIn
 </pre>
      <p>The value corresponding to <code>firstInstance</code> must be 0, unless the <code class="idl"><a data-link-type="idl" href="#dom-gpufeaturename-indirect-first-instance" id="ref-for-dom-gpufeaturename-indirect-first-instance①">"indirect-first-instance"</a></code> <a data-link-type="dfn" href="#feature" id="ref-for-feature⑧">feature</a> is enabled.  If the <code class="idl"><a data-link-type="idl" href="#dom-gpufeaturename-indirect-first-instance" id="ref-for-dom-gpufeaturename-indirect-first-instance②">"indirect-first-instance"</a></code> <a data-link-type="dfn" href="#feature" id="ref-for-feature⑨">feature</a> is not enabled and <code>firstInstance</code> is not zero the <code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawindirect" id="ref-for-dom-gpurendercommandsmixin-drawindirect②">drawIndirect()</a></code> call will be treated as a no-op.</p>
      <div class="algorithm" data-algorithm="GPURenderCommandsMixin.drawIndirect">
-       <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①⓪">GPURenderCommandsMixin</a></code> this. 
+       <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①①">GPURenderCommandsMixin</a></code> this. 
       <p><strong>Arguments:</strong></p>
       <table class="argumentdef data">
        <caption>Arguments for the <a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawindirect" id="ref-for-dom-gpurendercommandsmixin-drawindirect③">GPURenderCommandsMixin.drawIndirect(indirectBuffer, indirectOffset)</a> method.</caption>
@@ -12770,7 +12818,7 @@ drawIndexedIndirectParameters<c- p>[</c-><c- mf>4</c-><c- p>]</c-> <c- o>=</c-> 
 </pre>
      <p>The value corresponding to <code>firstInstance</code> must be 0, unless the <code class="idl"><a data-link-type="idl" href="#dom-gpufeaturename-indirect-first-instance" id="ref-for-dom-gpufeaturename-indirect-first-instance③">"indirect-first-instance"</a></code> <a data-link-type="dfn" href="#feature" id="ref-for-feature①⓪">feature</a> is enabled.  If the <code class="idl"><a data-link-type="idl" href="#dom-gpufeaturename-indirect-first-instance" id="ref-for-dom-gpufeaturename-indirect-first-instance④">"indirect-first-instance"</a></code> <a data-link-type="dfn" href="#feature" id="ref-for-feature①①">feature</a> is not enabled and <code>firstInstance</code> is not zero the <code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawindexedindirect" id="ref-for-dom-gpurendercommandsmixin-drawindexedindirect②">drawIndexedIndirect()</a></code> call will be treated as a no-op.</p>
      <div class="algorithm" data-algorithm="GPURenderCommandsMixin.drawIndexedIndirect">
-       <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①①">GPURenderCommandsMixin</a></code> this. 
+       <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①②">GPURenderCommandsMixin</a></code> this. 
       <p><strong>Arguments:</strong></p>
       <table class="argumentdef data">
        <caption>Arguments for the <a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawindexedindirect" id="ref-for-dom-gpurendercommandsmixin-drawindexedindirect③">GPURenderCommandsMixin.drawIndexedIndirect(indirectBuffer, indirectOffset)</a> method.</caption>
@@ -12826,7 +12874,7 @@ drawIndexedIndirectParameters<c- p>[</c-><c- mf>4</c-><c- p>]</c-> <c- o>=</c-> 
      </div>
    </dl>
    <div class="algorithm" data-algorithm="valid to draw">
-     To determine if it’s <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-valid-to-draw">valid to draw</dfn> with <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①②">GPURenderCommandsMixin</a></code> <var>encoder</var> run the following steps: 
+     To determine if it’s <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-valid-to-draw">valid to draw</dfn> with <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①③">GPURenderCommandsMixin</a></code> <var>encoder</var> run the following steps: 
     <ol>
      <li data-md>
       <p>If any of the following conditions are unsatisfied, return <code>false</code>:</p>
@@ -12850,7 +12898,7 @@ must be <code>true</code>.</p>
     </ol>
    </div>
    <div class="algorithm" data-algorithm="valid to draw indexed">
-     To determine if it’s <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-valid-to-draw-indexed">valid to draw indexed</dfn> with <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①③">GPURenderCommandsMixin</a></code> <var>encoder</var> run the following steps: 
+     To determine if it’s <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-valid-to-draw-indexed">valid to draw indexed</dfn> with <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①④">GPURenderCommandsMixin</a></code> <var>encoder</var> run the following steps: 
     <ol>
      <li data-md>
       <p>If any of the following conditions are unsatisfied, return <code>false</code>:</p>
@@ -13151,7 +13199,7 @@ the <code class="idl"><a data-link-type="idl" href="#dom-gpustenciloperation-rep
         <tbody>
          <tr>
           <td><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderPassEncoder/beginOcclusionQuery(queryIndex)" data-dfn-type="argument" data-export id="dom-gpurenderpassencoder-beginocclusionquery-queryindex-queryindex"><code><var>queryIndex</var></code></dfn> 
-          <td> <code class="idl"><a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑦⑧">GPUSize32</a></code>
+          <td> <code class="idl"><a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑦⑨">GPUSize32</a></code>
           <td style="text-align:center"> <span class="no">✘</span>
           <td style="text-align:center"> <span class="no">✘</span>
           <td>The index of the query in the query set. 
@@ -13173,9 +13221,9 @@ the <code class="idl"><a data-link-type="idl" href="#dom-gpustenciloperation-rep
          <div class="validusage">
           <ul>
            <li data-md>
-            <p><var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-occlusion_query_set-slot" id="ref-for-dom-gpurenderpassencoder-occlusion_query_set-slot①">[[occlusion_query_set]]</a></code> is not <code>null</code>.</p>
+            <p><var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-occlusion_query_set-slot" id="ref-for-dom-gpurenderpassencoder-occlusion_query_set-slot②">[[occlusion_query_set]]</a></code> is not <code>null</code>.</p>
            <li data-md>
-            <p><var>queryIndex</var> &lt; <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-occlusion_query_set-slot" id="ref-for-dom-gpurenderpassencoder-occlusion_query_set-slot②">[[occlusion_query_set]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuqueryset-count" id="ref-for-dom-gpuqueryset-count③">count</a></code>.</p>
+            <p><var>queryIndex</var> &lt; <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-occlusion_query_set-slot" id="ref-for-dom-gpurenderpassencoder-occlusion_query_set-slot③">[[occlusion_query_set]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuqueryset-count" id="ref-for-dom-gpuqueryset-count③">count</a></code>.</p>
            <li data-md>
             <p>The query at same <var>queryIndex</var> must not have been previously written to in this pass.</p>
            <li data-md>
@@ -13184,6 +13232,8 @@ the <code class="idl"><a data-link-type="idl" href="#dom-gpustenciloperation-rep
          </div>
         <li data-md>
          <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-occlusion_query_active-slot" id="ref-for-dom-gpurenderpassencoder-occlusion_query_active-slot②">[[occlusion_query_active]]</a></code> to <code>true</code>.</p>
+        <li data-md>
+         <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-occlusion_query_index-slot" id="ref-for-dom-gpurenderpassencoder-occlusion_query_index-slot">[[occlusion_query_index]]</a></code> to <var>queryIndex</var>.</p>
        </ol>
       </div>
      </div>
@@ -13214,6 +13264,18 @@ the <code class="idl"><a data-link-type="idl" href="#dom-gpustenciloperation-rep
          </div>
         <li data-md>
          <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-occlusion_query_active-slot" id="ref-for-dom-gpurenderpassencoder-occlusion_query_active-slot④">[[occlusion_query_active]]</a></code> to <code>false</code>.</p>
+        <li data-md>
+         <p>Let <var>commandState</var> be the result of <a data-link-type="abstract-op" href="#abstract-opdef-enqueuing-a-render-command" id="ref-for-abstract-opdef-enqueuing-a-render-command">enqueuing a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②②">Queue timeline</a> when executed.</p>
+       </ol>
+      </div>
+      <div data-timeline="queue">
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②③">Queue timeline</a> steps: 
+       <ol>
+        <li data-md>
+         <p>Let <var>passingFragments</var> be the number of fragment samples that have passed all
+the per-fragment tests since the corresponding <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-beginocclusionquery" id="ref-for-dom-gpurenderpassencoder-beginocclusionquery②">beginOcclusionQuery()</a></code> command was executed.</p>
+        <li data-md>
+         <p>Write <var>passingFragments</var> into <var>commandState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-occlusion_query_set-slot" id="ref-for-dom-gpurenderpassencoder-occlusion_query_set-slot④">[[occlusion_query_set]]</a></code> at index <var>commandState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-occlusion_query_index-slot" id="ref-for-dom-gpurenderpassencoder-occlusion_query_index-slot①">[[occlusion_query_index]]</a></code>.</p>
        </ol>
       </div>
      </div>
@@ -13281,18 +13343,25 @@ This occurs even if zero <code class="idl"><a data-link-type="idl" href="#gpuren
             </ul>
           </ul>
          </div>
-       </ol>
-       <ul>
         <li data-md>
          <p>For each <var>bundle</var> in <var>bundles</var>:</p>
-         <ul>
+         <ol>
           <li data-md>
            <p>Increment <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawcount-slot" id="ref-for-dom-gpurendercommandsmixin-drawcount-slot⑥">[[drawCount]]</a></code> by <var>bundle</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderbundle-drawcount-slot" id="ref-for-dom-gpurenderbundle-drawcount-slot">[[drawCount]]</a></code>.</p>
-         </ul>
-       </ul>
+         </ol>
+        <li data-md>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command④">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②④">Queue timeline</a> when executed.</p>
+       </ol>
+      </div>
+      <div data-timeline="queue">
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑤">Queue timeline</a> steps: 
        <ol>
         <li data-md>
-         <p class="issue" id="issue-cffb171f"><a class="self-link" href="#issue-cffb171f"></a> Describe the rest of the steps</p>
+         <p>For each <var>bundle</var> in <var>bundles</var>:</p>
+         <ol>
+          <li data-md>
+           <p>Execute each command in <var>bundle</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderbundle-command_list-slot" id="ref-for-dom-gpurenderbundle-command_list-slot">[[command_list]]</a></code>.</p>
+         </ol>
        </ol>
       </div>
      </div>
@@ -13330,10 +13399,10 @@ This occurs even if zero <code class="idl"><a data-link-type="idl" href="#gpuren
     <a data-link-type="idl-name" href="#gpurenderbundle" id="ref-for-gpurenderbundle①②"><c- n>GPURenderBundle</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpurenderbundleencoder-finish" id="ref-for-dom-gpurenderbundleencoder-finish"><c- g>finish</c-></a>(<c- b>optional</c-> <a data-link-type="idl-name" href="#dictdef-gpurenderbundledescriptor" id="ref-for-dictdef-gpurenderbundledescriptor"><c- n>GPURenderBundleDescriptor</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurenderbundleencoder-finish-descriptor-descriptor" id="ref-for-dom-gpurenderbundleencoder-finish-descriptor-descriptor"><c- g>descriptor</c-></a> = {});
 };
 <a data-link-type="idl-name" href="#gpurenderbundleencoder" id="ref-for-gpurenderbundleencoder③"><c- n>GPURenderBundleEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpuobjectbase" id="ref-for-gpuobjectbase③①"><c- n>GPUObjectBase</c-></a>;
-<a data-link-type="idl-name" href="#gpurenderbundleencoder" id="ref-for-gpurenderbundleencoder④"><c- n>GPURenderBundleEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpucommandsmixin" id="ref-for-gpucommandsmixin①⓪"><c- n>GPUCommandsMixin</c-></a>;
+<a data-link-type="idl-name" href="#gpurenderbundleencoder" id="ref-for-gpurenderbundleencoder④"><c- n>GPURenderBundleEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpucommandsmixin" id="ref-for-gpucommandsmixin①①"><c- n>GPUCommandsMixin</c-></a>;
 <a data-link-type="idl-name" href="#gpurenderbundleencoder" id="ref-for-gpurenderbundleencoder⑤"><c- n>GPURenderBundleEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpudebugcommandsmixin" id="ref-for-gpudebugcommandsmixin①⓪"><c- n>GPUDebugCommandsMixin</c-></a>;
 <a data-link-type="idl-name" href="#gpurenderbundleencoder" id="ref-for-gpurenderbundleencoder⑥"><c- n>GPURenderBundleEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpubindingcommandsmixin" id="ref-for-gpubindingcommandsmixin⑧"><c- n>GPUBindingCommandsMixin</c-></a>;
-<a data-link-type="idl-name" href="#gpurenderbundleencoder" id="ref-for-gpurenderbundleencoder⑦"><c- n>GPURenderBundleEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①④"><c- n>GPURenderCommandsMixin</c-></a>;
+<a data-link-type="idl-name" href="#gpurenderbundleencoder" id="ref-for-gpurenderbundleencoder⑦"><c- n>GPURenderBundleEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①⑤"><c- n>GPURenderCommandsMixin</c-></a>;
 </pre>
    <dl>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUDevice" data-dfn-type="method" data-export id="dom-gpudevice-createrenderbundleencoder"><code>createRenderBundleEncoder(descriptor)</code></dfn>
@@ -13503,7 +13572,7 @@ must be ≤ <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom
            <p>Return a new <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑤">invalid</a> <code class="idl"><a data-link-type="idl" href="#gpurenderbundle" id="ref-for-gpurenderbundle①⑤">GPURenderBundle</a></code>.</p>
          </ol>
         <li data-md>
-         <p>Set <var>renderBundle</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderbundle-command_list-slot" id="ref-for-dom-gpurenderbundle-command_list-slot">[[command_list]]</a></code> to <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot①②">[[commands]]</a></code>.</p>
+         <p>Set <var>renderBundle</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderbundle-command_list-slot" id="ref-for-dom-gpurenderbundle-command_list-slot①">[[command_list]]</a></code> to <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot①②">[[commands]]</a></code>.</p>
         <li data-md>
          <p>Set <var>renderBundle</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderbundle-drawcount-slot" id="ref-for-dom-gpurenderbundle-drawcount-slot①">[[drawCount]]</a></code> to <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawcount-slot" id="ref-for-dom-gpurendercommandsmixin-drawcount-slot⑧">[[drawCount]]</a></code>.</p>
        </ol>
@@ -13745,11 +13814,11 @@ viewing <var>dataBytes</var> with <var>dataLayout</var> and <var>size</var>.</p>
 but in practice <var>data</var> could be much larger than necessary.
 Implementations should optimize by copying only the necessary bytes.</p>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①⑦">Queue timeline</a> of <var>this</var>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑥">Queue timeline</a> of <var>this</var>.</p>
        </ol>
       </div>
       <div data-timeline="queue">
-        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①⑧">Queue timeline</a> steps: 
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑦">Queue timeline</a> steps: 
        <ol>
         <li data-md>
          <p>Write <var>contents</var> into <var>destination</var>.</p>
@@ -13946,7 +14015,7 @@ be "<a data-link-type="dfn" href="#buffer-internals-state-available" id="ref-for
              <dd data-md>
               <p><var>qs</var> must be in the <a data-link-type="dfn" href="#query-set-state-available" id="ref-for-query-set-state-available">available</a> state.
 For occlusion queries, the <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassdescriptor-occlusionqueryset" id="ref-for-dom-gpurenderpassdescriptor-occlusionqueryset④">occlusionQuerySet</a></code> in <code class="idl"><a data-link-type="idl" href="#dom-gpucommandencoder-beginrenderpass" id="ref-for-dom-gpucommandencoder-beginrenderpass④">beginRenderPass()</a></code> is not "used" unless
-it is also used by <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-beginocclusionquery" id="ref-for-dom-gpurenderpassencoder-beginocclusionquery②">beginOcclusionQuery()</a></code>.</p>
+it is also used by <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-beginocclusionquery" id="ref-for-dom-gpurenderpassencoder-beginocclusionquery③">beginOcclusionQuery()</a></code>.</p>
             </dl>
           </ul>
          </div>
@@ -13957,11 +14026,11 @@ it is also used by <code class="idl"><a data-link-type="idl" href="#dom-gpurende
            <p>Make <var>commandBuffer</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑥">invalid</a>.</p>
          </ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①⑨">Queue timeline</a> of <var>this</var>:</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑧">Queue timeline</a> of <var>this</var>:</p>
        </ol>
       </div>
       <div data-timeline="queue">
-        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⓪">Queue timeline</a> steps: 
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑨">Queue timeline</a> steps: 
        <ol>
         <li data-md>
          <p>For each <var>commandBuffer</var> in <var>commandBuffers</var>:</p>
@@ -14021,7 +14090,7 @@ on <code class="idl"><a data-link-type="idl" href="#gpubuffer" id="ref-for-gpubu
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑧①"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpuqueryset-destroy" id="ref-for-dom-gpuqueryset-destroy"><c- g>destroy</c-></a>();
 
     <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#enumdef-gpuquerytype" id="ref-for-enumdef-gpuquerytype"><c- n>GPUQueryType</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="GPUQueryType" href="#dom-gpuqueryset-type" id="ref-for-dom-gpuqueryset-type④"><c- g>type</c-></a>;
-    <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑦⑨"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="GPUSize32" href="#dom-gpuqueryset-count" id="ref-for-dom-gpuqueryset-count④"><c- g>count</c-></a>;
+    <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑧⓪"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="GPUSize32" href="#dom-gpuqueryset-count" id="ref-for-dom-gpuqueryset-count④"><c- g>count</c-></a>;
 };
 <a data-link-type="idl-name" href="#gpuqueryset" id="ref-for-gpuqueryset①⑤"><c- n>GPUQuerySet</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpuobjectbase" id="ref-for-gpuobjectbase③③"><c- n>GPUObjectBase</c-></a>;
 </pre>
@@ -14030,7 +14099,7 @@ on <code class="idl"><a data-link-type="idl" href="#gpubuffer" id="ref-for-gpubu
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUQuerySet" data-dfn-type="attribute" data-export id="dom-gpuqueryset-type"><code>type</code></dfn>, <span> of type <a data-link-type="idl-name" href="#enumdef-gpuquerytype" id="ref-for-enumdef-gpuquerytype①">GPUQueryType</a>, readonly</span>
     <dd data-md>
      <p>The type of the queries managed by this <code class="idl"><a data-link-type="idl" href="#gpuqueryset" id="ref-for-gpuqueryset①⑦">GPUQuerySet</a></code>.</p>
-    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUQuerySet" data-dfn-type="attribute" data-export id="dom-gpuqueryset-count"><code>count</code></dfn>, <span> of type <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑧⓪">GPUSize32</a>, readonly</span>
+    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUQuerySet" data-dfn-type="attribute" data-export id="dom-gpuqueryset-count"><code>count</code></dfn>, <span> of type <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑧①">GPUSize32</a>, readonly</span>
     <dd data-md>
      <p>The number of queries managed by this <code class="idl"><a data-link-type="idl" href="#gpuqueryset" id="ref-for-gpuqueryset①⑧">GPUQuerySet</a></code>.</p>
    </dl>
@@ -14053,14 +14122,14 @@ on <code class="idl"><a data-link-type="idl" href="#gpubuffer" id="ref-for-gpubu
    <p>A <code class="idl"><a data-link-type="idl" href="#dictdef-gpuquerysetdescriptor" id="ref-for-dictdef-gpuquerysetdescriptor①">GPUQuerySetDescriptor</a></code> specifies the options to use in creating a <code class="idl"><a data-link-type="idl" href="#gpuqueryset" id="ref-for-gpuqueryset②④">GPUQuerySet</a></code>.</p>
 <pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpuquerysetdescriptor"><code><c- g>GPUQuerySetDescriptor</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase②⓪"><c- n>GPUObjectDescriptorBase</c-></a> {
     <c- b>required</c-> <a data-link-type="idl-name" href="#enumdef-gpuquerytype" id="ref-for-enumdef-gpuquerytype②"><c- n>GPUQueryType</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUQueryType " href="#dom-gpuquerysetdescriptor-type" id="ref-for-dom-gpuquerysetdescriptor-type"><c- g>type</c-></a>;
-    <c- b>required</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑧①"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUSize32 " href="#dom-gpuquerysetdescriptor-count" id="ref-for-dom-gpuquerysetdescriptor-count"><c- g>count</c-></a>;
+    <c- b>required</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑧②"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUSize32 " href="#dom-gpuquerysetdescriptor-count" id="ref-for-dom-gpuquerysetdescriptor-count"><c- g>count</c-></a>;
 };
 </pre>
    <dl>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUQuerySetDescriptor" data-dfn-type="dict-member" data-export id="dom-gpuquerysetdescriptor-type"><code>type</code></dfn>, <span> of type <a data-link-type="idl-name" href="#enumdef-gpuquerytype" id="ref-for-enumdef-gpuquerytype③">GPUQueryType</a></span>
     <dd data-md>
      <p>The type of queries managed by <code class="idl"><a data-link-type="idl" href="#gpuqueryset" id="ref-for-gpuqueryset②⑤">GPUQuerySet</a></code>.</p>
-    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUQuerySetDescriptor" data-dfn-type="dict-member" data-export id="dom-gpuquerysetdescriptor-count"><code>count</code></dfn>, <span> of type <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑧②">GPUSize32</a></span>
+    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUQuerySetDescriptor" data-dfn-type="dict-member" data-export id="dom-gpuquerysetdescriptor-count"><code>count</code></dfn>, <span> of type <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑧③">GPUSize32</a></span>
     <dd data-md>
      <p>The number of queries managed by <code class="idl"><a data-link-type="idl" href="#gpuqueryset" id="ref-for-gpuqueryset②⑥">GPUQuerySet</a></code>.</p>
    </dl>
@@ -14171,19 +14240,19 @@ coverage, stencil, and depth tests. Any non-zero result value for the query indi
 one sample passed the tests and reached the output merging stage of the render pipeline, 0 indicates
 that no samples passed the tests.</p>
    <p>When beginning a render pass, <code class="idl"><a data-link-type="idl" href="#dictdef-gpurenderpassdescriptor" id="ref-for-dictdef-gpurenderpassdescriptor⑦">GPURenderPassDescriptor</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassdescriptor-occlusionqueryset" id="ref-for-dom-gpurenderpassdescriptor-occlusionqueryset⑤">occlusionQuerySet</a></code> must be set to be able to use occlusion queries during the pass. An occlusion query is begun
-and ended by calling <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-beginocclusionquery" id="ref-for-dom-gpurenderpassencoder-beginocclusionquery③">beginOcclusionQuery()</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-endocclusionquery" id="ref-for-dom-gpurenderpassencoder-endocclusionquery①">endOcclusionQuery()</a></code> in pairs that cannot be nested.</p>
+and ended by calling <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-beginocclusionquery" id="ref-for-dom-gpurenderpassencoder-beginocclusionquery④">beginOcclusionQuery()</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-endocclusionquery" id="ref-for-dom-gpurenderpassencoder-endocclusionquery①">endOcclusionQuery()</a></code> in pairs that cannot be nested.</p>
    <h3 class="heading settled" data-level="20.4" id="timestamp"><span class="secno">20.4. </span><span class="content">Timestamp Query</span><a class="self-link" href="#timestamp"></a></h3>
    <p>Timestamp queries allow applications to write timestamps to a <code class="idl"><a data-link-type="idl" href="#gpuqueryset" id="ref-for-gpuqueryset③⑤">GPUQuerySet</a></code>, using:</p>
    <ul>
     <li data-md>
-     <p><code class="idl"><a data-link-type="idl" href="#gpucommandencoder" id="ref-for-gpucommandencoder③⑦">GPUCommandEncoder</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandencoder-writetimestamp" id="ref-for-dom-gpucommandencoder-writetimestamp③">writeTimestamp()</a></code></p>
+     <p><code class="idl"><a data-link-type="idl" href="#gpucommandencoder" id="ref-for-gpucommandencoder③⑦">GPUCommandEncoder</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandencoder-writetimestamp" id="ref-for-dom-gpucommandencoder-writetimestamp②">writeTimestamp()</a></code></p>
     <li data-md>
      <p><code class="idl"><a data-link-type="idl" href="#dictdef-gpucomputepassdescriptor" id="ref-for-dictdef-gpucomputepassdescriptor③">GPUComputePassDescriptor</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepassdescriptor-timestampwrites" id="ref-for-dom-gpucomputepassdescriptor-timestampwrites⑤">timestampWrites</a></code></p>
     <li data-md>
      <p><code class="idl"><a data-link-type="idl" href="#dictdef-gpurenderpassdescriptor" id="ref-for-dictdef-gpurenderpassdescriptor⑧">GPURenderPassDescriptor</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassdescriptor-timestampwrites" id="ref-for-dom-gpurenderpassdescriptor-timestampwrites⑦">timestampWrites</a></code></p>
    </ul>
    <p>and then resolve timestamp values (in nanoseconds as a 64-bit unsigned integer) into
-a <code class="idl"><a data-link-type="idl" href="#gpubuffer" id="ref-for-gpubuffer①⓪①">GPUBuffer</a></code>, using <code class="idl"><a data-link-type="idl" href="#gpucommandencoder" id="ref-for-gpucommandencoder③⑧">GPUCommandEncoder</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandencoder-resolvequeryset" id="ref-for-dom-gpucommandencoder-resolvequeryset④">resolveQuerySet()</a></code>.</p>
+a <code class="idl"><a data-link-type="idl" href="#gpubuffer" id="ref-for-gpubuffer①⓪①">GPUBuffer</a></code>, using <code class="idl"><a data-link-type="idl" href="#gpucommandencoder" id="ref-for-gpucommandencoder③⑧">GPUCommandEncoder</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandencoder-resolvequeryset" id="ref-for-dom-gpucommandencoder-resolvequeryset③">resolveQuerySet()</a></code>.</p>
    <p>Timestamp query requires <code class="idl"><a data-link-type="idl" href="#dom-gpufeaturename-timestamp-query" id="ref-for-dom-gpufeaturename-timestamp-query⑥">"timestamp-query"</a></code> to be <a data-link-type="dfn" href="#enabled-for" id="ref-for-enabled-for⑤">enabled for</a> the device.</p>
    <p class="note" role="note"><span>Note:</span> The timestamp values may be zero if the physical device reset timestamp counter, please ignore it and the following values.</p>
    <p class="issue" id="issue-d34a40b7"><a class="self-link" href="#issue-d34a40b7"></a> Write normative text about timestamp value resets.</p>
@@ -14840,7 +14909,7 @@ of WebGPU calls, typically for debugging purposes or to make an operation more f
        <p>If <var>scope</var> is not <code>undefined</code>:</p>
        <ol>
         <li data-md>
-         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①③">Append</a> <var>error</var> to <var>scope</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpu-error-scope-errors-slot" id="ref-for-dom-gpu-error-scope-errors-slot">[[errors]]</a></code>.</p>
+         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①⑤">Append</a> <var>error</var> to <var>scope</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpu-error-scope-errors-slot" id="ref-for-dom-gpu-error-scope-errors-slot">[[errors]]</a></code>.</p>
         <li data-md>
          <p>Return.</p>
        </ol>
@@ -15126,7 +15195,7 @@ At the start of a render pass, the state is equivalent to a call of setScissorRe
      <li data-md>
       <p><var>drawCall</var>: The draw call parameters.</p>
      <li data-md>
-      <p><var>state</var>: <a data-link-type="dfn" href="#renderstate" id="ref-for-renderstate①">RenderState</a> of the <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①⑤">GPURenderCommandsMixin</a></code> where the draw call is issued.</p>
+      <p><var>state</var>: <a data-link-type="dfn" href="#renderstate" id="ref-for-renderstate①">RenderState</a> of the <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①⑥">GPURenderCommandsMixin</a></code> where the draw call is issued.</p>
     </ul>
     <ol>
      <li data-md>
@@ -16053,7 +16122,7 @@ either <code class="idl"><a data-link-type="idl" href="#dictdef-gpuextent3ddict"
      <p>New <code class="idl"><a data-link-type="idl" href="#gpucommandencoder" id="ref-for-gpucommandencoder③⑨">GPUCommandEncoder</a></code> methods:</p>
      <ul>
       <li data-md>
-       <p><code class="idl"><a data-link-type="idl" href="#dom-gpucommandencoder-writetimestamp" id="ref-for-dom-gpucommandencoder-writetimestamp④">writeTimestamp()</a></code></p>
+       <p><code class="idl"><a data-link-type="idl" href="#dom-gpucommandencoder-writetimestamp" id="ref-for-dom-gpucommandencoder-writetimestamp③">writeTimestamp()</a></code></p>
      </ul>
     <li data-md>
      <p>New <code class="idl"><a data-link-type="idl" href="#dictdef-gpucomputepassdescriptor" id="ref-for-dictdef-gpucomputepassdescriptor④">GPUComputePassDescriptor</a></code> members:</p>
@@ -17311,6 +17380,8 @@ for (const dataLink of dataLinks) {
      <li><a href="#dom-gpucomputepassencoder-endtimestampwrites-slot">attribute for GPUComputePassEncoder</a><span>, in § 16.1</span>
      <li><a href="#dom-gpurenderpassencoder-endtimestampwrites-slot">attribute for GPURenderPassEncoder</a><span>, in § 17.1</span>
     </ul>
+   <li><a href="#abstract-opdef-enqueue-a-command">Enqueue a command</a><span>, in § 13.1</span>
+   <li><a href="#abstract-opdef-enqueuing-a-render-command">enqueuing a render command</a><span>, in § 17.2</span>
    <li><a href="#dom-gpubindgroup-entries-slot">[[entries]]</a><span>, in § 8.2</span>
    <li>
     entries
@@ -17960,6 +18031,7 @@ for (const dataLink of dataLinks) {
    <li><a href="#object-descriptor">object descriptor</a><span>, in § 3.1.4</span>
    <li><a href="#dom-gpuquerytype-occlusion">"occlusion"</a><span>, in § 20.2</span>
    <li><a href="#dom-gpurenderpassencoder-occlusion_query_active-slot">[[occlusion_query_active]]</a><span>, in § 17.1</span>
+   <li><a href="#dom-gpurenderpassencoder-occlusion_query_index-slot">[[occlusion_query_index]]</a><span>, in § 17.1</span>
    <li><a href="#dom-gpurenderpassencoder-occlusion_query_set-slot">[[occlusion_query_set]]</a><span>, in § 17.1</span>
    <li><a href="#dom-gpurenderpassdescriptor-occlusionqueryset">occlusionQuerySet</a><span>, in § 17.1.1</span>
    <li>
@@ -21146,8 +21218,6 @@ reference specific GPU commands (like dispatch) yet. <a class="issue-return" hre
    <div class="issue"> Define copy, including provision for snorm. <a class="issue-return" href="#issue-79778272" title="Jump to section">↵</a></div>
    <div class="issue"> Define copy, including provision for snorm. <a class="issue-return" href="#issue-79778272①" title="Jump to section">↵</a></div>
    <div class="issue"> Define copy, including provision for snorm. <a class="issue-return" href="#issue-79778272②" title="Jump to section">↵</a></div>
-   <div class="issue"> Describe <code class="idl"><a data-link-type="idl" href="#dom-gpucommandencoder-writetimestamp">writeTimestamp()</a></code> algorithm steps. <a class="issue-return" href="#issue-9a99c7f4" title="Jump to section">↵</a></div>
-   <div class="issue"> Describe <code class="idl"><a data-link-type="idl" href="#dom-gpucommandencoder-resolvequeryset">resolveQuerySet()</a></code> algorithm steps. <a class="issue-return" href="#issue-be3ae455" title="Jump to section">↵</a></div>
    <div class="issue"> Add validation that, for buffer bindings that weren’t prevalidated with <code class="idl"><a data-link-type="idl" href="#dom-gpubufferbindinglayout-minbindingsize">minBindingSize</a></code>, the binding ranges are large enough for
     the <a data-link-type="dfn" href="#minimum-buffer-binding-size">minimum buffer binding size</a>. <a class="issue-return" href="#issue-6e89e46c" title="Jump to section">↵</a></div>
    <div class="issue"> Determine what happens when an application violates this.
@@ -21155,7 +21225,6 @@ Is it a validation error, one of multiple possible behaviors, or do we just remo
 restriction entirely and allow writable bindings to alias with undefined results? <a href="https://github.com/gpuweb/gpuweb/issues/1842">[Issue #gpuweb/gpuweb#1842]</a> <a class="issue-return" href="#issue-4f7eadfd" title="Jump to section">↵</a></div>
    <div class="issue"> support for no attachments <a href="https://github.com/gpuweb/gpuweb/issues/503">[Issue #gpuweb/gpuweb#503]</a> <a class="issue-return" href="#issue-8f27584b" title="Jump to section">↵</a></div>
    <div class="issue"> Enqueue the attachment stores/discards. <a class="issue-return" href="#issue-795a5540" title="Jump to section">↵</a></div>
-   <div class="issue"> Describe the rest of the steps <a class="issue-return" href="#issue-cffb171f" title="Jump to section">↵</a></div>
    <div class="issue"> Describe the reset of the steps for <code class="idl"><a data-link-type="idl" href="#dom-gpudevice-createrenderbundleencoder">createRenderBundleEncoder()</a></code>. <a class="issue-return" href="#issue-5f1e9d1f" title="Jump to section">↵</a></div>
    <div class="issue"> Specify more formally. <a class="issue-return" href="#issue-ddacf7c9" title="Jump to section">↵</a></div>
    <div class="issue"> Define copy, including provision for snorm. <a class="issue-return" href="#issue-79778272③" title="Jump to section">↵</a></div>
@@ -21563,8 +21632,11 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-queue-timeline①⓪">12.1. GPUCommandBuffer</a>
     <li><a href="#ref-for-queue-timeline①①">13.1. GPUCommandsMixin</a>
     <li><a href="#ref-for-queue-timeline①②">13.4. Buffer Copy Commands</a> <a href="#ref-for-queue-timeline①③">(2)</a> <a href="#ref-for-queue-timeline①④">(3)</a> <a href="#ref-for-queue-timeline①⑤">(4)</a>
-    <li><a href="#ref-for-queue-timeline①⑥">16.1.2. Dispatch</a>
-    <li><a href="#ref-for-queue-timeline①⑦">19.2. GPUQueue</a> <a href="#ref-for-queue-timeline①⑧">(2)</a> <a href="#ref-for-queue-timeline①⑨">(3)</a> <a href="#ref-for-queue-timeline②⓪">(4)</a>
+    <li><a href="#ref-for-queue-timeline①⑥">13.6. Queries</a> <a href="#ref-for-queue-timeline①⑦">(2)</a> <a href="#ref-for-queue-timeline①⑧">(3)</a> <a href="#ref-for-queue-timeline①⑨">(4)</a> <a href="#ref-for-queue-timeline②⓪">(5)</a>
+    <li><a href="#ref-for-queue-timeline②①">16.1.2. Dispatch</a>
+    <li><a href="#ref-for-queue-timeline②②">17.2.3. Queries</a> <a href="#ref-for-queue-timeline②③">(2)</a>
+    <li><a href="#ref-for-queue-timeline②④">17.2.4. Bundles</a> <a href="#ref-for-queue-timeline②⑤">(2)</a>
+    <li><a href="#ref-for-queue-timeline②⑥">19.2. GPUQueue</a> <a href="#ref-for-queue-timeline②⑦">(2)</a> <a href="#ref-for-queue-timeline②⑧">(3)</a> <a href="#ref-for-queue-timeline②⑨">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="immutable-value-example-definition">
@@ -27135,12 +27207,12 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-gpu-command">3.4.4. Synchronization</a>
     <li><a href="#ref-for-gpu-command①">12. Command Buffers</a>
     <li><a href="#ref-for-gpu-command②">12.1. GPUCommandBuffer</a> <a href="#ref-for-gpu-command③">(2)</a>
-    <li><a href="#ref-for-gpu-command④">13.1. GPUCommandsMixin</a> <a href="#ref-for-gpu-command⑤">(2)</a>
-    <li><a href="#ref-for-gpu-command⑥">13.3. Pass Encoding</a> <a href="#ref-for-gpu-command⑦">(2)</a>
-    <li><a href="#ref-for-gpu-command⑧">13.4. Buffer Copy Commands</a> <a href="#ref-for-gpu-command⑨">(2)</a>
-    <li><a href="#ref-for-gpu-command①⓪">16.1.2. Dispatch</a>
-    <li><a href="#ref-for-gpu-command①①">16.1.3. Finalization</a>
-    <li><a href="#ref-for-gpu-command①②">17.1.2. Finalization</a>
+    <li><a href="#ref-for-gpu-command④">13.1. GPUCommandsMixin</a> <a href="#ref-for-gpu-command⑤">(2)</a> <a href="#ref-for-gpu-command⑥">(3)</a>
+    <li><a href="#ref-for-gpu-command⑦">13.3. Pass Encoding</a> <a href="#ref-for-gpu-command⑧">(2)</a>
+    <li><a href="#ref-for-gpu-command⑨">16.1.2. Dispatch</a>
+    <li><a href="#ref-for-gpu-command①⓪">16.1.3. Finalization</a>
+    <li><a href="#ref-for-gpu-command①①">17.1.2. Finalization</a>
+    <li><a href="#ref-for-gpu-command①②">17.2. GPURenderCommandsMixin</a>
     <li><a href="#ref-for-gpu-command①③">18.1. GPURenderBundle</a> <a href="#ref-for-gpu-command①④">(2)</a>
    </ul>
   </aside>
@@ -27176,14 +27248,14 @@ restriction entirely and allow writable bindings to alias with undefined results
   <aside class="dfn-panel" data-for="gpucommandsmixin">
    <b><a href="#gpucommandsmixin">#gpucommandsmixin</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-gpucommandsmixin">13.1. GPUCommandsMixin</a> <a href="#ref-for-gpucommandsmixin①">(2)</a> <a href="#ref-for-gpucommandsmixin②">(3)</a> <a href="#ref-for-gpucommandsmixin③">(4)</a>
-    <li><a href="#ref-for-gpucommandsmixin④">13.2. GPUCommandEncoder</a>
-    <li><a href="#ref-for-gpucommandsmixin⑤">14. Programmable Passes</a>
-    <li><a href="#ref-for-gpucommandsmixin⑥">15. Debug Markers</a>
-    <li><a href="#ref-for-gpucommandsmixin⑦">16.1. GPUComputePassEncoder</a>
-    <li><a href="#ref-for-gpucommandsmixin⑧">17.1. GPURenderPassEncoder</a>
-    <li><a href="#ref-for-gpucommandsmixin⑨">17.2. GPURenderCommandsMixin</a>
-    <li><a href="#ref-for-gpucommandsmixin①⓪">18.1.1. Render Bundle Creation</a>
+    <li><a href="#ref-for-gpucommandsmixin">13.1. GPUCommandsMixin</a> <a href="#ref-for-gpucommandsmixin①">(2)</a> <a href="#ref-for-gpucommandsmixin②">(3)</a> <a href="#ref-for-gpucommandsmixin③">(4)</a> <a href="#ref-for-gpucommandsmixin④">(5)</a>
+    <li><a href="#ref-for-gpucommandsmixin⑤">13.2. GPUCommandEncoder</a>
+    <li><a href="#ref-for-gpucommandsmixin⑥">14. Programmable Passes</a>
+    <li><a href="#ref-for-gpucommandsmixin⑦">15. Debug Markers</a>
+    <li><a href="#ref-for-gpucommandsmixin⑧">16.1. GPUComputePassEncoder</a>
+    <li><a href="#ref-for-gpucommandsmixin⑨">17.1. GPURenderPassEncoder</a>
+    <li><a href="#ref-for-gpucommandsmixin①⓪">17.2. GPURenderCommandsMixin</a>
+    <li><a href="#ref-for-gpucommandsmixin①①">18.1.1. Render Bundle Creation</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpucommandsmixin-state-slot">
@@ -27201,12 +27273,13 @@ restriction entirely and allow writable bindings to alias with undefined results
   <aside class="dfn-panel" data-for="dom-gpucommandsmixin-commands-slot">
    <b><a href="#dom-gpucommandsmixin-commands-slot">#dom-gpucommandsmixin-commands-slot</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot">13.3. Pass Encoding</a> <a href="#ref-for-dom-gpucommandsmixin-commands-slot①">(2)</a>
-    <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot②">13.4. Buffer Copy Commands</a> <a href="#ref-for-dom-gpucommandsmixin-commands-slot③">(2)</a>
-    <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot④">13.7. Finalization</a>
-    <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot⑤">16.1.2. Dispatch</a>
-    <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot⑥">16.1.3. Finalization</a> <a href="#ref-for-dom-gpucommandsmixin-commands-slot⑦">(2)</a> <a href="#ref-for-dom-gpucommandsmixin-commands-slot⑧">(3)</a>
-    <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot⑨">17.1.2. Finalization</a> <a href="#ref-for-dom-gpucommandsmixin-commands-slot①⓪">(2)</a> <a href="#ref-for-dom-gpucommandsmixin-commands-slot①①">(3)</a>
+    <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot">13.1. GPUCommandsMixin</a>
+    <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot①">13.3. Pass Encoding</a> <a href="#ref-for-dom-gpucommandsmixin-commands-slot②">(2)</a>
+    <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot③">13.7. Finalization</a>
+    <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot④">16.1.2. Dispatch</a>
+    <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot⑤">16.1.3. Finalization</a> <a href="#ref-for-dom-gpucommandsmixin-commands-slot⑥">(2)</a> <a href="#ref-for-dom-gpucommandsmixin-commands-slot⑦">(3)</a>
+    <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot⑧">17.1.2. Finalization</a> <a href="#ref-for-dom-gpucommandsmixin-commands-slot⑨">(2)</a> <a href="#ref-for-dom-gpucommandsmixin-commands-slot①⓪">(3)</a>
+    <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot①①">17.2. GPURenderCommandsMixin</a>
     <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot①②">18.1.3. Finalization</a>
    </ul>
   </aside>
@@ -27260,6 +27333,14 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-abstract-opdef-validate-the-encoder-state②③">17.2.2. Rasterization state</a> <a href="#ref-for-abstract-opdef-validate-the-encoder-state②④">(2)</a> <a href="#ref-for-abstract-opdef-validate-the-encoder-state②⑤">(3)</a> <a href="#ref-for-abstract-opdef-validate-the-encoder-state②⑥">(4)</a>
     <li><a href="#ref-for-abstract-opdef-validate-the-encoder-state②⑦">17.2.3. Queries</a> <a href="#ref-for-abstract-opdef-validate-the-encoder-state②⑧">(2)</a>
     <li><a href="#ref-for-abstract-opdef-validate-the-encoder-state②⑨">17.2.4. Bundles</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="abstract-opdef-enqueue-a-command">
+   <b><a href="#abstract-opdef-enqueue-a-command">#abstract-opdef-enqueue-a-command</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-abstract-opdef-enqueue-a-command">13.4. Buffer Copy Commands</a> <a href="#ref-for-abstract-opdef-enqueue-a-command①">(2)</a>
+    <li><a href="#ref-for-abstract-opdef-enqueue-a-command②">13.6. Queries</a> <a href="#ref-for-abstract-opdef-enqueue-a-command③">(2)</a>
+    <li><a href="#ref-for-abstract-opdef-enqueue-a-command④">17.2.4. Bundles</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="gpucommandencoder">
@@ -27490,9 +27571,9 @@ restriction entirely and allow writable bindings to alias with undefined results
    <b><a href="#dom-gpucommandencoder-writetimestamp">#dom-gpucommandencoder-writetimestamp</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-gpucommandencoder-writetimestamp">13.2. GPUCommandEncoder</a>
-    <li><a href="#ref-for-dom-gpucommandencoder-writetimestamp①">13.6. Queries</a> <a href="#ref-for-dom-gpucommandencoder-writetimestamp②">(2)</a>
-    <li><a href="#ref-for-dom-gpucommandencoder-writetimestamp③">20.4. Timestamp Query</a>
-    <li><a href="#ref-for-dom-gpucommandencoder-writetimestamp④">25.6. "timestamp-query"</a>
+    <li><a href="#ref-for-dom-gpucommandencoder-writetimestamp①">13.6. Queries</a>
+    <li><a href="#ref-for-dom-gpucommandencoder-writetimestamp②">20.4. Timestamp Query</a>
+    <li><a href="#ref-for-dom-gpucommandencoder-writetimestamp③">25.6. "timestamp-query"</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpucommandencoder-writetimestamp-queryset-queryindex-queryset">
@@ -27512,8 +27593,8 @@ restriction entirely and allow writable bindings to alias with undefined results
    <ul>
     <li><a href="#ref-for-dom-gpucommandencoder-resolvequeryset">5.2.2. Buffer Usage</a>
     <li><a href="#ref-for-dom-gpucommandencoder-resolvequeryset①">13.2. GPUCommandEncoder</a>
-    <li><a href="#ref-for-dom-gpucommandencoder-resolvequeryset②">13.6. Queries</a> <a href="#ref-for-dom-gpucommandencoder-resolvequeryset③">(2)</a>
-    <li><a href="#ref-for-dom-gpucommandencoder-resolvequeryset④">20.4. Timestamp Query</a>
+    <li><a href="#ref-for-dom-gpucommandencoder-resolvequeryset②">13.6. Queries</a>
+    <li><a href="#ref-for-dom-gpucommandencoder-resolvequeryset③">20.4. Timestamp Query</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpucommandencoder-resolvequeryset-queryset-firstquery-querycount-destination-destinationoffset-queryset">
@@ -27943,8 +28024,14 @@ restriction entirely and allow writable bindings to alias with undefined results
   <aside class="dfn-panel" data-for="dom-gpurenderpassencoder-occlusion_query_set-slot">
    <b><a href="#dom-gpurenderpassencoder-occlusion_query_set-slot">#dom-gpurenderpassencoder-occlusion_query_set-slot</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-gpurenderpassencoder-occlusion_query_set-slot">17.1. GPURenderPassEncoder</a>
-    <li><a href="#ref-for-dom-gpurenderpassencoder-occlusion_query_set-slot①">17.2.3. Queries</a> <a href="#ref-for-dom-gpurenderpassencoder-occlusion_query_set-slot②">(2)</a>
+    <li><a href="#ref-for-dom-gpurenderpassencoder-occlusion_query_set-slot">17.1. GPURenderPassEncoder</a> <a href="#ref-for-dom-gpurenderpassencoder-occlusion_query_set-slot①">(2)</a>
+    <li><a href="#ref-for-dom-gpurenderpassencoder-occlusion_query_set-slot②">17.2.3. Queries</a> <a href="#ref-for-dom-gpurenderpassencoder-occlusion_query_set-slot③">(2)</a> <a href="#ref-for-dom-gpurenderpassencoder-occlusion_query_set-slot④">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-gpurenderpassencoder-occlusion_query_index-slot">
+   <b><a href="#dom-gpurenderpassencoder-occlusion_query_index-slot">#dom-gpurenderpassencoder-occlusion_query_index-slot</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gpurenderpassencoder-occlusion_query_index-slot">17.2.3. Queries</a> <a href="#ref-for-dom-gpurenderpassencoder-occlusion_query_index-slot①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpurenderpassencoder-occlusion_query_active-slot">
@@ -28365,10 +28452,10 @@ restriction entirely and allow writable bindings to alias with undefined results
    <b><a href="#gpurendercommandsmixin">#gpurendercommandsmixin</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-gpurendercommandsmixin">17.1. GPURenderPassEncoder</a>
-    <li><a href="#ref-for-gpurendercommandsmixin①">17.2. GPURenderCommandsMixin</a> <a href="#ref-for-gpurendercommandsmixin②">(2)</a> <a href="#ref-for-gpurendercommandsmixin③">(3)</a> <a href="#ref-for-gpurendercommandsmixin④">(4)</a>
-    <li><a href="#ref-for-gpurendercommandsmixin⑤">17.2.1. Drawing</a> <a href="#ref-for-gpurendercommandsmixin⑥">(2)</a> <a href="#ref-for-gpurendercommandsmixin⑦">(3)</a> <a href="#ref-for-gpurendercommandsmixin⑧">(4)</a> <a href="#ref-for-gpurendercommandsmixin⑨">(5)</a> <a href="#ref-for-gpurendercommandsmixin①⓪">(6)</a> <a href="#ref-for-gpurendercommandsmixin①①">(7)</a> <a href="#ref-for-gpurendercommandsmixin①②">(8)</a> <a href="#ref-for-gpurendercommandsmixin①③">(9)</a>
-    <li><a href="#ref-for-gpurendercommandsmixin①④">18.1.1. Render Bundle Creation</a>
-    <li><a href="#ref-for-gpurendercommandsmixin①⑤">23.3. Rendering</a>
+    <li><a href="#ref-for-gpurendercommandsmixin①">17.2. GPURenderCommandsMixin</a> <a href="#ref-for-gpurendercommandsmixin②">(2)</a> <a href="#ref-for-gpurendercommandsmixin③">(3)</a> <a href="#ref-for-gpurendercommandsmixin④">(4)</a> <a href="#ref-for-gpurendercommandsmixin⑤">(5)</a>
+    <li><a href="#ref-for-gpurendercommandsmixin⑥">17.2.1. Drawing</a> <a href="#ref-for-gpurendercommandsmixin⑦">(2)</a> <a href="#ref-for-gpurendercommandsmixin⑧">(3)</a> <a href="#ref-for-gpurendercommandsmixin⑨">(4)</a> <a href="#ref-for-gpurendercommandsmixin①⓪">(5)</a> <a href="#ref-for-gpurendercommandsmixin①①">(6)</a> <a href="#ref-for-gpurendercommandsmixin①②">(7)</a> <a href="#ref-for-gpurendercommandsmixin①③">(8)</a> <a href="#ref-for-gpurendercommandsmixin①④">(9)</a>
+    <li><a href="#ref-for-gpurendercommandsmixin①⑤">18.1.1. Render Bundle Creation</a>
+    <li><a href="#ref-for-gpurendercommandsmixin①⑥">23.3. Rendering</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpurendercommandsmixin-layout-slot">
@@ -28444,6 +28531,12 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-dom-gpurendercommandsmixin-drawcount-slot⑥">17.2.4. Bundles</a>
     <li><a href="#ref-for-dom-gpurendercommandsmixin-drawcount-slot⑦">18.1.1. Render Bundle Creation</a>
     <li><a href="#ref-for-dom-gpurendercommandsmixin-drawcount-slot⑧">18.1.3. Finalization</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="abstract-opdef-enqueuing-a-render-command">
+   <b><a href="#abstract-opdef-enqueuing-a-render-command">#abstract-opdef-enqueuing-a-render-command</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-abstract-opdef-enqueuing-a-render-command">17.2.3. Queries</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpurendercommandsmixin-setpipeline">
@@ -28777,9 +28870,9 @@ restriction entirely and allow writable bindings to alias with undefined results
    <b><a href="#dom-gpurenderpassencoder-beginocclusionquery">#dom-gpurenderpassencoder-beginocclusionquery</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-gpurenderpassencoder-beginocclusionquery">17.1. GPURenderPassEncoder</a>
-    <li><a href="#ref-for-dom-gpurenderpassencoder-beginocclusionquery①">17.2.3. Queries</a>
-    <li><a href="#ref-for-dom-gpurenderpassencoder-beginocclusionquery②">19.2. GPUQueue</a>
-    <li><a href="#ref-for-dom-gpurenderpassencoder-beginocclusionquery③">20.3. Occlusion Query</a>
+    <li><a href="#ref-for-dom-gpurenderpassencoder-beginocclusionquery①">17.2.3. Queries</a> <a href="#ref-for-dom-gpurenderpassencoder-beginocclusionquery②">(2)</a>
+    <li><a href="#ref-for-dom-gpurenderpassencoder-beginocclusionquery③">19.2. GPUQueue</a>
+    <li><a href="#ref-for-dom-gpurenderpassencoder-beginocclusionquery④">20.3. Occlusion Query</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpurenderpassencoder-beginocclusionquery-queryindex-queryindex">
@@ -28823,7 +28916,8 @@ restriction entirely and allow writable bindings to alias with undefined results
   <aside class="dfn-panel" data-for="dom-gpurenderbundle-command_list-slot">
    <b><a href="#dom-gpurenderbundle-command_list-slot">#dom-gpurenderbundle-command_list-slot</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-gpurenderbundle-command_list-slot">18.1.3. Finalization</a>
+    <li><a href="#ref-for-dom-gpurenderbundle-command_list-slot">17.2.4. Bundles</a>
+    <li><a href="#ref-for-dom-gpurenderbundle-command_list-slot①">18.1.3. Finalization</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpurenderbundle-layout-slot">
@@ -29959,15 +30053,15 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-typedefdef-gpusize32⑤①">16.1. GPUComputePassEncoder</a> <a href="#ref-for-typedefdef-gpusize32⑤②">(2)</a> <a href="#ref-for-typedefdef-gpusize32⑤③">(3)</a>
     <li><a href="#ref-for-typedefdef-gpusize32⑤④">16.1.1. Compute Pass Encoder Creation</a>
     <li><a href="#ref-for-typedefdef-gpusize32⑤⑤">16.1.2. Dispatch</a> <a href="#ref-for-typedefdef-gpusize32⑤⑥">(2)</a> <a href="#ref-for-typedefdef-gpusize32⑤⑦">(3)</a>
-    <li><a href="#ref-for-typedefdef-gpusize32⑤⑧">17.1. GPURenderPassEncoder</a>
-    <li><a href="#ref-for-typedefdef-gpusize32⑤⑨">17.1.1. Render Pass Encoder Creation</a>
-    <li><a href="#ref-for-typedefdef-gpusize32⑥⓪">17.1.1.1. Color Attachments</a>
-    <li><a href="#ref-for-typedefdef-gpusize32⑥①">17.1.1.4. Render Pass Layout</a>
-    <li><a href="#ref-for-typedefdef-gpusize32⑥②">17.2. GPURenderCommandsMixin</a> <a href="#ref-for-typedefdef-gpusize32⑥③">(2)</a> <a href="#ref-for-typedefdef-gpusize32⑥④">(3)</a> <a href="#ref-for-typedefdef-gpusize32⑥⑤">(4)</a> <a href="#ref-for-typedefdef-gpusize32⑥⑥">(5)</a> <a href="#ref-for-typedefdef-gpusize32⑥⑦">(6)</a> <a href="#ref-for-typedefdef-gpusize32⑥⑧">(7)</a> <a href="#ref-for-typedefdef-gpusize32⑥⑨">(8)</a>
-    <li><a href="#ref-for-typedefdef-gpusize32⑦⓪">17.2.1. Drawing</a> <a href="#ref-for-typedefdef-gpusize32⑦①">(2)</a> <a href="#ref-for-typedefdef-gpusize32⑦②">(3)</a> <a href="#ref-for-typedefdef-gpusize32⑦③">(4)</a> <a href="#ref-for-typedefdef-gpusize32⑦④">(5)</a> <a href="#ref-for-typedefdef-gpusize32⑦⑤">(6)</a> <a href="#ref-for-typedefdef-gpusize32⑦⑥">(7)</a> <a href="#ref-for-typedefdef-gpusize32⑦⑦">(8)</a>
-    <li><a href="#ref-for-typedefdef-gpusize32⑦⑧">17.2.3. Queries</a>
-    <li><a href="#ref-for-typedefdef-gpusize32⑦⑨">20.1. GPUQuerySet</a> <a href="#ref-for-typedefdef-gpusize32⑧⓪">(2)</a>
-    <li><a href="#ref-for-typedefdef-gpusize32⑧①">20.1.1. QuerySet Creation</a> <a href="#ref-for-typedefdef-gpusize32⑧②">(2)</a>
+    <li><a href="#ref-for-typedefdef-gpusize32⑤⑧">17.1. GPURenderPassEncoder</a> <a href="#ref-for-typedefdef-gpusize32⑤⑨">(2)</a>
+    <li><a href="#ref-for-typedefdef-gpusize32⑥⓪">17.1.1. Render Pass Encoder Creation</a>
+    <li><a href="#ref-for-typedefdef-gpusize32⑥①">17.1.1.1. Color Attachments</a>
+    <li><a href="#ref-for-typedefdef-gpusize32⑥②">17.1.1.4. Render Pass Layout</a>
+    <li><a href="#ref-for-typedefdef-gpusize32⑥③">17.2. GPURenderCommandsMixin</a> <a href="#ref-for-typedefdef-gpusize32⑥④">(2)</a> <a href="#ref-for-typedefdef-gpusize32⑥⑤">(3)</a> <a href="#ref-for-typedefdef-gpusize32⑥⑥">(4)</a> <a href="#ref-for-typedefdef-gpusize32⑥⑦">(5)</a> <a href="#ref-for-typedefdef-gpusize32⑥⑧">(6)</a> <a href="#ref-for-typedefdef-gpusize32⑥⑨">(7)</a> <a href="#ref-for-typedefdef-gpusize32⑦⓪">(8)</a>
+    <li><a href="#ref-for-typedefdef-gpusize32⑦①">17.2.1. Drawing</a> <a href="#ref-for-typedefdef-gpusize32⑦②">(2)</a> <a href="#ref-for-typedefdef-gpusize32⑦③">(3)</a> <a href="#ref-for-typedefdef-gpusize32⑦④">(4)</a> <a href="#ref-for-typedefdef-gpusize32⑦⑤">(5)</a> <a href="#ref-for-typedefdef-gpusize32⑦⑥">(6)</a> <a href="#ref-for-typedefdef-gpusize32⑦⑦">(7)</a> <a href="#ref-for-typedefdef-gpusize32⑦⑧">(8)</a>
+    <li><a href="#ref-for-typedefdef-gpusize32⑦⑨">17.2.3. Queries</a>
+    <li><a href="#ref-for-typedefdef-gpusize32⑧⓪">20.1. GPUQuerySet</a> <a href="#ref-for-typedefdef-gpusize32⑧①">(2)</a>
+    <li><a href="#ref-for-typedefdef-gpusize32⑧②">20.1.1. QuerySet Creation</a> <a href="#ref-for-typedefdef-gpusize32⑧③">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="typedefdef-gpusignedoffset32">
