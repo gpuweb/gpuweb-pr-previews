@@ -896,7 +896,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/41c15c952076f46e5c1cd2c13412e0f8aa462f5a/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/41c15c952076f46e5c1cd2c13412e0f8aa462f5a/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/f4ca5ae58b132b66b5ec24504510d5f62356bea5/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/f4ca5ae58b132b66b5ec24504510d5f62356bea5/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -10408,9 +10408,14 @@ beginning at <var>destinationOffset</var>.</p>
             <p><a data-link-type="abstract-op" href="#abstract-opdef-validating-linear-texture-data" id="ref-for-abstract-opdef-validating-linear-texture-data">validating linear texture data</a>(<var>source</var>, <var>source</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopybuffer-buffer" id="ref-for-dom-gpuimagecopybuffer-buffer④">buffer</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-size" id="ref-for-dom-gpubuffer-size⑨">size</a></code>, <var>aspectSpecificFormat</var>, <var>copySize</var>) succeeds.</p>
           </ul>
          </div>
+        <li data-md>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command②">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①⑥">Queue timeline</a> when executed.</p>
        </ol>
       </div>
-      <p class="issue" id="issue-79778272"><a class="self-link" href="#issue-79778272"></a> Define copy, including provision for snorm.</p>
+      <div data-timeline="queue">
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①⑦">Queue timeline</a> steps: 
+       <p class="issue" id="issue-79778272"><a class="self-link" href="#issue-79778272"></a> Define copy, including provision for snorm.</p>
+      </div>
      </div>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUCommandEncoder" data-dfn-type="method" data-export id="dom-gpucommandencoder-copytexturetobuffer"><code>copyTextureToBuffer(source, destination, copySize)</code></dfn>
     <dd data-md>
@@ -10507,9 +10512,14 @@ multiple continuous <a data-link-type="dfn" href="#texture-subresources" id="ref
             <p><a data-link-type="abstract-op" href="#abstract-opdef-validating-linear-texture-data" id="ref-for-abstract-opdef-validating-linear-texture-data①">validating linear texture data</a>(<var>destination</var>, <var>destination</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopybuffer-buffer" id="ref-for-dom-gpuimagecopybuffer-buffer⑥">buffer</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-size" id="ref-for-dom-gpubuffer-size①⓪">size</a></code>, <var>aspectSpecificFormat</var>, <var>copySize</var>) succeeds.</p>
           </ul>
          </div>
+        <li data-md>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command③">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①⑧">Queue timeline</a> when executed.</p>
        </ol>
       </div>
-      <p class="issue" id="issue-79778272①"><a class="self-link" href="#issue-79778272①"></a> Define copy, including provision for snorm.</p>
+      <div data-timeline="queue">
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①⑨">Queue timeline</a> steps: 
+       <p class="issue" id="issue-79778272①"><a class="self-link" href="#issue-79778272①"></a> Define copy, including provision for snorm.</p>
+      </div>
      </div>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUCommandEncoder" data-dfn-type="method" data-export id="dom-gpucommandencoder-copytexturetotexture"><code>copyTextureToTexture(source, destination, copySize)</code></dfn>
     <dd data-md>
@@ -10596,9 +10606,14 @@ multiple continuous <a data-link-type="dfn" href="#texture-subresources" id="ref
 the <a data-link-type="abstract-op" href="#abstract-opdef-set-of-subresources-for-texture-copy" id="ref-for-abstract-opdef-set-of-subresources-for-texture-copy①">set of subresources for texture copy</a>(<var>destination</var>, <var>copySize</var>) are disjoint.</p>
           </ul>
          </div>
+        <li data-md>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command④">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⓪">Queue timeline</a> when executed.</p>
        </ol>
       </div>
-      <p class="issue" id="issue-79778272②"><a class="self-link" href="#issue-79778272②"></a> Define copy, including provision for snorm.</p>
+      <div data-timeline="queue">
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②①">Queue timeline</a> steps: 
+       <p class="issue" id="issue-79778272②"><a class="self-link" href="#issue-79778272②"></a> Define copy, including provision for snorm.</p>
+      </div>
      </div>
    </dl>
    <h3 class="heading settled" data-level="13.6" id="command-encoder-queries"><span class="secno">13.6. </span><span class="content">Queries</span><a class="self-link" href="#command-encoder-queries"></a></h3>
@@ -10664,14 +10679,14 @@ the <a data-link-type="abstract-op" href="#abstract-opdef-set-of-subresources-fo
           </ul>
          </div>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command②">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①⑥">Queue timeline</a> when executed.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command⑤">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②②">Queue timeline</a> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
-        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①⑦">Queue timeline</a> steps: 
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②③">Queue timeline</a> steps: 
        <ol>
         <li data-md>
-         <p>Write the current timestamp for the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①⑧">Queue timeline</a>, in nanoseconds, into <var>querySet</var> at index <var>queryIndex</var>.</p>
+         <p>Write the current timestamp for the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②④">Queue timeline</a>, in nanoseconds, into <var>querySet</var> at index <var>queryIndex</var>.</p>
        </ol>
       </div>
      </div>
@@ -10756,11 +10771,11 @@ the <a data-link-type="abstract-op" href="#abstract-opdef-set-of-subresources-fo
           </ul>
          </div>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command③">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①⑨">Queue timeline</a> when executed.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command⑥">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑤">Queue timeline</a> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
-        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⓪">Queue timeline</a> steps: 
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑥">Queue timeline</a> steps: 
        <ol>
         <li data-md>
          <p>Let <var>queryIndex</var> be <var>firstQuery</var>.</p>
@@ -11499,11 +11514,11 @@ is <code>true</code>.</p>
           </ul>
          </div>
         <li data-md>
-         <p>Let <var>passState</var> be the result of <a data-link-type="abstract-op" href="#abstract-opdef-enqueuing-a-compute-command" id="ref-for-abstract-opdef-enqueuing-a-compute-command">enqueuing a compute command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②①">Queue timeline</a> when executed.</p>
+         <p>Let <var>passState</var> be the result of <a data-link-type="abstract-op" href="#abstract-opdef-enqueuing-a-compute-command" id="ref-for-abstract-opdef-enqueuing-a-compute-command">enqueuing a compute command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑦">Queue timeline</a> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
-        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②②">Queue timeline</a> steps: 
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑧">Queue timeline</a> steps: 
        <ol>
         <li data-md>
          <p>Dispatch a grid of workgroups with dimensions [<var>workgroupCountX</var>, <var>workgroupCountY</var>, <var>workgroupCountZ</var>] with <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepassencoder-pipeline-slot" id="ref-for-dom-gpucomputepassencoder-pipeline-slot②">[[pipeline]]</a></code> using <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot④">[[bind_groups]]</a></code>.</p>
@@ -11583,11 +11598,11 @@ is <code>true</code>.</p>
         <li data-md>
          <p>Add <var>indirectBuffer</var> to the <a data-link-type="dfn" href="#usage-scopes" id="ref-for-usage-scopes①①">usage scope</a> as <code class="idl"><a data-link-type="idl" href="#dom-gpubufferusage-indirect" id="ref-for-dom-gpubufferusage-indirect④">INDIRECT</a></code>.</p>
         <li data-md>
-         <p>Let <var>passState</var> be the result of <a data-link-type="abstract-op" href="#abstract-opdef-enqueuing-a-compute-command" id="ref-for-abstract-opdef-enqueuing-a-compute-command①">enqueuing a compute command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②③">Queue timeline</a> when executed.</p>
+         <p>Let <var>passState</var> be the result of <a data-link-type="abstract-op" href="#abstract-opdef-enqueuing-a-compute-command" id="ref-for-abstract-opdef-enqueuing-a-compute-command①">enqueuing a compute command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑨">Queue timeline</a> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
-        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②④">Queue timeline</a> steps: 
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⓪">Queue timeline</a> steps: 
        <ol>
         <li data-md>
          <p>Let <var>workgroupCountX</var> be an unsigned 32-bit integer read from <var>indirectBuffer</var> at <var>indirectOffset</var> bytes.</p>
@@ -12662,11 +12677,11 @@ for each <var>attribute</var> in <var>buffers</var>[<var>slot</var>].<code class
         <li data-md>
          <p>Increment <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawcount-slot" id="ref-for-dom-gpurendercommandsmixin-drawcount-slot②">[[drawCount]]</a></code> by 1.</p>
         <li data-md>
-         <p>Let <var>passState</var> be the result of <a data-link-type="abstract-op" href="#abstract-opdef-enqueuing-a-render-command" id="ref-for-abstract-opdef-enqueuing-a-render-command">enqueuing a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑤">Queue timeline</a> when executed.</p>
+         <p>Let <var>passState</var> be the result of <a data-link-type="abstract-op" href="#abstract-opdef-enqueuing-a-render-command" id="ref-for-abstract-opdef-enqueuing-a-render-command">enqueuing a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③①">Queue timeline</a> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
-        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑥">Queue timeline</a> steps: 
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③②">Queue timeline</a> steps: 
        <ol>
         <li data-md>
          <p>Draw <var>instanceCount</var> instances, starting with instance <var>firstInstance</var>, of
@@ -12765,11 +12780,11 @@ for each <var>attribute</var> in <var>buffers</var>[<var>slot</var>].<code class
         <li data-md>
          <p>Increment <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawcount-slot" id="ref-for-dom-gpurendercommandsmixin-drawcount-slot③">[[drawCount]]</a></code> by 1.</p>
         <li data-md>
-         <p>Let <var>passState</var> be the result of <a data-link-type="abstract-op" href="#abstract-opdef-enqueuing-a-render-command" id="ref-for-abstract-opdef-enqueuing-a-render-command①">enqueuing a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑦">Queue timeline</a> when executed.</p>
+         <p>Let <var>passState</var> be the result of <a data-link-type="abstract-op" href="#abstract-opdef-enqueuing-a-render-command" id="ref-for-abstract-opdef-enqueuing-a-render-command①">enqueuing a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③③">Queue timeline</a> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
-        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑧">Queue timeline</a> steps: 
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③④">Queue timeline</a> steps: 
        <ol>
         <li data-md>
          <p>Draw <var>instanceCount</var> instances, starting with instance <var>firstInstance</var>, of
@@ -12850,11 +12865,11 @@ drawIndirectParameters<c- p>[</c-><c- mf>3</c-><c- p>]</c-> <c- o>=</c-> firstIn
         <li data-md>
          <p>Increment <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawcount-slot" id="ref-for-dom-gpurendercommandsmixin-drawcount-slot④">[[drawCount]]</a></code> by 1.</p>
         <li data-md>
-         <p>Let <var>passState</var> be the result of <a data-link-type="abstract-op" href="#abstract-opdef-enqueuing-a-render-command" id="ref-for-abstract-opdef-enqueuing-a-render-command②">enqueuing a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑨">Queue timeline</a> when executed.</p>
+         <p>Let <var>passState</var> be the result of <a data-link-type="abstract-op" href="#abstract-opdef-enqueuing-a-render-command" id="ref-for-abstract-opdef-enqueuing-a-render-command②">enqueuing a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⑤">Queue timeline</a> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
-        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⓪">Queue timeline</a> steps: 
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⑥">Queue timeline</a> steps: 
        <ol>
         <li data-md>
          <p>Let <var>vertexCount</var> be an unsigned 32-bit integer read from <var>indirectBuffer</var> at <var>indirectOffset</var> bytes.</p>
@@ -12942,11 +12957,11 @@ drawIndexedIndirectParameters<c- p>[</c-><c- mf>4</c-><c- p>]</c-> <c- o>=</c-> 
         <li data-md>
          <p>Increment <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawcount-slot" id="ref-for-dom-gpurendercommandsmixin-drawcount-slot⑤">[[drawCount]]</a></code> by 1.</p>
         <li data-md>
-         <p>Let <var>passState</var> be the result of <a data-link-type="abstract-op" href="#abstract-opdef-enqueuing-a-render-command" id="ref-for-abstract-opdef-enqueuing-a-render-command③">enqueuing a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③①">Queue timeline</a> when executed.</p>
+         <p>Let <var>passState</var> be the result of <a data-link-type="abstract-op" href="#abstract-opdef-enqueuing-a-render-command" id="ref-for-abstract-opdef-enqueuing-a-render-command③">enqueuing a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⑦">Queue timeline</a> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
-        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③②">Queue timeline</a> steps: 
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⑧">Queue timeline</a> steps: 
        <ol>
         <li data-md>
          <p>Let <var>indexCount</var> be an unsigned 32-bit integer read from <var>indirectBuffer</var> at <var>indirectOffset</var> bytes.</p>
@@ -13362,11 +13377,11 @@ the <code class="idl"><a data-link-type="idl" href="#dom-gpustenciloperation-rep
         <li data-md>
          <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-occlusion_query_active-slot" id="ref-for-dom-gpurenderpassencoder-occlusion_query_active-slot④">[[occlusion_query_active]]</a></code> to <code>false</code>.</p>
         <li data-md>
-         <p>Let <var>passState</var> be the result of <a data-link-type="abstract-op" href="#abstract-opdef-enqueuing-a-render-command" id="ref-for-abstract-opdef-enqueuing-a-render-command④">enqueuing a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③③">Queue timeline</a> when executed.</p>
+         <p>Let <var>passState</var> be the result of <a data-link-type="abstract-op" href="#abstract-opdef-enqueuing-a-render-command" id="ref-for-abstract-opdef-enqueuing-a-render-command④">enqueuing a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⑨">Queue timeline</a> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
-        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③④">Queue timeline</a> steps: 
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline④⓪">Queue timeline</a> steps: 
        <ol>
         <li data-md>
          <p>Let <var>passingFragments</var> be the number of fragment samples that have passed all
@@ -13447,11 +13462,11 @@ This occurs even if zero <code class="idl"><a data-link-type="idl" href="#gpuren
            <p>Increment <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawcount-slot" id="ref-for-dom-gpurendercommandsmixin-drawcount-slot⑥">[[drawCount]]</a></code> by <var>bundle</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderbundle-drawcount-slot" id="ref-for-dom-gpurenderbundle-drawcount-slot">[[drawCount]]</a></code>.</p>
          </ol>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command④">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⑤">Queue timeline</a> when executed.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command⑦">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline④①">Queue timeline</a> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
-        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⑥">Queue timeline</a> steps: 
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline④②">Queue timeline</a> steps: 
        <ol>
         <li data-md>
          <p>For each <var>bundle</var> in <var>bundles</var>:</p>
@@ -13911,11 +13926,11 @@ viewing <var>dataBytes</var> with <var>dataLayout</var> and <var>size</var>.</p>
 but in practice <var>data</var> could be much larger than necessary.
 Implementations should optimize by copying only the necessary bytes.</p>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⑦">Queue timeline</a> of <var>this</var>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline④③">Queue timeline</a> of <var>this</var>.</p>
        </ol>
       </div>
       <div data-timeline="queue">
-        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⑧">Queue timeline</a> steps: 
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline④④">Queue timeline</a> steps: 
        <ol>
         <li data-md>
          <p>Write <var>contents</var> into <var>destination</var>.</p>
@@ -14123,11 +14138,11 @@ it is also used by <code class="idl"><a data-link-type="idl" href="#dom-gpurende
            <p>Make <var>commandBuffer</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑥">invalid</a>.</p>
          </ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⑨">Queue timeline</a> of <var>this</var>:</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline④⑤">Queue timeline</a> of <var>this</var>:</p>
        </ol>
       </div>
       <div data-timeline="queue">
-        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline④⓪">Queue timeline</a> steps: 
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline④⑥">Queue timeline</a> steps: 
        <ol>
         <li data-md>
          <p>For each <var>commandBuffer</var> in <var>commandBuffers</var>:</p>
@@ -21730,12 +21745,13 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-queue-timeline①⓪">12.1. GPUCommandBuffer</a>
     <li><a href="#ref-for-queue-timeline①①">13.1. GPUCommandsMixin</a>
     <li><a href="#ref-for-queue-timeline①②">13.4. Buffer Copy Commands</a> <a href="#ref-for-queue-timeline①③">(2)</a> <a href="#ref-for-queue-timeline①④">(3)</a> <a href="#ref-for-queue-timeline①⑤">(4)</a>
-    <li><a href="#ref-for-queue-timeline①⑥">13.6. Queries</a> <a href="#ref-for-queue-timeline①⑦">(2)</a> <a href="#ref-for-queue-timeline①⑧">(3)</a> <a href="#ref-for-queue-timeline①⑨">(4)</a> <a href="#ref-for-queue-timeline②⓪">(5)</a>
-    <li><a href="#ref-for-queue-timeline②①">16.1.2. Dispatch</a> <a href="#ref-for-queue-timeline②②">(2)</a> <a href="#ref-for-queue-timeline②③">(3)</a> <a href="#ref-for-queue-timeline②④">(4)</a>
-    <li><a href="#ref-for-queue-timeline②⑤">17.2.1. Drawing</a> <a href="#ref-for-queue-timeline②⑥">(2)</a> <a href="#ref-for-queue-timeline②⑦">(3)</a> <a href="#ref-for-queue-timeline②⑧">(4)</a> <a href="#ref-for-queue-timeline②⑨">(5)</a> <a href="#ref-for-queue-timeline③⓪">(6)</a> <a href="#ref-for-queue-timeline③①">(7)</a> <a href="#ref-for-queue-timeline③②">(8)</a>
-    <li><a href="#ref-for-queue-timeline③③">17.2.3. Queries</a> <a href="#ref-for-queue-timeline③④">(2)</a>
-    <li><a href="#ref-for-queue-timeline③⑤">17.2.4. Bundles</a> <a href="#ref-for-queue-timeline③⑥">(2)</a>
-    <li><a href="#ref-for-queue-timeline③⑦">19.2. GPUQueue</a> <a href="#ref-for-queue-timeline③⑧">(2)</a> <a href="#ref-for-queue-timeline③⑨">(3)</a> <a href="#ref-for-queue-timeline④⓪">(4)</a>
+    <li><a href="#ref-for-queue-timeline①⑥">13.5. Image Copy Commands</a> <a href="#ref-for-queue-timeline①⑦">(2)</a> <a href="#ref-for-queue-timeline①⑧">(3)</a> <a href="#ref-for-queue-timeline①⑨">(4)</a> <a href="#ref-for-queue-timeline②⓪">(5)</a> <a href="#ref-for-queue-timeline②①">(6)</a>
+    <li><a href="#ref-for-queue-timeline②②">13.6. Queries</a> <a href="#ref-for-queue-timeline②③">(2)</a> <a href="#ref-for-queue-timeline②④">(3)</a> <a href="#ref-for-queue-timeline②⑤">(4)</a> <a href="#ref-for-queue-timeline②⑥">(5)</a>
+    <li><a href="#ref-for-queue-timeline②⑦">16.1.2. Dispatch</a> <a href="#ref-for-queue-timeline②⑧">(2)</a> <a href="#ref-for-queue-timeline②⑨">(3)</a> <a href="#ref-for-queue-timeline③⓪">(4)</a>
+    <li><a href="#ref-for-queue-timeline③①">17.2.1. Drawing</a> <a href="#ref-for-queue-timeline③②">(2)</a> <a href="#ref-for-queue-timeline③③">(3)</a> <a href="#ref-for-queue-timeline③④">(4)</a> <a href="#ref-for-queue-timeline③⑤">(5)</a> <a href="#ref-for-queue-timeline③⑥">(6)</a> <a href="#ref-for-queue-timeline③⑦">(7)</a> <a href="#ref-for-queue-timeline③⑧">(8)</a>
+    <li><a href="#ref-for-queue-timeline③⑨">17.2.3. Queries</a> <a href="#ref-for-queue-timeline④⓪">(2)</a>
+    <li><a href="#ref-for-queue-timeline④①">17.2.4. Bundles</a> <a href="#ref-for-queue-timeline④②">(2)</a>
+    <li><a href="#ref-for-queue-timeline④③">19.2. GPUQueue</a> <a href="#ref-for-queue-timeline④④">(2)</a> <a href="#ref-for-queue-timeline④⑤">(3)</a> <a href="#ref-for-queue-timeline④⑥">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="immutable-value-example-definition">
@@ -27438,8 +27454,9 @@ restriction entirely and allow writable bindings to alias with undefined results
    <b><a href="#abstract-opdef-enqueue-a-command">#abstract-opdef-enqueue-a-command</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-abstract-opdef-enqueue-a-command">13.4. Buffer Copy Commands</a> <a href="#ref-for-abstract-opdef-enqueue-a-command①">(2)</a>
-    <li><a href="#ref-for-abstract-opdef-enqueue-a-command②">13.6. Queries</a> <a href="#ref-for-abstract-opdef-enqueue-a-command③">(2)</a>
-    <li><a href="#ref-for-abstract-opdef-enqueue-a-command④">17.2.4. Bundles</a>
+    <li><a href="#ref-for-abstract-opdef-enqueue-a-command②">13.5. Image Copy Commands</a> <a href="#ref-for-abstract-opdef-enqueue-a-command③">(2)</a> <a href="#ref-for-abstract-opdef-enqueue-a-command④">(3)</a>
+    <li><a href="#ref-for-abstract-opdef-enqueue-a-command⑤">13.6. Queries</a> <a href="#ref-for-abstract-opdef-enqueue-a-command⑥">(2)</a>
+    <li><a href="#ref-for-abstract-opdef-enqueue-a-command⑦">17.2.4. Bundles</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="gpucommandencoder">
