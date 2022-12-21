@@ -896,7 +896,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/ab886cffea9f6f01b527c54092a6eff9885407ab/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/ab886cffea9f6f01b527c54092a6eff9885407ab/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/41c15c952076f46e5c1cd2c13412e0f8aa462f5a/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/41c15c952076f46e5c1cd2c13412e0f8aa462f5a/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -11590,12 +11590,12 @@ is <code>true</code>.</p>
         <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②④">Queue timeline</a> steps: 
        <ol>
         <li data-md>
-         <p>Let <var>workgroupCountX</var> be an unsigned 32 bit integer read from <var>indirectBuffer</var> at <var>indirectOffset</var> bytes.</p>
+         <p>Let <var>workgroupCountX</var> be an unsigned 32-bit integer read from <var>indirectBuffer</var> at <var>indirectOffset</var> bytes.</p>
         <li data-md>
-         <p>Let <var>workgroupCountY</var> be an unsigned 32 bit integer read from <var>indirectBuffer</var> at
+         <p>Let <var>workgroupCountY</var> be an unsigned 32-bit integer read from <var>indirectBuffer</var> at
 (<var>indirectOffset</var> + 4) bytes.</p>
         <li data-md>
-         <p>Let <var>workgroupCountZ</var> be an unsigned 32 bit integer read from <var>indirectBuffer</var> at
+         <p>Let <var>workgroupCountZ</var> be an unsigned 32-bit integer read from <var>indirectBuffer</var> at
 (<var>indirectOffset</var> + 8) bytes.</p>
         <li data-md>
          <p>If <var>workgroupCountX</var>, <var>workgroupCountY</var>, or <var>workgroupCountZ</var> is greater than <var>this</var>.device.limits.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxcomputeworkgroupsperdimension" id="ref-for-dom-supported-limits-maxcomputeworkgroupsperdimension①">maxComputeWorkgroupsPerDimension</a></code>,
@@ -12661,6 +12661,17 @@ for each <var>attribute</var> in <var>buffers</var>[<var>slot</var>].<code class
          </div>
         <li data-md>
          <p>Increment <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawcount-slot" id="ref-for-dom-gpurendercommandsmixin-drawcount-slot②">[[drawCount]]</a></code> by 1.</p>
+        <li data-md>
+         <p>Let <var>passState</var> be the result of <a data-link-type="abstract-op" href="#abstract-opdef-enqueuing-a-render-command" id="ref-for-abstract-opdef-enqueuing-a-render-command">enqueuing a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑤">Queue timeline</a> when executed.</p>
+       </ol>
+      </div>
+      <div data-timeline="queue">
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑥">Queue timeline</a> steps: 
+       <ol>
+        <li data-md>
+         <p>Draw <var>instanceCount</var> instances, starting with instance <var>firstInstance</var>, of
+primitives consisting of <var>vertexCount</var> verticies, starting with vertex <var>firstVertex</var>,
+with <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-pipeline-slot" id="ref-for-dom-gpurendercommandsmixin-pipeline-slot②">[[pipeline]]</a></code> using <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑥">[[bind_groups]]</a></code> and <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-vertex_buffers-slot" id="ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot①">[[vertex_buffers]]</a></code>.</p>
        </ol>
       </div>
      </div>
@@ -12700,7 +12711,7 @@ See <a href="#rendering-operations">§ 23.3 Rendering</a> for the detailed spe
          <td style="text-align:center"> <span class="yes">✔</span>
          <td>Offset into the index buffer, in indices, begin drawing from. 
         <tr>
-         <td><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderCommandsMixin/drawIndexed(indexCount, instanceCount, firstIndex, baseVertex, firstInstance)" data-dfn-type="argument" data-export id="dom-gpurendercommandsmixin-drawindexed-indexcount-instancecount-firstindex-basevertex-firstinstance-basevertex"><code>baseVertex</code></dfn> 
+         <td><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderCommandsMixin/drawIndexed(indexCount, instanceCount, firstIndex, baseVertex, firstInstance)" data-dfn-type="argument" data-export id="dom-gpurendercommandsmixin-drawindexed-indexcount-instancecount-firstindex-basevertex-firstinstance-basevertex"><code><var>baseVertex</var></code></dfn> 
          <td> <code class="idl"><a data-link-type="idl-name" href="#typedefdef-gpusignedoffset32" id="ref-for-typedefdef-gpusignedoffset32①">GPUSignedOffset32</a></code>
          <td style="text-align:center"> <span class="no">✘</span>
          <td style="text-align:center"> <span class="yes">✔</span>
@@ -12727,7 +12738,7 @@ See <a href="#rendering-operations">§ 23.3 Rendering</a> for the detailed spe
            <li data-md>
             <p><var>firstIndex</var> + <var>indexCount</var> ≤ <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-index_buffer_size-slot" id="ref-for-dom-gpurendercommandsmixin-index_buffer_size-slot①">[[index_buffer_size]]</a></code> ÷ <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-index_format-slot" id="ref-for-dom-gpurendercommandsmixin-index_format-slot①">[[index_format]]</a></code>'s byte size;</p>
            <li data-md>
-            <p>Let <var>buffers</var> be <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-pipeline-slot" id="ref-for-dom-gpurendercommandsmixin-pipeline-slot②">[[pipeline]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipeline-descriptor-slot" id="ref-for-dom-gpurenderpipeline-descriptor-slot③">[[descriptor]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex⑨">vertex</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuvertexstate-buffers" id="ref-for-dom-gpuvertexstate-buffers⑧">buffers</a></code>.</p>
+            <p>Let <var>buffers</var> be <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-pipeline-slot" id="ref-for-dom-gpurendercommandsmixin-pipeline-slot③">[[pipeline]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipeline-descriptor-slot" id="ref-for-dom-gpurenderpipeline-descriptor-slot③">[[descriptor]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex⑨">vertex</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuvertexstate-buffers" id="ref-for-dom-gpuvertexstate-buffers⑧">buffers</a></code>.</p>
            <li data-md>
             <p>For each <code class="idl"><a data-link-type="idl" href="#typedefdef-gpuindex32" id="ref-for-typedefdef-gpuindex32①⑦">GPUIndex32</a></code> <var>slot</var> from <code>0</code> to <var>buffers</var>.length (non-inclusive):</p>
             <ul>
@@ -12753,6 +12764,17 @@ for each <var>attribute</var> in <var>buffers</var>[<var>slot</var>].<code class
          </div>
         <li data-md>
          <p>Increment <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawcount-slot" id="ref-for-dom-gpurendercommandsmixin-drawcount-slot③">[[drawCount]]</a></code> by 1.</p>
+        <li data-md>
+         <p>Let <var>passState</var> be the result of <a data-link-type="abstract-op" href="#abstract-opdef-enqueuing-a-render-command" id="ref-for-abstract-opdef-enqueuing-a-render-command①">enqueuing a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑦">Queue timeline</a> when executed.</p>
+       </ol>
+      </div>
+      <div data-timeline="queue">
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑧">Queue timeline</a> steps: 
+       <ol>
+        <li data-md>
+         <p>Draw <var>instanceCount</var> instances, starting with instance <var>firstInstance</var>, of
+primitives consisting of <var>indexCount</var> indexed verticies, starting with index <var>firstIndex</var> from vertex <var>baseVertex</var>,
+with <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-pipeline-slot" id="ref-for-dom-gpurendercommandsmixin-pipeline-slot④">[[pipeline]]</a></code> using <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑦">[[bind_groups]]</a></code>, <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-vertex_buffers-slot" id="ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot②">[[vertex_buffers]]</a></code>, and <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-index_buffer-slot" id="ref-for-dom-gpurendercommandsmixin-index_buffer-slot③">[[index_buffer]]</a></code>.</p>
        </ol>
       </div>
       <p class="note" role="note"><span>Note:</span> a valid program should also never use vertex indices with <code class="idl"><a data-link-type="idl" href="#dom-gpuvertexstepmode-vertex" id="ref-for-dom-gpuvertexstepmode-vertex②">GPUVertexStepMode."vertex"</a></code> that are out of bounds.
@@ -12827,6 +12849,28 @@ drawIndirectParameters<c- p>[</c-><c- mf>3</c-><c- p>]</c-> <c- o>=</c-> firstIn
          <p>Add <var>indirectBuffer</var> to the <a data-link-type="dfn" href="#usage-scopes" id="ref-for-usage-scopes①④">usage scope</a> as <a data-link-type="dfn" href="#internal-usage-input" id="ref-for-internal-usage-input④">input</a>.</p>
         <li data-md>
          <p>Increment <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawcount-slot" id="ref-for-dom-gpurendercommandsmixin-drawcount-slot④">[[drawCount]]</a></code> by 1.</p>
+        <li data-md>
+         <p>Let <var>passState</var> be the result of <a data-link-type="abstract-op" href="#abstract-opdef-enqueuing-a-render-command" id="ref-for-abstract-opdef-enqueuing-a-render-command②">enqueuing a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑨">Queue timeline</a> when executed.</p>
+       </ol>
+      </div>
+      <div data-timeline="queue">
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⓪">Queue timeline</a> steps: 
+       <ol>
+        <li data-md>
+         <p>Let <var>vertexCount</var> be an unsigned 32-bit integer read from <var>indirectBuffer</var> at <var>indirectOffset</var> bytes.</p>
+        <li data-md>
+         <p>Let <var>instanceCount</var> be an unsigned 32-bit integer read from <var>indirectBuffer</var> at
+(<var>indirectOffset</var> + 4) bytes.</p>
+        <li data-md>
+         <p>Let <var>firstVertex</var> be an unsigned 32-bit integer read from <var>indirectBuffer</var> at
+(<var>indirectOffset</var> + 8) bytes.</p>
+        <li data-md>
+         <p>Let <var>firstInstance</var> be an unsigned 32-bit integer read from <var>indirectBuffer</var> at
+(<var>indirectOffset</var> + 12) bytes.</p>
+        <li data-md>
+         <p>Draw <var>instanceCount</var> instances, starting with instance <var>firstInstance</var>, of
+primitives consisting of <var>vertexCount</var> verticies, starting with vertex <var>firstVertex</var>,
+with <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-pipeline-slot" id="ref-for-dom-gpurendercommandsmixin-pipeline-slot⑤">[[pipeline]]</a></code> using <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑧">[[bind_groups]]</a></code> and <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-vertex_buffers-slot" id="ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot③">[[vertex_buffers]]</a></code>.</p>
        </ol>
       </div>
      </div>
@@ -12897,6 +12941,31 @@ drawIndexedIndirectParameters<c- p>[</c-><c- mf>4</c-><c- p>]</c-> <c- o>=</c-> 
          <p>Add <var>indirectBuffer</var> to the <a data-link-type="dfn" href="#usage-scopes" id="ref-for-usage-scopes①⑤">usage scope</a> as <a data-link-type="dfn" href="#internal-usage-input" id="ref-for-internal-usage-input⑤">input</a>.</p>
         <li data-md>
          <p>Increment <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawcount-slot" id="ref-for-dom-gpurendercommandsmixin-drawcount-slot⑤">[[drawCount]]</a></code> by 1.</p>
+        <li data-md>
+         <p>Let <var>passState</var> be the result of <a data-link-type="abstract-op" href="#abstract-opdef-enqueuing-a-render-command" id="ref-for-abstract-opdef-enqueuing-a-render-command③">enqueuing a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③①">Queue timeline</a> when executed.</p>
+       </ol>
+      </div>
+      <div data-timeline="queue">
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③②">Queue timeline</a> steps: 
+       <ol>
+        <li data-md>
+         <p>Let <var>indexCount</var> be an unsigned 32-bit integer read from <var>indirectBuffer</var> at <var>indirectOffset</var> bytes.</p>
+        <li data-md>
+         <p>Let <var>instanceCount</var> be an unsigned 32-bit integer read from <var>indirectBuffer</var> at
+(<var>indirectOffset</var> + 4) bytes.</p>
+        <li data-md>
+         <p>Let <var>firstIndex</var> be an unsigned 32-bit integer read from <var>indirectBuffer</var> at
+(<var>indirectOffset</var> + 8) bytes.</p>
+        <li data-md>
+         <p>Let <var>baseVertex</var> be an unsigned 32-bit integer read from <var>indirectBuffer</var> at
+(<var>indirectOffset</var> + 12) bytes.</p>
+        <li data-md>
+         <p>Let <var>firstInstance</var> be an unsigned 32-bit integer read from <var>indirectBuffer</var> at
+(<var>indirectOffset</var> + 16) bytes.</p>
+        <li data-md>
+         <p>Draw <var>instanceCount</var> instances, starting with instance <var>firstInstance</var>, of
+primitives consisting of <var>indexCount</var> indexed verticies, starting with index <var>firstIndex</var> from vertex <var>baseVertex</var>,
+with <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-pipeline-slot" id="ref-for-dom-gpurendercommandsmixin-pipeline-slot⑥">[[pipeline]]</a></code> using <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑨">[[bind_groups]]</a></code>, <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-vertex_buffers-slot" id="ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot④">[[vertex_buffers]]</a></code>, and <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-index_buffer-slot" id="ref-for-dom-gpurendercommandsmixin-index_buffer-slot④">[[index_buffer]]</a></code>.</p>
        </ol>
       </div>
      </div>
@@ -12909,15 +12978,15 @@ drawIndexedIndirectParameters<c- p>[</c-><c- mf>4</c-><c- p>]</c-> <c- o>=</c-> 
       <div class="validusage">
        <ul>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-encoder-bind-groups" id="ref-for-abstract-opdef-validate-encoder-bind-groups③">Validate encoder bind groups</a>(<var>encoder</var>, <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-pipeline-slot" id="ref-for-dom-gpurendercommandsmixin-pipeline-slot③">[[pipeline]]</a></code>)
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-encoder-bind-groups" id="ref-for-abstract-opdef-validate-encoder-bind-groups③">Validate encoder bind groups</a>(<var>encoder</var>, <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-pipeline-slot" id="ref-for-dom-gpurendercommandsmixin-pipeline-slot⑦">[[pipeline]]</a></code>)
 must be <code>true</code>.</p>
         <li data-md>
-         <p>Let <var>pipelineDescriptor</var> be <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-pipeline-slot" id="ref-for-dom-gpurendercommandsmixin-pipeline-slot④">[[pipeline]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipeline-descriptor-slot" id="ref-for-dom-gpurenderpipeline-descriptor-slot④">[[descriptor]]</a></code>.</p>
+         <p>Let <var>pipelineDescriptor</var> be <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-pipeline-slot" id="ref-for-dom-gpurendercommandsmixin-pipeline-slot⑧">[[pipeline]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipeline-descriptor-slot" id="ref-for-dom-gpurenderpipeline-descriptor-slot④">[[descriptor]]</a></code>.</p>
         <li data-md>
          <p>For each <code class="idl"><a data-link-type="idl" href="#typedefdef-gpuindex32" id="ref-for-typedefdef-gpuindex32①⑧">GPUIndex32</a></code> <var>slot</var> <code>0</code> to <var>pipelineDescriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex①⓪">vertex</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuvertexstate-buffers" id="ref-for-dom-gpuvertexstate-buffers⑨">buffers</a></code>.length:</p>
          <ul>
           <li data-md>
-           <p>If <var>pipelineDescriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex①①">vertex</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuvertexstate-buffers" id="ref-for-dom-gpuvertexstate-buffers①⓪">buffers</a></code>[<var>slot</var>] is not <code>null</code>, <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-vertex_buffers-slot" id="ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot①">[[vertex_buffers]]</a></code> must <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists①⓪">contain</a> <var>slot</var>.</p>
+           <p>If <var>pipelineDescriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex①①">vertex</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuvertexstate-buffers" id="ref-for-dom-gpuvertexstate-buffers①⓪">buffers</a></code>[<var>slot</var>] is not <code>null</code>, <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-vertex_buffers-slot" id="ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot⑤">[[vertex_buffers]]</a></code> must <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists①⓪">contain</a> <var>slot</var>.</p>
          </ul>
        </ul>
       </div>
@@ -12935,14 +13004,14 @@ must be <code>true</code>.</p>
         <li data-md>
          <p>It must be <a data-link-type="abstract-op" href="#abstract-opdef-valid-to-draw" id="ref-for-abstract-opdef-valid-to-draw②">valid to draw</a> with <var>encoder</var>.</p>
         <li data-md>
-         <p><var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-index_buffer-slot" id="ref-for-dom-gpurendercommandsmixin-index_buffer-slot③">[[index_buffer]]</a></code> must not be <code>null</code>.</p>
+         <p><var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-index_buffer-slot" id="ref-for-dom-gpurendercommandsmixin-index_buffer-slot⑤">[[index_buffer]]</a></code> must not be <code>null</code>.</p>
         <li data-md>
-         <p>Let <var>topology</var> be <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-pipeline-slot" id="ref-for-dom-gpurendercommandsmixin-pipeline-slot⑤">[[pipeline]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipeline-descriptor-slot" id="ref-for-dom-gpurenderpipeline-descriptor-slot⑤">[[descriptor]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-primitive" id="ref-for-dom-gpurenderpipelinedescriptor-primitive④">primitive</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuprimitivestate-topology" id="ref-for-dom-gpuprimitivestate-topology③">topology</a></code>.</p>
+         <p>Let <var>topology</var> be <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-pipeline-slot" id="ref-for-dom-gpurendercommandsmixin-pipeline-slot⑨">[[pipeline]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipeline-descriptor-slot" id="ref-for-dom-gpurenderpipeline-descriptor-slot⑤">[[descriptor]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-primitive" id="ref-for-dom-gpurenderpipelinedescriptor-primitive④">primitive</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuprimitivestate-topology" id="ref-for-dom-gpuprimitivestate-topology③">topology</a></code>.</p>
         <li data-md>
          <p>If <var>topology</var> is <code class="idl"><a data-link-type="idl" href="#dom-gpuprimitivetopology-line-strip" id="ref-for-dom-gpuprimitivetopology-line-strip⑤">"line-strip"</a></code> or <code class="idl"><a data-link-type="idl" href="#dom-gpuprimitivetopology-triangle-strip" id="ref-for-dom-gpuprimitivetopology-triangle-strip④">"triangle-strip"</a></code>:</p>
          <ul>
           <li data-md>
-           <p><var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-index_format-slot" id="ref-for-dom-gpurendercommandsmixin-index_format-slot②">[[index_format]]</a></code> must equal <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-pipeline-slot" id="ref-for-dom-gpurendercommandsmixin-pipeline-slot⑥">[[pipeline]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipeline-descriptor-slot" id="ref-for-dom-gpurenderpipeline-descriptor-slot⑥">[[descriptor]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-primitive" id="ref-for-dom-gpurenderpipelinedescriptor-primitive⑤">primitive</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuprimitivestate-stripindexformat" id="ref-for-dom-gpuprimitivestate-stripindexformat③">stripIndexFormat</a></code>.</p>
+           <p><var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-index_format-slot" id="ref-for-dom-gpurendercommandsmixin-index_format-slot②">[[index_format]]</a></code> must equal <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-pipeline-slot" id="ref-for-dom-gpurendercommandsmixin-pipeline-slot①⓪">[[pipeline]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipeline-descriptor-slot" id="ref-for-dom-gpurenderpipeline-descriptor-slot⑥">[[descriptor]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-primitive" id="ref-for-dom-gpurenderpipelinedescriptor-primitive⑤">primitive</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuprimitivestate-stripindexformat" id="ref-for-dom-gpuprimitivestate-stripindexformat③">stripIndexFormat</a></code>.</p>
          </ul>
        </ul>
       </div>
@@ -13293,11 +13362,11 @@ the <code class="idl"><a data-link-type="idl" href="#dom-gpustenciloperation-rep
         <li data-md>
          <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-occlusion_query_active-slot" id="ref-for-dom-gpurenderpassencoder-occlusion_query_active-slot④">[[occlusion_query_active]]</a></code> to <code>false</code>.</p>
         <li data-md>
-         <p>Let <var>passState</var> be the result of <a data-link-type="abstract-op" href="#abstract-opdef-enqueuing-a-render-command" id="ref-for-abstract-opdef-enqueuing-a-render-command">enqueuing a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑤">Queue timeline</a> when executed.</p>
+         <p>Let <var>passState</var> be the result of <a data-link-type="abstract-op" href="#abstract-opdef-enqueuing-a-render-command" id="ref-for-abstract-opdef-enqueuing-a-render-command④">enqueuing a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③③">Queue timeline</a> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
-        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑥">Queue timeline</a> steps: 
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③④">Queue timeline</a> steps: 
        <ol>
         <li data-md>
          <p>Let <var>passingFragments</var> be the number of fragment samples that have passed all
@@ -13378,11 +13447,11 @@ This occurs even if zero <code class="idl"><a data-link-type="idl" href="#gpuren
            <p>Increment <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawcount-slot" id="ref-for-dom-gpurendercommandsmixin-drawcount-slot⑥">[[drawCount]]</a></code> by <var>bundle</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderbundle-drawcount-slot" id="ref-for-dom-gpurenderbundle-drawcount-slot">[[drawCount]]</a></code>.</p>
          </ol>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command④">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑦">Queue timeline</a> when executed.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command④">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⑤">Queue timeline</a> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
-        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑧">Queue timeline</a> steps: 
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⑥">Queue timeline</a> steps: 
        <ol>
         <li data-md>
          <p>For each <var>bundle</var> in <var>bundles</var>:</p>
@@ -13842,11 +13911,11 @@ viewing <var>dataBytes</var> with <var>dataLayout</var> and <var>size</var>.</p>
 but in practice <var>data</var> could be much larger than necessary.
 Implementations should optimize by copying only the necessary bytes.</p>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑨">Queue timeline</a> of <var>this</var>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⑦">Queue timeline</a> of <var>this</var>.</p>
        </ol>
       </div>
       <div data-timeline="queue">
-        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⓪">Queue timeline</a> steps: 
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⑧">Queue timeline</a> steps: 
        <ol>
         <li data-md>
          <p>Write <var>contents</var> into <var>destination</var>.</p>
@@ -14054,11 +14123,11 @@ it is also used by <code class="idl"><a data-link-type="idl" href="#dom-gpurende
            <p>Make <var>commandBuffer</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑥">invalid</a>.</p>
          </ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③①">Queue timeline</a> of <var>this</var>:</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⑨">Queue timeline</a> of <var>this</var>:</p>
        </ol>
       </div>
       <div data-timeline="queue">
-        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③②">Queue timeline</a> steps: 
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline④⓪">Queue timeline</a> steps: 
        <ol>
         <li data-md>
          <p>For each <var>commandBuffer</var> in <var>commandBuffers</var>:</p>
@@ -21663,9 +21732,10 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-queue-timeline①②">13.4. Buffer Copy Commands</a> <a href="#ref-for-queue-timeline①③">(2)</a> <a href="#ref-for-queue-timeline①④">(3)</a> <a href="#ref-for-queue-timeline①⑤">(4)</a>
     <li><a href="#ref-for-queue-timeline①⑥">13.6. Queries</a> <a href="#ref-for-queue-timeline①⑦">(2)</a> <a href="#ref-for-queue-timeline①⑧">(3)</a> <a href="#ref-for-queue-timeline①⑨">(4)</a> <a href="#ref-for-queue-timeline②⓪">(5)</a>
     <li><a href="#ref-for-queue-timeline②①">16.1.2. Dispatch</a> <a href="#ref-for-queue-timeline②②">(2)</a> <a href="#ref-for-queue-timeline②③">(3)</a> <a href="#ref-for-queue-timeline②④">(4)</a>
-    <li><a href="#ref-for-queue-timeline②⑤">17.2.3. Queries</a> <a href="#ref-for-queue-timeline②⑥">(2)</a>
-    <li><a href="#ref-for-queue-timeline②⑦">17.2.4. Bundles</a> <a href="#ref-for-queue-timeline②⑧">(2)</a>
-    <li><a href="#ref-for-queue-timeline②⑨">19.2. GPUQueue</a> <a href="#ref-for-queue-timeline③⓪">(2)</a> <a href="#ref-for-queue-timeline③①">(3)</a> <a href="#ref-for-queue-timeline③②">(4)</a>
+    <li><a href="#ref-for-queue-timeline②⑤">17.2.1. Drawing</a> <a href="#ref-for-queue-timeline②⑥">(2)</a> <a href="#ref-for-queue-timeline②⑦">(3)</a> <a href="#ref-for-queue-timeline②⑧">(4)</a> <a href="#ref-for-queue-timeline②⑨">(5)</a> <a href="#ref-for-queue-timeline③⓪">(6)</a> <a href="#ref-for-queue-timeline③①">(7)</a> <a href="#ref-for-queue-timeline③②">(8)</a>
+    <li><a href="#ref-for-queue-timeline③③">17.2.3. Queries</a> <a href="#ref-for-queue-timeline③④">(2)</a>
+    <li><a href="#ref-for-queue-timeline③⑤">17.2.4. Bundles</a> <a href="#ref-for-queue-timeline③⑥">(2)</a>
+    <li><a href="#ref-for-queue-timeline③⑦">19.2. GPUQueue</a> <a href="#ref-for-queue-timeline③⑧">(2)</a> <a href="#ref-for-queue-timeline③⑨">(3)</a> <a href="#ref-for-queue-timeline④⓪">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="immutable-value-example-definition">
@@ -27686,6 +27756,7 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot">14. Programmable Passes</a>
     <li><a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot①">14.1. Bind Groups</a> <a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot②">(2)</a> <a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot③">(3)</a>
     <li><a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot④">16.1.2. Dispatch</a> <a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑤">(2)</a>
+    <li><a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑥">17.2.1. Drawing</a> <a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑦">(2)</a> <a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑧">(3)</a> <a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑨">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpubindingcommandsmixin-dynamic_offsets-slot">
@@ -28524,14 +28595,14 @@ restriction entirely and allow writable bindings to alias with undefined results
   <aside class="dfn-panel" data-for="dom-gpurendercommandsmixin-pipeline-slot">
    <b><a href="#dom-gpurendercommandsmixin-pipeline-slot">#dom-gpurendercommandsmixin-pipeline-slot</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-gpurendercommandsmixin-pipeline-slot">17.2.1. Drawing</a> <a href="#ref-for-dom-gpurendercommandsmixin-pipeline-slot①">(2)</a> <a href="#ref-for-dom-gpurendercommandsmixin-pipeline-slot②">(3)</a> <a href="#ref-for-dom-gpurendercommandsmixin-pipeline-slot③">(4)</a> <a href="#ref-for-dom-gpurendercommandsmixin-pipeline-slot④">(5)</a> <a href="#ref-for-dom-gpurendercommandsmixin-pipeline-slot⑤">(6)</a> <a href="#ref-for-dom-gpurendercommandsmixin-pipeline-slot⑥">(7)</a>
+    <li><a href="#ref-for-dom-gpurendercommandsmixin-pipeline-slot">17.2.1. Drawing</a> <a href="#ref-for-dom-gpurendercommandsmixin-pipeline-slot①">(2)</a> <a href="#ref-for-dom-gpurendercommandsmixin-pipeline-slot②">(3)</a> <a href="#ref-for-dom-gpurendercommandsmixin-pipeline-slot③">(4)</a> <a href="#ref-for-dom-gpurendercommandsmixin-pipeline-slot④">(5)</a> <a href="#ref-for-dom-gpurendercommandsmixin-pipeline-slot⑤">(6)</a> <a href="#ref-for-dom-gpurendercommandsmixin-pipeline-slot⑥">(7)</a> <a href="#ref-for-dom-gpurendercommandsmixin-pipeline-slot⑦">(8)</a> <a href="#ref-for-dom-gpurendercommandsmixin-pipeline-slot⑧">(9)</a> <a href="#ref-for-dom-gpurendercommandsmixin-pipeline-slot⑨">(10)</a> <a href="#ref-for-dom-gpurendercommandsmixin-pipeline-slot①⓪">(11)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpurendercommandsmixin-index_buffer-slot">
    <b><a href="#dom-gpurendercommandsmixin-index_buffer-slot">#dom-gpurendercommandsmixin-index_buffer-slot</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-gpurendercommandsmixin-index_buffer-slot">17.2. GPURenderCommandsMixin</a> <a href="#ref-for-dom-gpurendercommandsmixin-index_buffer-slot①">(2)</a>
-    <li><a href="#ref-for-dom-gpurendercommandsmixin-index_buffer-slot②">17.2.1. Drawing</a> <a href="#ref-for-dom-gpurendercommandsmixin-index_buffer-slot③">(2)</a>
+    <li><a href="#ref-for-dom-gpurendercommandsmixin-index_buffer-slot②">17.2.1. Drawing</a> <a href="#ref-for-dom-gpurendercommandsmixin-index_buffer-slot③">(2)</a> <a href="#ref-for-dom-gpurendercommandsmixin-index_buffer-slot④">(3)</a> <a href="#ref-for-dom-gpurendercommandsmixin-index_buffer-slot⑤">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpurendercommandsmixin-index_format-slot">
@@ -28549,7 +28620,7 @@ restriction entirely and allow writable bindings to alias with undefined results
   <aside class="dfn-panel" data-for="dom-gpurendercommandsmixin-vertex_buffers-slot">
    <b><a href="#dom-gpurendercommandsmixin-vertex_buffers-slot">#dom-gpurendercommandsmixin-vertex_buffers-slot</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot">17.2.1. Drawing</a> <a href="#ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot①">(2)</a>
+    <li><a href="#ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot">17.2.1. Drawing</a> <a href="#ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot①">(2)</a> <a href="#ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot②">(3)</a> <a href="#ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot③">(4)</a> <a href="#ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot④">(5)</a> <a href="#ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot⑤">(6)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpurendercommandsmixin-vertex_buffer_sizes-slot">
@@ -28572,7 +28643,8 @@ restriction entirely and allow writable bindings to alias with undefined results
   <aside class="dfn-panel" data-for="abstract-opdef-enqueuing-a-render-command">
    <b><a href="#abstract-opdef-enqueuing-a-render-command">#abstract-opdef-enqueuing-a-render-command</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-abstract-opdef-enqueuing-a-render-command">17.2.3. Queries</a>
+    <li><a href="#ref-for-abstract-opdef-enqueuing-a-render-command">17.2.1. Drawing</a> <a href="#ref-for-abstract-opdef-enqueuing-a-render-command①">(2)</a> <a href="#ref-for-abstract-opdef-enqueuing-a-render-command②">(3)</a> <a href="#ref-for-abstract-opdef-enqueuing-a-render-command③">(4)</a>
+    <li><a href="#ref-for-abstract-opdef-enqueuing-a-render-command④">17.2.3. Queries</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpurendercommandsmixin-setpipeline">
