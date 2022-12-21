@@ -896,7 +896,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/69c559e388a4e6ef8e4936a315aa840fec41bf2b/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/69c559e388a4e6ef8e4936a315aa840fec41bf2b/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/ab886cffea9f6f01b527c54092a6eff9885407ab/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/ab886cffea9f6f01b527c54092a6eff9885407ab/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -11367,6 +11367,17 @@ It must only be included by interfaces which also include those mixins.</p>
       </ol>
     </ol>
    </div>
+   <div class="algorithm" data-algorithm="enqueuing a compute command">
+     To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export data-lt="enqueuing a compute command" id="abstract-opdef-enqueuing-a-compute-command">Enqueue a compute command</dfn> on <code class="idl"><a data-link-type="idl" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder①②">GPUComputePassEncoder</a></code> <var>encoder</var> which issues the steps of a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command⑨">GPU Command</a> <var>command</var>: 
+    <ol>
+     <li data-md>
+      <p>Let <var>passState</var> be a snapshot of <var>encoder</var>s current state.</p>
+     <li data-md>
+      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①⓪">Append</a> <var>command</var> to <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot④">[[commands]]</a></code>.</p>
+     <li data-md>
+      <p>Return <var>passState</var>.</p>
+    </ol>
+   </div>
    <h4 class="heading settled" data-level="16.1.2" id="compute-pass-encoder-dispatch"><span class="secno">16.1.2. </span><span class="content">Dispatch</span><a class="self-link" href="#compute-pass-encoder-dispatch"></a></h4>
    <dl>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUComputePassEncoder" data-dfn-type="method" data-export id="dom-gpucomputepassencoder-setpipeline"><code>setPipeline(pipeline)</code></dfn>
@@ -11374,7 +11385,7 @@ It must only be included by interfaces which also include those mixins.</p>
      <p>Sets the current <code class="idl"><a data-link-type="idl" href="#gpucomputepipeline" id="ref-for-gpucomputepipeline②⑤">GPUComputePipeline</a></code>.</p>
      <div class="algorithm" data-algorithm="GPUComputePassEncoder.setPipeline">
       <div data-timeline="content">
-        <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder①②">GPUComputePassEncoder</a></code> this. 
+        <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder①③">GPUComputePassEncoder</a></code> this. 
        <p><strong>Arguments:</strong></p>
        <table class="argumentdef data">
         <caption>Arguments for the <a data-link-type="idl" href="#dom-gpucomputepassencoder-setpipeline" id="ref-for-dom-gpucomputepassencoder-setpipeline⑤">GPUComputePassEncoder.setPipeline(pipeline)</a> method.</caption>
@@ -11424,7 +11435,7 @@ It must only be included by interfaces which also include those mixins.</p>
 See <a href="#computing-operations">§ 23.2 Computing</a> for the detailed specification.</p>
      <div class="algorithm" data-algorithm="GPUComputePassEncoder.dispatch">
       <div data-timeline="content">
-        <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder①③">GPUComputePassEncoder</a></code> this. 
+        <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder①④">GPUComputePassEncoder</a></code> this. 
        <p><strong>Arguments:</strong></p>
        <table class="argumentdef data">
         <caption>Arguments for the <a data-link-type="idl" href="#dom-gpucomputepassencoder-dispatchworkgroups" id="ref-for-dom-gpucomputepassencoder-dispatchworkgroups⑥">GPUComputePassEncoder.dispatchWorkgroups(workgroupCountX, workgroupCountY, workgroupCountZ)</a> method.</caption>
@@ -11488,15 +11499,14 @@ is <code>true</code>.</p>
           </ul>
          </div>
         <li data-md>
-         <p>Let <var>passState</var> be a snapshot of <var>this</var>’s current state.</p>
+         <p>Let <var>passState</var> be the result of <a data-link-type="abstract-op" href="#abstract-opdef-enqueuing-a-compute-command" id="ref-for-abstract-opdef-enqueuing-a-compute-command">enqueuing a compute command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②①">Queue timeline</a> when executed.</p>
+       </ol>
+      </div>
+      <div data-timeline="queue">
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②②">Queue timeline</a> steps: 
+       <ol>
         <li data-md>
-         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①⓪">Append</a> a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command⑨">GPU command</a> to <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot④">[[commands]]</a></code> executing the following <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②①">queue timeline</a> steps:</p>
-         <div class="queue-timeline">
-          <ol>
-           <li data-md>
-            <p>Dispatch a grid of workgroups with dimensions [<var>workgroupCountX</var>, <var>workgroupCountY</var>, <var>workgroupCountZ</var>] with <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepassencoder-pipeline-slot" id="ref-for-dom-gpucomputepassencoder-pipeline-slot②">[[pipeline]]</a></code> using <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot④">[[bind_groups]]</a></code>.</p>
-          </ol>
-         </div>
+         <p>Dispatch a grid of workgroups with dimensions [<var>workgroupCountX</var>, <var>workgroupCountY</var>, <var>workgroupCountZ</var>] with <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepassencoder-pipeline-slot" id="ref-for-dom-gpucomputepassencoder-pipeline-slot②">[[pipeline]]</a></code> using <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot④">[[bind_groups]]</a></code>.</p>
        </ol>
       </div>
      </div>
@@ -11516,7 +11526,7 @@ dispatchIndirectParameters<c- p>[</c-><c- mf>2</c-><c- p>]</c-> <c- o>=</c-> wor
 </pre>
      <div class="algorithm" data-algorithm="GPUComputePassEncoder.dispatchIndirect">
       <div data-timeline="content">
-        <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder①④">GPUComputePassEncoder</a></code> this. 
+        <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder①⑤">GPUComputePassEncoder</a></code> this. 
        <p><strong>Arguments:</strong></p>
        <table class="argumentdef data">
         <caption>Arguments for the <a data-link-type="idl" href="#dom-gpucomputepassencoder-dispatchworkgroupsindirect" id="ref-for-dom-gpucomputepassencoder-dispatchworkgroupsindirect④">GPUComputePassEncoder.dispatchWorkgroupsIndirect(indirectBuffer, indirectOffset)</a> method.</caption>
@@ -11572,10 +11582,28 @@ is <code>true</code>.</p>
          </div>
         <li data-md>
          <p>Add <var>indirectBuffer</var> to the <a data-link-type="dfn" href="#usage-scopes" id="ref-for-usage-scopes①①">usage scope</a> as <code class="idl"><a data-link-type="idl" href="#dom-gpubufferusage-indirect" id="ref-for-dom-gpubufferusage-indirect④">INDIRECT</a></code>.</p>
+        <li data-md>
+         <p>Let <var>passState</var> be the result of <a data-link-type="abstract-op" href="#abstract-opdef-enqueuing-a-compute-command" id="ref-for-abstract-opdef-enqueuing-a-compute-command①">enqueuing a compute command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②③">Queue timeline</a> when executed.</p>
        </ol>
       </div>
-      <p>If any of the dispatch parameters (x, y, or z) is greater than <var>this</var>.device.limits.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxcomputeworkgroupsperdimension" id="ref-for-dom-supported-limits-maxcomputeworkgroupsperdimension①">maxComputeWorkgroupsPerDimension</a></code>,
-    no workgroups will be dispatched.</p>
+      <div data-timeline="queue">
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②④">Queue timeline</a> steps: 
+       <ol>
+        <li data-md>
+         <p>Let <var>workgroupCountX</var> be an unsigned 32 bit integer read from <var>indirectBuffer</var> at <var>indirectOffset</var> bytes.</p>
+        <li data-md>
+         <p>Let <var>workgroupCountY</var> be an unsigned 32 bit integer read from <var>indirectBuffer</var> at
+(<var>indirectOffset</var> + 4) bytes.</p>
+        <li data-md>
+         <p>Let <var>workgroupCountZ</var> be an unsigned 32 bit integer read from <var>indirectBuffer</var> at
+(<var>indirectOffset</var> + 8) bytes.</p>
+        <li data-md>
+         <p>If <var>workgroupCountX</var>, <var>workgroupCountY</var>, or <var>workgroupCountZ</var> is greater than <var>this</var>.device.limits.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxcomputeworkgroupsperdimension" id="ref-for-dom-supported-limits-maxcomputeworkgroupsperdimension①">maxComputeWorkgroupsPerDimension</a></code>,
+stop.</p>
+        <li data-md>
+         <p>Dispatch a grid of workgroups with dimensions [<var>workgroupCountX</var>, <var>workgroupCountY</var>, <var>workgroupCountZ</var>] with <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepassencoder-pipeline-slot" id="ref-for-dom-gpucomputepassencoder-pipeline-slot④">[[pipeline]]</a></code> using <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑤">[[bind_groups]]</a></code>.</p>
+       </ol>
+      </div>
      </div>
    </dl>
    <h4 class="heading settled" data-level="16.1.3" id="compute-pass-encoder-finalization"><span class="secno">16.1.3. </span><span class="content">Finalization</span><a class="self-link" href="#compute-pass-encoder-finalization"></a></h4>
@@ -11588,7 +11616,7 @@ called the compute pass encoder can no longer be used.</p>
      <p>Completes recording of the compute pass commands sequence.</p>
      <div class="algorithm" data-algorithm="GPUComputePassEncoder.end">
       <div data-timeline="content">
-        <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder①⑤">GPUComputePassEncoder</a></code> <var>this</var>. 
+        <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder①⑥">GPUComputePassEncoder</a></code> <var>this</var>. 
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined④⓪">undefined</a></code></p>
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦①">Content timeline</a> steps:</p>
        <ol>
@@ -12330,11 +12358,11 @@ empty.</p>
      To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export data-lt="enqueuing a render command" id="abstract-opdef-enqueuing-a-render-command">Enqueue a render command</dfn> on <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin⑤">GPURenderCommandsMixin</a></code> <var>encoder</var> which issues the steps of a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command①②">GPU Command</a> <var>command</var>: 
     <ol>
      <li data-md>
-      <p>Let <var>commandState</var> be a snapshot <var>encoder</var> current state.</p>
+      <p>Let <var>passState</var> be a snapshot of <var>encoder</var>s current state.</p>
      <li data-md>
       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①④">Append</a> <var>command</var> to <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot①①">[[commands]]</a></code>.</p>
      <li data-md>
-      <p>Return <var>commandState</var>.</p>
+      <p>Return <var>passState</var>.</p>
     </ol>
    </div>
    <h4 class="heading settled" data-level="17.2.1" id="render-pass-encoder-drawing"><span class="secno">17.2.1. </span><span class="content">Drawing</span><a class="self-link" href="#render-pass-encoder-drawing"></a></h4>
@@ -13265,17 +13293,17 @@ the <code class="idl"><a data-link-type="idl" href="#dom-gpustenciloperation-rep
         <li data-md>
          <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-occlusion_query_active-slot" id="ref-for-dom-gpurenderpassencoder-occlusion_query_active-slot④">[[occlusion_query_active]]</a></code> to <code>false</code>.</p>
         <li data-md>
-         <p>Let <var>commandState</var> be the result of <a data-link-type="abstract-op" href="#abstract-opdef-enqueuing-a-render-command" id="ref-for-abstract-opdef-enqueuing-a-render-command">enqueuing a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②②">Queue timeline</a> when executed.</p>
+         <p>Let <var>passState</var> be the result of <a data-link-type="abstract-op" href="#abstract-opdef-enqueuing-a-render-command" id="ref-for-abstract-opdef-enqueuing-a-render-command">enqueuing a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑤">Queue timeline</a> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
-        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②③">Queue timeline</a> steps: 
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑥">Queue timeline</a> steps: 
        <ol>
         <li data-md>
          <p>Let <var>passingFragments</var> be the number of fragment samples that have passed all
 the per-fragment tests since the corresponding <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-beginocclusionquery" id="ref-for-dom-gpurenderpassencoder-beginocclusionquery②">beginOcclusionQuery()</a></code> command was executed.</p>
         <li data-md>
-         <p>Write <var>passingFragments</var> into <var>commandState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-occlusion_query_set-slot" id="ref-for-dom-gpurenderpassencoder-occlusion_query_set-slot④">[[occlusion_query_set]]</a></code> at index <var>commandState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-occlusion_query_index-slot" id="ref-for-dom-gpurenderpassencoder-occlusion_query_index-slot①">[[occlusion_query_index]]</a></code>.</p>
+         <p>Write <var>passingFragments</var> into <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-occlusion_query_set-slot" id="ref-for-dom-gpurenderpassencoder-occlusion_query_set-slot④">[[occlusion_query_set]]</a></code> at index <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-occlusion_query_index-slot" id="ref-for-dom-gpurenderpassencoder-occlusion_query_index-slot①">[[occlusion_query_index]]</a></code>.</p>
        </ol>
       </div>
      </div>
@@ -13350,11 +13378,11 @@ This occurs even if zero <code class="idl"><a data-link-type="idl" href="#gpuren
            <p>Increment <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawcount-slot" id="ref-for-dom-gpurendercommandsmixin-drawcount-slot⑥">[[drawCount]]</a></code> by <var>bundle</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderbundle-drawcount-slot" id="ref-for-dom-gpurenderbundle-drawcount-slot">[[drawCount]]</a></code>.</p>
          </ol>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command④">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②④">Queue timeline</a> when executed.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command④">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑦">Queue timeline</a> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
-        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑤">Queue timeline</a> steps: 
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑧">Queue timeline</a> steps: 
        <ol>
         <li data-md>
          <p>For each <var>bundle</var> in <var>bundles</var>:</p>
@@ -13814,11 +13842,11 @@ viewing <var>dataBytes</var> with <var>dataLayout</var> and <var>size</var>.</p>
 but in practice <var>data</var> could be much larger than necessary.
 Implementations should optimize by copying only the necessary bytes.</p>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑥">Queue timeline</a> of <var>this</var>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑨">Queue timeline</a> of <var>this</var>.</p>
        </ol>
       </div>
       <div data-timeline="queue">
-        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑦">Queue timeline</a> steps: 
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⓪">Queue timeline</a> steps: 
        <ol>
         <li data-md>
          <p>Write <var>contents</var> into <var>destination</var>.</p>
@@ -14026,11 +14054,11 @@ it is also used by <code class="idl"><a data-link-type="idl" href="#dom-gpurende
            <p>Make <var>commandBuffer</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑥">invalid</a>.</p>
          </ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑧">Queue timeline</a> of <var>this</var>:</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③①">Queue timeline</a> of <var>this</var>:</p>
        </ol>
       </div>
       <div data-timeline="queue">
-        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑨">Queue timeline</a> steps: 
+        <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③②">Queue timeline</a> steps: 
        <ol>
         <li data-md>
          <p>For each <var>commandBuffer</var> in <var>commandBuffers</var>:</p>
@@ -15140,7 +15168,7 @@ This has the same type as errors returned by <code class="idl"><a data-link-type
    <p>Computing operations provide direct access to GPU’s programmable hardware.
 Compute shaders do not have shader stage inputs or outputs, their results are
 side effects from writing data into storage bindings bound as <code class="idl"><a data-link-type="idl" href="#dom-gpubufferbindingtype-storage" id="ref-for-dom-gpubufferbindingtype-storage①④">GPUBufferBindingType."storage"</a></code> and <code class="idl"><a data-link-type="idl" href="#dictdef-gpustoragetexturebindinglayout" id="ref-for-dictdef-gpustoragetexturebindinglayout⑤">GPUStorageTextureBindingLayout</a></code>.
-These operations are encoded within <code class="idl"><a data-link-type="idl" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder①⑥">GPUComputePassEncoder</a></code> as:</p>
+These operations are encoded within <code class="idl"><a data-link-type="idl" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder①⑦">GPUComputePassEncoder</a></code> as:</p>
    <ul>
     <li data-md>
      <p><code class="idl"><a data-link-type="idl" href="#dom-gpucomputepassencoder-dispatchworkgroups" id="ref-for-dom-gpucomputepassencoder-dispatchworkgroups⑨">dispatchWorkgroups()</a></code></p>
@@ -17381,6 +17409,7 @@ for (const dataLink of dataLinks) {
      <li><a href="#dom-gpurenderpassencoder-endtimestampwrites-slot">attribute for GPURenderPassEncoder</a><span>, in § 17.1</span>
     </ul>
    <li><a href="#abstract-opdef-enqueue-a-command">Enqueue a command</a><span>, in § 13.1</span>
+   <li><a href="#abstract-opdef-enqueuing-a-compute-command">enqueuing a compute command</a><span>, in § 16.1.1</span>
    <li><a href="#abstract-opdef-enqueuing-a-render-command">enqueuing a render command</a><span>, in § 17.2</span>
    <li><a href="#dom-gpubindgroup-entries-slot">[[entries]]</a><span>, in § 8.2</span>
    <li>
@@ -21633,10 +21662,10 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-queue-timeline①①">13.1. GPUCommandsMixin</a>
     <li><a href="#ref-for-queue-timeline①②">13.4. Buffer Copy Commands</a> <a href="#ref-for-queue-timeline①③">(2)</a> <a href="#ref-for-queue-timeline①④">(3)</a> <a href="#ref-for-queue-timeline①⑤">(4)</a>
     <li><a href="#ref-for-queue-timeline①⑥">13.6. Queries</a> <a href="#ref-for-queue-timeline①⑦">(2)</a> <a href="#ref-for-queue-timeline①⑧">(3)</a> <a href="#ref-for-queue-timeline①⑨">(4)</a> <a href="#ref-for-queue-timeline②⓪">(5)</a>
-    <li><a href="#ref-for-queue-timeline②①">16.1.2. Dispatch</a>
-    <li><a href="#ref-for-queue-timeline②②">17.2.3. Queries</a> <a href="#ref-for-queue-timeline②③">(2)</a>
-    <li><a href="#ref-for-queue-timeline②④">17.2.4. Bundles</a> <a href="#ref-for-queue-timeline②⑤">(2)</a>
-    <li><a href="#ref-for-queue-timeline②⑥">19.2. GPUQueue</a> <a href="#ref-for-queue-timeline②⑦">(2)</a> <a href="#ref-for-queue-timeline②⑧">(3)</a> <a href="#ref-for-queue-timeline②⑨">(4)</a>
+    <li><a href="#ref-for-queue-timeline②①">16.1.2. Dispatch</a> <a href="#ref-for-queue-timeline②②">(2)</a> <a href="#ref-for-queue-timeline②③">(3)</a> <a href="#ref-for-queue-timeline②④">(4)</a>
+    <li><a href="#ref-for-queue-timeline②⑤">17.2.3. Queries</a> <a href="#ref-for-queue-timeline②⑥">(2)</a>
+    <li><a href="#ref-for-queue-timeline②⑦">17.2.4. Bundles</a> <a href="#ref-for-queue-timeline②⑧">(2)</a>
+    <li><a href="#ref-for-queue-timeline②⑨">19.2. GPUQueue</a> <a href="#ref-for-queue-timeline③⓪">(2)</a> <a href="#ref-for-queue-timeline③①">(3)</a> <a href="#ref-for-queue-timeline③②">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="immutable-value-example-definition">
@@ -27209,7 +27238,7 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-gpu-command②">12.1. GPUCommandBuffer</a> <a href="#ref-for-gpu-command③">(2)</a>
     <li><a href="#ref-for-gpu-command④">13.1. GPUCommandsMixin</a> <a href="#ref-for-gpu-command⑤">(2)</a> <a href="#ref-for-gpu-command⑥">(3)</a>
     <li><a href="#ref-for-gpu-command⑦">13.3. Pass Encoding</a> <a href="#ref-for-gpu-command⑧">(2)</a>
-    <li><a href="#ref-for-gpu-command⑨">16.1.2. Dispatch</a>
+    <li><a href="#ref-for-gpu-command⑨">16.1.1. Compute Pass Encoder Creation</a>
     <li><a href="#ref-for-gpu-command①⓪">16.1.3. Finalization</a>
     <li><a href="#ref-for-gpu-command①①">17.1.2. Finalization</a>
     <li><a href="#ref-for-gpu-command①②">17.2. GPURenderCommandsMixin</a>
@@ -27276,7 +27305,7 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot">13.1. GPUCommandsMixin</a>
     <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot①">13.3. Pass Encoding</a> <a href="#ref-for-dom-gpucommandsmixin-commands-slot②">(2)</a>
     <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot③">13.7. Finalization</a>
-    <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot④">16.1.2. Dispatch</a>
+    <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot④">16.1.1. Compute Pass Encoder Creation</a>
     <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot⑤">16.1.3. Finalization</a> <a href="#ref-for-dom-gpucommandsmixin-commands-slot⑥">(2)</a> <a href="#ref-for-dom-gpucommandsmixin-commands-slot⑦">(3)</a>
     <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot⑧">17.1.2. Finalization</a> <a href="#ref-for-dom-gpucommandsmixin-commands-slot⑨">(2)</a> <a href="#ref-for-dom-gpucommandsmixin-commands-slot①⓪">(3)</a>
     <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot①①">17.2. GPURenderCommandsMixin</a>
@@ -27656,7 +27685,7 @@ restriction entirely and allow writable bindings to alias with undefined results
    <ul>
     <li><a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot">14. Programmable Passes</a>
     <li><a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot①">14.1. Bind Groups</a> <a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot②">(2)</a> <a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot③">(3)</a>
-    <li><a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot④">16.1.2. Dispatch</a>
+    <li><a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot④">16.1.2. Dispatch</a> <a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑤">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpubindingcommandsmixin-dynamic_offsets-slot">
@@ -27815,15 +27844,16 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-gpucomputepassencoder③">13.2. GPUCommandEncoder</a>
     <li><a href="#ref-for-gpucomputepassencoder④">13.3. Pass Encoding</a> <a href="#ref-for-gpucomputepassencoder⑤">(2)</a>
     <li><a href="#ref-for-gpucomputepassencoder⑥">16.1. GPUComputePassEncoder</a> <a href="#ref-for-gpucomputepassencoder⑦">(2)</a> <a href="#ref-for-gpucomputepassencoder⑧">(3)</a> <a href="#ref-for-gpucomputepassencoder⑨">(4)</a> <a href="#ref-for-gpucomputepassencoder①⓪">(5)</a> <a href="#ref-for-gpucomputepassencoder①①">(6)</a>
-    <li><a href="#ref-for-gpucomputepassencoder①②">16.1.2. Dispatch</a> <a href="#ref-for-gpucomputepassencoder①③">(2)</a> <a href="#ref-for-gpucomputepassencoder①④">(3)</a>
-    <li><a href="#ref-for-gpucomputepassencoder①⑤">16.1.3. Finalization</a>
-    <li><a href="#ref-for-gpucomputepassencoder①⑥">23.2. Computing</a>
+    <li><a href="#ref-for-gpucomputepassencoder①②">16.1.1. Compute Pass Encoder Creation</a>
+    <li><a href="#ref-for-gpucomputepassencoder①③">16.1.2. Dispatch</a> <a href="#ref-for-gpucomputepassencoder①④">(2)</a> <a href="#ref-for-gpucomputepassencoder①⑤">(3)</a>
+    <li><a href="#ref-for-gpucomputepassencoder①⑥">16.1.3. Finalization</a>
+    <li><a href="#ref-for-gpucomputepassencoder①⑦">23.2. Computing</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpucomputepassencoder-pipeline-slot">
    <b><a href="#dom-gpucomputepassencoder-pipeline-slot">#dom-gpucomputepassencoder-pipeline-slot</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-gpucomputepassencoder-pipeline-slot">16.1.2. Dispatch</a> <a href="#ref-for-dom-gpucomputepassencoder-pipeline-slot①">(2)</a> <a href="#ref-for-dom-gpucomputepassencoder-pipeline-slot②">(3)</a> <a href="#ref-for-dom-gpucomputepassencoder-pipeline-slot③">(4)</a>
+    <li><a href="#ref-for-dom-gpucomputepassencoder-pipeline-slot">16.1.2. Dispatch</a> <a href="#ref-for-dom-gpucomputepassencoder-pipeline-slot①">(2)</a> <a href="#ref-for-dom-gpucomputepassencoder-pipeline-slot②">(3)</a> <a href="#ref-for-dom-gpucomputepassencoder-pipeline-slot③">(4)</a> <a href="#ref-for-dom-gpucomputepassencoder-pipeline-slot④">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpucomputepassencoder-endtimestampwrites-slot">
@@ -27906,6 +27936,12 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-dom-gpucomputepassdescriptor-timestampwrites②">16.1.1. Compute Pass Encoder Creation</a> <a href="#ref-for-dom-gpucomputepassdescriptor-timestampwrites③">(2)</a> <a href="#ref-for-dom-gpucomputepassdescriptor-timestampwrites④">(3)</a>
     <li><a href="#ref-for-dom-gpucomputepassdescriptor-timestampwrites⑤">20.4. Timestamp Query</a>
     <li><a href="#ref-for-dom-gpucomputepassdescriptor-timestampwrites⑥">25.6. "timestamp-query"</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="abstract-opdef-enqueuing-a-compute-command">
+   <b><a href="#abstract-opdef-enqueuing-a-compute-command">#abstract-opdef-enqueuing-a-compute-command</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-abstract-opdef-enqueuing-a-compute-command">16.1.2. Dispatch</a> <a href="#ref-for-abstract-opdef-enqueuing-a-compute-command①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpucomputepassencoder-setpipeline">
