@@ -890,13 +890,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-11-28">28 November 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-12-30">30 December 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/c8c51c5120504ce6b35f82ffcc04a0328bdf42b8/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/c8c51c5120504ce6b35f82ffcc04a0328bdf42b8/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/b1a067c7e5d81ccdcc11424fde69b75b682018a9/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/b1a067c7e5d81ccdcc11424fde69b75b682018a9/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -7088,10 +7088,11 @@ and switched using one command
     <dd data-md>
      <p><code class="idl"><a data-link-type="idl" href="#dom-gpudevice-createcomputepipeline" id="ref-for-dom-gpudevice-createcomputepipeline⑥">createComputePipeline()</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-gpudevice-createrenderpipeline" id="ref-for-dom-gpudevice-createrenderpipeline⑥">createRenderPipeline()</a></code> return a pipeline object which can be used immediately in a pass encoder.</p>
      <p>When this fails, the pipeline object will be invalid and the call will generate either a <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①④">validation error</a> or an <a data-link-type="abstract-op" href="#abstract-opdef-generate-an-internal-error" id="ref-for-abstract-opdef-generate-an-internal-error">internal error</a>.</p>
-     <p class="note" role="note"><span>Note:</span> If pipeline creation takes a long time, this can incur a stall in the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline④③">device timeline</a> at some point between the creation call and execution of the <code class="idl"><a data-link-type="idl" href="#dom-gpuqueue-submit" id="ref-for-dom-gpuqueue-submit①">submit()</a></code> in which it is first used.
+     <p class="note" role="note"><span>Note:</span> A handle object is returned immediately, but actual pipeline creation is not synchronous.
+If pipeline creation takes a long time, this can incur a stall in the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline④③">device timeline</a> at some point between the creation call and execution of the <code class="idl"><a data-link-type="idl" href="#dom-gpuqueue-submit" id="ref-for-dom-gpuqueue-submit①">submit()</a></code> in which it is first used.
 The point is unspecified, but most likely to be one of: at creation, at the first usage of the
 pipeline in <code>setPipeline()</code>, at the corresponding <code>finish()</code> of that <code class="idl"><a data-link-type="idl" href="#gpucommandencoder" id="ref-for-gpucommandencoder④">GPUCommandEncoder</a></code> or <code class="idl"><a data-link-type="idl" href="#gpurenderbundleencoder" id="ref-for-gpurenderbundleencoder①">GPURenderBundleEncoder</a></code>, or at <code class="idl"><a data-link-type="idl" href="#dom-gpuqueue-submit" id="ref-for-dom-gpuqueue-submit②">submit()</a></code> of that <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer④">GPUCommandBuffer</a></code>.</p>
-    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="promised-pipeline-creation">promised pipeline creation</dfn>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="async-pipeline-creation">async pipeline creation</dfn>
     <dd data-md>
      <p><code class="idl"><a data-link-type="idl" href="#dom-gpudevice-createcomputepipelineasync" id="ref-for-dom-gpudevice-createcomputepipelineasync③">createComputePipelineAsync()</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-gpudevice-createrenderpipelineasync" id="ref-for-dom-gpudevice-createrenderpipelineasync②">createRenderPipelineAsync()</a></code> return a <code>Promise</code> which resolves to a pipeline object when creation of the pipeline has
 completed.</p>
@@ -7858,7 +7859,7 @@ workgroup.</p>
      </div>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUDevice" data-dfn-type="method" data-export id="dom-gpudevice-createcomputepipelineasync"><code>createComputePipelineAsync(descriptor)</code></dfn>
     <dd data-md>
-     <p>Creates a <code class="idl"><a data-link-type="idl" href="#gpucomputepipeline" id="ref-for-gpucomputepipeline①⑧">GPUComputePipeline</a></code> using <a data-link-type="dfn" href="#promised-pipeline-creation" id="ref-for-promised-pipeline-creation">promised pipeline creation</a>.
+     <p>Creates a <code class="idl"><a data-link-type="idl" href="#gpucomputepipeline" id="ref-for-gpucomputepipeline①⑧">GPUComputePipeline</a></code> using <a data-link-type="dfn" href="#async-pipeline-creation" id="ref-for-async-pipeline-creation">async pipeline creation</a>.
 The returned <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise①⑨">Promise</a></code> resolves when the created pipeline
 is ready to be used without additional delay.</p>
      <p>If pipeline creation fails, the returned <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise②⓪">Promise</a></code> rejects with an <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror⑥">GPUPipelineError</a></code>.</p>
@@ -8142,7 +8143,7 @@ and <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-g
      </div>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUDevice" data-dfn-type="method" data-export id="dom-gpudevice-createrenderpipelineasync"><code>createRenderPipelineAsync(descriptor)</code></dfn>
     <dd data-md>
-     <p>Creates a <code class="idl"><a data-link-type="idl" href="#gpurenderpipeline" id="ref-for-gpurenderpipeline②⓪">GPURenderPipeline</a></code> using <a data-link-type="dfn" href="#promised-pipeline-creation" id="ref-for-promised-pipeline-creation①">promised pipeline creation</a>.
+     <p>Creates a <code class="idl"><a data-link-type="idl" href="#gpurenderpipeline" id="ref-for-gpurenderpipeline②⓪">GPURenderPipeline</a></code> using <a data-link-type="dfn" href="#async-pipeline-creation" id="ref-for-async-pipeline-creation①">async pipeline creation</a>.
 The returned <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise②②">Promise</a></code> resolves when the created pipeline
 is ready to be used without additional delay.</p>
      <p>If pipeline creation fails, the returned <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise②③">Promise</a></code> rejects with an <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror⑨">GPUPipelineError</a></code>.</p>
@@ -8200,9 +8201,12 @@ subsequent steps on <var data-timeline="content">contentTimeline</var>.</p>
           <dt data-md><a data-link-type="dfn" href="#valid" id="ref-for-valid①⑦">valid</a>
           <dd data-md>
            <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#resolve" id="ref-for-resolve⑦">Resolve</a> <var>promise</var> with <var>pipeline</var>.</p>
-          <dt data-md><a data-link-type="dfn" href="#invalid" id="ref-for-invalid③①">invalid</a>
+          <dt data-md><a data-link-type="dfn" href="#invalid" id="ref-for-invalid③①">invalid</a> due to an <a data-link-type="abstract-op" href="#abstract-opdef-generate-an-internal-error" id="ref-for-abstract-opdef-generate-an-internal-error③">internal error</a>
           <dd data-md>
-           <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑧">Reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror①⓪">GPUPipelineError</a></code>.</p>
+           <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑧">Reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror①⓪">GPUPipelineError</a></code> with <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorinit-reason" id="ref-for-dom-gpupipelineerrorinit-reason③">reason</a></code> <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorreason-internal" id="ref-for-dom-gpupipelineerrorreason-internal②">"internal"</a></code>.</p>
+          <dt data-md><a data-link-type="dfn" href="#invalid" id="ref-for-invalid③②">invalid</a> due to an <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⓪">validation error</a>
+          <dd data-md>
+           <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑨">Reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror①①">GPUPipelineError</a></code> with <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorinit-reason" id="ref-for-dom-gpupipelineerrorinit-reason④">reason</a></code> <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorreason-validation" id="ref-for-dom-gpupipelineerrorreason-validation②">"validation"</a></code>.</p>
          </dl>
        </ol>
       </div>
@@ -9777,7 +9781,7 @@ of the source image, increasing downward.</p>
    <h2 class="heading settled" data-level="12" id="command-buffers"><span class="secno">12. </span><span class="content">Command Buffers</span><a class="self-link" href="#command-buffers"></a></h2>
    <p>Command buffers are pre-recorded lists of <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command①">GPU commands</a> that can be submitted to a <code class="idl"><a data-link-type="idl" href="#gpuqueue" id="ref-for-gpuqueue①⓪">GPUQueue</a></code> for execution. Each <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="gpu-command">GPU command</dfn> represents a task to be performed on the GPU, such as
 setting state, drawing, copying resources, etc.</p>
-   <p>A <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer⑤">GPUCommandBuffer</a></code> can only be submitted once, at which point it becomes <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③②">invalid</a>.
+   <p>A <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer⑤">GPUCommandBuffer</a></code> can only be submitted once, at which point it becomes <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③③">invalid</a>.
 To reuse rendering commands across multiple submissions, use <code class="idl"><a data-link-type="idl" href="#gpurenderbundle" id="ref-for-gpurenderbundle①">GPURenderBundle</a></code>.</p>
    <h3 class="heading settled" data-level="12.1" id="command-buffer"><span class="secno">12.1. </span><span class="content"><dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="gpucommandbuffer"><code>GPUCommandBuffer</code></dfn></span><a class="self-link" href="#command-buffer"></a></h3>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed②⑤"><c- g>Exposed</c-></a>=(<c- n>Window</c->, <c- n>DedicatedWorker</c->), <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext②①"><c- g>SecureContext</c-></a>]
@@ -9821,11 +9825,11 @@ It has no methods.</p>
     <dd data-md>
      <p>The encoder cannot be used, because it is locked by a child encoder: it is a <code class="idl"><a data-link-type="idl" href="#gpucommandencoder" id="ref-for-gpucommandencoder⑦">GPUCommandEncoder</a></code>, and a <code class="idl"><a data-link-type="idl" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder③">GPURenderPassEncoder</a></code> or <code class="idl"><a data-link-type="idl" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder③">GPUComputePassEncoder</a></code> is active.
 The encoder becomes "<a data-link-type="dfn" href="#encoder-state-open" id="ref-for-encoder-state-open①">open</a>" again when the pass is ended.</p>
-     <p>Any command issued in this state makes the encoder <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③③">invalid</a>.</p>
+     <p>Any command issued in this state makes the encoder <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③④">invalid</a>.</p>
     <dt data-md>"<dfn class="dfn-paneled" data-dfn-for="encoder state" data-dfn-type="dfn" data-noexport id="encoder-state-ended">ended</dfn>"
     <dd data-md>
      <p>The encoder has been ended and new commands can no longer be encoded.</p>
-     <p>Any command issued in this state will <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⓪">generate a validation error</a>.</p>
+     <p>Any command issued in this state will <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②①">generate a validation error</a>.</p>
    </dl>
    <div class="algorithm" data-algorithm="Validate the encoder state">
      To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-validate-the-encoder-state">Validate the encoder state</dfn> of <code class="idl"><a data-link-type="idl" href="#gpucommandsmixin" id="ref-for-gpucommandsmixin③">GPUCommandsMixin</a></code> <var>encoder</var>: 
@@ -9836,10 +9840,10 @@ The encoder becomes "<a data-link-type="dfn" href="#encoder-state-open" id="ref-
       <p>Return <code>true</code>.</p>
      <dt data-md>"<a data-link-type="dfn" href="#encoder-state-locked" id="ref-for-encoder-state-locked">locked</a>"
      <dd data-md>
-      <p>Make <var>encoder</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③④">invalid</a>, and return <code>false</code>.</p>
+      <p>Make <var>encoder</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③⑤">invalid</a>, and return <code>false</code>.</p>
      <dt data-md>"<a data-link-type="dfn" href="#encoder-state-ended" id="ref-for-encoder-state-ended">ended</a>"
      <dd data-md>
-      <p><a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②①">Generate a validation error</a>, and return <code>false</code>.</p>
+      <p><a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②②">Generate a validation error</a>, and return <code>false</code>.</p>
     </dl>
    </div>
    <h3 class="heading settled" data-level="13.2" id="command-encoder"><span class="secno">13.2. </span><span class="content"><dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="gpucommandencoder"><code>GPUCommandEncoder</code></dfn></span><a class="self-link" href="#command-encoder"></a></h3>
@@ -9934,7 +9938,7 @@ The encoder becomes "<a data-link-type="dfn" href="#encoder-state-open" id="ref-
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑤⑥">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②②">generate a validation error</a>, make <var>e</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③⑤">invalid</a>, and stop.</p>
+         <p>If any of the following conditions are unsatisfied <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②③">generate a validation error</a>, make <var>e</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③⑥">invalid</a>, and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -9997,7 +10001,7 @@ gpuDevice<c- p>.</c->queue<c- p>.</c->submit<c- p>([</c->commandBuffer<c- p>]);<
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑤⑧">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
-         <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②③">generate a validation error</a>, make <var>pass</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③⑥">invalid</a>, and stop.</p>
+         <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②④">generate a validation error</a>, make <var>pass</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③⑦">invalid</a>, and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -10107,7 +10111,7 @@ index in <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" hre
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑥⓪">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
-         <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②④">generate a validation error</a>, make <var>pass</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③⑦">invalid</a>, and stop.</p>
+         <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⑤">generate a validation error</a>, make <var>pass</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③⑧">invalid</a>, and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -10204,7 +10208,7 @@ index in <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" hre
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③⑧">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③⑨">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -10290,7 +10294,7 @@ index in <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" hre
         <li data-md>
          <p>If <var>size</var> is missing, set <var>size</var> to <code>max(0, |buffer|.{{GPUBuffer/size}} - |offset|)</code>.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③⑨">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④⓪">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -10369,7 +10373,7 @@ index in <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" hre
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state②">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④⓪">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④①">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -10468,7 +10472,7 @@ multiple continuous <a data-link-type="dfn" href="#texture-subresources" id="ref
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state③">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④①">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④②">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -10568,7 +10572,7 @@ multiple continuous <a data-link-type="dfn" href="#texture-subresources" id="ref
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state④">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④②">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④③">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -10658,7 +10662,7 @@ the <a data-link-type="abstract-op" href="#abstract-opdef-set-of-subresources-fo
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state⑤">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④③">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④④">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -10734,7 +10738,7 @@ the <a data-link-type="abstract-op" href="#abstract-opdef-set-of-subresources-fo
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state⑥">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④④">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④⑤">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -10821,9 +10825,9 @@ command encoder can no longer be used.</p>
          <p>If <var>validationSucceeded</var> is <code>false</code>, then:</p>
          <ol>
           <li data-md>
-           <p><a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⑤">Generate a validation error</a>.</p>
+           <p><a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⑥">Generate a validation error</a>.</p>
           <li data-md>
-           <p>Return a new <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④⑤">invalid</a> <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer①⑥">GPUCommandBuffer</a></code>.</p>
+           <p>Return a new <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④⑥">invalid</a> <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer①⑥">GPUCommandBuffer</a></code>.</p>
          </ol>
         <li data-md>
          <p>Set <var>commandBuffer</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandbuffer-command_list-slot" id="ref-for-dom-gpucommandbuffer-command_list-slot">[[command_list]]</a></code> to <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot②">[[commands]]</a></code>.</p>
@@ -10890,7 +10894,7 @@ It must only be included by interfaces which also include those mixins.</p>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state⑦">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④⑥">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④⑦">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -11227,7 +11231,7 @@ It must only be included by interfaces which also include those mixins.</p>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state⑨">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following requirements are unmet, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④⑦">invalid</a>, and stop.</p>
+         <p>If any of the following requirements are unmet, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④⑧">invalid</a>, and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -11384,7 +11388,7 @@ It must only be included by interfaces which also include those mixins.</p>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state①①">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④⑧">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④⑨">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -11455,7 +11459,7 @@ See <a href="#computing-operations">§ 23.2 Computing</a> for the detailed spe
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state①②">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④⑨">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤⓪">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -11532,7 +11536,7 @@ dispatchIndirectParameters<c- p>[</c-><c- mf>2</c-><c- p>]</c-> <c- o>=</c-> wor
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state①③">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤⓪">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤①">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -11578,7 +11582,7 @@ called the compute pass encoder can no longer be used.</p>
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨②">Device timeline</a> steps: 
        <ol>
         <li data-md>
-         <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⑥">generate a validation error</a> and stop.</p>
+         <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⑦">generate a validation error</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -11594,7 +11598,7 @@ called the compute pass encoder can no longer be used.</p>
         <li data-md>
          <p>Set <var>parentEncoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-state-slot" id="ref-for-dom-gpucommandsmixin-state-slot①⓪">[[state]]</a></code> to "<a data-link-type="dfn" href="#encoder-state-open" id="ref-for-encoder-state-open⑦">open</a>".</p>
         <li data-md>
-         <p>If any of the following requirements are unmet, make <var>parentEncoder</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤①">invalid</a> and stop.</p>
+         <p>If any of the following requirements are unmet, make <var>parentEncoder</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤②">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -12198,7 +12202,7 @@ called the render pass encoder can no longer be used.</p>
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨④">Device timeline</a> steps: 
        <ol>
         <li data-md>
-         <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⑦">generate a validation error</a> and stop.</p>
+         <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⑧">generate a validation error</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -12214,7 +12218,7 @@ called the render pass encoder can no longer be used.</p>
         <li data-md>
          <p>Set <var>parentEncoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-state-slot" id="ref-for-dom-gpucommandsmixin-state-slot①④">[[state]]</a></code> to "<a data-link-type="dfn" href="#encoder-state-open" id="ref-for-encoder-state-open⑨">open</a>".</p>
         <li data-md>
-         <p>If any of the following requirements are unmet, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤②">invalid</a> and stop.</p>
+         <p>If any of the following requirements are unmet, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤③">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -12341,7 +12345,7 @@ empty.</p>
         <li data-md>
          <p>Let <var>pipelineTargetsLayout</var> be <a data-link-type="abstract-op" href="#abstract-opdef-derive-render-targets-layout-from-pipeline" id="ref-for-abstract-opdef-derive-render-targets-layout-from-pipeline">derive render targets layout from pipeline</a>(<var>pipeline</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipeline-descriptor-slot" id="ref-for-dom-gpurenderpipeline-descriptor-slot①">[[descriptor]]</a></code>).</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤③">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤④">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -12409,7 +12413,7 @@ empty.</p>
         <li data-md>
          <p>If <var>size</var> is missing, set <var>size</var> to max(0, <var>buffer</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-size" id="ref-for-dom-gpubuffer-size①④">size</a></code> - <var>offset</var>).</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤④">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤⑤">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -12483,7 +12487,7 @@ empty.</p>
         <li data-md>
          <p>If <var>size</var> is missing, set <var>size</var> to max(0, <var>buffer</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-size" id="ref-for-dom-gpubuffer-size①⑥">size</a></code> - <var>offset</var>).</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤⑤">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤⑥">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -12556,7 +12560,7 @@ See <a href="#rendering-operations">§ 23.3 Rendering</a> for the detailed spe
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state①⑦">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤⑥">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤⑦">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -12654,7 +12658,7 @@ See <a href="#rendering-operations">§ 23.3 Rendering</a> for the detailed spe
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state①⑧">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤⑦">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤⑧">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -12743,7 +12747,7 @@ drawIndirectParameters<c- p>[</c-><c- mf>3</c-><c- p>]</c-> <c- o>=</c-> firstIn
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state①⑨">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤⑧">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤⑨">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -12813,7 +12817,7 @@ drawIndexedIndirectParameters<c- p>[</c-><c- mf>4</c-><c- p>]</c-> <c- o>=</c-> 
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state②⓪">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤⑨">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⓪">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -12957,7 +12961,7 @@ coordinates to viewport coordinates.</p>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state②①">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⓪">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥①">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -13044,7 +13048,7 @@ rectangle will be discarded.</p>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state②②">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥①">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥②">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -13180,7 +13184,7 @@ the <code class="idl"><a data-link-type="idl" href="#dom-gpustenciloperation-rep
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state②⑤">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥②">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥③">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -13216,7 +13220,7 @@ the <code class="idl"><a data-link-type="idl" href="#dom-gpustenciloperation-rep
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state②⑥">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥③">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥④">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -13275,7 +13279,7 @@ This occurs even if zero <code class="idl"><a data-link-type="idl" href="#gpuren
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state②⑦">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥④">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑤">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -13390,7 +13394,7 @@ This occurs even if zero <code class="idl"><a data-link-type="idl" href="#gpuren
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①⑧">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⑧">generate a validation error</a>, make <var>e</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑤">invalid</a>, and stop.</p>
+         <p>If any of the following conditions are unsatisfied <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⑨">generate a validation error</a>, make <var>e</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑥">invalid</a>, and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -13509,9 +13513,9 @@ must be ≤ <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom
          <p>If <var>validationSucceeded</var> is <code>false</code>, then:</p>
          <ol>
           <li data-md>
-           <p><a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⑨">Generate a validation error</a>.</p>
+           <p><a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error③⓪">Generate a validation error</a>.</p>
           <li data-md>
-           <p>Return a new <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑥">invalid</a> <code class="idl"><a data-link-type="idl" href="#gpurenderbundle" id="ref-for-gpurenderbundle①⑤">GPURenderBundle</a></code>.</p>
+           <p>Return a new <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑦">invalid</a> <code class="idl"><a data-link-type="idl" href="#gpurenderbundle" id="ref-for-gpurenderbundle①⑤">GPURenderBundle</a></code>.</p>
          </ol>
         <li data-md>
          <p>Set <var>renderBundle</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderbundle-command_list-slot" id="ref-for-dom-gpurenderbundle-command_list-slot">[[command_list]]</a></code> to <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot①⓪">[[commands]]</a></code>.</p>
@@ -13642,7 +13646,7 @@ an offset of <var>dataOffset</var> elements.</p>
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②②">Device timeline</a> steps: 
        <ol>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error③⓪">generate a validation error</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error③①">generate a validation error</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -13719,7 +13723,7 @@ an offset of <var>dataOffset</var> elements.</p>
         <li data-md>
          <p>Let <var>texture</var> be <var>destination</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-texture" id="ref-for-dom-gpuimagecopytexture-texture①⑦">texture</a></code>.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error③①">generate a validation error</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error③②">generate a validation error</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -13843,7 +13847,7 @@ throw a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.what
         <li data-md>
          <p>Let <var>texture</var> be <var>destination</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-texture" id="ref-for-dom-gpuimagecopytexture-texture①⑧">texture</a></code>.</p>
         <li data-md>
-         <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error③②">generate a validation error</a> and stop.</p>
+         <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error③③">generate a validation error</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -13934,7 +13938,7 @@ formats (which all support <code class="idl"><a data-link-type="idl" href="#dom-
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②⑧">Device timeline</a> steps: 
        <ol>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error③③">generate a validation error</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error③④">generate a validation error</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -13950,7 +13954,7 @@ in the <a data-link-type="dfn" href="#query-set-state-available" id="ref-for-que
          <p>For each <var>commandBuffer</var> in <var>commandBuffers</var>:</p>
          <ol>
           <li data-md>
-           <p>Make <var>commandBuffer</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑦">invalid</a>.</p>
+           <p>Make <var>commandBuffer</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑧">invalid</a>.</p>
          </ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①⑦">Queue timeline</a> of <var>this</var>:</p>
@@ -14111,8 +14115,8 @@ but <code class="idl"><a data-link-type="idl" href="#dom-gpufeaturename-timestam
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①③④">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
-         <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error③④">generate a validation error</a>,
-make <var>q</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑧">invalid</a>, and stop.</p>
+         <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error③⑤">generate a validation error</a>,
+make <var>q</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑨">invalid</a>, and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -14314,7 +14318,7 @@ This clears the drawing buffer to transparent black (in <a data-link-type="abstr
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①③⑥">Device timeline</a> steps: 
        <ol>
         <li data-md>
-         <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error③⑤">generate a validation error</a> and stop.</p>
+         <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error③⑥">generate a validation error</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -14376,7 +14380,7 @@ the canvas is resized.</p>
            <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-currenttexture-slot" id="ref-for-dom-gpucanvascontext-currenttexture-slot⑤">[[currentTexture]]</a></code> to the result of calling <var>device</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpudevice-createtexture" id="ref-for-dom-gpudevice-createtexture④">createTexture()</a></code> with <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-texturedescriptor-slot" id="ref-for-dom-gpucanvascontext-texturedescriptor-slot③">[[textureDescriptor]]</a></code>,
 except with the <code class="idl"><a data-link-type="idl" href="#gputexture" id="ref-for-gputexture④⓪">GPUTexture</a></code>'s underlying storage pointing to <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-drawingbuffer-slot" id="ref-for-dom-gpucanvascontext-drawingbuffer-slot②">[[drawingBuffer]]</a></code>.</p>
            <p class="note" role="note"><span>Note:</span> If the texture can’t be created (e.g. due to validation failure or out-of-memory),
-this generates and error and returns an <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑨">invalid</a> <code class="idl"><a data-link-type="idl" href="#gputexture" id="ref-for-gputexture④①">GPUTexture</a></code>.
+this generates and error and returns an <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑦⓪">invalid</a> <code class="idl"><a data-link-type="idl" href="#gputexture" id="ref-for-gputexture④①">GPUTexture</a></code>.
 Some validation here is redundant with that done in <code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-configure" id="ref-for-dom-gpucanvascontext-configure⑤">configure()</a></code>.
 Implementations <strong>must not</strong> skip this redundant validation.</p>
          </ol>
@@ -14933,7 +14937,7 @@ of WebGPU calls, typically for debugging purposes or to make an operation more f
            <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①⓪①">Content timeline</a> steps: 
           <ol>
            <li data-md>
-            <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑨">Reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#operationerror" id="ref-for-operationerror⑥">OperationError</a></code>.</p>
+            <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject①⓪">Reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#operationerror" id="ref-for-operationerror⑥">OperationError</a></code>.</p>
           </ol>
          </div>
         <li data-md>
@@ -14944,7 +14948,7 @@ or <code>null</code> if there are none.</p>
          <p>For any two errors E1 and E2 in the list, if E2 was caused by E1, E2 <strong>should
 not</strong> be the one selected.</p>
          <p class="note" role="note"><span>Note:</span> For example, if E1 comes from <code>t</code> = <code class="idl"><a data-link-type="idl" href="#dom-gpudevice-createtexture" id="ref-for-dom-gpudevice-createtexture⑤">createTexture()</a></code>, and
-E2 comes from <code>t</code>.<code class="idl"><a data-link-type="idl" href="#dom-gputexture-createview" id="ref-for-dom-gputexture-createview⑧">createView()</a></code> because <code>t</code> was <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑦⓪">invalid</a>,
+E2 comes from <code>t</code>.<code class="idl"><a data-link-type="idl" href="#dom-gputexture-createview" id="ref-for-dom-gputexture-createview⑧">createView()</a></code> because <code>t</code> was <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑦①">invalid</a>,
 E1 should be be preferred since it will be easier for a developer to understand
 what went wrong.
 Since both of these are <code class="idl"><a data-link-type="idl" href="#gpuvalidationerror" id="ref-for-gpuvalidationerror④">GPUValidationError</a></code>s, the only difference will be in
@@ -16920,6 +16924,7 @@ for (const dataLink of dataLinks) {
    <li><a href="#dom-gputextureformat-astc-8x6-unorm-srgb">"astc-8x6-unorm-srgb"</a><span>, in § 6.3</span>
    <li><a href="#dom-gputextureformat-astc-8x8-unorm">"astc-8x8-unorm"</a><span>, in § 6.3</span>
    <li><a href="#dom-gputextureformat-astc-8x8-unorm-srgb">"astc-8x8-unorm-srgb"</a><span>, in § 6.3</span>
+   <li><a href="#async-pipeline-creation">async pipeline creation</a><span>, in § 10</span>
    <li><a href="#internal-usage-attachment">attachment</a><span>, in § 3.4.3</span>
    <li><a href="#internal-usage-attachment-read">attachment-read</a><span>, in § 3.4.3</span>
    <li><a href="#dom-gpurenderpassencoder-attachment_size-slot">[[attachment_size]]</a><span>, in § 17.1</span>
@@ -18022,7 +18027,6 @@ for (const dataLink of dataLinks) {
    <li><a href="#rasterizationpoint-primitivevertices">primitiveVertices</a><span>, in § 23.3.5</span>
    <li><a href="#abstract-opdef-process-fragment">process fragment</a><span>, in § 23.3.6</span>
    <li><a href="#abstract-opdef-process-vertices">process vertices</a><span>, in § 23.3.2</span>
-   <li><a href="#promised-pipeline-creation">promised pipeline creation</a><span>, in § 10</span>
    <li><a href="#provoking-vertex">provoking vertex</a><span>, in § 23.3.4</span>
    <li><a href="#dom-gpudebugcommandsmixin-pushdebuggroup">pushDebugGroup(groupLabel)</a><span>, in § 15</span>
    <li><a href="#dom-gpudevice-pusherrorscope">pushErrorScope(filter)</a><span>, in § 22.3</span>
@@ -19366,8 +19370,8 @@ for (const dataLink of dataLinks) {
     <li><a href="#ref-for-reject">4.3. GPUAdapter</a> <a href="#ref-for-reject①">(2)</a> <a href="#ref-for-reject②">(3)</a>
     <li><a href="#ref-for-reject③">5.4. Buffer Mapping</a> <a href="#ref-for-reject④">(2)</a> <a href="#ref-for-reject⑤">(3)</a>
     <li><a href="#ref-for-reject⑥">10.2.1. Compute Pipeline Creation</a> <a href="#ref-for-reject⑦">(2)</a>
-    <li><a href="#ref-for-reject⑧">10.3.1. Render Pipeline Creation</a>
-    <li><a href="#ref-for-reject⑨">22.3. Error Scopes</a>
+    <li><a href="#ref-for-reject⑧">10.3.1. Render Pipeline Creation</a> <a href="#ref-for-reject⑨">(2)</a>
+    <li><a href="#ref-for-reject①⓪">22.3. Error Scopes</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-resolve">
@@ -19887,7 +19891,7 @@ for (const dataLink of dataLinks) {
    <dt id="biblio-webidl">[WEBIDL]
    <dd>Edgar Chen; Timothy Gu. <a href="https://webidl.spec.whatwg.org/"><cite>Web IDL Standard</cite></a>. Living Standard. URL: <a href="https://webidl.spec.whatwg.org/">https://webidl.spec.whatwg.org/</a>
    <dt id="biblio-wgsl">[WGSL]
-   <dd>Alan Baker; Mehmet Oguz Derin; David Neto. <a href="https://www.w3.org/TR/WGSL/"><cite>WebGPU Shading Language</cite></a>. 28 November 2022. WD. URL: <a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
+   <dd>Alan Baker; Mehmet Oguz Derin; David Neto. <a href="https://www.w3.org/TR/WGSL/"><cite>WebGPU Shading Language</cite></a>. 23 December 2022. WD. URL: <a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
   </dl>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
@@ -21463,30 +21467,30 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-invalid②③">9.1.1. Shader Module Creation</a>
     <li><a href="#ref-for-invalid②④">10.1. Base pipelines</a>
     <li><a href="#ref-for-invalid②⑤">10.2.1. Compute Pipeline Creation</a> <a href="#ref-for-invalid②⑥">(2)</a> <a href="#ref-for-invalid②⑦">(3)</a> <a href="#ref-for-invalid②⑧">(4)</a>
-    <li><a href="#ref-for-invalid②⑨">10.3.1. Render Pipeline Creation</a> <a href="#ref-for-invalid③⓪">(2)</a> <a href="#ref-for-invalid③①">(3)</a>
-    <li><a href="#ref-for-invalid③②">12. Command Buffers</a>
-    <li><a href="#ref-for-invalid③③">13.1. GPUCommandsMixin</a> <a href="#ref-for-invalid③④">(2)</a>
-    <li><a href="#ref-for-invalid③⑤">13.2.1. Command Encoder Creation</a>
-    <li><a href="#ref-for-invalid③⑥">13.3. Pass Encoding</a> <a href="#ref-for-invalid③⑦">(2)</a>
-    <li><a href="#ref-for-invalid③⑧">13.4. Buffer Copy Commands</a> <a href="#ref-for-invalid③⑨">(2)</a>
-    <li><a href="#ref-for-invalid④⓪">13.5. Image Copy Commands</a> <a href="#ref-for-invalid④①">(2)</a> <a href="#ref-for-invalid④②">(3)</a>
-    <li><a href="#ref-for-invalid④③">13.6. Queries</a> <a href="#ref-for-invalid④④">(2)</a>
-    <li><a href="#ref-for-invalid④⑤">13.7. Finalization</a>
-    <li><a href="#ref-for-invalid④⑥">14.1. Bind Groups</a>
-    <li><a href="#ref-for-invalid④⑦">15. Debug Markers</a>
-    <li><a href="#ref-for-invalid④⑧">16.1.2. Dispatch</a> <a href="#ref-for-invalid④⑨">(2)</a> <a href="#ref-for-invalid⑤⓪">(3)</a>
-    <li><a href="#ref-for-invalid⑤①">16.1.3. Finalization</a>
-    <li><a href="#ref-for-invalid⑤②">17.1.2. Finalization</a>
-    <li><a href="#ref-for-invalid⑤③">17.2.1. Drawing</a> <a href="#ref-for-invalid⑤④">(2)</a> <a href="#ref-for-invalid⑤⑤">(3)</a> <a href="#ref-for-invalid⑤⑥">(4)</a> <a href="#ref-for-invalid⑤⑦">(5)</a> <a href="#ref-for-invalid⑤⑧">(6)</a> <a href="#ref-for-invalid⑤⑨">(7)</a>
-    <li><a href="#ref-for-invalid⑥⓪">17.2.2. Rasterization state</a> <a href="#ref-for-invalid⑥①">(2)</a>
-    <li><a href="#ref-for-invalid⑥②">17.2.3. Queries</a> <a href="#ref-for-invalid⑥③">(2)</a>
-    <li><a href="#ref-for-invalid⑥④">17.2.4. Bundles</a>
-    <li><a href="#ref-for-invalid⑥⑤">18.1.1. Render Bundle Creation</a>
-    <li><a href="#ref-for-invalid⑥⑥">18.1.3. Finalization</a>
-    <li><a href="#ref-for-invalid⑥⑦">19.2. GPUQueue</a>
-    <li><a href="#ref-for-invalid⑥⑧">20.1.1. QuerySet Creation</a>
-    <li><a href="#ref-for-invalid⑥⑨">21.2. GPUCanvasContext</a>
-    <li><a href="#ref-for-invalid⑦⓪">22.3. Error Scopes</a>
+    <li><a href="#ref-for-invalid②⑨">10.3.1. Render Pipeline Creation</a> <a href="#ref-for-invalid③⓪">(2)</a> <a href="#ref-for-invalid③①">(3)</a> <a href="#ref-for-invalid③②">(4)</a>
+    <li><a href="#ref-for-invalid③③">12. Command Buffers</a>
+    <li><a href="#ref-for-invalid③④">13.1. GPUCommandsMixin</a> <a href="#ref-for-invalid③⑤">(2)</a>
+    <li><a href="#ref-for-invalid③⑥">13.2.1. Command Encoder Creation</a>
+    <li><a href="#ref-for-invalid③⑦">13.3. Pass Encoding</a> <a href="#ref-for-invalid③⑧">(2)</a>
+    <li><a href="#ref-for-invalid③⑨">13.4. Buffer Copy Commands</a> <a href="#ref-for-invalid④⓪">(2)</a>
+    <li><a href="#ref-for-invalid④①">13.5. Image Copy Commands</a> <a href="#ref-for-invalid④②">(2)</a> <a href="#ref-for-invalid④③">(3)</a>
+    <li><a href="#ref-for-invalid④④">13.6. Queries</a> <a href="#ref-for-invalid④⑤">(2)</a>
+    <li><a href="#ref-for-invalid④⑥">13.7. Finalization</a>
+    <li><a href="#ref-for-invalid④⑦">14.1. Bind Groups</a>
+    <li><a href="#ref-for-invalid④⑧">15. Debug Markers</a>
+    <li><a href="#ref-for-invalid④⑨">16.1.2. Dispatch</a> <a href="#ref-for-invalid⑤⓪">(2)</a> <a href="#ref-for-invalid⑤①">(3)</a>
+    <li><a href="#ref-for-invalid⑤②">16.1.3. Finalization</a>
+    <li><a href="#ref-for-invalid⑤③">17.1.2. Finalization</a>
+    <li><a href="#ref-for-invalid⑤④">17.2.1. Drawing</a> <a href="#ref-for-invalid⑤⑤">(2)</a> <a href="#ref-for-invalid⑤⑥">(3)</a> <a href="#ref-for-invalid⑤⑦">(4)</a> <a href="#ref-for-invalid⑤⑧">(5)</a> <a href="#ref-for-invalid⑤⑨">(6)</a> <a href="#ref-for-invalid⑥⓪">(7)</a>
+    <li><a href="#ref-for-invalid⑥①">17.2.2. Rasterization state</a> <a href="#ref-for-invalid⑥②">(2)</a>
+    <li><a href="#ref-for-invalid⑥③">17.2.3. Queries</a> <a href="#ref-for-invalid⑥④">(2)</a>
+    <li><a href="#ref-for-invalid⑥⑤">17.2.4. Bundles</a>
+    <li><a href="#ref-for-invalid⑥⑥">18.1.1. Render Bundle Creation</a>
+    <li><a href="#ref-for-invalid⑥⑦">18.1.3. Finalization</a>
+    <li><a href="#ref-for-invalid⑥⑧">19.2. GPUQueue</a>
+    <li><a href="#ref-for-invalid⑥⑨">20.1.1. QuerySet Creation</a>
+    <li><a href="#ref-for-invalid⑦⓪">21.2. GPUCanvasContext</a>
+    <li><a href="#ref-for-invalid⑦①">22.3. Error Scopes</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="abstract-opdef-valid-to-use-with">
@@ -25637,11 +25641,11 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-immediate-pipeline-creation①">10.3.1. Render Pipeline Creation</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="promised-pipeline-creation">
-   <b><a href="#promised-pipeline-creation">#promised-pipeline-creation</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="async-pipeline-creation">
+   <b><a href="#async-pipeline-creation">#async-pipeline-creation</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-promised-pipeline-creation">10.2.1. Compute Pipeline Creation</a>
-    <li><a href="#ref-for-promised-pipeline-creation①">10.3.1. Render Pipeline Creation</a>
+    <li><a href="#ref-for-async-pipeline-creation">10.2.1. Compute Pipeline Creation</a>
+    <li><a href="#ref-for-async-pipeline-creation①">10.3.1. Render Pipeline Creation</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="gpupipelineerror">
@@ -25649,7 +25653,7 @@ restriction entirely and allow writable bindings to alias with undefined results
    <ul>
     <li><a href="#ref-for-gpupipelineerror">10. Pipelines</a> <a href="#ref-for-gpupipelineerror①">(2)</a> <a href="#ref-for-gpupipelineerror②">(3)</a> <a href="#ref-for-gpupipelineerror③">(4)</a> <a href="#ref-for-gpupipelineerror④">(5)</a> <a href="#ref-for-gpupipelineerror⑤">(6)</a>
     <li><a href="#ref-for-gpupipelineerror⑥">10.2.1. Compute Pipeline Creation</a> <a href="#ref-for-gpupipelineerror⑦">(2)</a> <a href="#ref-for-gpupipelineerror⑧">(3)</a>
-    <li><a href="#ref-for-gpupipelineerror⑨">10.3.1. Render Pipeline Creation</a> <a href="#ref-for-gpupipelineerror①⓪">(2)</a>
+    <li><a href="#ref-for-gpupipelineerror⑨">10.3.1. Render Pipeline Creation</a> <a href="#ref-for-gpupipelineerror①⓪">(2)</a> <a href="#ref-for-gpupipelineerror①①">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dictdef-gpupipelineerrorinit">
@@ -25663,6 +25667,7 @@ restriction entirely and allow writable bindings to alias with undefined results
    <ul>
     <li><a href="#ref-for-dom-gpupipelineerrorinit-reason">10. Pipelines</a>
     <li><a href="#ref-for-dom-gpupipelineerrorinit-reason①">10.2.1. Compute Pipeline Creation</a> <a href="#ref-for-dom-gpupipelineerrorinit-reason②">(2)</a>
+    <li><a href="#ref-for-dom-gpupipelineerrorinit-reason③">10.3.1. Render Pipeline Creation</a> <a href="#ref-for-dom-gpupipelineerrorinit-reason④">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpupipelineerror-constructor">
@@ -25688,6 +25693,7 @@ restriction entirely and allow writable bindings to alias with undefined results
    <ul>
     <li><a href="#ref-for-dom-gpupipelineerrorreason-validation">10. Pipelines</a>
     <li><a href="#ref-for-dom-gpupipelineerrorreason-validation①">10.2.1. Compute Pipeline Creation</a>
+    <li><a href="#ref-for-dom-gpupipelineerrorreason-validation②">10.3.1. Render Pipeline Creation</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpupipelineerrorreason-internal">
@@ -25695,6 +25701,7 @@ restriction entirely and allow writable bindings to alias with undefined results
    <ul>
     <li><a href="#ref-for-dom-gpupipelineerrorreason-internal">10. Pipelines</a>
     <li><a href="#ref-for-dom-gpupipelineerrorreason-internal①">10.2.1. Compute Pipeline Creation</a>
+    <li><a href="#ref-for-dom-gpupipelineerrorreason-internal②">10.3.1. Render Pipeline Creation</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="enumdef-gpuautolayoutmode">
@@ -29554,18 +29561,18 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-abstract-opdef-generate-a-validation-error①④">10. Pipelines</a> <a href="#ref-for-abstract-opdef-generate-a-validation-error①⑤">(2)</a>
     <li><a href="#ref-for-abstract-opdef-generate-a-validation-error①⑥">10.1. Base pipelines</a>
     <li><a href="#ref-for-abstract-opdef-generate-a-validation-error①⑦">10.2.1. Compute Pipeline Creation</a> <a href="#ref-for-abstract-opdef-generate-a-validation-error①⑧">(2)</a>
-    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error①⑨">10.3.1. Render Pipeline Creation</a>
-    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②⓪">13.1. GPUCommandsMixin</a> <a href="#ref-for-abstract-opdef-generate-a-validation-error②①">(2)</a>
-    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②②">13.2.1. Command Encoder Creation</a>
-    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②③">13.3. Pass Encoding</a> <a href="#ref-for-abstract-opdef-generate-a-validation-error②④">(2)</a>
-    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②⑤">13.7. Finalization</a>
-    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②⑥">16.1.3. Finalization</a>
-    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②⑦">17.1.2. Finalization</a>
-    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②⑧">18.1.1. Render Bundle Creation</a>
-    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②⑨">18.1.3. Finalization</a>
-    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error③⓪">19.2. GPUQueue</a> <a href="#ref-for-abstract-opdef-generate-a-validation-error③①">(2)</a> <a href="#ref-for-abstract-opdef-generate-a-validation-error③②">(3)</a> <a href="#ref-for-abstract-opdef-generate-a-validation-error③③">(4)</a>
-    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error③④">20.1.1. QuerySet Creation</a>
-    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error③⑤">21.2. GPUCanvasContext</a>
+    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error①⑨">10.3.1. Render Pipeline Creation</a> <a href="#ref-for-abstract-opdef-generate-a-validation-error②⓪">(2)</a>
+    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②①">13.1. GPUCommandsMixin</a> <a href="#ref-for-abstract-opdef-generate-a-validation-error②②">(2)</a>
+    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②③">13.2.1. Command Encoder Creation</a>
+    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②④">13.3. Pass Encoding</a> <a href="#ref-for-abstract-opdef-generate-a-validation-error②⑤">(2)</a>
+    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②⑥">13.7. Finalization</a>
+    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②⑦">16.1.3. Finalization</a>
+    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②⑧">17.1.2. Finalization</a>
+    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error②⑨">18.1.1. Render Bundle Creation</a>
+    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error③⓪">18.1.3. Finalization</a>
+    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error③①">19.2. GPUQueue</a> <a href="#ref-for-abstract-opdef-generate-a-validation-error③②">(2)</a> <a href="#ref-for-abstract-opdef-generate-a-validation-error③③">(3)</a> <a href="#ref-for-abstract-opdef-generate-a-validation-error③④">(4)</a>
+    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error③⑤">20.1.1. QuerySet Creation</a>
+    <li><a href="#ref-for-abstract-opdef-generate-a-validation-error③⑥">21.2. GPUCanvasContext</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="gpuoutofmemoryerror">
@@ -29593,6 +29600,7 @@ restriction entirely and allow writable bindings to alias with undefined results
    <ul>
     <li><a href="#ref-for-abstract-opdef-generate-an-internal-error">10. Pipelines</a> <a href="#ref-for-abstract-opdef-generate-an-internal-error①">(2)</a>
     <li><a href="#ref-for-abstract-opdef-generate-an-internal-error②">10.2.1. Compute Pipeline Creation</a>
+    <li><a href="#ref-for-abstract-opdef-generate-an-internal-error③">10.3.1. Render Pipeline Creation</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="gpu-error-scope">
