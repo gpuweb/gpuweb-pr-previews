@@ -890,13 +890,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-11-29">29 November 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-12-30">30 December 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/477c742765efc00c7876e8f6885a33252a3a2060/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/477c742765efc00c7876e8f6885a33252a3a2060/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/f65e3934bf704e751c885e612764704c6b48c9fa/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/f65e3934bf704e751c885e612764704c6b48c9fa/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -2786,8 +2786,14 @@ developers are still strongly encouraged to test in multiple implementations.</p
       <p>Immediately after running animation frame callbacks.</p>
      <li data-md>
       <p>Immediately before rendering.
-(In the case of canvas texture expiry, this is already done in <a data-link-type="abstract-op" href="#abstract-opdef-update-the-rendering-of-the-webgpu-canvas" id="ref-for-abstract-opdef-update-the-rendering-of-the-webgpu-canvas">update the rendering of the WebGPU canvas</a>, so the task is allowed to be omitted entirely.)</p>
+Note this choice results in less predictable expiry, especially for non-visible canvases
+(e.g. scrolled off the screen or in a background tab), potentially allowing invalid programs
+to appear correct or changing the behavior of websites which (incorrectly) rely on expiry
+timing.</p>
+      <p>In the case of canvas texture expiry, expiry is also done in <a data-link-type="abstract-op" href="#abstract-opdef-update-the-rendering-of-the-webgpu-canvas" id="ref-for-abstract-opdef-update-the-rendering-of-the-webgpu-canvas">update the rendering of
+the WebGPU canvas</a>, so it’s equivalent for an implementation to elide the task entirely.</p>
     </ul>
+    n
    </div>
    <h3 class="heading settled" data-level="3.10" id="color-spaces"><span class="secno">3.10. </span><span class="content">Color Spaces and Encoding</span><a class="self-link" href="#color-spaces"></a></h3>
    <p>WebGPU does not provide color management. All values within WebGPU (such as texture elements)
@@ -14420,9 +14426,9 @@ completed writing to the image (via <var>context</var>.<code class="idl"><a data
          <li data-md>
           <p>Tag <var>snapshot</var> as being opaque.</p>
         </ol>
-        <p class="note" role="note"><span>Note:</span> If the <code class="idl"><a data-link-type="idl" href="#gputexture" id="ref-for-gputexture④⑤">GPUTexture</a></code> exposing this <code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-currenttexture-slot" id="ref-for-dom-gpucanvascontext-currenttexture-slot①①">[[currentTexture]]</a></code> (if any) has
-been destroyed, the alpha channel is unobservable, and
-implementations may clear the alpha channel in-place.</p>
+        <p class="note" role="note"><span>Note:</span> If the <code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-currenttexture-slot" id="ref-for-dom-gpucanvascontext-currenttexture-slot①①">[[currentTexture]]</a></code>, if any, has been destroyed
+(for example in <a data-link-type="abstract-op" href="#abstract-opdef-replace-the-drawing-buffer" id="ref-for-abstract-opdef-replace-the-drawing-buffer⑨">Replace the drawing buffer</a>), the alpha channel is unobservable,
+and implementations may clear the alpha channel in-place.</p>
        <dt data-md>Otherwise:
        <dd data-md>
         <p>Tag <var>snapshot</var> with <var>alphaMode</var>.</p>
@@ -14538,12 +14544,12 @@ luminance.</p>
    <p>All canvas configuration is set in <code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-configure" id="ref-for-dom-gpucanvascontext-configure⑥">configure()</a></code> except for the resolution
 of the canvas, which is set by the canvas’s <code>width</code> and <code>height</code>.</p>
    <p class="note" role="note"><span>Note:</span> Like WebGL and 2d canvas, resizing a WebGPU canvas loses the current contents of the drawing buffer.
-In WebGPU, it does so by <a data-link-type="abstract-op" href="#abstract-opdef-replace-the-drawing-buffer" id="ref-for-abstract-opdef-replace-the-drawing-buffer⑨">replacing the drawing buffer</a>.</p>
+In WebGPU, it does so by <a data-link-type="abstract-op" href="#abstract-opdef-replace-the-drawing-buffer" id="ref-for-abstract-opdef-replace-the-drawing-buffer①⓪">replacing the drawing buffer</a>.</p>
    <div class="algorithm" data-algorithm="update the canvas size">
      When an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#htmlcanvaselement" id="ref-for-htmlcanvaselement⑧">HTMLCanvasElement</a></code> or <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#offscreencanvas" id="ref-for-offscreencanvas⑥">OffscreenCanvas</a></code> <var>canvas</var> with a <code class="idl"><a data-link-type="idl" href="#gpucanvascontext" id="ref-for-gpucanvascontext①⑦">GPUCanvasContext</a></code> <var>context</var> has its <code>width</code> or <code>height</code> properties modified, <dfn data-dfn-type="abstract-op" data-export id="abstract-opdef-update-the-canvas-size">update the canvas size<a class="self-link" href="#abstract-opdef-update-the-canvas-size"></a></dfn>: 
     <ol>
      <li data-md>
-      <p><a data-link-type="abstract-op" href="#abstract-opdef-replace-the-drawing-buffer" id="ref-for-abstract-opdef-replace-the-drawing-buffer①⓪">Replace the drawing buffer</a> of <var>context</var>.</p>
+      <p><a data-link-type="abstract-op" href="#abstract-opdef-replace-the-drawing-buffer" id="ref-for-abstract-opdef-replace-the-drawing-buffer①①">Replace the drawing buffer</a> of <var>context</var>.</p>
      <li data-md>
       <p>Let <var>configuration</var> be <var>context</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-configuration-slot" id="ref-for-dom-gpucanvascontext-configuration-slot⑧">[[configuration]]</a></code></p>
      <li data-md>
@@ -19795,7 +19801,7 @@ for (const dataLink of dataLinks) {
    <dt id="biblio-webidl">[WEBIDL]
    <dd>Edgar Chen; Timothy Gu. <a href="https://webidl.spec.whatwg.org/"><cite>Web IDL Standard</cite></a>. Living Standard. URL: <a href="https://webidl.spec.whatwg.org/">https://webidl.spec.whatwg.org/</a>
    <dt id="biblio-wgsl">[WGSL]
-   <dd>Alan Baker; Mehmet Oguz Derin; David Neto. <a href="https://www.w3.org/TR/WGSL/"><cite>WebGPU Shading Language</cite></a>. 28 November 2022. WD. URL: <a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
+   <dd>Alan Baker; Mehmet Oguz Derin; David Neto. <a href="https://www.w3.org/TR/WGSL/"><cite>WebGPU Shading Language</cite></a>. 23 December 2022. WD. URL: <a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
   </dl>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
@@ -22940,7 +22946,7 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-gputexture③⓪">11.2. Image Copies</a>
     <li><a href="#ref-for-gputexture③①">11.2.3. GPUImageCopyTexture</a> <a href="#ref-for-gputexture③②">(2)</a> <a href="#ref-for-gputexture③③">(3)</a> <a href="#ref-for-gputexture③④">(4)</a>
     <li><a href="#ref-for-gputexture③⑤">19.2. GPUQueue</a>
-    <li><a href="#ref-for-gputexture③⑥">21.2. GPUCanvasContext</a> <a href="#ref-for-gputexture③⑦">(2)</a> <a href="#ref-for-gputexture③⑧">(3)</a> <a href="#ref-for-gputexture③⑨">(4)</a> <a href="#ref-for-gputexture④⓪">(5)</a> <a href="#ref-for-gputexture④①">(6)</a> <a href="#ref-for-gputexture④②">(7)</a> <a href="#ref-for-gputexture④③">(8)</a> <a href="#ref-for-gputexture④④">(9)</a> <a href="#ref-for-gputexture④⑤">(10)</a>
+    <li><a href="#ref-for-gputexture③⑥">21.2. GPUCanvasContext</a> <a href="#ref-for-gputexture③⑦">(2)</a> <a href="#ref-for-gputexture③⑧">(3)</a> <a href="#ref-for-gputexture③⑨">(4)</a> <a href="#ref-for-gputexture④⓪">(5)</a> <a href="#ref-for-gputexture④①">(6)</a> <a href="#ref-for-gputexture④②">(7)</a> <a href="#ref-for-gputexture④③">(8)</a> <a href="#ref-for-gputexture④④">(9)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="texture">
@@ -29238,8 +29244,8 @@ restriction entirely and allow writable bindings to alias with undefined results
    <b><a href="#abstract-opdef-replace-the-drawing-buffer">#abstract-opdef-replace-the-drawing-buffer</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-abstract-opdef-replace-the-drawing-buffer">21.1. HTMLCanvasElement.getContext()</a>
-    <li><a href="#ref-for-abstract-opdef-replace-the-drawing-buffer①">21.2. GPUCanvasContext</a> <a href="#ref-for-abstract-opdef-replace-the-drawing-buffer②">(2)</a> <a href="#ref-for-abstract-opdef-replace-the-drawing-buffer③">(3)</a> <a href="#ref-for-abstract-opdef-replace-the-drawing-buffer④">(4)</a> <a href="#ref-for-abstract-opdef-replace-the-drawing-buffer⑤">(5)</a> <a href="#ref-for-abstract-opdef-replace-the-drawing-buffer⑥">(6)</a> <a href="#ref-for-abstract-opdef-replace-the-drawing-buffer⑦">(7)</a> <a href="#ref-for-abstract-opdef-replace-the-drawing-buffer⑧">(8)</a>
-    <li><a href="#ref-for-abstract-opdef-replace-the-drawing-buffer⑨">21.3.2. Canvas Context sizing</a> <a href="#ref-for-abstract-opdef-replace-the-drawing-buffer①⓪">(2)</a>
+    <li><a href="#ref-for-abstract-opdef-replace-the-drawing-buffer①">21.2. GPUCanvasContext</a> <a href="#ref-for-abstract-opdef-replace-the-drawing-buffer②">(2)</a> <a href="#ref-for-abstract-opdef-replace-the-drawing-buffer③">(3)</a> <a href="#ref-for-abstract-opdef-replace-the-drawing-buffer④">(4)</a> <a href="#ref-for-abstract-opdef-replace-the-drawing-buffer⑤">(5)</a> <a href="#ref-for-abstract-opdef-replace-the-drawing-buffer⑥">(6)</a> <a href="#ref-for-abstract-opdef-replace-the-drawing-buffer⑦">(7)</a> <a href="#ref-for-abstract-opdef-replace-the-drawing-buffer⑧">(8)</a> <a href="#ref-for-abstract-opdef-replace-the-drawing-buffer⑨">(9)</a>
+    <li><a href="#ref-for-abstract-opdef-replace-the-drawing-buffer①⓪">21.3.2. Canvas Context sizing</a> <a href="#ref-for-abstract-opdef-replace-the-drawing-buffer①①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="supported-context-formats">
