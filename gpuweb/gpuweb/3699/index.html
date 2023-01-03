@@ -896,7 +896,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/dda44f9459a086aecc3b032f23808f5d8a1691c6/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/dda44f9459a086aecc3b032f23808f5d8a1691c6/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/a3f0007bf8a20fa8f552fd7a15f74c11df855b32/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/a3f0007bf8a20fa8f552fd7a15f74c11df855b32/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -11400,14 +11400,6 @@ It must only be included by interfaces which also include those mixins.</p>
       </ol>
     </ol>
    </div>
-   <div class="algorithm" data-algorithm="Enqueue a compute command">
-     To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-enqueue-a-compute-command">Enqueue a compute command</dfn> on <code class="idl"><a data-link-type="idl" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder①②">GPUComputePassEncoder</a></code> <var>encoder</var> which
-    issues the steps of a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command⑨">GPU Command</a> <var>command</var>: 
-    <ol>
-     <li data-md>
-      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①⓪">Append</a> <var>command</var> to <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot④">[[commands]]</a></code>.</p>
-    </ol>
-   </div>
    <h4 class="heading settled" data-level="16.1.2" id="compute-pass-encoder-dispatch"><span class="secno">16.1.2. </span><span class="content">Dispatch</span><a class="self-link" href="#compute-pass-encoder-dispatch"></a></h4>
    <dl>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUComputePassEncoder" data-dfn-type="method" data-export id="dom-gpucomputepassencoder-setpipeline"><code>setPipeline(pipeline)</code></dfn>
@@ -11415,7 +11407,7 @@ It must only be included by interfaces which also include those mixins.</p>
      <p>Sets the current <code class="idl"><a data-link-type="idl" href="#gpucomputepipeline" id="ref-for-gpucomputepipeline②⑤">GPUComputePipeline</a></code>.</p>
      <div class="algorithm" data-algorithm="GPUComputePassEncoder.setPipeline">
       <div data-timeline="content">
-        <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder①③">GPUComputePassEncoder</a></code> this. 
+        <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder①②">GPUComputePassEncoder</a></code> this. 
        <p><strong>Arguments:</strong></p>
        <table class="argumentdef data">
         <caption>Arguments for the <a data-link-type="idl" href="#dom-gpucomputepassencoder-setpipeline" id="ref-for-dom-gpucomputepassencoder-setpipeline⑤">GPUComputePassEncoder.setPipeline(pipeline)</a> method.</caption>
@@ -11465,7 +11457,7 @@ It must only be included by interfaces which also include those mixins.</p>
 See <a href="#computing-operations">§ 23.2 Computing</a> for the detailed specification.</p>
      <div class="algorithm" data-algorithm="GPUComputePassEncoder.dispatch">
       <div data-timeline="content">
-        <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder①④">GPUComputePassEncoder</a></code> this. 
+        <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder①③">GPUComputePassEncoder</a></code> this. 
        <p><strong>Arguments:</strong></p>
        <table class="argumentdef data">
         <caption>Arguments for the <a data-link-type="idl" href="#dom-gpucomputepassencoder-dispatchworkgroups" id="ref-for-dom-gpucomputepassencoder-dispatchworkgroups⑥">GPUComputePassEncoder.dispatchWorkgroups(workgroupCountX, workgroupCountY, workgroupCountZ)</a> method.</caption>
@@ -11531,7 +11523,7 @@ is <code>true</code>.</p>
         <li data-md>
          <p>Let <var>passState</var> be a snapshot of <var>this</var>’s current state.</p>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-compute-command" id="ref-for-abstract-opdef-enqueue-a-compute-command">Enqueue a compute command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑨">Queue timeline</a>.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command⑦">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑨">Queue timeline</a>.</p>
        </ol>
       </div>
       <div data-timeline="queue">
@@ -11558,7 +11550,7 @@ dispatchIndirectParameters<c- p>[</c-><c- mf>2</c-><c- p>]</c-> <c- o>=</c-> wor
 </pre>
      <div class="algorithm" data-algorithm="GPUComputePassEncoder.dispatchIndirect">
       <div data-timeline="content">
-        <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder①⑤">GPUComputePassEncoder</a></code> this. 
+        <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder①④">GPUComputePassEncoder</a></code> this. 
        <p><strong>Arguments:</strong></p>
        <table class="argumentdef data">
         <caption>Arguments for the <a data-link-type="idl" href="#dom-gpucomputepassencoder-dispatchworkgroupsindirect" id="ref-for-dom-gpucomputepassencoder-dispatchworkgroupsindirect④">GPUComputePassEncoder.dispatchWorkgroupsIndirect(indirectBuffer, indirectOffset)</a> method.</caption>
@@ -11617,7 +11609,7 @@ is <code>true</code>.</p>
         <li data-md>
          <p>Let <var>passState</var> be a snapshot of <var>this</var>’s current state.</p>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-compute-command" id="ref-for-abstract-opdef-enqueue-a-compute-command①">Enqueue a compute command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③①">Queue timeline</a>.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command⑧">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③①">Queue timeline</a>.</p>
        </ol>
       </div>
       <div data-timeline="queue">
@@ -11650,7 +11642,7 @@ called the compute pass encoder can no longer be used.</p>
      <p>Completes recording of the compute pass commands sequence.</p>
      <div class="algorithm" data-algorithm="GPUComputePassEncoder.end">
       <div data-timeline="content">
-        <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder①⑥">GPUComputePassEncoder</a></code> <var>this</var>. 
+        <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder①⑤">GPUComputePassEncoder</a></code> <var>this</var>. 
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined④⓪">undefined</a></code></p>
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦①">Content timeline</a> steps:</p>
        <ol>
@@ -11688,14 +11680,14 @@ called the compute pass encoder can no longer be used.</p>
           </ul>
          </div>
         <li data-md>
-         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-extend" id="ref-for-list-extend">Extend</a> <var>parentEncoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot⑤">[[commands]]</a></code> with <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot⑥">[[commands]]</a></code>.</p>
+         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-extend" id="ref-for-list-extend">Extend</a> <var>parentEncoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot④">[[commands]]</a></code> with <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot⑤">[[commands]]</a></code>.</p>
         <li data-md>
          <p>For each <var>timestampWrite</var> in <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepassencoder-endtimestampwrites-slot" id="ref-for-dom-gpucomputepassencoder-endtimestampwrites-slot①">[[endTimestampWrites]]</a></code>:</p>
          <ol>
           <li data-md>
            <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#assert" id="ref-for-assert①①">Assert</a>: <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepasstimestampwrite-location" id="ref-for-dom-gpucomputepasstimestampwrite-location③">location</a></code> is <code class="idl"><a data-link-type="idl" href="#dom-gpucomputepasstimestamplocation-end" id="ref-for-dom-gpucomputepasstimestamplocation-end①">"end"</a></code>.</p>
           <li data-md>
-           <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①①">Append</a> a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command①⓪">GPU command</a> to <var>parentEncoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot⑦">[[commands]]</a></code> that writes the GPU’s timestamp value into the <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepasstimestampwrite-queryindex" id="ref-for-dom-gpucomputepasstimestampwrite-queryindex②">queryIndex</a></code>th
+           <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①⓪">Append</a> a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command⑨">GPU command</a> to <var>parentEncoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot⑥">[[commands]]</a></code> that writes the GPU’s timestamp value into the <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepasstimestampwrite-queryindex" id="ref-for-dom-gpucomputepasstimestampwrite-queryindex②">queryIndex</a></code>th
 index in <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepasstimestampwrite-queryset" id="ref-for-dom-gpucomputepasstimestampwrite-queryset④">querySet</a></code>.</p>
          </ol>
        </ol>
@@ -11905,7 +11897,7 @@ if present, the <code class="idl"><a data-link-type="idl" href="#dom-gputexturev
        <li data-md>
         <p>If <var>colorAttachment</var> is <code>undefined</code>, continue.</p>
        <li data-md>
-        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①②">Append</a> <var>colorAttachment</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasscolorattachment-view" id="ref-for-dom-gpurenderpasscolorattachment-view⑤">view</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gputextureview-descriptor-slot" id="ref-for-dom-gputextureview-descriptor-slot④">[[descriptor]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gputextureviewdescriptor-format" id="ref-for-dom-gputextureviewdescriptor-format①④">format</a></code> to <var>formats</var>.</p>
+        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①①">Append</a> <var>colorAttachment</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasscolorattachment-view" id="ref-for-dom-gpurenderpasscolorattachment-view⑤">view</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gputextureview-descriptor-slot" id="ref-for-dom-gputextureview-descriptor-slot④">[[descriptor]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gputextureviewdescriptor-format" id="ref-for-dom-gputextureviewdescriptor-format①④">format</a></code> to <var>formats</var>.</p>
       </ol>
      <li data-md>
       <p><a data-link-type="abstract-op" href="#abstract-opdef-calculating-color-attachment-bytes-per-sample" id="ref-for-abstract-opdef-calculating-color-attachment-bytes-per-sample①">Calculating color attachment bytes per sample</a>(<var>formats</var>) must be ≤ <var>device</var>.<code class="idl"><a data-link-type="idl" href="#dom-device-limits-slot" id="ref-for-dom-device-limits-slot①⑥">[[limits]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxcolorattachmentbytespersample" id="ref-for-dom-supported-limits-maxcolorattachmentbytespersample①">maxColorAttachmentBytesPerSample</a></code>.</p>
@@ -12323,14 +12315,14 @@ called the render pass encoder can no longer be used.</p>
           </ul>
          </div>
         <li data-md>
-         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-extend" id="ref-for-list-extend①">Extend</a> <var>parentEncoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot⑧">[[commands]]</a></code> with <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot⑨">[[commands]]</a></code>.</p>
+         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-extend" id="ref-for-list-extend①">Extend</a> <var>parentEncoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot⑦">[[commands]]</a></code> with <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot⑧">[[commands]]</a></code>.</p>
         <li data-md>
          <p>For each <var>timestampWrite</var> in <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-endtimestampwrites-slot" id="ref-for-dom-gpurenderpassencoder-endtimestampwrites-slot①">[[endTimestampWrites]]</a></code>:</p>
          <ol>
           <li data-md>
            <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#assert" id="ref-for-assert①③">Assert</a>: <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasstimestampwrite-location" id="ref-for-dom-gpurenderpasstimestampwrite-location③">location</a></code> is <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasstimestamplocation-end" id="ref-for-dom-gpurenderpasstimestamplocation-end①">"end"</a></code>.</p>
           <li data-md>
-           <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①③">Append</a> a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command①①">GPU command</a> to <var>parentEncoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot①⓪">[[commands]]</a></code> that writes the GPU’s timestamp value into the <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasstimestampwrite-queryindex" id="ref-for-dom-gpurenderpasstimestampwrite-queryindex③">queryIndex</a></code>th
+           <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①②">Append</a> a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command①⓪">GPU command</a> to <var>parentEncoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot⑨">[[commands]]</a></code> that writes the GPU’s timestamp value into the <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasstimestampwrite-queryindex" id="ref-for-dom-gpurenderpasstimestampwrite-queryindex③">queryIndex</a></code>th
 index in <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasstimestampwrite-queryset" id="ref-for-dom-gpurenderpasstimestampwrite-queryset⑤">querySet</a></code>.</p>
          </ol>
         <li data-md>
@@ -12409,10 +12401,10 @@ empty.</p>
    </dl>
    <div class="algorithm" data-algorithm="Enqueue a render command">
      To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-enqueue-a-render-command">Enqueue a render command</dfn> on <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin⑤">GPURenderCommandsMixin</a></code> <var>encoder</var> which
-    issues the steps of a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command①②">GPU Command</a> <var>command</var> with <a data-link-type="dfn" href="#renderstate" id="ref-for-renderstate④">RenderState</a> <var>renderState</var>: 
+    issues the steps of a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command①①">GPU Command</a> <var>command</var> with <a data-link-type="dfn" href="#renderstate" id="ref-for-renderstate④">RenderState</a> <var>renderState</var>: 
     <ol>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①④">Append</a> <var>command</var> to <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot①①">[[commands]]</a></code>.</p>
+      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①③">Append</a> <var>command</var> to <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot①⓪">[[commands]]</a></code>.</p>
      <li data-md>
       <p>When <var>command</var> is executed as part of a <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer①⑧">GPUCommandBuffer</a></code> <var>commandBuffer</var>:</p>
       <ol>
@@ -13584,9 +13576,9 @@ Also note, no mutable <var>passState</var> state is visible to render bundles.</
 <a data-link-type="idl-name" href="#gpurenderbundle" id="ref-for-gpurenderbundle⑨"><c- n>GPURenderBundle</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpuobjectbase" id="ref-for-gpuobjectbase③⓪"><c- n>GPUObjectBase</c-></a>;
 </pre>
    <dl>
-    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderBundle" data-dfn-type="attribute" data-export id="dom-gpurenderbundle-command_list-slot"><code>[[command_list]]</code></dfn>, of type <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list①⑥">list</a>&lt;<a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command①③">GPU command</a>>
+    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderBundle" data-dfn-type="attribute" data-export id="dom-gpurenderbundle-command_list-slot"><code>[[command_list]]</code></dfn>, of type <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list①⑥">list</a>&lt;<a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command①②">GPU command</a>>
     <dd data-md>
-     <p>A <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list①⑦">list</a> of <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command①④">GPU commands</a> to be submitted to the <code class="idl"><a data-link-type="idl" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder②⑤">GPURenderPassEncoder</a></code> when the <code class="idl"><a data-link-type="idl" href="#gpurenderbundle" id="ref-for-gpurenderbundle①⓪">GPURenderBundle</a></code> is executed.</p>
+     <p>A <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list①⑦">list</a> of <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command①③">GPU commands</a> to be submitted to the <code class="idl"><a data-link-type="idl" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder②⑤">GPURenderPassEncoder</a></code> when the <code class="idl"><a data-link-type="idl" href="#gpurenderbundle" id="ref-for-gpurenderbundle①⓪">GPURenderBundle</a></code> is executed.</p>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderBundle" data-dfn-type="attribute" data-export id="dom-gpurenderbundle-layout-slot"><code>[[layout]]</code></dfn>, of type <code class="idl"><a data-link-type="idl" href="#dictdef-gpurenderpasslayout" id="ref-for-dictdef-gpurenderpasslayout⑧">GPURenderPassLayout</a></code>
     <dd data-md>
      <p>The layout of the render bundle.</p>
@@ -13782,7 +13774,7 @@ must be ≤ <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom
            <p>Return a new <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑤">invalid</a> <code class="idl"><a data-link-type="idl" href="#gpurenderbundle" id="ref-for-gpurenderbundle①⑤">GPURenderBundle</a></code>.</p>
          </ol>
         <li data-md>
-         <p>Set <var>renderBundle</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderbundle-command_list-slot" id="ref-for-dom-gpurenderbundle-command_list-slot①">[[command_list]]</a></code> to <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot①②">[[commands]]</a></code>.</p>
+         <p>Set <var>renderBundle</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderbundle-command_list-slot" id="ref-for-dom-gpurenderbundle-command_list-slot①">[[command_list]]</a></code> to <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot①①">[[commands]]</a></code>.</p>
         <li data-md>
          <p>Set <var>renderBundle</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderbundle-drawcount-slot" id="ref-for-dom-gpurenderbundle-drawcount-slot①">[[drawCount]]</a></code> to <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawcount-slot" id="ref-for-dom-gpurendercommandsmixin-drawcount-slot⑧">[[drawCount]]</a></code>.</p>
        </ol>
@@ -15119,7 +15111,7 @@ of WebGPU calls, typically for debugging purposes or to make an operation more f
        <p>If <var>scope</var> is not <code>undefined</code>:</p>
        <ol>
         <li data-md>
-         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①⑤">Append</a> <var>error</var> to <var>scope</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpu-error-scope-errors-slot" id="ref-for-dom-gpu-error-scope-errors-slot">[[errors]]</a></code>.</p>
+         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①④">Append</a> <var>error</var> to <var>scope</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpu-error-scope-errors-slot" id="ref-for-dom-gpu-error-scope-errors-slot">[[errors]]</a></code>.</p>
         <li data-md>
          <p>Return.</p>
        </ol>
@@ -15350,7 +15342,7 @@ This has the same type as errors returned by <code class="idl"><a data-link-type
    <p>Computing operations provide direct access to GPU’s programmable hardware.
 Compute shaders do not have shader stage inputs or outputs, their results are
 side effects from writing data into storage bindings bound as <code class="idl"><a data-link-type="idl" href="#dom-gpubufferbindingtype-storage" id="ref-for-dom-gpubufferbindingtype-storage①④">GPUBufferBindingType."storage"</a></code> and <code class="idl"><a data-link-type="idl" href="#dictdef-gpustoragetexturebindinglayout" id="ref-for-dictdef-gpustoragetexturebindinglayout⑤">GPUStorageTextureBindingLayout</a></code>.
-These operations are encoded within <code class="idl"><a data-link-type="idl" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder①⑦">GPUComputePassEncoder</a></code> as:</p>
+These operations are encoded within <code class="idl"><a data-link-type="idl" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder①⑥">GPUComputePassEncoder</a></code> as:</p>
    <ul>
     <li data-md>
      <p><code class="idl"><a data-link-type="idl" href="#dom-gpucomputepassencoder-dispatchworkgroups" id="ref-for-dom-gpucomputepassencoder-dispatchworkgroups⑨">dispatchWorkgroups()</a></code></p>
@@ -17571,7 +17563,6 @@ for (const dataLink of dataLinks) {
      <li><a href="#dom-gpurenderpassencoder-endtimestampwrites-slot">attribute for GPURenderPassEncoder</a><span>, in § 17.1</span>
     </ul>
    <li><a href="#abstract-opdef-enqueue-a-command">Enqueue a command</a><span>, in § 13.1</span>
-   <li><a href="#abstract-opdef-enqueue-a-compute-command">Enqueue a compute command</a><span>, in § 16.1.1</span>
    <li><a href="#abstract-opdef-enqueue-a-render-command">Enqueue a render command</a><span>, in § 17.2</span>
    <li><a href="#dom-gpubindgroup-entries-slot">[[entries]]</a><span>, in § 8.2</span>
    <li>
@@ -27409,11 +27400,10 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-gpu-command②">12.1. GPUCommandBuffer</a> <a href="#ref-for-gpu-command③">(2)</a>
     <li><a href="#ref-for-gpu-command④">13.1. GPUCommandsMixin</a> <a href="#ref-for-gpu-command⑤">(2)</a> <a href="#ref-for-gpu-command⑥">(3)</a>
     <li><a href="#ref-for-gpu-command⑦">13.3. Pass Encoding</a> <a href="#ref-for-gpu-command⑧">(2)</a>
-    <li><a href="#ref-for-gpu-command⑨">16.1.1. Compute Pass Encoder Creation</a>
-    <li><a href="#ref-for-gpu-command①⓪">16.1.3. Finalization</a>
-    <li><a href="#ref-for-gpu-command①①">17.1.2. Finalization</a>
-    <li><a href="#ref-for-gpu-command①②">17.2. GPURenderCommandsMixin</a>
-    <li><a href="#ref-for-gpu-command①③">18.1. GPURenderBundle</a> <a href="#ref-for-gpu-command①④">(2)</a>
+    <li><a href="#ref-for-gpu-command⑨">16.1.3. Finalization</a>
+    <li><a href="#ref-for-gpu-command①⓪">17.1.2. Finalization</a>
+    <li><a href="#ref-for-gpu-command①①">17.2. GPURenderCommandsMixin</a>
+    <li><a href="#ref-for-gpu-command①②">18.1. GPURenderBundle</a> <a href="#ref-for-gpu-command①③">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="gpucommandbuffer">
@@ -27484,11 +27474,10 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot">13.1. GPUCommandsMixin</a>
     <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot①">13.3. Pass Encoding</a> <a href="#ref-for-dom-gpucommandsmixin-commands-slot②">(2)</a>
     <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot③">13.7. Finalization</a>
-    <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot④">16.1.1. Compute Pass Encoder Creation</a>
-    <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot⑤">16.1.3. Finalization</a> <a href="#ref-for-dom-gpucommandsmixin-commands-slot⑥">(2)</a> <a href="#ref-for-dom-gpucommandsmixin-commands-slot⑦">(3)</a>
-    <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot⑧">17.1.2. Finalization</a> <a href="#ref-for-dom-gpucommandsmixin-commands-slot⑨">(2)</a> <a href="#ref-for-dom-gpucommandsmixin-commands-slot①⓪">(3)</a>
-    <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot①①">17.2. GPURenderCommandsMixin</a>
-    <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot①②">18.1.3. Finalization</a>
+    <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot④">16.1.3. Finalization</a> <a href="#ref-for-dom-gpucommandsmixin-commands-slot⑤">(2)</a> <a href="#ref-for-dom-gpucommandsmixin-commands-slot⑥">(3)</a>
+    <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot⑦">17.1.2. Finalization</a> <a href="#ref-for-dom-gpucommandsmixin-commands-slot⑧">(2)</a> <a href="#ref-for-dom-gpucommandsmixin-commands-slot⑨">(3)</a>
+    <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot①⓪">17.2. GPURenderCommandsMixin</a>
+    <li><a href="#ref-for-dom-gpucommandsmixin-commands-slot①①">18.1.3. Finalization</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="encoder-state">
@@ -27549,6 +27538,7 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-abstract-opdef-enqueue-a-command">13.4. Buffer Copy Commands</a> <a href="#ref-for-abstract-opdef-enqueue-a-command①">(2)</a>
     <li><a href="#ref-for-abstract-opdef-enqueue-a-command②">13.5. Image Copy Commands</a> <a href="#ref-for-abstract-opdef-enqueue-a-command③">(2)</a> <a href="#ref-for-abstract-opdef-enqueue-a-command④">(3)</a>
     <li><a href="#ref-for-abstract-opdef-enqueue-a-command⑤">13.6. Queries</a> <a href="#ref-for-abstract-opdef-enqueue-a-command⑥">(2)</a>
+    <li><a href="#ref-for-abstract-opdef-enqueue-a-command⑦">16.1.2. Dispatch</a> <a href="#ref-for-abstract-opdef-enqueue-a-command⑧">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="gpucommandencoder">
@@ -28025,10 +28015,9 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-gpucomputepassencoder③">13.2. GPUCommandEncoder</a>
     <li><a href="#ref-for-gpucomputepassencoder④">13.3. Pass Encoding</a> <a href="#ref-for-gpucomputepassencoder⑤">(2)</a>
     <li><a href="#ref-for-gpucomputepassencoder⑥">16.1. GPUComputePassEncoder</a> <a href="#ref-for-gpucomputepassencoder⑦">(2)</a> <a href="#ref-for-gpucomputepassencoder⑧">(3)</a> <a href="#ref-for-gpucomputepassencoder⑨">(4)</a> <a href="#ref-for-gpucomputepassencoder①⓪">(5)</a> <a href="#ref-for-gpucomputepassencoder①①">(6)</a>
-    <li><a href="#ref-for-gpucomputepassencoder①②">16.1.1. Compute Pass Encoder Creation</a>
-    <li><a href="#ref-for-gpucomputepassencoder①③">16.1.2. Dispatch</a> <a href="#ref-for-gpucomputepassencoder①④">(2)</a> <a href="#ref-for-gpucomputepassencoder①⑤">(3)</a>
-    <li><a href="#ref-for-gpucomputepassencoder①⑥">16.1.3. Finalization</a>
-    <li><a href="#ref-for-gpucomputepassencoder①⑦">23.2. Computing</a>
+    <li><a href="#ref-for-gpucomputepassencoder①②">16.1.2. Dispatch</a> <a href="#ref-for-gpucomputepassencoder①③">(2)</a> <a href="#ref-for-gpucomputepassencoder①④">(3)</a>
+    <li><a href="#ref-for-gpucomputepassencoder①⑤">16.1.3. Finalization</a>
+    <li><a href="#ref-for-gpucomputepassencoder①⑥">23.2. Computing</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpucomputepassencoder-pipeline-slot">
@@ -28117,12 +28106,6 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-dom-gpucomputepassdescriptor-timestampwrites②">16.1.1. Compute Pass Encoder Creation</a> <a href="#ref-for-dom-gpucomputepassdescriptor-timestampwrites③">(2)</a> <a href="#ref-for-dom-gpucomputepassdescriptor-timestampwrites④">(3)</a>
     <li><a href="#ref-for-dom-gpucomputepassdescriptor-timestampwrites⑤">20.4. Timestamp Query</a>
     <li><a href="#ref-for-dom-gpucomputepassdescriptor-timestampwrites⑥">25.6. "timestamp-query"</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="abstract-opdef-enqueue-a-compute-command">
-   <b><a href="#abstract-opdef-enqueue-a-compute-command">#abstract-opdef-enqueue-a-compute-command</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-abstract-opdef-enqueue-a-compute-command">16.1.2. Dispatch</a> <a href="#ref-for-abstract-opdef-enqueue-a-compute-command①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpucomputepassencoder-setpipeline">
