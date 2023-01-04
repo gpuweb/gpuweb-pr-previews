@@ -719,7 +719,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/cc6cd612084ed4b147da566e357bdf7feb9c7542/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/cc6cd612084ed4b147da566e357bdf7feb9c7542/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/4516a860f6ff98f50730dda1ec3f8d17fdf92c4a/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/4516a860f6ff98f50730dda1ec3f8d17fdf92c4a/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -1632,10 +1632,10 @@ The place in the source text where the condition is met, expressed as a point or
     <dd data-md>
      <p>The diagnostic is an error.
  This corresponds to a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①">shader-creation error</a> or to a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error①">pipeline-creation error</a>.</p>
-    <dt data-md><dfn data-dfn-for="severity" data-dfn-type="dfn" data-noexport id="severity-warning">warning<a class="self-link" href="#severity-warning"></a></dfn>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-for="severity" data-dfn-type="dfn" data-noexport id="severity-warning">warning</dfn>
     <dd data-md>
      <p>The diagnostic describes an anomaly that merits the attention of the application developer, but is not an error.</p>
-    <dt data-md><dfn data-dfn-for="severity" data-dfn-type="dfn" data-noexport id="severity-info">info<a class="self-link" href="#severity-info"></a></dfn>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-for="severity" data-dfn-type="dfn" data-noexport id="severity-info">info</dfn>
     <dd data-md>
      <p>The diagnostic describes a notable condition that merits attention of the application developer, but is not an error or warning.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="severity" data-dfn-type="dfn" data-noexport id="severity-off">off</dfn>
@@ -1654,6 +1654,18 @@ The place in the source text where the condition is met, expressed as a point or
      </ul>
     <li data-md>
      <p>Discard diagnostics that have severity <a data-link-type="dfn" href="#severity-off" id="ref-for-severity-off">off</a>.</p>
+    <li data-md>
+     <p>If at least one remaining diagnostic <em>DI</em> has severity <a data-link-type="dfn" href="#severity-info" id="ref-for-severity-info">info</a>, then:</p>
+     <ul>
+      <li data-md>
+       <p>Other <a data-link-type="dfn" href="#severity-info" id="ref-for-severity-info①">info</a> diagnostics with same triggering rule <em>may</em> be discarded, leaving only the original diagnostic <em>DI</em>.</p>
+     </ul>
+    <li data-md>
+     <p>If at least one remaining diagnostic <em>DW</em> has severity <a data-link-type="dfn" href="#severity-warning" id="ref-for-severity-warning">warning</a>, then:</p>
+     <ul>
+      <li data-md>
+       <p>Other <a data-link-type="dfn" href="#severity-info" id="ref-for-severity-info②">info</a> or <a data-link-type="dfn" href="#severity-warning" id="ref-for-severity-warning①">warning</a> diagnostics with same triggering rule <em>may</em> be discarded, leaving only the original diagnostic <em>DW</em>.</p>
+     </ul>
     <li data-md>
      <p>If at least one remaining diagnostic has <a data-link-type="dfn" href="#severity-error" id="ref-for-severity-error">error</a> severity, then:</p>
      <ul>
@@ -1675,7 +1687,9 @@ The place in the source text where the condition is met, expressed as a point or
 in the nearest enclosing <a href="https://w3.org/TR/webgpu#gpu-error-scope">WebGPU GPU error scope</a>.
 Issue: TODO: Adjust for <a href="https://github.com/gpuweb/gpuweb/issues/3682">#3682</a>.</p>
    </ol>
-   <p class="note" role="note"><span>Note:</span> The rules allow an implementation to stop processing a WGSL program as soon as an error is detected.</p>
+   <p class="note" role="note"><span>Note:</span> The rules allow an implementation to stop processing a WGSL program as soon as an error is detected.
+Additionally, an analysis for a particular kind of warning can stop on the first warning,
+and an analysis for a particular kind of info diagnostic can stop on the first occurrence.</p>
    <h4 class="heading settled" data-level="2.2.1" id="filterable-triggering-rules"><span class="secno">2.2.1. </span><span class="content">Filterable Triggering Rules</span><a class="self-link" href="#filterable-triggering-rules"></a></h4>
    <p>Most <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic③">diagnostics</a> are unconditionally reported to the WebGPU application.
 Some kinds of diagnostics can be <a href="#diagnostic-filtering">filtered</a>, in part by naming their <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule②">triggering rule</a>.
@@ -18800,6 +18814,18 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <ul>
     <li><a href="#ref-for-severity-error">2.2. Diagnostics</a> <a href="#ref-for-severity-error①">(2)</a> <a href="#ref-for-severity-error②">(3)</a>
     <li><a href="#ref-for-severity-error③">2.2.1. Filterable Triggering Rules</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="severity-warning">
+   <b><a href="#severity-warning">#severity-warning</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-severity-warning">2.2. Diagnostics</a> <a href="#ref-for-severity-warning①">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="severity-info">
+   <b><a href="#severity-info">#severity-info</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-severity-info">2.2. Diagnostics</a> <a href="#ref-for-severity-info①">(2)</a> <a href="#ref-for-severity-info②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="severity-off">
