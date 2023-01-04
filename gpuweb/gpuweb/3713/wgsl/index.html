@@ -719,7 +719,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/5d3781f2fd163cd94847ff5336e96c0da235f169/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/5d3781f2fd163cd94847ff5336e96c0da235f169/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/8e525b784236968a2c3727458a1aba0564c7d4ee/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/8e525b784236968a2c3727458a1aba0564c7d4ee/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -1754,7 +1754,7 @@ as specified in the following table.  A <code>@diagnostic</code> attribute <a da
       <td>Beginning of a <a data-link-type="dfn" href="#function-declaration" id="ref-for-function-declaration">function declaration</a>.
       <td>The function declaration. 
      <tr>
-      <td>Beginning of a <a data-link-type="dfn" href="#statement-if" id="ref-for-statement-if">if</a> statement.
+      <td>Beginning of an <a data-link-type="dfn" href="#statement-if" id="ref-for-statement-if">if</a> statement.
       <td>The if statement: the <a data-link-type="dfn" href="#syntax-if_clause" id="ref-for-syntax-if_clause">if_clause</a> and all associated <a data-link-type="dfn" href="#syntax-else_if_clause" id="ref-for-syntax-else_if_clause">else_if_clause</a> and <a data-link-type="dfn" href="#syntax-else_clause" id="ref-for-syntax-else_clause">else_clause</a> clauses,
       including all controlling condition expressions. 
      <tr>
@@ -2379,7 +2379,9 @@ Attributes are used for a variety of purposes such as specifying the interface w
 ignored for the purposes of type and semantic checking.
 Additionally, the attribute name is a <a data-link-type="dfn" href="#context-dependent-name" id="ref-for-context-dependent-name①">context-dependent name</a>, and
 some attribute parameters are also context-dependent names.</p>
-   <p>An attribute <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①③">must not</a> be specified more than once per object or type.</p>
+   <p>With one exception, an attribute <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①③">must not</a> be specified more than once per object or type.
+The exception is that more than one <a data-link-type="dfn" href="#attribute-diagnostic" id="ref-for-attribute-diagnostic">diagnostic</a> attribute may be specified on an object, provided
+they do not <a data-link-type="dfn" href="#diagnostic-conflict" id="ref-for-diagnostic-conflict①">conflict</a>.</p>
    <table class="data">
     <caption>Attributes defined in WGSL</caption>
     <thead>
@@ -2424,7 +2426,7 @@ some attribute parameters are also context-dependent names.</p>
        <p class="note" role="note"><span>Note:</span> This attribute is used as a notational convention to describe which
     built-in functions can be used in <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions②">const-expressions</a>.</p>
      <tr>
-      <td><dfn data-dfn-for="attribute" data-dfn-type="dfn" data-noexport id="attribute-diagnostic"><code>diagnostic</code><a class="self-link" href="#attribute-diagnostic"></a></dfn> 
+      <td><dfn class="dfn-paneled" data-dfn-for="attribute" data-dfn-type="dfn" data-noexport id="attribute-diagnostic"><code>diagnostic</code></dfn> 
       <td>
        Two parameters. 
        <p>The first parameter is a <a data-link-type="dfn" href="#syntax-severity_control_name" id="ref-for-syntax-severity_control_name">severity_control_name</a>.</p>
@@ -2561,7 +2563,7 @@ They take no parameters.</p>
 program is processed by a WebGPU implementation.</p>
    <p>Directives are optional.
 If present, all directives <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error⑤①">must</a> appear before any <a data-link-type="dfn" href="#declaration" id="ref-for-declaration">declarations</a> or <a href="#static-assert-statement">static assertions</a>.</p>
-   <p>See <a href="#enable-directive-section">§ 11.1 Enable Directive</a>.</p>
+   <p>See <a href="#diagnostic-filtering">§ 2.2.2 Diagnostic Filtering</a> and <a href="#enable-directive-section">§ 11.1 Enable Directive</a>.</p>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-global_directive">global_directive</dfn> : 
     <p>| <a data-link-type="dfn" href="#syntax-diagnostic_directive" id="ref-for-syntax-diagnostic_directive">diagnostic_directive</a></p>
@@ -10736,13 +10738,15 @@ These sources include, but are not limited to:</p>
    <p>To ensure correct and portable behavior, a WGSL implementation <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements①⑦">will</a> perform a static <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="uniformity-analysis">uniformity analysis</dfn>, attempting to prove that each collective operation
 executes in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②">uniform control flow</a>.
 Subsequent subsections describe the analysis.</p>
-   <p>If <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis①">uniformity analysis</a> cannot prove that a particular <a href="#collective-operations">collective operation</a> executes in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow③">uniform control flow</a>, then</p>
+   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="uniformity-failure">uniformity failure</dfn> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements①⑧">will</a> be triggered
+when <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis①">uniformity analysis</a> cannot prove that a particular <a href="#collective-operations">collective operation</a> executes in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow③">uniform control flow</a>.</p>
    <ul>
     <li data-md>
-     <p>If the operation is a <a data-link-type="dfn" href="#builtin-functions-that-compute-a-derivative" id="ref-for-builtin-functions-that-compute-a-derivative①">builtin function that computes a derivative</a>, then
-a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity①">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic⑤">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered②">triggered</a>.</p>
+     <p>If a uniformity failure is triggered for a <a data-link-type="dfn" href="#builtin-functions-that-compute-a-derivative" id="ref-for-builtin-functions-that-compute-a-derivative①">builtin function that computes a derivative</a>, then
+a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity①">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic⑤">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered②">triggered</a>.
+The <a data-link-type="dfn" href="#diagnostic-triggering-location" id="ref-for-diagnostic-triggering-location④">triggering location</a> for the diagnostic is the <a data-link-type="dfn" href="#call-site" id="ref-for-call-site⑦">call site</a> of that builtin.</p>
     <li data-md>
-     <p>If the operation is a <a href="#sync-builtin-functions">synchronization builtin</a>, a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪①">shader-creation error</a> results.</p>
+     <p>If a uniformity failure is triggered for a <a href="#sync-builtin-functions">synchronization builtin</a>, a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪①">shader-creation error</a> results.</p>
    </ul>
    <h4 class="heading settled" data-level="13.2.1" id="uniformity-concepts"><span class="secno">13.2.1. </span><span class="content">Terminology and Concepts</span><a class="self-link" href="#uniformity-concepts"></a></h4>
    <p>The following definitions are merely informative, trying to give an intuition for what the analysis in the next subsection is computing.
@@ -10773,16 +10777,17 @@ control flow</a>.</p>
     Note: This analysis has the following desirable properties: 
     <ul>
      <li data-md>
-      <p>Sound (meaning that it rejects every program that would break the uniformity requirements of builtins)</p>
+      <p>Sound, meaning that a <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure">uniformity failure</a> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements①⑨">will</a> be triggered for program that would break the uniformity requirements of builtins.</p>
      <li data-md>
-      <p>Linear time complexity (in the number of tokens in the program)</p>
+      <p>Linear time complexity, in the number of tokens in the program.</p>
      <li data-md>
-      <p>Refactoring a piece of code into a function, or inlining a function, cannot make a shader invalid if it was valid before the transformation</p>
+      <p>Refactoring a piece of code into a function, or inlining a function, cannot make a shader invalid if it was valid before the transformation.</p>
      <li data-md>
-      <p>If the analysis refuses a program, it provides a straightforward chain of implications that can be used by the user agent to craft a good error message</p>
+      <p>If the analysis refuses a program, it provides a straightforward chain of implications that can be used by the user agent to craft a good error message.</p>
     </ul>
    </div>
-   <p>Each function is analyzed, verifying that there is a context where it is safe to call this function. It rejects the program as invalid if there is no such context.</p>
+   <p>Each function is analyzed, verifying that there is a context where it is safe to call this function.
+It triggers a <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure①">uniformity failure</a> if there is no such context.</p>
    <p>At the same time, it computes metadata about the function to help analyze its callers in turn.
 This means that the call graph must first be built, and functions must be analyzed from the leaves upwards, i.e. from functions that call no function outside the standard library toward the entry point.
 This way, whenever a function is analyzed, the metadata for all of its callees has already been computed.
@@ -10791,7 +10796,8 @@ There is no risk of being trapped in a cycle, as recurrence is forbidden in the 
    <h4 class="heading settled" data-level="13.2.3" id="uniformity-function"><span class="secno">13.2.3. </span><span class="content">Analyzing the Uniformity Requirements of a Function</span><a class="self-link" href="#uniformity-function"></a></h4>
    <p>Each function is analyzed in two phases.</p>
    <p>The first phase walks over the syntax of the function, building a directed graph along the way based on the rules in the following subsections.
-The second phase explores that graph, resulting in either rejecting the program, or computing the constraints on calling this function.</p>
+The second phase explores that graph, computing the constraints on calling this function,
+and potentially triggering a <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure②">uniformity failure</a>.</p>
    <div class="note" role="note">
     Note: Apart from two special nodes RequiredToBeUniform and MayBeNonUniform, all nodes can be understood as having one of the following meanings: 
     <ul>
@@ -10807,12 +10813,15 @@ The second phase explores that graph, resulting in either rejecting the program,
         One way to understand this, is that RequiredToBeUniform corresponds to the proposition True, so that RequiredToBeUniform -> X is the same as saying that X is true.</p>
     <p>Reciprocally, to express that we cannot ensure the uniformity of something (e.g. a variable which holds the thread id), we add an edge from the corresponding node to MayBeNonUniform.
         One way to understand this, is that MayBeNonUniform corresponds to the proposition False, so that X -> MayBeNonUniform is the same as saying that X is false.</p>
-    <p>A consequence of this interpretation is that every node reachable from RequiredToBeUniform corresponds to something which is required to be uniform for the program to be valid, and every node from which MayBeNonUniform is reachable corresponds to something whose uniformity we cannot guarantee. It follows that we have a uniformity violation (and thus reject the program) if there is any path from RequiredToBeUniform to MayBeNonUniform.</p>
+    <p>A consequence of this interpretation is that every node reachable from RequiredToBeUniform corresponds to
+        something which is required to be uniform for the program to be valid, and every node from which
+        MayBeNonUniform is reachable corresponds to something whose uniformity we cannot guarantee.
+        It follows that we have a uniformity violation, triggering a <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure③">uniformity failure</a>, if there is any path from RequiredToBeUniform to MayBeNonUniform.</p>
    </div>
    <p>For each function, two tags are computed:</p>
    <ul>
     <li data-md>
-     <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="call-site-tag">call site tag</dfn> describing the control flow uniformity requirements on the <a data-link-type="dfn" href="#call-site" id="ref-for-call-site⑦">call sites</a> of the function, and</p>
+     <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="call-site-tag">call site tag</dfn> describing the control flow uniformity requirements on the <a data-link-type="dfn" href="#call-site" id="ref-for-call-site⑧">call sites</a> of the function, and</p>
     <li data-md>
      <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="function-tag">function tag</dfn> describing the function’s effects on uniformity.</p>
    </ul>
@@ -10903,7 +10912,7 @@ create a "Value_return_i" node.</p>
      <p>Look at which nodes are reachable from "RequiredToBeUniform".</p>
      <ul>
       <li data-md>
-       <p>If this set includes the node "MayBeNonUniform", then reject the program.</p>
+       <p>If this set includes the node "MayBeNonUniform", then trigger a <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure④">uniformity failure</a>.</p>
       <li data-md>
        <p>If this set includes "CF_start", then the <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag①">call site tag</a> for the function is <a data-link-type="dfn" href="#callsiterequiredtobeuniform" id="ref-for-callsiterequiredtobeuniform">CallSiteRequiredToBeUniform</a>.</p>
       <li data-md>
@@ -11056,7 +11065,7 @@ Their memory views cover the same memory
 locations, but the store type for <code>arr</code> is <code>array&lt;i32,1></code> and the store type of <code>arr[0]</code> is <code>i32</code>.</p>
     <p>To simplify analysis, an assignment via <em>any</em> kind of <a data-link-type="dfn" href="#partial-reference" id="ref-for-partial-reference①">partial reference</a> is treated as if
 it does <em>not</em> modify every memory location in the associated <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable②⓪">originating variable</a>.
-This causes the analysis to be conservative, potentially rejecting
+This causes the analysis to be conservative, potentially triggering a <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure⑤">uniformity failure</a> for
 more programs than strictly necessary.</p>
    </div>
    <p>An assignment through a <a data-link-type="dfn" href="#full-reference" id="ref-for-full-reference④">full reference</a> is a <a data-link-type="dfn" href="#full-assignment" id="ref-for-full-assignment">full assignment</a>.</p>
@@ -11638,7 +11647,7 @@ if statement.</p>
    <p class="note" role="note"><span>Note:</span> The subgraphs are only included in the example for ease of understanding.</p>
    <h5 class="heading settled" data-level="13.2.10.3" id="uniformity-example3"><span class="secno">13.2.10.3. </span><span class="content">Composite Value Analysis Limitations</span><a class="self-link" href="#uniformity-example3"></a></h5>
    <p>One limitation of the uniformity analysis is that it does not track the <a data-link-type="dfn" href="#components" id="ref-for-components③">components</a> of a <a data-link-type="dfn" href="#composite" id="ref-for-composite⑦">composite</a> value independently.
-That is, any non-uniform component value <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements①⑧">will</a> cause
+That is, any non-uniform component value <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②⓪">will</a> cause
 the analysis to treat the entire composite value as non-uniform.
 This example illustrates this issue and a potential workaround that shader
 authors can employ to avoid this limitation.</p>
@@ -11842,7 +11851,7 @@ invocation of a fragment shader for each <a href="https://w3.org/TR/webgpu#raste
 Sometimes there may be insufficient RasterizationPoints to fully populate a
 quad, for example at the edge of a graphics primitive.
 When a quad has only 1, 2, or 3 invocations corresponding to
-RasterizationPoints, fragment processing <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements①⑨">will</a> create
+RasterizationPoints, fragment processing <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②①">will</a> create
 a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="helper-invocation">helper invocation</dfn> for each unpopulated position in the
 quad.</p>
    <p>Helper invocations do not have observable effects, except that they help
@@ -11850,11 +11859,11 @@ compute <a href="#derivatives">derivatives</a>.
 As such, helper invocations are subject to the following restrictions:</p>
    <ul>
     <li data-md>
-     <p>No <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑦">write accesses</a> (see also <a href="#memory-operation">§ 14.1 Memory Operation</a>) <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②⓪">will</a> be performed on the <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage①⑦">storage</a>, <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup①④">workgroup</a>, or <a data-link-type="dfn" href="#address-spaces-handle" id="ref-for-address-spaces-handle⑥">handle</a> address spaces.</p>
+     <p>No <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑦">write accesses</a> (see also <a href="#memory-operation">§ 14.1 Memory Operation</a>) <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②②">will</a> be performed on the <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage①⑦">storage</a>, <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup①④">workgroup</a>, or <a data-link-type="dfn" href="#address-spaces-handle" id="ref-for-address-spaces-handle⑥">handle</a> address spaces.</p>
     <li data-md>
-     <p><a href="#atomic-builtin-functions">Atomic built-in functions</a> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②①">will</a> return <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value④">indeterminate</a> results.</p>
+     <p><a href="#atomic-builtin-functions">Atomic built-in functions</a> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②③">will</a> return <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value④">indeterminate</a> results.</p>
     <li data-md>
-     <p>The <a data-link-type="dfn" href="#entry-point" id="ref-for-entry-point①⑥">Entry point</a> <a data-link-type="dfn" href="#return-value" id="ref-for-return-value⑧">return value</a> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②②">will</a> not be further processed
+     <p>The <a data-link-type="dfn" href="#entry-point" id="ref-for-entry-point①⑥">Entry point</a> <a data-link-type="dfn" href="#return-value" id="ref-for-return-value⑧">return value</a> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②④">will</a> not be further processed
 downstream in the <a data-link-type="dfn" href="#gpurenderpipeline" id="ref-for-gpurenderpipeline④">GPURenderPipeline</a>.</p>
    </ul>
    <p>If all of the invocations in a quad become helper invocations (e.g. due to
@@ -16347,7 +16356,7 @@ with texture coordinates clamped to the edge as described below.</p>
       <td><code>coords</code>
       <td>
         The texture coordinates used for sampling. 
-       <p>Before sampling, the given coordinates <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②③">will</a> be clamped to the rectangle</p>
+       <p>Before sampling, the given coordinates <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②⑤">will</a> be clamped to the rectangle</p>
        <blockquote>
         <p>[ <em>half_texel</em>, 1 - <em>half_texel</em> ]</p>
        </blockquote>
@@ -18212,6 +18221,7 @@ registrations, it matches widespread industry conventions.</p>
    <li><a href="#uniform-buffer">uniform buffer</a><span>, in § 6.3</span>
    <li><a href="#uniform-control-flow">uniform control flow</a><span>, in § 13.2.1</span>
    <li><a href="#uniformity-analysis">uniformity analysis</a><span>, in § 13.2</span>
+   <li><a href="#uniformity-failure">uniformity failure</a><span>, in § 13.2</span>
    <li><a href="#uniform-value">uniform value</a><span>, in § 13.2.1</span>
    <li><a href="#uniform-variable">uniform variable</a><span>, in § 13.2.1</span>
    <li><a href="#user-defined-function">user-defined function</a><span>, in § 9</span>
@@ -18513,10 +18523,11 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-behavioral-requirements①②">7.1.2. override Expressions</a> <a href="#ref-for-behavioral-requirements①③">(2)</a>
     <li><a href="#ref-for-behavioral-requirements①④">8.4.11. Discard Statement</a> <a href="#ref-for-behavioral-requirements①⑤">(2)</a>
     <li><a href="#ref-for-behavioral-requirements①⑥">12.1. Limits</a>
-    <li><a href="#ref-for-behavioral-requirements①⑦">13.2. Uniformity</a>
-    <li><a href="#ref-for-behavioral-requirements①⑧">13.2.10.3. Composite Value Analysis Limitations</a>
-    <li><a href="#ref-for-behavioral-requirements①⑨">13.4. Fragment Shaders and Helper Invocations</a> <a href="#ref-for-behavioral-requirements②⓪">(2)</a> <a href="#ref-for-behavioral-requirements②①">(3)</a> <a href="#ref-for-behavioral-requirements②②">(4)</a>
-    <li><a href="#ref-for-behavioral-requirements②③">17.5.14. textureSampleBaseClampToEdge</a>
+    <li><a href="#ref-for-behavioral-requirements①⑦">13.2. Uniformity</a> <a href="#ref-for-behavioral-requirements①⑧">(2)</a>
+    <li><a href="#ref-for-behavioral-requirements①⑨">13.2.2. Uniformity Analysis Overview</a>
+    <li><a href="#ref-for-behavioral-requirements②⓪">13.2.10.3. Composite Value Analysis Limitations</a>
+    <li><a href="#ref-for-behavioral-requirements②①">13.4. Fragment Shaders and Helper Invocations</a> <a href="#ref-for-behavioral-requirements②②">(2)</a> <a href="#ref-for-behavioral-requirements②③">(3)</a> <a href="#ref-for-behavioral-requirements②④">(4)</a>
+    <li><a href="#ref-for-behavioral-requirements②⑤">17.5.14. textureSampleBaseClampToEdge</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="angles">
@@ -18794,6 +18805,7 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <ul>
     <li><a href="#ref-for-diagnostic-triggering-location">2.2. Diagnostics</a> <a href="#ref-for-diagnostic-triggering-location①">(2)</a>
     <li><a href="#ref-for-diagnostic-triggering-location②">2.2.2. Diagnostic Filtering</a> <a href="#ref-for-diagnostic-triggering-location③">(2)</a>
+    <li><a href="#ref-for-diagnostic-triggering-location④">13.2. Uniformity</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="diagnostic-severity">
@@ -18867,6 +18879,7 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <b><a href="#diagnostic-conflict">#diagnostic-conflict</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-diagnostic-conflict">2.2.2. Diagnostic Filtering</a>
+    <li><a href="#ref-for-diagnostic-conflict①">3.10. Attributes</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="token-candidate">
@@ -19137,6 +19150,12 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <b><a href="#attribute-const">#attribute-const</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-attribute-const">9.3. const Functions</a> <a href="#ref-for-attribute-const①">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="attribute-diagnostic">
+   <b><a href="#attribute-diagnostic">#attribute-diagnostic</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-attribute-diagnostic">3.10. Attributes</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="attribute-group">
@@ -21836,7 +21855,8 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-call-site③">8.4.10. Return Statement</a>
     <li><a href="#ref-for-call-site④">9.2. Function Calls</a>
     <li><a href="#ref-for-call-site⑤">9.4.1.2. Aliasing</a> <a href="#ref-for-call-site⑥">(2)</a>
-    <li><a href="#ref-for-call-site⑦">13.2.3. Analyzing the Uniformity Requirements of a Function</a>
+    <li><a href="#ref-for-call-site⑦">13.2. Uniformity</a>
+    <li><a href="#ref-for-call-site⑧">13.2.3. Analyzing the Uniformity Requirements of a Function</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="const-functions">
@@ -22134,6 +22154,14 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-uniformity-analysis③">17.5.8. textureSample</a>
     <li><a href="#ref-for-uniformity-analysis④">17.5.9. textureSampleBias</a>
     <li><a href="#ref-for-uniformity-analysis⑤">17.5.10. textureSampleCompare</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="uniformity-failure">
+   <b><a href="#uniformity-failure">#uniformity-failure</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-uniformity-failure">13.2.2. Uniformity Analysis Overview</a> <a href="#ref-for-uniformity-failure①">(2)</a>
+    <li><a href="#ref-for-uniformity-failure②">13.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-uniformity-failure③">(2)</a> <a href="#ref-for-uniformity-failure④">(3)</a>
+    <li><a href="#ref-for-uniformity-failure⑤">13.2.5. Function-scope Variable Value Analysis</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="uniform-control-flow">
