@@ -399,6 +399,7 @@ module.exports = grammar({
         severity_control_name: $ => choice(
             token('error'),
             token('warning'),
+            token('info'),
             token('off')
         ),
         builtin_value_name: $ => choice(

@@ -713,13 +713,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-01-03">3 January 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-01-04">4 January 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/f2e7dc29c7dd596d9245a98762044fe7e2b54319/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/f2e7dc29c7dd596d9245a98762044fe7e2b54319/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/5d3781f2fd163cd94847ff5336e96c0da235f169/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/5d3781f2fd163cd94847ff5336e96c0da235f169/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -1625,33 +1625,35 @@ The place in the source text where the condition is met, expressed as a point or
      <p>A <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule">triggering rule</a>.</p>
     <li data-md>
      <p>A <a data-link-type="dfn" href="#diagnostic-triggering-location" id="ref-for-diagnostic-triggering-location">triggering location</a>.</p>
-    <li data-md>
-     <p>Optionally, details describing how the <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule①">triggering rule</a> applies in this case.</p>
    </ul>
-   <p>The <dfn class="dfn-paneled" data-dfn-for="diagnostic" data-dfn-type="dfn" data-noexport id="diagnostic-severity">severity</dfn> of a diagnostic is one of:</p>
+   <p>The <dfn class="dfn-paneled" data-dfn-for="diagnostic" data-dfn-type="dfn" data-noexport id="diagnostic-severity">severity</dfn> of a diagnostic is one of the following, ordered from greatest to least:</p>
    <dl>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="severity" data-dfn-type="dfn" data-noexport id="severity-error">error</dfn>
     <dd data-md>
      <p>The diagnostic is an error.
- This is the greatest severity, and corresponds to a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①">shader-creation error</a> or to a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error①">pipeline-creation error</a>.</p>
+ This corresponds to a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①">shader-creation error</a> or to a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error①">pipeline-creation error</a>.</p>
     <dt data-md><dfn data-dfn-for="severity" data-dfn-type="dfn" data-noexport id="severity-warning">warning<a class="self-link" href="#severity-warning"></a></dfn>
     <dd data-md>
      <p>The diagnostic describes an anomaly that merits the attention of the application developer, but is not an error.</p>
     <dt data-md><dfn data-dfn-for="severity" data-dfn-type="dfn" data-noexport id="severity-info">info<a class="self-link" href="#severity-info"></a></dfn>
     <dd data-md>
-     <p>The diagnostic describes a notable condition that merits attention of the application developer, but is not an error or warning.
-This is the lowest severity.</p>
+     <p>The diagnostic describes a notable condition that merits attention of the application developer, but is not an error or warning.</p>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-for="severity" data-dfn-type="dfn" data-noexport id="severity-off">off</dfn>
+    <dd data-md>
+     <p>The diagnostic is disabled. It will not be conveyed to the application.</p>
    </dl>
    <p>Triggered diagnostics <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②">will</a> be processed as follows:</p>
    <ol>
     <li data-md>
-     <p>For each diagnostic <em>D</em>, find the <a data-link-type="dfn" href="#diagnostic-filter" id="ref-for-diagnostic-filter">diagnostic filter</a> with the smallest <a data-link-type="dfn" href="#affected-range" id="ref-for-affected-range">affected range</a> that contains D’s <a data-link-type="dfn" href="#diagnostic-triggering-location" id="ref-for-diagnostic-triggering-location①">triggering location</a>, and which has the same <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule②">triggering rule</a>.</p>
+     <p>For each diagnostic <em>D</em>, find the <a data-link-type="dfn" href="#diagnostic-filter" id="ref-for-diagnostic-filter">diagnostic filter</a> with the smallest <a data-link-type="dfn" href="#affected-range" id="ref-for-affected-range">affected range</a> that contains D’s <a data-link-type="dfn" href="#diagnostic-triggering-location" id="ref-for-diagnostic-triggering-location①">triggering location</a>, and which has the same <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule①">triggering rule</a>.</p>
      <ul>
       <li data-md>
-       <p>If such a filter exists, apply it to <em>D</em>.  This may discard <em>D</em> or change <em>D</em>'s <a data-link-type="dfn" href="#diagnostic-severity" id="ref-for-diagnostic-severity①">severity</a>.</p>
+       <p>If such a filter exists, apply it to <em>D</em>, updating <em>D</em>'s <a data-link-type="dfn" href="#diagnostic-severity" id="ref-for-diagnostic-severity①">severity</a>.</p>
       <li data-md>
        <p>Otherwise <em>D</em> remains unchanged.</p>
      </ul>
+    <li data-md>
+     <p>Discard diagnostics that have severity <a data-link-type="dfn" href="#severity-off" id="ref-for-severity-off">off</a>.</p>
     <li data-md>
      <p>If at least one remaining diagnostic has <a data-link-type="dfn" href="#severity-error" id="ref-for-severity-error">error</a> severity, then:</p>
      <ul>
@@ -1676,7 +1678,7 @@ Issue: TODO: Adjust for <a href="https://github.com/gpuweb/gpuweb/issues/3682">#
    <p class="note" role="note"><span>Note:</span> The rules allow an implementation to stop processing a WGSL program as soon as an error is detected.</p>
    <h4 class="heading settled" data-level="2.2.1" id="filterable-triggering-rules"><span class="secno">2.2.1. </span><span class="content">Filterable Triggering Rules</span><a class="self-link" href="#filterable-triggering-rules"></a></h4>
    <p>Most <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic③">diagnostics</a> are unconditionally reported to the WebGPU application.
-Some kinds of diagnostics can be <a href="#diagnostic-filtering">filtered</a>, in part by naming their <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule③">triggering rule</a>.
+Some kinds of diagnostics can be <a href="#diagnostic-filtering">filtered</a>, in part by naming their <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule②">triggering rule</a>.
 The following table lists the standard set of triggering rules that can be filtered.</p>
    <table class="data">
     <caption>Filterable diagnostic triggering rules</caption>
@@ -1695,13 +1697,13 @@ The following table lists the standard set of triggering rules that can be filte
         That is, a call to any of: 
        <ul>
         <li data-md>
-         <p>the <a href="#derivative-builtin-functions">derivative builtin functions</a>, or</p>
+         <p>the <a href="#derivative-builtin-functions">derivative builtin functions</a></p>
         <li data-md>
-         <p><a href="#texturesample">textureSample</a>, or</p>
+         <p><a href="#texturesample">textureSample</a></p>
         <li data-md>
-         <p><a href="#texturesamplebias">textureSampleBias</a>, or</p>
+         <p><a href="#texturesamplebias">textureSampleBias</a></p>
         <li data-md>
-         <p><a href="#texturesamplecompare">textureSampleCompare</a>.</p>
+         <p><a href="#texturesamplecompare">textureSampleCompare</a></p>
        </ul>
       <td>
        A call to a builtin function computes derivatives, but <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis">uniformity analysis</a> cannot prove that the call occurs in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow">uniform control flow</a>. 
@@ -1709,33 +1711,27 @@ The following table lists the standard set of triggering rules that can be filte
    </table>
    <p>An implementation may support filtering triggering rules not specified here,
 provided they are spelled differently from the standard triggering rules.
-A <a data-link-type="dfn" href="#diagnostic-filter" id="ref-for-diagnostic-filter①">diagnostic filter</a> with an unrecognized <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule④">triggering rule</a> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements③">will</a> be ignored.</p>
+A <a data-link-type="dfn" href="#diagnostic-filter" id="ref-for-diagnostic-filter①">diagnostic filter</a> with an unrecognized <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule③">triggering rule</a> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements③">will</a> be ignored.</p>
    <p>Future versions of this specification may remove a particular rule or weaken its default severity
 (i.e. replace its current default with a less severe default) and still be deemed as satisfying backward compatibility.
 For example, a future version of WGSL may change the default severity for <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity">derivative_uniformity</a> from <code>error</code> to either <code>warning</code> or <code>info</code>.
 After such a change to the specification, previously valid programs would remain valid.</p>
    <h4 class="heading settled" data-level="2.2.2" id="diagnostic-filtering"><span class="secno">2.2.2. </span><span class="content">Diagnostic Filtering</span><a class="self-link" href="#diagnostic-filtering"></a></h4>
-   <p>Once a <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic④">diagnostic</a> with a filterable <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule⑤">triggering rule</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered①">triggered</a>, WGSL provides mechanisms to discard the diagnostic, or to modify its severity.</p>
+   <p>Once a <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic④">diagnostic</a> with a filterable <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule④">triggering rule</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered①">triggered</a>, WGSL provides mechanisms to discard the diagnostic, or to modify its severity.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="diagnostic-filter">diagnostic filter</dfn> <em>DF</em> has three parameters:</p>
    <ul>
     <li data-md>
      <p><em>AR</em>: a range of source text known as the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="affected-range">affected range</dfn></p>
     <li data-md>
-     <p><em>NS</em>: a new severity</p>
+     <p><em>NS</em>: a new <a data-link-type="dfn" href="#diagnostic-severity" id="ref-for-diagnostic-severity②">severity</a></p>
     <li data-md>
-     <p><em>TR</em>: a <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule⑥">triggering rule</a></p>
+     <p><em>TR</em>: a <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule⑤">triggering rule</a></p>
    </ul>
    <p>Applying a diagnostic filter <em>DF</em>(<em>AR</em>,<em>NS</em>,<em>TR</em>) to a diagnostic <em>D</em> has the following effect:</p>
    <ul>
     <li data-md>
-     <p>If <em>D</em>'s <a data-link-type="dfn" href="#diagnostic-triggering-location" id="ref-for-diagnostic-triggering-location②">triggering location</a> is in <em>AR</em> and <em>D</em>'s <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule⑦">triggering rule</a> is <em>TR</em>, then:</p>
-     <ul>
-      <li data-md>
-       <p>If <em>NS</em> is <code>off</code>, then <em>D</em> is discarded (i.e. deleted, or forgotten).</p>
-      <li data-md>
-       <p>Otherwise, <em>NS</em> is either <code>error</code> or <code>warning</code>.
-Set <em>D</em>'s <a data-link-type="dfn" href="#diagnostic-severity" id="ref-for-diagnostic-severity②">severity</a> property to <em>NS</em>.</p>
-     </ul>
+     <p>If <em>D</em>'s <a data-link-type="dfn" href="#diagnostic-triggering-location" id="ref-for-diagnostic-triggering-location②">triggering location</a> is in <em>AR</em> and <em>D</em>'s <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule⑥">triggering rule</a> is <em>TR</em>, then
+    set <em>D</em>'s <a data-link-type="dfn" href="#diagnostic-severity" id="ref-for-diagnostic-severity③">severity</a> property to <em>NS</em>.</p>
     <li data-md>
      <p>Otherwise, <em>D</em> is unchanged.</p>
    </ul>
@@ -2366,7 +2362,7 @@ repeatedly replacing a subsequence with its homoglyph.)</p>
 The spelling of the token may be the same as an <a data-link-type="dfn" href="#identifier" id="ref-for-identifier①">identifier</a>, but the token does not <a data-link-type="dfn" href="#resolves" id="ref-for-resolves">resolve</a> to a declared object.</p>
    <p>Section <a href="#context-dependent-name-tokens">§ 15.4 Context-Dependent Name Tokens</a> lists all such tokens.</p>
    <h3 class="heading settled" data-level="3.9" id="diagnostic-rule-names"><span class="secno">3.9. </span><span class="content">Diagnostic Rule Names</span><a class="self-link" href="#diagnostic-rule-names"></a></h3>
-   <p>A <dfn data-dfn-type="dfn" data-noexport id="diagnostic-rule-name">diagnostic rule name<a class="self-link" href="#diagnostic-rule-name"></a></dfn> is a <a data-link-type="dfn" href="#token" id="ref-for-token⑥">token</a> used to name a diagnostic <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule⑧">triggering rule</a>,
+   <p>A <dfn data-dfn-type="dfn" data-noexport id="diagnostic-rule-name">diagnostic rule name<a class="self-link" href="#diagnostic-rule-name"></a></dfn> is a <a data-link-type="dfn" href="#token" id="ref-for-token⑥">token</a> used to name a diagnostic <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule⑦">triggering rule</a>,
 in either a <a data-link-type="dfn" href="#range-diagnostic-filter" id="ref-for-range-diagnostic-filter">range diagnostic filter</a> or a <a data-link-type="dfn" href="#global-diagnostic-filter" id="ref-for-global-diagnostic-filter">global diagnostic filter</a>.
 The spelling of the token may be the same as an <a data-link-type="dfn" href="#identifier" id="ref-for-identifier②">identifier</a>, <a data-link-type="dfn" href="#keyword" id="ref-for-keyword②">keyword</a>, or <a data-link-type="dfn" href="#reserved-word" id="ref-for-reserved-word②">reserved word</a>,
 but is not interpeted as any of those.</p>
@@ -2433,7 +2429,7 @@ some attribute parameters are also context-dependent names.</p>
        Two parameters. 
        <p>The first parameter is a <a data-link-type="dfn" href="#syntax-severity_control_name" id="ref-for-syntax-severity_control_name">severity_control_name</a>.</p>
        <p>The second parameter is a <a data-link-type="dfn" href="#syntax-diagnostic_rule_name" id="ref-for-syntax-diagnostic_rule_name">diagnostic_rule_name</a> token
-        specifying a <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule⑨">triggering rule</a>.</p>
+        specifying a <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule⑧">triggering rule</a>.</p>
       <td>Specifies a <a data-link-type="dfn" href="#range-diagnostic-filter" id="ref-for-range-diagnostic-filter①">range diagnostic filter</a>.  See <a href="#diagnostics">§ 2.2 Diagnostics</a>. 
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-for="attribute" data-dfn-type="dfn" data-noexport id="attribute-group"><code>group</code></dfn> 
@@ -12900,6 +12896,7 @@ A WGSL program <a data-link-type="dfn" href="#shader-creation-error" id="ref-for
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-severity_control_name">severity_control_name</dfn> : 
     <p>| <code>'error'</code></p>
     <p>| <code>'warning'</code></p>
+    <p>| <code>'info'</code></p>
     <p>| <code>'off'</code></p>
    </div>
    <p>The <a href="#builtin-values">built-in value</a> names are:</p>
@@ -17051,6 +17048,7 @@ Use token definitions from the main part of the specification.</p>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-severity_control_name">severity_control_name</dfn>: 
     <p>| <code>'error'</code></p>
+    <p>| <code>'info'</code></p>
     <p>| <code>'off'</code></p>
     <p>| <code>'warning'</code></p>
    </div>
@@ -17898,6 +17896,7 @@ registrations, it matches widespread industry conventions.</p>
    <li><a href="#numeric-scalar">numeric scalar</a><span>, in § 5.2.5</span>
    <li><a href="#numeric-vector">numeric vector</a><span>, in § 5.2.6</span>
    <li><a href="#built-in-values-num_workgroups">num_workgroups</a><span>, in § 16</span>
+   <li><a href="#severity-off">off</a><span>, in § 2.2</span>
    <li><a href="#offsetofmember">OffsetOfMember</a><span>, in § 5.3.6</span>
    <li>
     optionally_typed_ident
@@ -18783,11 +18782,11 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
   <aside class="dfn-panel" data-for="diagnostic-triggering-rule">
    <b><a href="#diagnostic-triggering-rule">#diagnostic-triggering-rule</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-diagnostic-triggering-rule">2.2. Diagnostics</a> <a href="#ref-for-diagnostic-triggering-rule①">(2)</a> <a href="#ref-for-diagnostic-triggering-rule②">(3)</a>
-    <li><a href="#ref-for-diagnostic-triggering-rule③">2.2.1. Filterable Triggering Rules</a> <a href="#ref-for-diagnostic-triggering-rule④">(2)</a>
-    <li><a href="#ref-for-diagnostic-triggering-rule⑤">2.2.2. Diagnostic Filtering</a> <a href="#ref-for-diagnostic-triggering-rule⑥">(2)</a> <a href="#ref-for-diagnostic-triggering-rule⑦">(3)</a>
-    <li><a href="#ref-for-diagnostic-triggering-rule⑧">3.9. Diagnostic Rule Names</a>
-    <li><a href="#ref-for-diagnostic-triggering-rule⑨">3.10. Attributes</a>
+    <li><a href="#ref-for-diagnostic-triggering-rule">2.2. Diagnostics</a> <a href="#ref-for-diagnostic-triggering-rule①">(2)</a>
+    <li><a href="#ref-for-diagnostic-triggering-rule②">2.2.1. Filterable Triggering Rules</a> <a href="#ref-for-diagnostic-triggering-rule③">(2)</a>
+    <li><a href="#ref-for-diagnostic-triggering-rule④">2.2.2. Diagnostic Filtering</a> <a href="#ref-for-diagnostic-triggering-rule⑤">(2)</a> <a href="#ref-for-diagnostic-triggering-rule⑥">(3)</a>
+    <li><a href="#ref-for-diagnostic-triggering-rule⑦">3.9. Diagnostic Rule Names</a>
+    <li><a href="#ref-for-diagnostic-triggering-rule⑧">3.10. Attributes</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="diagnostic-triggering-location">
@@ -18801,7 +18800,7 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <b><a href="#diagnostic-severity">#diagnostic-severity</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-diagnostic-severity">2.2. Diagnostics</a> <a href="#ref-for-diagnostic-severity①">(2)</a>
-    <li><a href="#ref-for-diagnostic-severity②">2.2.2. Diagnostic Filtering</a>
+    <li><a href="#ref-for-diagnostic-severity②">2.2.2. Diagnostic Filtering</a> <a href="#ref-for-diagnostic-severity③">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="severity-error">
@@ -18809,6 +18808,12 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <ul>
     <li><a href="#ref-for-severity-error">2.2. Diagnostics</a> <a href="#ref-for-severity-error①">(2)</a> <a href="#ref-for-severity-error②">(3)</a>
     <li><a href="#ref-for-severity-error③">2.2.1. Filterable Triggering Rules</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="severity-off">
+   <b><a href="#severity-off">#severity-off</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-severity-off">2.2. Diagnostics</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="trigger-derivative_uniformity">
