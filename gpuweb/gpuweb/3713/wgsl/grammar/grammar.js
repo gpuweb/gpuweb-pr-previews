@@ -199,13 +199,11 @@ module.exports = grammar({
         ),
         primary_expression: $ => choice(
             $.ident,
-            $.call_expression,
+            seq($.callable, $.argument_expression_list),
             $.literal,
             $.paren_expression,
             seq(token('bitcast'), token('<'), $.type_specifier, token('>'), $.paren_expression)
         ),
-        call_expression: $ => $.call_phrase,
-        call_phrase: $ => seq($.callable, $.argument_expression_list),
         callable: $ => choice(
             $.ident,
             $.type_specifier_without_ident,
@@ -356,7 +354,7 @@ module.exports = grammar({
         continuing_statement: $ => seq(token('continuing'), $.continuing_compound_statement),
         continuing_compound_statement: $ => seq(optional(repeat1($.attribute)), token('{'), optional(repeat1($.statement)), optional($.break_if_statement), token('}')),
         return_statement: $ => seq(token('return'), optional($.expression)),
-        func_call_statement: $ => $.call_phrase,
+        func_call_statement: $ => seq($.callable, $.argument_expression_list),
         static_assert_statement: $ => seq(token('static_assert'), $.expression),
         statement: $ => choice(
             token(';'),
