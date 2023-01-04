@@ -890,13 +890,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-01-03">3 January 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-01-04">4 January 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/a3f0007bf8a20fa8f552fd7a15f74c11df855b32/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/a3f0007bf8a20fa8f552fd7a15f74c11df855b32/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/ee4548884561f756917702446257390d8627d392/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/ee4548884561f756917702446257390d8627d392/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -10057,14 +10057,14 @@ index in <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" hre
         <li data-md>
          <p>Set <var>pass</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-maxdrawcount-slot" id="ref-for-dom-gpurenderpassencoder-maxdrawcount-slot">[[maxDrawCount]]</a></code> to <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassdescriptor-maxdrawcount" id="ref-for-dom-gpurenderpassdescriptor-maxdrawcount">maxDrawCount</a></code>.</p>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①②">Queue timeline</a> with <var>renderState</var> when executed.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①②">Queue timeline</a> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
         <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①③">Queue timeline</a> steps: 
        <ol>
         <li data-md>
-         <p>Let <var>renderState</var> be a new <a data-link-type="dfn" href="#renderstate" id="ref-for-renderstate①">RenderState</a>.</p>
+         <p>Let the <code class="idl"><a data-link-type="idl" href="#dom-gpucommandbuffer-renderstate-slot" id="ref-for-dom-gpucommandbuffer-renderstate-slot">[[renderState]]</a></code> of the currently executing <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer①②">GPUCommandBuffer</a></code> be a new <a data-link-type="dfn" href="#renderstate" id="ref-for-renderstate①">RenderState</a>.</p>
         <li data-md>
          <p class="issue" id="issue-21edabd9"><a class="self-link" href="#issue-21edabd9"></a> Perform attachment loads/clears.</p>
        </ol>
@@ -10239,7 +10239,7 @@ index in <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" hre
           <p class="issue" id="issue-b925324f"><a class="self-link" href="#issue-b925324f"></a> figure out how to handle overflows in the spec. <a href="https://github.com/gpuweb/gpuweb/issues/69">[Issue #gpuweb/gpuweb#69]</a></p>
          </div>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①④">Queue timeline</a> when executed.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command①">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①④">Queue timeline</a> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
@@ -10318,7 +10318,7 @@ beginning at <var>destinationOffset</var>.</p>
           </ul>
          </div>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command①">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①⑥">Queue timeline</a> when executed.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command②">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①⑥">Queue timeline</a> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
@@ -10427,7 +10427,7 @@ beginning at <var>destinationOffset</var>.</p>
           </ul>
          </div>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command②">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①⑧">Queue timeline</a> when executed.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command③">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①⑧">Queue timeline</a> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
@@ -10531,7 +10531,7 @@ multiple continuous <a data-link-type="dfn" href="#texture-subresources" id="ref
           </ul>
          </div>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command③">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⓪">Queue timeline</a> when executed.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command④">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⓪">Queue timeline</a> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
@@ -10625,7 +10625,7 @@ the <a data-link-type="abstract-op" href="#abstract-opdef-set-of-subresources-fo
           </ul>
          </div>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command④">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②②">Queue timeline</a> when executed.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command⑤">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②②">Queue timeline</a> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
@@ -10697,7 +10697,7 @@ the <a data-link-type="abstract-op" href="#abstract-opdef-set-of-subresources-fo
           </ul>
          </div>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command⑤">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②④">Queue timeline</a> when executed.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command⑥">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②④">Queue timeline</a> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
@@ -10789,7 +10789,7 @@ the <a data-link-type="abstract-op" href="#abstract-opdef-set-of-subresources-fo
           </ul>
          </div>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command⑥">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑦">Queue timeline</a> when executed.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command⑦">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑦">Queue timeline</a> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
@@ -10814,13 +10814,13 @@ the <a data-link-type="abstract-op" href="#abstract-opdef-set-of-subresources-fo
      </div>
    </dl>
    <h3 class="heading settled" data-level="13.7" id="command-encoder-finalization"><span class="secno">13.7. </span><span class="content">Finalization</span><a class="self-link" href="#command-encoder-finalization"></a></h3>
-   <p>A <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer①②">GPUCommandBuffer</a></code> containing the commands recorded by the <code class="idl"><a data-link-type="idl" href="#gpucommandencoder" id="ref-for-gpucommandencoder③⓪">GPUCommandEncoder</a></code> can be created
+   <p>A <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer①③">GPUCommandBuffer</a></code> containing the commands recorded by the <code class="idl"><a data-link-type="idl" href="#gpucommandencoder" id="ref-for-gpucommandencoder③⓪">GPUCommandEncoder</a></code> can be created
 by calling <code class="idl"><a data-link-type="idl" href="#dom-gpucommandencoder-finish" id="ref-for-dom-gpucommandencoder-finish②">finish()</a></code>. Once <code class="idl"><a data-link-type="idl" href="#dom-gpucommandencoder-finish" id="ref-for-dom-gpucommandencoder-finish③">finish()</a></code> has been called the
 command encoder can no longer be used.</p>
    <dl>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUCommandEncoder" data-dfn-type="method" data-export data-lt="finish(descriptor)|finish()" id="dom-gpucommandencoder-finish"><code>finish(descriptor)</code></dfn>
     <dd data-md>
-     <p>Completes recording of the commands sequence and returns a corresponding <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer①③">GPUCommandBuffer</a></code>.</p>
+     <p>Completes recording of the commands sequence and returns a corresponding <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer①④">GPUCommandBuffer</a></code>.</p>
      <div class="algorithm" data-algorithm="GPUCommandEncoder.finish">
       <div data-timeline="content">
         <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpucommandencoder" id="ref-for-gpucommandencoder③①">GPUCommandEncoder</a></code> <var>this</var>. 
@@ -10842,11 +10842,11 @@ command encoder can no longer be used.</p>
           <td style="text-align:center"> <span class="yes">✔</span>
           <td>
        </table>
-       <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer①④">GPUCommandBuffer</a></code></p>
+       <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer①⑤">GPUCommandBuffer</a></code></p>
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑥②">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Let <var>commandBuffer</var> be a new <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer①⑤">GPUCommandBuffer</a></code>.</p>
+         <p>Let <var>commandBuffer</var> be a new <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer①⑥">GPUCommandBuffer</a></code>.</p>
         <li data-md>
          <p>Issue the <var>finish steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑦⑨">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot③⑥">[[device]]</a></code>.</p>
         <li data-md>
@@ -10878,7 +10878,7 @@ command encoder can no longer be used.</p>
           <li data-md>
            <p><a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⓪">Generate a validation error</a>.</p>
           <li data-md>
-           <p>Return a new <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④④">invalid</a> <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer①⑥">GPUCommandBuffer</a></code>.</p>
+           <p>Return a new <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④④">invalid</a> <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer①⑦">GPUCommandBuffer</a></code>.</p>
          </ol>
         <li data-md>
          <p>Set <var>commandBuffer</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandbuffer-command_list-slot" id="ref-for-dom-gpucommandbuffer-command_list-slot">[[command_list]]</a></code> to <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot③">[[commands]]</a></code>.</p>
@@ -11523,7 +11523,7 @@ is <code>true</code>.</p>
         <li data-md>
          <p>Let <var>passState</var> be a snapshot of <var>this</var>’s current state.</p>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command⑦">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑨">Queue timeline</a>.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command⑧">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline②⑨">Queue timeline</a>.</p>
        </ol>
       </div>
       <div data-timeline="queue">
@@ -11609,7 +11609,7 @@ is <code>true</code>.</p>
         <li data-md>
          <p>Let <var>passState</var> be a snapshot of <var>this</var>’s current state.</p>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command⑧">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③①">Queue timeline</a>.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command⑨">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③①">Queue timeline</a>.</p>
        </ol>
       </div>
       <div data-timeline="queue">
@@ -11745,30 +11745,16 @@ index in <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" hre
     <dd data-md>
      <p>The maximum number of draws allowed in this pass.</p>
    </dl>
-   <p>When executing encoded render pass commands as part of a <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer①⑦">GPUCommandBuffer</a></code>, an internal <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="renderstate">RenderState</dfn> object is used to track the current state required for rendering.</p>
+   <p>When executing encoded render pass commands as part of a <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer①⑧">GPUCommandBuffer</a></code>, an internal <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="renderstate">RenderState</dfn> object is used to track the current state required for rendering.</p>
    <p><a data-link-type="dfn" href="#renderstate" id="ref-for-renderstate②">RenderState</a> contains the following internal slots used for execution of rendering commands:</p>
    <dl>
-    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="RenderState" data-dfn-type="attribute" data-export id="dom-renderstate-occlusionqueryindex-slot"><code>[[occlusionQueryIndex]]</code></dfn>, of type <code class="idl"><a data-link-type="idl" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑤⑨">GPUSize32</a></code>.
+    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="RenderState" data-dfn-type="attribute" data-export id="dom-renderstate-occlusionqueryindex-slot"><code>[[occlusionQueryIndex]]</code></dfn>, of type <code class="idl"><a data-link-type="idl" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑤⑨">GPUSize32</a></code>
     <dd data-md>
      <p>The index into <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-occlusion_query_set-slot" id="ref-for-dom-gpurenderpassencoder-occlusion_query_set-slot①">[[occlusion_query_set]]</a></code> at which to store the
 occlusion query results.</p>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="RenderState" data-dfn-type="attribute" data-export id="dom-renderstate-viewport-slot"><code>[[viewport]]</code></dfn>
     <dd data-md>
-     <p>Current viewport rectangle and depth range.</p>
-    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="RenderState" data-dfn-type="attribute" data-export id="dom-renderstate-scissorrect-slot"><code>[[scissorRect]]</code></dfn>
-    <dd data-md>
-     <p>Current scissor rectangle.</p>
-    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="RenderState" data-dfn-type="attribute" data-export id="dom-renderstate-blendconstant-slot"><code>[[blendConstant]]</code></dfn>
-    <dd data-md>
-     <p>Current blend constant value, initially <code>[0, 0, 0, 0]</code>.</p>
-    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="RenderState" data-dfn-type="attribute" data-export id="dom-renderstate-stencilreference-slot"><code>[[stencilReference]]</code></dfn>
-    <dd data-md>
-     <p>Current stencil reference value, initially <code>0</code>.</p>
-   </dl>
-   <p>When a <a data-link-type="dfn" href="#renderstate" id="ref-for-renderstate③">RenderState</a> is created, it has the following default state:</p>
-   <ul>
-    <li data-md>
-     <p><code class="idl"><a data-link-type="idl" href="#dom-renderstate-viewport-slot" id="ref-for-dom-renderstate-viewport-slot">[[viewport]]</a></code>:</p>
+     <p>Current viewport rectangle and depth range. Initially set to the following values:</p>
      <ul>
       <li data-md>
        <p><code>x, y</code> = <code>0.0, 0.0</code></p>
@@ -11777,15 +11763,22 @@ occlusion query results.</p>
       <li data-md>
        <p><code>minDepth, maxDepth</code> = <code>0.0, 1.0</code></p>
      </ul>
-    <li data-md>
-     <p><code class="idl"><a data-link-type="idl" href="#dom-renderstate-scissorrect-slot" id="ref-for-dom-renderstate-scissorrect-slot">[[scissorRect]]</a></code>:</p>
+    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="RenderState" data-dfn-type="attribute" data-export id="dom-renderstate-scissorrect-slot"><code>[[scissorRect]]</code></dfn>
+    <dd data-md>
+     <p>Current scissor rectangle. Initially set to the following values:</p>
      <ul>
       <li data-md>
        <p><code>x, y</code> = <code>0, 0</code></p>
       <li data-md>
        <p><code>width, height</code> = the dimensions of the pass’s render targets</p>
      </ul>
-   </ul>
+    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="RenderState" data-dfn-type="attribute" data-export id="dom-renderstate-blendconstant-slot"><code>[[blendConstant]]</code></dfn>, of type <code class="idl"><a data-link-type="idl" href="#typedefdef-gpucolor" id="ref-for-typedefdef-gpucolor②">GPUColor</a></code>
+    <dd data-md>
+     <p>Current blend constant value, initially <code>[0, 0, 0, 0]</code>.</p>
+    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="RenderState" data-dfn-type="attribute" data-export id="dom-renderstate-stencilreference-slot"><code>[[stencilReference]]</code></dfn>, of type <code class="idl"><a data-link-type="idl" href="#typedefdef-gpustencilvalue" id="ref-for-typedefdef-gpustencilvalue⑤">GPUStencilValue</a></code>
+    <dd data-md>
+     <p>Current stencil reference value, initially <code>0</code>.</p>
+   </dl>
    <h4 class="heading settled" data-level="17.1.1" id="render-pass-encoder-creation"><span class="secno">17.1.1. </span><span class="content">Render Pass Encoder Creation</span><a class="self-link" href="#render-pass-encoder-creation"></a></h4>
 <pre class="idl highlight def"><c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-gpurenderpasstimestamplocation"><code><c- g>GPURenderPassTimestampLocation</c-></code></dfn> {
     <dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderPassTimestampLocation" data-dfn-type="enum-value" data-export id="dom-gpurenderpasstimestamplocation-beginning"><code><c- s>"beginning"</c-></code></dfn>,
@@ -11908,7 +11901,7 @@ if present, the <code class="idl"><a data-link-type="idl" href="#dom-gputexturev
     <c- b>required</c-> <a data-link-type="idl-name" href="#gputextureview" id="ref-for-gputextureview②⑥"><c- n>GPUTextureView</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUTextureView " href="#dom-gpurenderpasscolorattachment-view" id="ref-for-dom-gpurenderpasscolorattachment-view⑥"><c- g>view</c-></a>;
     <a data-link-type="idl-name" href="#gputextureview" id="ref-for-gputextureview②⑦"><c- n>GPUTextureView</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUTextureView " href="#dom-gpurenderpasscolorattachment-resolvetarget" id="ref-for-dom-gpurenderpasscolorattachment-resolvetarget①"><c- g>resolveTarget</c-></a>;
 
-    <a data-link-type="idl-name" href="#typedefdef-gpucolor" id="ref-for-typedefdef-gpucolor②"><c- n>GPUColor</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUColor " href="#dom-gpurenderpasscolorattachment-clearvalue" id="ref-for-dom-gpurenderpasscolorattachment-clearvalue"><c- g>clearValue</c-></a>;
+    <a data-link-type="idl-name" href="#typedefdef-gpucolor" id="ref-for-typedefdef-gpucolor③"><c- n>GPUColor</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUColor " href="#dom-gpurenderpasscolorattachment-clearvalue" id="ref-for-dom-gpurenderpasscolorattachment-clearvalue"><c- g>clearValue</c-></a>;
     <c- b>required</c-> <a data-link-type="idl-name" href="#enumdef-gpuloadop" id="ref-for-enumdef-gpuloadop①"><c- n>GPULoadOp</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPULoadOp " href="#dom-gpurenderpasscolorattachment-loadop" id="ref-for-dom-gpurenderpasscolorattachment-loadop"><c- g>loadOp</c-></a>;
     <c- b>required</c-> <a data-link-type="idl-name" href="#enumdef-gpustoreop" id="ref-for-enumdef-gpustoreop"><c- n>GPUStoreOp</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUStoreOp " href="#dom-gpurenderpasscolorattachment-storeop" id="ref-for-dom-gpurenderpasscolorattachment-storeop"><c- g>storeOp</c-></a>;
 };
@@ -11923,7 +11916,7 @@ color attachment.</p>
      <p>A <code class="idl"><a data-link-type="idl" href="#gputextureview" id="ref-for-gputextureview③①">GPUTextureView</a></code> describing the texture <a data-link-type="dfn" href="#subresource" id="ref-for-subresource①⑤">subresource</a> that will receive the resolved
 output for this color attachment if <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasscolorattachment-view" id="ref-for-dom-gpurenderpasscolorattachment-view⑦">view</a></code> is
 multisampled.</p>
-    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderPassColorAttachment" data-dfn-type="dict-member" data-export id="dom-gpurenderpasscolorattachment-clearvalue"><code>clearValue</code></dfn>, <span> of type <a data-link-type="idl-name" href="#typedefdef-gpucolor" id="ref-for-typedefdef-gpucolor③">GPUColor</a></span>
+    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderPassColorAttachment" data-dfn-type="dict-member" data-export id="dom-gpurenderpasscolorattachment-clearvalue"><code>clearValue</code></dfn>, <span> of type <a data-link-type="idl-name" href="#typedefdef-gpucolor" id="ref-for-typedefdef-gpucolor④">GPUColor</a></span>
     <dd data-md>
      <p>Indicates the value to clear <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasscolorattachment-view" id="ref-for-dom-gpurenderpasscolorattachment-view⑧">view</a></code> to prior to executing the
 render pass. If not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists①">provided</a>, defaults to <code>{r: 0, g: 0, b: 0, a: 0}</code>. Ignored
@@ -12041,7 +12034,7 @@ the corresponding WGSL primitive type (<code>f32</code>, <code>i32</code>, or <c
     <a data-link-type="idl-name" href="#enumdef-gpustoreop" id="ref-for-enumdef-gpustoreop②"><c- n>GPUStoreOp</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUStoreOp " href="#dom-gpurenderpassdepthstencilattachment-depthstoreop" id="ref-for-dom-gpurenderpassdepthstencilattachment-depthstoreop"><c- g>depthStoreOp</c-></a>;
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean" id="ref-for-idl-boolean③⓪"><c- b>boolean</c-></a> <a class="idl-code" data-default="false" data-link-type="dict-member" data-type="boolean " href="#dom-gpurenderpassdepthstencilattachment-depthreadonly" id="ref-for-dom-gpurenderpassdepthstencilattachment-depthreadonly②"><c- g>depthReadOnly</c-></a> = <c- b>false</c->;
 
-    <a data-link-type="idl-name" href="#typedefdef-gpustencilvalue" id="ref-for-typedefdef-gpustencilvalue⑤"><c- n>GPUStencilValue</c-></a> <a class="idl-code" data-default="0" data-link-type="dict-member" data-type="GPUStencilValue " href="#dom-gpurenderpassdepthstencilattachment-stencilclearvalue" id="ref-for-dom-gpurenderpassdepthstencilattachment-stencilclearvalue"><c- g>stencilClearValue</c-></a> = 0;
+    <a data-link-type="idl-name" href="#typedefdef-gpustencilvalue" id="ref-for-typedefdef-gpustencilvalue⑥"><c- n>GPUStencilValue</c-></a> <a class="idl-code" data-default="0" data-link-type="dict-member" data-type="GPUStencilValue " href="#dom-gpurenderpassdepthstencilattachment-stencilclearvalue" id="ref-for-dom-gpurenderpassdepthstencilattachment-stencilclearvalue"><c- g>stencilClearValue</c-></a> = 0;
     <a data-link-type="idl-name" href="#enumdef-gpuloadop" id="ref-for-enumdef-gpuloadop④"><c- n>GPULoadOp</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPULoadOp " href="#dom-gpurenderpassdepthstencilattachment-stencilloadop" id="ref-for-dom-gpurenderpassdepthstencilattachment-stencilloadop"><c- g>stencilLoadOp</c-></a>;
     <a data-link-type="idl-name" href="#enumdef-gpustoreop" id="ref-for-enumdef-gpustoreop③"><c- n>GPUStoreOp</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUStoreOp " href="#dom-gpurenderpassdepthstencilattachment-stencilstoreop" id="ref-for-dom-gpurenderpassdepthstencilattachment-stencilstoreop"><c- g>stencilStoreOp</c-></a>;
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean" id="ref-for-idl-boolean③①"><c- b>boolean</c-></a> <a class="idl-code" data-default="false" data-link-type="dict-member" data-type="boolean " href="#dom-gpurenderpassdepthstencilattachment-stencilreadonly" id="ref-for-dom-gpurenderpassdepthstencilattachment-stencilreadonly②"><c- g>stencilReadOnly</c-></a> = <c- b>false</c->;
@@ -12069,7 +12062,7 @@ depth component after executing the render pass.</p>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderPassDepthStencilAttachment" data-dfn-type="dict-member" data-export id="dom-gpurenderpassdepthstencilattachment-depthreadonly"><code>depthReadOnly</code></dfn>, <span> of type <a data-link-type="idl-name" href="https://webidl.spec.whatwg.org/#idl-boolean" id="ref-for-idl-boolean③②">boolean</a>, defaulting to <code>false</code></span>
     <dd data-md>
      <p>Indicates that the depth component of <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassdepthstencilattachment-view" id="ref-for-dom-gpurenderpassdepthstencilattachment-view⑨">view</a></code> is read only.</p>
-    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderPassDepthStencilAttachment" data-dfn-type="dict-member" data-export id="dom-gpurenderpassdepthstencilattachment-stencilclearvalue"><code>stencilClearValue</code></dfn>, <span> of type <a data-link-type="idl-name" href="#typedefdef-gpustencilvalue" id="ref-for-typedefdef-gpustencilvalue⑥">GPUStencilValue</a>, defaulting to <code>0</code></span>
+    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderPassDepthStencilAttachment" data-dfn-type="dict-member" data-export id="dom-gpurenderpassdepthstencilattachment-stencilclearvalue"><code>stencilClearValue</code></dfn>, <span> of type <a data-link-type="idl-name" href="#typedefdef-gpustencilvalue" id="ref-for-typedefdef-gpustencilvalue⑦">GPUStencilValue</a>, defaulting to <code>0</code></span>
     <dd data-md>
      <p>Indicates the value to clear <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassdepthstencilattachment-view" id="ref-for-dom-gpurenderpassdepthstencilattachment-view①⓪">view</a></code>'s stencil component
 to prior to executing the render pass. Ignored if <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassdepthstencilattachment-stencilloadop" id="ref-for-dom-gpurenderpassdepthstencilattachment-stencilloadop①">stencilLoadOp</a></code> is not <code class="idl"><a data-link-type="idl" href="#dom-gpuloadop-clear" id="ref-for-dom-gpuloadop-clear⑥">"clear"</a></code>.</p>
@@ -12326,7 +12319,7 @@ called the render pass encoder can no longer be used.</p>
 index in <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasstimestampwrite-queryset" id="ref-for-dom-gpurenderpasstimestampwrite-queryset⑤">querySet</a></code>.</p>
          </ol>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command①">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③③">Queue timeline</a> with <var>renderState</var> when executed.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③③">Queue timeline</a> with <var>renderState</var> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
@@ -12401,15 +12394,15 @@ empty.</p>
    </dl>
    <div class="algorithm" data-algorithm="Enqueue a render command">
      To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-enqueue-a-render-command">Enqueue a render command</dfn> on <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin⑤">GPURenderCommandsMixin</a></code> <var>encoder</var> which
-    issues the steps of a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command①①">GPU Command</a> <var>command</var> with <a data-link-type="dfn" href="#renderstate" id="ref-for-renderstate④">RenderState</a> <var>renderState</var>: 
+    issues the steps of a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command①①">GPU Command</a> <var>command</var> with <a data-link-type="dfn" href="#renderstate" id="ref-for-renderstate③">RenderState</a> <var>renderState</var>: 
     <ol>
      <li data-md>
       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①③">Append</a> <var>command</var> to <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot①⓪">[[commands]]</a></code>.</p>
      <li data-md>
-      <p>When <var>command</var> is executed as part of a <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer①⑧">GPUCommandBuffer</a></code> <var>commandBuffer</var>:</p>
+      <p>When <var>command</var> is executed as part of a <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer①⑨">GPUCommandBuffer</a></code> <var>commandBuffer</var>:</p>
       <ol>
        <li data-md>
-        <p>Issue the steps of <var>command</var> with <var>commandBuffer</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandbuffer-renderstate-slot" id="ref-for-dom-gpucommandbuffer-renderstate-slot">[[renderState]]</a></code> as <var>renderState</var>.</p>
+        <p>Issue the steps of <var>command</var> with <var>commandBuffer</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandbuffer-renderstate-slot" id="ref-for-dom-gpucommandbuffer-renderstate-slot①">[[renderState]]</a></code> as <var>renderState</var>.</p>
       </ol>
     </ol>
    </div>
@@ -12714,7 +12707,7 @@ for each <var>attribute</var> in <var>buffers</var>[<var>slot</var>].<code class
         <li data-md>
          <p>Let <var>passState</var> be a snapshot of <var>this</var>’s current state.</p>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command②">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⑤">Queue timeline</a> with <var>renderState</var> when executed.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command①">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⑤">Queue timeline</a> with <var>renderState</var> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
@@ -12819,7 +12812,7 @@ for each <var>attribute</var> in <var>buffers</var>[<var>slot</var>].<code class
         <li data-md>
          <p>Let <var>passState</var> be a snapshot of <var>this</var>’s current state.</p>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command③">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⑦">Queue timeline</a> with <var>renderState</var> when executed.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command②">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⑦">Queue timeline</a> with <var>renderState</var> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
@@ -12906,7 +12899,7 @@ drawIndirectParameters<c- p>[</c-><c- mf>3</c-><c- p>]</c-> <c- o>=</c-> firstIn
         <li data-md>
          <p>Let <var>passState</var> be a snapshot of <var>this</var>’s current state.</p>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command④">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⑨">Queue timeline</a> with <var>renderState</var> when executed.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command③">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⑨">Queue timeline</a> with <var>renderState</var> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
@@ -13000,7 +12993,7 @@ drawIndexedIndirectParameters<c- p>[</c-><c- mf>4</c-><c- p>]</c-> <c- o>=</c-> 
         <li data-md>
          <p>Let <var>passState</var> be a snapshot of <var>this</var>’s current state.</p>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command⑤">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline④①">Queue timeline</a> with <var>renderState</var> when executed.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command④">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline④①">Queue timeline</a> with <var>renderState</var> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
@@ -13173,7 +13166,7 @@ coordinates to viewport coordinates.</p>
           </ul>
          </div>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command⑥">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline④③">Queue timeline</a> with <var>renderState</var> when executed.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command⑤">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline④③">Queue timeline</a> with <var>renderState</var> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
@@ -13182,7 +13175,7 @@ coordinates to viewport coordinates.</p>
         <li data-md>
          <p>Round <var>x</var>, <var>y</var>, <var>width</var>, and <var>height</var> to some uniform precision, no less precise than integer rounding.</p>
         <li data-md>
-         <p>Set <var>renderState</var>.<code class="idl"><a data-link-type="idl" href="#dom-renderstate-viewport-slot" id="ref-for-dom-renderstate-viewport-slot①">[[viewport]]</a></code> to the extents <var>x</var>, <var>y</var>, <var>width</var>, <var>height</var>, <var>minDepth</var>, and <var>maxDepth</var>.</p>
+         <p>Set <var>renderState</var>.<code class="idl"><a data-link-type="idl" href="#dom-renderstate-viewport-slot" id="ref-for-dom-renderstate-viewport-slot">[[viewport]]</a></code> to the extents <var>x</var>, <var>y</var>, <var>width</var>, <var>height</var>, <var>minDepth</var>, and <var>maxDepth</var>.</p>
        </ol>
       </div>
      </div>
@@ -13253,14 +13246,14 @@ rectangle will be discarded.</p>
           </ul>
          </div>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command⑦">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline④⑤">Queue timeline</a> with <var>renderState</var> when executed.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command⑥">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline④⑤">Queue timeline</a> with <var>renderState</var> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
         <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline④⑥">Queue timeline</a> steps: 
        <ol>
         <li data-md>
-         <p>Set <var>renderState</var>.<code class="idl"><a data-link-type="idl" href="#dom-renderstate-scissorrect-slot" id="ref-for-dom-renderstate-scissorrect-slot①">[[scissorRect]]</a></code> to the extents <var>x</var>, <var>y</var>, <var>width</var>, and <var>height</var>.</p>
+         <p>Set <var>renderState</var>.<code class="idl"><a data-link-type="idl" href="#dom-renderstate-scissorrect-slot" id="ref-for-dom-renderstate-scissorrect-slot">[[scissorRect]]</a></code> to the extents <var>x</var>, <var>y</var>, <var>width</var>, and <var>height</var>.</p>
        </ol>
       </div>
      </div>
@@ -13283,7 +13276,7 @@ rectangle will be discarded.</p>
         <tbody>
          <tr>
           <td><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderPassEncoder/setBlendConstant(color)" data-dfn-type="argument" data-export id="dom-gpurenderpassencoder-setblendconstant-color-color"><code><var>color</var></code></dfn> 
-          <td> <code class="idl"><a data-link-type="idl-name" href="#typedefdef-gpucolor" id="ref-for-typedefdef-gpucolor④">GPUColor</a></code>
+          <td> <code class="idl"><a data-link-type="idl-name" href="#typedefdef-gpucolor" id="ref-for-typedefdef-gpucolor⑤">GPUColor</a></code>
           <td style="text-align:center"> <span class="no">✘</span>
           <td style="text-align:center"> <span class="no">✘</span>
           <td>The color to use when blending. 
@@ -13301,7 +13294,7 @@ rectangle will be discarded.</p>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state②⑤">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command⑧">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline④⑦">Queue timeline</a> with <var>renderState</var> when executed.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command⑦">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline④⑦">Queue timeline</a> with <var>renderState</var> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
@@ -13332,7 +13325,7 @@ the <code class="idl"><a data-link-type="idl" href="#dom-gpustenciloperation-rep
         <tbody>
          <tr>
           <td><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderPassEncoder/setStencilReference(reference)" data-dfn-type="argument" data-export id="dom-gpurenderpassencoder-setstencilreference-reference-reference"><code><var>reference</var></code></dfn> 
-          <td> <code class="idl"><a data-link-type="idl-name" href="#typedefdef-gpustencilvalue" id="ref-for-typedefdef-gpustencilvalue⑦">GPUStencilValue</a></code>
+          <td> <code class="idl"><a data-link-type="idl-name" href="#typedefdef-gpustencilvalue" id="ref-for-typedefdef-gpustencilvalue⑧">GPUStencilValue</a></code>
           <td style="text-align:center"> <span class="no">✘</span>
           <td style="text-align:center"> <span class="no">✘</span>
           <td>The new stencil reference value. 
@@ -13350,7 +13343,7 @@ the <code class="idl"><a data-link-type="idl" href="#dom-gpustenciloperation-rep
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state②⑥">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command⑨">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline④⑨">Queue timeline</a> with <var>renderState</var> when executed.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command⑧">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline④⑨">Queue timeline</a> with <var>renderState</var> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
@@ -13416,7 +13409,7 @@ the <code class="idl"><a data-link-type="idl" href="#dom-gpustenciloperation-rep
         <li data-md>
          <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-occlusion_query_active-slot" id="ref-for-dom-gpurenderpassencoder-occlusion_query_active-slot②">[[occlusion_query_active]]</a></code> to <code>true</code>.</p>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command①⓪">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline⑤①">Queue timeline</a> with <var>renderState</var> when executed.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command⑨">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline⑤①">Queue timeline</a> with <var>renderState</var> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
@@ -13455,15 +13448,15 @@ the <code class="idl"><a data-link-type="idl" href="#dom-gpustenciloperation-rep
         <li data-md>
          <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-occlusion_query_active-slot" id="ref-for-dom-gpurenderpassencoder-occlusion_query_active-slot④">[[occlusion_query_active]]</a></code> to <code>false</code>.</p>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command①①">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline⑤③">Queue timeline</a> with <var>renderState</var> when executed.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command①⓪">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline⑤③">Queue timeline</a> with <var>renderState</var> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
         <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline⑤④">Queue timeline</a> steps: 
        <ol>
         <li data-md>
-         <p>Let <var>passingFragments</var> be the number of fragment samples that have passed all
-the per-fragment tests since the corresponding <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-beginocclusionquery" id="ref-for-dom-gpurenderpassencoder-beginocclusionquery②">beginOcclusionQuery()</a></code> command was executed.</p>
+         <p>Let <var>passingFragments</var> be non-zero if any fragment samples passed all per-fragment
+tests since the corresponding <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-beginocclusionquery" id="ref-for-dom-gpurenderpassencoder-beginocclusionquery②">beginOcclusionQuery()</a></code> command was executed.</p>
         <li data-md>
          <p>Write <var>passingFragments</var> into <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-occlusion_query_set-slot" id="ref-for-dom-gpurenderpassencoder-occlusion_query_set-slot④">[[occlusion_query_set]]</a></code> at index <var>renderState</var>.<code class="idl"><a data-link-type="idl" href="#dom-renderstate-occlusionqueryindex-slot" id="ref-for-dom-renderstate-occlusionqueryindex-slot①">[[occlusionQueryIndex]]</a></code>.</p>
        </ol>
@@ -13550,7 +13543,7 @@ This occurs even if zero <code class="idl"><a data-link-type="idl" href="#gpuren
         <li data-md>
          <p>Let <var>passState</var> be a snapshot of <var>this</var>’s current state.</p>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command①②">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline⑤⑤">Queue timeline</a> with <var>renderState</var> when executed.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command①①">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline⑤⑤">Queue timeline</a> with <var>renderState</var> when executed.</p>
        </ol>
       </div>
       <div data-timeline="queue">
@@ -13790,7 +13783,7 @@ must be ≤ <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom
    <h3 class="heading settled" data-level="19.2" id="gpu-queue"><span class="secno">19.2. </span><span class="content"><dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="gpuqueue"><code>GPUQueue</code></dfn></span><a class="self-link" href="#gpu-queue"></a></h3>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed③⓪"><c- g>Exposed</c-></a>=(<c- n>Window</c->, <c- n>DedicatedWorker</c->), <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext②⑥"><c- g>SecureContext</c-></a>]
 <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="#gpuqueue" id="ref-for-gpuqueue①②"><c- g>GPUQueue</c-></a> {
-    <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑦①"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpuqueue-submit" id="ref-for-dom-gpuqueue-submit①"><c- g>submit</c-></a>(<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence②⑤"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer①⑨"><c- n>GPUCommandBuffer</c-></a>> <a class="idl-code" data-link-type="argument" href="#dom-gpuqueue-submit-commandbuffers-commandbuffers" id="ref-for-dom-gpuqueue-submit-commandbuffers-commandbuffers"><c- g>commandBuffers</c-></a>);
+    <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑦①"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpuqueue-submit" id="ref-for-dom-gpuqueue-submit①"><c- g>submit</c-></a>(<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence②⑤"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer②⓪"><c- n>GPUCommandBuffer</c-></a>> <a class="idl-code" data-link-type="argument" href="#dom-gpuqueue-submit-commandbuffers-commandbuffers" id="ref-for-dom-gpuqueue-submit-commandbuffers-commandbuffers"><c- g>commandBuffers</c-></a>);
 
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise②⑤"><c- b>Promise</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑦②"><c- b>undefined</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-gpuqueue-onsubmittedworkdone" id="ref-for-dom-gpuqueue-onsubmittedworkdone⑤"><c- g>onSubmittedWorkDone</c-></a>();
 
@@ -14178,7 +14171,7 @@ formats (which all support <code class="idl"><a data-link-type="idl" href="#dom-
         <tbody>
          <tr>
           <td><dfn class="dfn-paneled idl-code" data-dfn-for="GPUQueue/submit(commandBuffers)" data-dfn-type="argument" data-export id="dom-gpuqueue-submit-commandbuffers-commandbuffers"><code><var>commandBuffers</var></code></dfn> 
-          <td> <code class="idl"><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence②⑥">sequence</a>&lt;<a data-link-type="idl-name" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer②⓪">GPUCommandBuffer</a>></code>
+          <td> <code class="idl"><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence②⑥">sequence</a>&lt;<a data-link-type="idl-name" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer②①">GPUCommandBuffer</a>></code>
           <td style="text-align:center"> <span class="no">✘</span>
           <td style="text-align:center"> <span class="no">✘</span>
           <td>
@@ -14198,7 +14191,7 @@ formats (which all support <code class="idl"><a data-link-type="idl" href="#dom-
          <div class="validusage">
           <ul>
            <li data-md>
-            <p>Every <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer②①">GPUCommandBuffer</a></code> in <var>commandBuffers</var> must be <a data-link-type="abstract-op" href="#abstract-opdef-valid-to-use-with" id="ref-for-abstract-opdef-valid-to-use-with②⑨">valid to use with</a> <var>this</var>.</p>
+            <p>Every <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer②②">GPUCommandBuffer</a></code> in <var>commandBuffers</var> must be <a data-link-type="abstract-op" href="#abstract-opdef-valid-to-use-with" id="ref-for-abstract-opdef-valid-to-use-with②⑨">valid to use with</a> <var>this</var>.</p>
            <li data-md>
             <p>For each of the following types of resources used by any command in any
 element of <var>commandBuffers</var>:</p>
@@ -15377,7 +15370,7 @@ blocks in hardware.</p>
      <li data-md>
       <p><var>drawCall</var>: The draw call parameters.</p>
      <li data-md>
-      <p><var>state</var>: <a data-link-type="dfn" href="#renderstate" id="ref-for-renderstate⑤">RenderState</a> of the <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①⑥">GPURenderCommandsMixin</a></code> where the draw call is issued.</p>
+      <p><var>state</var>: <a data-link-type="dfn" href="#renderstate" id="ref-for-renderstate④">RenderState</a> of the <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①⑥">GPURenderCommandsMixin</a></code> where the draw call is issued.</p>
     </ul>
     <ol>
      <li data-md>
@@ -15755,7 +15748,7 @@ In this coordinate system, the viewport bounds range in X and Y from -1 to 1, an
      <li data-md>
       <p><var>primitiveList</var>: List of primitives to rasterize.</p>
      <li data-md>
-      <p><var>state</var>: The active <a data-link-type="dfn" href="#renderstate" id="ref-for-renderstate⑥">RenderState</a>.</p>
+      <p><var>state</var>: The active <a data-link-type="dfn" href="#renderstate" id="ref-for-renderstate⑤">RenderState</a>.</p>
     </ul>
     <p><strong>Returns:</strong> list of <a data-link-type="dfn" href="#rasterizationpoint" id="ref-for-rasterizationpoint">RasterizationPoint</a>.</p>
     <p>Each primitive in <var>primitiveList</var> is processed independently.
@@ -15767,7 +15760,7 @@ Given the output position <var>p</var>, the <a data-link-type="dfn" href="#ndc" 
       <p>divisor(<var>p</var>) = 1.0 ÷ <var>p</var>.w</p>
       <p>ndc(<var>p</var>) = vector(<var>p</var>.x ÷ <var>p</var>.w, <var>p</var>.y ÷ <var>p</var>.w, <var>p</var>.z ÷ <var>p</var>.w)</p>
      <li data-md>
-      <p>Let <var>vp</var> be <var>state</var>.<code class="idl"><a data-link-type="idl" href="#dom-renderstate-viewport-slot" id="ref-for-dom-renderstate-viewport-slot②">[[viewport]]</a></code>.
+      <p>Let <var>vp</var> be <var>state</var>.<code class="idl"><a data-link-type="idl" href="#dom-renderstate-viewport-slot" id="ref-for-dom-renderstate-viewport-slot①">[[viewport]]</a></code>.
 Then the <a data-link-type="dfn" href="#ndc" id="ref-for-ndc③">NDC</a> coordinates <var>n</var> are converted into <a data-link-type="dfn" href="#framebuffer" id="ref-for-framebuffer④">framebuffer</a> coordinates,
 based on the size of the render targets:</p>
       <p>framebufferCoords(<var>n</var>) = vector(<var>vp</var>.<code>x</code> + 0.5 × (<var>n</var>.x + 1) × <var>vp</var>.<code>width</code>, <var>vp</var>.<code>y</code> + .5 × (<var>n</var>.y + 1) × <var>vp</var>.<code>height</code>)</p>
@@ -15790,7 +15783,7 @@ depending on <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipel
         <p>The polygon produced in <a href="#primitive-clipping">§ 23.3.4 Primitive Clipping</a> goes into <a href="#polygon-rasterization">§ 23.3.5.4 Polygon Rasterization</a>.</p>
       </dl>
      <li data-md>
-      <p>Remove all the points <var>rp</var> from <var>rasterizationPoints</var> that have <var>rp</var>.<a data-link-type="dfn" href="#rasterizationpoint-destination" id="ref-for-rasterizationpoint-destination">destination</a>.<a data-link-type="dfn" href="#fragmentdestination-position" id="ref-for-fragmentdestination-position">position</a> outside of <var>state</var>.<code class="idl"><a data-link-type="idl" href="#dom-renderstate-scissorrect-slot" id="ref-for-dom-renderstate-scissorrect-slot②">[[scissorRect]]</a></code>.</p>
+      <p>Remove all the points <var>rp</var> from <var>rasterizationPoints</var> that have <var>rp</var>.<a data-link-type="dfn" href="#rasterizationpoint-destination" id="ref-for-rasterizationpoint-destination">destination</a>.<a data-link-type="dfn" href="#fragmentdestination-position" id="ref-for-fragmentdestination-position">position</a> outside of <var>state</var>.<code class="idl"><a data-link-type="idl" href="#dom-renderstate-scissorrect-slot" id="ref-for-dom-renderstate-scissorrect-slot①">[[scissorRect]]</a></code>.</p>
      <li data-md>
       <p>Return <var>rasterizationPoints</var>.</p>
     </ol>
@@ -15935,7 +15928,7 @@ one for each target in <code class="idl"><a data-link-type="idl" href="#dom-gpur
      <li data-md>
       <p><var>desc</var>: The descriptor of type <code class="idl"><a data-link-type="idl" href="#dictdef-gpufragmentstate" id="ref-for-dictdef-gpufragmentstate④">GPUFragmentState</a></code>.</p>
      <li data-md>
-      <p><var>state</var>: The active <a data-link-type="dfn" href="#renderstate" id="ref-for-renderstate⑦">RenderState</a>.</p>
+      <p><var>state</var>: The active <a data-link-type="dfn" href="#renderstate" id="ref-for-renderstate⑥">RenderState</a>.</p>
     </ul>
     <p><strong>Returns:</strong> <a data-link-type="dfn" href="#fragment" id="ref-for-fragment②">Fragment</a> or <code>null</code>.</p>
     <ol>
@@ -15992,7 +15985,7 @@ and the <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#inte
           <p>If <code>frag_depth</code> <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#built-in-values" id="ref-for-built-in-values⑧">builtin</a> is produced by the shader as <var>value</var>:</p>
           <ol>
            <li data-md>
-            <p>Let <var>vp</var> be <var>state</var>.<code class="idl"><a data-link-type="idl" href="#dom-renderstate-viewport-slot" id="ref-for-dom-renderstate-viewport-slot③">[[viewport]]</a></code>.</p>
+            <p>Let <var>vp</var> be <var>state</var>.<code class="idl"><a data-link-type="idl" href="#dom-renderstate-viewport-slot" id="ref-for-dom-renderstate-viewport-slot②">[[viewport]]</a></code>.</p>
            <li data-md>
             <p>Set <var>fragment</var>.<a data-link-type="dfn" href="#fragment-depth" id="ref-for-fragment-depth①">depth</a> to clamp(<var>value</var>, <var>vp</var>.<code>minDepth</code>, <var>vp</var>.<code>maxDepth</code>).</p>
           </ol>
@@ -16014,7 +16007,7 @@ such as writes into <code class="idl"><a data-link-type="idl" href="#dom-gpubuff
 may happen in any order.</p>
    <h4 class="heading settled" data-level="23.3.7" id="output-merging"><span class="secno">23.3.7. </span><span class="content">Output Merging</span><a class="self-link" href="#output-merging"></a></h4>
    <p class="note editorial" role="note">Editorial: fill out this section </p>
-   <p>The depth input to this stage, if any, is clamped to the current <code class="idl"><a data-link-type="idl" href="#dom-renderstate-viewport-slot" id="ref-for-dom-renderstate-viewport-slot④">[[viewport]]</a></code> depth range
+   <p>The depth input to this stage, if any, is clamped to the current <code class="idl"><a data-link-type="idl" href="#dom-renderstate-viewport-slot" id="ref-for-dom-renderstate-viewport-slot③">[[viewport]]</a></code> depth range
 (regardless of whether the fragment shader stage writes the <code>frag_depth</code> builtin).</p>
    <h4 class="heading settled" data-level="23.3.8" id="no-color-output"><span class="secno">23.3.8. </span><span class="content">No Color Output</span><a class="self-link" href="#no-color-output"></a></h4>
    <p>In no-color-output mode, <a data-link-type="dfn" href="#pipeline" id="ref-for-pipeline②⓪">pipeline</a> does not produce any color attachment outputs.</p>
@@ -20112,7 +20105,7 @@ for (const dataLink of dataLinks) {
    <dt id="biblio-webidl">[WEBIDL]
    <dd>Edgar Chen; Timothy Gu. <a href="https://webidl.spec.whatwg.org/"><cite>Web IDL Standard</cite></a>. Living Standard. URL: <a href="https://webidl.spec.whatwg.org/">https://webidl.spec.whatwg.org/</a>
    <dt id="biblio-wgsl">[WGSL]
-   <dd>Alan Baker; Mehmet Oguz Derin; David Neto. <a href="https://www.w3.org/TR/WGSL/"><cite>WebGPU Shading Language</cite></a>. 23 December 2022. WD. URL: <a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
+   <dd>Alan Baker; Mehmet Oguz Derin; David Neto. <a href="https://www.w3.org/TR/WGSL/"><cite>WebGPU Shading Language</cite></a>. 3 January 2023. WD. URL: <a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
   </dl>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
@@ -27417,10 +27410,11 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-gpucommandbuffer⑧">13.1. GPUCommandsMixin</a> <a href="#ref-for-gpucommandbuffer⑨">(2)</a>
     <li><a href="#ref-for-gpucommandbuffer①⓪">13.2. GPUCommandEncoder</a>
     <li><a href="#ref-for-gpucommandbuffer①①">13.2.1. Command Encoder Creation</a>
-    <li><a href="#ref-for-gpucommandbuffer①②">13.7. Finalization</a> <a href="#ref-for-gpucommandbuffer①③">(2)</a> <a href="#ref-for-gpucommandbuffer①④">(3)</a> <a href="#ref-for-gpucommandbuffer①⑤">(4)</a> <a href="#ref-for-gpucommandbuffer①⑥">(5)</a>
-    <li><a href="#ref-for-gpucommandbuffer①⑦">17.1. GPURenderPassEncoder</a>
-    <li><a href="#ref-for-gpucommandbuffer①⑧">17.2. GPURenderCommandsMixin</a>
-    <li><a href="#ref-for-gpucommandbuffer①⑨">19.2. GPUQueue</a> <a href="#ref-for-gpucommandbuffer②⓪">(2)</a> <a href="#ref-for-gpucommandbuffer②①">(3)</a>
+    <li><a href="#ref-for-gpucommandbuffer①②">13.3. Pass Encoding</a>
+    <li><a href="#ref-for-gpucommandbuffer①③">13.7. Finalization</a> <a href="#ref-for-gpucommandbuffer①④">(2)</a> <a href="#ref-for-gpucommandbuffer①⑤">(3)</a> <a href="#ref-for-gpucommandbuffer①⑥">(4)</a> <a href="#ref-for-gpucommandbuffer①⑦">(5)</a>
+    <li><a href="#ref-for-gpucommandbuffer①⑧">17.1. GPURenderPassEncoder</a>
+    <li><a href="#ref-for-gpucommandbuffer①⑨">17.2. GPURenderCommandsMixin</a>
+    <li><a href="#ref-for-gpucommandbuffer②⓪">19.2. GPUQueue</a> <a href="#ref-for-gpucommandbuffer②①">(2)</a> <a href="#ref-for-gpucommandbuffer②②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpucommandbuffer-command_list-slot">
@@ -27433,7 +27427,8 @@ restriction entirely and allow writable bindings to alias with undefined results
   <aside class="dfn-panel" data-for="dom-gpucommandbuffer-renderstate-slot">
    <b><a href="#dom-gpucommandbuffer-renderstate-slot">#dom-gpucommandbuffer-renderstate-slot</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-gpucommandbuffer-renderstate-slot">17.2. GPURenderCommandsMixin</a>
+    <li><a href="#ref-for-dom-gpucommandbuffer-renderstate-slot">13.3. Pass Encoding</a>
+    <li><a href="#ref-for-dom-gpucommandbuffer-renderstate-slot①">17.2. GPURenderCommandsMixin</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dictdef-gpucommandbufferdescriptor">
@@ -27535,10 +27530,11 @@ restriction entirely and allow writable bindings to alias with undefined results
   <aside class="dfn-panel" data-for="abstract-opdef-enqueue-a-command">
    <b><a href="#abstract-opdef-enqueue-a-command">#abstract-opdef-enqueue-a-command</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-abstract-opdef-enqueue-a-command">13.4. Buffer Copy Commands</a> <a href="#ref-for-abstract-opdef-enqueue-a-command①">(2)</a>
-    <li><a href="#ref-for-abstract-opdef-enqueue-a-command②">13.5. Image Copy Commands</a> <a href="#ref-for-abstract-opdef-enqueue-a-command③">(2)</a> <a href="#ref-for-abstract-opdef-enqueue-a-command④">(3)</a>
-    <li><a href="#ref-for-abstract-opdef-enqueue-a-command⑤">13.6. Queries</a> <a href="#ref-for-abstract-opdef-enqueue-a-command⑥">(2)</a>
-    <li><a href="#ref-for-abstract-opdef-enqueue-a-command⑦">16.1.2. Dispatch</a> <a href="#ref-for-abstract-opdef-enqueue-a-command⑧">(2)</a>
+    <li><a href="#ref-for-abstract-opdef-enqueue-a-command">13.3. Pass Encoding</a>
+    <li><a href="#ref-for-abstract-opdef-enqueue-a-command①">13.4. Buffer Copy Commands</a> <a href="#ref-for-abstract-opdef-enqueue-a-command②">(2)</a>
+    <li><a href="#ref-for-abstract-opdef-enqueue-a-command③">13.5. Image Copy Commands</a> <a href="#ref-for-abstract-opdef-enqueue-a-command④">(2)</a> <a href="#ref-for-abstract-opdef-enqueue-a-command⑤">(3)</a>
+    <li><a href="#ref-for-abstract-opdef-enqueue-a-command⑥">13.6. Queries</a> <a href="#ref-for-abstract-opdef-enqueue-a-command⑦">(2)</a>
+    <li><a href="#ref-for-abstract-opdef-enqueue-a-command⑧">16.1.2. Dispatch</a> <a href="#ref-for-abstract-opdef-enqueue-a-command⑨">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="gpucommandencoder">
@@ -28253,11 +28249,11 @@ restriction entirely and allow writable bindings to alias with undefined results
    <ul>
     <li><a href="#ref-for-renderstate">12.1. GPUCommandBuffer</a>
     <li><a href="#ref-for-renderstate①">13.3. Pass Encoding</a>
-    <li><a href="#ref-for-renderstate②">17.1. GPURenderPassEncoder</a> <a href="#ref-for-renderstate③">(2)</a>
-    <li><a href="#ref-for-renderstate④">17.2. GPURenderCommandsMixin</a>
-    <li><a href="#ref-for-renderstate⑤">23.3. Rendering</a>
-    <li><a href="#ref-for-renderstate⑥">23.3.5. Rasterization</a>
-    <li><a href="#ref-for-renderstate⑦">23.3.6. Fragment Processing</a>
+    <li><a href="#ref-for-renderstate②">17.1. GPURenderPassEncoder</a>
+    <li><a href="#ref-for-renderstate③">17.2. GPURenderCommandsMixin</a>
+    <li><a href="#ref-for-renderstate④">23.3. Rendering</a>
+    <li><a href="#ref-for-renderstate⑤">23.3.5. Rasterization</a>
+    <li><a href="#ref-for-renderstate⑥">23.3.6. Fragment Processing</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-renderstate-occlusionqueryindex-slot">
@@ -28269,19 +28265,17 @@ restriction entirely and allow writable bindings to alias with undefined results
   <aside class="dfn-panel" data-for="dom-renderstate-viewport-slot">
    <b><a href="#dom-renderstate-viewport-slot">#dom-renderstate-viewport-slot</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-renderstate-viewport-slot">17.1. GPURenderPassEncoder</a>
-    <li><a href="#ref-for-dom-renderstate-viewport-slot①">17.2.2. Rasterization state</a>
-    <li><a href="#ref-for-dom-renderstate-viewport-slot②">23.3.5. Rasterization</a>
-    <li><a href="#ref-for-dom-renderstate-viewport-slot③">23.3.6. Fragment Processing</a>
-    <li><a href="#ref-for-dom-renderstate-viewport-slot④">23.3.7. Output Merging</a>
+    <li><a href="#ref-for-dom-renderstate-viewport-slot">17.2.2. Rasterization state</a>
+    <li><a href="#ref-for-dom-renderstate-viewport-slot①">23.3.5. Rasterization</a>
+    <li><a href="#ref-for-dom-renderstate-viewport-slot②">23.3.6. Fragment Processing</a>
+    <li><a href="#ref-for-dom-renderstate-viewport-slot③">23.3.7. Output Merging</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-renderstate-scissorrect-slot">
    <b><a href="#dom-renderstate-scissorrect-slot">#dom-renderstate-scissorrect-slot</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-renderstate-scissorrect-slot">17.1. GPURenderPassEncoder</a>
-    <li><a href="#ref-for-dom-renderstate-scissorrect-slot①">17.2.2. Rasterization state</a>
-    <li><a href="#ref-for-dom-renderstate-scissorrect-slot②">23.3.5. Rasterization</a>
+    <li><a href="#ref-for-dom-renderstate-scissorrect-slot">17.2.2. Rasterization state</a>
+    <li><a href="#ref-for-dom-renderstate-scissorrect-slot①">23.3.5. Rasterization</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-renderstate-blendconstant-slot">
@@ -28773,12 +28767,11 @@ restriction entirely and allow writable bindings to alias with undefined results
   <aside class="dfn-panel" data-for="abstract-opdef-enqueue-a-render-command">
    <b><a href="#abstract-opdef-enqueue-a-render-command">#abstract-opdef-enqueue-a-render-command</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-abstract-opdef-enqueue-a-render-command">13.3. Pass Encoding</a>
-    <li><a href="#ref-for-abstract-opdef-enqueue-a-render-command①">17.1.2. Finalization</a>
-    <li><a href="#ref-for-abstract-opdef-enqueue-a-render-command②">17.2.1. Drawing</a> <a href="#ref-for-abstract-opdef-enqueue-a-render-command③">(2)</a> <a href="#ref-for-abstract-opdef-enqueue-a-render-command④">(3)</a> <a href="#ref-for-abstract-opdef-enqueue-a-render-command⑤">(4)</a>
-    <li><a href="#ref-for-abstract-opdef-enqueue-a-render-command⑥">17.2.2. Rasterization state</a> <a href="#ref-for-abstract-opdef-enqueue-a-render-command⑦">(2)</a> <a href="#ref-for-abstract-opdef-enqueue-a-render-command⑧">(3)</a> <a href="#ref-for-abstract-opdef-enqueue-a-render-command⑨">(4)</a>
-    <li><a href="#ref-for-abstract-opdef-enqueue-a-render-command①⓪">17.2.3. Queries</a> <a href="#ref-for-abstract-opdef-enqueue-a-render-command①①">(2)</a>
-    <li><a href="#ref-for-abstract-opdef-enqueue-a-render-command①②">17.2.4. Bundles</a>
+    <li><a href="#ref-for-abstract-opdef-enqueue-a-render-command">17.1.2. Finalization</a>
+    <li><a href="#ref-for-abstract-opdef-enqueue-a-render-command①">17.2.1. Drawing</a> <a href="#ref-for-abstract-opdef-enqueue-a-render-command②">(2)</a> <a href="#ref-for-abstract-opdef-enqueue-a-render-command③">(3)</a> <a href="#ref-for-abstract-opdef-enqueue-a-render-command④">(4)</a>
+    <li><a href="#ref-for-abstract-opdef-enqueue-a-render-command⑤">17.2.2. Rasterization state</a> <a href="#ref-for-abstract-opdef-enqueue-a-render-command⑥">(2)</a> <a href="#ref-for-abstract-opdef-enqueue-a-render-command⑦">(3)</a> <a href="#ref-for-abstract-opdef-enqueue-a-render-command⑧">(4)</a>
+    <li><a href="#ref-for-abstract-opdef-enqueue-a-render-command⑨">17.2.3. Queries</a> <a href="#ref-for-abstract-opdef-enqueue-a-render-command①⓪">(2)</a>
+    <li><a href="#ref-for-abstract-opdef-enqueue-a-render-command①①">17.2.4. Bundles</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpurendercommandsmixin-setpipeline">
@@ -30165,9 +30158,9 @@ restriction entirely and allow writable bindings to alias with undefined results
    <b><a href="#typedefdef-gpustencilvalue">#typedefdef-gpustencilvalue</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-typedefdef-gpustencilvalue">10.3.6. Depth/Stencil State</a> <a href="#ref-for-typedefdef-gpustencilvalue①">(2)</a> <a href="#ref-for-typedefdef-gpustencilvalue②">(3)</a> <a href="#ref-for-typedefdef-gpustencilvalue③">(4)</a>
-    <li><a href="#ref-for-typedefdef-gpustencilvalue④">17.1. GPURenderPassEncoder</a>
-    <li><a href="#ref-for-typedefdef-gpustencilvalue⑤">17.1.1.2. Depth/Stencil Attachments</a> <a href="#ref-for-typedefdef-gpustencilvalue⑥">(2)</a>
-    <li><a href="#ref-for-typedefdef-gpustencilvalue⑦">17.2.2. Rasterization state</a>
+    <li><a href="#ref-for-typedefdef-gpustencilvalue④">17.1. GPURenderPassEncoder</a> <a href="#ref-for-typedefdef-gpustencilvalue⑤">(2)</a>
+    <li><a href="#ref-for-typedefdef-gpustencilvalue⑥">17.1.1.2. Depth/Stencil Attachments</a> <a href="#ref-for-typedefdef-gpustencilvalue⑦">(2)</a>
+    <li><a href="#ref-for-typedefdef-gpustencilvalue⑧">17.2.2. Rasterization state</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="typedefdef-gpusamplemask">
@@ -30288,9 +30281,9 @@ restriction entirely and allow writable bindings to alias with undefined results
    <b><a href="#typedefdef-gpucolor">#typedefdef-gpucolor</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-typedefdef-gpucolor">3.10. Numeric conversions from JavaScript to WGSL</a>
-    <li><a href="#ref-for-typedefdef-gpucolor①">17.1. GPURenderPassEncoder</a>
-    <li><a href="#ref-for-typedefdef-gpucolor②">17.1.1.1. Color Attachments</a> <a href="#ref-for-typedefdef-gpucolor③">(2)</a>
-    <li><a href="#ref-for-typedefdef-gpucolor④">17.2.2. Rasterization state</a>
+    <li><a href="#ref-for-typedefdef-gpucolor①">17.1. GPURenderPassEncoder</a> <a href="#ref-for-typedefdef-gpucolor②">(2)</a>
+    <li><a href="#ref-for-typedefdef-gpucolor③">17.1.1.1. Color Attachments</a> <a href="#ref-for-typedefdef-gpucolor④">(2)</a>
+    <li><a href="#ref-for-typedefdef-gpucolor⑤">17.2.2. Rasterization state</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dictdef-gpuorigin2ddict">
