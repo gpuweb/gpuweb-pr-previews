@@ -719,7 +719,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/ea25c4ee4a0fdbf0fd8ee45e0c2ef5e8600a20c2/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/ea25c4ee4a0fdbf0fd8ee45e0c2ef5e8600a20c2/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/b6f37f4255303f9257e8a47c07e029d09a6a4470/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/b6f37f4255303f9257e8a47c07e029d09a6a4470/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -11123,11 +11123,11 @@ after the function call.</p>
      <tr>
       <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves②⑦">resolving</a> to function-scope variable "x",
       where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier⑥">root identifier</a> of a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view①④">memory view</a> expression, <em>MVE</em>, and the <a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule③">load rule</a> is invoked on <em>MVE</em> during <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking③">type checking</a> 
-      <td><a data-link-type="dfn" href="#result" id="ref-for-result③">Result</a> 
+      <td><em>Result</em> 
       <td class><em>X</em> is the node corresponding to the value of "x" at the input to the statement containing this expression 
-      <td class="nowrap"><em>CF</em>, <a data-link-type="dfn" href="#result" id="ref-for-result④">Result</a> 
+      <td class="nowrap"><em>CF</em>, <em>Result</em> 
       <td class>
-       <a data-link-type="dfn" href="#result" id="ref-for-result⑤">Result</a> -> {<em>CF</em>, <em>X</em>} 
+       <em>Result</em> -> {<em>CF</em>, <em>X</em>} 
        <p class="note" role="note"><span>Note:</span> <em>X</em> is equivalent to <em>Vout</em>(<em>prev</em>) for "x"<br> (see <a href="#func-var-value-analysis">§ 13.2.5 Function-scope Variable Value Analysis</a>)</p>
      <tr>
       <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves②⑧">resolving</a> to function-scope variable "x",
@@ -11138,10 +11138,10 @@ after the function call.</p>
       <td class>
      <tr>
       <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves②⑨">resolving</a> to <a data-link-type="dfn" href="#const-declaration" id="ref-for-const-declaration⑨">const-declaration</a>, <a data-link-type="dfn" href="#override-declaration" id="ref-for-override-declaration①⑤">override-declaration</a>, <a data-link-type="dfn" href="#let-declaration" id="ref-for-let-declaration①①">let-declaration</a>, or non-built-in <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter①⑨">formal parameter</a> "x" 
-      <td><a data-link-type="dfn" href="#result" id="ref-for-result⑥">Result</a> 
+      <td><em>Result</em> 
       <td><em>X</em> is the node corresponding to "x" 
-      <td class="nowrap"><em>CF</em>, <a data-link-type="dfn" href="#result" id="ref-for-result⑦">Result</a> 
-      <td class="nowrap"><a data-link-type="dfn" href="#result" id="ref-for-result⑧">Result</a> -> {<em>CF</em>, <em>X</em>} 
+      <td class="nowrap"><em>CF</em>, <em>Result</em> 
+      <td class="nowrap"><em>Result</em> -> {<em>CF</em>, <em>X</em>} 
      <tr>
       <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves③⓪">resolving</a> to uniform built-in value "x" 
       <td>
@@ -11184,10 +11184,10 @@ after the function call.</p>
       <td class="nowrap"><em>e</em>.field 
      <tr>
       <td><em>e1</em> <em>op</em> <em>e2</em>,<br> where <em>op</em> is a non-short-circuiting binary operator 
-      <td rowspan="2"> <a data-link-type="dfn" href="#result" id="ref-for-result⑨">Result</a> 
+      <td rowspan="2"> <em>Result</em> 
       <td class="nowrap" rowspan="2">(<em>CF</em>, <em>e1</em>) => (<em>CF1</em>, <em>V1</em>)<br> (<em>CF1</em>, <em>e2</em>) => (<em>CF2</em>, <em>V2</em>) 
-      <td class="nowrap" rowspan="2"><em>CF2</em>, <a data-link-type="dfn" href="#result" id="ref-for-result①⓪">Result</a> 
-      <td class="nowrap" rowspan="2"><a data-link-type="dfn" href="#result" id="ref-for-result①①">Result</a> -> {<em>V1</em>, <em>V2</em>} 
+      <td class="nowrap" rowspan="2"><em>CF2</em>, <em>Result</em> 
+      <td class="nowrap" rowspan="2"><em>Result</em> -> {<em>V1</em>, <em>V2</em>} 
      <tr>
       <td class="nowrap">e1[e2] 
    </table>
@@ -11213,11 +11213,11 @@ other non-uniform inputs because the analysis does not analyze the <a data-link-
     <tbody>
      <tr>
       <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves③⑤">resolving</a> to function-scope variable "x" 
-      <td><a data-link-type="dfn" href="#result" id="ref-for-result①②">Result</a> 
+      <td><em>Result</em> 
       <td><em>X</em> is the node corresponding to the value of "x" at the output of the statement containing this expression. 
-      <td class="nowrap"><em>CF</em>, <a data-link-type="dfn" href="#result" id="ref-for-result①③">Result</a> 
+      <td class="nowrap"><em>CF</em>, <em>Result</em> 
       <td class>
-       <a data-link-type="dfn" href="#result" id="ref-for-result①④">Result</a> -> {<em>CF</em>, <em>X</em>} 
+       <em>Result</em> -> {<em>CF</em>, <em>X</em>} 
        <p class="note" role="note"><span>Note:</span> <em>X</em> is equivalent to <em>Vin</em>(<em>next</em>) for "x"<br> (see <a href="#func-var-value-analysis">§ 13.2.5 Function-scope Variable Value Analysis</a>)</p>
      <tr>
       <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves③⑥">resolving</a> to <a data-link-type="dfn" href="#const-declaration" id="ref-for-const-declaration①⓪">const-declaration</a>, <a data-link-type="dfn" href="#override-declaration" id="ref-for-override-declaration①⑥">override-declaration</a>, <a data-link-type="dfn" href="#let-declaration" id="ref-for-let-declaration①②">let-declaration</a>, or <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter②⓪">formal parameter</a> "x" 
@@ -21729,7 +21729,6 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <b><a href="#result">#result</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-result">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-result①">(2)</a> <a href="#ref-for-result②">(3)</a>
-    <li><a href="#ref-for-result③">13.2.8. Uniformity Rules for Expressions</a> <a href="#ref-for-result④">(2)</a> <a href="#ref-for-result⑤">(3)</a> <a href="#ref-for-result⑥">(4)</a> <a href="#ref-for-result⑦">(5)</a> <a href="#ref-for-result⑧">(6)</a> <a href="#ref-for-result⑨">(7)</a> <a href="#ref-for-result①⓪">(8)</a> <a href="#ref-for-result①①">(9)</a> <a href="#ref-for-result①②">(10)</a> <a href="#ref-for-result①③">(11)</a> <a href="#ref-for-result①④">(12)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="cf_after">
