@@ -719,7 +719,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/33d9bd16eec1eb9b76e7cd5592b8bee68dddabe6/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/33d9bd16eec1eb9b76e7cd5592b8bee68dddabe6/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/355b20c37a453383a87267e61e3dc5c24543a56c/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/355b20c37a453383a87267e61e3dc5c24543a56c/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -10803,11 +10803,25 @@ This means that the call graph must first be built, and functions must be analyz
 This way, whenever a function is analyzed, the metadata for all of its callees has already been computed.
 There is no risk of being trapped in a cycle, as recurrence is forbidden in the language.</p>
    <p class="note" role="note"><span>Note:</span> Another way of saying the same thing is that we do a topological sort of functions ordered by the "is a (possibly indirect) callee of" partial order, and analyze them in that order.</p>
+   <p>Additionally, the analysis computes and propagates locations of <a data-link-type="dfn" href="#call-site" id="ref-for-call-site⑧">call sites</a> for <a data-link-type="dfn" href="#builtin-functions-that-compute-a-derivative" id="ref-for-builtin-functions-that-compute-a-derivative②">builtin functions that compute a derivative</a>.
+This is used to <a data-link-type="dfn" href="#triggered" id="ref-for-triggered③">trigger</a> and filter <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic⑥">diagnostics</a> for <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure②">uniformity failures</a> on those calls.
+A set of such source locations is called a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="witness-set">witness set</dfn>.
+Witness sets only support adding elements, not removing elements.
+In particular, a witness set is only formed via the following operations:</p>
+   <ul>
+    <li data-md>
+     <p>Create an empty set.</p>
+    <li data-md>
+     <p>Create a witness set containing a single source location.</p>
+    <li data-md>
+     <p>Form a witness set from the union of two others.</p>
+   </ul>
+   <p>Witness sets can be implemented such that their total cost across the entire uniformity analysis is linear in the source program size.</p>
    <h4 class="heading settled" data-level="13.2.3" id="uniformity-function"><span class="secno">13.2.3. </span><span class="content">Analyzing the Uniformity Requirements of a Function</span><a class="self-link" href="#uniformity-function"></a></h4>
    <p>Each function is analyzed in two phases.</p>
    <p>The first phase walks over the syntax of the function, building a directed graph along the way based on the rules in the following subsections.
 The second phase explores that graph, computing the constraints on calling this function,
-and potentially triggering a <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure②">uniformity failure</a>.</p>
+and potentially triggering a <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure③">uniformity failure</a>.</p>
    <div class="note" role="note">
     Note: Apart from two special nodes <a data-link-type="dfn" href="#requiredtobeuniform" id="ref-for-requiredtobeuniform">RequiredToBeUniform</a> and <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform">MayBeNonUniform</a>, all nodes can be understood as having one of the following meanings: 
     <ul>
@@ -10825,12 +10839,12 @@ and potentially triggering a <a data-link-type="dfn" href="#uniformity-failure" 
         One way to understand this, is that <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform②">MayBeNonUniform</a> corresponds to the proposition False, so that X -> <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform③">MayBeNonUniform</a> is the same as saying that X is false.</p>
     <p>A consequence of this interpretation is that every node reachable from <a data-link-type="dfn" href="#requiredtobeuniform" id="ref-for-requiredtobeuniform④">RequiredToBeUniform</a> corresponds to
         something which is required to be uniform for the program to be valid, and every node from which <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform④">MayBeNonUniform</a> is reachable corresponds to something whose uniformity we cannot guarantee.
-        It follows that we have a uniformity violation, triggering a <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure③">uniformity failure</a>, if there is any path from <a data-link-type="dfn" href="#requiredtobeuniform" id="ref-for-requiredtobeuniform⑤">RequiredToBeUniform</a> to <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform⑤">MayBeNonUniform</a>.</p>
+        It follows that we have a uniformity violation, triggering a <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure④">uniformity failure</a>, if there is any path from <a data-link-type="dfn" href="#requiredtobeuniform" id="ref-for-requiredtobeuniform⑤">RequiredToBeUniform</a> to <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform⑤">MayBeNonUniform</a>.</p>
    </div>
    <p>For each function, two tags are computed:</p>
    <ul>
     <li data-md>
-     <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="call-site-tag">call site tag</dfn> describing the control flow uniformity requirements on the <a data-link-type="dfn" href="#call-site" id="ref-for-call-site⑧">call sites</a> of the function, and</p>
+     <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="call-site-tag">call site tag</dfn> describing the control flow uniformity requirements on the <a data-link-type="dfn" href="#call-site" id="ref-for-call-site⑨">call sites</a> of the function, and</p>
     <li data-md>
      <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="function-tag">function tag</dfn> describing the function’s effects on uniformity.</p>
    </ul>
@@ -10900,10 +10914,16 @@ stored in the memory pointed to by the parameter becomes <a data-link-type="dfn"
       <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="pointerparameternorestriction">PointerParameterNoRestriction</dfn> 
       <td>The uniformity of the value stored in the memory pointed to by the pointer parameter is unaffected by the function call. 
    </table>
+   <p>To support generating <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic⑦">diagnostics</a>, each instance of a <a data-link-type="dfn" href="#callsiterequiredtobeuniform" id="ref-for-callsiterequiredtobeuniform">CallSiteRequiredToBeUniform</a> <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag①">call site tag</a> and each instance of a <a data-link-type="dfn" href="#parameterrequiredtobeuniform" id="ref-for-parameterrequiredtobeuniform">ParameterRequiredToBeUniform</a> <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag①">parameter tag</a> also has an associated <a data-link-type="dfn" href="#witness-set" id="ref-for-witness-set">witness set</a>, which capture the root cause
+for the tags to be <a data-link-type="dfn" href="#callsiterequiredtobeuniform" id="ref-for-callsiterequiredtobeuniform①">CallSiteRequiredToBeUniform</a> and <a data-link-type="dfn" href="#parameterrequiredtobeuniform" id="ref-for-parameterrequiredtobeuniform①">ParameterRequiredToBeUniform</a>, respectively.</p>
    <p>The following algorithm describes how to compute these tags for a given function:</p>
    <ul>
     <li data-md>
      <p>Create nodes called <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="requiredtobeuniform">RequiredToBeUniform</dfn>, <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="maybenonuniform">MayBeNonUniform</dfn>, <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="cf_start">CF_start</dfn>, and if the function has a <a data-link-type="dfn" href="#return-type" id="ref-for-return-type①⓪">return type</a> a node called <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="value_return">Value_return</dfn>.</p>
+     <ul>
+      <li data-md>
+       <p>Additionally, the <a data-link-type="dfn" href="#requiredtobeuniform" id="ref-for-requiredtobeuniform⑥">RequiredToBeUniform</a> tag has an associated <a data-link-type="dfn" href="#witness-set" id="ref-for-witness-set①">witness set</a>, which is initially empty.</p>
+     </ul>
     <li data-md>
      <p>Create one node for each parameter of the function which we’ll call <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="param_i">param_i</dfn>.</p>
     <li data-md>
@@ -10914,20 +10934,24 @@ stored in the memory pointed to by the parameter becomes <a data-link-type="dfn"
 create a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="value_return_i">Value_return_i</dfn> node.</p>
      </ul>
     <li data-md>
-     <p>Walk over the syntax of the function, adding nodes and edges to the graph following the rules of the next sections (<a href="#func-var-value-analysis">§ 13.2.5 Function-scope Variable Value Analysis</a>, <a href="#uniformity-statements">§ 13.2.6 Uniformity Rules for Statements</a>, <a href="#uniformity-function-calls">§ 13.2.7 Uniformity Rules for Function Calls</a>, <a href="#uniformity-expressions">§ 13.2.8 Uniformity Rules for Expressions</a>), using <a data-link-type="dfn" href="#cf_start" id="ref-for-cf_start">CF_start</a> as the starting control-flow for the function’s body.</p>
+     <p>Walk over the syntax of the function, adding nodes and edges to the graph, and building <a data-link-type="dfn" href="#witness-set" id="ref-for-witness-set②">witness sets</a>, following the rules of the next sections (<a href="#func-var-value-analysis">§ 13.2.5 Function-scope Variable Value Analysis</a>, <a href="#uniformity-statements">§ 13.2.6 Uniformity Rules for Statements</a>, <a href="#uniformity-function-calls">§ 13.2.7 Uniformity Rules for Function Calls</a>, <a href="#uniformity-expressions">§ 13.2.8 Uniformity Rules for Expressions</a>), using <a data-link-type="dfn" href="#cf_start" id="ref-for-cf_start">CF_start</a> as the starting control-flow for the function’s body.</p>
     <li data-md>
      <p>For each <a data-link-type="dfn" href="#value_return_i" id="ref-for-value_return_i">Value_return_i</a> node, record which <a data-link-type="dfn" href="#param_i" id="ref-for-param_i">param_i</a> nodes are reachable from it.</p>
     <li data-md>
-     <p>Look at which nodes are reachable from <a data-link-type="dfn" href="#requiredtobeuniform" id="ref-for-requiredtobeuniform⑥">RequiredToBeUniform</a>.</p>
+     <p>Examine the <a data-link-type="dfn" href="#requiredtobeuniform" id="ref-for-requiredtobeuniform⑦">RequiredToBeUniform</a> node. Let <em>W</em> be its associated <a data-link-type="dfn" href="#witness-set" id="ref-for-witness-set③">witness set</a>. Let <em>R</em> be the set of nodes reachable from <a data-link-type="dfn" href="#requiredtobeuniform" id="ref-for-requiredtobeuniform⑧">RequiredToBeUniform</a>.</p>
      <ul>
       <li data-md>
-       <p>If this set includes the node <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform⑥">MayBeNonUniform</a>, then trigger a <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure④">uniformity failure</a>.</p>
+       <p>If <em>R</em> includes the node <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform⑥">MayBeNonUniform</a>, then trigger a <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure⑤">uniformity failure</a>.</p>
+       <ul>
+        <li data-md>
+         <p>If the uniformity failure triggers <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic⑧">diagnostics</a>, then the <a data-link-type="dfn" href="#diagnostic-triggering-location" id="ref-for-diagnostic-triggering-location⑤">triggering locations</a> are taken from <em>W</em>.</p>
+       </ul>
       <li data-md>
-       <p>If this set includes <a data-link-type="dfn" href="#cf_start" id="ref-for-cf_start①">CF_start</a>, then the <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag①">call site tag</a> for the function is <a data-link-type="dfn" href="#callsiterequiredtobeuniform" id="ref-for-callsiterequiredtobeuniform">CallSiteRequiredToBeUniform</a>.</p>
+       <p>If <em>R</em> includes <a data-link-type="dfn" href="#cf_start" id="ref-for-cf_start①">CF_start</a>, then the <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag②">call site tag</a> for the function is <a data-link-type="dfn" href="#callsiterequiredtobeuniform" id="ref-for-callsiterequiredtobeuniform②">CallSiteRequiredToBeUniform</a>, with <a data-link-type="dfn" href="#witness-set" id="ref-for-witness-set④">witness set</a> <em>W</em>.</p>
       <li data-md>
-       <p>Otherwise, the <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag②">call site tag</a> is <a data-link-type="dfn" href="#callsitenorestriction" id="ref-for-callsitenorestriction">CallSiteNoRestriction</a>.</p>
+       <p>Otherwise, the <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag③">call site tag</a> is <a data-link-type="dfn" href="#callsitenorestriction" id="ref-for-callsitenorestriction">CallSiteNoRestriction</a>.</p>
       <li data-md>
-       <p>For each <a data-link-type="dfn" href="#param_i" id="ref-for-param_i①">param_i</a> in this set, the corresponding <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag①">parameter tag</a> is <a data-link-type="dfn" href="#parameterrequiredtobeuniform" id="ref-for-parameterrequiredtobeuniform">ParameterRequiredToBeUniform</a>.</p>
+       <p>For each <a data-link-type="dfn" href="#param_i" id="ref-for-param_i①">param_i</a> in <em>R</em>, the corresponding <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag②">parameter tag</a> is <a data-link-type="dfn" href="#parameterrequiredtobeuniform" id="ref-for-parameterrequiredtobeuniform②">ParameterRequiredToBeUniform</a>, with <a data-link-type="dfn" href="#witness-set" id="ref-for-witness-set⑤">witness set</a> <em>W</em>.</p>
       <li data-md>
        <p>Remove from the graph all nodes that have been visited.</p>
      </ul>
@@ -10937,7 +10961,7 @@ create a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="value_re
       <li data-md>
        <p>If this set includes <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform⑦">MayBeNonUniform</a>, then the <a data-link-type="dfn" href="#function-tag" id="ref-for-function-tag①">function tag</a> is <a data-link-type="dfn" href="#returnvaluemaybenonuniform" id="ref-for-returnvaluemaybenonuniform">ReturnValueMayBeNonUniform</a>.</p>
       <li data-md>
-       <p>For each <a data-link-type="dfn" href="#param_i" id="ref-for-param_i②">param_i</a> in this set, the corresponding <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag②">parameter tag</a> is <a data-link-type="dfn" href="#parameterrequiredtobeuniformforreturnvalue" id="ref-for-parameterrequiredtobeuniformforreturnvalue">ParameterRequiredToBeUniformForReturnValue</a>.</p>
+       <p>For each <a data-link-type="dfn" href="#param_i" id="ref-for-param_i②">param_i</a> in this set, the corresponding <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag③">parameter tag</a> is <a data-link-type="dfn" href="#parameterrequiredtobeuniformforreturnvalue" id="ref-for-parameterrequiredtobeuniformforreturnvalue">ParameterRequiredToBeUniformForReturnValue</a>.</p>
      </ul>
     <li data-md>
      <p>For each <a data-link-type="dfn" href="#value_return_i" id="ref-for-value_return_i①">Value_return_i</a> node, look at which nodes are reachable from it</p>
@@ -10950,9 +10974,9 @@ create a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="value_re
     <li data-md>
      <p>If the <a data-link-type="dfn" href="#function-tag" id="ref-for-function-tag②">function tag</a> has not been assigned, then it is <a data-link-type="dfn" href="#norestriction" id="ref-for-norestriction">NoRestriction</a>.</p>
     <li data-md>
-     <p>For each parameter, if it has not been assigned a <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag③">parameter tag</a>, then it is <a data-link-type="dfn" href="#parameternorestriction" id="ref-for-parameternorestriction">ParameterNoRestriction</a>.</p>
+     <p>For each parameter, if it has not been assigned a <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag④">parameter tag</a>, then it is <a data-link-type="dfn" href="#parameternorestriction" id="ref-for-parameternorestriction">ParameterNoRestriction</a>.</p>
    </ul>
-   <p class="note" role="note"><span>Note:</span> The entire graph can be destroyed at this point. The tags listed above are all that we need to remember to analyze callers of this function.</p>
+   <p class="note" role="note"><span>Note:</span> The entire graph can be destroyed at this point. The tags and <a data-link-type="dfn" href="#witness-set" id="ref-for-witness-set⑥">witness sets</a> described above are all that we need to remember to analyze callers of this function.</p>
    <h4 class="heading settled" data-level="13.2.4" id="pointer-desugar"><span class="secno">13.2.4. </span><span class="content">Pointer Desugaring</span><a class="self-link" href="#pointer-desugar"></a></h4>
    <p>Each <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter①⑧">parameter</a> of <a data-link-type="dfn" href="#pointer-type" id="ref-for-pointer-type⑨">pointer type</a> in the <a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function①③">function</a> address space is desugared as a local variable declaration
 whose initial value is equivalent to dereferencing the parameter.
@@ -11074,7 +11098,7 @@ Their memory views cover the same memory
 locations, but the store type for <code>arr</code> is <code>array&lt;i32,1></code> and the store type of <code>arr[0]</code> is <code>i32</code>.</p>
     <p>To simplify analysis, an assignment via <em>any</em> kind of <a data-link-type="dfn" href="#partial-reference" id="ref-for-partial-reference①">partial reference</a> is treated as if
 it does <em>not</em> modify every memory location in the associated <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable②⓪">originating variable</a>.
-This causes the analysis to be conservative, potentially triggering a <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure⑤">uniformity failure</a> for
+This causes the analysis to be conservative, potentially triggering a <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure⑥">uniformity failure</a> for
 more programs than strictly necessary.</p>
    </div>
    <p>An assignment through a <a data-link-type="dfn" href="#full-reference" id="ref-for-full-reference④">full reference</a> is a <a data-link-type="dfn" href="#full-assignment" id="ref-for-full-assignment">full assignment</a>.</p>
@@ -11341,7 +11365,11 @@ being the same as input control flow node.</p>
     <li data-md>
      <p>Create two new nodes, named <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="result">Result</dfn> and <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="cf_after">CF_after</dfn></p>
     <li data-md>
-     <p>If the <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag③">call site tag</a> of the function is <a data-link-type="dfn" href="#callsiterequiredtobeuniform" id="ref-for-callsiterequiredtobeuniform①">CallSiteRequiredToBeUniform</a>, then add an edge from <a data-link-type="dfn" href="#requiredtobeuniform" id="ref-for-requiredtobeuniform⑦">RequiredToBeUniform</a> to the last <a data-link-type="dfn" href="#cf_i" id="ref-for-cf_i">CF_i</a></p>
+     <p>If the <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag④">call site tag</a> of the function is <a data-link-type="dfn" href="#callsiterequiredtobeuniform" id="ref-for-callsiterequiredtobeuniform③">CallSiteRequiredToBeUniform</a>, then add an edge from <a data-link-type="dfn" href="#requiredtobeuniform" id="ref-for-requiredtobeuniform⑨">RequiredToBeUniform</a> to the last <a data-link-type="dfn" href="#cf_i" id="ref-for-cf_i">CF_i</a>.</p>
+     <ul>
+      <li data-md>
+       <p>Additionally add the <a data-link-type="dfn" href="#witness-set" id="ref-for-witness-set⑦">witness set</a> from the call site tag to the witness set associated with <a data-link-type="dfn" href="#requiredtobeuniform" id="ref-for-requiredtobeuniform①⓪">RequiredToBeUniform</a>.</p>
+     </ul>
     <li data-md>
      <p>Otherwise add an edge from <a data-link-type="dfn" href="#cf_after" id="ref-for-cf_after">CF_after</a> to the last <a data-link-type="dfn" href="#cf_i" id="ref-for-cf_i①">CF_i</a></p>
     <li data-md>
@@ -11352,9 +11380,13 @@ being the same as input control flow node.</p>
      <p>For each argument <em>i</em>:</p>
      <ul>
       <li data-md>
-       <p>If the corresponding <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag④">parameter tag</a> is <a data-link-type="dfn" href="#parameterrequiredtobeuniform" id="ref-for-parameterrequiredtobeuniform①">ParameterRequiredToBeUniform</a>, then add an edge from <a data-link-type="dfn" href="#requiredtobeuniform" id="ref-for-requiredtobeuniform⑧">RequiredToBeUniform</a> to <a data-link-type="dfn" href="#arg_i" id="ref-for-arg_i">arg_i</a></p>
+       <p>If the corresponding <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag⑤">parameter tag</a> is <a data-link-type="dfn" href="#parameterrequiredtobeuniform" id="ref-for-parameterrequiredtobeuniform③">ParameterRequiredToBeUniform</a>, then add an edge from <a data-link-type="dfn" href="#requiredtobeuniform" id="ref-for-requiredtobeuniform①①">RequiredToBeUniform</a> to <a data-link-type="dfn" href="#arg_i" id="ref-for-arg_i">arg_i</a></p>
+       <ul>
+        <li data-md>
+         <p>Additionally add the <a data-link-type="dfn" href="#witness-set" id="ref-for-witness-set⑧">witness set</a> from the parameter tag to the witness set associated with <a data-link-type="dfn" href="#requiredtobeuniform" id="ref-for-requiredtobeuniform①②">RequiredToBeUniform</a>.</p>
+       </ul>
       <li data-md>
-       <p>Otherwise if the <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag⑤">parameter tag</a> is <a data-link-type="dfn" href="#parameterrequiredtobeuniformforreturnvalue" id="ref-for-parameterrequiredtobeuniformforreturnvalue①">ParameterRequiredToBeUniformForReturnValue</a>, then add an edge from <a data-link-type="dfn" href="#result" id="ref-for-result②">Result</a> to <a data-link-type="dfn" href="#arg_i" id="ref-for-arg_i①">arg_i</a></p>
+       <p>Otherwise if the <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag⑥">parameter tag</a> is <a data-link-type="dfn" href="#parameterrequiredtobeuniformforreturnvalue" id="ref-for-parameterrequiredtobeuniformforreturnvalue①">ParameterRequiredToBeUniformForReturnValue</a>, then add an edge from <a data-link-type="dfn" href="#result" id="ref-for-result②">Result</a> to <a data-link-type="dfn" href="#arg_i" id="ref-for-arg_i①">arg_i</a></p>
       <li data-md>
        <p>If the corresponding parameter has a <a data-link-type="dfn" href="#pointer-parameter-tag" id="ref-for-pointer-parameter-tag③">pointer parameter tag</a> of <a data-link-type="dfn" href="#pointerparametermaybenonuniform" id="ref-for-pointerparametermaybenonuniform①">PointerParameterMayBeNonUniform</a>, then add an edge from <em>Vout</em>(<em>call</em>) to <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①⓪">MayBeNonUniform</a></p>
       <li data-md>
@@ -11365,25 +11397,31 @@ being the same as input control flow node.</p>
    <p>Most built-in functions have tags of:</p>
    <ul>
     <li data-md>
-     <p>A <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag④">call site tag</a> of <a data-link-type="dfn" href="#callsitenorestriction" id="ref-for-callsitenorestriction①">CallSiteNoRestriction</a>.</p>
+     <p>A <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag⑤">call site tag</a> of <a data-link-type="dfn" href="#callsitenorestriction" id="ref-for-callsitenorestriction①">CallSiteNoRestriction</a>.</p>
     <li data-md>
      <p>A <a data-link-type="dfn" href="#function-tag" id="ref-for-function-tag④">function tag</a> of <a data-link-type="dfn" href="#norestriction" id="ref-for-norestriction①">NoRestriction</a>.</p>
     <li data-md>
-     <p>For each parameter, a <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag⑥">tag</a> of <a data-link-type="dfn" href="#parameterrequiredtobeuniformforreturnvalue" id="ref-for-parameterrequiredtobeuniformforreturnvalue②">ParameterRequiredToBeUniformForReturnValue</a>.</p>
+     <p>For each parameter, a <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag⑦">tag</a> of <a data-link-type="dfn" href="#parameterrequiredtobeuniformforreturnvalue" id="ref-for-parameterrequiredtobeuniformforreturnvalue②">ParameterRequiredToBeUniformForReturnValue</a>.</p>
    </ul>
    <p>Here is the list of exceptions:</p>
    <ul>
     <li data-md>
-     <p>All functions in <a href="#sync-builtin-functions">§ 17.9 Synchronization Built-in Functions</a> have a <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag⑤">call site tag</a> of <a data-link-type="dfn" href="#callsiterequiredtobeuniform" id="ref-for-callsiterequiredtobeuniform②">CallSiteRequiredToBeUniform</a>.</p>
+     <p>All functions in <a href="#sync-builtin-functions">§ 17.9 Synchronization Built-in Functions</a> have a <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag⑥">call site tag</a> of <a data-link-type="dfn" href="#callsiterequiredtobeuniform" id="ref-for-callsiterequiredtobeuniform④">CallSiteRequiredToBeUniform</a>.</p>
      <ul>
       <li data-md>
-       <p>The parameter <code>p</code> in <a href="#workgroupUniformLoad-builtin">workgroupUniformLoad</a> has a <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag⑦">parameter tag</a> of <a data-link-type="dfn" href="#parameterrequiredtobeuniform" id="ref-for-parameterrequiredtobeuniform②">ParameterRequiredToBeUniform</a>.</p>
+       <p>The parameter <code>p</code> in <a href="#workgroupUniformLoad-builtin">workgroupUniformLoad</a> has a <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag⑧">parameter tag</a> of <a data-link-type="dfn" href="#parameterrequiredtobeuniform" id="ref-for-parameterrequiredtobeuniform④">ParameterRequiredToBeUniform</a>.</p>
      </ul>
     <li data-md>
-     <p>All functions in <a href="#derivative-builtin-functions">§ 17.4 Derivative Built-in Functions</a>, <a href="#texturesample">§ 17.5.8 textureSample</a>, <a href="#texturesamplebias">§ 17.5.9 textureSampleBias</a>, and <a href="#texturesamplecompare">§ 17.5.10 textureSampleCompare</a> have a <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag⑥">call site tag</a> of <a data-link-type="dfn" href="#callsiterequiredtobeuniform" id="ref-for-callsiterequiredtobeuniform③">CallSiteRequiredToBeUniform</a>, and a <a data-link-type="dfn" href="#function-tag" id="ref-for-function-tag⑤">function tag</a> of <a data-link-type="dfn" href="#returnvaluemaybenonuniform" id="ref-for-returnvaluemaybenonuniform②">ReturnValueMayBeNonUniform</a>.</p>
+     <p>All functions in <a href="#derivative-builtin-functions">§ 17.4 Derivative Built-in Functions</a>, <a href="#texturesample">§ 17.5.8 textureSample</a>, <a href="#texturesamplebias">§ 17.5.9 textureSampleBias</a>, and <a href="#texturesamplecompare">§ 17.5.10 textureSampleCompare</a>:</p>
+     <ul>
+      <li data-md>
+       <p>Have a <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag⑦">call site tag</a> of <a data-link-type="dfn" href="#callsiterequiredtobeuniform" id="ref-for-callsiterequiredtobeuniform⑤">CallSiteRequiredToBeUniform</a>. The associated <a data-link-type="dfn" href="#witness-set" id="ref-for-witness-set⑨">witness set</a> is a singleton set containing the location of the <a data-link-type="dfn" href="#call-site" id="ref-for-call-site①⓪">call site</a> to the builtin function.</p>
+      <li data-md>
+       <p>Have a <a data-link-type="dfn" href="#function-tag" id="ref-for-function-tag⑤">function tag</a> of <a data-link-type="dfn" href="#returnvaluemaybenonuniform" id="ref-for-returnvaluemaybenonuniform②">ReturnValueMayBeNonUniform</a>.</p>
+     </ul>
     <li data-md>
-     <p><a href="#arrayLength-builtin">arrayLength</a> has a <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag⑦">call site tag</a> of <a data-link-type="dfn" href="#callsitenorestriction" id="ref-for-callsitenorestriction②">CallSiteNoRestriction</a>, a <a data-link-type="dfn" href="#function-tag" id="ref-for-function-tag⑥">function tag</a> of <a data-link-type="dfn" href="#norestriction" id="ref-for-norestriction②">NoRestriction</a> and
-the input parameter <code>p</code> has a <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag⑧">parameter tag</a> of <a data-link-type="dfn" href="#parameternorestriction" id="ref-for-parameternorestriction①">ParameterNoRestriction</a></p>
+     <p><a href="#arrayLength-builtin">arrayLength</a> has a <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag⑧">call site tag</a> of <a data-link-type="dfn" href="#callsitenorestriction" id="ref-for-callsitenorestriction②">CallSiteNoRestriction</a>, a <a data-link-type="dfn" href="#function-tag" id="ref-for-function-tag⑥">function tag</a> of <a data-link-type="dfn" href="#norestriction" id="ref-for-norestriction②">NoRestriction</a> and
+the input parameter <code>p</code> has a <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag⑨">parameter tag</a> of <a data-link-type="dfn" href="#parameternorestriction" id="ref-for-parameternorestriction①">ParameterNoRestriction</a></p>
    </ul>
    <p class="note" role="note"><span>Note:</span> A WGSL implementation will ensure that if control flow prior to a
 function call is <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow⑨">uniform</a>, it will also be uniform
@@ -11691,7 +11729,7 @@ composite up so that values that are known to be uniform are separate from
 value that are known to be non-uniform.
 In the alternative WGSL below, splitting the two built-in values into separate
 parameters satisfies the uniformity analysis.
-This can be seen by the lack of a path from <a data-link-type="dfn" href="#requiredtobeuniform" id="ref-for-requiredtobeuniform⑨">RequiredToBeUniform</a> to <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①⑦">MayBeNonUniform</a> in the graph.</p>
+This can be seen by the lack of a path from <a data-link-type="dfn" href="#requiredtobeuniform" id="ref-for-requiredtobeuniform①③">RequiredToBeUniform</a> to <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①⑦">MayBeNonUniform</a> in the graph.</p>
    <div class="example wgsl no-marker" id="example-e980cd5a">
     <a class="self-link" href="#example-e980cd5a"></a>
     <div class="marker">EXAMPLE: Valid alternative WGSL</div>
@@ -11749,7 +11787,7 @@ end of the loop body (CF_after_if).</p>
 uses a user-defined function call.
 The analysis tags both parameters of <code>scale</code> as <a data-link-type="dfn" href="#parameterrequiredtobeuniformforreturnvalue" id="ref-for-parameterrequiredtobeuniformforreturnvalue③">ParameterRequiredToBeUniformForReturnValue</a>.
 This leads to the path in <code>main</code> between the return value of the <code>scale</code> function call and the <code>position</code> built-in value.
-That path is a subpath of the overall invalid path from <a data-link-type="dfn" href="#requiredtobeuniform" id="ref-for-requiredtobeuniform①⓪">RequiredToBeUniform</a> to <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①⑧">MayBeNonUniform</a>.</p>
+That path is a subpath of the overall invalid path from <a data-link-type="dfn" href="#requiredtobeuniform" id="ref-for-requiredtobeuniform①④">RequiredToBeUniform</a> to <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①⑧">MayBeNonUniform</a>.</p>
    <div class="example wgsl no-marker" id="example-2d91fe99">
     <a class="self-link" href="#example-2d91fe99"></a>
     <div class="marker">EXAMPLE: User-defined function call uniformity WGSL</div>
@@ -11920,7 +11958,7 @@ built-in functions described in <a href="#derivative-builtin-functions">§ 17.
    </ul>
    <p>Because neighbouring invocations collaborate to compute derivatives, these
 functions should only be invoked in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①②">uniform control flow</a> in a fragment shader.
-For each call to one of these functions, a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity②">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic⑥">diagnostic</a> is triggered if <a href="#uniformity">uniformity analysis</a> cannot prove the call occurs in uniform control flow.</p>
+For each call to one of these functions, a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity②">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic⑨">diagnostic</a> is triggered if <a href="#uniformity">uniformity analysis</a> cannot prove the call occurs in uniform control flow.</p>
    <p>If one of these functions is called in non-uniform control flow, then the result is an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value⑤">indeterminate value</a>.</p>
    <h3 class="heading settled" data-level="13.6" id="floating-point-evaluation"><span class="secno">13.6. </span><span class="content">Floating Point Evaluation</span><a class="self-link" href="#floating-point-evaluation"></a></h3>
    <p>WGSL follows the <a data-link-type="biblio" href="#biblio-ieee-754">IEEE-754</a> standard for floating point computation with
@@ -14850,7 +14888,7 @@ but a value may infer the type.</p>
     <li data-md>
      <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①⑧">Must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment⑥">fragment</a> shader stage.</p>
     <li data-md>
-     <p><a data-link-type="dfn" href="#triggered" id="ref-for-triggered③">Trigger</a> a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity③">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic⑦">diagnostic</a> if <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis②">uniformity analysis</a> cannot prove the call is in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①③">uniform control flow</a>.</p>
+     <p><a data-link-type="dfn" href="#triggered" id="ref-for-triggered④">Trigger</a> a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity③">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①⓪">diagnostic</a> if <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis②">uniformity analysis</a> cannot prove the call is in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①③">uniform control flow</a>.</p>
    </ul>
    <h4 class="heading settled" data-level="17.4.1" id="dpdx-builtin"><span class="secno">17.4.1. </span><span class="content"><code>dpdx</code></span><a class="self-link" href="#dpdx-builtin"></a></h4>
    <table class="data builtin">
@@ -15628,7 +15666,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
    <p>Samples a texture.</p>
    <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②⑧">Must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment⑦">fragment</a> shader stage.</p>
    <p>If <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis③">uniformity analysis</a> cannot prove a call to this function is in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②③">uniform control flow</a>,
-then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity④">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic⑧">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered④">triggered</a>.</p>
+then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity④">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①①">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑤">triggered</a>.</p>
    <table class="data">
     <thead>
      <tr>
@@ -15774,7 +15812,7 @@ then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for
    <p>Samples a texture with a bias to the mip level.</p>
    <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③②">Must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment⑧">fragment</a> shader stage.</p>
    <p>If <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis④">uniformity analysis</a> cannot prove a call to this function is in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②⑤">uniform control flow</a>,
-then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity⑤">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic⑨">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑤">triggered</a>.</p>
+then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity⑤">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①②">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑥">triggered</a>.</p>
    <table class="data">
     <thead>
      <tr>
@@ -15876,7 +15914,7 @@ then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for
    <p>Samples a depth texture and compares the sampled depth values against a reference value.</p>
    <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③⑦">Must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment⑨">fragment</a> shader stage.</p>
    <p>If <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis⑤">uniformity analysis</a> cannot prove a call to this function is in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②⑦">uniform control flow</a>,
-then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity⑥">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①⓪">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑥">triggered</a>.</p>
+then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity⑥">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①③">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑦">triggered</a>.</p>
    <table class="data">
     <thead>
      <tr>
@@ -18297,6 +18335,7 @@ registrations, it matches widespread industry conventions.</p>
      <li><a href="#syntax_kw-while">dfn for syntax_kw</a><span>, in § 15.1.2</span>
     </ul>
    <li><a href="#syntax-while_statement">while_statement</a><span>, in § 8.4.5</span>
+   <li><a href="#witness-set">witness set</a><span>, in § 13.2.2</span>
    <li>
     workgroup
     <ul>
@@ -18779,11 +18818,13 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-diagnostic③">2.2.1. Filterable Triggering Rules</a>
     <li><a href="#ref-for-diagnostic④">2.2.2. Diagnostic Filtering</a>
     <li><a href="#ref-for-diagnostic⑤">13.2. Uniformity</a>
-    <li><a href="#ref-for-diagnostic⑥">13.5.2. Derivatives</a>
-    <li><a href="#ref-for-diagnostic⑦">17.4. Derivative Built-in Functions</a>
-    <li><a href="#ref-for-diagnostic⑧">17.5.8. textureSample</a>
-    <li><a href="#ref-for-diagnostic⑨">17.5.9. textureSampleBias</a>
-    <li><a href="#ref-for-diagnostic①⓪">17.5.10. textureSampleCompare</a>
+    <li><a href="#ref-for-diagnostic⑥">13.2.2. Uniformity Analysis Overview</a>
+    <li><a href="#ref-for-diagnostic⑦">13.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-diagnostic⑧">(2)</a>
+    <li><a href="#ref-for-diagnostic⑨">13.5.2. Derivatives</a>
+    <li><a href="#ref-for-diagnostic①⓪">17.4. Derivative Built-in Functions</a>
+    <li><a href="#ref-for-diagnostic①①">17.5.8. textureSample</a>
+    <li><a href="#ref-for-diagnostic①②">17.5.9. textureSampleBias</a>
+    <li><a href="#ref-for-diagnostic①③">17.5.10. textureSampleCompare</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="triggered">
@@ -18792,10 +18833,11 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-triggered">2.1. Processing Errors</a>
     <li><a href="#ref-for-triggered①">2.2.2. Diagnostic Filtering</a>
     <li><a href="#ref-for-triggered②">13.2. Uniformity</a>
-    <li><a href="#ref-for-triggered③">17.4. Derivative Built-in Functions</a>
-    <li><a href="#ref-for-triggered④">17.5.8. textureSample</a>
-    <li><a href="#ref-for-triggered⑤">17.5.9. textureSampleBias</a>
-    <li><a href="#ref-for-triggered⑥">17.5.10. textureSampleCompare</a>
+    <li><a href="#ref-for-triggered③">13.2.2. Uniformity Analysis Overview</a>
+    <li><a href="#ref-for-triggered④">17.4. Derivative Built-in Functions</a>
+    <li><a href="#ref-for-triggered⑤">17.5.8. textureSample</a>
+    <li><a href="#ref-for-triggered⑥">17.5.9. textureSampleBias</a>
+    <li><a href="#ref-for-triggered⑦">17.5.10. textureSampleCompare</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="diagnostic-triggering-rule">
@@ -18814,6 +18856,7 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-diagnostic-triggering-location">2.2. Diagnostics</a> <a href="#ref-for-diagnostic-triggering-location①">(2)</a>
     <li><a href="#ref-for-diagnostic-triggering-location②">2.2.2. Diagnostic Filtering</a> <a href="#ref-for-diagnostic-triggering-location③">(2)</a>
     <li><a href="#ref-for-diagnostic-triggering-location④">13.2. Uniformity</a>
+    <li><a href="#ref-for-diagnostic-triggering-location⑤">13.2.3. Analyzing the Uniformity Requirements of a Function</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="diagnostic-severity">
@@ -21864,7 +21907,9 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-call-site④">9.2. Function Calls</a>
     <li><a href="#ref-for-call-site⑤">9.4.1.2. Aliasing</a> <a href="#ref-for-call-site⑥">(2)</a>
     <li><a href="#ref-for-call-site⑦">13.2. Uniformity</a>
-    <li><a href="#ref-for-call-site⑧">13.2.3. Analyzing the Uniformity Requirements of a Function</a>
+    <li><a href="#ref-for-call-site⑧">13.2.2. Uniformity Analysis Overview</a>
+    <li><a href="#ref-for-call-site⑨">13.2.3. Analyzing the Uniformity Requirements of a Function</a>
+    <li><a href="#ref-for-call-site①⓪">13.2.7. Uniformity Rules for Function Calls</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="const-functions">
@@ -22167,9 +22212,9 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
   <aside class="dfn-panel" data-for="uniformity-failure">
    <b><a href="#uniformity-failure">#uniformity-failure</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-uniformity-failure">13.2.2. Uniformity Analysis Overview</a> <a href="#ref-for-uniformity-failure①">(2)</a>
-    <li><a href="#ref-for-uniformity-failure②">13.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-uniformity-failure③">(2)</a> <a href="#ref-for-uniformity-failure④">(3)</a>
-    <li><a href="#ref-for-uniformity-failure⑤">13.2.5. Function-scope Variable Value Analysis</a>
+    <li><a href="#ref-for-uniformity-failure">13.2.2. Uniformity Analysis Overview</a> <a href="#ref-for-uniformity-failure①">(2)</a> <a href="#ref-for-uniformity-failure②">(3)</a>
+    <li><a href="#ref-for-uniformity-failure③">13.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-uniformity-failure④">(2)</a> <a href="#ref-for-uniformity-failure⑤">(3)</a>
+    <li><a href="#ref-for-uniformity-failure⑥">13.2.5. Function-scope Variable Value Analysis</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="uniform-control-flow">
@@ -22214,11 +22259,18 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-uniform-variable">13.2.3. Analyzing the Uniformity Requirements of a Function</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="witness-set">
+   <b><a href="#witness-set">#witness-set</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-witness-set">13.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-witness-set①">(2)</a> <a href="#ref-for-witness-set②">(3)</a> <a href="#ref-for-witness-set③">(4)</a> <a href="#ref-for-witness-set④">(5)</a> <a href="#ref-for-witness-set⑤">(6)</a> <a href="#ref-for-witness-set⑥">(7)</a>
+    <li><a href="#ref-for-witness-set⑦">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-witness-set⑧">(2)</a> <a href="#ref-for-witness-set⑨">(3)</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="call-site-tag">
    <b><a href="#call-site-tag">#call-site-tag</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-call-site-tag">13.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-call-site-tag①">(2)</a> <a href="#ref-for-call-site-tag②">(3)</a>
-    <li><a href="#ref-for-call-site-tag③">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-call-site-tag④">(2)</a> <a href="#ref-for-call-site-tag⑤">(3)</a> <a href="#ref-for-call-site-tag⑥">(4)</a> <a href="#ref-for-call-site-tag⑦">(5)</a>
+    <li><a href="#ref-for-call-site-tag">13.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-call-site-tag①">(2)</a> <a href="#ref-for-call-site-tag②">(3)</a> <a href="#ref-for-call-site-tag③">(4)</a>
+    <li><a href="#ref-for-call-site-tag④">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-call-site-tag⑤">(2)</a> <a href="#ref-for-call-site-tag⑥">(3)</a> <a href="#ref-for-call-site-tag⑦">(4)</a> <a href="#ref-for-call-site-tag⑧">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="function-tag">
@@ -22231,8 +22283,8 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
   <aside class="dfn-panel" data-for="parameter-tag">
    <b><a href="#parameter-tag">#parameter-tag</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-parameter-tag">13.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-parameter-tag①">(2)</a> <a href="#ref-for-parameter-tag②">(3)</a> <a href="#ref-for-parameter-tag③">(4)</a>
-    <li><a href="#ref-for-parameter-tag④">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-parameter-tag⑤">(2)</a> <a href="#ref-for-parameter-tag⑥">(3)</a> <a href="#ref-for-parameter-tag⑦">(4)</a> <a href="#ref-for-parameter-tag⑧">(5)</a>
+    <li><a href="#ref-for-parameter-tag">13.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-parameter-tag①">(2)</a> <a href="#ref-for-parameter-tag②">(3)</a> <a href="#ref-for-parameter-tag③">(4)</a> <a href="#ref-for-parameter-tag④">(5)</a>
+    <li><a href="#ref-for-parameter-tag⑤">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-parameter-tag⑥">(2)</a> <a href="#ref-for-parameter-tag⑦">(3)</a> <a href="#ref-for-parameter-tag⑧">(4)</a> <a href="#ref-for-parameter-tag⑨">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="pointer-parameter-tag">
@@ -22245,8 +22297,8 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
   <aside class="dfn-panel" data-for="callsiterequiredtobeuniform">
    <b><a href="#callsiterequiredtobeuniform">#callsiterequiredtobeuniform</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-callsiterequiredtobeuniform">13.2.3. Analyzing the Uniformity Requirements of a Function</a>
-    <li><a href="#ref-for-callsiterequiredtobeuniform①">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-callsiterequiredtobeuniform②">(2)</a> <a href="#ref-for-callsiterequiredtobeuniform③">(3)</a>
+    <li><a href="#ref-for-callsiterequiredtobeuniform">13.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-callsiterequiredtobeuniform①">(2)</a> <a href="#ref-for-callsiterequiredtobeuniform②">(3)</a>
+    <li><a href="#ref-for-callsiterequiredtobeuniform③">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-callsiterequiredtobeuniform④">(2)</a> <a href="#ref-for-callsiterequiredtobeuniform⑤">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="callsitenorestriction">
@@ -22273,8 +22325,8 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
   <aside class="dfn-panel" data-for="parameterrequiredtobeuniform">
    <b><a href="#parameterrequiredtobeuniform">#parameterrequiredtobeuniform</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-parameterrequiredtobeuniform">13.2.3. Analyzing the Uniformity Requirements of a Function</a>
-    <li><a href="#ref-for-parameterrequiredtobeuniform①">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-parameterrequiredtobeuniform②">(2)</a>
+    <li><a href="#ref-for-parameterrequiredtobeuniform">13.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-parameterrequiredtobeuniform①">(2)</a> <a href="#ref-for-parameterrequiredtobeuniform②">(3)</a>
+    <li><a href="#ref-for-parameterrequiredtobeuniform③">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-parameterrequiredtobeuniform④">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="parameterrequiredtobeuniformforreturnvalue">
@@ -22308,10 +22360,10 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
   <aside class="dfn-panel" data-for="requiredtobeuniform">
    <b><a href="#requiredtobeuniform">#requiredtobeuniform</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-requiredtobeuniform">13.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-requiredtobeuniform①">(2)</a> <a href="#ref-for-requiredtobeuniform②">(3)</a> <a href="#ref-for-requiredtobeuniform③">(4)</a> <a href="#ref-for-requiredtobeuniform④">(5)</a> <a href="#ref-for-requiredtobeuniform⑤">(6)</a> <a href="#ref-for-requiredtobeuniform⑥">(7)</a>
-    <li><a href="#ref-for-requiredtobeuniform⑦">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-requiredtobeuniform⑧">(2)</a>
-    <li><a href="#ref-for-requiredtobeuniform⑨">13.2.10.3. Composite Value Analysis Limitations</a>
-    <li><a href="#ref-for-requiredtobeuniform①⓪">13.2.10.5. User-defined Function Calls</a>
+    <li><a href="#ref-for-requiredtobeuniform">13.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-requiredtobeuniform①">(2)</a> <a href="#ref-for-requiredtobeuniform②">(3)</a> <a href="#ref-for-requiredtobeuniform③">(4)</a> <a href="#ref-for-requiredtobeuniform④">(5)</a> <a href="#ref-for-requiredtobeuniform⑤">(6)</a> <a href="#ref-for-requiredtobeuniform⑥">(7)</a> <a href="#ref-for-requiredtobeuniform⑦">(8)</a> <a href="#ref-for-requiredtobeuniform⑧">(9)</a>
+    <li><a href="#ref-for-requiredtobeuniform⑨">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-requiredtobeuniform①⓪">(2)</a> <a href="#ref-for-requiredtobeuniform①①">(3)</a> <a href="#ref-for-requiredtobeuniform①②">(4)</a>
+    <li><a href="#ref-for-requiredtobeuniform①③">13.2.10.3. Composite Value Analysis Limitations</a>
+    <li><a href="#ref-for-requiredtobeuniform①④">13.2.10.5. User-defined Function Calls</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="maybenonuniform">
@@ -22489,6 +22541,7 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <ul>
     <li><a href="#ref-for-builtin-functions-that-compute-a-derivative">2.2.1. Filterable Triggering Rules</a>
     <li><a href="#ref-for-builtin-functions-that-compute-a-derivative①">13.2. Uniformity</a>
+    <li><a href="#ref-for-builtin-functions-that-compute-a-derivative②">13.2.2. Uniformity Analysis Overview</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="flush-to-zero">
