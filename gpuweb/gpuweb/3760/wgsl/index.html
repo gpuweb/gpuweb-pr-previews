@@ -719,7 +719,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/dcdc934192d36f5dbf9028c024050628b664896a/wgsl/index.bs">https://github.com/kainino0x/gpuweb/blob/dcdc934192d36f5dbf9028c024050628b664896a/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/a8c0a50c559987c43a821d0ac5a2ff9348c7cb9e/wgsl/index.bs">https://github.com/kainino0x/gpuweb/blob/a8c0a50c559987c43a821d0ac5a2ff9348c7cb9e/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -1291,7 +1291,7 @@ This set includes both <a data-link-type="dfn" href="#user-defined-function" id=
    </ul>
    <p class="note" role="note"><span>Note:</span> A WGSL program does not require an <a data-link-type="dfn" href="#entry-point" id="ref-for-entry-point①">entry point</a>; however, such a
 program cannot be executed by the API because an entry point is required to
-create a {{GPUProgrammableStage}}.</p>
+create a <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dictdef-gpuprogrammablestage" id="ref-for-dictdef-gpuprogrammablestage">GPUProgrammableStage</a></code>.</p>
    <p>When executing a shader stage, the implementation:</p>
    <ul>
     <li data-md>
@@ -1507,7 +1507,7 @@ The last two are the start and end of execution of a shader.</p>
      <ul>
       <li data-md>
        <p>This occurs when the
-WebGPU {{GPUDevice/createShaderModule()}} method
+WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpudevice-createshadermodule" id="ref-for-dom-gpudevice-createshadermodule">createShaderModule()</a></code> method
 is called.
 The source text for a WGSL program is provided at this time.</p>
      </ul>
@@ -1516,9 +1516,9 @@ The source text for a WGSL program is provided at this time.</p>
      <ul>
       <li data-md>
        <p>This occurs when the
-WebGPU {{GPUDevice/createComputePipeline()}} method
+WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpudevice-createcomputepipeline" id="ref-for-dom-gpudevice-createcomputepipeline">createComputePipeline()</a></code> method
 or the
-WebGPU {{GPUDevice/createRenderPipeline()}} method
+WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpudevice-createrenderpipeline" id="ref-for-dom-gpudevice-createrenderpipeline">createRenderPipeline()</a></code> method
 is invoked.
 These methods use one or more previously created shader modules, together with other
 configuration information.</p>
@@ -4565,7 +4565,7 @@ Different call sites may supply pointers into different originating variables.</
    <ul>
     <li data-md>
      <p>when the <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable">originating variable</a> is a <a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer④">uniform buffer</a> or a <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer⑤">storage buffer</a>,
-the value from any <a data-link-type="dfn" href="#memory-locations" id="ref-for-memory-locations③">memory location(s)</a> of the {{GPUBuffer}} bound to the originating variable</p>
+the value from any <a data-link-type="dfn" href="#memory-locations" id="ref-for-memory-locations③">memory location(s)</a> of the <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#gpubuffer" id="ref-for-gpubuffer">GPUBuffer</a></code> bound to the originating variable</p>
     <li data-md>
      <p>when the originating variable is not a <a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer⑤">uniform buffer</a> or <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer⑥">storage buffer</a>,
 a value from any <a data-link-type="dfn" href="#memory-locations" id="ref-for-memory-locations④">memory location(s)</a> in the originating variable</p>
@@ -4584,8 +4584,7 @@ a value from any <a data-link-type="dfn" href="#memory-locations" id="ref-for-me
    <ul>
     <li data-md>
      <p>when the <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable①">originating variable</a> is a <a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer⑥">uniform buffer</a> or a <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer⑦">storage buffer</a>,
-store the value to any <a data-link-type="dfn" href="#memory-locations" id="ref-for-memory-locations⑤">memory location(s)</a> of the
-{{GPUBuffer}} bound to the <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable②">originating variable</a></p>
+store the value to any <a data-link-type="dfn" href="#memory-locations" id="ref-for-memory-locations⑤">memory location(s)</a> of the <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#gpubuffer" id="ref-for-gpubuffer①">GPUBuffer</a></code> bound to the <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable②">originating variable</a></p>
     <li data-md>
      <p>when the <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable③">originating variable</a> is not a <a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer⑦">uniform buffer</a> or <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer⑧">storage buffer</a>,
 store the value to any <a data-link-type="dfn" href="#memory-locations" id="ref-for-memory-locations⑥">memory locations(s)</a> in the
@@ -4988,7 +4987,7 @@ The word <em>texel</em> is short for <em>texture element</em>.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="texture">texture</dfn> is a collection of texels supporting special operations useful for rendering.
 In WGSL, those operations are invoked via texture builtin functions.
 See <a href="#texture-builtin-functions">§ 17.5 Texture Built-in Functions</a> for a complete list.</p>
-   <p>A WGSL texture corresponds to a WebGPU {{GPUTexture}}.</p>
+   <p>A WGSL texture corresponds to a WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#gputexture" id="ref-for-gputexture">GPUTexture</a></code>.</p>
    <p>A texture is either arrayed, or non-arrayed:</p>
    <ul>
     <li data-md>
@@ -5068,7 +5067,7 @@ access may be mutable (e.g. a write-only storage texture).</p>
    </ul>
    <p>A <a data-link-type="dfn" href="#sampler" id="ref-for-sampler①">sampler</a> is an opaque handle that controls how <a data-link-type="dfn" href="#texel" id="ref-for-texel">texels</a> are accessed
 from a sampled texture.</p>
-   <p>A WGSL sampler maps to a WebGPU {{GPUSampler}}.</p>
+   <p>A WGSL sampler maps to a WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#gpusampler" id="ref-for-gpusampler">GPUSampler</a></code>.</p>
    <p>Texel access is controlled via several properties of the sampler:</p>
    <dl>
     <dt data-md>addressing mode
@@ -5076,21 +5075,21 @@ from a sampled texture.</p>
      <p>Controls how texture boundaries and out-of-bounds
 coordinates are resolved.
 The addressing mode for each texture dimension can be set independently.
-See WebGPU {{GPUAddressMode}}.</p>
+See WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#enumdef-gpuaddressmode" id="ref-for-enumdef-gpuaddressmode">GPUAddressMode</a></code>.</p>
     <dt data-md>filter mode
     <dd data-md>
      <p>Controls which texels are accessed to produce the final result.
 Filtering can either use the nearest texel or interpolate between multiple
 texels.
 Multiple filter modes can be set independently.
-See WebGPU {{GPUFilterMode}}.</p>
+See WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#enumdef-gpufiltermode" id="ref-for-enumdef-gpufiltermode">GPUFilterMode</a></code>.</p>
     <dt data-md>LOD clamp
     <dd data-md>
      <p>Controls the min and max levels of details that are accessed.</p>
     <dt data-md>comparison
     <dd data-md>
      <p>Controls the type of comparison done for <a data-link-type="dfn" href="#type-sampler_comparison" id="ref-for-type-sampler_comparison">comparison sampler</a>.
-See WebGPU {{GPUCompareFunction}}.</p>
+See WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#enumdef-gpucomparefunction" id="ref-for-enumdef-gpucomparefunction">GPUCompareFunction</a></code>.</p>
     <dt data-md>max anisotropy
     <dd data-md>
      <p>Controls the maximum anisotropy value used by the sampler.</p>
@@ -5115,8 +5114,7 @@ normally corresponding to the concepts of red, green, blue, and alpha channels.<
     <dd data-md>
      <p>The number of bits in the channel, and how those bits are interpreted.</p>
    </dl>
-   <p>Each texel format in WGSL corresponds to a WebGPU {{GPUTextureFormat}}
-with the same name.</p>
+   <p>Each texel format in WGSL corresponds to a WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#enumdef-gputextureformat" id="ref-for-enumdef-gputextureformat">GPUTextureFormat</a></code> with the same name.</p>
    <p>Only certain texel formats are used in WGSL source code.
 The channel formats used to define those texel formats are listed in the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="channel-formats">Channel Formats</dfn> table.
 The last column specifies the conversion from the stored channel bits to the value used in the shader.
@@ -5196,7 +5194,7 @@ This is also known as the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noex
       <td><var>v</var> 
    </table>
    <p>The texel formats listed in the <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="storage-texel-formats" data-noexport id="storage-texel-formats">Texel Formats for Storage Textures</dfn> table
-correspond to the <a href="https://www.w3.org/TR/webgpu/#plain-color-formats">WebGPU plain color formats</a> which support the WebGPU {{GPUTextureUsage/STORAGE}} usage.
+correspond to the <a href="https://www.w3.org/TR/webgpu/#plain-color-formats">WebGPU plain color formats</a> which support the WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding">STORAGE_BINDING</a></code> usage.
 These texel formats are used to parameterize the storage texture types defined
 in <a href="#texture-storage">§ 5.5.5 Storage Texture Types</a>.</p>
    <p>When the texel format does not have all four channels, then:</p>
@@ -9849,7 +9847,7 @@ programmable parts of pipelines:</p>
    <p>To create an <a data-link-type="dfn" href="#entry-point" id="ref-for-entry-point①⓪">entry point</a>, declare a <a data-link-type="dfn" href="#user-defined-function" id="ref-for-user-defined-function⑨">user-defined function</a> with a <a data-link-type="dfn" href="#shader-stage-attributes" id="ref-for-shader-stage-attributes①">shader stage attribute</a>.</p>
    <p>When configuring a <a data-link-type="dfn" href="#pipeline" id="ref-for-pipeline①">pipeline</a> in the WebGPU API,
 the entry point’s function name maps to the <code>entryPoint</code> attribute of the
-WebGPU {{GPUProgrammableStage}} object.</p>
+WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dictdef-gpuprogrammablestage" id="ref-for-dictdef-gpuprogrammablestage①">GPUProgrammableStage</a></code> object.</p>
    <p>The entry point’s <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter①③">formal parameters</a> denote the stage’s <a data-link-type="dfn" href="#shader-stage-input" id="ref-for-shader-stage-input③">shader stage inputs</a>.
 The entry point’s <a data-link-type="dfn" href="#return-value" id="ref-for-return-value③">return value</a>, if specified, denotes the stage’s <a data-link-type="dfn" href="#shader-stage-output" id="ref-for-shader-stage-output②">shader stage outputs</a>.</p>
    <p>The type of each formal parameter, and the entry point’s return type, <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑦⑧">must</a> be one of:</p>
@@ -10240,51 +10238,51 @@ where compatibility is defined by the following table.</p>
     <tbody>
      <tr>
       <td><a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer①②">uniform buffer</a> 
-      <td rowspan="3">{{GPUBufferBinding}} 
-      <td rowspan="3">{{GPUBindGroupLayoutEntry/buffer}} 
+      <td rowspan="3"><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dictdef-gpubufferbinding" id="ref-for-dictdef-gpubufferbinding">GPUBufferBinding</a></code> 
+      <td rowspan="3"><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpubindgrouplayoutentry-buffer" id="ref-for-dom-gpubindgrouplayoutentry-buffer">buffer</a></code> 
       <td rowspan="3">GPUBufferBindingType 
-      <td>{{GPUBufferBindingType/"uniform"}} 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpubufferbindingtype-uniform" id="ref-for-dom-gpubufferbindingtype-uniform">"uniform"</a></code> 
      <tr>
       <td><a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer①④">storage buffer</a> with <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①⑤">read_write</a> access 
-      <td>{{GPUBufferBindingType/"storage"}} 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpubufferbindingtype-storage" id="ref-for-dom-gpubufferbindingtype-storage">"storage"</a></code> 
      <tr>
       <td><a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer①⑤">storage buffer</a> with <a data-link-type="dfn" href="#access-read" id="ref-for-access-read⑧">read</a> access 
-      <td>{{GPUBufferBindingType/"read-only-storage"}} 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpubufferbindingtype-read-only-storage" id="ref-for-dom-gpubufferbindingtype-read-only-storage">"read-only-storage"</a></code> 
      <tr>
       <td rowspan="2">sampler 
-      <td rowspan="3">{{GPUSampler}} 
-      <td rowspan="3">{{GPUBindGroupLayoutEntry/sampler}} 
+      <td rowspan="3"><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#gpusampler" id="ref-for-gpusampler①">GPUSampler</a></code> 
+      <td rowspan="3"><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpubindgrouplayoutentry-sampler" id="ref-for-dom-gpubindgrouplayoutentry-sampler">sampler</a></code> 
       <td rowspan="3">GPUSamplerBindingType 
-      <td>{{GPUSamplerBindingType/"filtering"}} 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpusamplerbindingtype-filtering" id="ref-for-dom-gpusamplerbindingtype-filtering">"filtering"</a></code> 
      <tr>
-      <td>{{GPUSamplerBindingType/"non-filtering"}} 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpusamplerbindingtype-non-filtering" id="ref-for-dom-gpusamplerbindingtype-non-filtering">"non-filtering"</a></code> 
      <tr>
       <td>sampler_comparison 
-      <td>{{GPUSamplerBindingType/"comparison"}} 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpusamplerbindingtype-comparison" id="ref-for-dom-gpusamplerbindingtype-comparison">"comparison"</a></code> 
      <tr>
       <td rowspan="5">sampled texture 
-      <td rowspan="5">{{GPUTextureView}} 
-      <td rowspan="5">{{GPUBindGroupLayoutEntry/texture}} 
+      <td rowspan="5"><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#gputextureview" id="ref-for-gputextureview">GPUTextureView</a></code> 
+      <td rowspan="5"><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpubindgrouplayoutentry-texture" id="ref-for-dom-gpubindgrouplayoutentry-texture">texture</a></code> 
       <td rowspan="5">GPUTextureSampleType 
-      <td>{{GPUTextureSampleType/"float"}} 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float">"float"</a></code> 
      <tr>
-      <td>{{GPUTextureSampleType/"unfilterable-float"}} 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float">"unfilterable-float"</a></code> 
      <tr>
-      <td>{{GPUTextureSampleType/"sint"}} 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gputexturesampletype-sint" id="ref-for-dom-gputexturesampletype-sint">"sint"</a></code> 
      <tr>
-      <td>{{GPUTextureSampleType/"uint"}} 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gputexturesampletype-uint" id="ref-for-dom-gputexturesampletype-uint">"uint"</a></code> 
      <tr>
-      <td>{{GPUTextureSampleType/"depth"}} 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gputexturesampletype-depth" id="ref-for-dom-gputexturesampletype-depth">"depth"</a></code> 
      <tr>
       <td><a data-link-type="dfn" href="#write-only-storage-texture" id="ref-for-write-only-storage-texture">write-only storage texture</a> 
-      <td>{{GPUTextureView}} 
-      <td>{{GPUBindGroupLayoutEntry/storageTexture}} 
-      <td>{{GPUStorageTextureAccess}} 
-      <td>{{GPUStorageTextureAccess/"write-only"}} 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#gputextureview" id="ref-for-gputextureview①">GPUTextureView</a></code> 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpubindgrouplayoutentry-storagetexture" id="ref-for-dom-gpubindgrouplayoutentry-storagetexture">storageTexture</a></code> 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#enumdef-gpustoragetextureaccess" id="ref-for-enumdef-gpustoragetextureaccess">GPUStorageTextureAccess</a></code> 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpustoragetextureaccess-write-only" id="ref-for-dom-gpustoragetextureaccess-write-only">"write-only"</a></code> 
      <tr>
       <td><a href="#external-texture-type">external sampled texture</a> 
-      <td>{{GPUExternalTexture}} 
-      <td>{{GPUBindGroupLayoutEntry/externalTexture}} 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#gpuexternaltexture" id="ref-for-gpuexternaltexture">GPUExternalTexture</a></code> 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpubindgrouplayoutentry-externaltexture" id="ref-for-dom-gpubindgrouplayoutentry-externaltexture">externalTexture</a></code> 
       <td colspan="2">(not applicable) 
    </table>
    <p>See the <a data-link-type="abstract-op" href="https://gpuweb.github.io/gpuweb/#abstract-opdef-validating-gpuprogrammablestage" id="ref-for-abstract-opdef-validating-gpuprogrammablestage">WebGPU API</a> specification for interface validation requirements.</p>
@@ -12795,9 +12793,7 @@ A WGSL program <a data-link-type="dfn" href="#shader-creation-error" id="ref-for
       <td>input 
       <td>u32 
       <td style="width:50%">Sample index for the current fragment.
-         The value is least 0 and at most <code>sampleCount</code>-1, where
-         {{GPURenderPipelineDescriptor/sampleCount}}
-         is the number of MSAA samples specified for the GPU render pipeline. <br>See <a href="https://www.w3.org/TR/webgpu/#render-pipeline"><cite>WebGPU</cite> § 10.3 GPURenderPipeline</a>. 
+         The value is least 0 and at most <code>sampleCount</code>-1, where <code>sampleCount</code> is the MSAA sample <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpumultisamplestate-count" id="ref-for-dom-gpumultisamplestate-count">count</a></code> specified for the GPU render pipeline. <br>See <a href="https://www.w3.org/TR/webgpu/#render-pipeline"><cite>WebGPU</cite> § 10.3 GPURenderPipeline</a>. 
      <tr>
       <td rowspan="2"><dfn data-dfn-for="built-in values" data-dfn-type="dfn" data-noexport id="built-in-values-sample_mask"><code>sample_mask</code><a class="self-link" href="#built-in-values-sample_mask"></a></dfn> 
       <td>fragment 
@@ -16050,8 +16046,7 @@ with texture coordinates clamped to the edge as described below.</p>
         <p><em>half_texel</em> = vec2(0.5) / vec2&lt;f32>(textureDimensions(t))</p>
        </blockquote>
        <p class="note" role="note"><span>Note:</span> The half-texel adjustment ensures that,
-  independent of the sampler’s {{GPUAddressMode|addressing}}
-  and {{GPUFilterMode|filter}} modes,
+  independent of the sampler’s <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#enumdef-gpuaddressmode" id="ref-for-enumdef-gpuaddressmode①">addressing</a></code> and <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#enumdef-gpufiltermode" id="ref-for-enumdef-gpufiltermode①">filter</a></code> modes,
   wrapping will not occur.
   That is, when sampling near an edge, the sampled texels
   will be at or adjacent to that edge, and not selected from the opposite edge.</p>
@@ -18034,6 +18029,160 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-memory-model-scope">14.3. Scoped Operations</a> <a href="#ref-for-memory-model-scope①">(2)</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-gpusamplerbindingtype-comparison">
+   <a href="https://gpuweb.github.io/gpuweb/#dom-gpusamplerbindingtype-comparison">https://gpuweb.github.io/gpuweb/#dom-gpusamplerbindingtype-comparison</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gpusamplerbindingtype-comparison">10.3.3. Resource Layout Compatibility</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-gputexturesampletype-depth">
+   <a href="https://gpuweb.github.io/gpuweb/#dom-gputexturesampletype-depth">https://gpuweb.github.io/gpuweb/#dom-gputexturesampletype-depth</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gputexturesampletype-depth">10.3.3. Resource Layout Compatibility</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-gpusamplerbindingtype-filtering">
+   <a href="https://gpuweb.github.io/gpuweb/#dom-gpusamplerbindingtype-filtering">https://gpuweb.github.io/gpuweb/#dom-gpusamplerbindingtype-filtering</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gpusamplerbindingtype-filtering">10.3.3. Resource Layout Compatibility</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-gputexturesampletype-float">
+   <a href="https://gpuweb.github.io/gpuweb/#dom-gputexturesampletype-float">https://gpuweb.github.io/gpuweb/#dom-gputexturesampletype-float</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gputexturesampletype-float">10.3.3. Resource Layout Compatibility</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-gpusamplerbindingtype-non-filtering">
+   <a href="https://gpuweb.github.io/gpuweb/#dom-gpusamplerbindingtype-non-filtering">https://gpuweb.github.io/gpuweb/#dom-gpusamplerbindingtype-non-filtering</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gpusamplerbindingtype-non-filtering">10.3.3. Resource Layout Compatibility</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-gpubufferbindingtype-read-only-storage">
+   <a href="https://gpuweb.github.io/gpuweb/#dom-gpubufferbindingtype-read-only-storage">https://gpuweb.github.io/gpuweb/#dom-gpubufferbindingtype-read-only-storage</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gpubufferbindingtype-read-only-storage">10.3.3. Resource Layout Compatibility</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-gputexturesampletype-sint">
+   <a href="https://gpuweb.github.io/gpuweb/#dom-gputexturesampletype-sint">https://gpuweb.github.io/gpuweb/#dom-gputexturesampletype-sint</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gputexturesampletype-sint">10.3.3. Resource Layout Compatibility</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-gpubufferbindingtype-storage">
+   <a href="https://gpuweb.github.io/gpuweb/#dom-gpubufferbindingtype-storage">https://gpuweb.github.io/gpuweb/#dom-gpubufferbindingtype-storage</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gpubufferbindingtype-storage">10.3.3. Resource Layout Compatibility</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-gputexturesampletype-uint">
+   <a href="https://gpuweb.github.io/gpuweb/#dom-gputexturesampletype-uint">https://gpuweb.github.io/gpuweb/#dom-gputexturesampletype-uint</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gputexturesampletype-uint">10.3.3. Resource Layout Compatibility</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-gputexturesampletype-unfilterable-float">
+   <a href="https://gpuweb.github.io/gpuweb/#dom-gputexturesampletype-unfilterable-float">https://gpuweb.github.io/gpuweb/#dom-gputexturesampletype-unfilterable-float</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gputexturesampletype-unfilterable-float">10.3.3. Resource Layout Compatibility</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-gpubufferbindingtype-uniform">
+   <a href="https://gpuweb.github.io/gpuweb/#dom-gpubufferbindingtype-uniform">https://gpuweb.github.io/gpuweb/#dom-gpubufferbindingtype-uniform</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gpubufferbindingtype-uniform">10.3.3. Resource Layout Compatibility</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-gpustoragetextureaccess-write-only">
+   <a href="https://gpuweb.github.io/gpuweb/#dom-gpustoragetextureaccess-write-only">https://gpuweb.github.io/gpuweb/#dom-gpustoragetextureaccess-write-only</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gpustoragetextureaccess-write-only">10.3.3. Resource Layout Compatibility</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-enumdef-gpuaddressmode">
+   <a href="https://gpuweb.github.io/gpuweb/#enumdef-gpuaddressmode">https://gpuweb.github.io/gpuweb/#enumdef-gpuaddressmode</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-enumdef-gpuaddressmode">5.5. Texture and Sampler Types</a>
+    <li><a href="#ref-for-enumdef-gpuaddressmode①">17.5.14. textureSampleBaseClampToEdge</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-gpubuffer">
+   <a href="https://gpuweb.github.io/gpuweb/#gpubuffer">https://gpuweb.github.io/gpuweb/#gpubuffer</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-gpubuffer">5.4.4. Invalid Memory Reference</a> <a href="#ref-for-gpubuffer①">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-dictdef-gpubufferbinding">
+   <a href="https://gpuweb.github.io/gpuweb/#dictdef-gpubufferbinding">https://gpuweb.github.io/gpuweb/#dictdef-gpubufferbinding</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dictdef-gpubufferbinding">10.3.3. Resource Layout Compatibility</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-enumdef-gpucomparefunction">
+   <a href="https://gpuweb.github.io/gpuweb/#enumdef-gpucomparefunction">https://gpuweb.github.io/gpuweb/#enumdef-gpucomparefunction</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-enumdef-gpucomparefunction">5.5. Texture and Sampler Types</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-gpuexternaltexture">
+   <a href="https://gpuweb.github.io/gpuweb/#gpuexternaltexture">https://gpuweb.github.io/gpuweb/#gpuexternaltexture</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-gpuexternaltexture">10.3.3. Resource Layout Compatibility</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-enumdef-gpufiltermode">
+   <a href="https://gpuweb.github.io/gpuweb/#enumdef-gpufiltermode">https://gpuweb.github.io/gpuweb/#enumdef-gpufiltermode</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-enumdef-gpufiltermode">5.5. Texture and Sampler Types</a>
+    <li><a href="#ref-for-enumdef-gpufiltermode①">17.5.14. textureSampleBaseClampToEdge</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-dictdef-gpuprogrammablestage">
+   <a href="https://gpuweb.github.io/gpuweb/#dictdef-gpuprogrammablestage">https://gpuweb.github.io/gpuweb/#dictdef-gpuprogrammablestage</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dictdef-gpuprogrammablestage">1.1. Technical Overview</a>
+    <li><a href="#ref-for-dictdef-gpuprogrammablestage①">10.2. Entry Point Declaration</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-gpusampler">
+   <a href="https://gpuweb.github.io/gpuweb/#gpusampler">https://gpuweb.github.io/gpuweb/#gpusampler</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-gpusampler">5.5. Texture and Sampler Types</a>
+    <li><a href="#ref-for-gpusampler①">10.3.3. Resource Layout Compatibility</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-enumdef-gpustoragetextureaccess">
+   <a href="https://gpuweb.github.io/gpuweb/#enumdef-gpustoragetextureaccess">https://gpuweb.github.io/gpuweb/#enumdef-gpustoragetextureaccess</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-enumdef-gpustoragetextureaccess">10.3.3. Resource Layout Compatibility</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-gputexture">
+   <a href="https://gpuweb.github.io/gpuweb/#gputexture">https://gpuweb.github.io/gpuweb/#gputexture</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-gputexture">5.5. Texture and Sampler Types</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-enumdef-gputextureformat">
+   <a href="https://gpuweb.github.io/gpuweb/#enumdef-gputextureformat">https://gpuweb.github.io/gpuweb/#enumdef-gputextureformat</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-enumdef-gputextureformat">5.5.1. Texel Formats</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-gputextureview">
+   <a href="https://gpuweb.github.io/gpuweb/#gputextureview">https://gpuweb.github.io/gpuweb/#gputextureview</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-gputextureview">10.3.3. Resource Layout Compatibility</a> <a href="#ref-for-gputextureview①">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-gputextureusage-storage_binding">
+   <a href="https://gpuweb.github.io/gpuweb/#dom-gputextureusage-storage_binding">https://gpuweb.github.io/gpuweb/#dom-gputextureusage-storage_binding</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gputextureusage-storage_binding">5.5.1. Texel Formats</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-binding-member">
    <a href="https://gpuweb.github.io/gpuweb/#binding-member">https://gpuweb.github.io/gpuweb/#binding-member</a><b>Referenced in:</b>
    <ul>
@@ -18050,6 +18199,42 @@ registrations, it matches widespread industry conventions.</p>
    <a href="https://gpuweb.github.io/gpuweb/#binding-type">https://gpuweb.github.io/gpuweb/#binding-type</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-binding-type">10.3.3. Resource Layout Compatibility</a> <a href="#ref-for-binding-type①">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-gpubindgrouplayoutentry-buffer">
+   <a href="https://gpuweb.github.io/gpuweb/#dom-gpubindgrouplayoutentry-buffer">https://gpuweb.github.io/gpuweb/#dom-gpubindgrouplayoutentry-buffer</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gpubindgrouplayoutentry-buffer">10.3.3. Resource Layout Compatibility</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-gpumultisamplestate-count">
+   <a href="https://gpuweb.github.io/gpuweb/#dom-gpumultisamplestate-count">https://gpuweb.github.io/gpuweb/#dom-gpumultisamplestate-count</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gpumultisamplestate-count">16. Built-in Values</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-gpudevice-createcomputepipeline">
+   <a href="https://gpuweb.github.io/gpuweb/#dom-gpudevice-createcomputepipeline">https://gpuweb.github.io/gpuweb/#dom-gpudevice-createcomputepipeline</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gpudevice-createcomputepipeline">2. Shader Lifecycle</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-gpudevice-createrenderpipeline">
+   <a href="https://gpuweb.github.io/gpuweb/#dom-gpudevice-createrenderpipeline">https://gpuweb.github.io/gpuweb/#dom-gpudevice-createrenderpipeline</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gpudevice-createrenderpipeline">2. Shader Lifecycle</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-gpudevice-createshadermodule">
+   <a href="https://gpuweb.github.io/gpuweb/#dom-gpudevice-createshadermodule">https://gpuweb.github.io/gpuweb/#dom-gpudevice-createshadermodule</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gpudevice-createshadermodule">2. Shader Lifecycle</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-gpubindgrouplayoutentry-externaltexture">
+   <a href="https://gpuweb.github.io/gpuweb/#dom-gpubindgrouplayoutentry-externaltexture">https://gpuweb.github.io/gpuweb/#dom-gpubindgrouplayoutentry-externaltexture</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gpubindgrouplayoutentry-externaltexture">10.3.3. Resource Layout Compatibility</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-framebuffer">
@@ -18082,10 +18267,28 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-rasterizationpoint">13.4. Fragment Shaders and Helper Invocations</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-gpubindgrouplayoutentry-sampler">
+   <a href="https://gpuweb.github.io/gpuweb/#dom-gpubindgrouplayoutentry-sampler">https://gpuweb.github.io/gpuweb/#dom-gpubindgrouplayoutentry-sampler</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gpubindgrouplayoutentry-sampler">10.3.3. Resource Layout Compatibility</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-shader-output-mask">
    <a href="https://gpuweb.github.io/gpuweb/#shader-output-mask">https://gpuweb.github.io/gpuweb/#shader-output-mask</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-shader-output-mask">16. Built-in Values</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-gpubindgrouplayoutentry-storagetexture">
+   <a href="https://gpuweb.github.io/gpuweb/#dom-gpubindgrouplayoutentry-storagetexture">https://gpuweb.github.io/gpuweb/#dom-gpubindgrouplayoutentry-storagetexture</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gpubindgrouplayoutentry-storagetexture">10.3.3. Resource Layout Compatibility</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-gpubindgrouplayoutentry-texture">
+   <a href="https://gpuweb.github.io/gpuweb/#dom-gpubindgrouplayoutentry-texture">https://gpuweb.github.io/gpuweb/#dom-gpubindgrouplayoutentry-texture</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gpubindgrouplayoutentry-texture">10.3.3. Resource Layout Compatibility</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-abstract-opdef-validating-gpuprogrammablestage">
@@ -18138,15 +18341,49 @@ registrations, it matches widespread industry conventions.</p>
    <li>
     <a data-link-type="biblio">[webgpu]</a> defines the following terms:
     <ul>
+     <li><span class="dfn-paneled" id="term-for-dom-gpusamplerbindingtype-comparison">"comparison"</span>
+     <li><span class="dfn-paneled" id="term-for-dom-gputexturesampletype-depth">"depth"</span>
+     <li><span class="dfn-paneled" id="term-for-dom-gpusamplerbindingtype-filtering">"filtering"</span>
+     <li><span class="dfn-paneled" id="term-for-dom-gputexturesampletype-float">"float"</span>
+     <li><span class="dfn-paneled" id="term-for-dom-gpusamplerbindingtype-non-filtering">"non-filtering"</span>
+     <li><span class="dfn-paneled" id="term-for-dom-gpubufferbindingtype-read-only-storage">"read-only-storage"</span>
+     <li><span class="dfn-paneled" id="term-for-dom-gputexturesampletype-sint">"sint"</span>
+     <li><span class="dfn-paneled" id="term-for-dom-gpubufferbindingtype-storage">"storage"</span>
+     <li><span class="dfn-paneled" id="term-for-dom-gputexturesampletype-uint">"uint"</span>
+     <li><span class="dfn-paneled" id="term-for-dom-gputexturesampletype-unfilterable-float">"unfilterable-float"</span>
+     <li><span class="dfn-paneled" id="term-for-dom-gpubufferbindingtype-uniform">"uniform"</span>
+     <li><span class="dfn-paneled" id="term-for-dom-gpustoragetextureaccess-write-only">"write-only"</span>
+     <li><span class="dfn-paneled" id="term-for-enumdef-gpuaddressmode">GPUAddressMode</span>
+     <li><span class="dfn-paneled" id="term-for-gpubuffer">GPUBuffer</span>
+     <li><span class="dfn-paneled" id="term-for-dictdef-gpubufferbinding">GPUBufferBinding</span>
+     <li><span class="dfn-paneled" id="term-for-enumdef-gpucomparefunction">GPUCompareFunction</span>
+     <li><span class="dfn-paneled" id="term-for-gpuexternaltexture">GPUExternalTexture</span>
+     <li><span class="dfn-paneled" id="term-for-enumdef-gpufiltermode">GPUFilterMode</span>
+     <li><span class="dfn-paneled" id="term-for-dictdef-gpuprogrammablestage">GPUProgrammableStage</span>
+     <li><span class="dfn-paneled" id="term-for-gpusampler">GPUSampler</span>
+     <li><span class="dfn-paneled" id="term-for-enumdef-gpustoragetextureaccess">GPUStorageTextureAccess</span>
+     <li><span class="dfn-paneled" id="term-for-gputexture">GPUTexture</span>
+     <li><span class="dfn-paneled" id="term-for-enumdef-gputextureformat">GPUTextureFormat</span>
+     <li><span class="dfn-paneled" id="term-for-gputextureview">GPUTextureView</span>
+     <li><span class="dfn-paneled" id="term-for-dom-gputextureusage-storage_binding">STORAGE_BINDING</span>
      <li><span class="dfn-paneled" id="term-for-binding-member">binding member</span>
      <li><span class="dfn-paneled" id="term-for-binding-resource-type">binding resource type</span>
      <li><span class="dfn-paneled" id="term-for-binding-type">binding type</span>
+     <li><span class="dfn-paneled" id="term-for-dom-gpubindgrouplayoutentry-buffer">buffer</span>
+     <li><span class="dfn-paneled" id="term-for-dom-gpumultisamplestate-count">count</span>
+     <li><span class="dfn-paneled" id="term-for-dom-gpudevice-createcomputepipeline">createComputePipeline(descriptor)</span>
+     <li><span class="dfn-paneled" id="term-for-dom-gpudevice-createrenderpipeline">createRenderPipeline(descriptor)</span>
+     <li><span class="dfn-paneled" id="term-for-dom-gpudevice-createshadermodule">createShaderModule(descriptor)</span>
+     <li><span class="dfn-paneled" id="term-for-dom-gpubindgrouplayoutentry-externaltexture">externalTexture</span>
      <li><span class="dfn-paneled" id="term-for-framebuffer">framebuffer</span>
      <li><span class="dfn-paneled" id="term-for-front-facing">front-facing</span>
      <li><span class="dfn-paneled" id="term-for-gpu-command">gpu command</span>
      <li><span class="dfn-paneled" id="term-for-dom-supported-limits-maxcomputeworkgroupstoragesize">maxcomputeworkgroupstoragesize</span>
      <li><span class="dfn-paneled" id="term-for-rasterizationpoint">rasterizationpoint</span>
+     <li><span class="dfn-paneled" id="term-for-dom-gpubindgrouplayoutentry-sampler">sampler</span>
      <li><span class="dfn-paneled" id="term-for-shader-output-mask">shader-output mask</span>
+     <li><span class="dfn-paneled" id="term-for-dom-gpubindgrouplayoutentry-storagetexture">storageTexture</span>
+     <li><span class="dfn-paneled" id="term-for-dom-gpubindgrouplayoutentry-texture">texture</span>
      <li><span class="dfn-paneled" id="term-for-abstract-opdef-validating-gpuprogrammablestage">validating GPUProgrammableStage</span>
     </ul>
   </ul>
