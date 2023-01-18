@@ -719,7 +719,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/a8c0a50c559987c43a821d0ac5a2ff9348c7cb9e/wgsl/index.bs">https://github.com/kainino0x/gpuweb/blob/a8c0a50c559987c43a821d0ac5a2ff9348c7cb9e/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/5346460a16f7b9652bc148703186f1ae34f30086/wgsl/index.bs">https://github.com/kainino0x/gpuweb/blob/5346460a16f7b9652bc148703186f1ae34f30086/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -7495,7 +7495,7 @@ where 0 ≤ <var>r</var> &lt; <var>e2</var>.</p>
           <li data-md>
            <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①②③">shader-creation error</a> if <var>e1</var> and <var>e2</var> are <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions④②">const-expressions</a>.</p>
           <li data-md>
-           <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error①⑤">pipeline-creation error</a> if <var>e1</var> and <var>e2</var> are [=override-expressions].</p>
+           <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error①⑤">pipeline-creation error</a> if <var>e1</var> and <var>e2</var> are <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions②⑥">override-expressions</a>.</p>
           <li data-md>
            <p>Otherwise, 0.</p>
          </ul>
@@ -7513,7 +7513,7 @@ where 0 ≤ <var>r</var> &lt; <var>e2</var>.</p>
           <li data-md>
            <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①②④">shader-creation error</a> if <var>e2</var> is a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions④③">const-expression</a>.</p>
           <li data-md>
-           <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error①⑥">pipeline-creation error</a> if <var>e2</var> is an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions②⑥">override-expression</a>.</p>
+           <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error①⑥">pipeline-creation error</a> if <var>e2</var> is an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions②⑦">override-expression</a>.</p>
           <li data-md>
            <p>Otherwise, 0.</p>
          </ul>
@@ -7689,7 +7689,7 @@ where 0 ≤ <var>r</var> &lt; <var>e2</var>.</p>
         <li data-md>
          <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①②⑤">shader-creation error</a> if <var>e2</var> is a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions④④">const-expression</a>.</p>
         <li data-md>
-         <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error①⑦">pipeline-creation error</a> if <var>e2</var> is an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions②⑦">override-expression</a>.</p>
+         <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error①⑦">pipeline-creation error</a> if <var>e2</var> is an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions②⑧">override-expression</a>.</p>
        </ul>
        <p>When both <var>e1</var> and <var>e2</var> are known before <a data-link-type="dfn" href="#shader-execution-start" id="ref-for-shader-execution-start①">shader execution start</a>,
         the result must not overflow:</p>
@@ -7701,7 +7701,7 @@ and the <var>e2</var>+1 most significant bits of <var>e1</var> do not have the s
           <li data-md>
            <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①②⑥">shader-creation error</a> if <var>e1</var> and <var>e2</var> are <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions④⑤">const-expressions</a>.</p>
           <li data-md>
-           <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error①⑧">pipeline-creation error</a> if <var>e1</var> and <var>e2</var> are <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions②⑧">override-expressions</a>.</p>
+           <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error①⑧">pipeline-creation error</a> if <var>e1</var> and <var>e2</var> are <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions②⑨">override-expressions</a>.</p>
          </ul>
         <li data-md>
          <p>If <var>T</var> is an unsigned integer type, and any of the <var>e2</var> most significant bits of <var>e1</var> are 1, then:</p>
@@ -7709,7 +7709,7 @@ and the <var>e2</var>+1 most significant bits of <var>e1</var> do not have the s
           <li data-md>
            <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①②⑦">shader-creation error</a> if <var>e1</var> and <var>e2</var> are <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions④⑥">const-expressions</a>.</p>
           <li data-md>
-           <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error①⑨">pipeline-creation error</a> if <var>e1</var> and <var>e2</var> are <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions②⑨">override-expressions</a>.</p>
+           <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error①⑨">pipeline-creation error</a> if <var>e1</var> and <var>e2</var> are <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③⓪">override-expressions</a>.</p>
          </ul>
        </ul>
        <p><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise④③">Component-wise</a> when <var>T</var> is a vector.</p>
@@ -7746,7 +7746,7 @@ and the <var>e2</var>+1 most significant bits of <var>e1</var> do not have the s
         <li data-md>
          <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①②⑨">shader-creation error</a> if <var>e2</var> is a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions④⑦">const-expression</a>.</p>
         <li data-md>
-         <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error②⓪">pipeline-creation error</a> if <var>e2</var> is an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③⓪">override-expression</a>.</p>
+         <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error②⓪">pipeline-creation error</a> if <var>e2</var> is an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③①">override-expression</a>.</p>
        </ul>
        <p><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise④⑤">Component-wise</a> when <var>T</var> is a vector.</p>
      <tr class="algorithm" data-algorithm="abstract shift right">
@@ -9967,7 +9967,7 @@ The interface includes:</p>
       <p>Any type needed to define the above, including following <a data-link-type="dfn" href="#type-alias" id="ref-for-type-alias⑧">type aliases</a>.</p>
      <li data-md>
       <p>As a particular case of helping to define a type,
-any <a data-link-type="dfn" href="#override-declaration" id="ref-for-override-declaration①②">override-declaration</a> used in an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③①">override-expression</a> that is the <a data-link-type="dfn" href="#element-count" id="ref-for-element-count⑥">element count</a> of an <a data-link-type="dfn" href="#array" id="ref-for-array①⓪">array</a> type for a variable in the <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup①①">workgroup</a> address space,
+any <a data-link-type="dfn" href="#override-declaration" id="ref-for-override-declaration①②">override-declaration</a> used in an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③②">override-expression</a> that is the <a data-link-type="dfn" href="#element-count" id="ref-for-element-count⑥">element count</a> of an <a data-link-type="dfn" href="#array" id="ref-for-array①⓪">array</a> type for a variable in the <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup①①">workgroup</a> address space,
 when that variable itself is statically accessed.</p>
      <li data-md>
       <p>Any override declarations used to support the evaluation of override-expressions in any of the above.</p>
@@ -11652,7 +11652,7 @@ infinity or a NaN, an <a data-link-type="dfn" href="#indeterminate-value" id="re
        <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪⑤">shader-creation error</a> if any <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑤④">const-expression</a> of
 floating-point type evaluates to NaN or infinity.</p>
       <li data-md>
-       <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error②②">pipeline-creation error</a> if any <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③②">override-expression</a> of
+       <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error②②">pipeline-creation error</a> if any <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③③">override-expression</a> of
 floating-point type evaluates to NaN or infinity.</p>
       <li data-md>
        <p class="note" role="note"><span>Note:</span> This means some functions (e.g. <code>min</code> and <code>max</code>)
@@ -12033,7 +12033,7 @@ Therefore the maximum u32 value resulting from a floating point conversion is 42
         <li data-md>
          <p>A <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪⑥">shader-creation error</a> results if the original expression is a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑤⑤">const-expression</a>.</p>
         <li data-md>
-         <p>A <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error②③">pipeline-creation error</a> results if the original expression is an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③③">override-expression</a>.</p>
+         <p>A <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error②③">pipeline-creation error</a> results if the original expression is an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③④">override-expression</a>.</p>
         <li data-md>
          <p>Otherwise the conversion proceeds as follows:</p>
          <ol>
@@ -13168,7 +13168,7 @@ See <a href="#function-calls">§ 9.2 Function Calls</a>.</p>
         <li data-md>
          <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪⑧">shader-creation error</a> if <code>low</code> and <code>high</code> are <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑤⑥">const-expressions</a>.</p>
         <li data-md>
-         <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error②④">pipeline-creation error</a> if <code>low</code> and <code>high</code> are <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③④">override-expressions</a>.</p>
+         <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error②④">pipeline-creation error</a> if <code>low</code> and <code>high</code> are <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③⑤">override-expressions</a>.</p>
        </ul>
    </table>
    <h4 class="heading settled" data-level="17.3.11" id="cos-builtin"><span class="secno">17.3.11. </span><span class="content"><code>cos</code></span><a class="self-link" href="#cos-builtin"></a></h4>
@@ -13392,7 +13392,7 @@ See <a href="#function-calls">§ 9.2 Function Calls</a>.</p>
         <li data-md>
          <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪⑨">shader-creation error</a> if <code>count</code> and <code>offset</code> are <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑤⑦">const-expressions</a>.</p>
         <li data-md>
-         <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error②⑤">pipeline-creation error</a> if <code>count</code> and <code>offset</code> are <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③⑤">override-expressions</a>.</p>
+         <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error②⑤">pipeline-creation error</a> if <code>count</code> and <code>offset</code> are <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③⑥">override-expressions</a>.</p>
        </ul>
    </table>
    <h4 class="heading settled" data-level="17.3.24" id="extractBits-unsigned-builtin"><span class="secno">17.3.24. </span><span class="content"><code>extractBits</code> (unsigned)</span><a class="self-link" href="#extractBits-unsigned-builtin"></a></h4>
@@ -13427,7 +13427,7 @@ See <a href="#function-calls">§ 9.2 Function Calls</a>.</p>
         <li data-md>
          <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①⓪">shader-creation error</a> if <code>count</code> and <code>offset</code> are <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑤⑧">const-expressions</a>.</p>
         <li data-md>
-         <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error②⑥">pipeline-creation error</a> if <code>count</code> and <code>offset</code> are <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③⑥">override-expressions</a>.</p>
+         <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error②⑥">pipeline-creation error</a> if <code>count</code> and <code>offset</code> are <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③⑦">override-expressions</a>.</p>
        </ul>
    </table>
    <h4 class="heading settled" data-level="17.3.25" id="faceForward-builtin"><span class="secno">17.3.25. </span><span class="content"><code>faceForward</code></span><a class="self-link" href="#faceForward-builtin"></a></h4>
@@ -13805,7 +13805,7 @@ but a value may infer the type.</p>
         <li data-md>
          <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①①">shader-creation error</a> if <code>count</code> and <code>offset</code> are <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑤⑨">const-expressions</a>.</p>
         <li data-md>
-         <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error②⑦">pipeline-creation error</a> if <code>count</code> and <code>offset</code> are <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③⑦">override-expressions</a>.</p>
+         <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error②⑦">pipeline-creation error</a> if <code>count</code> and <code>offset</code> are <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③⑧">override-expressions</a>.</p>
        </ul>
    </table>
    <h4 class="heading settled" data-level="17.3.34" id="inverseSqrt-builtin"><span class="secno">17.3.34. </span><span class="content"><code>inverseSqrt</code></span><a class="self-link" href="#inverseSqrt-builtin"></a></h4>
@@ -13852,7 +13852,7 @@ but a value may infer the type.</p>
           <li data-md>
            <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①②">shader-creation error</a> if <code>e2</code> is a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑥⓪">const-expression</a>.</p>
           <li data-md>
-           <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error②⑧">pipeline-creation error</a> if <code>e2</code> is an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③⑧">override-expression</a>.</p>
+           <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error②⑧">pipeline-creation error</a> if <code>e2</code> is an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③⑨">override-expression</a>.</p>
           <li data-md>
            <p>Otherwise the result is an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value⑥">indeterminate value</a> for <code>T</code>.</p>
          </ul>
@@ -14258,7 +14258,7 @@ but a value may infer the type.</p>
         <li data-md>
          <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①③">shader-creation error</a> if <code>e</code> is a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑥①">const-expression</a>.</p>
         <li data-md>
-         <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error②⑨">pipeline-creation error</a> if <code>e</code> is an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③⑨">override-expression</a>.</p>
+         <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error②⑨">pipeline-creation error</a> if <code>e</code> is an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions④⓪">override-expression</a>.</p>
         <li data-md>
          <p>Otherwise the result is an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value⑦">indeterminate value</a> for <code>T</code>.</p>
        </ul>
@@ -16288,7 +16288,7 @@ their results into a single output value.</p>
         <li data-md>
          <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑤③">shader-creation error</a> if <code>e</code> is a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑦①">const-expression</a>.</p>
         <li data-md>
-         <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error③⓪">pipeline-creation error</a> if <code>e</code> is an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions④⓪">override-expression</a>.</p>
+         <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error③⓪">pipeline-creation error</a> if <code>e</code> is an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions④①">override-expression</a>.</p>
         <li data-md>
          <p>Otherwise the result is an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value⑨">indeterminate value</a> for u32.</p>
        </ul>
@@ -20819,18 +20819,18 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-override-expressions①⑥">7.7.1.3. Component Reference from Vector Reference</a>
     <li><a href="#ref-for-override-expressions①⑦">7.7.2. Matrix Access Expression</a> <a href="#ref-for-override-expressions①⑧">(2)</a>
     <li><a href="#ref-for-override-expressions①⑨">7.7.3. Array Access Expression</a> <a href="#ref-for-override-expressions②⓪">(2)</a> <a href="#ref-for-override-expressions②①">(3)</a>
-    <li><a href="#ref-for-override-expressions②②">7.9. Arithmetic Expressions</a> <a href="#ref-for-override-expressions②③">(2)</a> <a href="#ref-for-override-expressions②④">(3)</a> <a href="#ref-for-override-expressions②⑤">(4)</a> <a href="#ref-for-override-expressions②⑥">(5)</a>
-    <li><a href="#ref-for-override-expressions②⑦">7.11. Bit Expressions</a> <a href="#ref-for-override-expressions②⑧">(2)</a> <a href="#ref-for-override-expressions②⑨">(3)</a> <a href="#ref-for-override-expressions③⓪">(4)</a>
-    <li><a href="#ref-for-override-expressions③①">10.3. Shader Interface</a>
-    <li><a href="#ref-for-override-expressions③②">13.6. Floating Point Evaluation</a>
-    <li><a href="#ref-for-override-expressions③③">13.6.2. Floating Point Conversion</a>
-    <li><a href="#ref-for-override-expressions③④">17.3.10. clamp</a>
-    <li><a href="#ref-for-override-expressions③⑤">17.3.23. extractBits (signed)</a>
-    <li><a href="#ref-for-override-expressions③⑥">17.3.24. extractBits (unsigned)</a>
-    <li><a href="#ref-for-override-expressions③⑦">17.3.33. insertBits</a>
-    <li><a href="#ref-for-override-expressions③⑧">17.3.35. ldexp</a>
-    <li><a href="#ref-for-override-expressions③⑨">17.3.45. quantizeToF16</a>
-    <li><a href="#ref-for-override-expressions④⓪">17.7.5. pack2x16float</a>
+    <li><a href="#ref-for-override-expressions②②">7.9. Arithmetic Expressions</a> <a href="#ref-for-override-expressions②③">(2)</a> <a href="#ref-for-override-expressions②④">(3)</a> <a href="#ref-for-override-expressions②⑤">(4)</a> <a href="#ref-for-override-expressions②⑥">(5)</a> <a href="#ref-for-override-expressions②⑦">(6)</a>
+    <li><a href="#ref-for-override-expressions②⑧">7.11. Bit Expressions</a> <a href="#ref-for-override-expressions②⑨">(2)</a> <a href="#ref-for-override-expressions③⓪">(3)</a> <a href="#ref-for-override-expressions③①">(4)</a>
+    <li><a href="#ref-for-override-expressions③②">10.3. Shader Interface</a>
+    <li><a href="#ref-for-override-expressions③③">13.6. Floating Point Evaluation</a>
+    <li><a href="#ref-for-override-expressions③④">13.6.2. Floating Point Conversion</a>
+    <li><a href="#ref-for-override-expressions③⑤">17.3.10. clamp</a>
+    <li><a href="#ref-for-override-expressions③⑥">17.3.23. extractBits (signed)</a>
+    <li><a href="#ref-for-override-expressions③⑦">17.3.24. extractBits (unsigned)</a>
+    <li><a href="#ref-for-override-expressions③⑧">17.3.33. insertBits</a>
+    <li><a href="#ref-for-override-expressions③⑨">17.3.35. ldexp</a>
+    <li><a href="#ref-for-override-expressions④⓪">17.3.45. quantizeToF16</a>
+    <li><a href="#ref-for-override-expressions④①">17.7.5. pack2x16float</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="indeterminate-value">
