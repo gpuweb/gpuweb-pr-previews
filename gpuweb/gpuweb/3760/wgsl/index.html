@@ -719,7 +719,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/5346460a16f7b9652bc148703186f1ae34f30086/wgsl/index.bs">https://github.com/kainino0x/gpuweb/blob/5346460a16f7b9652bc148703186f1ae34f30086/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/66fe154faf2dc43e70e9165edec2eddc7acda615/wgsl/index.bs">https://github.com/kainino0x/gpuweb/blob/66fe154faf2dc43e70e9165edec2eddc7acda615/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -4565,7 +4565,7 @@ Different call sites may supply pointers into different originating variables.</
    <ul>
     <li data-md>
      <p>when the <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable">originating variable</a> is a <a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer④">uniform buffer</a> or a <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer⑤">storage buffer</a>,
-the value from any <a data-link-type="dfn" href="#memory-locations" id="ref-for-memory-locations③">memory location(s)</a> of the <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#gpubuffer" id="ref-for-gpubuffer">GPUBuffer</a></code> bound to the originating variable</p>
+the value from any <a data-link-type="dfn" href="#memory-locations" id="ref-for-memory-locations③">memory location(s)</a> of the WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#gpubuffer" id="ref-for-gpubuffer">GPUBuffer</a></code> bound to the originating variable</p>
     <li data-md>
      <p>when the originating variable is not a <a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer⑤">uniform buffer</a> or <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer⑥">storage buffer</a>,
 a value from any <a data-link-type="dfn" href="#memory-locations" id="ref-for-memory-locations④">memory location(s)</a> in the originating variable</p>
@@ -4584,7 +4584,8 @@ a value from any <a data-link-type="dfn" href="#memory-locations" id="ref-for-me
    <ul>
     <li data-md>
      <p>when the <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable①">originating variable</a> is a <a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer⑥">uniform buffer</a> or a <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer⑦">storage buffer</a>,
-store the value to any <a data-link-type="dfn" href="#memory-locations" id="ref-for-memory-locations⑤">memory location(s)</a> of the <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#gpubuffer" id="ref-for-gpubuffer①">GPUBuffer</a></code> bound to the <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable②">originating variable</a></p>
+store the value to any <a data-link-type="dfn" href="#memory-locations" id="ref-for-memory-locations⑤">memory location(s)</a> of the
+WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#gpubuffer" id="ref-for-gpubuffer①">GPUBuffer</a></code> bound to the <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable②">originating variable</a></p>
     <li data-md>
      <p>when the <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable③">originating variable</a> is not a <a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer⑦">uniform buffer</a> or <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer⑧">storage buffer</a>,
 store the value to any <a data-link-type="dfn" href="#memory-locations" id="ref-for-memory-locations⑥">memory locations(s)</a> in the
