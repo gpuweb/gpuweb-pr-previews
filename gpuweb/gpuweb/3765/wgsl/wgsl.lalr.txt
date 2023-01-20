@@ -86,17 +86,17 @@ call_phrase:
    callable argument_expression_list
 callable:
    ident
- | ident '::' '<' primary_expression ( ',' primary_expression ) * ? ',' ? '>'
+ | ident '::' '<' additive_expression ( ',' additive_expression ) * ? ',' ? '>'
 callable/1.4/0/0.0:
-   ',' primary_expression
+   ',' additive_expression
 callable_type:
    ident
- | ident '::' '<' primary_expression ( ',' primary_expression ) * ? ',' ? '>'
- | ident '<' primary_expression ( ',' primary_expression ) * ? ',' ? '>'
+ | ident '::' '<' additive_expression ( ',' additive_expression ) * ? ',' ? '>'
+ | ident '<' additive_expression ( ',' additive_expression ) * ? ',' ? '>'
 callable_type/1.3/0/0.0:
-   ',' primary_expression
+   ',' additive_expression
 callable_type/2.4/0/0.0:
-   ',' primary_expression
+   ',' additive_expression
 case_clause:
    'case' case_selectors ':' ? compound_statement
 case_selector:
@@ -598,7 +598,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {}
 bool_literal -> · 'false' : {'%' '*' '+' '-' '.' '/' '['}
 bool_literal -> · 'true' : {'%' '*' '+' '-' '.' '/' '['}
 call_expression -> · callable argument_expression_list : {'%' '*' '+' '-' '.' '/' '['}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
 callable -> · ident : {'%' '(' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /0[fh]/ : {'%' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' '-' '.' '/' '['}
@@ -828,7 +828,7 @@ unary_expression -> '-' · unary_expression : {'%' ')' '*' '+' ',' '-' '/' ':' '
 bool_literal -> · 'false' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 bool_literal -> · 'true' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 call_expression -> · callable argument_expression_list : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 callable -> · ident : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /0[fh]/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
@@ -867,7 +867,7 @@ unary_expression -> '!' · unary_expression : {'%' ')' '*' '+' ',' '-' '/' ':' '
 bool_literal -> · 'false' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 bool_literal -> · 'true' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 call_expression -> · callable argument_expression_list : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 callable -> · ident : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /0[fh]/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
@@ -906,7 +906,7 @@ unary_expression -> '~' · unary_expression : {'%' ')' '*' '+' ',' '-' '/' ':' '
 bool_literal -> · 'false' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 bool_literal -> · 'true' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 call_expression -> · callable argument_expression_list : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 callable -> · ident : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /0[fh]/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
@@ -945,7 +945,7 @@ unary_expression -> '*' · unary_expression : {'%' ')' '*' '+' ',' '-' '/' ':' '
 bool_literal -> · 'false' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 bool_literal -> · 'true' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 call_expression -> · callable argument_expression_list : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 callable -> · ident : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /0[fh]/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
@@ -984,7 +984,7 @@ unary_expression -> '&' · unary_expression : {'%' ')' '*' '+' ',' '-' '/' ':' '
 bool_literal -> · 'false' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 bool_literal -> · 'true' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 call_expression -> · callable argument_expression_list : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 callable -> · ident : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /0[fh]/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
@@ -1040,7 +1040,7 @@ primary_expression -> literal · : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 primary_expression -> paren_expression · : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 
 #71
-callable -> ident · '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
+callable -> ident · '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 callable -> ident · : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 
 #72
@@ -1068,7 +1068,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {}
 bool_literal -> · 'false' : {'%' '*' '+' '-' '.' '/' '['}
 bool_literal -> · 'true' : {'%' '*' '+' '-' '.' '/' '['}
 call_expression -> · callable argument_expression_list : {'%' '*' '+' '-' '.' '/' '['}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
 callable -> · ident : {'%' '(' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /0[fh]/ : {'%' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' '-' '.' '/' '['}
@@ -1265,7 +1265,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {}
 bool_literal -> · 'false' : {'%' '*' '+' '-' '.' '/' '['}
 bool_literal -> · 'true' : {'%' '*' '+' '-' '.' '/' '['}
 call_expression -> · callable argument_expression_list : {'%' '*' '+' '-' '.' '/' '['}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
 callable -> · ident : {'%' '(' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /0[fh]/ : {'%' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' '-' '.' '/' '['}
@@ -1325,8 +1325,8 @@ optionally_typed_ident -> ident optionally_typed_ident/0.1 · : {'='}
 #115
 optionally_typed_ident/0.1 -> ':' · type_specifier : {'='}
 ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {'='}
-type_specifier -> · ident '::' '<' primary_expression callable_type/2.4 callable_type/2.5 '>' : {'='}
-type_specifier -> · ident '<' primary_expression callable_type/1.3 callable_type/1.4 '>' : {'='}
+type_specifier -> · ident '::' '<' additive_expression callable_type/2.4 callable_type/2.5 '>' : {'='}
+type_specifier -> · ident '<' additive_expression callable_type/1.3 callable_type/1.4 '>' : {'='}
 type_specifier -> · ident : {'='}
 
 #116
@@ -1345,7 +1345,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {}
 bool_literal -> · 'false' : {'%' '*' '+' '-' '.' '/' '['}
 bool_literal -> · 'true' : {'%' '*' '+' '-' '.' '/' '['}
 call_expression -> · callable argument_expression_list : {'%' '*' '+' '-' '.' '/' '['}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
 callable -> · ident : {'%' '(' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /0[fh]/ : {'%' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' '-' '.' '/' '['}
@@ -1406,8 +1406,8 @@ global_constant_decl/1.3 -> · '=' expression : {}
 #118
 type_alias_decl -> 'type' ident '=' · type_specifier : {}
 ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {}
-type_specifier -> · ident '::' '<' primary_expression callable_type/2.4 callable_type/2.5 '>' : {}
-type_specifier -> · ident '<' primary_expression callable_type/1.3 callable_type/1.4 '>' : {}
+type_specifier -> · ident '::' '<' additive_expression callable_type/2.4 callable_type/2.5 '>' : {}
+type_specifier -> · ident '<' additive_expression callable_type/1.3 callable_type/1.4 '>' : {}
 type_specifier -> · ident : {}
 
 #119
@@ -1447,7 +1447,7 @@ compound_statement -> '{' · compound_statement/0.1 '}' : {'&' '(' '*' ';' '@' '
 assignment_statement -> · '_' '=' expression : {}
 assignment_statement -> · lhs_expression assignment_statement/0.1 expression : {}
 break_statement -> · 'break' : {}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'('}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'('}
 callable -> · ident : {'('}
 compound_statement -> · '{' compound_statement/0.1 '}' : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 compound_statement/0.1 -> · compound_statement/0.1/0 : {}
@@ -1498,7 +1498,7 @@ while_statement -> · 'while' expression compound_statement : {'&' '(' '*' ';' '
 paren_expression -> '(' expression · ')' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 
 #125
-callable -> ident '::' · '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
+callable -> ident '::' · '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 
 #126
 call_expression -> callable argument_expression_list · : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
@@ -1520,7 +1520,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {','}
 bool_literal -> · 'false' : {'%' '*' '+' ',' '-' '.' '/' '['}
 bool_literal -> · 'true' : {'%' '*' '+' ',' '-' '.' '/' '['}
 call_expression -> · callable argument_expression_list : {'%' '*' '+' ',' '-' '.' '/' '['}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' ',' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' ',' '-' '.' '/' '['}
 callable -> · ident : {'%' '(' '*' '+' ',' '-' '.' '/' '['}
 decimal_float_literal -> · /0[fh]/ : {'%' '*' '+' ',' '-' '.' '/' '['}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
@@ -1597,7 +1597,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {}
 bool_literal -> · 'false' : {'%' '*' '+' '-' '.' '/' '['}
 bool_literal -> · 'true' : {'%' '*' '+' '-' '.' '/' '['}
 call_expression -> · callable argument_expression_list : {'%' '*' '+' '-' '.' '/' '['}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
 callable -> · ident : {'%' '(' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /0[fh]/ : {'%' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' '-' '.' '/' '['}
@@ -1684,7 +1684,7 @@ multiplicative_expression -> multiplicative_expression multiplicative_operator �
 bool_literal -> · 'false' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 bool_literal -> · 'true' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 call_expression -> · callable argument_expression_list : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 callable -> · ident : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /0[fh]/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
@@ -1732,7 +1732,7 @@ shift_expression -> unary_expression '<<' · unary_expression : {')' ',' ':' '{'
 bool_literal -> · 'false' : {')' ',' '.' ':' '[' '{'}
 bool_literal -> · 'true' : {')' ',' '.' ':' '[' '{'}
 call_expression -> · callable argument_expression_list : {')' ',' '.' ':' '[' '{'}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'(' ')' ',' '.' ':' '[' '{'}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'(' ')' ',' '.' ':' '[' '{'}
 callable -> · ident : {'(' ')' ',' '.' ':' '[' '{'}
 decimal_float_literal -> · /0[fh]/ : {')' ',' '.' ':' '[' '{'}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {')' ',' '.' ':' '[' '{'}
@@ -1771,7 +1771,7 @@ shift_expression -> unary_expression '>>' · unary_expression : {')' ',' ':' '{'
 bool_literal -> · 'false' : {')' ',' '.' ':' '[' '{'}
 bool_literal -> · 'true' : {')' ',' '.' ':' '[' '{'}
 call_expression -> · callable argument_expression_list : {')' ',' '.' ':' '[' '{'}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'(' ')' ',' '.' ':' '[' '{'}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'(' ')' ',' '.' ':' '[' '{'}
 callable -> · ident : {'(' ')' ',' '.' ':' '[' '{'}
 decimal_float_literal -> · /0[fh]/ : {')' ',' '.' ':' '[' '{'}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {')' ',' '.' ':' '[' '{'}
@@ -1810,7 +1810,7 @@ additive_expression -> additive_expression additive_operator · multiplicative_e
 bool_literal -> · 'false' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 bool_literal -> · 'true' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 call_expression -> · callable argument_expression_list : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 callable -> · ident : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /0[fh]/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
@@ -1858,7 +1858,7 @@ bitwise_expression -> binary_xor_expression '^' · unary_expression : {')' ',' '
 bool_literal -> · 'false' : {')' ',' '.' ':' '[' '{'}
 bool_literal -> · 'true' : {')' ',' '.' ':' '[' '{'}
 call_expression -> · callable argument_expression_list : {')' ',' '.' ':' '[' '{'}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'(' ')' ',' '.' ':' '[' '{'}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'(' ')' ',' '.' ':' '[' '{'}
 callable -> · ident : {'(' ')' ',' '.' ':' '[' '{'}
 decimal_float_literal -> · /0[fh]/ : {')' ',' '.' ':' '[' '{'}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {')' ',' '.' ':' '[' '{'}
@@ -1898,7 +1898,7 @@ bitwise_expression -> binary_or_expression '|' · unary_expression : {')' ',' ':
 bool_literal -> · 'false' : {')' ',' '.' ':' '[' '{'}
 bool_literal -> · 'true' : {')' ',' '.' ':' '[' '{'}
 call_expression -> · callable argument_expression_list : {')' ',' '.' ':' '[' '{'}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'(' ')' ',' '.' ':' '[' '{'}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'(' ')' ',' '.' ':' '[' '{'}
 callable -> · ident : {'(' ')' ',' '.' ':' '[' '{'}
 decimal_float_literal -> · /0[fh]/ : {')' ',' '.' ':' '[' '{'}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {')' ',' '.' ':' '[' '{'}
@@ -1938,7 +1938,7 @@ bitwise_expression -> binary_and_expression '&' · unary_expression : {')' ',' '
 bool_literal -> · 'false' : {')' ',' '.' ':' '[' '{'}
 bool_literal -> · 'true' : {')' ',' '.' ':' '[' '{'}
 call_expression -> · callable argument_expression_list : {')' ',' '.' ':' '[' '{'}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'(' ')' ',' '.' ':' '[' '{'}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'(' ')' ',' '.' ':' '[' '{'}
 callable -> · ident : {'(' ')' ',' '.' ':' '[' '{'}
 decimal_float_literal -> · /0[fh]/ : {')' ',' '.' ':' '[' '{'}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {')' ',' '.' ':' '[' '{'}
@@ -1979,7 +1979,7 @@ additive_expression -> · multiplicative_expression : {')' '+' ',' '-' ':' '{'}
 bool_literal -> · 'false' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 bool_literal -> · 'true' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 call_expression -> · callable argument_expression_list : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 callable -> · ident : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /0[fh]/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
@@ -2025,7 +2025,7 @@ additive_expression -> · multiplicative_expression : {')' '+' ',' '-' ':' '{'}
 bool_literal -> · 'false' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 bool_literal -> · 'true' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 call_expression -> · callable argument_expression_list : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 callable -> · ident : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /0[fh]/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
@@ -2071,7 +2071,7 @@ additive_expression -> · multiplicative_expression : {')' '+' ',' '-' ':' '{'}
 bool_literal -> · 'false' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 bool_literal -> · 'true' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 call_expression -> · callable argument_expression_list : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 callable -> · ident : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /0[fh]/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
@@ -2117,7 +2117,7 @@ additive_expression -> · multiplicative_expression : {')' '+' ',' '-' ':' '{'}
 bool_literal -> · 'false' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 bool_literal -> · 'true' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 call_expression -> · callable argument_expression_list : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 callable -> · ident : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /0[fh]/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
@@ -2163,7 +2163,7 @@ additive_expression -> · multiplicative_expression : {')' '+' ',' '-' ':' '{'}
 bool_literal -> · 'false' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 bool_literal -> · 'true' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 call_expression -> · callable argument_expression_list : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 callable -> · ident : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /0[fh]/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
@@ -2209,7 +2209,7 @@ additive_expression -> · multiplicative_expression : {')' '+' ',' '-' ':' '{'}
 bool_literal -> · 'false' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 bool_literal -> · 'true' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 call_expression -> · callable argument_expression_list : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 callable -> · ident : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /0[fh]/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
@@ -2256,7 +2256,7 @@ additive_expression -> · multiplicative_expression : {')' '+' ',' '-' ':' '{'}
 bool_literal -> · 'false' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 bool_literal -> · 'true' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 call_expression -> · callable argument_expression_list : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 callable -> · ident : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /0[fh]/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
@@ -2310,7 +2310,7 @@ additive_expression -> · multiplicative_expression : {')' '+' ',' '-' ':' '{'}
 bool_literal -> · 'false' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 bool_literal -> · 'true' : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 call_expression -> · callable argument_expression_list : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 callable -> · ident : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /0[fh]/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
@@ -2374,7 +2374,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {')' ','}
 bool_literal -> · 'false' : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
 bool_literal -> · 'true' : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
 call_expression -> · callable argument_expression_list : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' '['}
 callable -> · ident : {'%' '(' ')' '*' '+' ',' '-' '.' '/' '['}
 decimal_float_literal -> · /0[fh]/ : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
@@ -2444,7 +2444,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {')' ','}
 bool_literal -> · 'false' : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
 bool_literal -> · 'true' : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
 call_expression -> · callable argument_expression_list : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' '['}
 callable -> · ident : {'%' '(' ')' '*' '+' ',' '-' '.' '/' '['}
 decimal_float_literal -> · /0[fh]/ : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
@@ -2514,7 +2514,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {')' ','}
 bool_literal -> · 'false' : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
 bool_literal -> · 'true' : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
 call_expression -> · callable argument_expression_list : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' '['}
 callable -> · ident : {'%' '(' ')' '*' '+' ',' '-' '.' '/' '['}
 decimal_float_literal -> · /0[fh]/ : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
@@ -2591,7 +2591,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {')' ','}
 bool_literal -> · 'false' : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
 bool_literal -> · 'true' : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
 call_expression -> · callable argument_expression_list : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' '['}
 callable -> · ident : {'%' '(' ')' '*' '+' ',' '-' '.' '/' '['}
 decimal_float_literal -> · /0[fh]/ : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
@@ -2661,7 +2661,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {')' ','}
 bool_literal -> · 'false' : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
 bool_literal -> · 'true' : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
 call_expression -> · callable argument_expression_list : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' '['}
 callable -> · ident : {'%' '(' ')' '*' '+' ',' '-' '.' '/' '['}
 decimal_float_literal -> · /0[fh]/ : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
@@ -2746,7 +2746,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {')' ','}
 bool_literal -> · 'false' : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
 bool_literal -> · 'true' : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
 call_expression -> · callable argument_expression_list : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' '['}
 callable -> · ident : {'%' '(' ')' '*' '+' ',' '-' '.' '/' '['}
 decimal_float_literal -> · /0[fh]/ : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
@@ -2816,7 +2816,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {')' ','}
 bool_literal -> · 'false' : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
 bool_literal -> · 'true' : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
 call_expression -> · callable argument_expression_list : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' '['}
 callable -> · ident : {'%' '(' ')' '*' '+' ',' '-' '.' '/' '['}
 decimal_float_literal -> · /0[fh]/ : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
@@ -3082,36 +3082,47 @@ expression_comma_list/0.1/0 -> · expression_comma_list/0.1/0/0.0 expression_com
 expression_comma_list/0.1/0/0.0 -> · ',' expression : {','}
 
 #222
-callable -> ident '::' '<' · primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
-bool_literal -> · 'false' : {','}
-bool_literal -> · 'true' : {','}
-call_expression -> · callable argument_expression_list : {','}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'(' ','}
-callable -> · ident : {'(' ','}
-decimal_float_literal -> · /0[fh]/ : {','}
-decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {','}
-decimal_float_literal -> · /[0-9]+[eE][+-]?[0-9]+[fh]?/ : {','}
-decimal_float_literal -> · /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ : {','}
-decimal_float_literal -> · /[1-9][0-9]*[fh]/ : {','}
-decimal_int_literal -> · /0[iu]?/ : {','}
-decimal_int_literal -> · /[1-9][0-9]*[iu]?/ : {','}
-float_literal -> · decimal_float_literal : {','}
-float_literal -> · hex_float_literal : {','}
-hex_float_literal -> · /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ : {','}
-hex_float_literal -> · /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ : {','}
-hex_float_literal -> · /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ : {','}
-hex_int_literal -> · /0[xX][0-9a-fA-F]+[iu]?/ : {','}
-ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {'(' ','}
-int_literal -> · decimal_int_literal : {','}
-int_literal -> · hex_int_literal : {','}
-literal -> · bool_literal : {','}
-literal -> · float_literal : {','}
-literal -> · int_literal : {','}
-paren_expression -> · '(' expression ')' : {','}
-primary_expression -> · call_expression : {','}
-primary_expression -> · callable : {','}
-primary_expression -> · literal : {','}
-primary_expression -> · paren_expression : {','}
+callable -> ident '::' '<' · additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
+additive_expression -> · additive_expression additive_operator multiplicative_expression : {'+' ',' '-'}
+additive_expression -> · multiplicative_expression : {'+' ',' '-'}
+bool_literal -> · 'false' : {'%' '*' '+' ',' '-' '.' '/' '['}
+bool_literal -> · 'true' : {'%' '*' '+' ',' '-' '.' '/' '['}
+call_expression -> · callable argument_expression_list : {'%' '*' '+' ',' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' ',' '-' '.' '/' '['}
+callable -> · ident : {'%' '(' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /0[fh]/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /[0-9]+[eE][+-]?[0-9]+[fh]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /[1-9][0-9]*[fh]/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_int_literal -> · /0[iu]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_int_literal -> · /[1-9][0-9]*[iu]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+float_literal -> · decimal_float_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+float_literal -> · hex_float_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+hex_float_literal -> · /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+hex_float_literal -> · /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+hex_float_literal -> · /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+hex_int_literal -> · /0[xX][0-9a-fA-F]+[iu]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {'%' '(' '*' '+' ',' '-' '.' '/' '['}
+int_literal -> · decimal_int_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+int_literal -> · hex_int_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+literal -> · bool_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+literal -> · float_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+literal -> · int_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+multiplicative_expression -> · multiplicative_expression multiplicative_operator unary_expression : {'%' '*' '+' ',' '-' '/'}
+multiplicative_expression -> · unary_expression : {'%' '*' '+' ',' '-' '/'}
+paren_expression -> · '(' expression ')' : {'%' '*' '+' ',' '-' '.' '/' '['}
+primary_expression -> · call_expression : {'%' '*' '+' ',' '-' '.' '/' '['}
+primary_expression -> · callable : {'%' '*' '+' ',' '-' '.' '/' '['}
+primary_expression -> · literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+primary_expression -> · paren_expression : {'%' '*' '+' ',' '-' '.' '/' '['}
+singular_expression -> · primary_expression singular_expression/0.1 : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '!' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '&' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '*' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '-' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '~' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · singular_expression : {'%' '*' '+' ',' '-' '/'}
 
 #223
 paren_expression -> '(' expression ')' · : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
@@ -3127,7 +3138,7 @@ compound_statement/0.1/0 -> statement · compound_statement/0.1/0 : {}
 assignment_statement -> · '_' '=' expression : {}
 assignment_statement -> · lhs_expression assignment_statement/0.1 expression : {}
 break_statement -> · 'break' : {}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'('}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'('}
 callable -> · ident : {'('}
 compound_statement -> · '{' compound_statement/0.1 '}' : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 compound_statement/0.1/0 -> · statement compound_statement/0.1/0 : {}
@@ -3234,7 +3245,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {}
 bool_literal -> · 'false' : {'%' '*' '+' '-' '.' '/' '['}
 bool_literal -> · 'true' : {'%' '*' '+' '-' '.' '/' '['}
 call_expression -> · callable argument_expression_list : {'%' '*' '+' '-' '.' '/' '['}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
 callable -> · ident : {'%' '(' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /0[fh]/ : {'%' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' '-' '.' '/' '['}
@@ -3311,7 +3322,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {}
 bool_literal -> · 'false' : {'%' '*' '+' '-' '.' '/' '['}
 bool_literal -> · 'true' : {'%' '*' '+' '-' '.' '/' '['}
 call_expression -> · callable argument_expression_list : {'%' '*' '+' '-' '.' '/' '['}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
 callable -> · ident : {'%' '(' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /0[fh]/ : {'%' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' '-' '.' '/' '['}
@@ -3387,7 +3398,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {'{'}
 bool_literal -> · 'false' : {'%' '*' '+' '-' '.' '/' '[' '{'}
 bool_literal -> · 'true' : {'%' '*' '+' '-' '.' '/' '[' '{'}
 call_expression -> · callable argument_expression_list : {'%' '*' '+' '-' '.' '/' '[' '{'}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '[' '{'}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '[' '{'}
 callable -> · ident : {'%' '(' '*' '+' '-' '.' '/' '[' '{'}
 decimal_float_literal -> · /0[fh]/ : {'%' '*' '+' '-' '.' '/' '[' '{'}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' '-' '.' '/' '[' '{'}
@@ -3490,7 +3501,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {'{'}
 bool_literal -> · 'false' : {'%' '*' '+' '-' '.' '/' '[' '{'}
 bool_literal -> · 'true' : {'%' '*' '+' '-' '.' '/' '[' '{'}
 call_expression -> · callable argument_expression_list : {'%' '*' '+' '-' '.' '/' '[' '{'}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '[' '{'}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '[' '{'}
 callable -> · ident : {'%' '(' '*' '+' '-' '.' '/' '[' '{'}
 decimal_float_literal -> · /0[fh]/ : {'%' '*' '+' '-' '.' '/' '[' '{'}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' '-' '.' '/' '[' '{'}
@@ -3545,7 +3556,7 @@ unary_expression -> · '~' unary_expression : {'%' '*' '+' '-' '/' '{'}
 unary_expression -> · singular_expression : {'%' '*' '+' '-' '/' '{'}
 
 #258
-callable -> ident · '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'('}
+callable -> ident · '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'('}
 callable -> ident · : {'('}
 core_lhs_expression -> ident · : {'%=' '&=' '*=' '+=' '-=' '.' '/=' '<<=' '=' '>>=' '[' '^=' '|='}
 
@@ -3666,8 +3677,8 @@ struct_member/0.0/0 -> · attribute struct_member/0.0/0 : {}
 type_alias_decl -> 'type' ident '=' type_specifier · : {}
 
 #271
-type_specifier -> ident · '::' '<' primary_expression callable_type/2.4 callable_type/2.5 '>' : {',' '=' '{'}
-type_specifier -> ident · '<' primary_expression callable_type/1.3 callable_type/1.4 '>' : {',' '=' '{'}
+type_specifier -> ident · '::' '<' additive_expression callable_type/2.4 callable_type/2.5 '>' : {',' '=' '{'}
+type_specifier -> ident · '<' additive_expression callable_type/1.3 callable_type/1.4 '>' : {',' '=' '{'}
 type_specifier -> ident · : {',' '=' '{'}
 
 #272
@@ -3689,7 +3700,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {}
 bool_literal -> · 'false' : {'%' '*' '+' '-' '.' '/' '['}
 bool_literal -> · 'true' : {'%' '*' '+' '-' '.' '/' '['}
 call_expression -> · callable argument_expression_list : {'%' '*' '+' '-' '.' '/' '['}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
 callable -> · ident : {'%' '(' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /0[fh]/ : {'%' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' '-' '.' '/' '['}
@@ -3787,39 +3798,50 @@ access_mode -> · 'write' : {}
 global_constant_decl/1.3 -> '=' expression · : {}
 
 #287
-type_specifier -> ident '<' · primary_expression callable_type/1.3 callable_type/1.4 '>' : {',' '=' '{'}
-bool_literal -> · 'false' : {','}
-bool_literal -> · 'true' : {','}
-call_expression -> · callable argument_expression_list : {','}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'(' ','}
-callable -> · ident : {'(' ','}
-decimal_float_literal -> · /0[fh]/ : {','}
-decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {','}
-decimal_float_literal -> · /[0-9]+[eE][+-]?[0-9]+[fh]?/ : {','}
-decimal_float_literal -> · /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ : {','}
-decimal_float_literal -> · /[1-9][0-9]*[fh]/ : {','}
-decimal_int_literal -> · /0[iu]?/ : {','}
-decimal_int_literal -> · /[1-9][0-9]*[iu]?/ : {','}
-float_literal -> · decimal_float_literal : {','}
-float_literal -> · hex_float_literal : {','}
-hex_float_literal -> · /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ : {','}
-hex_float_literal -> · /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ : {','}
-hex_float_literal -> · /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ : {','}
-hex_int_literal -> · /0[xX][0-9a-fA-F]+[iu]?/ : {','}
-ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {'(' ','}
-int_literal -> · decimal_int_literal : {','}
-int_literal -> · hex_int_literal : {','}
-literal -> · bool_literal : {','}
-literal -> · float_literal : {','}
-literal -> · int_literal : {','}
-paren_expression -> · '(' expression ')' : {','}
-primary_expression -> · call_expression : {','}
-primary_expression -> · callable : {','}
-primary_expression -> · literal : {','}
-primary_expression -> · paren_expression : {','}
+type_specifier -> ident '<' · additive_expression callable_type/1.3 callable_type/1.4 '>' : {',' '=' '{'}
+additive_expression -> · additive_expression additive_operator multiplicative_expression : {'+' ',' '-'}
+additive_expression -> · multiplicative_expression : {'+' ',' '-'}
+bool_literal -> · 'false' : {'%' '*' '+' ',' '-' '.' '/' '['}
+bool_literal -> · 'true' : {'%' '*' '+' ',' '-' '.' '/' '['}
+call_expression -> · callable argument_expression_list : {'%' '*' '+' ',' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' ',' '-' '.' '/' '['}
+callable -> · ident : {'%' '(' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /0[fh]/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /[0-9]+[eE][+-]?[0-9]+[fh]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /[1-9][0-9]*[fh]/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_int_literal -> · /0[iu]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_int_literal -> · /[1-9][0-9]*[iu]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+float_literal -> · decimal_float_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+float_literal -> · hex_float_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+hex_float_literal -> · /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+hex_float_literal -> · /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+hex_float_literal -> · /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+hex_int_literal -> · /0[xX][0-9a-fA-F]+[iu]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {'%' '(' '*' '+' ',' '-' '.' '/' '['}
+int_literal -> · decimal_int_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+int_literal -> · hex_int_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+literal -> · bool_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+literal -> · float_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+literal -> · int_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+multiplicative_expression -> · multiplicative_expression multiplicative_operator unary_expression : {'%' '*' '+' ',' '-' '/'}
+multiplicative_expression -> · unary_expression : {'%' '*' '+' ',' '-' '/'}
+paren_expression -> · '(' expression ')' : {'%' '*' '+' ',' '-' '.' '/' '['}
+primary_expression -> · call_expression : {'%' '*' '+' ',' '-' '.' '/' '['}
+primary_expression -> · callable : {'%' '*' '+' ',' '-' '.' '/' '['}
+primary_expression -> · literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+primary_expression -> · paren_expression : {'%' '*' '+' ',' '-' '.' '/' '['}
+singular_expression -> · primary_expression singular_expression/0.1 : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '!' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '&' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '*' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '-' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '~' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · singular_expression : {'%' '*' '+' ',' '-' '/'}
 
 #288
-type_specifier -> ident '::' · '<' primary_expression callable_type/2.4 callable_type/2.5 '>' : {',' '=' '{'}
+type_specifier -> ident '::' · '<' additive_expression callable_type/2.4 callable_type/2.5 '>' : {',' '=' '{'}
 
 #289
 struct_member/0.0/0 -> attribute struct_member/0.0/0 · : {}
@@ -3936,7 +3958,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {}
 bool_literal -> · 'false' : {'%' '*' '+' '-' '.' '/' '['}
 bool_literal -> · 'true' : {'%' '*' '+' '-' '.' '/' '['}
 call_expression -> · callable argument_expression_list : {'%' '*' '+' '-' '.' '/' '['}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
 callable -> · ident : {'%' '(' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /0[fh]/ : {'%' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' '-' '.' '/' '['}
@@ -4006,7 +4028,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {}
 bool_literal -> · 'false' : {'%' '*' '+' '-' '.' '/' '['}
 bool_literal -> · 'true' : {'%' '*' '+' '-' '.' '/' '['}
 call_expression -> · callable argument_expression_list : {'%' '*' '+' '-' '.' '/' '['}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
 callable -> · ident : {'%' '(' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /0[fh]/ : {'%' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' '-' '.' '/' '['}
@@ -4128,7 +4150,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {}
 bool_literal -> · 'false' : {'%' '*' '+' '-' '.' '/' '['}
 bool_literal -> · 'true' : {'%' '*' '+' '-' '.' '/' '['}
 call_expression -> · callable argument_expression_list : {'%' '*' '+' '-' '.' '/' '['}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
 callable -> · ident : {'%' '(' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /0[fh]/ : {'%' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' '-' '.' '/' '['}
@@ -4193,7 +4215,7 @@ compound_statement -> · '{' compound_statement/0.1 '}' : {'&' '(' '*' ';' '_' '
 for_statement -> 'for' '(' · for_header ')' compound_statement : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 assignment_statement -> · '_' '=' expression : {}
 assignment_statement -> · lhs_expression assignment_statement/0.1 expression : {}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'('}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'('}
 callable -> · ident : {'('}
 core_lhs_expression -> · '(' lhs_expression ')' : {'%=' '&=' '*=' '+=' '-=' '.' '/=' '<<=' '=' '>>=' '[' '^=' '|='}
 core_lhs_expression -> · ident : {'%=' '&=' '*=' '+=' '-=' '.' '/=' '<<=' '=' '>>=' '[' '^=' '|='}
@@ -4223,7 +4245,7 @@ loop_statement -> 'loop' '{' · loop_statement/0.2 loop_statement/0.3 '}' : {'&'
 assignment_statement -> · '_' '=' expression : {}
 assignment_statement -> · lhs_expression assignment_statement/0.1 expression : {}
 break_statement -> · 'break' : {}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'('}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'('}
 callable -> · ident : {'('}
 compound_statement -> · '{' compound_statement/0.1 '}' : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 const_assert_statement -> · 'const_assert' expression : {}
@@ -4326,10 +4348,13 @@ compound_statement/0.1/0 -> statement compound_statement/0.1/0 · : {}
 compound_statement -> '{' compound_statement/0.1 '}' · : {'&' '(' '*' ';' '@' '_' 'break' 'case' 'const' 'const_assert' 'continue' 'continuing' 'default' 'discard' 'else' 'fn' 'for' 'if' 'let' 'loop' 'override' 'return' 'struct' 'switch' 'type' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ EndOfText}
 
 #348
-callable -> ident '::' '<' primary_expression · callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
+additive_expression -> additive_expression · additive_operator multiplicative_expression : {'+' ',' '-'}
+callable -> ident '::' '<' additive_expression · callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
+additive_operator -> · '+' : {'!' '&' '(' '*' '-' 'false' 'true' '~' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ /0[fh]/ /0[iu]?/ /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ /0[xX][0-9a-fA-F]+[iu]?/ /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ /[0-9]+[eE][+-]?[0-9]+[fh]?/ /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ /[1-9][0-9]*[fh]/ /[1-9][0-9]*[iu]?/}
+additive_operator -> · '-' : {'!' '&' '(' '*' '-' 'false' 'true' '~' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ /0[fh]/ /0[iu]?/ /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ /0[xX][0-9a-fA-F]+[iu]?/ /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ /[0-9]+[eE][+-]?[0-9]+[fh]?/ /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ /[1-9][0-9]*[fh]/ /[1-9][0-9]*[iu]?/}
 callable/1.4 -> · callable/1.4/0 : {','}
 callable/1.4/0 -> · callable/1.4/0/0.0 callable/1.4/0 : {','}
-callable/1.4/0/0.0 -> · ',' primary_expression : {','}
+callable/1.4/0/0.0 -> · ',' additive_expression : {','}
 
 #349
 expression_comma_list -> expression expression_comma_list/0.1 · expression_comma_list/0.2 : {}
@@ -4359,7 +4384,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {','}
 bool_literal -> · 'false' : {'%' '*' '+' ',' '-' '.' '/' '['}
 bool_literal -> · 'true' : {'%' '*' '+' ',' '-' '.' '/' '['}
 call_expression -> · callable argument_expression_list : {'%' '*' '+' ',' '-' '.' '/' '['}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' ',' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' ',' '-' '.' '/' '['}
 callable -> · ident : {'%' '(' '*' '+' ',' '-' '.' '/' '['}
 decimal_float_literal -> · /0[fh]/ : {'%' '*' '+' ',' '-' '.' '/' '['}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
@@ -4456,7 +4481,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {')' ','}
 bool_literal -> · 'false' : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
 bool_literal -> · 'true' : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
 call_expression -> · callable argument_expression_list : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' '['}
 callable -> · ident : {'%' '(' ')' '*' '+' ',' '-' '.' '/' '['}
 decimal_float_literal -> · /0[fh]/ : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
@@ -4589,7 +4614,7 @@ expression_comma_list -> expression expression_comma_list/0.1 expression_comma_l
 expression_comma_list/0.2 -> ',' · : {}
 
 #384
-callable -> ident '::' '<' primary_expression callable/1.4 · callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
+callable -> ident '::' '<' additive_expression callable/1.4 · callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 callable/1.5 -> · ',' : {}
 
 #385
@@ -4598,39 +4623,50 @@ callable/1.4 -> callable/1.4/0 · : {','}
 #386
 callable/1.4/0 -> callable/1.4/0/0.0 · callable/1.4/0 : {','}
 callable/1.4/0 -> · callable/1.4/0/0.0 callable/1.4/0 : {','}
-callable/1.4/0/0.0 -> · ',' primary_expression : {','}
+callable/1.4/0/0.0 -> · ',' additive_expression : {','}
 
 #387
-callable/1.4/0/0.0 -> ',' · primary_expression : {','}
-bool_literal -> · 'false' : {','}
-bool_literal -> · 'true' : {','}
-call_expression -> · callable argument_expression_list : {','}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'(' ','}
-callable -> · ident : {'(' ','}
-decimal_float_literal -> · /0[fh]/ : {','}
-decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {','}
-decimal_float_literal -> · /[0-9]+[eE][+-]?[0-9]+[fh]?/ : {','}
-decimal_float_literal -> · /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ : {','}
-decimal_float_literal -> · /[1-9][0-9]*[fh]/ : {','}
-decimal_int_literal -> · /0[iu]?/ : {','}
-decimal_int_literal -> · /[1-9][0-9]*[iu]?/ : {','}
-float_literal -> · decimal_float_literal : {','}
-float_literal -> · hex_float_literal : {','}
-hex_float_literal -> · /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ : {','}
-hex_float_literal -> · /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ : {','}
-hex_float_literal -> · /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ : {','}
-hex_int_literal -> · /0[xX][0-9a-fA-F]+[iu]?/ : {','}
-ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {'(' ','}
-int_literal -> · decimal_int_literal : {','}
-int_literal -> · hex_int_literal : {','}
-literal -> · bool_literal : {','}
-literal -> · float_literal : {','}
-literal -> · int_literal : {','}
-paren_expression -> · '(' expression ')' : {','}
-primary_expression -> · call_expression : {','}
-primary_expression -> · callable : {','}
-primary_expression -> · literal : {','}
-primary_expression -> · paren_expression : {','}
+callable/1.4/0/0.0 -> ',' · additive_expression : {','}
+additive_expression -> · additive_expression additive_operator multiplicative_expression : {'+' ',' '-'}
+additive_expression -> · multiplicative_expression : {'+' ',' '-'}
+bool_literal -> · 'false' : {'%' '*' '+' ',' '-' '.' '/' '['}
+bool_literal -> · 'true' : {'%' '*' '+' ',' '-' '.' '/' '['}
+call_expression -> · callable argument_expression_list : {'%' '*' '+' ',' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' ',' '-' '.' '/' '['}
+callable -> · ident : {'%' '(' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /0[fh]/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /[0-9]+[eE][+-]?[0-9]+[fh]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /[1-9][0-9]*[fh]/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_int_literal -> · /0[iu]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_int_literal -> · /[1-9][0-9]*[iu]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+float_literal -> · decimal_float_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+float_literal -> · hex_float_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+hex_float_literal -> · /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+hex_float_literal -> · /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+hex_float_literal -> · /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+hex_int_literal -> · /0[xX][0-9a-fA-F]+[iu]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {'%' '(' '*' '+' ',' '-' '.' '/' '['}
+int_literal -> · decimal_int_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+int_literal -> · hex_int_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+literal -> · bool_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+literal -> · float_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+literal -> · int_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+multiplicative_expression -> · multiplicative_expression multiplicative_operator unary_expression : {'%' '*' '+' ',' '-' '/'}
+multiplicative_expression -> · unary_expression : {'%' '*' '+' ',' '-' '/'}
+paren_expression -> · '(' expression ')' : {'%' '*' '+' ',' '-' '.' '/' '['}
+primary_expression -> · call_expression : {'%' '*' '+' ',' '-' '.' '/' '['}
+primary_expression -> · callable : {'%' '*' '+' ',' '-' '.' '/' '['}
+primary_expression -> · literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+primary_expression -> · paren_expression : {'%' '*' '+' ',' '-' '.' '/' '['}
+singular_expression -> · primary_expression singular_expression/0.1 : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '!' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '&' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '*' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '-' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '~' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · singular_expression : {'%' '*' '+' ',' '-' '/'}
 
 #388
 else_if_clause -> 'else' 'if' · expression compound_statement : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'else' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
@@ -4648,7 +4684,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {'{'}
 bool_literal -> · 'false' : {'%' '*' '+' '-' '.' '/' '[' '{'}
 bool_literal -> · 'true' : {'%' '*' '+' '-' '.' '/' '[' '{'}
 call_expression -> · callable argument_expression_list : {'%' '*' '+' '-' '.' '/' '[' '{'}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '[' '{'}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '[' '{'}
 callable -> · ident : {'%' '(' '*' '+' '-' '.' '/' '[' '{'}
 decimal_float_literal -> · /0[fh]/ : {'%' '*' '+' '-' '.' '/' '[' '{'}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' '-' '.' '/' '[' '{'}
@@ -4737,7 +4773,7 @@ loop_statement/0.2/0 -> statement · loop_statement/0.2/0 : {'continuing'}
 assignment_statement -> · '_' '=' expression : {}
 assignment_statement -> · lhs_expression assignment_statement/0.1 expression : {}
 break_statement -> · 'break' : {}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'('}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'('}
 callable -> · ident : {'('}
 compound_statement -> · '{' compound_statement/0.1 '}' : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 const_assert_statement -> · 'const_assert' expression : {}
@@ -4823,7 +4859,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {}
 bool_literal -> · 'false' : {'%' '*' '+' '-' '.' '/' '['}
 bool_literal -> · 'true' : {'%' '*' '+' '-' '.' '/' '['}
 call_expression -> · callable argument_expression_list : {'%' '*' '+' '-' '.' '/' '['}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
 callable -> · ident : {'%' '(' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /0[fh]/ : {'%' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' '-' '.' '/' '['}
@@ -4893,7 +4929,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {}
 bool_literal -> · 'false' : {'%' '*' '+' '-' '.' '/' '['}
 bool_literal -> · 'true' : {'%' '*' '+' '-' '.' '/' '['}
 call_expression -> · callable argument_expression_list : {'%' '*' '+' '-' '.' '/' '['}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
 callable -> · ident : {'%' '(' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /0[fh]/ : {'%' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' '-' '.' '/' '['}
@@ -5019,47 +5055,61 @@ struct_body_decl/0.3 -> ',' · : {}
 #422
 struct_member -> struct_member/0.0 member_ident ':' · type_specifier : {','}
 ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {','}
-type_specifier -> · ident '::' '<' primary_expression callable_type/2.4 callable_type/2.5 '>' : {','}
-type_specifier -> · ident '<' primary_expression callable_type/1.3 callable_type/1.4 '>' : {','}
+type_specifier -> · ident '::' '<' additive_expression callable_type/2.4 callable_type/2.5 '>' : {','}
+type_specifier -> · ident '<' additive_expression callable_type/1.3 callable_type/1.4 '>' : {','}
 type_specifier -> · ident : {','}
 
 #423
-type_specifier -> ident '::' '<' · primary_expression callable_type/2.4 callable_type/2.5 '>' : {',' '=' '{'}
-bool_literal -> · 'false' : {','}
-bool_literal -> · 'true' : {','}
-call_expression -> · callable argument_expression_list : {','}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'(' ','}
-callable -> · ident : {'(' ','}
-decimal_float_literal -> · /0[fh]/ : {','}
-decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {','}
-decimal_float_literal -> · /[0-9]+[eE][+-]?[0-9]+[fh]?/ : {','}
-decimal_float_literal -> · /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ : {','}
-decimal_float_literal -> · /[1-9][0-9]*[fh]/ : {','}
-decimal_int_literal -> · /0[iu]?/ : {','}
-decimal_int_literal -> · /[1-9][0-9]*[iu]?/ : {','}
-float_literal -> · decimal_float_literal : {','}
-float_literal -> · hex_float_literal : {','}
-hex_float_literal -> · /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ : {','}
-hex_float_literal -> · /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ : {','}
-hex_float_literal -> · /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ : {','}
-hex_int_literal -> · /0[xX][0-9a-fA-F]+[iu]?/ : {','}
-ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {'(' ','}
-int_literal -> · decimal_int_literal : {','}
-int_literal -> · hex_int_literal : {','}
-literal -> · bool_literal : {','}
-literal -> · float_literal : {','}
-literal -> · int_literal : {','}
-paren_expression -> · '(' expression ')' : {','}
-primary_expression -> · call_expression : {','}
-primary_expression -> · callable : {','}
-primary_expression -> · literal : {','}
-primary_expression -> · paren_expression : {','}
+type_specifier -> ident '::' '<' · additive_expression callable_type/2.4 callable_type/2.5 '>' : {',' '=' '{'}
+additive_expression -> · additive_expression additive_operator multiplicative_expression : {'+' ',' '-'}
+additive_expression -> · multiplicative_expression : {'+' ',' '-'}
+bool_literal -> · 'false' : {'%' '*' '+' ',' '-' '.' '/' '['}
+bool_literal -> · 'true' : {'%' '*' '+' ',' '-' '.' '/' '['}
+call_expression -> · callable argument_expression_list : {'%' '*' '+' ',' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' ',' '-' '.' '/' '['}
+callable -> · ident : {'%' '(' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /0[fh]/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /[0-9]+[eE][+-]?[0-9]+[fh]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /[1-9][0-9]*[fh]/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_int_literal -> · /0[iu]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_int_literal -> · /[1-9][0-9]*[iu]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+float_literal -> · decimal_float_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+float_literal -> · hex_float_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+hex_float_literal -> · /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+hex_float_literal -> · /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+hex_float_literal -> · /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+hex_int_literal -> · /0[xX][0-9a-fA-F]+[iu]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {'%' '(' '*' '+' ',' '-' '.' '/' '['}
+int_literal -> · decimal_int_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+int_literal -> · hex_int_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+literal -> · bool_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+literal -> · float_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+literal -> · int_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+multiplicative_expression -> · multiplicative_expression multiplicative_operator unary_expression : {'%' '*' '+' ',' '-' '/'}
+multiplicative_expression -> · unary_expression : {'%' '*' '+' ',' '-' '/'}
+paren_expression -> · '(' expression ')' : {'%' '*' '+' ',' '-' '.' '/' '['}
+primary_expression -> · call_expression : {'%' '*' '+' ',' '-' '.' '/' '['}
+primary_expression -> · callable : {'%' '*' '+' ',' '-' '.' '/' '['}
+primary_expression -> · literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+primary_expression -> · paren_expression : {'%' '*' '+' ',' '-' '.' '/' '['}
+singular_expression -> · primary_expression singular_expression/0.1 : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '!' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '&' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '*' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '-' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '~' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · singular_expression : {'%' '*' '+' ',' '-' '/'}
 
 #424
-type_specifier -> ident '<' primary_expression · callable_type/1.3 callable_type/1.4 '>' : {',' '=' '{'}
+additive_expression -> additive_expression · additive_operator multiplicative_expression : {'+' ',' '-'}
+type_specifier -> ident '<' additive_expression · callable_type/1.3 callable_type/1.4 '>' : {',' '=' '{'}
+additive_operator -> · '+' : {'!' '&' '(' '*' '-' 'false' 'true' '~' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ /0[fh]/ /0[iu]?/ /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ /0[xX][0-9a-fA-F]+[iu]?/ /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ /[0-9]+[eE][+-]?[0-9]+[fh]?/ /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ /[1-9][0-9]*[fh]/ /[1-9][0-9]*[iu]?/}
+additive_operator -> · '-' : {'!' '&' '(' '*' '-' 'false' 'true' '~' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ /0[fh]/ /0[iu]?/ /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ /0[xX][0-9a-fA-F]+[iu]?/ /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ /[0-9]+[eE][+-]?[0-9]+[fh]?/ /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ /[1-9][0-9]*[fh]/ /[1-9][0-9]*[iu]?/}
 callable_type/1.3 -> · callable_type/1.3/0 : {','}
 callable_type/1.3/0 -> · callable_type/1.3/0/0.0 callable_type/1.3/0 : {','}
-callable_type/1.3/0/0.0 -> · ',' primary_expression : {','}
+callable_type/1.3/0/0.0 -> · ',' additive_expression : {','}
 
 #425
 variable_qualifier/0.2 -> ',' access_mode · : {}
@@ -5077,7 +5127,7 @@ access_mode -> 'read_write' · : {}
 variable_qualifier -> '<' address_space variable_qualifier/0.2 '>' · : {/([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
 #430
-type_specifier -> ident '<' primary_expression callable_type/1.3 · callable_type/1.4 '>' : {',' '=' '{'}
+type_specifier -> ident '<' additive_expression callable_type/1.3 · callable_type/1.4 '>' : {',' '=' '{'}
 callable_type/1.4 -> · ',' : {}
 
 #431
@@ -5086,45 +5136,59 @@ callable_type/1.3 -> callable_type/1.3/0 · : {','}
 #432
 callable_type/1.3/0 -> callable_type/1.3/0/0.0 · callable_type/1.3/0 : {','}
 callable_type/1.3/0 -> · callable_type/1.3/0/0.0 callable_type/1.3/0 : {','}
-callable_type/1.3/0/0.0 -> · ',' primary_expression : {','}
+callable_type/1.3/0/0.0 -> · ',' additive_expression : {','}
 
 #433
-callable_type/1.3/0/0.0 -> ',' · primary_expression : {','}
-bool_literal -> · 'false' : {','}
-bool_literal -> · 'true' : {','}
-call_expression -> · callable argument_expression_list : {','}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'(' ','}
-callable -> · ident : {'(' ','}
-decimal_float_literal -> · /0[fh]/ : {','}
-decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {','}
-decimal_float_literal -> · /[0-9]+[eE][+-]?[0-9]+[fh]?/ : {','}
-decimal_float_literal -> · /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ : {','}
-decimal_float_literal -> · /[1-9][0-9]*[fh]/ : {','}
-decimal_int_literal -> · /0[iu]?/ : {','}
-decimal_int_literal -> · /[1-9][0-9]*[iu]?/ : {','}
-float_literal -> · decimal_float_literal : {','}
-float_literal -> · hex_float_literal : {','}
-hex_float_literal -> · /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ : {','}
-hex_float_literal -> · /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ : {','}
-hex_float_literal -> · /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ : {','}
-hex_int_literal -> · /0[xX][0-9a-fA-F]+[iu]?/ : {','}
-ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {'(' ','}
-int_literal -> · decimal_int_literal : {','}
-int_literal -> · hex_int_literal : {','}
-literal -> · bool_literal : {','}
-literal -> · float_literal : {','}
-literal -> · int_literal : {','}
-paren_expression -> · '(' expression ')' : {','}
-primary_expression -> · call_expression : {','}
-primary_expression -> · callable : {','}
-primary_expression -> · literal : {','}
-primary_expression -> · paren_expression : {','}
+callable_type/1.3/0/0.0 -> ',' · additive_expression : {','}
+additive_expression -> · additive_expression additive_operator multiplicative_expression : {'+' ',' '-'}
+additive_expression -> · multiplicative_expression : {'+' ',' '-'}
+bool_literal -> · 'false' : {'%' '*' '+' ',' '-' '.' '/' '['}
+bool_literal -> · 'true' : {'%' '*' '+' ',' '-' '.' '/' '['}
+call_expression -> · callable argument_expression_list : {'%' '*' '+' ',' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' ',' '-' '.' '/' '['}
+callable -> · ident : {'%' '(' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /0[fh]/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /[0-9]+[eE][+-]?[0-9]+[fh]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /[1-9][0-9]*[fh]/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_int_literal -> · /0[iu]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_int_literal -> · /[1-9][0-9]*[iu]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+float_literal -> · decimal_float_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+float_literal -> · hex_float_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+hex_float_literal -> · /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+hex_float_literal -> · /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+hex_float_literal -> · /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+hex_int_literal -> · /0[xX][0-9a-fA-F]+[iu]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {'%' '(' '*' '+' ',' '-' '.' '/' '['}
+int_literal -> · decimal_int_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+int_literal -> · hex_int_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+literal -> · bool_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+literal -> · float_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+literal -> · int_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+multiplicative_expression -> · multiplicative_expression multiplicative_operator unary_expression : {'%' '*' '+' ',' '-' '/'}
+multiplicative_expression -> · unary_expression : {'%' '*' '+' ',' '-' '/'}
+paren_expression -> · '(' expression ')' : {'%' '*' '+' ',' '-' '.' '/' '['}
+primary_expression -> · call_expression : {'%' '*' '+' ',' '-' '.' '/' '['}
+primary_expression -> · callable : {'%' '*' '+' ',' '-' '.' '/' '['}
+primary_expression -> · literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+primary_expression -> · paren_expression : {'%' '*' '+' ',' '-' '.' '/' '['}
+singular_expression -> · primary_expression singular_expression/0.1 : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '!' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '&' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '*' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '-' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '~' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · singular_expression : {'%' '*' '+' ',' '-' '/'}
 
 #434
-type_specifier -> ident '::' '<' primary_expression · callable_type/2.4 callable_type/2.5 '>' : {',' '=' '{'}
+additive_expression -> additive_expression · additive_operator multiplicative_expression : {'+' ',' '-'}
+type_specifier -> ident '::' '<' additive_expression · callable_type/2.4 callable_type/2.5 '>' : {',' '=' '{'}
+additive_operator -> · '+' : {'!' '&' '(' '*' '-' 'false' 'true' '~' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ /0[fh]/ /0[iu]?/ /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ /0[xX][0-9a-fA-F]+[iu]?/ /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ /[0-9]+[eE][+-]?[0-9]+[fh]?/ /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ /[1-9][0-9]*[fh]/ /[1-9][0-9]*[iu]?/}
+additive_operator -> · '-' : {'!' '&' '(' '*' '-' 'false' 'true' '~' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ /0[fh]/ /0[iu]?/ /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ /0[xX][0-9a-fA-F]+[iu]?/ /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ /[0-9]+[eE][+-]?[0-9]+[fh]?/ /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ /[1-9][0-9]*[fh]/ /[1-9][0-9]*[iu]?/}
 callable_type/2.4 -> · callable_type/2.4/0 : {','}
 callable_type/2.4/0 -> · callable_type/2.4/0/0.0 callable_type/2.4/0 : {','}
-callable_type/2.4/0/0.0 -> · ',' primary_expression : {','}
+callable_type/2.4/0/0.0 -> · ',' additive_expression : {','}
 
 #435
 struct_member -> struct_member/0.0 member_ident ':' type_specifier · : {','}
@@ -5172,8 +5236,8 @@ param_list/0.2 -> ',' · : {}
 #443
 param -> param/0.0 ident ':' · type_specifier : {','}
 ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {','}
-type_specifier -> · ident '::' '<' primary_expression callable_type/2.4 callable_type/2.5 '>' : {','}
-type_specifier -> · ident '<' primary_expression callable_type/1.3 callable_type/1.4 '>' : {','}
+type_specifier -> · ident '::' '<' additive_expression callable_type/2.4 callable_type/2.5 '>' : {','}
+type_specifier -> · ident '<' additive_expression callable_type/1.3 callable_type/1.4 '>' : {','}
 type_specifier -> · ident : {','}
 
 #444
@@ -5198,7 +5262,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {}
 bool_literal -> · 'false' : {'%' '*' '+' '-' '.' '/' '['}
 bool_literal -> · 'true' : {'%' '*' '+' '-' '.' '/' '['}
 call_expression -> · callable argument_expression_list : {'%' '*' '+' '-' '.' '/' '['}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
 callable -> · ident : {'%' '(' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /0[fh]/ : {'%' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' '-' '.' '/' '['}
@@ -5306,7 +5370,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {',' ':' '
 bool_literal -> · 'false' : {'%' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 bool_literal -> · 'true' : {'%' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 call_expression -> · callable argument_expression_list : {'%' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 callable -> · ident : {'%' '(' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 case_selector -> · 'default' : {',' ':' '{'}
 case_selector -> · expression : {',' ':' '{'}
@@ -5375,13 +5439,16 @@ else_if_clause -> 'else' 'if' expression · compound_statement : {'&' '(' '*' ';
 compound_statement -> · '{' compound_statement/0.1 '}' : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'else' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
 #461
-callable/1.4/0/0.0 -> ',' primary_expression · : {','}
+additive_expression -> additive_expression · additive_operator multiplicative_expression : {'+' ',' '-'}
+callable/1.4/0/0.0 -> ',' additive_expression · : {','}
+additive_operator -> · '+' : {'!' '&' '(' '*' '-' 'false' 'true' '~' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ /0[fh]/ /0[iu]?/ /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ /0[xX][0-9a-fA-F]+[iu]?/ /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ /[0-9]+[eE][+-]?[0-9]+[fh]?/ /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ /[1-9][0-9]*[fh]/ /[1-9][0-9]*[iu]?/}
+additive_operator -> · '-' : {'!' '&' '(' '*' '-' 'false' 'true' '~' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ /0[fh]/ /0[iu]?/ /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ /0[xX][0-9a-fA-F]+[iu]?/ /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ /[0-9]+[eE][+-]?[0-9]+[fh]?/ /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ /[1-9][0-9]*[fh]/ /[1-9][0-9]*[iu]?/}
 
 #462
 callable/1.4/0 -> callable/1.4/0/0.0 callable/1.4/0 · : {','}
 
 #463
-callable -> ident '::' '<' primary_expression callable/1.4 callable/1.5 · '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
+callable -> ident '::' '<' additive_expression callable/1.4 callable/1.5 · '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 
 #464
 callable/1.5 -> ',' · : {}
@@ -5406,7 +5473,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {')' ','}
 bool_literal -> · 'false' : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
 bool_literal -> · 'true' : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
 call_expression -> · callable argument_expression_list : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' '['}
 callable -> · ident : {'%' '(' ')' '*' '+' ',' '-' '.' '/' '['}
 decimal_float_literal -> · /0[fh]/ : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' ')' '*' '+' ',' '-' '.' '/' '['}
@@ -5469,7 +5536,7 @@ attrib_end -> · attrib_end/0.0 ')' : {'@' 'fn' 'var'}
 attrib_end/0.0 -> · ',' : {}
 
 #469
-callable -> ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' · : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
+callable -> ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' · : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 
 #470
 else_if_clause -> 'else' 'if' expression compound_statement · : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'else' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
@@ -5511,7 +5578,7 @@ continuing_compound_statement -> '{' · continuing_compound_statement/0.1 contin
 assignment_statement -> · '_' '=' expression : {}
 assignment_statement -> · lhs_expression assignment_statement/0.1 expression : {}
 break_statement -> · 'break' : {}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'('}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'('}
 callable -> · ident : {'('}
 compound_statement -> · '{' compound_statement/0.1 '}' : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 const_assert_statement -> · 'const_assert' expression : {}
@@ -5576,8 +5643,8 @@ param -> param/0.0 ident ':' type_specifier · : {','}
 #486
 function_header/0.5 -> '->' function_header/0.5/0.1 · type_specifier : {'{'}
 ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {'{'}
-type_specifier -> · ident '::' '<' primary_expression callable_type/2.4 callable_type/2.5 '>' : {'{'}
-type_specifier -> · ident '<' primary_expression callable_type/1.3 callable_type/1.4 '>' : {'{'}
+type_specifier -> · ident '::' '<' additive_expression callable_type/2.4 callable_type/2.5 '>' : {'{'}
+type_specifier -> · ident '<' additive_expression callable_type/1.3 callable_type/1.4 '>' : {'{'}
 type_specifier -> · ident : {'{'}
 
 #487
@@ -5605,7 +5672,7 @@ attribute -> · '@' 'workgroup_size' '(' expression attrib_end : {'@'}
 function_header/0.5/0.1/0 -> · attribute function_header/0.5/0.1/0 : {}
 
 #489
-type_specifier -> ident '::' '<' primary_expression callable_type/2.4 · callable_type/2.5 '>' : {',' '=' '{'}
+type_specifier -> ident '::' '<' additive_expression callable_type/2.4 · callable_type/2.5 '>' : {',' '=' '{'}
 callable_type/2.5 -> · ',' : {}
 
 #490
@@ -5614,63 +5681,80 @@ callable_type/2.4 -> callable_type/2.4/0 · : {','}
 #491
 callable_type/2.4/0 -> callable_type/2.4/0/0.0 · callable_type/2.4/0 : {','}
 callable_type/2.4/0 -> · callable_type/2.4/0/0.0 callable_type/2.4/0 : {','}
-callable_type/2.4/0/0.0 -> · ',' primary_expression : {','}
+callable_type/2.4/0/0.0 -> · ',' additive_expression : {','}
 
 #492
-callable_type/2.4/0/0.0 -> ',' · primary_expression : {','}
-bool_literal -> · 'false' : {','}
-bool_literal -> · 'true' : {','}
-call_expression -> · callable argument_expression_list : {','}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'(' ','}
-callable -> · ident : {'(' ','}
-decimal_float_literal -> · /0[fh]/ : {','}
-decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {','}
-decimal_float_literal -> · /[0-9]+[eE][+-]?[0-9]+[fh]?/ : {','}
-decimal_float_literal -> · /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ : {','}
-decimal_float_literal -> · /[1-9][0-9]*[fh]/ : {','}
-decimal_int_literal -> · /0[iu]?/ : {','}
-decimal_int_literal -> · /[1-9][0-9]*[iu]?/ : {','}
-float_literal -> · decimal_float_literal : {','}
-float_literal -> · hex_float_literal : {','}
-hex_float_literal -> · /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ : {','}
-hex_float_literal -> · /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ : {','}
-hex_float_literal -> · /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ : {','}
-hex_int_literal -> · /0[xX][0-9a-fA-F]+[iu]?/ : {','}
-ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {'(' ','}
-int_literal -> · decimal_int_literal : {','}
-int_literal -> · hex_int_literal : {','}
-literal -> · bool_literal : {','}
-literal -> · float_literal : {','}
-literal -> · int_literal : {','}
-paren_expression -> · '(' expression ')' : {','}
-primary_expression -> · call_expression : {','}
-primary_expression -> · callable : {','}
-primary_expression -> · literal : {','}
-primary_expression -> · paren_expression : {','}
+callable_type/2.4/0/0.0 -> ',' · additive_expression : {','}
+additive_expression -> · additive_expression additive_operator multiplicative_expression : {'+' ',' '-'}
+additive_expression -> · multiplicative_expression : {'+' ',' '-'}
+bool_literal -> · 'false' : {'%' '*' '+' ',' '-' '.' '/' '['}
+bool_literal -> · 'true' : {'%' '*' '+' ',' '-' '.' '/' '['}
+call_expression -> · callable argument_expression_list : {'%' '*' '+' ',' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' ',' '-' '.' '/' '['}
+callable -> · ident : {'%' '(' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /0[fh]/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /[0-9]+[eE][+-]?[0-9]+[fh]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_float_literal -> · /[1-9][0-9]*[fh]/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_int_literal -> · /0[iu]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+decimal_int_literal -> · /[1-9][0-9]*[iu]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+float_literal -> · decimal_float_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+float_literal -> · hex_float_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+hex_float_literal -> · /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+hex_float_literal -> · /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+hex_float_literal -> · /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+hex_int_literal -> · /0[xX][0-9a-fA-F]+[iu]?/ : {'%' '*' '+' ',' '-' '.' '/' '['}
+ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {'%' '(' '*' '+' ',' '-' '.' '/' '['}
+int_literal -> · decimal_int_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+int_literal -> · hex_int_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+literal -> · bool_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+literal -> · float_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+literal -> · int_literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+multiplicative_expression -> · multiplicative_expression multiplicative_operator unary_expression : {'%' '*' '+' ',' '-' '/'}
+multiplicative_expression -> · unary_expression : {'%' '*' '+' ',' '-' '/'}
+paren_expression -> · '(' expression ')' : {'%' '*' '+' ',' '-' '.' '/' '['}
+primary_expression -> · call_expression : {'%' '*' '+' ',' '-' '.' '/' '['}
+primary_expression -> · callable : {'%' '*' '+' ',' '-' '.' '/' '['}
+primary_expression -> · literal : {'%' '*' '+' ',' '-' '.' '/' '['}
+primary_expression -> · paren_expression : {'%' '*' '+' ',' '-' '.' '/' '['}
+singular_expression -> · primary_expression singular_expression/0.1 : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '!' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '&' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '*' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '-' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · '~' unary_expression : {'%' '*' '+' ',' '-' '/'}
+unary_expression -> · singular_expression : {'%' '*' '+' ',' '-' '/'}
 
 #493
-callable_type/1.3/0/0.0 -> ',' primary_expression · : {','}
+additive_expression -> additive_expression · additive_operator multiplicative_expression : {'+' ',' '-'}
+callable_type/1.3/0/0.0 -> ',' additive_expression · : {','}
+additive_operator -> · '+' : {'!' '&' '(' '*' '-' 'false' 'true' '~' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ /0[fh]/ /0[iu]?/ /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ /0[xX][0-9a-fA-F]+[iu]?/ /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ /[0-9]+[eE][+-]?[0-9]+[fh]?/ /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ /[1-9][0-9]*[fh]/ /[1-9][0-9]*[iu]?/}
+additive_operator -> · '-' : {'!' '&' '(' '*' '-' 'false' 'true' '~' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ /0[fh]/ /0[iu]?/ /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ /0[xX][0-9a-fA-F]+[iu]?/ /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ /[0-9]+[eE][+-]?[0-9]+[fh]?/ /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ /[1-9][0-9]*[fh]/ /[1-9][0-9]*[iu]?/}
 
 #494
 callable_type/1.3/0 -> callable_type/1.3/0/0.0 callable_type/1.3/0 · : {','}
 
 #495
-type_specifier -> ident '<' primary_expression callable_type/1.3 callable_type/1.4 · '>' : {',' '=' '{'}
+type_specifier -> ident '<' additive_expression callable_type/1.3 callable_type/1.4 · '>' : {',' '=' '{'}
 
 #496
 callable_type/1.4 -> ',' · : {}
 
 #497
-type_specifier -> ident '<' primary_expression callable_type/1.3 callable_type/1.4 '>' · : {',' '=' '{'}
+type_specifier -> ident '<' additive_expression callable_type/1.3 callable_type/1.4 '>' · : {',' '=' '{'}
 
 #498
-callable_type/2.4/0/0.0 -> ',' primary_expression · : {','}
+additive_expression -> additive_expression · additive_operator multiplicative_expression : {'+' ',' '-'}
+callable_type/2.4/0/0.0 -> ',' additive_expression · : {','}
+additive_operator -> · '+' : {'!' '&' '(' '*' '-' 'false' 'true' '~' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ /0[fh]/ /0[iu]?/ /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ /0[xX][0-9a-fA-F]+[iu]?/ /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ /[0-9]+[eE][+-]?[0-9]+[fh]?/ /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ /[1-9][0-9]*[fh]/ /[1-9][0-9]*[iu]?/}
+additive_operator -> · '-' : {'!' '&' '(' '*' '-' 'false' 'true' '~' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ /0[fh]/ /0[iu]?/ /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ /0[xX][0-9a-fA-F]+[iu]?/ /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ /[0-9]+[eE][+-]?[0-9]+[fh]?/ /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ /[1-9][0-9]*[fh]/ /[1-9][0-9]*[iu]?/}
 
 #499
 callable_type/2.4/0 -> callable_type/2.4/0/0.0 callable_type/2.4/0 · : {','}
 
 #500
-type_specifier -> ident '::' '<' primary_expression callable_type/2.4 callable_type/2.5 · '>' : {',' '=' '{'}
+type_specifier -> ident '::' '<' additive_expression callable_type/2.4 callable_type/2.5 · '>' : {',' '=' '{'}
 
 #501
 callable_type/2.5 -> ',' · : {}
@@ -5685,7 +5769,7 @@ function_header/0.5 -> '->' function_header/0.5/0.1 type_specifier · : {'{'}
 for_header -> for_header/0.0 ';' for_header/0.2 ';' · for_header/0.4 : {}
 assignment_statement -> · '_' '=' expression : {}
 assignment_statement -> · lhs_expression assignment_statement/0.1 expression : {}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'('}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'('}
 callable -> · ident : {'('}
 core_lhs_expression -> · '(' lhs_expression ')' : {'%=' '&=' '*=' '+=' '-=' '.' '/=' '<<=' '=' '>>=' '[' '^=' '|='}
 core_lhs_expression -> · ident : {'%=' '&=' '*=' '+=' '-=' '.' '/=' '<<=' '=' '>>=' '[' '^=' '|='}
@@ -5716,7 +5800,7 @@ continuing_compound_statement/0.1/0 -> statement · continuing_compound_statemen
 assignment_statement -> · '_' '=' expression : {}
 assignment_statement -> · lhs_expression assignment_statement/0.1 expression : {}
 break_statement -> · 'break' : {}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'('}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'('}
 callable -> · ident : {'('}
 compound_statement -> · '{' compound_statement/0.1 '}' : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 const_assert_statement -> · 'const_assert' expression : {}
@@ -5790,7 +5874,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {',' ':' '
 bool_literal -> · 'false' : {'%' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 bool_literal -> · 'true' : {'%' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 call_expression -> · callable argument_expression_list : {'%' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 callable -> · ident : {'%' '(' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 case_selector -> · 'default' : {',' ':' '{'}
 case_selector -> · expression : {',' ':' '{'}
@@ -5899,7 +5983,7 @@ for_update -> variable_updating_statement · : {}
 for_update -> func_call_statement · : {}
 
 #529
-type_specifier -> ident '::' '<' primary_expression callable_type/2.4 callable_type/2.5 '>' · : {',' '=' '{'}
+type_specifier -> ident '::' '<' additive_expression callable_type/2.4 callable_type/2.5 '>' · : {',' '=' '{'}
 
 #530
 break_if_statement -> 'break' 'if' · expression ';' : {}
@@ -5917,7 +6001,7 @@ bitwise_expression -> · binary_xor_expression '^' unary_expression : {}
 bool_literal -> · 'false' : {'%' '*' '+' '-' '.' '/' '['}
 bool_literal -> · 'true' : {'%' '*' '+' '-' '.' '/' '['}
 call_expression -> · callable argument_expression_list : {'%' '*' '+' '-' '.' '/' '['}
-callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
+callable -> · ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' : {'%' '(' '*' '+' '-' '.' '/' '['}
 callable -> · ident : {'%' '(' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /0[fh]/ : {'%' '*' '+' '-' '.' '/' '['}
 decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {'%' '*' '+' '-' '.' '/' '['}
@@ -6182,11 +6266,11 @@ r#196 loop_statement/0.2/0 -> statement loop_statement/0.2/0 ·
 r#197 switch_body -> case_clause ·
 r#198 switch_body -> default_alone_clause ·
 r#199 else_clause -> 'else' compound_statement ·
-r#200 callable/1.4/0/0.0 -> ',' primary_expression ·
+r#200 callable/1.4/0/0.0 -> ',' additive_expression ·
 r#201 callable/1.4/0 -> callable/1.4/0/0.0 callable/1.4/0 ·
 r#202 attribute -> '@' 'workgroup_size' '(' expression ',' expression attrib_end ·
 r#203 attribute -> '@' 'interpolate' '(' interpolation_type_name ',' interpolation_sample_name attrib_end ·
-r#204 callable -> ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' ·
+r#204 callable -> ident '::' '<' additive_expression callable/1.4 callable/1.5 '>' ·
 r#205 else_if_clause -> 'else' 'if' expression compound_statement ·
 r#206 default_alone_clause/0.1 -> ':' ·
 r#207 case_selector -> 'default' ·
@@ -6196,10 +6280,10 @@ r#210 loop_statement -> 'loop' '{' loop_statement/0.2 loop_statement/0.3 '}' ·
 r#211 for_statement -> 'for' '(' for_header ')' compound_statement ·
 r#212 param -> param/0.0 ident ':' type_specifier ·
 r#213 callable_type/2.4 -> callable_type/2.4/0 ·
-r#214 callable_type/1.3/0/0.0 -> ',' primary_expression ·
+r#214 callable_type/1.3/0/0.0 -> ',' additive_expression ·
 r#215 callable_type/1.3/0 -> callable_type/1.3/0/0.0 callable_type/1.3/0 ·
-r#216 type_specifier -> ident '<' primary_expression callable_type/1.3 callable_type/1.4 '>' ·
-r#217 callable_type/2.4/0/0.0 -> ',' primary_expression ·
+r#216 type_specifier -> ident '<' additive_expression callable_type/1.3 callable_type/1.4 '>' ·
+r#217 callable_type/2.4/0/0.0 -> ',' additive_expression ·
 r#218 callable_type/2.4/0 -> callable_type/2.4/0/0.0 callable_type/2.4/0 ·
 r#219 function_header/0.5 -> '->' function_header/0.5/0.1 type_specifier ·
 r#220 continuing_compound_statement/0.1 -> continuing_compound_statement/0.1/0 ·
@@ -6213,7 +6297,7 @@ r#227 case_selectors/0.1/0 -> case_selectors/0.1/0/0.0 case_selectors/0.1/0 ·
 r#228 case_selectors -> case_selector case_selectors/0.1 case_selectors/0.2 ·
 r#229 case_selectors/0.2 -> ',' ·
 r#230 continuing_compound_statement/0.1/0 -> statement continuing_compound_statement/0.1/0 ·
-r#231 type_specifier -> ident '::' '<' primary_expression callable_type/2.4 callable_type/2.5 '>' ·
+r#231 type_specifier -> ident '::' '<' additive_expression callable_type/2.4 callable_type/2.5 '>' ·
 
 =Action:
 [#0 'enable']: s#5
@@ -8007,9 +8091,14 @@ r#231 type_specifier -> ident '::' '<' primary_expression callable_type/2.4 call
 [#218 ']']: s#354
 [#219 ')']: s#353
 [#221 ',']: s#352
+[#222 '!']: s#62
+[#222 '&']: s#65
 [#222 '(']: s#75
+[#222 '*']: s#64
+[#222 '-']: s#61
 [#222 'false']: s#82
 [#222 'true']: s#81
+[#222 '~']: s#63
 [#222 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
 [#222 /0[fh]/]: s#86
 [#222 /0[iu]?/]: s#83
@@ -8380,9 +8469,14 @@ r#231 type_specifier -> ident '::' '<' primary_expression callable_type/2.4 call
 [#285 'read']: s#426
 [#285 'read_write']: s#428
 [#285 'write']: s#427
+[#287 '!']: s#62
+[#287 '&']: s#65
 [#287 '(']: s#75
+[#287 '*']: s#64
+[#287 '-']: s#61
 [#287 'false']: s#82
 [#287 'true']: s#81
+[#287 '~']: s#63
 [#287 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
 [#287 /0[fh]/]: s#86
 [#287 /0[iu]?/]: s#83
@@ -9019,7 +9113,9 @@ r#231 type_specifier -> ident '::' '<' primary_expression callable_type/2.4 call
 [#347 '{']: r#154
 [#347 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#154
 [#347 EndOfText]: r#154
+[#348 '+']: s#144
 [#348 ',']: s#387
+[#348 '-']: s#145
 [#349 ',']: s#383
 [#350 ',']: r#155
 [#351 ',']: s#352
@@ -9243,9 +9339,14 @@ r#231 type_specifier -> ident '::' '<' primary_expression callable_type/2.4 call
 [#384 ',']: s#464
 [#385 ',']: r#178
 [#386 ',']: s#387
+[#387 '!']: s#62
+[#387 '&']: s#65
 [#387 '(']: s#75
+[#387 '*']: s#64
+[#387 '-']: s#61
 [#387 'false']: s#82
 [#387 'true']: s#81
+[#387 '~']: s#63
 [#387 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
 [#387 /0[fh]/]: s#86
 [#387 /0[iu]?/]: s#83
@@ -9475,9 +9576,14 @@ r#231 type_specifier -> ident '::' '<' primary_expression callable_type/2.4 call
 [#419 ',']: r#188
 [#420 '}']: s#436
 [#422 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
+[#423 '!']: s#62
+[#423 '&']: s#65
 [#423 '(']: s#75
+[#423 '*']: s#64
+[#423 '-']: s#61
 [#423 'false']: s#82
 [#423 'true']: s#81
+[#423 '~']: s#63
 [#423 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
 [#423 /0[fh]/]: s#86
 [#423 /0[iu]?/]: s#83
@@ -9490,14 +9596,21 @@ r#231 type_specifier -> ident '::' '<' primary_expression callable_type/2.4 call
 [#423 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
 [#423 /[1-9][0-9]*[fh]/]: s#87
 [#423 /[1-9][0-9]*[iu]?/]: s#84
+[#424 '+']: s#144
 [#424 ',']: s#433
+[#424 '-']: s#145
 [#429 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#189
 [#430 ',']: s#496
 [#431 ',']: r#190
 [#432 ',']: s#433
+[#433 '!']: s#62
+[#433 '&']: s#65
 [#433 '(']: s#75
+[#433 '*']: s#64
+[#433 '-']: s#61
 [#433 'false']: s#82
 [#433 'true']: s#81
+[#433 '~']: s#63
 [#433 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
 [#433 /0[fh]/]: s#86
 [#433 /0[iu]?/]: s#83
@@ -9510,7 +9623,9 @@ r#231 type_specifier -> ident '::' '<' primary_expression callable_type/2.4 call
 [#433 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
 [#433 /[1-9][0-9]*[fh]/]: s#87
 [#433 /[1-9][0-9]*[iu]?/]: s#84
+[#434 '+']: s#144
 [#434 ',']: s#492
+[#434 '-']: s#145
 [#435 ',']: r#191
 [#436 ';']: r#192
 [#436 '@']: r#192
@@ -9602,7 +9717,9 @@ r#231 type_specifier -> ident '::' '<' primary_expression callable_type/2.4 call
 [#459 '{']: r#199
 [#459 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#199
 [#460 '{']: s#123
+[#461 '+']: s#144
 [#461 ',']: r#200
+[#461 '-']: s#145
 [#462 ',']: r#201
 [#463 '>']: s#469
 [#465 '@']: r#202
@@ -9766,9 +9883,14 @@ r#231 type_specifier -> ident '::' '<' primary_expression callable_type/2.4 call
 [#489 ',']: s#501
 [#490 ',']: r#213
 [#491 ',']: s#492
+[#492 '!']: s#62
+[#492 '&']: s#65
 [#492 '(']: s#75
+[#492 '*']: s#64
+[#492 '-']: s#61
 [#492 'false']: s#82
 [#492 'true']: s#81
+[#492 '~']: s#63
 [#492 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
 [#492 /0[fh]/]: s#86
 [#492 /0[iu]?/]: s#83
@@ -9781,13 +9903,17 @@ r#231 type_specifier -> ident '::' '<' primary_expression callable_type/2.4 call
 [#492 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
 [#492 /[1-9][0-9]*[fh]/]: s#87
 [#492 /[1-9][0-9]*[iu]?/]: s#84
+[#493 '+']: s#144
 [#493 ',']: r#214
+[#493 '-']: s#145
 [#494 ',']: r#215
 [#495 '>']: s#497
 [#497 ',']: r#216
 [#497 '=']: r#216
 [#497 '{']: r#216
+[#498 '+']: s#144
 [#498 ',']: r#217
+[#498 '-']: s#145
 [#499 ',']: r#218
 [#500 '>']: s#529
 [#503 '{']: r#219
@@ -10688,6 +10814,7 @@ r#231 type_specifier -> ident '::' '<' primary_expression callable_type/2.4 call
 [#221 expression_comma_list/0.1]: #349
 [#221 expression_comma_list/0.1/0]: #350
 [#221 expression_comma_list/0.1/0/0.0]: #351
+[#222 additive_expression]: #348
 [#222 bool_literal]: #74
 [#222 call_expression]: #68
 [#222 callable]: #67
@@ -10699,8 +10826,11 @@ r#231 type_specifier -> ident '::' '<' primary_expression callable_type/2.4 call
 [#222 ident]: #71
 [#222 int_literal]: #72
 [#222 literal]: #69
+[#222 multiplicative_expression]: #59
 [#222 paren_expression]: #70
-[#222 primary_expression]: #348
+[#222 primary_expression]: #66
+[#222 singular_expression]: #60
+[#222 unary_expression]: #203
 [#226 assignment_statement]: #254
 [#226 break_statement]: #236
 [#226 callable]: #248
@@ -10891,6 +11021,7 @@ r#231 type_specifier -> ident '::' '<' primary_expression callable_type/2.4 call
 [#273 unary_expression]: #58
 [#277 variable_qualifier/0.2]: #284
 [#285 access_mode]: #425
+[#287 additive_expression]: #424
 [#287 bool_literal]: #74
 [#287 call_expression]: #68
 [#287 callable]: #67
@@ -10902,8 +11033,11 @@ r#231 type_specifier -> ident '::' '<' primary_expression callable_type/2.4 call
 [#287 ident]: #71
 [#287 int_literal]: #72
 [#287 literal]: #69
+[#287 multiplicative_expression]: #59
 [#287 paren_expression]: #70
-[#287 primary_expression]: #424
+[#287 primary_expression]: #66
+[#287 singular_expression]: #60
+[#287 unary_expression]: #203
 [#291 struct_body_decl/0.3]: #420
 [#293 struct_body_decl/0.2/0]: #419
 [#293 struct_body_decl/0.2/0/0.0]: #293
@@ -11040,6 +11174,7 @@ r#231 type_specifier -> ident '::' '<' primary_expression callable_type/2.4 call
 [#332 if_statement/0.2]: #390
 [#334 else_if_clause]: #334
 [#334 if_statement/0.1/0]: #389
+[#348 additive_operator]: #143
 [#348 callable/1.4]: #384
 [#348 callable/1.4/0]: #385
 [#348 callable/1.4/0/0.0]: #386
@@ -11108,6 +11243,7 @@ r#231 type_specifier -> ident '::' '<' primary_expression callable_type/2.4 call
 [#384 callable/1.5]: #463
 [#386 callable/1.4/0]: #462
 [#386 callable/1.4/0/0.0]: #386
+[#387 additive_expression]: #461
 [#387 bool_literal]: #74
 [#387 call_expression]: #68
 [#387 callable]: #67
@@ -11119,8 +11255,11 @@ r#231 type_specifier -> ident '::' '<' primary_expression callable_type/2.4 call
 [#387 ident]: #71
 [#387 int_literal]: #72
 [#387 literal]: #69
+[#387 multiplicative_expression]: #59
 [#387 paren_expression]: #70
-[#387 primary_expression]: #461
+[#387 primary_expression]: #66
+[#387 singular_expression]: #60
+[#387 unary_expression]: #203
 [#388 additive_expression]: #57
 [#388 binary_and_expression]: #54
 [#388 binary_or_expression]: #55
@@ -11241,6 +11380,7 @@ r#231 type_specifier -> ident '::' '<' primary_expression callable_type/2.4 call
 [#417 function_header/0.5]: #437
 [#422 ident]: #271
 [#422 type_specifier]: #435
+[#423 additive_expression]: #434
 [#423 bool_literal]: #74
 [#423 call_expression]: #68
 [#423 callable]: #67
@@ -11252,14 +11392,19 @@ r#231 type_specifier -> ident '::' '<' primary_expression callable_type/2.4 call
 [#423 ident]: #71
 [#423 int_literal]: #72
 [#423 literal]: #69
+[#423 multiplicative_expression]: #59
 [#423 paren_expression]: #70
-[#423 primary_expression]: #434
+[#423 primary_expression]: #66
+[#423 singular_expression]: #60
+[#423 unary_expression]: #203
+[#424 additive_operator]: #143
 [#424 callable_type/1.3]: #430
 [#424 callable_type/1.3/0]: #431
 [#424 callable_type/1.3/0/0.0]: #432
 [#430 callable_type/1.4]: #495
 [#432 callable_type/1.3/0]: #494
 [#432 callable_type/1.3/0/0.0]: #432
+[#433 additive_expression]: #493
 [#433 bool_literal]: #74
 [#433 call_expression]: #68
 [#433 callable]: #67
@@ -11271,8 +11416,12 @@ r#231 type_specifier -> ident '::' '<' primary_expression callable_type/2.4 call
 [#433 ident]: #71
 [#433 int_literal]: #72
 [#433 literal]: #69
+[#433 multiplicative_expression]: #59
 [#433 paren_expression]: #70
-[#433 primary_expression]: #493
+[#433 primary_expression]: #66
+[#433 singular_expression]: #60
+[#433 unary_expression]: #203
+[#434 additive_operator]: #143
 [#434 callable_type/2.4]: #489
 [#434 callable_type/2.4/0]: #490
 [#434 callable_type/2.4/0/0.0]: #491
@@ -11344,6 +11493,7 @@ r#231 type_specifier -> ident '::' '<' primary_expression callable_type/2.4 call
 [#457 unary_expression]: #58
 [#458 default_alone_clause/0.1]: #471
 [#460 compound_statement]: #470
+[#461 additive_operator]: #143
 [#466 additive_expression]: #57
 [#466 binary_and_expression]: #54
 [#466 binary_or_expression]: #55
@@ -11409,6 +11559,7 @@ r#231 type_specifier -> ident '::' '<' primary_expression callable_type/2.4 call
 [#489 callable_type/2.5]: #500
 [#491 callable_type/2.4/0]: #499
 [#491 callable_type/2.4/0/0.0]: #491
+[#492 additive_expression]: #498
 [#492 bool_literal]: #74
 [#492 call_expression]: #68
 [#492 callable]: #67
@@ -11420,8 +11571,13 @@ r#231 type_specifier -> ident '::' '<' primary_expression callable_type/2.4 call
 [#492 ident]: #71
 [#492 int_literal]: #72
 [#492 literal]: #69
+[#492 multiplicative_expression]: #59
 [#492 paren_expression]: #70
-[#492 primary_expression]: #498
+[#492 primary_expression]: #66
+[#492 singular_expression]: #60
+[#492 unary_expression]: #203
+[#493 additive_operator]: #143
+[#498 additive_operator]: #143
 [#504 assignment_statement]: #254
 [#504 callable]: #248
 [#504 core_lhs_expression]: #261

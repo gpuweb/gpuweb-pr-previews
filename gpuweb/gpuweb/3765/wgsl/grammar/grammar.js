@@ -197,12 +197,12 @@ module.exports = grammar({
         call_phrase: $ => seq($.callable, $.argument_expression_list),
         callable: $ => choice(
             $.ident,
-            seq($.ident, token('::'), token('<'), $.primary_expression, optional(repeat1(seq(token(','), $.primary_expression))), optional(token(',')), token('>'))
+            seq($.ident, token('::'), token('<'), $.additive_expression, optional(repeat1(seq(token(','), $.additive_expression))), optional(token(',')), token('>'))
         ),
         callable_type: $ => choice(
             $.ident,
-            seq($.ident, token('<'), $.primary_expression, optional(repeat1(seq(token(','), $.primary_expression))), optional(token(',')), token('>')),
-            seq($.ident, token('::'), token('<'), $.primary_expression, optional(repeat1(seq(token(','), $.primary_expression))), optional(token(',')), token('>'))
+            seq($.ident, token('<'), $.additive_expression, optional(repeat1(seq(token(','), $.additive_expression))), optional(token(',')), token('>')),
+            seq($.ident, token('::'), token('<'), $.additive_expression, optional(repeat1(seq(token(','), $.additive_expression))), optional(token(',')), token('>'))
         ),
         paren_expression: $ => seq(token('('), $.expression, token(')')),
         argument_expression_list: $ => seq(token('('), optional($.expression_comma_list), token(')')),
