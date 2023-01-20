@@ -89,6 +89,14 @@ callable:
  | ident '::' '<' primary_expression ( ',' primary_expression ) * ? ',' ? '>'
 callable/1.4/0/0.0:
    ',' primary_expression
+callable_type:
+   ident
+ | ident '::' '<' primary_expression ( ',' primary_expression ) * ? ',' ? '>'
+ | ident '<' primary_expression ( ',' primary_expression ) * ? ',' ? '>'
+callable_type/1.3/0/0.0:
+   ',' primary_expression
+callable_type/2.4/0/0.0:
+   ',' primary_expression
 case_clause:
    'case' case_selectors ':' ? compound_statement
 case_selector:
@@ -369,7 +377,7 @@ translation_unit:
    global_directive * ? global_decl * ?
 type_alias_decl:
    'type' ident '=' type_specifier
-type_specifier:callable
+type_specifier:callable_type
 type_specifier_without_ident:
    'atomic' '<' type_specifier '>'
  | 'bool'
@@ -1317,7 +1325,8 @@ optionally_typed_ident -> ident optionally_typed_ident/0.1 · : {'='}
 #115
 optionally_typed_ident/0.1 -> ':' · type_specifier : {'='}
 ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {'='}
-type_specifier -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'='}
+type_specifier -> · ident '::' '<' primary_expression callable_type/2.4 callable_type/2.5 '>' : {'='}
+type_specifier -> · ident '<' primary_expression callable_type/1.3 callable_type/1.4 '>' : {'='}
 type_specifier -> · ident : {'='}
 
 #116
@@ -1397,7 +1406,8 @@ global_constant_decl/1.3 -> · '=' expression : {}
 #118
 type_alias_decl -> 'type' ident '=' · type_specifier : {}
 ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {}
-type_specifier -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {}
+type_specifier -> · ident '::' '<' primary_expression callable_type/2.4 callable_type/2.5 '>' : {}
+type_specifier -> · ident '<' primary_expression callable_type/1.3 callable_type/1.4 '>' : {}
 type_specifier -> · ident : {}
 
 #119
@@ -3656,7 +3666,8 @@ struct_member/0.0/0 -> · attribute struct_member/0.0/0 : {}
 type_alias_decl -> 'type' ident '=' type_specifier · : {}
 
 #271
-type_specifier -> ident · '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {',' '=' '{'}
+type_specifier -> ident · '::' '<' primary_expression callable_type/2.4 callable_type/2.5 '>' : {',' '=' '{'}
+type_specifier -> ident · '<' primary_expression callable_type/1.3 callable_type/1.4 '>' : {',' '=' '{'}
 type_specifier -> ident · : {',' '=' '{'}
 
 #272
@@ -3776,27 +3787,59 @@ access_mode -> · 'write' : {}
 global_constant_decl/1.3 -> '=' expression · : {}
 
 #287
-type_specifier -> ident '::' · '<' primary_expression callable/1.4 callable/1.5 '>' : {',' '=' '{'}
+type_specifier -> ident '<' · primary_expression callable_type/1.3 callable_type/1.4 '>' : {',' '=' '{'}
+bool_literal -> · 'false' : {','}
+bool_literal -> · 'true' : {','}
+call_expression -> · callable argument_expression_list : {','}
+callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'(' ','}
+callable -> · ident : {'(' ','}
+decimal_float_literal -> · /0[fh]/ : {','}
+decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {','}
+decimal_float_literal -> · /[0-9]+[eE][+-]?[0-9]+[fh]?/ : {','}
+decimal_float_literal -> · /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ : {','}
+decimal_float_literal -> · /[1-9][0-9]*[fh]/ : {','}
+decimal_int_literal -> · /0[iu]?/ : {','}
+decimal_int_literal -> · /[1-9][0-9]*[iu]?/ : {','}
+float_literal -> · decimal_float_literal : {','}
+float_literal -> · hex_float_literal : {','}
+hex_float_literal -> · /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ : {','}
+hex_float_literal -> · /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ : {','}
+hex_float_literal -> · /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ : {','}
+hex_int_literal -> · /0[xX][0-9a-fA-F]+[iu]?/ : {','}
+ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {'(' ','}
+int_literal -> · decimal_int_literal : {','}
+int_literal -> · hex_int_literal : {','}
+literal -> · bool_literal : {','}
+literal -> · float_literal : {','}
+literal -> · int_literal : {','}
+paren_expression -> · '(' expression ')' : {','}
+primary_expression -> · call_expression : {','}
+primary_expression -> · callable : {','}
+primary_expression -> · literal : {','}
+primary_expression -> · paren_expression : {','}
 
 #288
-struct_member/0.0/0 -> attribute struct_member/0.0/0 · : {}
+type_specifier -> ident '::' · '<' primary_expression callable_type/2.4 callable_type/2.5 '>' : {',' '=' '{'}
 
 #289
-struct_member -> struct_member/0.0 member_ident · ':' type_specifier : {','}
+struct_member/0.0/0 -> attribute struct_member/0.0/0 · : {}
 
 #290
+struct_member -> struct_member/0.0 member_ident · ':' type_specifier : {','}
+
+#291
 struct_body_decl -> '{' struct_member struct_body_decl/0.2 · struct_body_decl/0.3 '}' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
 struct_body_decl/0.3 -> · ',' : {}
 
-#291
+#292
 struct_body_decl/0.2 -> struct_body_decl/0.2/0 · : {','}
 
-#292
+#293
 struct_body_decl/0.2/0 -> struct_body_decl/0.2/0/0.0 · struct_body_decl/0.2/0 : {','}
 struct_body_decl/0.2/0 -> · struct_body_decl/0.2/0/0.0 struct_body_decl/0.2/0 : {','}
 struct_body_decl/0.2/0/0.0 -> · ',' struct_member : {','}
 
-#293
+#294
 struct_body_decl/0.2/0/0.0 -> ',' · struct_member : {','}
 attribute -> · '@' 'align' '(' expression attrib_end : {'@'}
 attribute -> · '@' 'binding' '(' expression attrib_end : {'@'}
@@ -3819,26 +3862,26 @@ struct_member -> · struct_member/0.0 member_ident ':' type_specifier : {','}
 struct_member/0.0 -> · struct_member/0.0/0 : {}
 struct_member/0.0/0 -> · attribute struct_member/0.0/0 : {}
 
-#294
+#295
 function_header -> 'fn' ident '(' function_header/0.3 · ')' function_header/0.5 : {'{'}
 
-#295
+#296
 function_header/0.3 -> param_list · : {}
 
-#296
+#297
 param_list -> param · param_list/0.1 param_list/0.2 : {}
 param_list/0.1 -> · param_list/0.1/0 : {','}
 param_list/0.1/0 -> · param_list/0.1/0/0.0 param_list/0.1/0 : {','}
 param_list/0.1/0/0.0 -> · ',' param : {','}
 
-#297
+#298
 param -> param/0.0 · ident ':' type_specifier : {','}
 ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {}
 
-#298
+#299
 param/0.0 -> param/0.0/0 · : {}
 
-#299
+#300
 param/0.0/0 -> attribute · param/0.0/0 : {}
 attribute -> · '@' 'align' '(' expression attrib_end : {'@'}
 attribute -> · '@' 'binding' '(' expression attrib_end : {'@'}
@@ -3859,25 +3902,25 @@ attribute -> · '@' 'workgroup_size' '(' expression ',' expression attrib_end : 
 attribute -> · '@' 'workgroup_size' '(' expression attrib_end : {'@'}
 param/0.0/0 -> · attribute param/0.0/0 : {}
 
-#300
+#301
 core_lhs_expression -> '(' lhs_expression · ')' : {'%=' '&=' '*=' '+=' '-=' '.' '/=' '<<=' '=' '>>=' '[' '^=' '|='}
 
-#301
+#302
 core_lhs_expression -> ident · : {'%=' '&=' '*=' '+=' '-=' '.' '/=' '<<=' '=' '>>=' '[' '^=' '|='}
 
-#302
+#303
 lhs_expression -> '&' lhs_expression · : {'%=' '&=' '*=' '+=' '-=' '/=' '<<=' '=' '>>=' '^=' '|='}
 
-#303
+#304
 lhs_expression -> '*' lhs_expression · : {'%=' '&=' '*=' '+=' '-=' '/=' '<<=' '=' '>>=' '^=' '|='}
 
-#304
+#305
 lhs_expression -> core_lhs_expression lhs_expression/0.1 · : {'%=' '&=' '*=' '+=' '-=' '/=' '<<=' '=' '>>=' '^=' '|='}
 
-#305
+#306
 lhs_expression/0.1 -> component_or_swizzle_specifier · : {'%=' '&=' '*=' '+=' '-=' '/=' '<<=' '=' '>>=' '^=' '|='}
 
-#306
+#307
 assignment_statement -> '_' '=' · expression : {}
 additive_expression -> · additive_expression additive_operator multiplicative_expression : {'+' '-'}
 additive_expression -> · multiplicative_expression : {'+' '-'}
@@ -3947,7 +3990,7 @@ unary_expression -> · '-' unary_expression : {'%' '*' '+' '-' '/'}
 unary_expression -> · '~' unary_expression : {'%' '*' '+' '-' '/'}
 unary_expression -> · singular_expression : {'%' '*' '+' '-' '/'}
 
-#307
+#308
 assignment_statement -> lhs_expression assignment_statement/0.1 · expression : {}
 additive_expression -> · additive_expression additive_operator multiplicative_expression : {'+' '-'}
 additive_expression -> · multiplicative_expression : {'+' '-'}
@@ -4017,59 +4060,59 @@ unary_expression -> · '-' unary_expression : {'%' '*' '+' '-' '/'}
 unary_expression -> · '~' unary_expression : {'%' '*' '+' '-' '/'}
 unary_expression -> · singular_expression : {'%' '*' '+' '-' '/'}
 
-#308
+#309
 increment_statement -> lhs_expression '++' · : {}
 
-#309
+#310
 decrement_statement -> lhs_expression '--' · : {}
 
-#310
+#311
 assignment_statement/0.1 -> '=' · : {'!' '&' '(' '*' '-' 'false' 'true' '~' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ /0[fh]/ /0[iu]?/ /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ /0[xX][0-9a-fA-F]+[iu]?/ /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ /[0-9]+[eE][+-]?[0-9]+[fh]?/ /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ /[1-9][0-9]*[fh]/ /[1-9][0-9]*[iu]?/}
 
-#311
+#312
 assignment_statement/0.1 -> compound_assignment_operator · : {'!' '&' '(' '*' '-' 'false' 'true' '~' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ /0[fh]/ /0[iu]?/ /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ /0[xX][0-9a-fA-F]+[iu]?/ /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ /[0-9]+[eE][+-]?[0-9]+[fh]?/ /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ /[1-9][0-9]*[fh]/ /[1-9][0-9]*[iu]?/}
 
-#312
+#313
 compound_assignment_operator -> '+=' · : {'!' '&' '(' '*' '-' 'false' 'true' '~' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ /0[fh]/ /0[iu]?/ /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ /0[xX][0-9a-fA-F]+[iu]?/ /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ /[0-9]+[eE][+-]?[0-9]+[fh]?/ /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ /[1-9][0-9]*[fh]/ /[1-9][0-9]*[iu]?/}
 
-#313
+#314
 compound_assignment_operator -> '-=' · : {'!' '&' '(' '*' '-' 'false' 'true' '~' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ /0[fh]/ /0[iu]?/ /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ /0[xX][0-9a-fA-F]+[iu]?/ /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ /[0-9]+[eE][+-]?[0-9]+[fh]?/ /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ /[1-9][0-9]*[fh]/ /[1-9][0-9]*[iu]?/}
 
-#314
+#315
 compound_assignment_operator -> '*=' · : {'!' '&' '(' '*' '-' 'false' 'true' '~' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ /0[fh]/ /0[iu]?/ /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ /0[xX][0-9a-fA-F]+[iu]?/ /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ /[0-9]+[eE][+-]?[0-9]+[fh]?/ /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ /[1-9][0-9]*[fh]/ /[1-9][0-9]*[iu]?/}
 
-#315
+#316
 compound_assignment_operator -> '/=' · : {'!' '&' '(' '*' '-' 'false' 'true' '~' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ /0[fh]/ /0[iu]?/ /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ /0[xX][0-9a-fA-F]+[iu]?/ /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ /[0-9]+[eE][+-]?[0-9]+[fh]?/ /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ /[1-9][0-9]*[fh]/ /[1-9][0-9]*[iu]?/}
 
-#316
+#317
 compound_assignment_operator -> '%=' · : {'!' '&' '(' '*' '-' 'false' 'true' '~' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ /0[fh]/ /0[iu]?/ /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ /0[xX][0-9a-fA-F]+[iu]?/ /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ /[0-9]+[eE][+-]?[0-9]+[fh]?/ /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ /[1-9][0-9]*[fh]/ /[1-9][0-9]*[iu]?/}
 
-#317
+#318
 compound_assignment_operator -> '&=' · : {'!' '&' '(' '*' '-' 'false' 'true' '~' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ /0[fh]/ /0[iu]?/ /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ /0[xX][0-9a-fA-F]+[iu]?/ /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ /[0-9]+[eE][+-]?[0-9]+[fh]?/ /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ /[1-9][0-9]*[fh]/ /[1-9][0-9]*[iu]?/}
 
-#318
+#319
 compound_assignment_operator -> '|=' · : {'!' '&' '(' '*' '-' 'false' 'true' '~' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ /0[fh]/ /0[iu]?/ /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ /0[xX][0-9a-fA-F]+[iu]?/ /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ /[0-9]+[eE][+-]?[0-9]+[fh]?/ /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ /[1-9][0-9]*[fh]/ /[1-9][0-9]*[iu]?/}
 
-#319
+#320
 compound_assignment_operator -> '^=' · : {'!' '&' '(' '*' '-' 'false' 'true' '~' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ /0[fh]/ /0[iu]?/ /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ /0[xX][0-9a-fA-F]+[iu]?/ /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ /[0-9]+[eE][+-]?[0-9]+[fh]?/ /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ /[1-9][0-9]*[fh]/ /[1-9][0-9]*[iu]?/}
 
-#320
+#321
 compound_assignment_operator -> '>>=' · : {'!' '&' '(' '*' '-' 'false' 'true' '~' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ /0[fh]/ /0[iu]?/ /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ /0[xX][0-9a-fA-F]+[iu]?/ /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ /[0-9]+[eE][+-]?[0-9]+[fh]?/ /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ /[1-9][0-9]*[fh]/ /[1-9][0-9]*[iu]?/}
 
-#321
+#322
 compound_assignment_operator -> '<<=' · : {'!' '&' '(' '*' '-' 'false' 'true' '~' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ /0[fh]/ /0[iu]?/ /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ /0[xX][0-9a-fA-F]+[iu]?/ /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ /[0-9]+[eE][+-]?[0-9]+[fh]?/ /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ /[1-9][0-9]*[fh]/ /[1-9][0-9]*[iu]?/}
 
-#322
+#323
 if_clause -> 'if' expression · compound_statement : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'else' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 compound_statement -> · '{' compound_statement/0.1 '}' : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'else' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#323
+#324
 variable_statement -> 'const' optionally_typed_ident · '=' expression : {}
 
-#324
+#325
 variable_statement -> 'let' optionally_typed_ident · '=' expression : {}
 
-#325
+#326
 variable_statement -> variable_decl '=' · expression : {}
 additive_expression -> · additive_expression additive_operator multiplicative_expression : {'+' '-'}
 additive_expression -> · multiplicative_expression : {'+' '-'}
@@ -4139,14 +4182,14 @@ unary_expression -> · '-' unary_expression : {'%' '*' '+' '-' '/'}
 unary_expression -> · '~' unary_expression : {'%' '*' '+' '-' '/'}
 unary_expression -> · singular_expression : {'%' '*' '+' '-' '/'}
 
-#326
+#327
 func_call_statement -> callable argument_expression_list · : {}
 
-#327
+#328
 while_statement -> 'while' expression · compound_statement : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 compound_statement -> · '{' compound_statement/0.1 '}' : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#328
+#329
 for_statement -> 'for' '(' · for_header ')' compound_statement : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 assignment_statement -> · '_' '=' expression : {}
 assignment_statement -> · lhs_expression assignment_statement/0.1 expression : {}
@@ -4175,7 +4218,7 @@ variable_updating_statement -> · assignment_statement : {}
 variable_updating_statement -> · decrement_statement : {}
 variable_updating_statement -> · increment_statement : {}
 
-#329
+#330
 loop_statement -> 'loop' '{' · loop_statement/0.2 loop_statement/0.3 '}' : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 assignment_statement -> · '_' '=' expression : {}
 assignment_statement -> · lhs_expression assignment_statement/0.1 expression : {}
@@ -4227,80 +4270,80 @@ variable_updating_statement -> · decrement_statement : {}
 variable_updating_statement -> · increment_statement : {}
 while_statement -> · 'while' expression compound_statement : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#330
+#331
 switch_statement -> 'switch' expression · '{' switch_statement/0.3 '}' : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#331
+#332
 if_statement -> if_clause if_statement/0.1 · if_statement/0.2 : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 else_clause -> · 'else' compound_statement : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 if_statement/0.2 -> · else_clause : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#332
+#333
 if_statement/0.1 -> if_statement/0.1/0 · : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'else' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#333
+#334
 if_statement/0.1/0 -> else_if_clause · if_statement/0.1/0 : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'else' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 else_if_clause -> · 'else' 'if' expression compound_statement : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'else' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 if_statement/0.1/0 -> · else_if_clause if_statement/0.1/0 : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'else' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#334
+#335
 else_if_clause -> 'else' · 'if' expression compound_statement : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'else' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#335
+#336
 return_statement -> 'return' return_statement/0.1 · : {}
 
-#336
+#337
 return_statement/0.1 -> expression · : {}
 
-#337
+#338
 statement -> const_assert_statement ';' · : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#338
+#339
 statement -> variable_updating_statement ';' · : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#339
+#340
 statement -> 'discard' ';' · : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#340
+#341
 statement -> continue_statement ';' · : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#341
+#342
 statement -> break_statement ';' · : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#342
+#343
 statement -> variable_statement ';' · : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#343
+#344
 statement -> func_call_statement ';' · : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#344
+#345
 statement -> return_statement ';' · : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#345
+#346
 compound_statement/0.1/0 -> statement compound_statement/0.1/0 · : {}
 
-#346
+#347
 compound_statement -> '{' compound_statement/0.1 '}' · : {'&' '(' '*' ';' '@' '_' 'break' 'case' 'const' 'const_assert' 'continue' 'continuing' 'default' 'discard' 'else' 'fn' 'for' 'if' 'let' 'loop' 'override' 'return' 'struct' 'switch' 'type' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ EndOfText}
 
-#347
+#348
 callable -> ident '::' '<' primary_expression · callable/1.4 callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 callable/1.4 -> · callable/1.4/0 : {','}
 callable/1.4/0 -> · callable/1.4/0/0.0 callable/1.4/0 : {','}
 callable/1.4/0/0.0 -> · ',' primary_expression : {','}
 
-#348
+#349
 expression_comma_list -> expression expression_comma_list/0.1 · expression_comma_list/0.2 : {}
 expression_comma_list/0.2 -> · ',' : {}
 
-#349
+#350
 expression_comma_list/0.1 -> expression_comma_list/0.1/0 · : {','}
 
-#350
+#351
 expression_comma_list/0.1/0 -> expression_comma_list/0.1/0/0.0 · expression_comma_list/0.1/0 : {','}
 expression_comma_list/0.1/0 -> · expression_comma_list/0.1/0/0.0 expression_comma_list/0.1/0 : {','}
 expression_comma_list/0.1/0/0.0 -> · ',' expression : {','}
 
-#351
+#352
 expression_comma_list/0.1/0/0.0 -> ',' · expression : {','}
 additive_expression -> · additive_expression additive_operator multiplicative_expression : {'+' ',' '-'}
 additive_expression -> · multiplicative_expression : {'+' ',' '-'}
@@ -4370,32 +4413,32 @@ unary_expression -> · '-' unary_expression : {'%' '*' '+' ',' '-' '/'}
 unary_expression -> · '~' unary_expression : {'%' '*' '+' ',' '-' '/'}
 unary_expression -> · singular_expression : {'%' '*' '+' ',' '-' '/'}
 
-#352
+#353
 argument_expression_list -> '(' argument_expression_list/0.1 ')' · : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 
-#353
+#354
 component_or_swizzle_specifier -> '[' expression ']' · component_or_swizzle_specifier/0.3 : {'%' '%=' '&=' ')' '*' '*=' '+' '+=' ',' '-' '-=' '/' '/=' ':' '<<=' '=' '>>=' '^=' '{' '|='}
 component_or_swizzle_specifier -> · '.' member_ident component_or_swizzle_specifier/1.2 : {'%' '%=' '&=' ')' '*' '*=' '+' '+=' ',' '-' '-=' '/' '/=' ':' '<<=' '=' '>>=' '^=' '{' '|='}
 component_or_swizzle_specifier -> · '.' swizzle_name component_or_swizzle_specifier/2.2 : {'%' '%=' '&=' ')' '*' '*=' '+' '+=' ',' '-' '-=' '/' '/=' ':' '<<=' '=' '>>=' '^=' '{' '|='}
 component_or_swizzle_specifier -> · '[' expression ']' component_or_swizzle_specifier/0.3 : {'%' '%=' '&=' ')' '*' '*=' '+' '+=' ',' '-' '-=' '/' '/=' ':' '<<=' '=' '>>=' '^=' '{' '|='}
 component_or_swizzle_specifier/0.3 -> · component_or_swizzle_specifier : {'%' '%=' '&=' ')' '*' '*=' '+' '+=' ',' '-' '-=' '/' '/=' ':' '<<=' '=' '>>=' '^=' '{' '|='}
 
-#354
+#355
 component_or_swizzle_specifier -> '.' swizzle_name component_or_swizzle_specifier/2.2 · : {'%' '%=' '&=' ')' '*' '*=' '+' '+=' ',' '-' '-=' '/' '/=' ':' '<<=' '=' '>>=' '^=' '{' '|='}
 
-#355
+#356
 component_or_swizzle_specifier/2.2 -> component_or_swizzle_specifier · : {'%' '%=' '&=' ')' '*' '*=' '+' '+=' ',' '-' '-=' '/' '/=' ':' '<<=' '=' '>>=' '^=' '{' '|='}
 
-#356
+#357
 component_or_swizzle_specifier -> '.' member_ident component_or_swizzle_specifier/1.2 · : {'%' '%=' '&=' ')' '*' '*=' '+' '+=' ',' '-' '-=' '/' '/=' ':' '<<=' '=' '>>=' '^=' '{' '|='}
 
-#357
+#358
 component_or_swizzle_specifier/1.2 -> component_or_swizzle_specifier · : {'%' '%=' '&=' ')' '*' '*=' '+' '+=' ',' '-' '-=' '/' '/=' ':' '<<=' '=' '>>=' '^=' '{' '|='}
 
-#358
+#359
 attribute -> '@' 'workgroup_size' '(' expression attrib_end · : {'@' 'fn' 'var'}
 
-#359
+#360
 attrib_end/0.0 -> ',' · : {}
 attribute -> '@' 'workgroup_size' '(' expression ',' · expression ',' expression attrib_end : {'@' 'fn' 'var'}
 attribute -> '@' 'workgroup_size' '(' expression ',' · expression attrib_end : {'@' 'fn' 'var'}
@@ -4467,97 +4510,97 @@ unary_expression -> · '-' unary_expression : {'%' ')' '*' '+' ',' '-' '/'}
 unary_expression -> · '~' unary_expression : {'%' ')' '*' '+' ',' '-' '/'}
 unary_expression -> · singular_expression : {'%' ')' '*' '+' ',' '-' '/'}
 
-#360
+#361
 attrib_end -> attrib_end/0.0 · ')' : {'@' 'fn' 'var'}
 
-#361
+#362
 attribute -> '@' 'size' '(' expression attrib_end · : {'@' 'fn' 'var'}
 
-#362
+#363
 attrib_end/0.0 -> ',' · : {}
 
-#363
+#364
 attribute -> '@' 'location' '(' expression attrib_end · : {'@' 'fn' 'var'}
 
-#364
+#365
 attribute -> '@' 'interpolate' '(' interpolation_type_name attrib_end · : {'@' 'fn' 'var'}
 
-#365
+#366
 attrib_end/0.0 -> ',' · : {}
 attribute -> '@' 'interpolate' '(' interpolation_type_name ',' · interpolation_sample_name attrib_end : {'@' 'fn' 'var'}
 interpolation_sample_name -> · 'center' : {')' ','}
 interpolation_sample_name -> · 'centroid' : {')' ','}
 interpolation_sample_name -> · 'sample' : {')' ','}
 
-#366
+#367
 attribute -> '@' 'id' '(' expression attrib_end · : {'@' 'fn' 'var'}
 
-#367
+#368
 attribute -> '@' 'group' '(' expression attrib_end · : {'@' 'fn' 'var'}
 
-#368
+#369
 attribute -> '@' 'builtin' '(' builtin_value_name attrib_end · : {'@' 'fn' 'var'}
 
-#369
+#370
 attribute -> '@' 'binding' '(' expression attrib_end · : {'@' 'fn' 'var'}
 
-#370
+#371
 attribute -> '@' 'align' '(' expression attrib_end · : {'@' 'fn' 'var'}
 
-#371
+#372
 attribute -> '@' 'interpolate' '(' interpolation_type_name ',' interpolation_sample_name · attrib_end : {'@' 'fn' 'var'}
 attrib_end -> · attrib_end/0.0 ')' : {'@' 'fn' 'var'}
 attrib_end/0.0 -> · ',' : {}
 
-#372
+#373
 interpolation_sample_name -> 'center' · : {')' ','}
 
-#373
+#374
 interpolation_sample_name -> 'centroid' · : {')' ','}
 
-#374
+#375
 interpolation_sample_name -> 'sample' · : {')' ','}
 
-#375
+#376
 attrib_end -> attrib_end/0.0 ')' · : {'@' 'fn' 'var'}
 
-#376
+#377
 attribute -> '@' 'workgroup_size' '(' expression ',' expression · ',' expression attrib_end : {'@' 'fn' 'var'}
 attribute -> '@' 'workgroup_size' '(' expression ',' expression · attrib_end : {'@' 'fn' 'var'}
 attrib_end -> · attrib_end/0.0 ')' : {'@' 'fn' 'var'}
 attrib_end/0.0 -> · ',' : {}
 
-#377
+#378
 component_or_swizzle_specifier -> '[' expression ']' component_or_swizzle_specifier/0.3 · : {'%' '%=' '&=' ')' '*' '*=' '+' '+=' ',' '-' '-=' '/' '/=' ':' '<<=' '=' '>>=' '^=' '{' '|='}
 
-#378
+#379
 component_or_swizzle_specifier/0.3 -> component_or_swizzle_specifier · : {'%' '%=' '&=' ')' '*' '*=' '+' '+=' ',' '-' '-=' '/' '/=' ':' '<<=' '=' '>>=' '^=' '{' '|='}
 
-#379
+#380
 expression_comma_list/0.1/0/0.0 -> ',' expression · : {','}
 
-#380
+#381
 expression_comma_list/0.1/0 -> expression_comma_list/0.1/0/0.0 expression_comma_list/0.1/0 · : {','}
 
-#381
+#382
 expression_comma_list -> expression expression_comma_list/0.1 expression_comma_list/0.2 · : {}
 
-#382
+#383
 expression_comma_list/0.2 -> ',' · : {}
 
-#383
+#384
 callable -> ident '::' '<' primary_expression callable/1.4 · callable/1.5 '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 callable/1.5 -> · ',' : {}
 
-#384
+#385
 callable/1.4 -> callable/1.4/0 · : {','}
 
-#385
+#386
 callable/1.4/0 -> callable/1.4/0/0.0 · callable/1.4/0 : {','}
 callable/1.4/0 -> · callable/1.4/0/0.0 callable/1.4/0 : {','}
 callable/1.4/0/0.0 -> · ',' primary_expression : {','}
 
-#386
+#387
 callable/1.4/0/0.0 -> ',' · primary_expression : {','}
 bool_literal -> · 'false' : {','}
 bool_literal -> · 'true' : {','}
@@ -4589,7 +4632,7 @@ primary_expression -> · callable : {','}
 primary_expression -> · literal : {','}
 primary_expression -> · paren_expression : {','}
 
-#387
+#388
 else_if_clause -> 'else' 'if' · expression compound_statement : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'else' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 additive_expression -> · additive_expression additive_operator multiplicative_expression : {'+' '-' '{'}
 additive_expression -> · multiplicative_expression : {'+' '-' '{'}
@@ -4659,20 +4702,20 @@ unary_expression -> · '-' unary_expression : {'%' '*' '+' '-' '/' '{'}
 unary_expression -> · '~' unary_expression : {'%' '*' '+' '-' '/' '{'}
 unary_expression -> · singular_expression : {'%' '*' '+' '-' '/' '{'}
 
-#388
+#389
 if_statement/0.1/0 -> else_if_clause if_statement/0.1/0 · : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'else' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#389
+#390
 if_statement -> if_clause if_statement/0.1 if_statement/0.2 · : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#390
+#391
 if_statement/0.2 -> else_clause · : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#391
+#392
 else_clause -> 'else' · compound_statement : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 compound_statement -> · '{' compound_statement/0.1 '}' : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#392
+#393
 switch_statement -> 'switch' expression '{' · switch_statement/0.3 '}' : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 case_clause -> · 'case' case_selectors case_clause/0.2 compound_statement : {'case' 'default'}
 default_alone_clause -> · 'default' default_alone_clause/0.1 compound_statement : {'case' 'default'}
@@ -4681,15 +4724,15 @@ switch_body -> · default_alone_clause : {'case' 'default'}
 switch_statement/0.3 -> · switch_statement/0.3/0 : {}
 switch_statement/0.3/0 -> · switch_body switch_statement/0.3/0 : {}
 
-#393
+#394
 loop_statement -> 'loop' '{' loop_statement/0.2 · loop_statement/0.3 '}' : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 continuing_statement -> · 'continuing' continuing_compound_statement : {}
 loop_statement/0.3 -> · continuing_statement : {}
 
-#394
+#395
 loop_statement/0.2 -> loop_statement/0.2/0 · : {'continuing'}
 
-#395
+#396
 loop_statement/0.2/0 -> statement · loop_statement/0.2/0 : {'continuing'}
 assignment_statement -> · '_' '=' expression : {}
 assignment_statement -> · lhs_expression assignment_statement/0.1 expression : {}
@@ -4740,31 +4783,31 @@ variable_updating_statement -> · decrement_statement : {}
 variable_updating_statement -> · increment_statement : {}
 while_statement -> · 'while' expression compound_statement : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#396
+#397
 for_statement -> 'for' '(' for_header · ')' compound_statement : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#397
+#398
 for_header -> for_header/0.0 · ';' for_header/0.2 ';' for_header/0.4 : {}
 
-#398
+#399
 for_header/0.0 -> for_init · : {}
 
-#399
+#400
 for_init -> variable_statement · : {}
 
-#400
+#401
 for_init -> variable_updating_statement · : {}
 
-#401
+#402
 for_init -> func_call_statement · : {}
 
-#402
+#403
 while_statement -> 'while' expression compound_statement · : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#403
+#404
 variable_statement -> variable_decl '=' expression · : {}
 
-#404
+#405
 variable_statement -> 'let' optionally_typed_ident '=' · expression : {}
 additive_expression -> · additive_expression additive_operator multiplicative_expression : {'+' '-'}
 additive_expression -> · multiplicative_expression : {'+' '-'}
@@ -4834,7 +4877,7 @@ unary_expression -> · '-' unary_expression : {'%' '*' '+' '-' '/'}
 unary_expression -> · '~' unary_expression : {'%' '*' '+' '-' '/'}
 unary_expression -> · singular_expression : {'%' '*' '+' '-' '/'}
 
-#405
+#406
 variable_statement -> 'const' optionally_typed_ident '=' · expression : {}
 additive_expression -> · additive_expression additive_operator multiplicative_expression : {'+' '-'}
 additive_expression -> · multiplicative_expression : {'+' '-'}
@@ -4904,37 +4947,37 @@ unary_expression -> · '-' unary_expression : {'%' '*' '+' '-' '/'}
 unary_expression -> · '~' unary_expression : {'%' '*' '+' '-' '/'}
 unary_expression -> · singular_expression : {'%' '*' '+' '-' '/'}
 
-#406
+#407
 if_clause -> 'if' expression compound_statement · : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'else' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#407
+#408
 assignment_statement -> lhs_expression assignment_statement/0.1 expression · : {}
 
-#408
+#409
 assignment_statement -> '_' '=' expression · : {}
 
-#409
+#410
 core_lhs_expression -> '(' lhs_expression ')' · : {'%=' '&=' '*=' '+=' '-=' '.' '/=' '<<=' '=' '>>=' '[' '^=' '|='}
 
-#410
+#411
 param/0.0/0 -> attribute param/0.0/0 · : {}
 
-#411
+#412
 param -> param/0.0 ident · ':' type_specifier : {','}
 
-#412
+#413
 param_list -> param param_list/0.1 · param_list/0.2 : {}
 param_list/0.2 -> · ',' : {}
 
-#413
+#414
 param_list/0.1 -> param_list/0.1/0 · : {','}
 
-#414
+#415
 param_list/0.1/0 -> param_list/0.1/0/0.0 · param_list/0.1/0 : {','}
 param_list/0.1/0 -> · param_list/0.1/0/0.0 param_list/0.1/0 : {','}
 param_list/0.1/0/0.0 -> · ',' param : {','}
 
-#415
+#416
 param_list/0.1/0/0.0 -> ',' · param : {','}
 attribute -> · '@' 'align' '(' expression attrib_end : {'@'}
 attribute -> · '@' 'binding' '(' expression attrib_end : {'@'}
@@ -4957,30 +5000,31 @@ param -> · param/0.0 ident ':' type_specifier : {','}
 param/0.0 -> · param/0.0/0 : {}
 param/0.0/0 -> · attribute param/0.0/0 : {}
 
-#416
+#417
 function_header -> 'fn' ident '(' function_header/0.3 ')' · function_header/0.5 : {'{'}
 function_header/0.5 -> · '->' function_header/0.5/0.1 type_specifier : {'{'}
 
-#417
+#418
 struct_body_decl/0.2/0/0.0 -> ',' struct_member · : {','}
 
-#418
+#419
 struct_body_decl/0.2/0 -> struct_body_decl/0.2/0/0.0 struct_body_decl/0.2/0 · : {','}
 
-#419
+#420
 struct_body_decl -> '{' struct_member struct_body_decl/0.2 struct_body_decl/0.3 · '}' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
 
-#420
+#421
 struct_body_decl/0.3 -> ',' · : {}
 
-#421
+#422
 struct_member -> struct_member/0.0 member_ident ':' · type_specifier : {','}
 ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {','}
-type_specifier -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {','}
+type_specifier -> · ident '::' '<' primary_expression callable_type/2.4 callable_type/2.5 '>' : {','}
+type_specifier -> · ident '<' primary_expression callable_type/1.3 callable_type/1.4 '>' : {','}
 type_specifier -> · ident : {','}
 
-#422
-type_specifier -> ident '::' '<' · primary_expression callable/1.4 callable/1.5 '>' : {',' '=' '{'}
+#423
+type_specifier -> ident '::' '<' · primary_expression callable_type/2.4 callable_type/2.5 '>' : {',' '=' '{'}
 bool_literal -> · 'false' : {','}
 bool_literal -> · 'true' : {','}
 call_expression -> · callable argument_expression_list : {','}
@@ -5011,37 +5055,87 @@ primary_expression -> · callable : {','}
 primary_expression -> · literal : {','}
 primary_expression -> · paren_expression : {','}
 
-#423
-variable_qualifier/0.2 -> ',' access_mode · : {}
-
 #424
-access_mode -> 'read' · : {}
+type_specifier -> ident '<' primary_expression · callable_type/1.3 callable_type/1.4 '>' : {',' '=' '{'}
+callable_type/1.3 -> · callable_type/1.3/0 : {','}
+callable_type/1.3/0 -> · callable_type/1.3/0/0.0 callable_type/1.3/0 : {','}
+callable_type/1.3/0/0.0 -> · ',' primary_expression : {','}
 
 #425
-access_mode -> 'write' · : {}
+variable_qualifier/0.2 -> ',' access_mode · : {}
 
 #426
-access_mode -> 'read_write' · : {}
+access_mode -> 'read' · : {}
 
 #427
-variable_qualifier -> '<' address_space variable_qualifier/0.2 '>' · : {/([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
+access_mode -> 'write' · : {}
 
 #428
-type_specifier -> ident '::' '<' primary_expression · callable/1.4 callable/1.5 '>' : {',' '=' '{'}
-callable/1.4 -> · callable/1.4/0 : {','}
-callable/1.4/0 -> · callable/1.4/0/0.0 callable/1.4/0 : {','}
-callable/1.4/0/0.0 -> · ',' primary_expression : {','}
+access_mode -> 'read_write' · : {}
 
 #429
-struct_member -> struct_member/0.0 member_ident ':' type_specifier · : {','}
+variable_qualifier -> '<' address_space variable_qualifier/0.2 '>' · : {/([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
 #430
-struct_body_decl -> '{' struct_member struct_body_decl/0.2 struct_body_decl/0.3 '}' · : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+type_specifier -> ident '<' primary_expression callable_type/1.3 · callable_type/1.4 '>' : {',' '=' '{'}
+callable_type/1.4 -> · ',' : {}
 
 #431
-function_header -> 'fn' ident '(' function_header/0.3 ')' function_header/0.5 · : {'{'}
+callable_type/1.3 -> callable_type/1.3/0 · : {','}
 
 #432
+callable_type/1.3/0 -> callable_type/1.3/0/0.0 · callable_type/1.3/0 : {','}
+callable_type/1.3/0 -> · callable_type/1.3/0/0.0 callable_type/1.3/0 : {','}
+callable_type/1.3/0/0.0 -> · ',' primary_expression : {','}
+
+#433
+callable_type/1.3/0/0.0 -> ',' · primary_expression : {','}
+bool_literal -> · 'false' : {','}
+bool_literal -> · 'true' : {','}
+call_expression -> · callable argument_expression_list : {','}
+callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'(' ','}
+callable -> · ident : {'(' ','}
+decimal_float_literal -> · /0[fh]/ : {','}
+decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {','}
+decimal_float_literal -> · /[0-9]+[eE][+-]?[0-9]+[fh]?/ : {','}
+decimal_float_literal -> · /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ : {','}
+decimal_float_literal -> · /[1-9][0-9]*[fh]/ : {','}
+decimal_int_literal -> · /0[iu]?/ : {','}
+decimal_int_literal -> · /[1-9][0-9]*[iu]?/ : {','}
+float_literal -> · decimal_float_literal : {','}
+float_literal -> · hex_float_literal : {','}
+hex_float_literal -> · /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ : {','}
+hex_float_literal -> · /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ : {','}
+hex_float_literal -> · /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ : {','}
+hex_int_literal -> · /0[xX][0-9a-fA-F]+[iu]?/ : {','}
+ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {'(' ','}
+int_literal -> · decimal_int_literal : {','}
+int_literal -> · hex_int_literal : {','}
+literal -> · bool_literal : {','}
+literal -> · float_literal : {','}
+literal -> · int_literal : {','}
+paren_expression -> · '(' expression ')' : {','}
+primary_expression -> · call_expression : {','}
+primary_expression -> · callable : {','}
+primary_expression -> · literal : {','}
+primary_expression -> · paren_expression : {','}
+
+#434
+type_specifier -> ident '::' '<' primary_expression · callable_type/2.4 callable_type/2.5 '>' : {',' '=' '{'}
+callable_type/2.4 -> · callable_type/2.4/0 : {','}
+callable_type/2.4/0 -> · callable_type/2.4/0/0.0 callable_type/2.4/0 : {','}
+callable_type/2.4/0/0.0 -> · ',' primary_expression : {','}
+
+#435
+struct_member -> struct_member/0.0 member_ident ':' type_specifier · : {','}
+
+#436
+struct_body_decl -> '{' struct_member struct_body_decl/0.2 struct_body_decl/0.3 '}' · : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+
+#437
+function_header -> 'fn' ident '(' function_header/0.3 ')' function_header/0.5 · : {'{'}
+
+#438
 function_header/0.5 -> '->' · function_header/0.5/0.1 type_specifier : {'{'}
 attribute -> · '@' 'align' '(' expression attrib_end : {'@'}
 attribute -> · '@' 'binding' '(' expression attrib_end : {'@'}
@@ -5063,31 +5157,32 @@ attribute -> · '@' 'workgroup_size' '(' expression attrib_end : {'@'}
 function_header/0.5/0.1 -> · function_header/0.5/0.1/0 : {}
 function_header/0.5/0.1/0 -> · attribute function_header/0.5/0.1/0 : {}
 
-#433
+#439
 param_list/0.1/0/0.0 -> ',' param · : {','}
 
-#434
+#440
 param_list/0.1/0 -> param_list/0.1/0/0.0 param_list/0.1/0 · : {','}
 
-#435
+#441
 param_list -> param param_list/0.1 param_list/0.2 · : {}
 
-#436
+#442
 param_list/0.2 -> ',' · : {}
 
-#437
+#443
 param -> param/0.0 ident ':' · type_specifier : {','}
 ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {','}
-type_specifier -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {','}
+type_specifier -> · ident '::' '<' primary_expression callable_type/2.4 callable_type/2.5 '>' : {','}
+type_specifier -> · ident '<' primary_expression callable_type/1.3 callable_type/1.4 '>' : {','}
 type_specifier -> · ident : {','}
 
-#438
+#444
 variable_statement -> 'const' optionally_typed_ident '=' expression · : {}
 
-#439
+#445
 variable_statement -> 'let' optionally_typed_ident '=' expression · : {}
 
-#440
+#446
 for_header -> for_header/0.0 ';' · for_header/0.2 ';' for_header/0.4 : {}
 additive_expression -> · additive_expression additive_operator multiplicative_expression : {'+' '-'}
 additive_expression -> · multiplicative_expression : {'+' '-'}
@@ -5158,30 +5253,30 @@ unary_expression -> · '-' unary_expression : {'%' '*' '+' '-' '/'}
 unary_expression -> · '~' unary_expression : {'%' '*' '+' '-' '/'}
 unary_expression -> · singular_expression : {'%' '*' '+' '-' '/'}
 
-#441
+#447
 for_statement -> 'for' '(' for_header ')' · compound_statement : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 compound_statement -> · '{' compound_statement/0.1 '}' : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#442
+#448
 loop_statement/0.2/0 -> statement loop_statement/0.2/0 · : {'continuing'}
 
-#443
+#449
 loop_statement -> 'loop' '{' loop_statement/0.2 loop_statement/0.3 · '}' : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#444
+#450
 loop_statement/0.3 -> continuing_statement · : {}
 
-#445
+#451
 continuing_statement -> 'continuing' · continuing_compound_statement : {}
 continuing_compound_statement -> · '{' continuing_compound_statement/0.1 continuing_compound_statement/0.2 '}' : {}
 
-#446
+#452
 switch_statement -> 'switch' expression '{' switch_statement/0.3 · '}' : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#447
+#453
 switch_statement/0.3 -> switch_statement/0.3/0 · : {}
 
-#448
+#454
 switch_statement/0.3/0 -> switch_body · switch_statement/0.3/0 : {}
 case_clause -> · 'case' case_selectors case_clause/0.2 compound_statement : {'case' 'default'}
 default_alone_clause -> · 'default' default_alone_clause/0.1 compound_statement : {'case' 'default'}
@@ -5189,13 +5284,13 @@ switch_body -> · case_clause : {'case' 'default'}
 switch_body -> · default_alone_clause : {'case' 'default'}
 switch_statement/0.3/0 -> · switch_body switch_statement/0.3/0 : {}
 
-#449
+#455
 switch_body -> case_clause · : {'case' 'default'}
 
-#450
+#456
 switch_body -> default_alone_clause · : {'case' 'default'}
 
-#451
+#457
 case_clause -> 'case' · case_selectors case_clause/0.2 compound_statement : {'case' 'default'}
 additive_expression -> · additive_expression additive_operator multiplicative_expression : {'+' ',' '-' ':' '{'}
 additive_expression -> · multiplicative_expression : {'+' ',' '-' ':' '{'}
@@ -5268,33 +5363,33 @@ unary_expression -> · '-' unary_expression : {'%' '*' '+' ',' '-' '/' ':' '{'}
 unary_expression -> · '~' unary_expression : {'%' '*' '+' ',' '-' '/' ':' '{'}
 unary_expression -> · singular_expression : {'%' '*' '+' ',' '-' '/' ':' '{'}
 
-#452
+#458
 default_alone_clause -> 'default' · default_alone_clause/0.1 compound_statement : {'case' 'default'}
 default_alone_clause/0.1 -> · ':' : {'{'}
 
-#453
+#459
 else_clause -> 'else' compound_statement · : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#454
+#460
 else_if_clause -> 'else' 'if' expression · compound_statement : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'else' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 compound_statement -> · '{' compound_statement/0.1 '}' : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'else' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#455
+#461
 callable/1.4/0/0.0 -> ',' primary_expression · : {','}
 
-#456
+#462
 callable/1.4/0 -> callable/1.4/0/0.0 callable/1.4/0 · : {','}
 
-#457
+#463
 callable -> ident '::' '<' primary_expression callable/1.4 callable/1.5 · '>' : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 
-#458
+#464
 callable/1.5 -> ',' · : {}
 
-#459
+#465
 attribute -> '@' 'workgroup_size' '(' expression ',' expression attrib_end · : {'@' 'fn' 'var'}
 
-#460
+#466
 attrib_end/0.0 -> ',' · : {}
 attribute -> '@' 'workgroup_size' '(' expression ',' expression ',' · expression attrib_end : {'@' 'fn' 'var'}
 additive_expression -> · additive_expression additive_operator multiplicative_expression : {')' '+' ',' '-'}
@@ -5365,53 +5460,53 @@ unary_expression -> · '-' unary_expression : {'%' ')' '*' '+' ',' '-' '/'}
 unary_expression -> · '~' unary_expression : {'%' ')' '*' '+' ',' '-' '/'}
 unary_expression -> · singular_expression : {'%' ')' '*' '+' ',' '-' '/'}
 
-#461
+#467
 attribute -> '@' 'interpolate' '(' interpolation_type_name ',' interpolation_sample_name attrib_end · : {'@' 'fn' 'var'}
 
-#462
+#468
 attribute -> '@' 'workgroup_size' '(' expression ',' expression ',' expression · attrib_end : {'@' 'fn' 'var'}
 attrib_end -> · attrib_end/0.0 ')' : {'@' 'fn' 'var'}
 attrib_end/0.0 -> · ',' : {}
 
-#463
+#469
 callable -> ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' · : {'%' '(' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 
-#464
+#470
 else_if_clause -> 'else' 'if' expression compound_statement · : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'else' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#465
+#471
 default_alone_clause -> 'default' default_alone_clause/0.1 · compound_statement : {'case' 'default'}
 compound_statement -> · '{' compound_statement/0.1 '}' : {'case' 'default'}
 
-#466
+#472
 default_alone_clause/0.1 -> ':' · : {'{'}
 
-#467
+#473
 case_clause -> 'case' case_selectors · case_clause/0.2 compound_statement : {'case' 'default'}
 case_clause/0.2 -> · ':' : {'{'}
 
-#468
+#474
 case_selectors -> case_selector · case_selectors/0.1 case_selectors/0.2 : {':' '{'}
 case_selectors/0.1 -> · case_selectors/0.1/0 : {',' ':' '{'}
 case_selectors/0.1/0 -> · case_selectors/0.1/0/0.0 case_selectors/0.1/0 : {',' ':' '{'}
 case_selectors/0.1/0/0.0 -> · ',' case_selector : {',' ':' '{'}
 
-#469
+#475
 case_selector -> 'default' · : {',' ':' '{'}
 
-#470
+#476
 case_selector -> expression · : {',' ':' '{'}
 
-#471
+#477
 switch_statement/0.3/0 -> switch_body switch_statement/0.3/0 · : {}
 
-#472
+#478
 switch_statement -> 'switch' expression '{' switch_statement/0.3 '}' · : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#473
+#479
 continuing_statement -> 'continuing' continuing_compound_statement · : {}
 
-#474
+#480
 continuing_compound_statement -> '{' · continuing_compound_statement/0.1 continuing_compound_statement/0.2 '}' : {}
 assignment_statement -> · '_' '=' expression : {}
 assignment_statement -> · lhs_expression assignment_statement/0.1 expression : {}
@@ -5463,31 +5558,32 @@ variable_updating_statement -> · decrement_statement : {}
 variable_updating_statement -> · increment_statement : {}
 while_statement -> · 'while' expression compound_statement : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#475
+#481
 loop_statement -> 'loop' '{' loop_statement/0.2 loop_statement/0.3 '}' · : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#476
+#482
 for_statement -> 'for' '(' for_header ')' compound_statement · : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'continuing' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#477
+#483
 for_header -> for_header/0.0 ';' for_header/0.2 · ';' for_header/0.4 : {}
 
-#478
+#484
 for_header/0.2 -> expression · : {}
 
-#479
+#485
 param -> param/0.0 ident ':' type_specifier · : {','}
 
-#480
+#486
 function_header/0.5 -> '->' function_header/0.5/0.1 · type_specifier : {'{'}
 ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {'{'}
-type_specifier -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'{'}
+type_specifier -> · ident '::' '<' primary_expression callable_type/2.4 callable_type/2.5 '>' : {'{'}
+type_specifier -> · ident '<' primary_expression callable_type/1.3 callable_type/1.4 '>' : {'{'}
 type_specifier -> · ident : {'{'}
 
-#481
+#487
 function_header/0.5/0.1 -> function_header/0.5/0.1/0 · : {}
 
-#482
+#488
 function_header/0.5/0.1/0 -> attribute · function_header/0.5/0.1/0 : {}
 attribute -> · '@' 'align' '(' expression attrib_end : {'@'}
 attribute -> · '@' 'binding' '(' expression attrib_end : {'@'}
@@ -5508,20 +5604,84 @@ attribute -> · '@' 'workgroup_size' '(' expression ',' expression attrib_end : 
 attribute -> · '@' 'workgroup_size' '(' expression attrib_end : {'@'}
 function_header/0.5/0.1/0 -> · attribute function_header/0.5/0.1/0 : {}
 
-#483
-type_specifier -> ident '::' '<' primary_expression callable/1.4 · callable/1.5 '>' : {',' '=' '{'}
-callable/1.5 -> · ',' : {}
+#489
+type_specifier -> ident '::' '<' primary_expression callable_type/2.4 · callable_type/2.5 '>' : {',' '=' '{'}
+callable_type/2.5 -> · ',' : {}
 
-#484
-type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/1.5 · '>' : {',' '=' '{'}
+#490
+callable_type/2.4 -> callable_type/2.4/0 · : {','}
 
-#485
+#491
+callable_type/2.4/0 -> callable_type/2.4/0/0.0 · callable_type/2.4/0 : {','}
+callable_type/2.4/0 -> · callable_type/2.4/0/0.0 callable_type/2.4/0 : {','}
+callable_type/2.4/0/0.0 -> · ',' primary_expression : {','}
+
+#492
+callable_type/2.4/0/0.0 -> ',' · primary_expression : {','}
+bool_literal -> · 'false' : {','}
+bool_literal -> · 'true' : {','}
+call_expression -> · callable argument_expression_list : {','}
+callable -> · ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' : {'(' ','}
+callable -> · ident : {'(' ','}
+decimal_float_literal -> · /0[fh]/ : {','}
+decimal_float_literal -> · /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/ : {','}
+decimal_float_literal -> · /[0-9]+[eE][+-]?[0-9]+[fh]?/ : {','}
+decimal_float_literal -> · /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/ : {','}
+decimal_float_literal -> · /[1-9][0-9]*[fh]/ : {','}
+decimal_int_literal -> · /0[iu]?/ : {','}
+decimal_int_literal -> · /[1-9][0-9]*[iu]?/ : {','}
+float_literal -> · decimal_float_literal : {','}
+float_literal -> · hex_float_literal : {','}
+hex_float_literal -> · /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/ : {','}
+hex_float_literal -> · /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ : {','}
+hex_float_literal -> · /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ : {','}
+hex_int_literal -> · /0[xX][0-9a-fA-F]+[iu]?/ : {','}
+ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {'(' ','}
+int_literal -> · decimal_int_literal : {','}
+int_literal -> · hex_int_literal : {','}
+literal -> · bool_literal : {','}
+literal -> · float_literal : {','}
+literal -> · int_literal : {','}
+paren_expression -> · '(' expression ')' : {','}
+primary_expression -> · call_expression : {','}
+primary_expression -> · callable : {','}
+primary_expression -> · literal : {','}
+primary_expression -> · paren_expression : {','}
+
+#493
+callable_type/1.3/0/0.0 -> ',' primary_expression · : {','}
+
+#494
+callable_type/1.3/0 -> callable_type/1.3/0/0.0 callable_type/1.3/0 · : {','}
+
+#495
+type_specifier -> ident '<' primary_expression callable_type/1.3 callable_type/1.4 · '>' : {',' '=' '{'}
+
+#496
+callable_type/1.4 -> ',' · : {}
+
+#497
+type_specifier -> ident '<' primary_expression callable_type/1.3 callable_type/1.4 '>' · : {',' '=' '{'}
+
+#498
+callable_type/2.4/0/0.0 -> ',' primary_expression · : {','}
+
+#499
+callable_type/2.4/0 -> callable_type/2.4/0/0.0 callable_type/2.4/0 · : {','}
+
+#500
+type_specifier -> ident '::' '<' primary_expression callable_type/2.4 callable_type/2.5 · '>' : {',' '=' '{'}
+
+#501
+callable_type/2.5 -> ',' · : {}
+
+#502
 function_header/0.5/0.1/0 -> attribute function_header/0.5/0.1/0 · : {}
 
-#486
+#503
 function_header/0.5 -> '->' function_header/0.5/0.1 type_specifier · : {'{'}
 
-#487
+#504
 for_header -> for_header/0.0 ';' for_header/0.2 ';' · for_header/0.4 : {}
 assignment_statement -> · '_' '=' expression : {}
 assignment_statement -> · lhs_expression assignment_statement/0.1 expression : {}
@@ -5543,15 +5703,15 @@ variable_updating_statement -> · assignment_statement : {}
 variable_updating_statement -> · decrement_statement : {}
 variable_updating_statement -> · increment_statement : {}
 
-#488
+#505
 continuing_compound_statement -> '{' continuing_compound_statement/0.1 · continuing_compound_statement/0.2 '}' : {}
 break_if_statement -> · 'break' 'if' expression ';' : {}
 continuing_compound_statement/0.2 -> · break_if_statement : {}
 
-#489
+#506
 continuing_compound_statement/0.1 -> continuing_compound_statement/0.1/0 · : {'break'}
 
-#490
+#507
 continuing_compound_statement/0.1/0 -> statement · continuing_compound_statement/0.1/0 : {'break'}
 assignment_statement -> · '_' '=' expression : {}
 assignment_statement -> · lhs_expression assignment_statement/0.1 expression : {}
@@ -5602,19 +5762,19 @@ variable_updating_statement -> · decrement_statement : {}
 variable_updating_statement -> · increment_statement : {}
 while_statement -> · 'while' expression compound_statement : {'&' '(' '*' ';' '_' 'break' 'const' 'const_assert' 'continue' 'discard' 'for' 'if' 'let' 'loop' 'return' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
-#491
+#508
 case_selectors -> case_selector case_selectors/0.1 · case_selectors/0.2 : {':' '{'}
 case_selectors/0.2 -> · ',' : {':' '{'}
 
-#492
+#509
 case_selectors/0.1 -> case_selectors/0.1/0 · : {',' ':' '{'}
 
-#493
+#510
 case_selectors/0.1/0 -> case_selectors/0.1/0/0.0 · case_selectors/0.1/0 : {',' ':' '{'}
 case_selectors/0.1/0 -> · case_selectors/0.1/0/0.0 case_selectors/0.1/0 : {',' ':' '{'}
 case_selectors/0.1/0/0.0 -> · ',' case_selector : {',' ':' '{'}
 
-#494
+#511
 case_selectors/0.1/0/0.0 -> ',' · case_selector : {',' ':' '{'}
 additive_expression -> · additive_expression additive_operator multiplicative_expression : {'+' ',' '-' ':' '{'}
 additive_expression -> · multiplicative_expression : {'+' ',' '-' ':' '{'}
@@ -5686,62 +5846,62 @@ unary_expression -> · '-' unary_expression : {'%' '*' '+' ',' '-' '/' ':' '{'}
 unary_expression -> · '~' unary_expression : {'%' '*' '+' ',' '-' '/' ':' '{'}
 unary_expression -> · singular_expression : {'%' '*' '+' ',' '-' '/' ':' '{'}
 
-#495
+#512
 case_clause -> 'case' case_selectors case_clause/0.2 · compound_statement : {'case' 'default'}
 compound_statement -> · '{' compound_statement/0.1 '}' : {'case' 'default'}
 
-#496
+#513
 case_clause/0.2 -> ':' · : {'{'}
 
-#497
+#514
 default_alone_clause -> 'default' default_alone_clause/0.1 compound_statement · : {'case' 'default'}
 
-#498
+#515
 attribute -> '@' 'workgroup_size' '(' expression ',' expression ',' expression attrib_end · : {'@' 'fn' 'var'}
 
-#499
+#516
 case_clause -> 'case' case_selectors case_clause/0.2 compound_statement · : {'case' 'default'}
 
-#500
+#517
 case_selectors/0.1/0/0.0 -> ',' case_selector · : {',' ':' '{'}
 
-#501
+#518
 case_selectors/0.1/0 -> case_selectors/0.1/0/0.0 case_selectors/0.1/0 · : {',' ':' '{'}
 
-#502
+#519
 case_selectors -> case_selector case_selectors/0.1 case_selectors/0.2 · : {':' '{'}
 
-#503
+#520
 case_selectors/0.2 -> ',' · : {':' '{'}
 
-#504
+#521
 continuing_compound_statement/0.1/0 -> statement continuing_compound_statement/0.1/0 · : {'break'}
 
-#505
+#522
 continuing_compound_statement -> '{' continuing_compound_statement/0.1 continuing_compound_statement/0.2 · '}' : {}
 
-#506
+#523
 continuing_compound_statement/0.2 -> break_if_statement · : {}
 
-#507
+#524
 break_if_statement -> 'break' · 'if' expression ';' : {}
 
-#508
+#525
 for_header -> for_header/0.0 ';' for_header/0.2 ';' for_header/0.4 · : {}
 
-#509
+#526
 for_header/0.4 -> for_update · : {}
 
-#510
+#527
 for_update -> variable_updating_statement · : {}
 
-#511
+#528
 for_update -> func_call_statement · : {}
 
-#512
-type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' · : {',' '=' '{'}
+#529
+type_specifier -> ident '::' '<' primary_expression callable_type/2.4 callable_type/2.5 '>' · : {',' '=' '{'}
 
-#513
+#530
 break_if_statement -> 'break' 'if' · expression ';' : {}
 additive_expression -> · additive_expression additive_operator multiplicative_expression : {'+' '-'}
 additive_expression -> · multiplicative_expression : {'+' '-'}
@@ -5811,13 +5971,13 @@ unary_expression -> · '-' unary_expression : {'%' '*' '+' '-' '/'}
 unary_expression -> · '~' unary_expression : {'%' '*' '+' '-' '/'}
 unary_expression -> · singular_expression : {'%' '*' '+' '-' '/'}
 
-#514
+#531
 continuing_compound_statement -> '{' continuing_compound_statement/0.1 continuing_compound_statement/0.2 '}' · : {}
 
-#515
+#532
 break_if_statement -> 'break' 'if' expression · ';' : {}
 
-#516
+#533
 break_if_statement -> 'break' 'if' expression ';' · : {}
 
 
@@ -6012,41 +6172,48 @@ r#186 param_list/0.1 -> param_list/0.1/0 ·
 r#187 struct_body_decl/0.2/0/0.0 -> ',' struct_member ·
 r#188 struct_body_decl/0.2/0 -> struct_body_decl/0.2/0/0.0 struct_body_decl/0.2/0 ·
 r#189 variable_qualifier -> '<' address_space variable_qualifier/0.2 '>' ·
-r#190 struct_member -> struct_member/0.0 member_ident ':' type_specifier ·
-r#191 struct_body_decl -> '{' struct_member struct_body_decl/0.2 struct_body_decl/0.3 '}' ·
-r#192 function_header -> 'fn' ident '(' function_header/0.3 ')' function_header/0.5 ·
-r#193 param_list/0.1/0/0.0 -> ',' param ·
-r#194 param_list/0.1/0 -> param_list/0.1/0/0.0 param_list/0.1/0 ·
-r#195 loop_statement/0.2/0 -> statement loop_statement/0.2/0 ·
-r#196 switch_body -> case_clause ·
-r#197 switch_body -> default_alone_clause ·
-r#198 else_clause -> 'else' compound_statement ·
-r#199 callable/1.4/0/0.0 -> ',' primary_expression ·
-r#200 callable/1.4/0 -> callable/1.4/0/0.0 callable/1.4/0 ·
-r#201 attribute -> '@' 'workgroup_size' '(' expression ',' expression attrib_end ·
-r#202 attribute -> '@' 'interpolate' '(' interpolation_type_name ',' interpolation_sample_name attrib_end ·
-r#203 callable -> ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' ·
-r#204 else_if_clause -> 'else' 'if' expression compound_statement ·
-r#205 default_alone_clause/0.1 -> ':' ·
-r#206 case_selector -> 'default' ·
-r#207 case_selector -> expression ·
-r#208 switch_statement -> 'switch' expression '{' switch_statement/0.3 '}' ·
-r#209 loop_statement -> 'loop' '{' loop_statement/0.2 loop_statement/0.3 '}' ·
-r#210 for_statement -> 'for' '(' for_header ')' compound_statement ·
-r#211 param -> param/0.0 ident ':' type_specifier ·
-r#212 function_header/0.5 -> '->' function_header/0.5/0.1 type_specifier ·
-r#213 continuing_compound_statement/0.1 -> continuing_compound_statement/0.1/0 ·
-r#214 case_selectors/0.1 -> case_selectors/0.1/0 ·
-r#215 case_clause/0.2 -> ':' ·
-r#216 default_alone_clause -> 'default' default_alone_clause/0.1 compound_statement ·
-r#217 attribute -> '@' 'workgroup_size' '(' expression ',' expression ',' expression attrib_end ·
-r#218 case_clause -> 'case' case_selectors case_clause/0.2 compound_statement ·
-r#219 case_selectors/0.1/0/0.0 -> ',' case_selector ·
-r#220 case_selectors/0.1/0 -> case_selectors/0.1/0/0.0 case_selectors/0.1/0 ·
-r#221 case_selectors -> case_selector case_selectors/0.1 case_selectors/0.2 ·
-r#222 case_selectors/0.2 -> ',' ·
-r#223 continuing_compound_statement/0.1/0 -> statement continuing_compound_statement/0.1/0 ·
-r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' ·
+r#190 callable_type/1.3 -> callable_type/1.3/0 ·
+r#191 struct_member -> struct_member/0.0 member_ident ':' type_specifier ·
+r#192 struct_body_decl -> '{' struct_member struct_body_decl/0.2 struct_body_decl/0.3 '}' ·
+r#193 function_header -> 'fn' ident '(' function_header/0.3 ')' function_header/0.5 ·
+r#194 param_list/0.1/0/0.0 -> ',' param ·
+r#195 param_list/0.1/0 -> param_list/0.1/0/0.0 param_list/0.1/0 ·
+r#196 loop_statement/0.2/0 -> statement loop_statement/0.2/0 ·
+r#197 switch_body -> case_clause ·
+r#198 switch_body -> default_alone_clause ·
+r#199 else_clause -> 'else' compound_statement ·
+r#200 callable/1.4/0/0.0 -> ',' primary_expression ·
+r#201 callable/1.4/0 -> callable/1.4/0/0.0 callable/1.4/0 ·
+r#202 attribute -> '@' 'workgroup_size' '(' expression ',' expression attrib_end ·
+r#203 attribute -> '@' 'interpolate' '(' interpolation_type_name ',' interpolation_sample_name attrib_end ·
+r#204 callable -> ident '::' '<' primary_expression callable/1.4 callable/1.5 '>' ·
+r#205 else_if_clause -> 'else' 'if' expression compound_statement ·
+r#206 default_alone_clause/0.1 -> ':' ·
+r#207 case_selector -> 'default' ·
+r#208 case_selector -> expression ·
+r#209 switch_statement -> 'switch' expression '{' switch_statement/0.3 '}' ·
+r#210 loop_statement -> 'loop' '{' loop_statement/0.2 loop_statement/0.3 '}' ·
+r#211 for_statement -> 'for' '(' for_header ')' compound_statement ·
+r#212 param -> param/0.0 ident ':' type_specifier ·
+r#213 callable_type/2.4 -> callable_type/2.4/0 ·
+r#214 callable_type/1.3/0/0.0 -> ',' primary_expression ·
+r#215 callable_type/1.3/0 -> callable_type/1.3/0/0.0 callable_type/1.3/0 ·
+r#216 type_specifier -> ident '<' primary_expression callable_type/1.3 callable_type/1.4 '>' ·
+r#217 callable_type/2.4/0/0.0 -> ',' primary_expression ·
+r#218 callable_type/2.4/0 -> callable_type/2.4/0/0.0 callable_type/2.4/0 ·
+r#219 function_header/0.5 -> '->' function_header/0.5/0.1 type_specifier ·
+r#220 continuing_compound_statement/0.1 -> continuing_compound_statement/0.1/0 ·
+r#221 case_selectors/0.1 -> case_selectors/0.1/0 ·
+r#222 case_clause/0.2 -> ':' ·
+r#223 default_alone_clause -> 'default' default_alone_clause/0.1 compound_statement ·
+r#224 attribute -> '@' 'workgroup_size' '(' expression ',' expression ',' expression attrib_end ·
+r#225 case_clause -> 'case' case_selectors case_clause/0.2 compound_statement ·
+r#226 case_selectors/0.1/0/0.0 -> ',' case_selector ·
+r#227 case_selectors/0.1/0 -> case_selectors/0.1/0/0.0 case_selectors/0.1/0 ·
+r#228 case_selectors -> case_selector case_selectors/0.1 case_selectors/0.2 ·
+r#229 case_selectors/0.2 -> ',' ·
+r#230 continuing_compound_statement/0.1/0 -> statement continuing_compound_statement/0.1/0 ·
+r#231 type_specifier -> ident '::' '<' primary_expression callable_type/2.4 callable_type/2.5 '>' ·
 
 =Action:
 [#0 'enable']: s#5
@@ -7506,9 +7673,9 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#165 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
 [#165 /[1-9][0-9]*[fh]/]: s#87
 [#165 /[1-9][0-9]*[iu]?/]: s#84
-[#166 ',']: s#362
-[#167 ',']: s#362
-[#168 ',']: s#362
+[#166 ',']: s#363
+[#167 ',']: s#363
+[#168 ',']: s#363
 [#169 ')']: r#72
 [#169 ',']: r#72
 [#170 ')']: r#73
@@ -7533,18 +7700,18 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#179 ',']: r#82
 [#180 ')']: r#83
 [#180 ',']: r#83
-[#181 ',']: s#362
-[#182 ',']: s#362
-[#183 ',']: s#365
+[#181 ',']: s#363
+[#182 ',']: s#363
+[#183 ',']: s#366
 [#184 ')']: r#84
 [#184 ',']: r#84
 [#185 ')']: r#85
 [#185 ',']: r#85
 [#186 ')']: r#86
 [#186 ',']: r#86
-[#187 ',']: s#362
-[#188 ',']: s#362
-[#189 ',']: s#359
+[#187 ',']: s#363
+[#188 ',']: s#363
+[#189 ',']: s#360
 [#190 ')']: r#87
 [#190 ',']: r#87
 [#190 ':']: r#87
@@ -7837,9 +8004,9 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#217 '^=']: r#110
 [#217 '{']: r#110
 [#217 '|=']: r#110
-[#218 ']']: s#353
-[#219 ')']: s#352
-[#221 ',']: s#351
+[#218 ']']: s#354
+[#219 ')']: s#353
+[#221 ',']: s#352
 [#222 '(']: s#75
 [#222 'false']: s#82
 [#222 'true']: s#81
@@ -7866,7 +8033,7 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#223 ':']: r#111
 [#223 '[']: r#111
 [#223 '{']: r#111
-[#224 '}']: s#346
+[#224 '}']: s#347
 [#226 '&']: s#263
 [#226 '(']: s#264
 [#226 '*']: s#262
@@ -7908,7 +8075,7 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#227 'while']: r#112
 [#227 '{']: r#112
 [#227 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#112
-[#228 ';']: s#344
+[#228 ';']: s#345
 [#229 '&']: r#113
 [#229 '(']: r#113
 [#229 '*']: r#113
@@ -8014,12 +8181,12 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#233 'while']: r#117
 [#233 '{']: r#117
 [#233 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#117
-[#234 ';']: s#343
-[#235 ';']: s#342
-[#236 ';']: s#341
-[#237 ';']: s#340
-[#238 ';']: s#339
-[#239 ';']: s#338
+[#234 ';']: s#344
+[#235 ';']: s#343
+[#236 ';']: s#342
+[#237 ';']: s#341
+[#238 ';']: s#340
+[#239 ';']: s#339
 [#240 '&']: r#118
 [#240 '(']: r#118
 [#240 '*']: r#118
@@ -8041,7 +8208,7 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#240 'while']: r#118
 [#240 '{']: r#118
 [#240 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#118
-[#241 ';']: s#337
+[#241 ';']: s#338
 [#242 '!']: s#62
 [#242 '&']: s#65
 [#242 '(']: s#75
@@ -8062,7 +8229,7 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#242 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
 [#242 /[1-9][0-9]*[fh]/]: s#87
 [#242 /[1-9][0-9]*[iu]?/]: s#84
-[#243 'else']: s#334
+[#243 'else']: s#335
 [#244 '!']: s#62
 [#244 '&']: s#65
 [#244 '(']: s#75
@@ -8083,8 +8250,8 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#244 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
 [#244 /[1-9][0-9]*[fh]/]: s#87
 [#244 /[1-9][0-9]*[iu]?/]: s#84
-[#245 '{']: s#329
-[#246 '(']: s#328
+[#245 '{']: s#330
+[#246 '(']: s#329
 [#247 '!']: s#62
 [#247 '&']: s#65
 [#247 '(']: s#75
@@ -8106,7 +8273,7 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#247 /[1-9][0-9]*[fh]/]: s#87
 [#247 /[1-9][0-9]*[iu]?/]: s#84
 [#248 '(']: s#127
-[#249 '=']: s#325
+[#249 '=']: s#326
 [#250 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
 [#251 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
 [#257 '!']: s#62
@@ -8144,20 +8311,20 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#258 '[']: r#119
 [#258 '^=']: r#119
 [#258 '|=']: r#119
-[#259 '%=']: s#316
-[#259 '&=']: s#317
-[#259 '*=']: s#314
-[#259 '++']: s#308
-[#259 '+=']: s#312
-[#259 '--']: s#309
-[#259 '-=']: s#313
-[#259 '/=']: s#315
-[#259 '<<=']: s#321
-[#259 '=']: s#310
-[#259 '>>=']: s#320
-[#259 '^=']: s#319
-[#259 '|=']: s#318
-[#260 '=']: s#306
+[#259 '%=']: s#317
+[#259 '&=']: s#318
+[#259 '*=']: s#315
+[#259 '++']: s#309
+[#259 '+=']: s#313
+[#259 '--']: s#310
+[#259 '-=']: s#314
+[#259 '/=']: s#316
+[#259 '<<=']: s#322
+[#259 '=']: s#311
+[#259 '>>=']: s#321
+[#259 '^=']: s#320
+[#259 '|=']: s#319
+[#260 '=']: s#307
 [#261 '.']: s#131
 [#261 '[']: s#130
 [#262 '&']: s#263
@@ -8173,11 +8340,12 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#264 '*']: s#262
 [#264 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
 [#265 '@']: s#30
-[#266 ',']: s#293
+[#266 ',']: s#294
 [#267 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#209
 [#269 '@']: s#30
 [#271 ',']: r#120
-[#271 '::']: s#287
+[#271 '::']: s#288
+[#271 '<']: s#287
 [#271 '=']: r#120
 [#271 '{']: r#120
 [#273 '!']: s#62
@@ -8208,98 +8376,93 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#281 ',']: r#125
 [#282 ',']: r#126
 [#283 '=']: r#127
-[#284 '>']: s#427
-[#285 'read']: s#424
-[#285 'read_write']: s#426
-[#285 'write']: s#425
-[#287 '<']: s#422
-[#289 ':']: s#421
-[#290 ',']: s#420
-[#291 ',']: r#128
-[#292 ',']: s#293
-[#293 '@']: s#30
-[#294 ')']: s#416
-[#296 ',']: s#415
-[#297 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
-[#299 '@']: s#30
-[#300 ')']: s#409
-[#301 '%=']: r#119
-[#301 '&=']: r#119
-[#301 '*=']: r#119
-[#301 '+=']: r#119
-[#301 '-=']: r#119
-[#301 '.']: r#119
-[#301 '/=']: r#119
-[#301 '<<=']: r#119
-[#301 '=']: r#119
-[#301 '>>=']: r#119
-[#301 '[']: r#119
-[#301 '^=']: r#119
-[#301 '|=']: r#119
-[#302 '%=']: r#129
-[#302 '&=']: r#129
-[#302 '*=']: r#129
-[#302 '+=']: r#129
-[#302 '-=']: r#129
-[#302 '/=']: r#129
-[#302 '<<=']: r#129
-[#302 '=']: r#129
-[#302 '>>=']: r#129
-[#302 '^=']: r#129
-[#302 '|=']: r#129
-[#303 '%=']: r#130
-[#303 '&=']: r#130
-[#303 '*=']: r#130
-[#303 '+=']: r#130
-[#303 '-=']: r#130
-[#303 '/=']: r#130
-[#303 '<<=']: r#130
-[#303 '=']: r#130
-[#303 '>>=']: r#130
-[#303 '^=']: r#130
-[#303 '|=']: r#130
-[#304 '%=']: r#131
-[#304 '&=']: r#131
-[#304 '*=']: r#131
-[#304 '+=']: r#131
-[#304 '-=']: r#131
-[#304 '/=']: r#131
-[#304 '<<=']: r#131
-[#304 '=']: r#131
-[#304 '>>=']: r#131
-[#304 '^=']: r#131
-[#304 '|=']: r#131
-[#305 '%=']: r#132
-[#305 '&=']: r#132
-[#305 '*=']: r#132
-[#305 '+=']: r#132
-[#305 '-=']: r#132
-[#305 '/=']: r#132
-[#305 '<<=']: r#132
-[#305 '=']: r#132
-[#305 '>>=']: r#132
-[#305 '^=']: r#132
-[#305 '|=']: r#132
-[#306 '!']: s#62
-[#306 '&']: s#65
-[#306 '(']: s#75
-[#306 '*']: s#64
-[#306 '-']: s#61
-[#306 'false']: s#82
-[#306 'true']: s#81
-[#306 '~']: s#63
-[#306 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
-[#306 /0[fh]/]: s#86
-[#306 /0[iu]?/]: s#83
-[#306 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: s#91
-[#306 /0[xX][0-9a-fA-F]+[iu]?/]: s#85
-[#306 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: s#93
-[#306 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: s#92
-[#306 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: s#88
-[#306 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: s#90
-[#306 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
-[#306 /[1-9][0-9]*[fh]/]: s#87
-[#306 /[1-9][0-9]*[iu]?/]: s#84
+[#284 '>']: s#429
+[#285 'read']: s#426
+[#285 'read_write']: s#428
+[#285 'write']: s#427
+[#287 '(']: s#75
+[#287 'false']: s#82
+[#287 'true']: s#81
+[#287 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
+[#287 /0[fh]/]: s#86
+[#287 /0[iu]?/]: s#83
+[#287 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: s#91
+[#287 /0[xX][0-9a-fA-F]+[iu]?/]: s#85
+[#287 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: s#93
+[#287 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: s#92
+[#287 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: s#88
+[#287 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: s#90
+[#287 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
+[#287 /[1-9][0-9]*[fh]/]: s#87
+[#287 /[1-9][0-9]*[iu]?/]: s#84
+[#288 '<']: s#423
+[#290 ':']: s#422
+[#291 ',']: s#421
+[#292 ',']: r#128
+[#293 ',']: s#294
+[#294 '@']: s#30
+[#295 ')']: s#417
+[#297 ',']: s#416
+[#298 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
+[#300 '@']: s#30
+[#301 ')']: s#410
+[#302 '%=']: r#119
+[#302 '&=']: r#119
+[#302 '*=']: r#119
+[#302 '+=']: r#119
+[#302 '-=']: r#119
+[#302 '.']: r#119
+[#302 '/=']: r#119
+[#302 '<<=']: r#119
+[#302 '=']: r#119
+[#302 '>>=']: r#119
+[#302 '[']: r#119
+[#302 '^=']: r#119
+[#302 '|=']: r#119
+[#303 '%=']: r#129
+[#303 '&=']: r#129
+[#303 '*=']: r#129
+[#303 '+=']: r#129
+[#303 '-=']: r#129
+[#303 '/=']: r#129
+[#303 '<<=']: r#129
+[#303 '=']: r#129
+[#303 '>>=']: r#129
+[#303 '^=']: r#129
+[#303 '|=']: r#129
+[#304 '%=']: r#130
+[#304 '&=']: r#130
+[#304 '*=']: r#130
+[#304 '+=']: r#130
+[#304 '-=']: r#130
+[#304 '/=']: r#130
+[#304 '<<=']: r#130
+[#304 '=']: r#130
+[#304 '>>=']: r#130
+[#304 '^=']: r#130
+[#304 '|=']: r#130
+[#305 '%=']: r#131
+[#305 '&=']: r#131
+[#305 '*=']: r#131
+[#305 '+=']: r#131
+[#305 '-=']: r#131
+[#305 '/=']: r#131
+[#305 '<<=']: r#131
+[#305 '=']: r#131
+[#305 '>>=']: r#131
+[#305 '^=']: r#131
+[#305 '|=']: r#131
+[#306 '%=']: r#132
+[#306 '&=']: r#132
+[#306 '*=']: r#132
+[#306 '+=']: r#132
+[#306 '-=']: r#132
+[#306 '/=']: r#132
+[#306 '<<=']: r#132
+[#306 '=']: r#132
+[#306 '>>=']: r#132
+[#306 '^=']: r#132
+[#306 '|=']: r#132
 [#307 '!']: s#62
 [#307 '&']: s#65
 [#307 '(']: s#75
@@ -8320,769 +8483,769 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#307 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
 [#307 /[1-9][0-9]*[fh]/]: s#87
 [#307 /[1-9][0-9]*[iu]?/]: s#84
-[#310 '!']: r#133
-[#310 '&']: r#133
-[#310 '(']: r#133
-[#310 '*']: r#133
-[#310 '-']: r#133
-[#310 'false']: r#133
-[#310 'true']: r#133
-[#310 '~']: r#133
-[#310 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#133
-[#310 /0[fh]/]: r#133
-[#310 /0[iu]?/]: r#133
-[#310 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: r#133
-[#310 /0[xX][0-9a-fA-F]+[iu]?/]: r#133
-[#310 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: r#133
-[#310 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: r#133
-[#310 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: r#133
-[#310 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: r#133
-[#310 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: r#133
-[#310 /[1-9][0-9]*[fh]/]: r#133
-[#310 /[1-9][0-9]*[iu]?/]: r#133
-[#311 '!']: r#134
-[#311 '&']: r#134
-[#311 '(']: r#134
-[#311 '*']: r#134
-[#311 '-']: r#134
-[#311 'false']: r#134
-[#311 'true']: r#134
-[#311 '~']: r#134
-[#311 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#134
-[#311 /0[fh]/]: r#134
-[#311 /0[iu]?/]: r#134
-[#311 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: r#134
-[#311 /0[xX][0-9a-fA-F]+[iu]?/]: r#134
-[#311 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: r#134
-[#311 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: r#134
-[#311 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: r#134
-[#311 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: r#134
-[#311 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: r#134
-[#311 /[1-9][0-9]*[fh]/]: r#134
-[#311 /[1-9][0-9]*[iu]?/]: r#134
-[#312 '!']: r#135
-[#312 '&']: r#135
-[#312 '(']: r#135
-[#312 '*']: r#135
-[#312 '-']: r#135
-[#312 'false']: r#135
-[#312 'true']: r#135
-[#312 '~']: r#135
-[#312 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#135
-[#312 /0[fh]/]: r#135
-[#312 /0[iu]?/]: r#135
-[#312 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: r#135
-[#312 /0[xX][0-9a-fA-F]+[iu]?/]: r#135
-[#312 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: r#135
-[#312 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: r#135
-[#312 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: r#135
-[#312 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: r#135
-[#312 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: r#135
-[#312 /[1-9][0-9]*[fh]/]: r#135
-[#312 /[1-9][0-9]*[iu]?/]: r#135
-[#313 '!']: r#136
-[#313 '&']: r#136
-[#313 '(']: r#136
-[#313 '*']: r#136
-[#313 '-']: r#136
-[#313 'false']: r#136
-[#313 'true']: r#136
-[#313 '~']: r#136
-[#313 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#136
-[#313 /0[fh]/]: r#136
-[#313 /0[iu]?/]: r#136
-[#313 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: r#136
-[#313 /0[xX][0-9a-fA-F]+[iu]?/]: r#136
-[#313 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: r#136
-[#313 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: r#136
-[#313 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: r#136
-[#313 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: r#136
-[#313 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: r#136
-[#313 /[1-9][0-9]*[fh]/]: r#136
-[#313 /[1-9][0-9]*[iu]?/]: r#136
-[#314 '!']: r#137
-[#314 '&']: r#137
-[#314 '(']: r#137
-[#314 '*']: r#137
-[#314 '-']: r#137
-[#314 'false']: r#137
-[#314 'true']: r#137
-[#314 '~']: r#137
-[#314 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#137
-[#314 /0[fh]/]: r#137
-[#314 /0[iu]?/]: r#137
-[#314 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: r#137
-[#314 /0[xX][0-9a-fA-F]+[iu]?/]: r#137
-[#314 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: r#137
-[#314 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: r#137
-[#314 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: r#137
-[#314 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: r#137
-[#314 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: r#137
-[#314 /[1-9][0-9]*[fh]/]: r#137
-[#314 /[1-9][0-9]*[iu]?/]: r#137
-[#315 '!']: r#138
-[#315 '&']: r#138
-[#315 '(']: r#138
-[#315 '*']: r#138
-[#315 '-']: r#138
-[#315 'false']: r#138
-[#315 'true']: r#138
-[#315 '~']: r#138
-[#315 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#138
-[#315 /0[fh]/]: r#138
-[#315 /0[iu]?/]: r#138
-[#315 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: r#138
-[#315 /0[xX][0-9a-fA-F]+[iu]?/]: r#138
-[#315 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: r#138
-[#315 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: r#138
-[#315 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: r#138
-[#315 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: r#138
-[#315 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: r#138
-[#315 /[1-9][0-9]*[fh]/]: r#138
-[#315 /[1-9][0-9]*[iu]?/]: r#138
-[#316 '!']: r#139
-[#316 '&']: r#139
-[#316 '(']: r#139
-[#316 '*']: r#139
-[#316 '-']: r#139
-[#316 'false']: r#139
-[#316 'true']: r#139
-[#316 '~']: r#139
-[#316 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#139
-[#316 /0[fh]/]: r#139
-[#316 /0[iu]?/]: r#139
-[#316 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: r#139
-[#316 /0[xX][0-9a-fA-F]+[iu]?/]: r#139
-[#316 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: r#139
-[#316 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: r#139
-[#316 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: r#139
-[#316 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: r#139
-[#316 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: r#139
-[#316 /[1-9][0-9]*[fh]/]: r#139
-[#316 /[1-9][0-9]*[iu]?/]: r#139
-[#317 '!']: r#140
-[#317 '&']: r#140
-[#317 '(']: r#140
-[#317 '*']: r#140
-[#317 '-']: r#140
-[#317 'false']: r#140
-[#317 'true']: r#140
-[#317 '~']: r#140
-[#317 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#140
-[#317 /0[fh]/]: r#140
-[#317 /0[iu]?/]: r#140
-[#317 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: r#140
-[#317 /0[xX][0-9a-fA-F]+[iu]?/]: r#140
-[#317 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: r#140
-[#317 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: r#140
-[#317 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: r#140
-[#317 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: r#140
-[#317 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: r#140
-[#317 /[1-9][0-9]*[fh]/]: r#140
-[#317 /[1-9][0-9]*[iu]?/]: r#140
-[#318 '!']: r#141
-[#318 '&']: r#141
-[#318 '(']: r#141
-[#318 '*']: r#141
-[#318 '-']: r#141
-[#318 'false']: r#141
-[#318 'true']: r#141
-[#318 '~']: r#141
-[#318 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#141
-[#318 /0[fh]/]: r#141
-[#318 /0[iu]?/]: r#141
-[#318 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: r#141
-[#318 /0[xX][0-9a-fA-F]+[iu]?/]: r#141
-[#318 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: r#141
-[#318 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: r#141
-[#318 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: r#141
-[#318 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: r#141
-[#318 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: r#141
-[#318 /[1-9][0-9]*[fh]/]: r#141
-[#318 /[1-9][0-9]*[iu]?/]: r#141
-[#319 '!']: r#142
-[#319 '&']: r#142
-[#319 '(']: r#142
-[#319 '*']: r#142
-[#319 '-']: r#142
-[#319 'false']: r#142
-[#319 'true']: r#142
-[#319 '~']: r#142
-[#319 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#142
-[#319 /0[fh]/]: r#142
-[#319 /0[iu]?/]: r#142
-[#319 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: r#142
-[#319 /0[xX][0-9a-fA-F]+[iu]?/]: r#142
-[#319 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: r#142
-[#319 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: r#142
-[#319 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: r#142
-[#319 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: r#142
-[#319 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: r#142
-[#319 /[1-9][0-9]*[fh]/]: r#142
-[#319 /[1-9][0-9]*[iu]?/]: r#142
-[#320 '!']: r#143
-[#320 '&']: r#143
-[#320 '(']: r#143
-[#320 '*']: r#143
-[#320 '-']: r#143
-[#320 'false']: r#143
-[#320 'true']: r#143
-[#320 '~']: r#143
-[#320 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#143
-[#320 /0[fh]/]: r#143
-[#320 /0[iu]?/]: r#143
-[#320 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: r#143
-[#320 /0[xX][0-9a-fA-F]+[iu]?/]: r#143
-[#320 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: r#143
-[#320 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: r#143
-[#320 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: r#143
-[#320 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: r#143
-[#320 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: r#143
-[#320 /[1-9][0-9]*[fh]/]: r#143
-[#320 /[1-9][0-9]*[iu]?/]: r#143
-[#321 '!']: r#144
-[#321 '&']: r#144
-[#321 '(']: r#144
-[#321 '*']: r#144
-[#321 '-']: r#144
-[#321 'false']: r#144
-[#321 'true']: r#144
-[#321 '~']: r#144
-[#321 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#144
-[#321 /0[fh]/]: r#144
-[#321 /0[iu]?/]: r#144
-[#321 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: r#144
-[#321 /0[xX][0-9a-fA-F]+[iu]?/]: r#144
-[#321 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: r#144
-[#321 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: r#144
-[#321 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: r#144
-[#321 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: r#144
-[#321 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: r#144
-[#321 /[1-9][0-9]*[fh]/]: r#144
-[#321 /[1-9][0-9]*[iu]?/]: r#144
-[#322 '{']: s#123
-[#323 '=']: s#405
-[#324 '=']: s#404
-[#325 '!']: s#62
-[#325 '&']: s#65
-[#325 '(']: s#75
-[#325 '*']: s#64
-[#325 '-']: s#61
-[#325 'false']: s#82
-[#325 'true']: s#81
-[#325 '~']: s#63
-[#325 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
-[#325 /0[fh]/]: s#86
-[#325 /0[iu]?/]: s#83
-[#325 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: s#91
-[#325 /0[xX][0-9a-fA-F]+[iu]?/]: s#85
-[#325 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: s#93
-[#325 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: s#92
-[#325 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: s#88
-[#325 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: s#90
-[#325 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
-[#325 /[1-9][0-9]*[fh]/]: s#87
-[#325 /[1-9][0-9]*[iu]?/]: s#84
-[#327 '{']: s#123
-[#328 '&']: s#263
-[#328 '(']: s#264
-[#328 '*']: s#262
-[#328 '_']: s#260
-[#328 'const']: s#251
-[#328 'let']: s#250
-[#328 'var']: s#102
-[#328 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
+[#308 '!']: s#62
+[#308 '&']: s#65
+[#308 '(']: s#75
+[#308 '*']: s#64
+[#308 '-']: s#61
+[#308 'false']: s#82
+[#308 'true']: s#81
+[#308 '~']: s#63
+[#308 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
+[#308 /0[fh]/]: s#86
+[#308 /0[iu]?/]: s#83
+[#308 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: s#91
+[#308 /0[xX][0-9a-fA-F]+[iu]?/]: s#85
+[#308 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: s#93
+[#308 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: s#92
+[#308 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: s#88
+[#308 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: s#90
+[#308 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
+[#308 /[1-9][0-9]*[fh]/]: s#87
+[#308 /[1-9][0-9]*[iu]?/]: s#84
+[#311 '!']: r#133
+[#311 '&']: r#133
+[#311 '(']: r#133
+[#311 '*']: r#133
+[#311 '-']: r#133
+[#311 'false']: r#133
+[#311 'true']: r#133
+[#311 '~']: r#133
+[#311 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#133
+[#311 /0[fh]/]: r#133
+[#311 /0[iu]?/]: r#133
+[#311 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: r#133
+[#311 /0[xX][0-9a-fA-F]+[iu]?/]: r#133
+[#311 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: r#133
+[#311 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: r#133
+[#311 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: r#133
+[#311 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: r#133
+[#311 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: r#133
+[#311 /[1-9][0-9]*[fh]/]: r#133
+[#311 /[1-9][0-9]*[iu]?/]: r#133
+[#312 '!']: r#134
+[#312 '&']: r#134
+[#312 '(']: r#134
+[#312 '*']: r#134
+[#312 '-']: r#134
+[#312 'false']: r#134
+[#312 'true']: r#134
+[#312 '~']: r#134
+[#312 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#134
+[#312 /0[fh]/]: r#134
+[#312 /0[iu]?/]: r#134
+[#312 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: r#134
+[#312 /0[xX][0-9a-fA-F]+[iu]?/]: r#134
+[#312 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: r#134
+[#312 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: r#134
+[#312 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: r#134
+[#312 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: r#134
+[#312 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: r#134
+[#312 /[1-9][0-9]*[fh]/]: r#134
+[#312 /[1-9][0-9]*[iu]?/]: r#134
+[#313 '!']: r#135
+[#313 '&']: r#135
+[#313 '(']: r#135
+[#313 '*']: r#135
+[#313 '-']: r#135
+[#313 'false']: r#135
+[#313 'true']: r#135
+[#313 '~']: r#135
+[#313 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#135
+[#313 /0[fh]/]: r#135
+[#313 /0[iu]?/]: r#135
+[#313 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: r#135
+[#313 /0[xX][0-9a-fA-F]+[iu]?/]: r#135
+[#313 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: r#135
+[#313 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: r#135
+[#313 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: r#135
+[#313 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: r#135
+[#313 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: r#135
+[#313 /[1-9][0-9]*[fh]/]: r#135
+[#313 /[1-9][0-9]*[iu]?/]: r#135
+[#314 '!']: r#136
+[#314 '&']: r#136
+[#314 '(']: r#136
+[#314 '*']: r#136
+[#314 '-']: r#136
+[#314 'false']: r#136
+[#314 'true']: r#136
+[#314 '~']: r#136
+[#314 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#136
+[#314 /0[fh]/]: r#136
+[#314 /0[iu]?/]: r#136
+[#314 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: r#136
+[#314 /0[xX][0-9a-fA-F]+[iu]?/]: r#136
+[#314 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: r#136
+[#314 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: r#136
+[#314 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: r#136
+[#314 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: r#136
+[#314 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: r#136
+[#314 /[1-9][0-9]*[fh]/]: r#136
+[#314 /[1-9][0-9]*[iu]?/]: r#136
+[#315 '!']: r#137
+[#315 '&']: r#137
+[#315 '(']: r#137
+[#315 '*']: r#137
+[#315 '-']: r#137
+[#315 'false']: r#137
+[#315 'true']: r#137
+[#315 '~']: r#137
+[#315 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#137
+[#315 /0[fh]/]: r#137
+[#315 /0[iu]?/]: r#137
+[#315 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: r#137
+[#315 /0[xX][0-9a-fA-F]+[iu]?/]: r#137
+[#315 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: r#137
+[#315 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: r#137
+[#315 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: r#137
+[#315 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: r#137
+[#315 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: r#137
+[#315 /[1-9][0-9]*[fh]/]: r#137
+[#315 /[1-9][0-9]*[iu]?/]: r#137
+[#316 '!']: r#138
+[#316 '&']: r#138
+[#316 '(']: r#138
+[#316 '*']: r#138
+[#316 '-']: r#138
+[#316 'false']: r#138
+[#316 'true']: r#138
+[#316 '~']: r#138
+[#316 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#138
+[#316 /0[fh]/]: r#138
+[#316 /0[iu]?/]: r#138
+[#316 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: r#138
+[#316 /0[xX][0-9a-fA-F]+[iu]?/]: r#138
+[#316 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: r#138
+[#316 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: r#138
+[#316 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: r#138
+[#316 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: r#138
+[#316 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: r#138
+[#316 /[1-9][0-9]*[fh]/]: r#138
+[#316 /[1-9][0-9]*[iu]?/]: r#138
+[#317 '!']: r#139
+[#317 '&']: r#139
+[#317 '(']: r#139
+[#317 '*']: r#139
+[#317 '-']: r#139
+[#317 'false']: r#139
+[#317 'true']: r#139
+[#317 '~']: r#139
+[#317 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#139
+[#317 /0[fh]/]: r#139
+[#317 /0[iu]?/]: r#139
+[#317 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: r#139
+[#317 /0[xX][0-9a-fA-F]+[iu]?/]: r#139
+[#317 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: r#139
+[#317 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: r#139
+[#317 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: r#139
+[#317 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: r#139
+[#317 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: r#139
+[#317 /[1-9][0-9]*[fh]/]: r#139
+[#317 /[1-9][0-9]*[iu]?/]: r#139
+[#318 '!']: r#140
+[#318 '&']: r#140
+[#318 '(']: r#140
+[#318 '*']: r#140
+[#318 '-']: r#140
+[#318 'false']: r#140
+[#318 'true']: r#140
+[#318 '~']: r#140
+[#318 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#140
+[#318 /0[fh]/]: r#140
+[#318 /0[iu]?/]: r#140
+[#318 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: r#140
+[#318 /0[xX][0-9a-fA-F]+[iu]?/]: r#140
+[#318 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: r#140
+[#318 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: r#140
+[#318 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: r#140
+[#318 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: r#140
+[#318 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: r#140
+[#318 /[1-9][0-9]*[fh]/]: r#140
+[#318 /[1-9][0-9]*[iu]?/]: r#140
+[#319 '!']: r#141
+[#319 '&']: r#141
+[#319 '(']: r#141
+[#319 '*']: r#141
+[#319 '-']: r#141
+[#319 'false']: r#141
+[#319 'true']: r#141
+[#319 '~']: r#141
+[#319 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#141
+[#319 /0[fh]/]: r#141
+[#319 /0[iu]?/]: r#141
+[#319 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: r#141
+[#319 /0[xX][0-9a-fA-F]+[iu]?/]: r#141
+[#319 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: r#141
+[#319 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: r#141
+[#319 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: r#141
+[#319 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: r#141
+[#319 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: r#141
+[#319 /[1-9][0-9]*[fh]/]: r#141
+[#319 /[1-9][0-9]*[iu]?/]: r#141
+[#320 '!']: r#142
+[#320 '&']: r#142
+[#320 '(']: r#142
+[#320 '*']: r#142
+[#320 '-']: r#142
+[#320 'false']: r#142
+[#320 'true']: r#142
+[#320 '~']: r#142
+[#320 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#142
+[#320 /0[fh]/]: r#142
+[#320 /0[iu]?/]: r#142
+[#320 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: r#142
+[#320 /0[xX][0-9a-fA-F]+[iu]?/]: r#142
+[#320 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: r#142
+[#320 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: r#142
+[#320 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: r#142
+[#320 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: r#142
+[#320 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: r#142
+[#320 /[1-9][0-9]*[fh]/]: r#142
+[#320 /[1-9][0-9]*[iu]?/]: r#142
+[#321 '!']: r#143
+[#321 '&']: r#143
+[#321 '(']: r#143
+[#321 '*']: r#143
+[#321 '-']: r#143
+[#321 'false']: r#143
+[#321 'true']: r#143
+[#321 '~']: r#143
+[#321 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#143
+[#321 /0[fh]/]: r#143
+[#321 /0[iu]?/]: r#143
+[#321 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: r#143
+[#321 /0[xX][0-9a-fA-F]+[iu]?/]: r#143
+[#321 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: r#143
+[#321 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: r#143
+[#321 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: r#143
+[#321 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: r#143
+[#321 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: r#143
+[#321 /[1-9][0-9]*[fh]/]: r#143
+[#321 /[1-9][0-9]*[iu]?/]: r#143
+[#322 '!']: r#144
+[#322 '&']: r#144
+[#322 '(']: r#144
+[#322 '*']: r#144
+[#322 '-']: r#144
+[#322 'false']: r#144
+[#322 'true']: r#144
+[#322 '~']: r#144
+[#322 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#144
+[#322 /0[fh]/]: r#144
+[#322 /0[iu]?/]: r#144
+[#322 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: r#144
+[#322 /0[xX][0-9a-fA-F]+[iu]?/]: r#144
+[#322 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: r#144
+[#322 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: r#144
+[#322 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: r#144
+[#322 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: r#144
+[#322 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: r#144
+[#322 /[1-9][0-9]*[fh]/]: r#144
+[#322 /[1-9][0-9]*[iu]?/]: r#144
+[#323 '{']: s#123
+[#324 '=']: s#406
+[#325 '=']: s#405
+[#326 '!']: s#62
+[#326 '&']: s#65
+[#326 '(']: s#75
+[#326 '*']: s#64
+[#326 '-']: s#61
+[#326 'false']: s#82
+[#326 'true']: s#81
+[#326 '~']: s#63
+[#326 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
+[#326 /0[fh]/]: s#86
+[#326 /0[iu]?/]: s#83
+[#326 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: s#91
+[#326 /0[xX][0-9a-fA-F]+[iu]?/]: s#85
+[#326 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: s#93
+[#326 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: s#92
+[#326 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: s#88
+[#326 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: s#90
+[#326 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
+[#326 /[1-9][0-9]*[fh]/]: s#87
+[#326 /[1-9][0-9]*[iu]?/]: s#84
+[#328 '{']: s#123
 [#329 '&']: s#263
 [#329 '(']: s#264
 [#329 '*']: s#262
-[#329 ';']: s#227
 [#329 '_']: s#260
-[#329 'break']: s#252
 [#329 'const']: s#251
-[#329 'const_assert']: s#25
-[#329 'continue']: s#253
-[#329 'discard']: s#238
-[#329 'for']: s#246
-[#329 'if']: s#257
 [#329 'let']: s#250
-[#329 'loop']: s#245
-[#329 'return']: s#242
-[#329 'switch']: s#244
 [#329 'var']: s#102
-[#329 'while']: s#247
-[#329 '{']: s#123
 [#329 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
-[#330 '{']: s#392
-[#331 'else']: s#391
-[#332 '&']: r#145
-[#332 '(']: r#145
-[#332 '*']: r#145
-[#332 ';']: r#145
-[#332 '_']: r#145
-[#332 'break']: r#145
-[#332 'const']: r#145
-[#332 'const_assert']: r#145
-[#332 'continue']: r#145
-[#332 'continuing']: r#145
-[#332 'discard']: r#145
-[#332 'else']: r#145
-[#332 'for']: r#145
-[#332 'if']: r#145
-[#332 'let']: r#145
-[#332 'loop']: r#145
-[#332 'return']: r#145
-[#332 'switch']: r#145
-[#332 'var']: r#145
-[#332 'while']: r#145
-[#332 '{']: r#145
-[#332 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#145
-[#333 'else']: s#334
-[#334 'if']: s#387
-[#337 '&']: r#146
-[#337 '(']: r#146
-[#337 '*']: r#146
-[#337 ';']: r#146
-[#337 '_']: r#146
-[#337 'break']: r#146
-[#337 'const']: r#146
-[#337 'const_assert']: r#146
-[#337 'continue']: r#146
-[#337 'continuing']: r#146
-[#337 'discard']: r#146
-[#337 'for']: r#146
-[#337 'if']: r#146
-[#337 'let']: r#146
-[#337 'loop']: r#146
-[#337 'return']: r#146
-[#337 'switch']: r#146
-[#337 'var']: r#146
-[#337 'while']: r#146
-[#337 '{']: r#146
-[#337 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#146
-[#338 '&']: r#147
-[#338 '(']: r#147
-[#338 '*']: r#147
-[#338 ';']: r#147
-[#338 '_']: r#147
-[#338 'break']: r#147
-[#338 'const']: r#147
-[#338 'const_assert']: r#147
-[#338 'continue']: r#147
-[#338 'continuing']: r#147
-[#338 'discard']: r#147
-[#338 'for']: r#147
-[#338 'if']: r#147
-[#338 'let']: r#147
-[#338 'loop']: r#147
-[#338 'return']: r#147
-[#338 'switch']: r#147
-[#338 'var']: r#147
-[#338 'while']: r#147
-[#338 '{']: r#147
-[#338 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#147
-[#339 '&']: r#148
-[#339 '(']: r#148
-[#339 '*']: r#148
-[#339 ';']: r#148
-[#339 '_']: r#148
-[#339 'break']: r#148
-[#339 'const']: r#148
-[#339 'const_assert']: r#148
-[#339 'continue']: r#148
-[#339 'continuing']: r#148
-[#339 'discard']: r#148
-[#339 'for']: r#148
-[#339 'if']: r#148
-[#339 'let']: r#148
-[#339 'loop']: r#148
-[#339 'return']: r#148
-[#339 'switch']: r#148
-[#339 'var']: r#148
-[#339 'while']: r#148
-[#339 '{']: r#148
-[#339 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#148
-[#340 '&']: r#149
-[#340 '(']: r#149
-[#340 '*']: r#149
-[#340 ';']: r#149
-[#340 '_']: r#149
-[#340 'break']: r#149
-[#340 'const']: r#149
-[#340 'const_assert']: r#149
-[#340 'continue']: r#149
-[#340 'continuing']: r#149
-[#340 'discard']: r#149
-[#340 'for']: r#149
-[#340 'if']: r#149
-[#340 'let']: r#149
-[#340 'loop']: r#149
-[#340 'return']: r#149
-[#340 'switch']: r#149
-[#340 'var']: r#149
-[#340 'while']: r#149
-[#340 '{']: r#149
-[#340 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#149
-[#341 '&']: r#150
-[#341 '(']: r#150
-[#341 '*']: r#150
-[#341 ';']: r#150
-[#341 '_']: r#150
-[#341 'break']: r#150
-[#341 'const']: r#150
-[#341 'const_assert']: r#150
-[#341 'continue']: r#150
-[#341 'continuing']: r#150
-[#341 'discard']: r#150
-[#341 'for']: r#150
-[#341 'if']: r#150
-[#341 'let']: r#150
-[#341 'loop']: r#150
-[#341 'return']: r#150
-[#341 'switch']: r#150
-[#341 'var']: r#150
-[#341 'while']: r#150
-[#341 '{']: r#150
-[#341 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#150
-[#342 '&']: r#151
-[#342 '(']: r#151
-[#342 '*']: r#151
-[#342 ';']: r#151
-[#342 '_']: r#151
-[#342 'break']: r#151
-[#342 'const']: r#151
-[#342 'const_assert']: r#151
-[#342 'continue']: r#151
-[#342 'continuing']: r#151
-[#342 'discard']: r#151
-[#342 'for']: r#151
-[#342 'if']: r#151
-[#342 'let']: r#151
-[#342 'loop']: r#151
-[#342 'return']: r#151
-[#342 'switch']: r#151
-[#342 'var']: r#151
-[#342 'while']: r#151
-[#342 '{']: r#151
-[#342 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#151
-[#343 '&']: r#152
-[#343 '(']: r#152
-[#343 '*']: r#152
-[#343 ';']: r#152
-[#343 '_']: r#152
-[#343 'break']: r#152
-[#343 'const']: r#152
-[#343 'const_assert']: r#152
-[#343 'continue']: r#152
-[#343 'continuing']: r#152
-[#343 'discard']: r#152
-[#343 'for']: r#152
-[#343 'if']: r#152
-[#343 'let']: r#152
-[#343 'loop']: r#152
-[#343 'return']: r#152
-[#343 'switch']: r#152
-[#343 'var']: r#152
-[#343 'while']: r#152
-[#343 '{']: r#152
-[#343 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#152
-[#344 '&']: r#153
-[#344 '(']: r#153
-[#344 '*']: r#153
-[#344 ';']: r#153
-[#344 '_']: r#153
-[#344 'break']: r#153
-[#344 'const']: r#153
-[#344 'const_assert']: r#153
-[#344 'continue']: r#153
-[#344 'continuing']: r#153
-[#344 'discard']: r#153
-[#344 'for']: r#153
-[#344 'if']: r#153
-[#344 'let']: r#153
-[#344 'loop']: r#153
-[#344 'return']: r#153
-[#344 'switch']: r#153
-[#344 'var']: r#153
-[#344 'while']: r#153
-[#344 '{']: r#153
-[#344 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#153
-[#346 '&']: r#154
-[#346 '(']: r#154
-[#346 '*']: r#154
-[#346 ';']: r#154
-[#346 '@']: r#154
-[#346 '_']: r#154
-[#346 'break']: r#154
-[#346 'case']: r#154
-[#346 'const']: r#154
-[#346 'const_assert']: r#154
-[#346 'continue']: r#154
-[#346 'continuing']: r#154
-[#346 'default']: r#154
-[#346 'discard']: r#154
-[#346 'else']: r#154
-[#346 'fn']: r#154
-[#346 'for']: r#154
-[#346 'if']: r#154
-[#346 'let']: r#154
-[#346 'loop']: r#154
-[#346 'override']: r#154
-[#346 'return']: r#154
-[#346 'struct']: r#154
-[#346 'switch']: r#154
-[#346 'type']: r#154
-[#346 'var']: r#154
-[#346 'while']: r#154
-[#346 '{']: r#154
-[#346 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#154
-[#346 EndOfText]: r#154
-[#347 ',']: s#386
-[#348 ',']: s#382
-[#349 ',']: r#155
-[#350 ',']: s#351
-[#351 '!']: s#62
-[#351 '&']: s#65
-[#351 '(']: s#75
-[#351 '*']: s#64
-[#351 '-']: s#61
-[#351 'false']: s#82
-[#351 'true']: s#81
-[#351 '~']: s#63
-[#351 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
-[#351 /0[fh]/]: s#86
-[#351 /0[iu]?/]: s#83
-[#351 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: s#91
-[#351 /0[xX][0-9a-fA-F]+[iu]?/]: s#85
-[#351 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: s#93
-[#351 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: s#92
-[#351 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: s#88
-[#351 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: s#90
-[#351 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
-[#351 /[1-9][0-9]*[fh]/]: s#87
-[#351 /[1-9][0-9]*[iu]?/]: s#84
-[#352 '%']: r#156
-[#352 ')']: r#156
-[#352 '*']: r#156
-[#352 '+']: r#156
-[#352 ',']: r#156
-[#352 '-']: r#156
-[#352 '.']: r#156
-[#352 '/']: r#156
-[#352 ':']: r#156
-[#352 '[']: r#156
-[#352 '{']: r#156
-[#353 '.']: s#131
-[#353 '[']: s#130
-[#354 '%']: r#157
-[#354 '%=']: r#157
-[#354 '&=']: r#157
-[#354 ')']: r#157
-[#354 '*']: r#157
-[#354 '*=']: r#157
-[#354 '+']: r#157
-[#354 '+=']: r#157
-[#354 ',']: r#157
-[#354 '-']: r#157
-[#354 '-=']: r#157
-[#354 '/']: r#157
-[#354 '/=']: r#157
-[#354 ':']: r#157
-[#354 '<<=']: r#157
-[#354 '=']: r#157
-[#354 '>>=']: r#157
-[#354 '^=']: r#157
-[#354 '{']: r#157
-[#354 '|=']: r#157
-[#355 '%']: r#158
-[#355 '%=']: r#158
-[#355 '&=']: r#158
-[#355 ')']: r#158
-[#355 '*']: r#158
-[#355 '*=']: r#158
-[#355 '+']: r#158
-[#355 '+=']: r#158
-[#355 ',']: r#158
-[#355 '-']: r#158
-[#355 '-=']: r#158
-[#355 '/']: r#158
-[#355 '/=']: r#158
-[#355 ':']: r#158
-[#355 '<<=']: r#158
-[#355 '=']: r#158
-[#355 '>>=']: r#158
-[#355 '^=']: r#158
-[#355 '{']: r#158
-[#355 '|=']: r#158
-[#356 '%']: r#159
-[#356 '%=']: r#159
-[#356 '&=']: r#159
-[#356 ')']: r#159
-[#356 '*']: r#159
-[#356 '*=']: r#159
-[#356 '+']: r#159
-[#356 '+=']: r#159
-[#356 ',']: r#159
-[#356 '-']: r#159
-[#356 '-=']: r#159
-[#356 '/']: r#159
-[#356 '/=']: r#159
-[#356 ':']: r#159
-[#356 '<<=']: r#159
-[#356 '=']: r#159
-[#356 '>>=']: r#159
-[#356 '^=']: r#159
-[#356 '{']: r#159
-[#356 '|=']: r#159
-[#357 '%']: r#160
-[#357 '%=']: r#160
-[#357 '&=']: r#160
-[#357 ')']: r#160
-[#357 '*']: r#160
-[#357 '*=']: r#160
-[#357 '+']: r#160
-[#357 '+=']: r#160
-[#357 ',']: r#160
-[#357 '-']: r#160
-[#357 '-=']: r#160
-[#357 '/']: r#160
-[#357 '/=']: r#160
-[#357 ':']: r#160
-[#357 '<<=']: r#160
-[#357 '=']: r#160
-[#357 '>>=']: r#160
-[#357 '^=']: r#160
-[#357 '{']: r#160
-[#357 '|=']: r#160
-[#358 '@']: r#161
-[#358 'fn']: r#161
-[#358 'var']: r#161
-[#359 '!']: s#62
-[#359 '&']: s#65
-[#359 '(']: s#75
-[#359 '*']: s#64
-[#359 '-']: s#61
-[#359 'false']: s#82
-[#359 'true']: s#81
-[#359 '~']: s#63
-[#359 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
-[#359 /0[fh]/]: s#86
-[#359 /0[iu]?/]: s#83
-[#359 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: s#91
-[#359 /0[xX][0-9a-fA-F]+[iu]?/]: s#85
-[#359 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: s#93
-[#359 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: s#92
-[#359 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: s#88
-[#359 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: s#90
-[#359 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
-[#359 /[1-9][0-9]*[fh]/]: s#87
-[#359 /[1-9][0-9]*[iu]?/]: s#84
-[#360 ')']: s#375
-[#361 '@']: r#162
-[#361 'fn']: r#162
-[#361 'var']: r#162
-[#363 '@']: r#163
-[#363 'fn']: r#163
-[#363 'var']: r#163
-[#364 '@']: r#164
-[#364 'fn']: r#164
-[#364 'var']: r#164
-[#365 'center']: s#372
-[#365 'centroid']: s#373
-[#365 'sample']: s#374
-[#366 '@']: r#165
-[#366 'fn']: r#165
-[#366 'var']: r#165
-[#367 '@']: r#166
-[#367 'fn']: r#166
-[#367 'var']: r#166
-[#368 '@']: r#167
-[#368 'fn']: r#167
-[#368 'var']: r#167
-[#369 '@']: r#168
-[#369 'fn']: r#168
-[#369 'var']: r#168
-[#370 '@']: r#169
-[#370 'fn']: r#169
-[#370 'var']: r#169
-[#371 ',']: s#362
-[#372 ')']: r#170
-[#372 ',']: r#170
-[#373 ')']: r#171
-[#373 ',']: r#171
-[#374 ')']: r#172
-[#374 ',']: r#172
-[#375 '@']: r#173
-[#375 'fn']: r#173
-[#375 'var']: r#173
-[#376 ',']: s#460
-[#377 '%']: r#174
-[#377 '%=']: r#174
-[#377 '&=']: r#174
-[#377 ')']: r#174
-[#377 '*']: r#174
-[#377 '*=']: r#174
-[#377 '+']: r#174
-[#377 '+=']: r#174
-[#377 ',']: r#174
-[#377 '-']: r#174
-[#377 '-=']: r#174
-[#377 '/']: r#174
-[#377 '/=']: r#174
-[#377 ':']: r#174
-[#377 '<<=']: r#174
-[#377 '=']: r#174
-[#377 '>>=']: r#174
-[#377 '^=']: r#174
-[#377 '{']: r#174
-[#377 '|=']: r#174
-[#378 '%']: r#175
-[#378 '%=']: r#175
-[#378 '&=']: r#175
-[#378 ')']: r#175
-[#378 '*']: r#175
-[#378 '*=']: r#175
-[#378 '+']: r#175
-[#378 '+=']: r#175
-[#378 ',']: r#175
-[#378 '-']: r#175
-[#378 '-=']: r#175
-[#378 '/']: r#175
-[#378 '/=']: r#175
-[#378 ':']: r#175
-[#378 '<<=']: r#175
-[#378 '=']: r#175
-[#378 '>>=']: r#175
-[#378 '^=']: r#175
-[#378 '{']: r#175
-[#378 '|=']: r#175
-[#379 ',']: r#176
-[#380 ',']: r#177
-[#383 ',']: s#458
-[#384 ',']: r#178
-[#385 ',']: s#386
-[#386 '(']: s#75
-[#386 'false']: s#82
-[#386 'true']: s#81
-[#386 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
-[#386 /0[fh]/]: s#86
-[#386 /0[iu]?/]: s#83
-[#386 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: s#91
-[#386 /0[xX][0-9a-fA-F]+[iu]?/]: s#85
-[#386 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: s#93
-[#386 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: s#92
-[#386 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: s#88
-[#386 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: s#90
-[#386 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
-[#386 /[1-9][0-9]*[fh]/]: s#87
-[#386 /[1-9][0-9]*[iu]?/]: s#84
-[#387 '!']: s#62
-[#387 '&']: s#65
+[#330 '&']: s#263
+[#330 '(']: s#264
+[#330 '*']: s#262
+[#330 ';']: s#227
+[#330 '_']: s#260
+[#330 'break']: s#252
+[#330 'const']: s#251
+[#330 'const_assert']: s#25
+[#330 'continue']: s#253
+[#330 'discard']: s#238
+[#330 'for']: s#246
+[#330 'if']: s#257
+[#330 'let']: s#250
+[#330 'loop']: s#245
+[#330 'return']: s#242
+[#330 'switch']: s#244
+[#330 'var']: s#102
+[#330 'while']: s#247
+[#330 '{']: s#123
+[#330 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
+[#331 '{']: s#393
+[#332 'else']: s#392
+[#333 '&']: r#145
+[#333 '(']: r#145
+[#333 '*']: r#145
+[#333 ';']: r#145
+[#333 '_']: r#145
+[#333 'break']: r#145
+[#333 'const']: r#145
+[#333 'const_assert']: r#145
+[#333 'continue']: r#145
+[#333 'continuing']: r#145
+[#333 'discard']: r#145
+[#333 'else']: r#145
+[#333 'for']: r#145
+[#333 'if']: r#145
+[#333 'let']: r#145
+[#333 'loop']: r#145
+[#333 'return']: r#145
+[#333 'switch']: r#145
+[#333 'var']: r#145
+[#333 'while']: r#145
+[#333 '{']: r#145
+[#333 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#145
+[#334 'else']: s#335
+[#335 'if']: s#388
+[#338 '&']: r#146
+[#338 '(']: r#146
+[#338 '*']: r#146
+[#338 ';']: r#146
+[#338 '_']: r#146
+[#338 'break']: r#146
+[#338 'const']: r#146
+[#338 'const_assert']: r#146
+[#338 'continue']: r#146
+[#338 'continuing']: r#146
+[#338 'discard']: r#146
+[#338 'for']: r#146
+[#338 'if']: r#146
+[#338 'let']: r#146
+[#338 'loop']: r#146
+[#338 'return']: r#146
+[#338 'switch']: r#146
+[#338 'var']: r#146
+[#338 'while']: r#146
+[#338 '{']: r#146
+[#338 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#146
+[#339 '&']: r#147
+[#339 '(']: r#147
+[#339 '*']: r#147
+[#339 ';']: r#147
+[#339 '_']: r#147
+[#339 'break']: r#147
+[#339 'const']: r#147
+[#339 'const_assert']: r#147
+[#339 'continue']: r#147
+[#339 'continuing']: r#147
+[#339 'discard']: r#147
+[#339 'for']: r#147
+[#339 'if']: r#147
+[#339 'let']: r#147
+[#339 'loop']: r#147
+[#339 'return']: r#147
+[#339 'switch']: r#147
+[#339 'var']: r#147
+[#339 'while']: r#147
+[#339 '{']: r#147
+[#339 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#147
+[#340 '&']: r#148
+[#340 '(']: r#148
+[#340 '*']: r#148
+[#340 ';']: r#148
+[#340 '_']: r#148
+[#340 'break']: r#148
+[#340 'const']: r#148
+[#340 'const_assert']: r#148
+[#340 'continue']: r#148
+[#340 'continuing']: r#148
+[#340 'discard']: r#148
+[#340 'for']: r#148
+[#340 'if']: r#148
+[#340 'let']: r#148
+[#340 'loop']: r#148
+[#340 'return']: r#148
+[#340 'switch']: r#148
+[#340 'var']: r#148
+[#340 'while']: r#148
+[#340 '{']: r#148
+[#340 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#148
+[#341 '&']: r#149
+[#341 '(']: r#149
+[#341 '*']: r#149
+[#341 ';']: r#149
+[#341 '_']: r#149
+[#341 'break']: r#149
+[#341 'const']: r#149
+[#341 'const_assert']: r#149
+[#341 'continue']: r#149
+[#341 'continuing']: r#149
+[#341 'discard']: r#149
+[#341 'for']: r#149
+[#341 'if']: r#149
+[#341 'let']: r#149
+[#341 'loop']: r#149
+[#341 'return']: r#149
+[#341 'switch']: r#149
+[#341 'var']: r#149
+[#341 'while']: r#149
+[#341 '{']: r#149
+[#341 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#149
+[#342 '&']: r#150
+[#342 '(']: r#150
+[#342 '*']: r#150
+[#342 ';']: r#150
+[#342 '_']: r#150
+[#342 'break']: r#150
+[#342 'const']: r#150
+[#342 'const_assert']: r#150
+[#342 'continue']: r#150
+[#342 'continuing']: r#150
+[#342 'discard']: r#150
+[#342 'for']: r#150
+[#342 'if']: r#150
+[#342 'let']: r#150
+[#342 'loop']: r#150
+[#342 'return']: r#150
+[#342 'switch']: r#150
+[#342 'var']: r#150
+[#342 'while']: r#150
+[#342 '{']: r#150
+[#342 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#150
+[#343 '&']: r#151
+[#343 '(']: r#151
+[#343 '*']: r#151
+[#343 ';']: r#151
+[#343 '_']: r#151
+[#343 'break']: r#151
+[#343 'const']: r#151
+[#343 'const_assert']: r#151
+[#343 'continue']: r#151
+[#343 'continuing']: r#151
+[#343 'discard']: r#151
+[#343 'for']: r#151
+[#343 'if']: r#151
+[#343 'let']: r#151
+[#343 'loop']: r#151
+[#343 'return']: r#151
+[#343 'switch']: r#151
+[#343 'var']: r#151
+[#343 'while']: r#151
+[#343 '{']: r#151
+[#343 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#151
+[#344 '&']: r#152
+[#344 '(']: r#152
+[#344 '*']: r#152
+[#344 ';']: r#152
+[#344 '_']: r#152
+[#344 'break']: r#152
+[#344 'const']: r#152
+[#344 'const_assert']: r#152
+[#344 'continue']: r#152
+[#344 'continuing']: r#152
+[#344 'discard']: r#152
+[#344 'for']: r#152
+[#344 'if']: r#152
+[#344 'let']: r#152
+[#344 'loop']: r#152
+[#344 'return']: r#152
+[#344 'switch']: r#152
+[#344 'var']: r#152
+[#344 'while']: r#152
+[#344 '{']: r#152
+[#344 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#152
+[#345 '&']: r#153
+[#345 '(']: r#153
+[#345 '*']: r#153
+[#345 ';']: r#153
+[#345 '_']: r#153
+[#345 'break']: r#153
+[#345 'const']: r#153
+[#345 'const_assert']: r#153
+[#345 'continue']: r#153
+[#345 'continuing']: r#153
+[#345 'discard']: r#153
+[#345 'for']: r#153
+[#345 'if']: r#153
+[#345 'let']: r#153
+[#345 'loop']: r#153
+[#345 'return']: r#153
+[#345 'switch']: r#153
+[#345 'var']: r#153
+[#345 'while']: r#153
+[#345 '{']: r#153
+[#345 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#153
+[#347 '&']: r#154
+[#347 '(']: r#154
+[#347 '*']: r#154
+[#347 ';']: r#154
+[#347 '@']: r#154
+[#347 '_']: r#154
+[#347 'break']: r#154
+[#347 'case']: r#154
+[#347 'const']: r#154
+[#347 'const_assert']: r#154
+[#347 'continue']: r#154
+[#347 'continuing']: r#154
+[#347 'default']: r#154
+[#347 'discard']: r#154
+[#347 'else']: r#154
+[#347 'fn']: r#154
+[#347 'for']: r#154
+[#347 'if']: r#154
+[#347 'let']: r#154
+[#347 'loop']: r#154
+[#347 'override']: r#154
+[#347 'return']: r#154
+[#347 'struct']: r#154
+[#347 'switch']: r#154
+[#347 'type']: r#154
+[#347 'var']: r#154
+[#347 'while']: r#154
+[#347 '{']: r#154
+[#347 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#154
+[#347 EndOfText]: r#154
+[#348 ',']: s#387
+[#349 ',']: s#383
+[#350 ',']: r#155
+[#351 ',']: s#352
+[#352 '!']: s#62
+[#352 '&']: s#65
+[#352 '(']: s#75
+[#352 '*']: s#64
+[#352 '-']: s#61
+[#352 'false']: s#82
+[#352 'true']: s#81
+[#352 '~']: s#63
+[#352 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
+[#352 /0[fh]/]: s#86
+[#352 /0[iu]?/]: s#83
+[#352 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: s#91
+[#352 /0[xX][0-9a-fA-F]+[iu]?/]: s#85
+[#352 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: s#93
+[#352 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: s#92
+[#352 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: s#88
+[#352 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: s#90
+[#352 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
+[#352 /[1-9][0-9]*[fh]/]: s#87
+[#352 /[1-9][0-9]*[iu]?/]: s#84
+[#353 '%']: r#156
+[#353 ')']: r#156
+[#353 '*']: r#156
+[#353 '+']: r#156
+[#353 ',']: r#156
+[#353 '-']: r#156
+[#353 '.']: r#156
+[#353 '/']: r#156
+[#353 ':']: r#156
+[#353 '[']: r#156
+[#353 '{']: r#156
+[#354 '.']: s#131
+[#354 '[']: s#130
+[#355 '%']: r#157
+[#355 '%=']: r#157
+[#355 '&=']: r#157
+[#355 ')']: r#157
+[#355 '*']: r#157
+[#355 '*=']: r#157
+[#355 '+']: r#157
+[#355 '+=']: r#157
+[#355 ',']: r#157
+[#355 '-']: r#157
+[#355 '-=']: r#157
+[#355 '/']: r#157
+[#355 '/=']: r#157
+[#355 ':']: r#157
+[#355 '<<=']: r#157
+[#355 '=']: r#157
+[#355 '>>=']: r#157
+[#355 '^=']: r#157
+[#355 '{']: r#157
+[#355 '|=']: r#157
+[#356 '%']: r#158
+[#356 '%=']: r#158
+[#356 '&=']: r#158
+[#356 ')']: r#158
+[#356 '*']: r#158
+[#356 '*=']: r#158
+[#356 '+']: r#158
+[#356 '+=']: r#158
+[#356 ',']: r#158
+[#356 '-']: r#158
+[#356 '-=']: r#158
+[#356 '/']: r#158
+[#356 '/=']: r#158
+[#356 ':']: r#158
+[#356 '<<=']: r#158
+[#356 '=']: r#158
+[#356 '>>=']: r#158
+[#356 '^=']: r#158
+[#356 '{']: r#158
+[#356 '|=']: r#158
+[#357 '%']: r#159
+[#357 '%=']: r#159
+[#357 '&=']: r#159
+[#357 ')']: r#159
+[#357 '*']: r#159
+[#357 '*=']: r#159
+[#357 '+']: r#159
+[#357 '+=']: r#159
+[#357 ',']: r#159
+[#357 '-']: r#159
+[#357 '-=']: r#159
+[#357 '/']: r#159
+[#357 '/=']: r#159
+[#357 ':']: r#159
+[#357 '<<=']: r#159
+[#357 '=']: r#159
+[#357 '>>=']: r#159
+[#357 '^=']: r#159
+[#357 '{']: r#159
+[#357 '|=']: r#159
+[#358 '%']: r#160
+[#358 '%=']: r#160
+[#358 '&=']: r#160
+[#358 ')']: r#160
+[#358 '*']: r#160
+[#358 '*=']: r#160
+[#358 '+']: r#160
+[#358 '+=']: r#160
+[#358 ',']: r#160
+[#358 '-']: r#160
+[#358 '-=']: r#160
+[#358 '/']: r#160
+[#358 '/=']: r#160
+[#358 ':']: r#160
+[#358 '<<=']: r#160
+[#358 '=']: r#160
+[#358 '>>=']: r#160
+[#358 '^=']: r#160
+[#358 '{']: r#160
+[#358 '|=']: r#160
+[#359 '@']: r#161
+[#359 'fn']: r#161
+[#359 'var']: r#161
+[#360 '!']: s#62
+[#360 '&']: s#65
+[#360 '(']: s#75
+[#360 '*']: s#64
+[#360 '-']: s#61
+[#360 'false']: s#82
+[#360 'true']: s#81
+[#360 '~']: s#63
+[#360 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
+[#360 /0[fh]/]: s#86
+[#360 /0[iu]?/]: s#83
+[#360 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: s#91
+[#360 /0[xX][0-9a-fA-F]+[iu]?/]: s#85
+[#360 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: s#93
+[#360 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: s#92
+[#360 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: s#88
+[#360 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: s#90
+[#360 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
+[#360 /[1-9][0-9]*[fh]/]: s#87
+[#360 /[1-9][0-9]*[iu]?/]: s#84
+[#361 ')']: s#376
+[#362 '@']: r#162
+[#362 'fn']: r#162
+[#362 'var']: r#162
+[#364 '@']: r#163
+[#364 'fn']: r#163
+[#364 'var']: r#163
+[#365 '@']: r#164
+[#365 'fn']: r#164
+[#365 'var']: r#164
+[#366 'center']: s#373
+[#366 'centroid']: s#374
+[#366 'sample']: s#375
+[#367 '@']: r#165
+[#367 'fn']: r#165
+[#367 'var']: r#165
+[#368 '@']: r#166
+[#368 'fn']: r#166
+[#368 'var']: r#166
+[#369 '@']: r#167
+[#369 'fn']: r#167
+[#369 'var']: r#167
+[#370 '@']: r#168
+[#370 'fn']: r#168
+[#370 'var']: r#168
+[#371 '@']: r#169
+[#371 'fn']: r#169
+[#371 'var']: r#169
+[#372 ',']: s#363
+[#373 ')']: r#170
+[#373 ',']: r#170
+[#374 ')']: r#171
+[#374 ',']: r#171
+[#375 ')']: r#172
+[#375 ',']: r#172
+[#376 '@']: r#173
+[#376 'fn']: r#173
+[#376 'var']: r#173
+[#377 ',']: s#466
+[#378 '%']: r#174
+[#378 '%=']: r#174
+[#378 '&=']: r#174
+[#378 ')']: r#174
+[#378 '*']: r#174
+[#378 '*=']: r#174
+[#378 '+']: r#174
+[#378 '+=']: r#174
+[#378 ',']: r#174
+[#378 '-']: r#174
+[#378 '-=']: r#174
+[#378 '/']: r#174
+[#378 '/=']: r#174
+[#378 ':']: r#174
+[#378 '<<=']: r#174
+[#378 '=']: r#174
+[#378 '>>=']: r#174
+[#378 '^=']: r#174
+[#378 '{']: r#174
+[#378 '|=']: r#174
+[#379 '%']: r#175
+[#379 '%=']: r#175
+[#379 '&=']: r#175
+[#379 ')']: r#175
+[#379 '*']: r#175
+[#379 '*=']: r#175
+[#379 '+']: r#175
+[#379 '+=']: r#175
+[#379 ',']: r#175
+[#379 '-']: r#175
+[#379 '-=']: r#175
+[#379 '/']: r#175
+[#379 '/=']: r#175
+[#379 ':']: r#175
+[#379 '<<=']: r#175
+[#379 '=']: r#175
+[#379 '>>=']: r#175
+[#379 '^=']: r#175
+[#379 '{']: r#175
+[#379 '|=']: r#175
+[#380 ',']: r#176
+[#381 ',']: r#177
+[#384 ',']: s#464
+[#385 ',']: r#178
+[#386 ',']: s#387
 [#387 '(']: s#75
-[#387 '*']: s#64
-[#387 '-']: s#61
 [#387 'false']: s#82
 [#387 'true']: s#81
-[#387 '~']: s#63
 [#387 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
 [#387 /0[fh]/]: s#86
 [#387 /0[iu]?/]: s#83
@@ -9095,138 +9258,138 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#387 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
 [#387 /[1-9][0-9]*[fh]/]: s#87
 [#387 /[1-9][0-9]*[iu]?/]: s#84
-[#388 '&']: r#179
-[#388 '(']: r#179
-[#388 '*']: r#179
-[#388 ';']: r#179
-[#388 '_']: r#179
-[#388 'break']: r#179
-[#388 'const']: r#179
-[#388 'const_assert']: r#179
-[#388 'continue']: r#179
-[#388 'continuing']: r#179
-[#388 'discard']: r#179
-[#388 'else']: r#179
-[#388 'for']: r#179
-[#388 'if']: r#179
-[#388 'let']: r#179
-[#388 'loop']: r#179
-[#388 'return']: r#179
-[#388 'switch']: r#179
-[#388 'var']: r#179
-[#388 'while']: r#179
-[#388 '{']: r#179
-[#388 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#179
-[#389 '&']: r#180
-[#389 '(']: r#180
-[#389 '*']: r#180
-[#389 ';']: r#180
-[#389 '_']: r#180
-[#389 'break']: r#180
-[#389 'const']: r#180
-[#389 'const_assert']: r#180
-[#389 'continue']: r#180
-[#389 'continuing']: r#180
-[#389 'discard']: r#180
-[#389 'for']: r#180
-[#389 'if']: r#180
-[#389 'let']: r#180
-[#389 'loop']: r#180
-[#389 'return']: r#180
-[#389 'switch']: r#180
-[#389 'var']: r#180
-[#389 'while']: r#180
-[#389 '{']: r#180
-[#389 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#180
-[#390 '&']: r#181
-[#390 '(']: r#181
-[#390 '*']: r#181
-[#390 ';']: r#181
-[#390 '_']: r#181
-[#390 'break']: r#181
-[#390 'const']: r#181
-[#390 'const_assert']: r#181
-[#390 'continue']: r#181
-[#390 'continuing']: r#181
-[#390 'discard']: r#181
-[#390 'for']: r#181
-[#390 'if']: r#181
-[#390 'let']: r#181
-[#390 'loop']: r#181
-[#390 'return']: r#181
-[#390 'switch']: r#181
-[#390 'var']: r#181
-[#390 'while']: r#181
-[#390 '{']: r#181
-[#390 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#181
-[#391 '{']: s#123
-[#392 'case']: s#451
-[#392 'default']: s#452
-[#393 'continuing']: s#445
-[#394 'continuing']: r#182
-[#395 '&']: s#263
-[#395 '(']: s#264
-[#395 '*']: s#262
-[#395 ';']: s#227
-[#395 '_']: s#260
-[#395 'break']: s#252
-[#395 'const']: s#251
-[#395 'const_assert']: s#25
-[#395 'continue']: s#253
-[#395 'discard']: s#238
-[#395 'for']: s#246
-[#395 'if']: s#257
-[#395 'let']: s#250
-[#395 'loop']: s#245
-[#395 'return']: s#242
-[#395 'switch']: s#244
-[#395 'var']: s#102
-[#395 'while']: s#247
-[#395 '{']: s#123
-[#395 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
-[#396 ')']: s#441
-[#397 ';']: s#440
-[#402 '&']: r#183
-[#402 '(']: r#183
-[#402 '*']: r#183
-[#402 ';']: r#183
-[#402 '_']: r#183
-[#402 'break']: r#183
-[#402 'const']: r#183
-[#402 'const_assert']: r#183
-[#402 'continue']: r#183
-[#402 'continuing']: r#183
-[#402 'discard']: r#183
-[#402 'for']: r#183
-[#402 'if']: r#183
-[#402 'let']: r#183
-[#402 'loop']: r#183
-[#402 'return']: r#183
-[#402 'switch']: r#183
-[#402 'var']: r#183
-[#402 'while']: r#183
-[#402 '{']: r#183
-[#402 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#183
-[#404 '!']: s#62
-[#404 '&']: s#65
-[#404 '(']: s#75
-[#404 '*']: s#64
-[#404 '-']: s#61
-[#404 'false']: s#82
-[#404 'true']: s#81
-[#404 '~']: s#63
-[#404 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
-[#404 /0[fh]/]: s#86
-[#404 /0[iu]?/]: s#83
-[#404 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: s#91
-[#404 /0[xX][0-9a-fA-F]+[iu]?/]: s#85
-[#404 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: s#93
-[#404 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: s#92
-[#404 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: s#88
-[#404 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: s#90
-[#404 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
-[#404 /[1-9][0-9]*[fh]/]: s#87
-[#404 /[1-9][0-9]*[iu]?/]: s#84
+[#388 '!']: s#62
+[#388 '&']: s#65
+[#388 '(']: s#75
+[#388 '*']: s#64
+[#388 '-']: s#61
+[#388 'false']: s#82
+[#388 'true']: s#81
+[#388 '~']: s#63
+[#388 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
+[#388 /0[fh]/]: s#86
+[#388 /0[iu]?/]: s#83
+[#388 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: s#91
+[#388 /0[xX][0-9a-fA-F]+[iu]?/]: s#85
+[#388 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: s#93
+[#388 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: s#92
+[#388 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: s#88
+[#388 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: s#90
+[#388 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
+[#388 /[1-9][0-9]*[fh]/]: s#87
+[#388 /[1-9][0-9]*[iu]?/]: s#84
+[#389 '&']: r#179
+[#389 '(']: r#179
+[#389 '*']: r#179
+[#389 ';']: r#179
+[#389 '_']: r#179
+[#389 'break']: r#179
+[#389 'const']: r#179
+[#389 'const_assert']: r#179
+[#389 'continue']: r#179
+[#389 'continuing']: r#179
+[#389 'discard']: r#179
+[#389 'else']: r#179
+[#389 'for']: r#179
+[#389 'if']: r#179
+[#389 'let']: r#179
+[#389 'loop']: r#179
+[#389 'return']: r#179
+[#389 'switch']: r#179
+[#389 'var']: r#179
+[#389 'while']: r#179
+[#389 '{']: r#179
+[#389 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#179
+[#390 '&']: r#180
+[#390 '(']: r#180
+[#390 '*']: r#180
+[#390 ';']: r#180
+[#390 '_']: r#180
+[#390 'break']: r#180
+[#390 'const']: r#180
+[#390 'const_assert']: r#180
+[#390 'continue']: r#180
+[#390 'continuing']: r#180
+[#390 'discard']: r#180
+[#390 'for']: r#180
+[#390 'if']: r#180
+[#390 'let']: r#180
+[#390 'loop']: r#180
+[#390 'return']: r#180
+[#390 'switch']: r#180
+[#390 'var']: r#180
+[#390 'while']: r#180
+[#390 '{']: r#180
+[#390 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#180
+[#391 '&']: r#181
+[#391 '(']: r#181
+[#391 '*']: r#181
+[#391 ';']: r#181
+[#391 '_']: r#181
+[#391 'break']: r#181
+[#391 'const']: r#181
+[#391 'const_assert']: r#181
+[#391 'continue']: r#181
+[#391 'continuing']: r#181
+[#391 'discard']: r#181
+[#391 'for']: r#181
+[#391 'if']: r#181
+[#391 'let']: r#181
+[#391 'loop']: r#181
+[#391 'return']: r#181
+[#391 'switch']: r#181
+[#391 'var']: r#181
+[#391 'while']: r#181
+[#391 '{']: r#181
+[#391 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#181
+[#392 '{']: s#123
+[#393 'case']: s#457
+[#393 'default']: s#458
+[#394 'continuing']: s#451
+[#395 'continuing']: r#182
+[#396 '&']: s#263
+[#396 '(']: s#264
+[#396 '*']: s#262
+[#396 ';']: s#227
+[#396 '_']: s#260
+[#396 'break']: s#252
+[#396 'const']: s#251
+[#396 'const_assert']: s#25
+[#396 'continue']: s#253
+[#396 'discard']: s#238
+[#396 'for']: s#246
+[#396 'if']: s#257
+[#396 'let']: s#250
+[#396 'loop']: s#245
+[#396 'return']: s#242
+[#396 'switch']: s#244
+[#396 'var']: s#102
+[#396 'while']: s#247
+[#396 '{']: s#123
+[#396 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
+[#397 ')']: s#447
+[#398 ';']: s#446
+[#403 '&']: r#183
+[#403 '(']: r#183
+[#403 '*']: r#183
+[#403 ';']: r#183
+[#403 '_']: r#183
+[#403 'break']: r#183
+[#403 'const']: r#183
+[#403 'const_assert']: r#183
+[#403 'continue']: r#183
+[#403 'continuing']: r#183
+[#403 'discard']: r#183
+[#403 'for']: r#183
+[#403 'if']: r#183
+[#403 'let']: r#183
+[#403 'loop']: r#183
+[#403 'return']: r#183
+[#403 'switch']: r#183
+[#403 'var']: r#183
+[#403 'while']: r#183
+[#403 '{']: r#183
+[#403 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#183
 [#405 '!']: s#62
 [#405 '&']: s#65
 [#405 '(']: s#75
@@ -9247,422 +9410,486 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#405 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
 [#405 /[1-9][0-9]*[fh]/]: s#87
 [#405 /[1-9][0-9]*[iu]?/]: s#84
-[#406 '&']: r#184
-[#406 '(']: r#184
-[#406 '*']: r#184
-[#406 ';']: r#184
-[#406 '_']: r#184
-[#406 'break']: r#184
-[#406 'const']: r#184
-[#406 'const_assert']: r#184
-[#406 'continue']: r#184
-[#406 'continuing']: r#184
-[#406 'discard']: r#184
-[#406 'else']: r#184
-[#406 'for']: r#184
-[#406 'if']: r#184
-[#406 'let']: r#184
-[#406 'loop']: r#184
-[#406 'return']: r#184
-[#406 'switch']: r#184
-[#406 'var']: r#184
-[#406 'while']: r#184
-[#406 '{']: r#184
-[#406 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#184
-[#409 '%=']: r#185
-[#409 '&=']: r#185
-[#409 '*=']: r#185
-[#409 '+=']: r#185
-[#409 '-=']: r#185
-[#409 '.']: r#185
-[#409 '/=']: r#185
-[#409 '<<=']: r#185
-[#409 '=']: r#185
-[#409 '>>=']: r#185
-[#409 '[']: r#185
-[#409 '^=']: r#185
-[#409 '|=']: r#185
-[#411 ':']: s#437
-[#412 ',']: s#436
-[#413 ',']: r#186
-[#414 ',']: s#415
-[#415 '@']: s#30
-[#416 '->']: s#432
-[#417 ',']: r#187
-[#418 ',']: r#188
-[#419 '}']: s#430
-[#421 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
-[#422 '(']: s#75
-[#422 'false']: s#82
-[#422 'true']: s#81
+[#406 '!']: s#62
+[#406 '&']: s#65
+[#406 '(']: s#75
+[#406 '*']: s#64
+[#406 '-']: s#61
+[#406 'false']: s#82
+[#406 'true']: s#81
+[#406 '~']: s#63
+[#406 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
+[#406 /0[fh]/]: s#86
+[#406 /0[iu]?/]: s#83
+[#406 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: s#91
+[#406 /0[xX][0-9a-fA-F]+[iu]?/]: s#85
+[#406 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: s#93
+[#406 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: s#92
+[#406 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: s#88
+[#406 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: s#90
+[#406 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
+[#406 /[1-9][0-9]*[fh]/]: s#87
+[#406 /[1-9][0-9]*[iu]?/]: s#84
+[#407 '&']: r#184
+[#407 '(']: r#184
+[#407 '*']: r#184
+[#407 ';']: r#184
+[#407 '_']: r#184
+[#407 'break']: r#184
+[#407 'const']: r#184
+[#407 'const_assert']: r#184
+[#407 'continue']: r#184
+[#407 'continuing']: r#184
+[#407 'discard']: r#184
+[#407 'else']: r#184
+[#407 'for']: r#184
+[#407 'if']: r#184
+[#407 'let']: r#184
+[#407 'loop']: r#184
+[#407 'return']: r#184
+[#407 'switch']: r#184
+[#407 'var']: r#184
+[#407 'while']: r#184
+[#407 '{']: r#184
+[#407 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#184
+[#410 '%=']: r#185
+[#410 '&=']: r#185
+[#410 '*=']: r#185
+[#410 '+=']: r#185
+[#410 '-=']: r#185
+[#410 '.']: r#185
+[#410 '/=']: r#185
+[#410 '<<=']: r#185
+[#410 '=']: r#185
+[#410 '>>=']: r#185
+[#410 '[']: r#185
+[#410 '^=']: r#185
+[#410 '|=']: r#185
+[#412 ':']: s#443
+[#413 ',']: s#442
+[#414 ',']: r#186
+[#415 ',']: s#416
+[#416 '@']: s#30
+[#417 '->']: s#438
+[#418 ',']: r#187
+[#419 ',']: r#188
+[#420 '}']: s#436
 [#422 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
-[#422 /0[fh]/]: s#86
-[#422 /0[iu]?/]: s#83
-[#422 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: s#91
-[#422 /0[xX][0-9a-fA-F]+[iu]?/]: s#85
-[#422 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: s#93
-[#422 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: s#92
-[#422 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: s#88
-[#422 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: s#90
-[#422 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
-[#422 /[1-9][0-9]*[fh]/]: s#87
-[#422 /[1-9][0-9]*[iu]?/]: s#84
-[#427 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#189
-[#428 ',']: s#386
-[#429 ',']: r#190
-[#430 ';']: r#191
-[#430 '@']: r#191
-[#430 'const']: r#191
-[#430 'const_assert']: r#191
-[#430 'fn']: r#191
-[#430 'override']: r#191
-[#430 'struct']: r#191
-[#430 'type']: r#191
-[#430 'var']: r#191
-[#430 EndOfText]: r#191
-[#431 '{']: r#192
-[#432 '@']: s#30
-[#433 ',']: r#193
-[#434 ',']: r#194
-[#437 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
-[#440 '!']: s#62
-[#440 '&']: s#65
-[#440 '(']: s#75
-[#440 '*']: s#64
-[#440 '-']: s#61
-[#440 'false']: s#82
-[#440 'true']: s#81
-[#440 '~']: s#63
-[#440 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
-[#440 /0[fh]/]: s#86
-[#440 /0[iu]?/]: s#83
-[#440 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: s#91
-[#440 /0[xX][0-9a-fA-F]+[iu]?/]: s#85
-[#440 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: s#93
-[#440 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: s#92
-[#440 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: s#88
-[#440 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: s#90
-[#440 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
-[#440 /[1-9][0-9]*[fh]/]: s#87
-[#440 /[1-9][0-9]*[iu]?/]: s#84
-[#441 '{']: s#123
-[#442 'continuing']: r#195
-[#443 '}']: s#475
-[#445 '{']: s#474
-[#446 '}']: s#472
-[#448 'case']: s#451
-[#448 'default']: s#452
-[#449 'case']: r#196
-[#449 'default']: r#196
-[#450 'case']: r#197
-[#450 'default']: r#197
-[#451 '!']: s#62
-[#451 '&']: s#65
-[#451 '(']: s#75
-[#451 '*']: s#64
-[#451 '-']: s#61
-[#451 'default']: s#469
-[#451 'false']: s#82
-[#451 'true']: s#81
-[#451 '~']: s#63
-[#451 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
-[#451 /0[fh]/]: s#86
-[#451 /0[iu]?/]: s#83
-[#451 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: s#91
-[#451 /0[xX][0-9a-fA-F]+[iu]?/]: s#85
-[#451 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: s#93
-[#451 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: s#92
-[#451 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: s#88
-[#451 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: s#90
-[#451 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
-[#451 /[1-9][0-9]*[fh]/]: s#87
-[#451 /[1-9][0-9]*[iu]?/]: s#84
-[#452 ':']: s#466
-[#453 '&']: r#198
-[#453 '(']: r#198
-[#453 '*']: r#198
-[#453 ';']: r#198
-[#453 '_']: r#198
-[#453 'break']: r#198
-[#453 'const']: r#198
-[#453 'const_assert']: r#198
-[#453 'continue']: r#198
-[#453 'continuing']: r#198
-[#453 'discard']: r#198
-[#453 'for']: r#198
-[#453 'if']: r#198
-[#453 'let']: r#198
-[#453 'loop']: r#198
-[#453 'return']: r#198
-[#453 'switch']: r#198
-[#453 'var']: r#198
-[#453 'while']: r#198
-[#453 '{']: r#198
-[#453 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#198
-[#454 '{']: s#123
-[#455 ',']: r#199
-[#456 ',']: r#200
-[#457 '>']: s#463
-[#459 '@']: r#201
-[#459 'fn']: r#201
-[#459 'var']: r#201
-[#460 '!']: s#62
-[#460 '&']: s#65
-[#460 '(']: s#75
-[#460 '*']: s#64
-[#460 '-']: s#61
-[#460 'false']: s#82
-[#460 'true']: s#81
-[#460 '~']: s#63
-[#460 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
-[#460 /0[fh]/]: s#86
-[#460 /0[iu]?/]: s#83
-[#460 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: s#91
-[#460 /0[xX][0-9a-fA-F]+[iu]?/]: s#85
-[#460 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: s#93
-[#460 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: s#92
-[#460 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: s#88
-[#460 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: s#90
-[#460 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
-[#460 /[1-9][0-9]*[fh]/]: s#87
-[#460 /[1-9][0-9]*[iu]?/]: s#84
-[#461 '@']: r#202
-[#461 'fn']: r#202
-[#461 'var']: r#202
-[#462 ',']: s#362
-[#463 '%']: r#203
-[#463 '(']: r#203
-[#463 ')']: r#203
-[#463 '*']: r#203
-[#463 '+']: r#203
-[#463 ',']: r#203
-[#463 '-']: r#203
-[#463 '.']: r#203
-[#463 '/']: r#203
-[#463 ':']: r#203
-[#463 '[']: r#203
-[#463 '{']: r#203
-[#464 '&']: r#204
-[#464 '(']: r#204
-[#464 '*']: r#204
-[#464 ';']: r#204
-[#464 '_']: r#204
-[#464 'break']: r#204
-[#464 'const']: r#204
-[#464 'const_assert']: r#204
-[#464 'continue']: r#204
-[#464 'continuing']: r#204
-[#464 'discard']: r#204
-[#464 'else']: r#204
-[#464 'for']: r#204
-[#464 'if']: r#204
-[#464 'let']: r#204
-[#464 'loop']: r#204
-[#464 'return']: r#204
-[#464 'switch']: r#204
-[#464 'var']: r#204
-[#464 'while']: r#204
-[#464 '{']: r#204
-[#464 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#204
-[#465 '{']: s#123
-[#466 '{']: r#205
-[#467 ':']: s#496
-[#468 ',']: s#494
-[#469 ',']: r#206
-[#469 ':']: r#206
-[#469 '{']: r#206
-[#470 ',']: r#207
-[#470 ':']: r#207
-[#470 '{']: r#207
-[#472 '&']: r#208
-[#472 '(']: r#208
-[#472 '*']: r#208
-[#472 ';']: r#208
-[#472 '_']: r#208
-[#472 'break']: r#208
-[#472 'const']: r#208
-[#472 'const_assert']: r#208
-[#472 'continue']: r#208
-[#472 'continuing']: r#208
-[#472 'discard']: r#208
-[#472 'for']: r#208
-[#472 'if']: r#208
-[#472 'let']: r#208
-[#472 'loop']: r#208
-[#472 'return']: r#208
-[#472 'switch']: r#208
-[#472 'var']: r#208
-[#472 'while']: r#208
-[#472 '{']: r#208
-[#472 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#208
-[#474 '&']: s#263
-[#474 '(']: s#264
-[#474 '*']: s#262
-[#474 ';']: s#227
-[#474 '_']: s#260
-[#474 'break']: s#252
-[#474 'const']: s#251
-[#474 'const_assert']: s#25
-[#474 'continue']: s#253
-[#474 'discard']: s#238
-[#474 'for']: s#246
-[#474 'if']: s#257
-[#474 'let']: s#250
-[#474 'loop']: s#245
-[#474 'return']: s#242
-[#474 'switch']: s#244
-[#474 'var']: s#102
-[#474 'while']: s#247
-[#474 '{']: s#123
-[#474 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
-[#475 '&']: r#209
-[#475 '(']: r#209
-[#475 '*']: r#209
-[#475 ';']: r#209
-[#475 '_']: r#209
-[#475 'break']: r#209
-[#475 'const']: r#209
-[#475 'const_assert']: r#209
-[#475 'continue']: r#209
-[#475 'continuing']: r#209
-[#475 'discard']: r#209
-[#475 'for']: r#209
-[#475 'if']: r#209
-[#475 'let']: r#209
-[#475 'loop']: r#209
-[#475 'return']: r#209
-[#475 'switch']: r#209
-[#475 'var']: r#209
-[#475 'while']: r#209
-[#475 '{']: r#209
-[#475 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#209
-[#476 '&']: r#210
-[#476 '(']: r#210
-[#476 '*']: r#210
-[#476 ';']: r#210
-[#476 '_']: r#210
-[#476 'break']: r#210
-[#476 'const']: r#210
-[#476 'const_assert']: r#210
-[#476 'continue']: r#210
-[#476 'continuing']: r#210
-[#476 'discard']: r#210
-[#476 'for']: r#210
-[#476 'if']: r#210
-[#476 'let']: r#210
-[#476 'loop']: r#210
-[#476 'return']: r#210
-[#476 'switch']: r#210
-[#476 'var']: r#210
-[#476 'while']: r#210
-[#476 '{']: r#210
-[#476 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#210
-[#477 ';']: s#487
-[#479 ',']: r#211
+[#423 '(']: s#75
+[#423 'false']: s#82
+[#423 'true']: s#81
+[#423 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
+[#423 /0[fh]/]: s#86
+[#423 /0[iu]?/]: s#83
+[#423 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: s#91
+[#423 /0[xX][0-9a-fA-F]+[iu]?/]: s#85
+[#423 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: s#93
+[#423 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: s#92
+[#423 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: s#88
+[#423 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: s#90
+[#423 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
+[#423 /[1-9][0-9]*[fh]/]: s#87
+[#423 /[1-9][0-9]*[iu]?/]: s#84
+[#424 ',']: s#433
+[#429 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#189
+[#430 ',']: s#496
+[#431 ',']: r#190
+[#432 ',']: s#433
+[#433 '(']: s#75
+[#433 'false']: s#82
+[#433 'true']: s#81
+[#433 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
+[#433 /0[fh]/]: s#86
+[#433 /0[iu]?/]: s#83
+[#433 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: s#91
+[#433 /0[xX][0-9a-fA-F]+[iu]?/]: s#85
+[#433 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: s#93
+[#433 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: s#92
+[#433 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: s#88
+[#433 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: s#90
+[#433 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
+[#433 /[1-9][0-9]*[fh]/]: s#87
+[#433 /[1-9][0-9]*[iu]?/]: s#84
+[#434 ',']: s#492
+[#435 ',']: r#191
+[#436 ';']: r#192
+[#436 '@']: r#192
+[#436 'const']: r#192
+[#436 'const_assert']: r#192
+[#436 'fn']: r#192
+[#436 'override']: r#192
+[#436 'struct']: r#192
+[#436 'type']: r#192
+[#436 'var']: r#192
+[#436 EndOfText]: r#192
+[#437 '{']: r#193
+[#438 '@']: s#30
+[#439 ',']: r#194
+[#440 ',']: r#195
+[#443 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
+[#446 '!']: s#62
+[#446 '&']: s#65
+[#446 '(']: s#75
+[#446 '*']: s#64
+[#446 '-']: s#61
+[#446 'false']: s#82
+[#446 'true']: s#81
+[#446 '~']: s#63
+[#446 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
+[#446 /0[fh]/]: s#86
+[#446 /0[iu]?/]: s#83
+[#446 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: s#91
+[#446 /0[xX][0-9a-fA-F]+[iu]?/]: s#85
+[#446 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: s#93
+[#446 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: s#92
+[#446 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: s#88
+[#446 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: s#90
+[#446 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
+[#446 /[1-9][0-9]*[fh]/]: s#87
+[#446 /[1-9][0-9]*[iu]?/]: s#84
+[#447 '{']: s#123
+[#448 'continuing']: r#196
+[#449 '}']: s#481
+[#451 '{']: s#480
+[#452 '}']: s#478
+[#454 'case']: s#457
+[#454 'default']: s#458
+[#455 'case']: r#197
+[#455 'default']: r#197
+[#456 'case']: r#198
+[#456 'default']: r#198
+[#457 '!']: s#62
+[#457 '&']: s#65
+[#457 '(']: s#75
+[#457 '*']: s#64
+[#457 '-']: s#61
+[#457 'default']: s#475
+[#457 'false']: s#82
+[#457 'true']: s#81
+[#457 '~']: s#63
+[#457 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
+[#457 /0[fh]/]: s#86
+[#457 /0[iu]?/]: s#83
+[#457 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: s#91
+[#457 /0[xX][0-9a-fA-F]+[iu]?/]: s#85
+[#457 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: s#93
+[#457 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: s#92
+[#457 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: s#88
+[#457 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: s#90
+[#457 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
+[#457 /[1-9][0-9]*[fh]/]: s#87
+[#457 /[1-9][0-9]*[iu]?/]: s#84
+[#458 ':']: s#472
+[#459 '&']: r#199
+[#459 '(']: r#199
+[#459 '*']: r#199
+[#459 ';']: r#199
+[#459 '_']: r#199
+[#459 'break']: r#199
+[#459 'const']: r#199
+[#459 'const_assert']: r#199
+[#459 'continue']: r#199
+[#459 'continuing']: r#199
+[#459 'discard']: r#199
+[#459 'for']: r#199
+[#459 'if']: r#199
+[#459 'let']: r#199
+[#459 'loop']: r#199
+[#459 'return']: r#199
+[#459 'switch']: r#199
+[#459 'var']: r#199
+[#459 'while']: r#199
+[#459 '{']: r#199
+[#459 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#199
+[#460 '{']: s#123
+[#461 ',']: r#200
+[#462 ',']: r#201
+[#463 '>']: s#469
+[#465 '@']: r#202
+[#465 'fn']: r#202
+[#465 'var']: r#202
+[#466 '!']: s#62
+[#466 '&']: s#65
+[#466 '(']: s#75
+[#466 '*']: s#64
+[#466 '-']: s#61
+[#466 'false']: s#82
+[#466 'true']: s#81
+[#466 '~']: s#63
+[#466 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
+[#466 /0[fh]/]: s#86
+[#466 /0[iu]?/]: s#83
+[#466 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: s#91
+[#466 /0[xX][0-9a-fA-F]+[iu]?/]: s#85
+[#466 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: s#93
+[#466 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: s#92
+[#466 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: s#88
+[#466 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: s#90
+[#466 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
+[#466 /[1-9][0-9]*[fh]/]: s#87
+[#466 /[1-9][0-9]*[iu]?/]: s#84
+[#467 '@']: r#203
+[#467 'fn']: r#203
+[#467 'var']: r#203
+[#468 ',']: s#363
+[#469 '%']: r#204
+[#469 '(']: r#204
+[#469 ')']: r#204
+[#469 '*']: r#204
+[#469 '+']: r#204
+[#469 ',']: r#204
+[#469 '-']: r#204
+[#469 '.']: r#204
+[#469 '/']: r#204
+[#469 ':']: r#204
+[#469 '[']: r#204
+[#469 '{']: r#204
+[#470 '&']: r#205
+[#470 '(']: r#205
+[#470 '*']: r#205
+[#470 ';']: r#205
+[#470 '_']: r#205
+[#470 'break']: r#205
+[#470 'const']: r#205
+[#470 'const_assert']: r#205
+[#470 'continue']: r#205
+[#470 'continuing']: r#205
+[#470 'discard']: r#205
+[#470 'else']: r#205
+[#470 'for']: r#205
+[#470 'if']: r#205
+[#470 'let']: r#205
+[#470 'loop']: r#205
+[#470 'return']: r#205
+[#470 'switch']: r#205
+[#470 'var']: r#205
+[#470 'while']: r#205
+[#470 '{']: r#205
+[#470 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#205
+[#471 '{']: s#123
+[#472 '{']: r#206
+[#473 ':']: s#513
+[#474 ',']: s#511
+[#475 ',']: r#207
+[#475 ':']: r#207
+[#475 '{']: r#207
+[#476 ',']: r#208
+[#476 ':']: r#208
+[#476 '{']: r#208
+[#478 '&']: r#209
+[#478 '(']: r#209
+[#478 '*']: r#209
+[#478 ';']: r#209
+[#478 '_']: r#209
+[#478 'break']: r#209
+[#478 'const']: r#209
+[#478 'const_assert']: r#209
+[#478 'continue']: r#209
+[#478 'continuing']: r#209
+[#478 'discard']: r#209
+[#478 'for']: r#209
+[#478 'if']: r#209
+[#478 'let']: r#209
+[#478 'loop']: r#209
+[#478 'return']: r#209
+[#478 'switch']: r#209
+[#478 'var']: r#209
+[#478 'while']: r#209
+[#478 '{']: r#209
+[#478 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#209
+[#480 '&']: s#263
+[#480 '(']: s#264
+[#480 '*']: s#262
+[#480 ';']: s#227
+[#480 '_']: s#260
+[#480 'break']: s#252
+[#480 'const']: s#251
+[#480 'const_assert']: s#25
+[#480 'continue']: s#253
+[#480 'discard']: s#238
+[#480 'for']: s#246
+[#480 'if']: s#257
+[#480 'let']: s#250
+[#480 'loop']: s#245
+[#480 'return']: s#242
+[#480 'switch']: s#244
+[#480 'var']: s#102
+[#480 'while']: s#247
+[#480 '{']: s#123
 [#480 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
-[#482 '@']: s#30
-[#483 ',']: s#458
-[#484 '>']: s#512
-[#486 '{']: r#212
-[#487 '&']: s#263
-[#487 '(']: s#264
-[#487 '*']: s#262
-[#487 '_']: s#260
-[#487 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
-[#488 'break']: s#507
-[#489 'break']: r#213
-[#490 '&']: s#263
-[#490 '(']: s#264
-[#490 '*']: s#262
-[#490 ';']: s#227
-[#490 '_']: s#260
-[#490 'break']: s#252
-[#490 'const']: s#251
-[#490 'const_assert']: s#25
-[#490 'continue']: s#253
-[#490 'discard']: s#238
-[#490 'for']: s#246
-[#490 'if']: s#257
-[#490 'let']: s#250
-[#490 'loop']: s#245
-[#490 'return']: s#242
-[#490 'switch']: s#244
-[#490 'var']: s#102
-[#490 'while']: s#247
-[#490 '{']: s#123
-[#490 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
-[#491 ',']: s#503
-[#492 ',']: r#214
-[#492 ':']: r#214
-[#492 '{']: r#214
-[#493 ',']: s#494
-[#494 '!']: s#62
-[#494 '&']: s#65
-[#494 '(']: s#75
-[#494 '*']: s#64
-[#494 '-']: s#61
-[#494 'default']: s#469
-[#494 'false']: s#82
-[#494 'true']: s#81
-[#494 '~']: s#63
-[#494 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
-[#494 /0[fh]/]: s#86
-[#494 /0[iu]?/]: s#83
-[#494 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: s#91
-[#494 /0[xX][0-9a-fA-F]+[iu]?/]: s#85
-[#494 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: s#93
-[#494 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: s#92
-[#494 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: s#88
-[#494 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: s#90
-[#494 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
-[#494 /[1-9][0-9]*[fh]/]: s#87
-[#494 /[1-9][0-9]*[iu]?/]: s#84
-[#495 '{']: s#123
-[#496 '{']: r#215
-[#497 'case']: r#216
-[#497 'default']: r#216
-[#498 '@']: r#217
-[#498 'fn']: r#217
-[#498 'var']: r#217
-[#499 'case']: r#218
-[#499 'default']: r#218
-[#500 ',']: r#219
-[#500 ':']: r#219
-[#500 '{']: r#219
-[#501 ',']: r#220
-[#501 ':']: r#220
-[#501 '{']: r#220
-[#502 ':']: r#221
-[#502 '{']: r#221
-[#503 ':']: r#222
-[#503 '{']: r#222
-[#504 'break']: r#223
-[#505 '}']: s#514
-[#507 'if']: s#513
-[#512 ',']: r#224
-[#512 '=']: r#224
-[#512 '{']: r#224
-[#513 '!']: s#62
-[#513 '&']: s#65
-[#513 '(']: s#75
-[#513 '*']: s#64
-[#513 '-']: s#61
-[#513 'false']: s#82
-[#513 'true']: s#81
-[#513 '~']: s#63
-[#513 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
-[#513 /0[fh]/]: s#86
-[#513 /0[iu]?/]: s#83
-[#513 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: s#91
-[#513 /0[xX][0-9a-fA-F]+[iu]?/]: s#85
-[#513 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: s#93
-[#513 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: s#92
-[#513 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: s#88
-[#513 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: s#90
-[#513 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
-[#513 /[1-9][0-9]*[fh]/]: s#87
-[#513 /[1-9][0-9]*[iu]?/]: s#84
-[#515 ';']: s#516
+[#481 '&']: r#210
+[#481 '(']: r#210
+[#481 '*']: r#210
+[#481 ';']: r#210
+[#481 '_']: r#210
+[#481 'break']: r#210
+[#481 'const']: r#210
+[#481 'const_assert']: r#210
+[#481 'continue']: r#210
+[#481 'continuing']: r#210
+[#481 'discard']: r#210
+[#481 'for']: r#210
+[#481 'if']: r#210
+[#481 'let']: r#210
+[#481 'loop']: r#210
+[#481 'return']: r#210
+[#481 'switch']: r#210
+[#481 'var']: r#210
+[#481 'while']: r#210
+[#481 '{']: r#210
+[#481 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#210
+[#482 '&']: r#211
+[#482 '(']: r#211
+[#482 '*']: r#211
+[#482 ';']: r#211
+[#482 '_']: r#211
+[#482 'break']: r#211
+[#482 'const']: r#211
+[#482 'const_assert']: r#211
+[#482 'continue']: r#211
+[#482 'continuing']: r#211
+[#482 'discard']: r#211
+[#482 'for']: r#211
+[#482 'if']: r#211
+[#482 'let']: r#211
+[#482 'loop']: r#211
+[#482 'return']: r#211
+[#482 'switch']: r#211
+[#482 'var']: r#211
+[#482 'while']: r#211
+[#482 '{']: r#211
+[#482 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: r#211
+[#483 ';']: s#504
+[#485 ',']: r#212
+[#486 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
+[#488 '@']: s#30
+[#489 ',']: s#501
+[#490 ',']: r#213
+[#491 ',']: s#492
+[#492 '(']: s#75
+[#492 'false']: s#82
+[#492 'true']: s#81
+[#492 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
+[#492 /0[fh]/]: s#86
+[#492 /0[iu]?/]: s#83
+[#492 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: s#91
+[#492 /0[xX][0-9a-fA-F]+[iu]?/]: s#85
+[#492 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: s#93
+[#492 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: s#92
+[#492 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: s#88
+[#492 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: s#90
+[#492 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
+[#492 /[1-9][0-9]*[fh]/]: s#87
+[#492 /[1-9][0-9]*[iu]?/]: s#84
+[#493 ',']: r#214
+[#494 ',']: r#215
+[#495 '>']: s#497
+[#497 ',']: r#216
+[#497 '=']: r#216
+[#497 '{']: r#216
+[#498 ',']: r#217
+[#499 ',']: r#218
+[#500 '>']: s#529
+[#503 '{']: r#219
+[#504 '&']: s#263
+[#504 '(']: s#264
+[#504 '*']: s#262
+[#504 '_']: s#260
+[#504 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
+[#505 'break']: s#524
+[#506 'break']: r#220
+[#507 '&']: s#263
+[#507 '(']: s#264
+[#507 '*']: s#262
+[#507 ';']: s#227
+[#507 '_']: s#260
+[#507 'break']: s#252
+[#507 'const']: s#251
+[#507 'const_assert']: s#25
+[#507 'continue']: s#253
+[#507 'discard']: s#238
+[#507 'for']: s#246
+[#507 'if']: s#257
+[#507 'let']: s#250
+[#507 'loop']: s#245
+[#507 'return']: s#242
+[#507 'switch']: s#244
+[#507 'var']: s#102
+[#507 'while']: s#247
+[#507 '{']: s#123
+[#507 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
+[#508 ',']: s#520
+[#509 ',']: r#221
+[#509 ':']: r#221
+[#509 '{']: r#221
+[#510 ',']: s#511
+[#511 '!']: s#62
+[#511 '&']: s#65
+[#511 '(']: s#75
+[#511 '*']: s#64
+[#511 '-']: s#61
+[#511 'default']: s#475
+[#511 'false']: s#82
+[#511 'true']: s#81
+[#511 '~']: s#63
+[#511 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
+[#511 /0[fh]/]: s#86
+[#511 /0[iu]?/]: s#83
+[#511 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: s#91
+[#511 /0[xX][0-9a-fA-F]+[iu]?/]: s#85
+[#511 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: s#93
+[#511 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: s#92
+[#511 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: s#88
+[#511 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: s#90
+[#511 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
+[#511 /[1-9][0-9]*[fh]/]: s#87
+[#511 /[1-9][0-9]*[iu]?/]: s#84
+[#512 '{']: s#123
+[#513 '{']: r#222
+[#514 'case']: r#223
+[#514 'default']: r#223
+[#515 '@']: r#224
+[#515 'fn']: r#224
+[#515 'var']: r#224
+[#516 'case']: r#225
+[#516 'default']: r#225
+[#517 ',']: r#226
+[#517 ':']: r#226
+[#517 '{']: r#226
+[#518 ',']: r#227
+[#518 ':']: r#227
+[#518 '{']: r#227
+[#519 ':']: r#228
+[#519 '{']: r#228
+[#520 ':']: r#229
+[#520 '{']: r#229
+[#521 'break']: r#230
+[#522 '}']: s#531
+[#524 'if']: s#530
+[#529 ',']: r#231
+[#529 '=']: r#231
+[#529 '{']: r#231
+[#530 '!']: s#62
+[#530 '&']: s#65
+[#530 '(']: s#75
+[#530 '*']: s#64
+[#530 '-']: s#61
+[#530 'false']: s#82
+[#530 'true']: s#81
+[#530 '~']: s#63
+[#530 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
+[#530 /0[fh]/]: s#86
+[#530 /0[iu]?/]: s#83
+[#530 /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/]: s#91
+[#530 /0[xX][0-9a-fA-F]+[iu]?/]: s#85
+[#530 /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/]: s#93
+[#530 /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/]: s#92
+[#530 /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/]: s#88
+[#530 /[0-9]+[eE][+-]?[0-9]+[fh]?/]: s#90
+[#530 /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/]: s#89
+[#530 /[1-9][0-9]*[fh]/]: s#87
+[#530 /[1-9][0-9]*[iu]?/]: s#84
+[#532 ';']: s#533
 
 =Goto:
 [#0 global_directive]: #4
@@ -10435,32 +10662,32 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#165 short_circuit_or_expression]: #50
 [#165 singular_expression]: #60
 [#165 unary_expression]: #58
-[#166 attrib_end]: #370
-[#166 attrib_end/0.0]: #360
-[#167 attrib_end]: #369
-[#167 attrib_end/0.0]: #360
-[#168 attrib_end]: #368
-[#168 attrib_end/0.0]: #360
-[#181 attrib_end]: #367
-[#181 attrib_end/0.0]: #360
-[#182 attrib_end]: #366
-[#182 attrib_end/0.0]: #360
-[#183 attrib_end]: #364
-[#183 attrib_end/0.0]: #360
-[#187 attrib_end]: #363
-[#187 attrib_end/0.0]: #360
-[#188 attrib_end]: #361
-[#188 attrib_end/0.0]: #360
-[#189 attrib_end]: #358
-[#189 attrib_end/0.0]: #360
+[#166 attrib_end]: #371
+[#166 attrib_end/0.0]: #361
+[#167 attrib_end]: #370
+[#167 attrib_end/0.0]: #361
+[#168 attrib_end]: #369
+[#168 attrib_end/0.0]: #361
+[#181 attrib_end]: #368
+[#181 attrib_end/0.0]: #361
+[#182 attrib_end]: #367
+[#182 attrib_end/0.0]: #361
+[#183 attrib_end]: #365
+[#183 attrib_end/0.0]: #361
+[#187 attrib_end]: #364
+[#187 attrib_end/0.0]: #361
+[#188 attrib_end]: #362
+[#188 attrib_end/0.0]: #361
+[#189 attrib_end]: #359
+[#189 attrib_end/0.0]: #361
 [#202 multiplicative_operator]: #137
-[#207 component_or_swizzle_specifier]: #357
-[#207 component_or_swizzle_specifier/1.2]: #356
-[#208 component_or_swizzle_specifier]: #355
-[#208 component_or_swizzle_specifier/2.2]: #354
-[#221 expression_comma_list/0.1]: #348
-[#221 expression_comma_list/0.1/0]: #349
-[#221 expression_comma_list/0.1/0/0.0]: #350
+[#207 component_or_swizzle_specifier]: #358
+[#207 component_or_swizzle_specifier/1.2]: #357
+[#208 component_or_swizzle_specifier]: #356
+[#208 component_or_swizzle_specifier/2.2]: #355
+[#221 expression_comma_list/0.1]: #349
+[#221 expression_comma_list/0.1/0]: #350
+[#221 expression_comma_list/0.1/0/0.0]: #351
 [#222 bool_literal]: #74
 [#222 call_expression]: #68
 [#222 callable]: #67
@@ -10473,12 +10700,12 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#222 int_literal]: #72
 [#222 literal]: #69
 [#222 paren_expression]: #70
-[#222 primary_expression]: #347
+[#222 primary_expression]: #348
 [#226 assignment_statement]: #254
 [#226 break_statement]: #236
 [#226 callable]: #248
 [#226 compound_statement]: #240
-[#226 compound_statement/0.1/0]: #345
+[#226 compound_statement/0.1/0]: #346
 [#226 const_assert_statement]: #241
 [#226 continue_statement]: #237
 [#226 core_lhs_expression]: #261
@@ -10508,7 +10735,7 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#242 callable]: #67
 [#242 decimal_float_literal]: #79
 [#242 decimal_int_literal]: #77
-[#242 expression]: #336
+[#242 expression]: #337
 [#242 float_literal]: #73
 [#242 hex_float_literal]: #80
 [#242 hex_int_literal]: #78
@@ -10519,15 +10746,15 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#242 paren_expression]: #70
 [#242 primary_expression]: #66
 [#242 relational_expression]: #49
-[#242 return_statement/0.1]: #335
+[#242 return_statement/0.1]: #336
 [#242 shift_expression]: #53
 [#242 short_circuit_and_expression]: #51
 [#242 short_circuit_or_expression]: #50
 [#242 singular_expression]: #60
 [#242 unary_expression]: #58
-[#243 else_if_clause]: #333
-[#243 if_statement/0.1]: #331
-[#243 if_statement/0.1/0]: #332
+[#243 else_if_clause]: #334
+[#243 if_statement/0.1]: #332
+[#243 if_statement/0.1/0]: #333
 [#244 additive_expression]: #57
 [#244 binary_and_expression]: #54
 [#244 binary_or_expression]: #55
@@ -10538,7 +10765,7 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#244 callable]: #67
 [#244 decimal_float_literal]: #79
 [#244 decimal_int_literal]: #77
-[#244 expression]: #330
+[#244 expression]: #331
 [#244 float_literal]: #73
 [#244 hex_float_literal]: #80
 [#244 hex_int_literal]: #78
@@ -10564,7 +10791,7 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#247 callable]: #67
 [#247 decimal_float_literal]: #79
 [#247 decimal_int_literal]: #77
-[#247 expression]: #327
+[#247 expression]: #328
 [#247 float_literal]: #73
 [#247 hex_float_literal]: #80
 [#247 hex_int_literal]: #78
@@ -10580,11 +10807,11 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#247 short_circuit_or_expression]: #50
 [#247 singular_expression]: #60
 [#247 unary_expression]: #58
-[#248 argument_expression_list]: #326
+[#248 argument_expression_list]: #327
 [#250 ident]: #100
-[#250 optionally_typed_ident]: #324
+[#250 optionally_typed_ident]: #325
 [#251 ident]: #100
-[#251 optionally_typed_ident]: #323
+[#251 optionally_typed_ident]: #324
 [#257 additive_expression]: #57
 [#257 binary_and_expression]: #54
 [#257 binary_or_expression]: #55
@@ -10595,7 +10822,7 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#257 callable]: #67
 [#257 decimal_float_literal]: #79
 [#257 decimal_int_literal]: #77
-[#257 expression]: #322
+[#257 expression]: #323
 [#257 float_literal]: #73
 [#257 hex_float_literal]: #80
 [#257 hex_int_literal]: #78
@@ -10611,31 +10838,31 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#257 short_circuit_or_expression]: #50
 [#257 singular_expression]: #60
 [#257 unary_expression]: #58
-[#259 assignment_statement/0.1]: #307
-[#259 compound_assignment_operator]: #311
-[#261 component_or_swizzle_specifier]: #305
-[#261 lhs_expression/0.1]: #304
+[#259 assignment_statement/0.1]: #308
+[#259 compound_assignment_operator]: #312
+[#261 component_or_swizzle_specifier]: #306
+[#261 lhs_expression/0.1]: #305
 [#262 core_lhs_expression]: #261
-[#262 ident]: #301
-[#262 lhs_expression]: #303
+[#262 ident]: #302
+[#262 lhs_expression]: #304
 [#263 core_lhs_expression]: #261
-[#263 ident]: #301
-[#263 lhs_expression]: #302
+[#263 ident]: #302
+[#263 lhs_expression]: #303
 [#264 core_lhs_expression]: #261
-[#264 ident]: #301
-[#264 lhs_expression]: #300
-[#265 attribute]: #299
-[#265 function_header/0.3]: #294
-[#265 param]: #296
-[#265 param/0.0]: #297
-[#265 param/0.0/0]: #298
-[#265 param_list]: #295
-[#266 struct_body_decl/0.2]: #290
-[#266 struct_body_decl/0.2/0]: #291
-[#266 struct_body_decl/0.2/0/0.0]: #292
-[#267 member_ident]: #289
+[#264 ident]: #302
+[#264 lhs_expression]: #301
+[#265 attribute]: #300
+[#265 function_header/0.3]: #295
+[#265 param]: #297
+[#265 param/0.0]: #298
+[#265 param/0.0/0]: #299
+[#265 param_list]: #296
+[#266 struct_body_decl/0.2]: #291
+[#266 struct_body_decl/0.2/0]: #292
+[#266 struct_body_decl/0.2/0/0.0]: #293
+[#267 member_ident]: #290
 [#269 attribute]: #269
-[#269 struct_member/0.0/0]: #288
+[#269 struct_member/0.0/0]: #289
 [#273 additive_expression]: #57
 [#273 binary_and_expression]: #54
 [#273 binary_or_expression]: #55
@@ -10663,46 +10890,33 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#273 singular_expression]: #60
 [#273 unary_expression]: #58
 [#277 variable_qualifier/0.2]: #284
-[#285 access_mode]: #423
-[#290 struct_body_decl/0.3]: #419
-[#292 struct_body_decl/0.2/0]: #418
-[#292 struct_body_decl/0.2/0/0.0]: #292
-[#293 attribute]: #269
-[#293 struct_member]: #417
-[#293 struct_member/0.0]: #267
-[#293 struct_member/0.0/0]: #268
-[#296 param_list/0.1]: #412
-[#296 param_list/0.1/0]: #413
-[#296 param_list/0.1/0/0.0]: #414
-[#297 ident]: #411
-[#299 attribute]: #299
-[#299 param/0.0/0]: #410
-[#306 additive_expression]: #57
-[#306 binary_and_expression]: #54
-[#306 binary_or_expression]: #55
-[#306 binary_xor_expression]: #56
-[#306 bitwise_expression]: #52
-[#306 bool_literal]: #74
-[#306 call_expression]: #68
-[#306 callable]: #67
-[#306 decimal_float_literal]: #79
-[#306 decimal_int_literal]: #77
-[#306 expression]: #408
-[#306 float_literal]: #73
-[#306 hex_float_literal]: #80
-[#306 hex_int_literal]: #78
-[#306 ident]: #71
-[#306 int_literal]: #72
-[#306 literal]: #69
-[#306 multiplicative_expression]: #59
-[#306 paren_expression]: #70
-[#306 primary_expression]: #66
-[#306 relational_expression]: #49
-[#306 shift_expression]: #53
-[#306 short_circuit_and_expression]: #51
-[#306 short_circuit_or_expression]: #50
-[#306 singular_expression]: #60
-[#306 unary_expression]: #58
+[#285 access_mode]: #425
+[#287 bool_literal]: #74
+[#287 call_expression]: #68
+[#287 callable]: #67
+[#287 decimal_float_literal]: #79
+[#287 decimal_int_literal]: #77
+[#287 float_literal]: #73
+[#287 hex_float_literal]: #80
+[#287 hex_int_literal]: #78
+[#287 ident]: #71
+[#287 int_literal]: #72
+[#287 literal]: #69
+[#287 paren_expression]: #70
+[#287 primary_expression]: #424
+[#291 struct_body_decl/0.3]: #420
+[#293 struct_body_decl/0.2/0]: #419
+[#293 struct_body_decl/0.2/0/0.0]: #293
+[#294 attribute]: #269
+[#294 struct_member]: #418
+[#294 struct_member/0.0]: #267
+[#294 struct_member/0.0/0]: #268
+[#297 param_list/0.1]: #413
+[#297 param_list/0.1/0]: #414
+[#297 param_list/0.1/0/0.0]: #415
+[#298 ident]: #412
+[#300 attribute]: #300
+[#300 param/0.0/0]: #411
 [#307 additive_expression]: #57
 [#307 binary_and_expression]: #54
 [#307 binary_or_expression]: #55
@@ -10713,7 +10927,7 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#307 callable]: #67
 [#307 decimal_float_literal]: #79
 [#307 decimal_int_literal]: #77
-[#307 expression]: #407
+[#307 expression]: #409
 [#307 float_literal]: #73
 [#307 hex_float_literal]: #80
 [#307 hex_int_literal]: #78
@@ -10729,242 +10943,242 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#307 short_circuit_or_expression]: #50
 [#307 singular_expression]: #60
 [#307 unary_expression]: #58
-[#322 compound_statement]: #406
-[#325 additive_expression]: #57
-[#325 binary_and_expression]: #54
-[#325 binary_or_expression]: #55
-[#325 binary_xor_expression]: #56
-[#325 bitwise_expression]: #52
-[#325 bool_literal]: #74
-[#325 call_expression]: #68
-[#325 callable]: #67
-[#325 decimal_float_literal]: #79
-[#325 decimal_int_literal]: #77
-[#325 expression]: #403
-[#325 float_literal]: #73
-[#325 hex_float_literal]: #80
-[#325 hex_int_literal]: #78
-[#325 ident]: #71
-[#325 int_literal]: #72
-[#325 literal]: #69
-[#325 multiplicative_expression]: #59
-[#325 paren_expression]: #70
-[#325 primary_expression]: #66
-[#325 relational_expression]: #49
-[#325 shift_expression]: #53
-[#325 short_circuit_and_expression]: #51
-[#325 short_circuit_or_expression]: #50
-[#325 singular_expression]: #60
-[#325 unary_expression]: #58
-[#327 compound_statement]: #402
-[#328 assignment_statement]: #254
-[#328 callable]: #248
-[#328 core_lhs_expression]: #261
-[#328 decrement_statement]: #256
-[#328 for_header]: #396
-[#328 for_header/0.0]: #397
-[#328 for_init]: #398
-[#328 func_call_statement]: #401
-[#328 ident]: #258
-[#328 increment_statement]: #255
-[#328 lhs_expression]: #259
-[#328 variable_decl]: #249
-[#328 variable_statement]: #399
-[#328 variable_updating_statement]: #400
+[#308 additive_expression]: #57
+[#308 binary_and_expression]: #54
+[#308 binary_or_expression]: #55
+[#308 binary_xor_expression]: #56
+[#308 bitwise_expression]: #52
+[#308 bool_literal]: #74
+[#308 call_expression]: #68
+[#308 callable]: #67
+[#308 decimal_float_literal]: #79
+[#308 decimal_int_literal]: #77
+[#308 expression]: #408
+[#308 float_literal]: #73
+[#308 hex_float_literal]: #80
+[#308 hex_int_literal]: #78
+[#308 ident]: #71
+[#308 int_literal]: #72
+[#308 literal]: #69
+[#308 multiplicative_expression]: #59
+[#308 paren_expression]: #70
+[#308 primary_expression]: #66
+[#308 relational_expression]: #49
+[#308 shift_expression]: #53
+[#308 short_circuit_and_expression]: #51
+[#308 short_circuit_or_expression]: #50
+[#308 singular_expression]: #60
+[#308 unary_expression]: #58
+[#323 compound_statement]: #407
+[#326 additive_expression]: #57
+[#326 binary_and_expression]: #54
+[#326 binary_or_expression]: #55
+[#326 binary_xor_expression]: #56
+[#326 bitwise_expression]: #52
+[#326 bool_literal]: #74
+[#326 call_expression]: #68
+[#326 callable]: #67
+[#326 decimal_float_literal]: #79
+[#326 decimal_int_literal]: #77
+[#326 expression]: #404
+[#326 float_literal]: #73
+[#326 hex_float_literal]: #80
+[#326 hex_int_literal]: #78
+[#326 ident]: #71
+[#326 int_literal]: #72
+[#326 literal]: #69
+[#326 multiplicative_expression]: #59
+[#326 paren_expression]: #70
+[#326 primary_expression]: #66
+[#326 relational_expression]: #49
+[#326 shift_expression]: #53
+[#326 short_circuit_and_expression]: #51
+[#326 short_circuit_or_expression]: #50
+[#326 singular_expression]: #60
+[#326 unary_expression]: #58
+[#328 compound_statement]: #403
 [#329 assignment_statement]: #254
-[#329 break_statement]: #236
 [#329 callable]: #248
-[#329 compound_statement]: #240
-[#329 const_assert_statement]: #241
-[#329 continue_statement]: #237
 [#329 core_lhs_expression]: #261
 [#329 decrement_statement]: #256
-[#329 for_statement]: #232
-[#329 func_call_statement]: #234
+[#329 for_header]: #397
+[#329 for_header/0.0]: #398
+[#329 for_init]: #399
+[#329 func_call_statement]: #402
 [#329 ident]: #258
-[#329 if_clause]: #243
-[#329 if_statement]: #229
 [#329 increment_statement]: #255
 [#329 lhs_expression]: #259
-[#329 loop_statement]: #231
-[#329 loop_statement/0.2]: #393
-[#329 loop_statement/0.2/0]: #394
-[#329 return_statement]: #228
-[#329 statement]: #395
-[#329 switch_statement]: #230
 [#329 variable_decl]: #249
-[#329 variable_statement]: #235
-[#329 variable_updating_statement]: #239
-[#329 while_statement]: #233
-[#331 else_clause]: #390
-[#331 if_statement/0.2]: #389
-[#333 else_if_clause]: #333
-[#333 if_statement/0.1/0]: #388
-[#347 callable/1.4]: #383
-[#347 callable/1.4/0]: #384
-[#347 callable/1.4/0/0.0]: #385
-[#348 expression_comma_list/0.2]: #381
-[#350 expression_comma_list/0.1/0]: #380
-[#350 expression_comma_list/0.1/0/0.0]: #350
-[#351 additive_expression]: #57
-[#351 binary_and_expression]: #54
-[#351 binary_or_expression]: #55
-[#351 binary_xor_expression]: #56
-[#351 bitwise_expression]: #52
-[#351 bool_literal]: #74
-[#351 call_expression]: #68
-[#351 callable]: #67
-[#351 decimal_float_literal]: #79
-[#351 decimal_int_literal]: #77
-[#351 expression]: #379
-[#351 float_literal]: #73
-[#351 hex_float_literal]: #80
-[#351 hex_int_literal]: #78
-[#351 ident]: #71
-[#351 int_literal]: #72
-[#351 literal]: #69
-[#351 multiplicative_expression]: #59
-[#351 paren_expression]: #70
-[#351 primary_expression]: #66
-[#351 relational_expression]: #49
-[#351 shift_expression]: #53
-[#351 short_circuit_and_expression]: #51
-[#351 short_circuit_or_expression]: #50
-[#351 singular_expression]: #60
-[#351 unary_expression]: #58
-[#353 component_or_swizzle_specifier]: #378
-[#353 component_or_swizzle_specifier/0.3]: #377
-[#359 additive_expression]: #57
-[#359 binary_and_expression]: #54
-[#359 binary_or_expression]: #55
-[#359 binary_xor_expression]: #56
-[#359 bitwise_expression]: #52
-[#359 bool_literal]: #74
-[#359 call_expression]: #68
-[#359 callable]: #67
-[#359 decimal_float_literal]: #79
-[#359 decimal_int_literal]: #77
-[#359 expression]: #376
-[#359 float_literal]: #73
-[#359 hex_float_literal]: #80
-[#359 hex_int_literal]: #78
-[#359 ident]: #71
-[#359 int_literal]: #72
-[#359 literal]: #69
-[#359 multiplicative_expression]: #59
-[#359 paren_expression]: #70
-[#359 primary_expression]: #66
-[#359 relational_expression]: #49
-[#359 shift_expression]: #53
-[#359 short_circuit_and_expression]: #51
-[#359 short_circuit_or_expression]: #50
-[#359 singular_expression]: #60
-[#359 unary_expression]: #58
-[#365 interpolation_sample_name]: #371
-[#371 attrib_end]: #461
-[#371 attrib_end/0.0]: #360
-[#376 attrib_end]: #459
-[#376 attrib_end/0.0]: #360
-[#383 callable/1.5]: #457
-[#385 callable/1.4/0]: #456
-[#385 callable/1.4/0/0.0]: #385
-[#386 bool_literal]: #74
-[#386 call_expression]: #68
-[#386 callable]: #67
-[#386 decimal_float_literal]: #79
-[#386 decimal_int_literal]: #77
-[#386 float_literal]: #73
-[#386 hex_float_literal]: #80
-[#386 hex_int_literal]: #78
-[#386 ident]: #71
-[#386 int_literal]: #72
-[#386 literal]: #69
-[#386 paren_expression]: #70
-[#386 primary_expression]: #455
-[#387 additive_expression]: #57
-[#387 binary_and_expression]: #54
-[#387 binary_or_expression]: #55
-[#387 binary_xor_expression]: #56
-[#387 bitwise_expression]: #52
+[#329 variable_statement]: #400
+[#329 variable_updating_statement]: #401
+[#330 assignment_statement]: #254
+[#330 break_statement]: #236
+[#330 callable]: #248
+[#330 compound_statement]: #240
+[#330 const_assert_statement]: #241
+[#330 continue_statement]: #237
+[#330 core_lhs_expression]: #261
+[#330 decrement_statement]: #256
+[#330 for_statement]: #232
+[#330 func_call_statement]: #234
+[#330 ident]: #258
+[#330 if_clause]: #243
+[#330 if_statement]: #229
+[#330 increment_statement]: #255
+[#330 lhs_expression]: #259
+[#330 loop_statement]: #231
+[#330 loop_statement/0.2]: #394
+[#330 loop_statement/0.2/0]: #395
+[#330 return_statement]: #228
+[#330 statement]: #396
+[#330 switch_statement]: #230
+[#330 variable_decl]: #249
+[#330 variable_statement]: #235
+[#330 variable_updating_statement]: #239
+[#330 while_statement]: #233
+[#332 else_clause]: #391
+[#332 if_statement/0.2]: #390
+[#334 else_if_clause]: #334
+[#334 if_statement/0.1/0]: #389
+[#348 callable/1.4]: #384
+[#348 callable/1.4/0]: #385
+[#348 callable/1.4/0/0.0]: #386
+[#349 expression_comma_list/0.2]: #382
+[#351 expression_comma_list/0.1/0]: #381
+[#351 expression_comma_list/0.1/0/0.0]: #351
+[#352 additive_expression]: #57
+[#352 binary_and_expression]: #54
+[#352 binary_or_expression]: #55
+[#352 binary_xor_expression]: #56
+[#352 bitwise_expression]: #52
+[#352 bool_literal]: #74
+[#352 call_expression]: #68
+[#352 callable]: #67
+[#352 decimal_float_literal]: #79
+[#352 decimal_int_literal]: #77
+[#352 expression]: #380
+[#352 float_literal]: #73
+[#352 hex_float_literal]: #80
+[#352 hex_int_literal]: #78
+[#352 ident]: #71
+[#352 int_literal]: #72
+[#352 literal]: #69
+[#352 multiplicative_expression]: #59
+[#352 paren_expression]: #70
+[#352 primary_expression]: #66
+[#352 relational_expression]: #49
+[#352 shift_expression]: #53
+[#352 short_circuit_and_expression]: #51
+[#352 short_circuit_or_expression]: #50
+[#352 singular_expression]: #60
+[#352 unary_expression]: #58
+[#354 component_or_swizzle_specifier]: #379
+[#354 component_or_swizzle_specifier/0.3]: #378
+[#360 additive_expression]: #57
+[#360 binary_and_expression]: #54
+[#360 binary_or_expression]: #55
+[#360 binary_xor_expression]: #56
+[#360 bitwise_expression]: #52
+[#360 bool_literal]: #74
+[#360 call_expression]: #68
+[#360 callable]: #67
+[#360 decimal_float_literal]: #79
+[#360 decimal_int_literal]: #77
+[#360 expression]: #377
+[#360 float_literal]: #73
+[#360 hex_float_literal]: #80
+[#360 hex_int_literal]: #78
+[#360 ident]: #71
+[#360 int_literal]: #72
+[#360 literal]: #69
+[#360 multiplicative_expression]: #59
+[#360 paren_expression]: #70
+[#360 primary_expression]: #66
+[#360 relational_expression]: #49
+[#360 shift_expression]: #53
+[#360 short_circuit_and_expression]: #51
+[#360 short_circuit_or_expression]: #50
+[#360 singular_expression]: #60
+[#360 unary_expression]: #58
+[#366 interpolation_sample_name]: #372
+[#372 attrib_end]: #467
+[#372 attrib_end/0.0]: #361
+[#377 attrib_end]: #465
+[#377 attrib_end/0.0]: #361
+[#384 callable/1.5]: #463
+[#386 callable/1.4/0]: #462
+[#386 callable/1.4/0/0.0]: #386
 [#387 bool_literal]: #74
 [#387 call_expression]: #68
 [#387 callable]: #67
 [#387 decimal_float_literal]: #79
 [#387 decimal_int_literal]: #77
-[#387 expression]: #454
 [#387 float_literal]: #73
 [#387 hex_float_literal]: #80
 [#387 hex_int_literal]: #78
 [#387 ident]: #71
 [#387 int_literal]: #72
 [#387 literal]: #69
-[#387 multiplicative_expression]: #59
 [#387 paren_expression]: #70
-[#387 primary_expression]: #66
-[#387 relational_expression]: #49
-[#387 shift_expression]: #53
-[#387 short_circuit_and_expression]: #51
-[#387 short_circuit_or_expression]: #50
-[#387 singular_expression]: #60
-[#387 unary_expression]: #58
-[#391 compound_statement]: #453
-[#392 case_clause]: #449
-[#392 default_alone_clause]: #450
-[#392 switch_body]: #448
-[#392 switch_statement/0.3]: #446
-[#392 switch_statement/0.3/0]: #447
-[#393 continuing_statement]: #444
-[#393 loop_statement/0.3]: #443
-[#395 assignment_statement]: #254
-[#395 break_statement]: #236
-[#395 callable]: #248
-[#395 compound_statement]: #240
-[#395 const_assert_statement]: #241
-[#395 continue_statement]: #237
-[#395 core_lhs_expression]: #261
-[#395 decrement_statement]: #256
-[#395 for_statement]: #232
-[#395 func_call_statement]: #234
-[#395 ident]: #258
-[#395 if_clause]: #243
-[#395 if_statement]: #229
-[#395 increment_statement]: #255
-[#395 lhs_expression]: #259
-[#395 loop_statement]: #231
-[#395 loop_statement/0.2/0]: #442
-[#395 return_statement]: #228
-[#395 statement]: #395
-[#395 switch_statement]: #230
-[#395 variable_decl]: #249
-[#395 variable_statement]: #235
-[#395 variable_updating_statement]: #239
-[#395 while_statement]: #233
-[#404 additive_expression]: #57
-[#404 binary_and_expression]: #54
-[#404 binary_or_expression]: #55
-[#404 binary_xor_expression]: #56
-[#404 bitwise_expression]: #52
-[#404 bool_literal]: #74
-[#404 call_expression]: #68
-[#404 callable]: #67
-[#404 decimal_float_literal]: #79
-[#404 decimal_int_literal]: #77
-[#404 expression]: #439
-[#404 float_literal]: #73
-[#404 hex_float_literal]: #80
-[#404 hex_int_literal]: #78
-[#404 ident]: #71
-[#404 int_literal]: #72
-[#404 literal]: #69
-[#404 multiplicative_expression]: #59
-[#404 paren_expression]: #70
-[#404 primary_expression]: #66
-[#404 relational_expression]: #49
-[#404 shift_expression]: #53
-[#404 short_circuit_and_expression]: #51
-[#404 short_circuit_or_expression]: #50
-[#404 singular_expression]: #60
-[#404 unary_expression]: #58
+[#387 primary_expression]: #461
+[#388 additive_expression]: #57
+[#388 binary_and_expression]: #54
+[#388 binary_or_expression]: #55
+[#388 binary_xor_expression]: #56
+[#388 bitwise_expression]: #52
+[#388 bool_literal]: #74
+[#388 call_expression]: #68
+[#388 callable]: #67
+[#388 decimal_float_literal]: #79
+[#388 decimal_int_literal]: #77
+[#388 expression]: #460
+[#388 float_literal]: #73
+[#388 hex_float_literal]: #80
+[#388 hex_int_literal]: #78
+[#388 ident]: #71
+[#388 int_literal]: #72
+[#388 literal]: #69
+[#388 multiplicative_expression]: #59
+[#388 paren_expression]: #70
+[#388 primary_expression]: #66
+[#388 relational_expression]: #49
+[#388 shift_expression]: #53
+[#388 short_circuit_and_expression]: #51
+[#388 short_circuit_or_expression]: #50
+[#388 singular_expression]: #60
+[#388 unary_expression]: #58
+[#392 compound_statement]: #459
+[#393 case_clause]: #455
+[#393 default_alone_clause]: #456
+[#393 switch_body]: #454
+[#393 switch_statement/0.3]: #452
+[#393 switch_statement/0.3/0]: #453
+[#394 continuing_statement]: #450
+[#394 loop_statement/0.3]: #449
+[#396 assignment_statement]: #254
+[#396 break_statement]: #236
+[#396 callable]: #248
+[#396 compound_statement]: #240
+[#396 const_assert_statement]: #241
+[#396 continue_statement]: #237
+[#396 core_lhs_expression]: #261
+[#396 decrement_statement]: #256
+[#396 for_statement]: #232
+[#396 func_call_statement]: #234
+[#396 ident]: #258
+[#396 if_clause]: #243
+[#396 if_statement]: #229
+[#396 increment_statement]: #255
+[#396 lhs_expression]: #259
+[#396 loop_statement]: #231
+[#396 loop_statement/0.2/0]: #448
+[#396 return_statement]: #228
+[#396 statement]: #396
+[#396 switch_statement]: #230
+[#396 variable_decl]: #249
+[#396 variable_statement]: #235
+[#396 variable_updating_statement]: #239
+[#396 while_statement]: #233
 [#405 additive_expression]: #57
 [#405 binary_and_expression]: #54
 [#405 binary_or_expression]: #55
@@ -10975,7 +11189,7 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#405 callable]: #67
 [#405 decimal_float_literal]: #79
 [#405 decimal_int_literal]: #77
-[#405 expression]: #438
+[#405 expression]: #445
 [#405 float_literal]: #73
 [#405 hex_float_literal]: #80
 [#405 hex_int_literal]: #78
@@ -10991,254 +11205,314 @@ r#224 type_specifier -> ident '::' '<' primary_expression callable/1.4 callable/
 [#405 short_circuit_or_expression]: #50
 [#405 singular_expression]: #60
 [#405 unary_expression]: #58
-[#412 param_list/0.2]: #435
-[#414 param_list/0.1/0]: #434
-[#414 param_list/0.1/0/0.0]: #414
-[#415 attribute]: #299
-[#415 param]: #433
-[#415 param/0.0]: #297
-[#415 param/0.0/0]: #298
-[#416 function_header/0.5]: #431
-[#421 ident]: #271
-[#421 type_specifier]: #429
-[#422 bool_literal]: #74
-[#422 call_expression]: #68
-[#422 callable]: #67
-[#422 decimal_float_literal]: #79
-[#422 decimal_int_literal]: #77
-[#422 float_literal]: #73
-[#422 hex_float_literal]: #80
-[#422 hex_int_literal]: #78
-[#422 ident]: #71
-[#422 int_literal]: #72
-[#422 literal]: #69
-[#422 paren_expression]: #70
-[#422 primary_expression]: #428
-[#428 callable/1.4]: #483
-[#428 callable/1.4/0]: #384
-[#428 callable/1.4/0/0.0]: #385
-[#432 attribute]: #482
-[#432 function_header/0.5/0.1]: #480
-[#432 function_header/0.5/0.1/0]: #481
-[#437 ident]: #271
-[#437 type_specifier]: #479
-[#440 additive_expression]: #57
-[#440 binary_and_expression]: #54
-[#440 binary_or_expression]: #55
-[#440 binary_xor_expression]: #56
-[#440 bitwise_expression]: #52
-[#440 bool_literal]: #74
-[#440 call_expression]: #68
-[#440 callable]: #67
-[#440 decimal_float_literal]: #79
-[#440 decimal_int_literal]: #77
-[#440 expression]: #478
-[#440 float_literal]: #73
-[#440 for_header/0.2]: #477
-[#440 hex_float_literal]: #80
-[#440 hex_int_literal]: #78
-[#440 ident]: #71
-[#440 int_literal]: #72
-[#440 literal]: #69
-[#440 multiplicative_expression]: #59
-[#440 paren_expression]: #70
-[#440 primary_expression]: #66
-[#440 relational_expression]: #49
-[#440 shift_expression]: #53
-[#440 short_circuit_and_expression]: #51
-[#440 short_circuit_or_expression]: #50
-[#440 singular_expression]: #60
-[#440 unary_expression]: #58
-[#441 compound_statement]: #476
-[#445 continuing_compound_statement]: #473
-[#448 case_clause]: #449
-[#448 default_alone_clause]: #450
-[#448 switch_body]: #448
-[#448 switch_statement/0.3/0]: #471
-[#451 additive_expression]: #57
-[#451 binary_and_expression]: #54
-[#451 binary_or_expression]: #55
-[#451 binary_xor_expression]: #56
-[#451 bitwise_expression]: #52
-[#451 bool_literal]: #74
-[#451 call_expression]: #68
-[#451 callable]: #67
-[#451 case_selector]: #468
-[#451 case_selectors]: #467
-[#451 decimal_float_literal]: #79
-[#451 decimal_int_literal]: #77
-[#451 expression]: #470
-[#451 float_literal]: #73
-[#451 hex_float_literal]: #80
-[#451 hex_int_literal]: #78
-[#451 ident]: #71
-[#451 int_literal]: #72
-[#451 literal]: #69
-[#451 multiplicative_expression]: #59
-[#451 paren_expression]: #70
-[#451 primary_expression]: #66
-[#451 relational_expression]: #49
-[#451 shift_expression]: #53
-[#451 short_circuit_and_expression]: #51
-[#451 short_circuit_or_expression]: #50
-[#451 singular_expression]: #60
-[#451 unary_expression]: #58
-[#452 default_alone_clause/0.1]: #465
-[#454 compound_statement]: #464
-[#460 additive_expression]: #57
-[#460 binary_and_expression]: #54
-[#460 binary_or_expression]: #55
-[#460 binary_xor_expression]: #56
-[#460 bitwise_expression]: #52
-[#460 bool_literal]: #74
-[#460 call_expression]: #68
-[#460 callable]: #67
-[#460 decimal_float_literal]: #79
-[#460 decimal_int_literal]: #77
-[#460 expression]: #462
-[#460 float_literal]: #73
-[#460 hex_float_literal]: #80
-[#460 hex_int_literal]: #78
-[#460 ident]: #71
-[#460 int_literal]: #72
-[#460 literal]: #69
-[#460 multiplicative_expression]: #59
-[#460 paren_expression]: #70
-[#460 primary_expression]: #66
-[#460 relational_expression]: #49
-[#460 shift_expression]: #53
-[#460 short_circuit_and_expression]: #51
-[#460 short_circuit_or_expression]: #50
-[#460 singular_expression]: #60
-[#460 unary_expression]: #58
-[#462 attrib_end]: #498
-[#462 attrib_end/0.0]: #360
-[#465 compound_statement]: #497
-[#467 case_clause/0.2]: #495
-[#468 case_selectors/0.1]: #491
-[#468 case_selectors/0.1/0]: #492
-[#468 case_selectors/0.1/0/0.0]: #493
-[#474 assignment_statement]: #254
-[#474 break_statement]: #236
-[#474 callable]: #248
-[#474 compound_statement]: #240
-[#474 const_assert_statement]: #241
-[#474 continue_statement]: #237
-[#474 continuing_compound_statement/0.1]: #488
-[#474 continuing_compound_statement/0.1/0]: #489
-[#474 core_lhs_expression]: #261
-[#474 decrement_statement]: #256
-[#474 for_statement]: #232
-[#474 func_call_statement]: #234
-[#474 ident]: #258
-[#474 if_clause]: #243
-[#474 if_statement]: #229
-[#474 increment_statement]: #255
-[#474 lhs_expression]: #259
-[#474 loop_statement]: #231
-[#474 return_statement]: #228
-[#474 statement]: #490
-[#474 switch_statement]: #230
-[#474 variable_decl]: #249
-[#474 variable_statement]: #235
-[#474 variable_updating_statement]: #239
-[#474 while_statement]: #233
-[#480 ident]: #271
-[#480 type_specifier]: #486
-[#482 attribute]: #482
-[#482 function_header/0.5/0.1/0]: #485
-[#483 callable/1.5]: #484
-[#487 assignment_statement]: #254
-[#487 callable]: #248
-[#487 core_lhs_expression]: #261
-[#487 decrement_statement]: #256
-[#487 for_header/0.4]: #508
-[#487 for_update]: #509
-[#487 func_call_statement]: #511
-[#487 ident]: #258
-[#487 increment_statement]: #255
-[#487 lhs_expression]: #259
-[#487 variable_updating_statement]: #510
-[#488 break_if_statement]: #506
-[#488 continuing_compound_statement/0.2]: #505
-[#490 assignment_statement]: #254
-[#490 break_statement]: #236
-[#490 callable]: #248
-[#490 compound_statement]: #240
-[#490 const_assert_statement]: #241
-[#490 continue_statement]: #237
-[#490 continuing_compound_statement/0.1/0]: #504
-[#490 core_lhs_expression]: #261
-[#490 decrement_statement]: #256
-[#490 for_statement]: #232
-[#490 func_call_statement]: #234
-[#490 ident]: #258
-[#490 if_clause]: #243
-[#490 if_statement]: #229
-[#490 increment_statement]: #255
-[#490 lhs_expression]: #259
-[#490 loop_statement]: #231
-[#490 return_statement]: #228
-[#490 statement]: #490
-[#490 switch_statement]: #230
-[#490 variable_decl]: #249
-[#490 variable_statement]: #235
-[#490 variable_updating_statement]: #239
-[#490 while_statement]: #233
-[#491 case_selectors/0.2]: #502
-[#493 case_selectors/0.1/0]: #501
-[#493 case_selectors/0.1/0/0.0]: #493
-[#494 additive_expression]: #57
-[#494 binary_and_expression]: #54
-[#494 binary_or_expression]: #55
-[#494 binary_xor_expression]: #56
-[#494 bitwise_expression]: #52
-[#494 bool_literal]: #74
-[#494 call_expression]: #68
-[#494 callable]: #67
-[#494 case_selector]: #500
-[#494 decimal_float_literal]: #79
-[#494 decimal_int_literal]: #77
-[#494 expression]: #470
-[#494 float_literal]: #73
-[#494 hex_float_literal]: #80
-[#494 hex_int_literal]: #78
-[#494 ident]: #71
-[#494 int_literal]: #72
-[#494 literal]: #69
-[#494 multiplicative_expression]: #59
-[#494 paren_expression]: #70
-[#494 primary_expression]: #66
-[#494 relational_expression]: #49
-[#494 shift_expression]: #53
-[#494 short_circuit_and_expression]: #51
-[#494 short_circuit_or_expression]: #50
-[#494 singular_expression]: #60
-[#494 unary_expression]: #58
-[#495 compound_statement]: #499
-[#513 additive_expression]: #57
-[#513 binary_and_expression]: #54
-[#513 binary_or_expression]: #55
-[#513 binary_xor_expression]: #56
-[#513 bitwise_expression]: #52
-[#513 bool_literal]: #74
-[#513 call_expression]: #68
-[#513 callable]: #67
-[#513 decimal_float_literal]: #79
-[#513 decimal_int_literal]: #77
-[#513 expression]: #515
-[#513 float_literal]: #73
-[#513 hex_float_literal]: #80
-[#513 hex_int_literal]: #78
-[#513 ident]: #71
-[#513 int_literal]: #72
-[#513 literal]: #69
-[#513 multiplicative_expression]: #59
-[#513 paren_expression]: #70
-[#513 primary_expression]: #66
-[#513 relational_expression]: #49
-[#513 shift_expression]: #53
-[#513 short_circuit_and_expression]: #51
-[#513 short_circuit_or_expression]: #50
-[#513 singular_expression]: #60
-[#513 unary_expression]: #58
+[#406 additive_expression]: #57
+[#406 binary_and_expression]: #54
+[#406 binary_or_expression]: #55
+[#406 binary_xor_expression]: #56
+[#406 bitwise_expression]: #52
+[#406 bool_literal]: #74
+[#406 call_expression]: #68
+[#406 callable]: #67
+[#406 decimal_float_literal]: #79
+[#406 decimal_int_literal]: #77
+[#406 expression]: #444
+[#406 float_literal]: #73
+[#406 hex_float_literal]: #80
+[#406 hex_int_literal]: #78
+[#406 ident]: #71
+[#406 int_literal]: #72
+[#406 literal]: #69
+[#406 multiplicative_expression]: #59
+[#406 paren_expression]: #70
+[#406 primary_expression]: #66
+[#406 relational_expression]: #49
+[#406 shift_expression]: #53
+[#406 short_circuit_and_expression]: #51
+[#406 short_circuit_or_expression]: #50
+[#406 singular_expression]: #60
+[#406 unary_expression]: #58
+[#413 param_list/0.2]: #441
+[#415 param_list/0.1/0]: #440
+[#415 param_list/0.1/0/0.0]: #415
+[#416 attribute]: #300
+[#416 param]: #439
+[#416 param/0.0]: #298
+[#416 param/0.0/0]: #299
+[#417 function_header/0.5]: #437
+[#422 ident]: #271
+[#422 type_specifier]: #435
+[#423 bool_literal]: #74
+[#423 call_expression]: #68
+[#423 callable]: #67
+[#423 decimal_float_literal]: #79
+[#423 decimal_int_literal]: #77
+[#423 float_literal]: #73
+[#423 hex_float_literal]: #80
+[#423 hex_int_literal]: #78
+[#423 ident]: #71
+[#423 int_literal]: #72
+[#423 literal]: #69
+[#423 paren_expression]: #70
+[#423 primary_expression]: #434
+[#424 callable_type/1.3]: #430
+[#424 callable_type/1.3/0]: #431
+[#424 callable_type/1.3/0/0.0]: #432
+[#430 callable_type/1.4]: #495
+[#432 callable_type/1.3/0]: #494
+[#432 callable_type/1.3/0/0.0]: #432
+[#433 bool_literal]: #74
+[#433 call_expression]: #68
+[#433 callable]: #67
+[#433 decimal_float_literal]: #79
+[#433 decimal_int_literal]: #77
+[#433 float_literal]: #73
+[#433 hex_float_literal]: #80
+[#433 hex_int_literal]: #78
+[#433 ident]: #71
+[#433 int_literal]: #72
+[#433 literal]: #69
+[#433 paren_expression]: #70
+[#433 primary_expression]: #493
+[#434 callable_type/2.4]: #489
+[#434 callable_type/2.4/0]: #490
+[#434 callable_type/2.4/0/0.0]: #491
+[#438 attribute]: #488
+[#438 function_header/0.5/0.1]: #486
+[#438 function_header/0.5/0.1/0]: #487
+[#443 ident]: #271
+[#443 type_specifier]: #485
+[#446 additive_expression]: #57
+[#446 binary_and_expression]: #54
+[#446 binary_or_expression]: #55
+[#446 binary_xor_expression]: #56
+[#446 bitwise_expression]: #52
+[#446 bool_literal]: #74
+[#446 call_expression]: #68
+[#446 callable]: #67
+[#446 decimal_float_literal]: #79
+[#446 decimal_int_literal]: #77
+[#446 expression]: #484
+[#446 float_literal]: #73
+[#446 for_header/0.2]: #483
+[#446 hex_float_literal]: #80
+[#446 hex_int_literal]: #78
+[#446 ident]: #71
+[#446 int_literal]: #72
+[#446 literal]: #69
+[#446 multiplicative_expression]: #59
+[#446 paren_expression]: #70
+[#446 primary_expression]: #66
+[#446 relational_expression]: #49
+[#446 shift_expression]: #53
+[#446 short_circuit_and_expression]: #51
+[#446 short_circuit_or_expression]: #50
+[#446 singular_expression]: #60
+[#446 unary_expression]: #58
+[#447 compound_statement]: #482
+[#451 continuing_compound_statement]: #479
+[#454 case_clause]: #455
+[#454 default_alone_clause]: #456
+[#454 switch_body]: #454
+[#454 switch_statement/0.3/0]: #477
+[#457 additive_expression]: #57
+[#457 binary_and_expression]: #54
+[#457 binary_or_expression]: #55
+[#457 binary_xor_expression]: #56
+[#457 bitwise_expression]: #52
+[#457 bool_literal]: #74
+[#457 call_expression]: #68
+[#457 callable]: #67
+[#457 case_selector]: #474
+[#457 case_selectors]: #473
+[#457 decimal_float_literal]: #79
+[#457 decimal_int_literal]: #77
+[#457 expression]: #476
+[#457 float_literal]: #73
+[#457 hex_float_literal]: #80
+[#457 hex_int_literal]: #78
+[#457 ident]: #71
+[#457 int_literal]: #72
+[#457 literal]: #69
+[#457 multiplicative_expression]: #59
+[#457 paren_expression]: #70
+[#457 primary_expression]: #66
+[#457 relational_expression]: #49
+[#457 shift_expression]: #53
+[#457 short_circuit_and_expression]: #51
+[#457 short_circuit_or_expression]: #50
+[#457 singular_expression]: #60
+[#457 unary_expression]: #58
+[#458 default_alone_clause/0.1]: #471
+[#460 compound_statement]: #470
+[#466 additive_expression]: #57
+[#466 binary_and_expression]: #54
+[#466 binary_or_expression]: #55
+[#466 binary_xor_expression]: #56
+[#466 bitwise_expression]: #52
+[#466 bool_literal]: #74
+[#466 call_expression]: #68
+[#466 callable]: #67
+[#466 decimal_float_literal]: #79
+[#466 decimal_int_literal]: #77
+[#466 expression]: #468
+[#466 float_literal]: #73
+[#466 hex_float_literal]: #80
+[#466 hex_int_literal]: #78
+[#466 ident]: #71
+[#466 int_literal]: #72
+[#466 literal]: #69
+[#466 multiplicative_expression]: #59
+[#466 paren_expression]: #70
+[#466 primary_expression]: #66
+[#466 relational_expression]: #49
+[#466 shift_expression]: #53
+[#466 short_circuit_and_expression]: #51
+[#466 short_circuit_or_expression]: #50
+[#466 singular_expression]: #60
+[#466 unary_expression]: #58
+[#468 attrib_end]: #515
+[#468 attrib_end/0.0]: #361
+[#471 compound_statement]: #514
+[#473 case_clause/0.2]: #512
+[#474 case_selectors/0.1]: #508
+[#474 case_selectors/0.1/0]: #509
+[#474 case_selectors/0.1/0/0.0]: #510
+[#480 assignment_statement]: #254
+[#480 break_statement]: #236
+[#480 callable]: #248
+[#480 compound_statement]: #240
+[#480 const_assert_statement]: #241
+[#480 continue_statement]: #237
+[#480 continuing_compound_statement/0.1]: #505
+[#480 continuing_compound_statement/0.1/0]: #506
+[#480 core_lhs_expression]: #261
+[#480 decrement_statement]: #256
+[#480 for_statement]: #232
+[#480 func_call_statement]: #234
+[#480 ident]: #258
+[#480 if_clause]: #243
+[#480 if_statement]: #229
+[#480 increment_statement]: #255
+[#480 lhs_expression]: #259
+[#480 loop_statement]: #231
+[#480 return_statement]: #228
+[#480 statement]: #507
+[#480 switch_statement]: #230
+[#480 variable_decl]: #249
+[#480 variable_statement]: #235
+[#480 variable_updating_statement]: #239
+[#480 while_statement]: #233
+[#486 ident]: #271
+[#486 type_specifier]: #503
+[#488 attribute]: #488
+[#488 function_header/0.5/0.1/0]: #502
+[#489 callable_type/2.5]: #500
+[#491 callable_type/2.4/0]: #499
+[#491 callable_type/2.4/0/0.0]: #491
+[#492 bool_literal]: #74
+[#492 call_expression]: #68
+[#492 callable]: #67
+[#492 decimal_float_literal]: #79
+[#492 decimal_int_literal]: #77
+[#492 float_literal]: #73
+[#492 hex_float_literal]: #80
+[#492 hex_int_literal]: #78
+[#492 ident]: #71
+[#492 int_literal]: #72
+[#492 literal]: #69
+[#492 paren_expression]: #70
+[#492 primary_expression]: #498
+[#504 assignment_statement]: #254
+[#504 callable]: #248
+[#504 core_lhs_expression]: #261
+[#504 decrement_statement]: #256
+[#504 for_header/0.4]: #525
+[#504 for_update]: #526
+[#504 func_call_statement]: #528
+[#504 ident]: #258
+[#504 increment_statement]: #255
+[#504 lhs_expression]: #259
+[#504 variable_updating_statement]: #527
+[#505 break_if_statement]: #523
+[#505 continuing_compound_statement/0.2]: #522
+[#507 assignment_statement]: #254
+[#507 break_statement]: #236
+[#507 callable]: #248
+[#507 compound_statement]: #240
+[#507 const_assert_statement]: #241
+[#507 continue_statement]: #237
+[#507 continuing_compound_statement/0.1/0]: #521
+[#507 core_lhs_expression]: #261
+[#507 decrement_statement]: #256
+[#507 for_statement]: #232
+[#507 func_call_statement]: #234
+[#507 ident]: #258
+[#507 if_clause]: #243
+[#507 if_statement]: #229
+[#507 increment_statement]: #255
+[#507 lhs_expression]: #259
+[#507 loop_statement]: #231
+[#507 return_statement]: #228
+[#507 statement]: #507
+[#507 switch_statement]: #230
+[#507 variable_decl]: #249
+[#507 variable_statement]: #235
+[#507 variable_updating_statement]: #239
+[#507 while_statement]: #233
+[#508 case_selectors/0.2]: #519
+[#510 case_selectors/0.1/0]: #518
+[#510 case_selectors/0.1/0/0.0]: #510
+[#511 additive_expression]: #57
+[#511 binary_and_expression]: #54
+[#511 binary_or_expression]: #55
+[#511 binary_xor_expression]: #56
+[#511 bitwise_expression]: #52
+[#511 bool_literal]: #74
+[#511 call_expression]: #68
+[#511 callable]: #67
+[#511 case_selector]: #517
+[#511 decimal_float_literal]: #79
+[#511 decimal_int_literal]: #77
+[#511 expression]: #476
+[#511 float_literal]: #73
+[#511 hex_float_literal]: #80
+[#511 hex_int_literal]: #78
+[#511 ident]: #71
+[#511 int_literal]: #72
+[#511 literal]: #69
+[#511 multiplicative_expression]: #59
+[#511 paren_expression]: #70
+[#511 primary_expression]: #66
+[#511 relational_expression]: #49
+[#511 shift_expression]: #53
+[#511 short_circuit_and_expression]: #51
+[#511 short_circuit_or_expression]: #50
+[#511 singular_expression]: #60
+[#511 unary_expression]: #58
+[#512 compound_statement]: #516
+[#530 additive_expression]: #57
+[#530 binary_and_expression]: #54
+[#530 binary_or_expression]: #55
+[#530 binary_xor_expression]: #56
+[#530 bitwise_expression]: #52
+[#530 bool_literal]: #74
+[#530 call_expression]: #68
+[#530 callable]: #67
+[#530 decimal_float_literal]: #79
+[#530 decimal_int_literal]: #77
+[#530 expression]: #532
+[#530 float_literal]: #73
+[#530 hex_float_literal]: #80
+[#530 hex_int_literal]: #78
+[#530 ident]: #71
+[#530 int_literal]: #72
+[#530 literal]: #69
+[#530 multiplicative_expression]: #59
+[#530 paren_expression]: #70
+[#530 primary_expression]: #66
+[#530 relational_expression]: #49
+[#530 shift_expression]: #53
+[#530 short_circuit_and_expression]: #51
+[#530 short_circuit_or_expression]: #50
+[#530 singular_expression]: #60
+[#530 unary_expression]: #58

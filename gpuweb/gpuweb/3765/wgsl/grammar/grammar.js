@@ -143,7 +143,7 @@ module.exports = grammar({
             token('texture_depth_multisampled_2d')
         ),
         type_alias_decl: $ => seq(token('type'), $.ident, token('='), $.type_specifier),
-        type_specifier: $ => $.callable,
+        type_specifier: $ => $.callable_type,
         type_specifier_without_ident: $ => choice(
             token('bool'),
             token('f32'),
@@ -197,6 +197,11 @@ module.exports = grammar({
         call_phrase: $ => seq($.callable, $.argument_expression_list),
         callable: $ => choice(
             $.ident,
+            seq($.ident, token('::'), token('<'), $.primary_expression, optional(repeat1(seq(token(','), $.primary_expression))), optional(token(',')), token('>'))
+        ),
+        callable_type: $ => choice(
+            $.ident,
+            seq($.ident, token('<'), $.primary_expression, optional(repeat1(seq(token(','), $.primary_expression))), optional(token(',')), token('>')),
             seq($.ident, token('::'), token('<'), $.primary_expression, optional(repeat1(seq(token(','), $.primary_expression))), optional(token(',')), token('>'))
         ),
         paren_expression: $ => seq(token('('), $.expression, token(')')),
