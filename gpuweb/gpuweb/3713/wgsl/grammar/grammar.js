@@ -47,7 +47,7 @@ module.exports = grammar({
             seq($.type_alias_decl, token(';')),
             $.struct_decl,
             $.function_decl,
-            seq($.static_assert_statement, token(';'))
+            seq($.const_assert_statement, token(';'))
         ),
         bool_literal: $ => choice(
             token('true'),
@@ -199,11 +199,13 @@ module.exports = grammar({
         ),
         primary_expression: $ => choice(
             $.ident,
-            seq($.callable, $.argument_expression_list),
+            $.call_expression,
             $.literal,
             $.paren_expression,
             seq(token('bitcast'), token('<'), $.type_specifier, token('>'), $.paren_expression)
         ),
+        call_expression: $ => $.call_phrase,
+        call_phrase: $ => seq($.callable, $.argument_expression_list),
         callable: $ => choice(
             $.ident,
             $.type_specifier_without_ident,
@@ -354,8 +356,8 @@ module.exports = grammar({
         continuing_statement: $ => seq(token('continuing'), $.continuing_compound_statement),
         continuing_compound_statement: $ => seq(optional(repeat1($.attribute)), token('{'), optional(repeat1($.statement)), optional($.break_if_statement), token('}')),
         return_statement: $ => seq(token('return'), optional($.expression)),
-        func_call_statement: $ => seq($.callable, $.argument_expression_list),
-        static_assert_statement: $ => seq(token('static_assert'), $.expression),
+        func_call_statement: $ => $.call_phrase,
+        const_assert_statement: $ => seq(token('const_assert'), $.expression),
         statement: $ => choice(
             token(';'),
             seq($.return_statement, token(';')),
@@ -371,7 +373,7 @@ module.exports = grammar({
             seq(token('discard'), token(';')),
             seq($.variable_updating_statement, token(';')),
             $.compound_statement,
-            seq($.static_assert_statement, token(';'))
+            seq($.const_assert_statement, token(';'))
         ),
         variable_updating_statement: $ => choice(
             $.assignment_statement,
