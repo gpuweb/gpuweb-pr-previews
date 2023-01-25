@@ -1,8 +1,7 @@
 =Grammar:
 
 _blankspace:/[\u0020\u0009\u000a\u000b\u000c\u000d\u0085\u200e\u200f\u2028\u2029]/
-_comment:
-   '//' /.*/
+_comment:'//.*'
 access_mode:
    'read'
  | 'read_write'
@@ -376,7 +375,7 @@ texture_and_sampler_types:
 translation_unit:
    global_directive * ? global_decl * ?
 type_alias_decl:
-   'type' ident '=' type_specifier
+   'alias' ident '=' type_specifier
 type_specifier:callable_type
 type_specifier_without_ident:
    'atomic' '<' type_specifier '>'
@@ -419,10 +418,10 @@ while_statement:
 =LALR1 item sets:
 #0
 language -> · translation_unit EndOfText : {EndOfText}
-global_directive -> · 'enable' extension_name ';' : {';' '@' 'const' 'const_assert' 'enable' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_directive -> · 'enable' extension_name ';' : {';' '@' 'alias' 'const' 'const_assert' 'enable' 'fn' 'override' 'struct' 'var' EndOfText}
 translation_unit -> · translation_unit/0.0 translation_unit/0.1 : {EndOfText}
-translation_unit/0.0 -> · translation_unit/0.0/0 : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-translation_unit/0.0/0 -> · global_directive translation_unit/0.0/0 : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+translation_unit/0.0 -> · translation_unit/0.0/0 : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+translation_unit/0.0/0 -> · global_directive translation_unit/0.0/0 : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #1
 language -> translation_unit · EndOfText : {EndOfText}
@@ -447,48 +446,48 @@ attribute -> · '@' 'workgroup_size' '(' expression ',' expression ',' expressio
 attribute -> · '@' 'workgroup_size' '(' expression ',' expression attrib_end : {'@' 'fn' 'var'}
 attribute -> · '@' 'workgroup_size' '(' expression attrib_end : {'@' 'fn' 'var'}
 const_assert_statement -> · 'const_assert' expression : {}
-function_decl -> · function_decl/0.0 function_header compound_statement : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+function_decl -> · function_decl/0.0 function_header compound_statement : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 function_decl/0.0 -> · function_decl/0.0/0 : {'fn'}
 function_decl/0.0/0 -> · attribute function_decl/0.0/0 : {'fn'}
 global_constant_decl -> · 'const' optionally_typed_ident '=' expression : {}
 global_constant_decl -> · global_constant_decl/1.0 'override' optionally_typed_ident global_constant_decl/1.3 : {}
 global_constant_decl/1.0 -> · global_constant_decl/1.0/0 : {}
 global_constant_decl/1.0/0 -> · attribute global_constant_decl/1.0/0 : {}
-global_decl -> · ';' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_decl -> · const_assert_statement ';' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_decl -> · function_decl : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_decl -> · global_constant_decl ';' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_decl -> · global_variable_decl ';' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_decl -> · struct_decl : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_decl -> · type_alias_decl ';' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_decl -> · ';' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+global_decl -> · const_assert_statement ';' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+global_decl -> · function_decl : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+global_decl -> · global_constant_decl ';' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+global_decl -> · global_variable_decl ';' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+global_decl -> · struct_decl : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+global_decl -> · type_alias_decl ';' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 global_variable_decl -> · global_variable_decl/0.0 variable_decl global_variable_decl/0.2 : {}
 global_variable_decl/0.0 -> · global_variable_decl/0.0/0 : {'var'}
 global_variable_decl/0.0/0 -> · attribute global_variable_decl/0.0/0 : {'var'}
-struct_decl -> · 'struct' ident struct_body_decl : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+struct_decl -> · 'struct' ident struct_body_decl : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 translation_unit/0.1 -> · translation_unit/0.1/0 : {EndOfText}
 translation_unit/0.1/0 -> · global_decl translation_unit/0.1/0 : {EndOfText}
-type_alias_decl -> · 'type' ident '=' type_specifier : {}
+type_alias_decl -> · 'alias' ident '=' type_specifier : {}
 
 #3
-translation_unit/0.0 -> translation_unit/0.0/0 · : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+translation_unit/0.0 -> translation_unit/0.0/0 · : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #4
-translation_unit/0.0/0 -> global_directive · translation_unit/0.0/0 : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_directive -> · 'enable' extension_name ';' : {';' '@' 'const' 'const_assert' 'enable' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-translation_unit/0.0/0 -> · global_directive translation_unit/0.0/0 : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+translation_unit/0.0/0 -> global_directive · translation_unit/0.0/0 : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+global_directive -> · 'enable' extension_name ';' : {';' '@' 'alias' 'const' 'const_assert' 'enable' 'fn' 'override' 'struct' 'var' EndOfText}
+translation_unit/0.0/0 -> · global_directive translation_unit/0.0/0 : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #5
-global_directive -> 'enable' · extension_name ';' : {';' '@' 'const' 'const_assert' 'enable' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_directive -> 'enable' · extension_name ';' : {';' '@' 'alias' 'const' 'const_assert' 'enable' 'fn' 'override' 'struct' 'var' EndOfText}
 extension_name -> · 'f16' : {}
 
 #6
-global_directive -> 'enable' extension_name · ';' : {';' '@' 'const' 'const_assert' 'enable' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_directive -> 'enable' extension_name · ';' : {';' '@' 'alias' 'const' 'const_assert' 'enable' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #7
 extension_name -> 'f16' · : {}
 
 #8
-translation_unit/0.0/0 -> global_directive translation_unit/0.0/0 · : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+translation_unit/0.0/0 -> global_directive translation_unit/0.0/0 · : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #9
 translation_unit -> translation_unit/0.0 translation_unit/0.1 · : {EndOfText}
@@ -516,47 +515,47 @@ attribute -> · '@' 'workgroup_size' '(' expression ',' expression ',' expressio
 attribute -> · '@' 'workgroup_size' '(' expression ',' expression attrib_end : {'@' 'fn' 'var'}
 attribute -> · '@' 'workgroup_size' '(' expression attrib_end : {'@' 'fn' 'var'}
 const_assert_statement -> · 'const_assert' expression : {}
-function_decl -> · function_decl/0.0 function_header compound_statement : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+function_decl -> · function_decl/0.0 function_header compound_statement : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 function_decl/0.0 -> · function_decl/0.0/0 : {'fn'}
 function_decl/0.0/0 -> · attribute function_decl/0.0/0 : {'fn'}
 global_constant_decl -> · 'const' optionally_typed_ident '=' expression : {}
 global_constant_decl -> · global_constant_decl/1.0 'override' optionally_typed_ident global_constant_decl/1.3 : {}
 global_constant_decl/1.0 -> · global_constant_decl/1.0/0 : {}
 global_constant_decl/1.0/0 -> · attribute global_constant_decl/1.0/0 : {}
-global_decl -> · ';' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_decl -> · const_assert_statement ';' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_decl -> · function_decl : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_decl -> · global_constant_decl ';' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_decl -> · global_variable_decl ';' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_decl -> · struct_decl : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_decl -> · type_alias_decl ';' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_decl -> · ';' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+global_decl -> · const_assert_statement ';' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+global_decl -> · function_decl : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+global_decl -> · global_constant_decl ';' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+global_decl -> · global_variable_decl ';' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+global_decl -> · struct_decl : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+global_decl -> · type_alias_decl ';' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 global_variable_decl -> · global_variable_decl/0.0 variable_decl global_variable_decl/0.2 : {}
 global_variable_decl/0.0 -> · global_variable_decl/0.0/0 : {'var'}
 global_variable_decl/0.0/0 -> · attribute global_variable_decl/0.0/0 : {'var'}
-struct_decl -> · 'struct' ident struct_body_decl : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+struct_decl -> · 'struct' ident struct_body_decl : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 translation_unit/0.1/0 -> · global_decl translation_unit/0.1/0 : {EndOfText}
-type_alias_decl -> · 'type' ident '=' type_specifier : {}
+type_alias_decl -> · 'alias' ident '=' type_specifier : {}
 
 #12
-global_decl -> ';' · : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_decl -> ';' · : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #13
-global_decl -> global_variable_decl · ';' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_decl -> global_variable_decl · ';' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #14
-global_decl -> global_constant_decl · ';' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_decl -> global_constant_decl · ';' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #15
-global_decl -> type_alias_decl · ';' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_decl -> type_alias_decl · ';' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #16
-global_decl -> struct_decl · : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_decl -> struct_decl · : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #17
-global_decl -> function_decl · : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_decl -> function_decl · : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #18
-global_decl -> const_assert_statement · ';' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_decl -> const_assert_statement · ';' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #19
 global_variable_decl -> global_variable_decl/0.0 · variable_decl global_variable_decl/0.2 : {}
@@ -571,15 +570,15 @@ optionally_typed_ident -> · ident optionally_typed_ident/0.1 : {}
 global_constant_decl -> global_constant_decl/1.0 · 'override' optionally_typed_ident global_constant_decl/1.3 : {}
 
 #22
-type_alias_decl -> 'type' · ident '=' type_specifier : {}
+type_alias_decl -> 'alias' · ident '=' type_specifier : {}
 ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {}
 
 #23
-struct_decl -> 'struct' · ident struct_body_decl : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+struct_decl -> 'struct' · ident struct_body_decl : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {'{'}
 
 #24
-function_decl -> function_decl/0.0 · function_header compound_statement : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+function_decl -> function_decl/0.0 · function_header compound_statement : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 function_header -> · 'fn' ident '(' function_header/0.3 ')' function_header/0.5 : {'{'}
 
 #25
@@ -1177,19 +1176,19 @@ hex_float_literal -> /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/ ·
 hex_float_literal -> /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/ · : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 
 #94
-function_decl -> function_decl/0.0 function_header · compound_statement : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-compound_statement -> · '{' compound_statement/0.1 '}' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+function_decl -> function_decl/0.0 function_header · compound_statement : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+compound_statement -> · '{' compound_statement/0.1 '}' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #95
 function_header -> 'fn' · ident '(' function_header/0.3 ')' function_header/0.5 : {'{'}
 ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {}
 
 #96
-struct_decl -> 'struct' ident · struct_body_decl : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-struct_body_decl -> · '{' struct_member struct_body_decl/0.2 struct_body_decl/0.3 '}' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+struct_decl -> 'struct' ident · struct_body_decl : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+struct_body_decl -> · '{' struct_member struct_body_decl/0.2 struct_body_decl/0.3 '}' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #97
-type_alias_decl -> 'type' ident · '=' type_specifier : {}
+type_alias_decl -> 'alias' ident · '=' type_specifier : {}
 
 #98
 global_constant_decl -> global_constant_decl/1.0 'override' · optionally_typed_ident global_constant_decl/1.3 : {}
@@ -1213,22 +1212,22 @@ variable_decl/0.1 -> · variable_qualifier : {/([_\p{XID_Start}][\p{XID_Continue
 variable_qualifier -> · '<' address_space variable_qualifier/0.2 '>' : {/([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
 #103
-global_decl -> const_assert_statement ';' · : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_decl -> const_assert_statement ';' · : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #104
-global_decl -> type_alias_decl ';' · : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_decl -> type_alias_decl ';' · : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #105
-global_decl -> global_constant_decl ';' · : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_decl -> global_constant_decl ';' · : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #106
-global_decl -> global_variable_decl ';' · : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_decl -> global_variable_decl ';' · : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #107
 translation_unit/0.1/0 -> global_decl translation_unit/0.1/0 · : {EndOfText}
 
 #108
-global_directive -> 'enable' extension_name ';' · : {';' '@' 'const' 'const_assert' 'enable' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_directive -> 'enable' extension_name ';' · : {';' '@' 'alias' 'const' 'const_assert' 'enable' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #109
 variable_decl -> 'var' variable_decl/0.1 · optionally_typed_ident : {'='}
@@ -1404,17 +1403,17 @@ global_constant_decl -> global_constant_decl/1.0 'override' optionally_typed_ide
 global_constant_decl/1.3 -> · '=' expression : {}
 
 #118
-type_alias_decl -> 'type' ident '=' · type_specifier : {}
+type_alias_decl -> 'alias' ident '=' · type_specifier : {}
 ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {}
 type_specifier -> · ident '::' '<' additive_expression callable_type/2.4 callable_type/2.5 '>' : {}
 type_specifier -> · ident '<' additive_expression callable_type/1.3 callable_type/1.4 '>' : {}
 type_specifier -> · ident : {}
 
 #119
-struct_decl -> 'struct' ident struct_body_decl · : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+struct_decl -> 'struct' ident struct_body_decl · : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #120
-struct_body_decl -> '{' · struct_member struct_body_decl/0.2 struct_body_decl/0.3 '}' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+struct_body_decl -> '{' · struct_member struct_body_decl/0.2 struct_body_decl/0.3 '}' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 attribute -> · '@' 'align' '(' expression attrib_end : {'@'}
 attribute -> · '@' 'binding' '(' expression attrib_end : {'@'}
 attribute -> · '@' 'builtin' '(' builtin_value_name attrib_end : {'@'}
@@ -1440,10 +1439,10 @@ struct_member/0.0/0 -> · attribute struct_member/0.0/0 : {}
 function_header -> 'fn' ident · '(' function_header/0.3 ')' function_header/0.5 : {'{'}
 
 #122
-function_decl -> function_decl/0.0 function_header compound_statement · : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+function_decl -> function_decl/0.0 function_header compound_statement · : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #123
-compound_statement -> '{' · compound_statement/0.1 '}' : {'&' '(' '*' ';' '@' '_' 'break' 'case' 'const' 'const_assert' 'continue' 'continuing' 'default' 'discard' 'else' 'fn' 'for' 'if' 'let' 'loop' 'override' 'return' 'struct' 'switch' 'type' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ EndOfText}
+compound_statement -> '{' · compound_statement/0.1 '}' : {'&' '(' '*' ';' '@' '_' 'alias' 'break' 'case' 'const' 'const_assert' 'continue' 'continuing' 'default' 'discard' 'else' 'fn' 'for' 'if' 'let' 'loop' 'override' 'return' 'struct' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ EndOfText}
 assignment_statement -> · '_' '=' expression : {}
 assignment_statement -> · lhs_expression assignment_statement/0.1 expression : {}
 break_statement -> · 'break' : {}
@@ -3128,7 +3127,7 @@ unary_expression -> · singular_expression : {'%' '*' '+' ',' '-' '/'}
 paren_expression -> '(' expression ')' · : {'%' ')' '*' '+' ',' '-' '.' '/' ':' '[' '{'}
 
 #224
-compound_statement -> '{' compound_statement/0.1 · '}' : {'&' '(' '*' ';' '@' '_' 'break' 'case' 'const' 'const_assert' 'continue' 'continuing' 'default' 'discard' 'else' 'fn' 'for' 'if' 'let' 'loop' 'override' 'return' 'struct' 'switch' 'type' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ EndOfText}
+compound_statement -> '{' compound_statement/0.1 · '}' : {'&' '(' '*' ';' '@' '_' 'alias' 'break' 'case' 'const' 'const_assert' 'continue' 'continuing' 'default' 'discard' 'else' 'fn' 'for' 'if' 'let' 'loop' 'override' 'return' 'struct' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ EndOfText}
 
 #225
 compound_statement/0.1 -> compound_statement/0.1/0 · : {}
@@ -3640,7 +3639,7 @@ param/0.0/0 -> · attribute param/0.0/0 : {}
 param_list -> · param param_list/0.1 param_list/0.2 : {}
 
 #266
-struct_body_decl -> '{' struct_member · struct_body_decl/0.2 struct_body_decl/0.3 '}' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+struct_body_decl -> '{' struct_member · struct_body_decl/0.2 struct_body_decl/0.3 '}' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 struct_body_decl/0.2 -> · struct_body_decl/0.2/0 : {','}
 struct_body_decl/0.2/0 -> · struct_body_decl/0.2/0/0.0 struct_body_decl/0.2/0 : {','}
 struct_body_decl/0.2/0/0.0 -> · ',' struct_member : {','}
@@ -3674,7 +3673,7 @@ attribute -> · '@' 'workgroup_size' '(' expression attrib_end : {'@'}
 struct_member/0.0/0 -> · attribute struct_member/0.0/0 : {}
 
 #270
-type_alias_decl -> 'type' ident '=' type_specifier · : {}
+type_alias_decl -> 'alias' ident '=' type_specifier · : {}
 
 #271
 type_specifier -> ident · '::' '<' additive_expression callable_type/2.4 callable_type/2.5 '>' : {',' '=' '{'}
@@ -3850,7 +3849,7 @@ struct_member/0.0/0 -> attribute struct_member/0.0/0 · : {}
 struct_member -> struct_member/0.0 member_ident · ':' type_specifier : {','}
 
 #291
-struct_body_decl -> '{' struct_member struct_body_decl/0.2 · struct_body_decl/0.3 '}' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+struct_body_decl -> '{' struct_member struct_body_decl/0.2 · struct_body_decl/0.3 '}' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 struct_body_decl/0.3 -> · ',' : {}
 
 #292
@@ -4345,7 +4344,7 @@ statement -> return_statement ';' · : {'&' '(' '*' ';' '_' 'break' 'const' 'con
 compound_statement/0.1/0 -> statement compound_statement/0.1/0 · : {}
 
 #347
-compound_statement -> '{' compound_statement/0.1 '}' · : {'&' '(' '*' ';' '@' '_' 'break' 'case' 'const' 'const_assert' 'continue' 'continuing' 'default' 'discard' 'else' 'fn' 'for' 'if' 'let' 'loop' 'override' 'return' 'struct' 'switch' 'type' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ EndOfText}
+compound_statement -> '{' compound_statement/0.1 '}' · : {'&' '(' '*' ';' '@' '_' 'alias' 'break' 'case' 'const' 'const_assert' 'continue' 'continuing' 'default' 'discard' 'else' 'fn' 'for' 'if' 'let' 'loop' 'override' 'return' 'struct' 'switch' 'var' 'while' '{' /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ EndOfText}
 
 #348
 additive_expression -> additive_expression · additive_operator multiplicative_expression : {'+' ',' '-'}
@@ -5047,7 +5046,7 @@ struct_body_decl/0.2/0/0.0 -> ',' struct_member · : {','}
 struct_body_decl/0.2/0 -> struct_body_decl/0.2/0/0.0 struct_body_decl/0.2/0 · : {','}
 
 #420
-struct_body_decl -> '{' struct_member struct_body_decl/0.2 struct_body_decl/0.3 · '}' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+struct_body_decl -> '{' struct_member struct_body_decl/0.2 struct_body_decl/0.3 · '}' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #421
 struct_body_decl/0.3 -> ',' · : {}
@@ -5194,7 +5193,7 @@ callable_type/2.4/0/0.0 -> · ',' additive_expression : {','}
 struct_member -> struct_member/0.0 member_ident ':' type_specifier · : {','}
 
 #436
-struct_body_decl -> '{' struct_member struct_body_decl/0.2 struct_body_decl/0.3 '}' · : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+struct_body_decl -> '{' struct_member struct_body_decl/0.2 struct_body_decl/0.3 '}' · : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #437
 function_header -> 'fn' ident '(' function_header/0.3 ')' function_header/0.5 · : {'{'}
@@ -6304,18 +6303,18 @@ r#231 type_specifier -> ident '::' '<' additive_expression callable_type/2.4 cal
 [#1 EndOfText]: acc
 [#2 ';']: s#12
 [#2 '@']: s#30
+[#2 'alias']: s#22
 [#2 'const']: s#20
 [#2 'const_assert']: s#25
 [#2 'struct']: s#23
-[#2 'type']: s#22
 [#3 ';']: r#0
 [#3 '@']: r#0
+[#3 'alias']: r#0
 [#3 'const']: r#0
 [#3 'const_assert']: r#0
 [#3 'fn']: r#0
 [#3 'override']: r#0
 [#3 'struct']: r#0
-[#3 'type']: r#0
 [#3 'var']: r#0
 [#3 EndOfText]: r#0
 [#4 'enable']: s#5
@@ -6323,30 +6322,30 @@ r#231 type_specifier -> ident '::' '<' additive_expression callable_type/2.4 cal
 [#6 ';']: s#108
 [#8 ';']: r#1
 [#8 '@']: r#1
+[#8 'alias']: r#1
 [#8 'const']: r#1
 [#8 'const_assert']: r#1
 [#8 'fn']: r#1
 [#8 'override']: r#1
 [#8 'struct']: r#1
-[#8 'type']: r#1
 [#8 'var']: r#1
 [#8 EndOfText]: r#1
 [#9 EndOfText]: r#2
 [#10 EndOfText]: r#3
 [#11 ';']: s#12
 [#11 '@']: s#30
+[#11 'alias']: s#22
 [#11 'const']: s#20
 [#11 'const_assert']: s#25
 [#11 'struct']: s#23
-[#11 'type']: s#22
 [#12 ';']: r#4
 [#12 '@']: r#4
+[#12 'alias']: r#4
 [#12 'const']: r#4
 [#12 'const_assert']: r#4
 [#12 'fn']: r#4
 [#12 'override']: r#4
 [#12 'struct']: r#4
-[#12 'type']: r#4
 [#12 'var']: r#4
 [#12 EndOfText]: r#4
 [#13 ';']: s#106
@@ -6354,22 +6353,22 @@ r#231 type_specifier -> ident '::' '<' additive_expression callable_type/2.4 cal
 [#15 ';']: s#104
 [#16 ';']: r#5
 [#16 '@']: r#5
+[#16 'alias']: r#5
 [#16 'const']: r#5
 [#16 'const_assert']: r#5
 [#16 'fn']: r#5
 [#16 'override']: r#5
 [#16 'struct']: r#5
-[#16 'type']: r#5
 [#16 'var']: r#5
 [#16 EndOfText]: r#5
 [#17 ';']: r#6
 [#17 '@']: r#6
+[#17 'alias']: r#6
 [#17 'const']: r#6
 [#17 'const_assert']: r#6
 [#17 'fn']: r#6
 [#17 'override']: r#6
 [#17 'struct']: r#6
-[#17 'type']: r#6
 [#17 'var']: r#6
 [#17 EndOfText]: r#6
 [#18 ';']: s#103
@@ -6934,54 +6933,54 @@ r#231 type_specifier -> ident '::' '<' additive_expression callable_type/2.4 cal
 [#102 '<']: s#111
 [#103 ';']: r#49
 [#103 '@']: r#49
+[#103 'alias']: r#49
 [#103 'const']: r#49
 [#103 'const_assert']: r#49
 [#103 'fn']: r#49
 [#103 'override']: r#49
 [#103 'struct']: r#49
-[#103 'type']: r#49
 [#103 'var']: r#49
 [#103 EndOfText]: r#49
 [#104 ';']: r#50
 [#104 '@']: r#50
+[#104 'alias']: r#50
 [#104 'const']: r#50
 [#104 'const_assert']: r#50
 [#104 'fn']: r#50
 [#104 'override']: r#50
 [#104 'struct']: r#50
-[#104 'type']: r#50
 [#104 'var']: r#50
 [#104 EndOfText]: r#50
 [#105 ';']: r#51
 [#105 '@']: r#51
+[#105 'alias']: r#51
 [#105 'const']: r#51
 [#105 'const_assert']: r#51
 [#105 'fn']: r#51
 [#105 'override']: r#51
 [#105 'struct']: r#51
-[#105 'type']: r#51
 [#105 'var']: r#51
 [#105 EndOfText]: r#51
 [#106 ';']: r#52
 [#106 '@']: r#52
+[#106 'alias']: r#52
 [#106 'const']: r#52
 [#106 'const_assert']: r#52
 [#106 'fn']: r#52
 [#106 'override']: r#52
 [#106 'struct']: r#52
-[#106 'type']: r#52
 [#106 'var']: r#52
 [#106 EndOfText]: r#52
 [#107 EndOfText]: r#53
 [#108 ';']: r#54
 [#108 '@']: r#54
+[#108 'alias']: r#54
 [#108 'const']: r#54
 [#108 'const_assert']: r#54
 [#108 'enable']: r#54
 [#108 'fn']: r#54
 [#108 'override']: r#54
 [#108 'struct']: r#54
-[#108 'type']: r#54
 [#108 'var']: r#54
 [#108 EndOfText]: r#54
 [#109 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
@@ -7037,24 +7036,24 @@ r#231 type_specifier -> ident '::' '<' additive_expression callable_type/2.4 cal
 [#118 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#76
 [#119 ';']: r#57
 [#119 '@']: r#57
+[#119 'alias']: r#57
 [#119 'const']: r#57
 [#119 'const_assert']: r#57
 [#119 'fn']: r#57
 [#119 'override']: r#57
 [#119 'struct']: r#57
-[#119 'type']: r#57
 [#119 'var']: r#57
 [#119 EndOfText]: r#57
 [#120 '@']: s#30
 [#121 '(']: s#265
 [#122 ';']: r#58
 [#122 '@']: r#58
+[#122 'alias']: r#58
 [#122 'const']: r#58
 [#122 'const_assert']: r#58
 [#122 'fn']: r#58
 [#122 'override']: r#58
 [#122 'struct']: r#58
-[#122 'type']: r#58
 [#122 'var']: r#58
 [#122 EndOfText]: r#58
 [#123 '&']: s#263
@@ -9089,6 +9088,7 @@ r#231 type_specifier -> ident '::' '<' additive_expression callable_type/2.4 cal
 [#347 ';']: r#154
 [#347 '@']: r#154
 [#347 '_']: r#154
+[#347 'alias']: r#154
 [#347 'break']: r#154
 [#347 'case']: r#154
 [#347 'const']: r#154
@@ -9107,7 +9107,6 @@ r#231 type_specifier -> ident '::' '<' additive_expression callable_type/2.4 cal
 [#347 'return']: r#154
 [#347 'struct']: r#154
 [#347 'switch']: r#154
-[#347 'type']: r#154
 [#347 'var']: r#154
 [#347 'while']: r#154
 [#347 '{']: r#154
@@ -9629,12 +9628,12 @@ r#231 type_specifier -> ident '::' '<' additive_expression callable_type/2.4 cal
 [#435 ',']: r#191
 [#436 ';']: r#192
 [#436 '@']: r#192
+[#436 'alias']: r#192
 [#436 'const']: r#192
 [#436 'const_assert']: r#192
 [#436 'fn']: r#192
 [#436 'override']: r#192
 [#436 'struct']: r#192
-[#436 'type']: r#192
 [#436 'var']: r#192
 [#436 EndOfText]: r#192
 [#437 '{']: r#193

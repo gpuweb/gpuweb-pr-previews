@@ -142,7 +142,7 @@ module.exports = grammar({
             token('texture_depth_cube_array'),
             token('texture_depth_multisampled_2d')
         ),
-        type_alias_decl: $ => seq(token('type'), $.ident, token('='), $.type_specifier),
+        type_alias_decl: $ => seq(token('alias'), $.ident, token('='), $.type_specifier),
         type_specifier: $ => $.callable_type,
         type_specifier_without_ident: $ => choice(
             token('bool'),
@@ -576,6 +576,7 @@ module.exports = grammar({
             token('throw'),
             token('trait'),
             token('try'),
+            token('type'),
             token('typedef'),
             token('typeid'),
             token('typename'),
@@ -597,7 +598,7 @@ module.exports = grammar({
             token('yield')
         ),
         ident: $ => $.ident_pattern_token,
-        _comment: $ => seq(token('//'), token(/.*/)),
+        _comment: $ => token('//.*'),
         _blankspace: $ => token(/[\u0020\u0009\u000a\u000b\u000c\u000d\u0085\u200e\u200f\u2028\u2029]/uy)
     },
 });
