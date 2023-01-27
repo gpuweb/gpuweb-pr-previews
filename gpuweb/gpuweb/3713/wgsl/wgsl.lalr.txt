@@ -1,8 +1,7 @@
 =Grammar:
 
 _blankspace:/[\u0020\u0009\u000a\u000b\u000c\u000d\u0085\u200e\u200f\u2028\u2029]/
-_comment:
-   '//' /.*/
+_comment:'//.*'
 access_mode:
    'read'
  | 'read_write'
@@ -385,7 +384,7 @@ texture_and_sampler_types:
 translation_unit:
    global_directive * ? global_decl * ?
 type_alias_decl:
-   'type' ident '=' type_specifier
+   'alias' ident '=' type_specifier
 type_specifier:
    ident
  | type_specifier_without_ident
@@ -430,13 +429,13 @@ while_statement:
 =LALR1 item sets:
 #0
 language -> · translation_unit EndOfText : {EndOfText}
-diagnostic_directive -> · 'diagnostic' diagnostic_control ';' : {';' '@' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-enable_directive -> · 'enable' extension_name ';' : {';' '@' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_directive -> · diagnostic_directive : {';' '@' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_directive -> · enable_directive : {';' '@' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+diagnostic_directive -> · 'diagnostic' diagnostic_control ';' : {';' '@' 'alias' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'var' EndOfText}
+enable_directive -> · 'enable' extension_name ';' : {';' '@' 'alias' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'var' EndOfText}
+global_directive -> · diagnostic_directive : {';' '@' 'alias' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'var' EndOfText}
+global_directive -> · enable_directive : {';' '@' 'alias' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'var' EndOfText}
 translation_unit -> · translation_unit/0.0 translation_unit/0.1 : {EndOfText}
-translation_unit/0.0 -> · translation_unit/0.0/0 : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-translation_unit/0.0/0 -> · global_directive translation_unit/0.0/0 : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+translation_unit/0.0 -> · translation_unit/0.0/0 : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+translation_unit/0.0/0 -> · global_directive translation_unit/0.0/0 : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #1
 language -> translation_unit · EndOfText : {EndOfText}
@@ -462,61 +461,61 @@ attribute -> · '@' 'workgroup_size' '(' expression ',' expression ',' expressio
 attribute -> · '@' 'workgroup_size' '(' expression ',' expression attrib_end : {'@' 'fn' 'var'}
 attribute -> · '@' 'workgroup_size' '(' expression attrib_end : {'@' 'fn' 'var'}
 const_assert_statement -> · 'const_assert' expression : {}
-function_decl -> · function_decl/0.0 function_header compound_statement : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+function_decl -> · function_decl/0.0 function_header compound_statement : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 function_decl/0.0 -> · function_decl/0.0/0 : {'fn'}
 function_decl/0.0/0 -> · attribute function_decl/0.0/0 : {'fn'}
 global_constant_decl -> · 'const' optionally_typed_ident '=' expression : {}
 global_constant_decl -> · global_constant_decl/1.0 'override' optionally_typed_ident global_constant_decl/1.3 : {}
 global_constant_decl/1.0 -> · global_constant_decl/1.0/0 : {}
 global_constant_decl/1.0/0 -> · attribute global_constant_decl/1.0/0 : {}
-global_decl -> · ';' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_decl -> · const_assert_statement ';' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_decl -> · function_decl : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_decl -> · global_constant_decl ';' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_decl -> · global_variable_decl ';' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_decl -> · struct_decl : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_decl -> · type_alias_decl ';' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_decl -> · ';' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+global_decl -> · const_assert_statement ';' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+global_decl -> · function_decl : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+global_decl -> · global_constant_decl ';' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+global_decl -> · global_variable_decl ';' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+global_decl -> · struct_decl : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+global_decl -> · type_alias_decl ';' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 global_variable_decl -> · global_variable_decl/0.0 variable_decl global_variable_decl/0.2 : {}
 global_variable_decl/0.0 -> · global_variable_decl/0.0/0 : {'var'}
 global_variable_decl/0.0/0 -> · attribute global_variable_decl/0.0/0 : {'var'}
-struct_decl -> · 'struct' ident struct_body_decl : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+struct_decl -> · 'struct' ident struct_body_decl : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 translation_unit/0.1 -> · translation_unit/0.1/0 : {EndOfText}
 translation_unit/0.1/0 -> · global_decl translation_unit/0.1/0 : {EndOfText}
-type_alias_decl -> · 'type' ident '=' type_specifier : {}
+type_alias_decl -> · 'alias' ident '=' type_specifier : {}
 
 #3
-translation_unit/0.0 -> translation_unit/0.0/0 · : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+translation_unit/0.0 -> translation_unit/0.0/0 · : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #4
-translation_unit/0.0/0 -> global_directive · translation_unit/0.0/0 : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-diagnostic_directive -> · 'diagnostic' diagnostic_control ';' : {';' '@' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-enable_directive -> · 'enable' extension_name ';' : {';' '@' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_directive -> · diagnostic_directive : {';' '@' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_directive -> · enable_directive : {';' '@' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-translation_unit/0.0/0 -> · global_directive translation_unit/0.0/0 : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+translation_unit/0.0/0 -> global_directive · translation_unit/0.0/0 : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+diagnostic_directive -> · 'diagnostic' diagnostic_control ';' : {';' '@' 'alias' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'var' EndOfText}
+enable_directive -> · 'enable' extension_name ';' : {';' '@' 'alias' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'var' EndOfText}
+global_directive -> · diagnostic_directive : {';' '@' 'alias' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'var' EndOfText}
+global_directive -> · enable_directive : {';' '@' 'alias' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'var' EndOfText}
+translation_unit/0.0/0 -> · global_directive translation_unit/0.0/0 : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #5
-global_directive -> diagnostic_directive · : {';' '@' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_directive -> diagnostic_directive · : {';' '@' 'alias' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #6
-global_directive -> enable_directive · : {';' '@' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_directive -> enable_directive · : {';' '@' 'alias' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #7
-diagnostic_directive -> 'diagnostic' · diagnostic_control ';' : {';' '@' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+diagnostic_directive -> 'diagnostic' · diagnostic_control ';' : {';' '@' 'alias' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'var' EndOfText}
 diagnostic_control -> · '(' severity_control_name ',' diagnostic_rule_name attrib_end : {}
 
 #8
-enable_directive -> 'enable' · extension_name ';' : {';' '@' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+enable_directive -> 'enable' · extension_name ';' : {';' '@' 'alias' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'var' EndOfText}
 extension_name -> · 'f16' : {}
 
 #9
-enable_directive -> 'enable' extension_name · ';' : {';' '@' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+enable_directive -> 'enable' extension_name · ';' : {';' '@' 'alias' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #10
 extension_name -> 'f16' · : {}
 
 #11
-diagnostic_directive -> 'diagnostic' diagnostic_control · ';' : {';' '@' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+diagnostic_directive -> 'diagnostic' diagnostic_control · ';' : {';' '@' 'alias' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #12
 diagnostic_control -> '(' · severity_control_name ',' diagnostic_rule_name attrib_end : {'@' 'array' 'atomic' 'bool' 'f16' 'f32' 'fn' 'i32' 'if' 'mat2x2' 'mat2x3' 'mat2x4' 'mat3x2' 'mat3x3' 'mat3x4' 'mat4x2' 'mat4x3' 'mat4x4' 'ptr' 'sampler' 'sampler_comparison' 'texture_1d' 'texture_2d' 'texture_2d_array' 'texture_3d' 'texture_cube' 'texture_cube_array' 'texture_depth_2d' 'texture_depth_2d_array' 'texture_depth_cube' 'texture_depth_cube_array' 'texture_depth_multisampled_2d' 'texture_multisampled_2d' 'texture_storage_1d' 'texture_storage_2d' 'texture_storage_2d_array' 'texture_storage_3d' 'u32' 'var' 'vec2' 'vec3' 'vec4'}
@@ -526,7 +525,7 @@ severity_control_name -> · 'off' : {}
 severity_control_name -> · 'warning' : {}
 
 #13
-translation_unit/0.0/0 -> global_directive translation_unit/0.0/0 · : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+translation_unit/0.0/0 -> global_directive translation_unit/0.0/0 · : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #14
 translation_unit -> translation_unit/0.0 translation_unit/0.1 · : {EndOfText}
@@ -555,47 +554,47 @@ attribute -> · '@' 'workgroup_size' '(' expression ',' expression ',' expressio
 attribute -> · '@' 'workgroup_size' '(' expression ',' expression attrib_end : {'@' 'fn' 'var'}
 attribute -> · '@' 'workgroup_size' '(' expression attrib_end : {'@' 'fn' 'var'}
 const_assert_statement -> · 'const_assert' expression : {}
-function_decl -> · function_decl/0.0 function_header compound_statement : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+function_decl -> · function_decl/0.0 function_header compound_statement : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 function_decl/0.0 -> · function_decl/0.0/0 : {'fn'}
 function_decl/0.0/0 -> · attribute function_decl/0.0/0 : {'fn'}
 global_constant_decl -> · 'const' optionally_typed_ident '=' expression : {}
 global_constant_decl -> · global_constant_decl/1.0 'override' optionally_typed_ident global_constant_decl/1.3 : {}
 global_constant_decl/1.0 -> · global_constant_decl/1.0/0 : {}
 global_constant_decl/1.0/0 -> · attribute global_constant_decl/1.0/0 : {}
-global_decl -> · ';' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_decl -> · const_assert_statement ';' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_decl -> · function_decl : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_decl -> · global_constant_decl ';' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_decl -> · global_variable_decl ';' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_decl -> · struct_decl : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-global_decl -> · type_alias_decl ';' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_decl -> · ';' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+global_decl -> · const_assert_statement ';' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+global_decl -> · function_decl : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+global_decl -> · global_constant_decl ';' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+global_decl -> · global_variable_decl ';' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+global_decl -> · struct_decl : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+global_decl -> · type_alias_decl ';' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 global_variable_decl -> · global_variable_decl/0.0 variable_decl global_variable_decl/0.2 : {}
 global_variable_decl/0.0 -> · global_variable_decl/0.0/0 : {'var'}
 global_variable_decl/0.0/0 -> · attribute global_variable_decl/0.0/0 : {'var'}
-struct_decl -> · 'struct' ident struct_body_decl : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+struct_decl -> · 'struct' ident struct_body_decl : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 translation_unit/0.1/0 -> · global_decl translation_unit/0.1/0 : {EndOfText}
-type_alias_decl -> · 'type' ident '=' type_specifier : {}
+type_alias_decl -> · 'alias' ident '=' type_specifier : {}
 
 #17
-global_decl -> ';' · : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_decl -> ';' · : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #18
-global_decl -> global_variable_decl · ';' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_decl -> global_variable_decl · ';' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #19
-global_decl -> global_constant_decl · ';' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_decl -> global_constant_decl · ';' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #20
-global_decl -> type_alias_decl · ';' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_decl -> type_alias_decl · ';' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #21
-global_decl -> struct_decl · : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_decl -> struct_decl · : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #22
-global_decl -> function_decl · : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_decl -> function_decl · : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #23
-global_decl -> const_assert_statement · ';' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_decl -> const_assert_statement · ';' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #24
 global_variable_decl -> global_variable_decl/0.0 · variable_decl global_variable_decl/0.2 : {}
@@ -610,15 +609,15 @@ optionally_typed_ident -> · ident optionally_typed_ident/0.1 : {}
 global_constant_decl -> global_constant_decl/1.0 · 'override' optionally_typed_ident global_constant_decl/1.3 : {}
 
 #27
-type_alias_decl -> 'type' · ident '=' type_specifier : {}
+type_alias_decl -> 'alias' · ident '=' type_specifier : {}
 ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {}
 
 #28
-struct_decl -> 'struct' · ident struct_body_decl : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+struct_decl -> 'struct' · ident struct_body_decl : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {'{'}
 
 #29
-function_decl -> function_decl/0.0 · function_header compound_statement : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+function_decl -> function_decl/0.0 · function_header compound_statement : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 function_header -> · 'fn' ident '(' function_header/0.3 ')' function_header/0.5 : {'@' '{'}
 
 #30
@@ -1728,7 +1727,7 @@ storage_texture_type -> 'texture_storage_2d_array' · : {}
 storage_texture_type -> 'texture_storage_3d' · : {}
 
 #149
-function_decl -> function_decl/0.0 function_header · compound_statement : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+function_decl -> function_decl/0.0 function_header · compound_statement : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 attribute -> · '@' 'align' '(' expression attrib_end : {'@'}
 attribute -> · '@' 'binding' '(' expression attrib_end : {'@'}
 attribute -> · '@' 'builtin' '(' builtin_value_name attrib_end : {'@'}
@@ -1747,7 +1746,7 @@ attribute -> · '@' 'vertex' : {'@'}
 attribute -> · '@' 'workgroup_size' '(' expression ',' expression ',' expression attrib_end : {'@'}
 attribute -> · '@' 'workgroup_size' '(' expression ',' expression attrib_end : {'@'}
 attribute -> · '@' 'workgroup_size' '(' expression attrib_end : {'@'}
-compound_statement -> · compound_statement/0.0 '{' compound_statement/0.2 '}' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+compound_statement -> · compound_statement/0.0 '{' compound_statement/0.2 '}' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 compound_statement/0.0 -> · compound_statement/0.0/0 : {}
 compound_statement/0.0/0 -> · attribute compound_statement/0.0/0 : {}
 
@@ -1756,11 +1755,11 @@ function_header -> 'fn' · ident '(' function_header/0.3 ')' function_header/0.5
 ident -> · /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/ : {}
 
 #151
-struct_decl -> 'struct' ident · struct_body_decl : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
-struct_body_decl -> · '{' struct_member struct_body_decl/0.2 struct_body_decl/0.3 '}' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+struct_decl -> 'struct' ident · struct_body_decl : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
+struct_body_decl -> · '{' struct_member struct_body_decl/0.2 struct_body_decl/0.3 '}' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #152
-type_alias_decl -> 'type' ident · '=' type_specifier : {}
+type_alias_decl -> 'alias' ident · '=' type_specifier : {}
 
 #153
 global_constant_decl -> global_constant_decl/1.0 'override' · optionally_typed_ident global_constant_decl/1.3 : {}
@@ -1784,16 +1783,16 @@ variable_decl/0.1 -> · variable_qualifier : {/([_\p{XID_Start}][\p{XID_Continue
 variable_qualifier -> · '<' address_space variable_qualifier/0.2 '>' : {/([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/}
 
 #158
-global_decl -> const_assert_statement ';' · : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_decl -> const_assert_statement ';' · : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #159
-global_decl -> type_alias_decl ';' · : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_decl -> type_alias_decl ';' · : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #160
-global_decl -> global_constant_decl ';' · : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_decl -> global_constant_decl ';' · : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #161
-global_decl -> global_variable_decl ';' · : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+global_decl -> global_variable_decl ';' · : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #162
 translation_unit/0.1/0 -> global_decl translation_unit/0.1/0 · : {EndOfText}
@@ -1814,10 +1813,10 @@ severity_control_name -> 'info' · : {}
 severity_control_name -> 'off' · : {}
 
 #168
-diagnostic_directive -> 'diagnostic' diagnostic_control ';' · : {';' '@' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+diagnostic_directive -> 'diagnostic' diagnostic_control ';' · : {';' '@' 'alias' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #169
-enable_directive -> 'enable' extension_name ';' · : {';' '@' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+enable_directive -> 'enable' extension_name ';' · : {';' '@' 'alias' 'const' 'const_assert' 'diagnostic' 'enable' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #170
 diagnostic_control -> '(' severity_control_name ',' · diagnostic_rule_name attrib_end : {'@' 'array' 'atomic' 'bool' 'f16' 'f32' 'fn' 'i32' 'if' 'mat2x2' 'mat2x3' 'mat2x4' 'mat3x2' 'mat3x3' 'mat3x4' 'mat4x2' 'mat4x3' 'mat4x4' 'ptr' 'sampler' 'sampler_comparison' 'texture_1d' 'texture_2d' 'texture_2d_array' 'texture_3d' 'texture_cube' 'texture_cube_array' 'texture_depth_2d' 'texture_depth_2d_array' 'texture_depth_cube' 'texture_depth_cube_array' 'texture_depth_multisampled_2d' 'texture_multisampled_2d' 'texture_storage_1d' 'texture_storage_2d' 'texture_storage_2d_array' 'texture_storage_3d' 'u32' 'var' 'vec2' 'vec3' 'vec4'}
@@ -2145,7 +2144,7 @@ global_constant_decl -> global_constant_decl/1.0 'override' optionally_typed_ide
 global_constant_decl/1.3 -> · '=' expression : {}
 
 #180
-type_alias_decl -> 'type' ident '=' · type_specifier : {}
+type_alias_decl -> 'alias' ident '=' · type_specifier : {}
 array_type_specifier -> · 'array' '<' type_specifier array_type_specifier/0.3 '>' : {}
 depth_texture_type -> · 'texture_depth_2d' : {}
 depth_texture_type -> · 'texture_depth_2d_array' : {}
@@ -2198,10 +2197,10 @@ vec_prefix -> · 'vec3' : {}
 vec_prefix -> · 'vec4' : {}
 
 #181
-struct_decl -> 'struct' ident struct_body_decl · : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+struct_decl -> 'struct' ident struct_body_decl · : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #182
-struct_body_decl -> '{' · struct_member struct_body_decl/0.2 struct_body_decl/0.3 '}' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+struct_body_decl -> '{' · struct_member struct_body_decl/0.2 struct_body_decl/0.3 '}' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 attribute -> · '@' 'align' '(' expression attrib_end : {'@'}
 attribute -> · '@' 'binding' '(' expression attrib_end : {'@'}
 attribute -> · '@' 'builtin' '(' builtin_value_name attrib_end : {'@'}
@@ -2228,10 +2227,10 @@ struct_member/0.0/0 -> · attribute struct_member/0.0/0 : {}
 function_header -> 'fn' ident · '(' function_header/0.3 ')' function_header/0.5 : {'@' '{'}
 
 #184
-function_decl -> function_decl/0.0 function_header compound_statement · : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+function_decl -> function_decl/0.0 function_header compound_statement · : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #185
-compound_statement -> compound_statement/0.0 · '{' compound_statement/0.2 '}' : {'&' '(' '*' ';' '@' '_' 'array' 'atomic' 'bool' 'break' 'case' 'const' 'const_assert' 'continue' 'continuing' 'default' 'discard' 'else' 'f16' 'f32' 'fn' 'for' 'i32' 'if' 'let' 'loop' 'mat2x2' 'mat2x3' 'mat2x4' 'mat3x2' 'mat3x3' 'mat3x4' 'mat4x2' 'mat4x3' 'mat4x4' 'override' 'ptr' 'return' 'sampler' 'sampler_comparison' 'struct' 'switch' 'texture_1d' 'texture_2d' 'texture_2d_array' 'texture_3d' 'texture_cube' 'texture_cube_array' 'texture_depth_2d' 'texture_depth_2d_array' 'texture_depth_cube' 'texture_depth_cube_array' 'texture_depth_multisampled_2d' 'texture_multisampled_2d' 'texture_storage_1d' 'texture_storage_2d' 'texture_storage_2d_array' 'texture_storage_3d' 'type' 'u32' 'var' 'vec2' 'vec3' 'vec4' 'while' '{' EndOfText}
+compound_statement -> compound_statement/0.0 · '{' compound_statement/0.2 '}' : {'&' '(' '*' ';' '@' '_' 'alias' 'array' 'atomic' 'bool' 'break' 'case' 'const' 'const_assert' 'continue' 'continuing' 'default' 'discard' 'else' 'f16' 'f32' 'fn' 'for' 'i32' 'if' 'let' 'loop' 'mat2x2' 'mat2x3' 'mat2x4' 'mat3x2' 'mat3x3' 'mat3x4' 'mat4x2' 'mat4x3' 'mat4x4' 'override' 'ptr' 'return' 'sampler' 'sampler_comparison' 'struct' 'switch' 'texture_1d' 'texture_2d' 'texture_2d_array' 'texture_3d' 'texture_cube' 'texture_cube_array' 'texture_depth_2d' 'texture_depth_2d_array' 'texture_depth_cube' 'texture_depth_cube_array' 'texture_depth_multisampled_2d' 'texture_multisampled_2d' 'texture_storage_1d' 'texture_storage_2d' 'texture_storage_2d_array' 'texture_storage_3d' 'u32' 'var' 'vec2' 'vec3' 'vec4' 'while' '{' EndOfText}
 
 #186
 compound_statement/0.0 -> compound_statement/0.0/0 · : {}
@@ -5584,7 +5583,7 @@ texel_format -> 'bgra8unorm' · : {}
 compound_statement/0.0/0 -> attribute compound_statement/0.0/0 · : {}
 
 #333
-compound_statement -> compound_statement/0.0 '{' · compound_statement/0.2 '}' : {'&' '(' '*' ';' '@' '_' 'array' 'atomic' 'bool' 'break' 'case' 'const' 'const_assert' 'continue' 'continuing' 'default' 'discard' 'else' 'f16' 'f32' 'fn' 'for' 'i32' 'if' 'let' 'loop' 'mat2x2' 'mat2x3' 'mat2x4' 'mat3x2' 'mat3x3' 'mat3x4' 'mat4x2' 'mat4x3' 'mat4x4' 'override' 'ptr' 'return' 'sampler' 'sampler_comparison' 'struct' 'switch' 'texture_1d' 'texture_2d' 'texture_2d_array' 'texture_3d' 'texture_cube' 'texture_cube_array' 'texture_depth_2d' 'texture_depth_2d_array' 'texture_depth_cube' 'texture_depth_cube_array' 'texture_depth_multisampled_2d' 'texture_multisampled_2d' 'texture_storage_1d' 'texture_storage_2d' 'texture_storage_2d_array' 'texture_storage_3d' 'type' 'u32' 'var' 'vec2' 'vec3' 'vec4' 'while' '{' EndOfText}
+compound_statement -> compound_statement/0.0 '{' · compound_statement/0.2 '}' : {'&' '(' '*' ';' '@' '_' 'alias' 'array' 'atomic' 'bool' 'break' 'case' 'const' 'const_assert' 'continue' 'continuing' 'default' 'discard' 'else' 'f16' 'f32' 'fn' 'for' 'i32' 'if' 'let' 'loop' 'mat2x2' 'mat2x3' 'mat2x4' 'mat3x2' 'mat3x3' 'mat3x4' 'mat4x2' 'mat4x3' 'mat4x4' 'override' 'ptr' 'return' 'sampler' 'sampler_comparison' 'struct' 'switch' 'texture_1d' 'texture_2d' 'texture_2d_array' 'texture_3d' 'texture_cube' 'texture_cube_array' 'texture_depth_2d' 'texture_depth_2d_array' 'texture_depth_cube' 'texture_depth_cube_array' 'texture_depth_multisampled_2d' 'texture_multisampled_2d' 'texture_storage_1d' 'texture_storage_2d' 'texture_storage_2d_array' 'texture_storage_3d' 'u32' 'var' 'vec2' 'vec3' 'vec4' 'while' '{' EndOfText}
 array_type_specifier -> · 'array' '<' type_specifier array_type_specifier/0.3 '>' : {'('}
 assignment_statement -> · '_' '=' expression : {}
 assignment_statement -> · lhs_expression assignment_statement/0.1 expression : {}
@@ -5741,7 +5740,7 @@ param/0.0/0 -> · attribute param/0.0/0 : {}
 param_list -> · param param_list/0.1 param_list/0.2 : {}
 
 #335
-struct_body_decl -> '{' struct_member · struct_body_decl/0.2 struct_body_decl/0.3 '}' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+struct_body_decl -> '{' struct_member · struct_body_decl/0.2 struct_body_decl/0.3 '}' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 struct_body_decl/0.2 -> · struct_body_decl/0.2/0 : {','}
 struct_body_decl/0.2/0 -> · struct_body_decl/0.2/0/0.0 struct_body_decl/0.2/0 : {','}
 struct_body_decl/0.2/0/0.0 -> · ',' struct_member : {','}
@@ -5776,7 +5775,7 @@ attribute -> · '@' 'workgroup_size' '(' expression attrib_end : {'@'}
 struct_member/0.0/0 -> · attribute struct_member/0.0/0 : {}
 
 #339
-type_alias_decl -> 'type' ident '=' type_specifier · : {}
+type_alias_decl -> 'alias' ident '=' type_specifier · : {}
 
 #340
 global_constant_decl -> global_constant_decl/1.0 'override' optionally_typed_ident global_constant_decl/1.3 · : {}
@@ -5954,7 +5953,7 @@ struct_member/0.0/0 -> attribute struct_member/0.0/0 · : {}
 struct_member -> struct_member/0.0 member_ident · ':' type_specifier : {','}
 
 #357
-struct_body_decl -> '{' struct_member struct_body_decl/0.2 · struct_body_decl/0.3 '}' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+struct_body_decl -> '{' struct_member struct_body_decl/0.2 · struct_body_decl/0.3 '}' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 struct_body_decl/0.3 -> · ',' : {}
 
 #358
@@ -6031,7 +6030,7 @@ attribute -> · '@' 'workgroup_size' '(' expression attrib_end : {'@'}
 param/0.0/0 -> · attribute param/0.0/0 : {}
 
 #367
-compound_statement -> compound_statement/0.0 '{' compound_statement/0.2 · '}' : {'&' '(' '*' ';' '@' '_' 'array' 'atomic' 'bool' 'break' 'case' 'const' 'const_assert' 'continue' 'continuing' 'default' 'discard' 'else' 'f16' 'f32' 'fn' 'for' 'i32' 'if' 'let' 'loop' 'mat2x2' 'mat2x3' 'mat2x4' 'mat3x2' 'mat3x3' 'mat3x4' 'mat4x2' 'mat4x3' 'mat4x4' 'override' 'ptr' 'return' 'sampler' 'sampler_comparison' 'struct' 'switch' 'texture_1d' 'texture_2d' 'texture_2d_array' 'texture_3d' 'texture_cube' 'texture_cube_array' 'texture_depth_2d' 'texture_depth_2d_array' 'texture_depth_cube' 'texture_depth_cube_array' 'texture_depth_multisampled_2d' 'texture_multisampled_2d' 'texture_storage_1d' 'texture_storage_2d' 'texture_storage_2d_array' 'texture_storage_3d' 'type' 'u32' 'var' 'vec2' 'vec3' 'vec4' 'while' '{' EndOfText}
+compound_statement -> compound_statement/0.0 '{' compound_statement/0.2 · '}' : {'&' '(' '*' ';' '@' '_' 'alias' 'array' 'atomic' 'bool' 'break' 'case' 'const' 'const_assert' 'continue' 'continuing' 'default' 'discard' 'else' 'f16' 'f32' 'fn' 'for' 'i32' 'if' 'let' 'loop' 'mat2x2' 'mat2x3' 'mat2x4' 'mat3x2' 'mat3x3' 'mat3x4' 'mat4x2' 'mat4x3' 'mat4x4' 'override' 'ptr' 'return' 'sampler' 'sampler_comparison' 'struct' 'switch' 'texture_1d' 'texture_2d' 'texture_2d_array' 'texture_3d' 'texture_cube' 'texture_cube_array' 'texture_depth_2d' 'texture_depth_2d_array' 'texture_depth_cube' 'texture_depth_cube_array' 'texture_depth_multisampled_2d' 'texture_multisampled_2d' 'texture_storage_1d' 'texture_storage_2d' 'texture_storage_2d_array' 'texture_storage_3d' 'u32' 'var' 'vec2' 'vec3' 'vec4' 'while' '{' EndOfText}
 
 #368
 compound_statement/0.2 -> compound_statement/0.2/0 · : {}
@@ -7939,7 +7938,7 @@ statement -> return_statement ';' · : {'&' '(' '*' ';' '@' '_' 'array' 'atomic'
 compound_statement/0.2/0 -> statement compound_statement/0.2/0 · : {}
 
 #514
-compound_statement -> compound_statement/0.0 '{' compound_statement/0.2 '}' · : {'&' '(' '*' ';' '@' '_' 'array' 'atomic' 'bool' 'break' 'case' 'const' 'const_assert' 'continue' 'continuing' 'default' 'discard' 'else' 'f16' 'f32' 'fn' 'for' 'i32' 'if' 'let' 'loop' 'mat2x2' 'mat2x3' 'mat2x4' 'mat3x2' 'mat3x3' 'mat3x4' 'mat4x2' 'mat4x3' 'mat4x4' 'override' 'ptr' 'return' 'sampler' 'sampler_comparison' 'struct' 'switch' 'texture_1d' 'texture_2d' 'texture_2d_array' 'texture_3d' 'texture_cube' 'texture_cube_array' 'texture_depth_2d' 'texture_depth_2d_array' 'texture_depth_cube' 'texture_depth_cube_array' 'texture_depth_multisampled_2d' 'texture_multisampled_2d' 'texture_storage_1d' 'texture_storage_2d' 'texture_storage_2d_array' 'texture_storage_3d' 'type' 'u32' 'var' 'vec2' 'vec3' 'vec4' 'while' '{' EndOfText}
+compound_statement -> compound_statement/0.0 '{' compound_statement/0.2 '}' · : {'&' '(' '*' ';' '@' '_' 'alias' 'array' 'atomic' 'bool' 'break' 'case' 'const' 'const_assert' 'continue' 'continuing' 'default' 'discard' 'else' 'f16' 'f32' 'fn' 'for' 'i32' 'if' 'let' 'loop' 'mat2x2' 'mat2x3' 'mat2x4' 'mat3x2' 'mat3x3' 'mat3x4' 'mat4x2' 'mat4x3' 'mat4x4' 'override' 'ptr' 'return' 'sampler' 'sampler_comparison' 'struct' 'switch' 'texture_1d' 'texture_2d' 'texture_2d_array' 'texture_3d' 'texture_cube' 'texture_cube_array' 'texture_depth_2d' 'texture_depth_2d_array' 'texture_depth_cube' 'texture_depth_cube_array' 'texture_depth_multisampled_2d' 'texture_multisampled_2d' 'texture_storage_1d' 'texture_storage_2d' 'texture_storage_2d_array' 'texture_storage_3d' 'u32' 'var' 'vec2' 'vec3' 'vec4' 'while' '{' EndOfText}
 
 #515
 param/0.0/0 -> attribute param/0.0/0 · : {}
@@ -7994,7 +7993,7 @@ struct_body_decl/0.2/0/0.0 -> ',' struct_member · : {','}
 struct_body_decl/0.2/0 -> struct_body_decl/0.2/0/0.0 struct_body_decl/0.2/0 · : {','}
 
 #524
-struct_body_decl -> '{' struct_member struct_body_decl/0.2 struct_body_decl/0.3 · '}' : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+struct_body_decl -> '{' struct_member struct_body_decl/0.2 struct_body_decl/0.3 · '}' : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #525
 struct_body_decl/0.3 -> ',' · : {}
@@ -8065,7 +8064,7 @@ attrib_end -> attrib_end/0.0 ')' · : {'@' 'array' 'atomic' 'bool' 'f16' 'f32' '
 struct_member -> struct_member/0.0 member_ident ':' type_specifier · : {','}
 
 #531
-struct_body_decl -> '{' struct_member struct_body_decl/0.2 struct_body_decl/0.3 '}' · : {';' '@' 'const' 'const_assert' 'fn' 'override' 'struct' 'type' 'var' EndOfText}
+struct_body_decl -> '{' struct_member struct_body_decl/0.2 struct_body_decl/0.3 '}' · : {';' '@' 'alias' 'const' 'const_assert' 'fn' 'override' 'struct' 'var' EndOfText}
 
 #532
 function_header -> 'fn' ident '(' function_header/0.3 ')' function_header/0.5 · : {'@' '{'}
@@ -10756,24 +10755,25 @@ r#272 continuing_compound_statement/0.2/0 -> statement continuing_compound_state
 [#1 EndOfText]: acc
 [#2 ';']: s#17
 [#2 '@']: s#35
+[#2 'alias']: s#27
 [#2 'const']: s#25
 [#2 'const_assert']: s#30
 [#2 'struct']: s#28
-[#2 'type']: s#27
 [#3 ';']: r#0
 [#3 '@']: r#0
+[#3 'alias']: r#0
 [#3 'const']: r#0
 [#3 'const_assert']: r#0
 [#3 'fn']: r#0
 [#3 'override']: r#0
 [#3 'struct']: r#0
-[#3 'type']: r#0
 [#3 'var']: r#0
 [#3 EndOfText]: r#0
 [#4 'diagnostic']: s#7
 [#4 'enable']: s#8
 [#5 ';']: r#1
 [#5 '@']: r#1
+[#5 'alias']: r#1
 [#5 'const']: r#1
 [#5 'const_assert']: r#1
 [#5 'diagnostic']: r#1
@@ -10781,11 +10781,11 @@ r#272 continuing_compound_statement/0.2/0 -> statement continuing_compound_state
 [#5 'fn']: r#1
 [#5 'override']: r#1
 [#5 'struct']: r#1
-[#5 'type']: r#1
 [#5 'var']: r#1
 [#5 EndOfText]: r#1
 [#6 ';']: r#2
 [#6 '@']: r#2
+[#6 'alias']: r#2
 [#6 'const']: r#2
 [#6 'const_assert']: r#2
 [#6 'diagnostic']: r#2
@@ -10793,7 +10793,6 @@ r#272 continuing_compound_statement/0.2/0 -> statement continuing_compound_state
 [#6 'fn']: r#2
 [#6 'override']: r#2
 [#6 'struct']: r#2
-[#6 'type']: r#2
 [#6 'var']: r#2
 [#6 EndOfText]: r#2
 [#7 '(']: s#12
@@ -10806,30 +10805,30 @@ r#272 continuing_compound_statement/0.2/0 -> statement continuing_compound_state
 [#12 'warning']: s#165
 [#13 ';']: r#3
 [#13 '@']: r#3
+[#13 'alias']: r#3
 [#13 'const']: r#3
 [#13 'const_assert']: r#3
 [#13 'fn']: r#3
 [#13 'override']: r#3
 [#13 'struct']: r#3
-[#13 'type']: r#3
 [#13 'var']: r#3
 [#13 EndOfText]: r#3
 [#14 EndOfText]: r#4
 [#15 EndOfText]: r#5
 [#16 ';']: s#17
 [#16 '@']: s#35
+[#16 'alias']: s#27
 [#16 'const']: s#25
 [#16 'const_assert']: s#30
 [#16 'struct']: s#28
-[#16 'type']: s#27
 [#17 ';']: r#6
 [#17 '@']: r#6
+[#17 'alias']: r#6
 [#17 'const']: r#6
 [#17 'const_assert']: r#6
 [#17 'fn']: r#6
 [#17 'override']: r#6
 [#17 'struct']: r#6
-[#17 'type']: r#6
 [#17 'var']: r#6
 [#17 EndOfText]: r#6
 [#18 ';']: s#161
@@ -10837,22 +10836,22 @@ r#272 continuing_compound_statement/0.2/0 -> statement continuing_compound_state
 [#20 ';']: s#159
 [#21 ';']: r#7
 [#21 '@']: r#7
+[#21 'alias']: r#7
 [#21 'const']: r#7
 [#21 'const_assert']: r#7
 [#21 'fn']: r#7
 [#21 'override']: r#7
 [#21 'struct']: r#7
-[#21 'type']: r#7
 [#21 'var']: r#7
 [#21 EndOfText]: r#7
 [#22 ';']: r#8
 [#22 '@']: r#8
+[#22 'alias']: r#8
 [#22 'const']: r#8
 [#22 'const_assert']: r#8
 [#22 'fn']: r#8
 [#22 'override']: r#8
 [#22 'struct']: r#8
-[#22 'type']: r#8
 [#22 'var']: r#8
 [#22 EndOfText]: r#8
 [#23 ';']: s#158
@@ -12012,48 +12011,49 @@ r#272 continuing_compound_statement/0.2/0 -> statement continuing_compound_state
 [#157 '<']: s#173
 [#158 ';']: r#83
 [#158 '@']: r#83
+[#158 'alias']: r#83
 [#158 'const']: r#83
 [#158 'const_assert']: r#83
 [#158 'fn']: r#83
 [#158 'override']: r#83
 [#158 'struct']: r#83
-[#158 'type']: r#83
 [#158 'var']: r#83
 [#158 EndOfText]: r#83
 [#159 ';']: r#84
 [#159 '@']: r#84
+[#159 'alias']: r#84
 [#159 'const']: r#84
 [#159 'const_assert']: r#84
 [#159 'fn']: r#84
 [#159 'override']: r#84
 [#159 'struct']: r#84
-[#159 'type']: r#84
 [#159 'var']: r#84
 [#159 EndOfText]: r#84
 [#160 ';']: r#85
 [#160 '@']: r#85
+[#160 'alias']: r#85
 [#160 'const']: r#85
 [#160 'const_assert']: r#85
 [#160 'fn']: r#85
 [#160 'override']: r#85
 [#160 'struct']: r#85
-[#160 'type']: r#85
 [#160 'var']: r#85
 [#160 EndOfText]: r#85
 [#161 ';']: r#86
 [#161 '@']: r#86
+[#161 'alias']: r#86
 [#161 'const']: r#86
 [#161 'const_assert']: r#86
 [#161 'fn']: r#86
 [#161 'override']: r#86
 [#161 'struct']: r#86
-[#161 'type']: r#86
 [#161 'var']: r#86
 [#161 EndOfText]: r#86
 [#162 EndOfText]: r#87
 [#163 ',']: s#170
 [#168 ';']: r#88
 [#168 '@']: r#88
+[#168 'alias']: r#88
 [#168 'const']: r#88
 [#168 'const_assert']: r#88
 [#168 'diagnostic']: r#88
@@ -12061,11 +12061,11 @@ r#272 continuing_compound_statement/0.2/0 -> statement continuing_compound_state
 [#168 'fn']: r#88
 [#168 'override']: r#88
 [#168 'struct']: r#88
-[#168 'type']: r#88
 [#168 'var']: r#88
 [#168 EndOfText]: r#88
 [#169 ';']: r#89
 [#169 '@']: r#89
+[#169 'alias']: r#89
 [#169 'const']: r#89
 [#169 'const_assert']: r#89
 [#169 'diagnostic']: r#89
@@ -12073,7 +12073,6 @@ r#272 continuing_compound_statement/0.2/0 -> statement continuing_compound_state
 [#169 'fn']: r#89
 [#169 'override']: r#89
 [#169 'struct']: r#89
-[#169 'type']: r#89
 [#169 'var']: r#89
 [#169 EndOfText]: r#89
 [#170 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#348
@@ -12284,24 +12283,24 @@ r#272 continuing_compound_statement/0.2/0 -> statement continuing_compound_state
 [#180 /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/]: s#78
 [#181 ';']: r#92
 [#181 '@']: r#92
+[#181 'alias']: r#92
 [#181 'const']: r#92
 [#181 'const_assert']: r#92
 [#181 'fn']: r#92
 [#181 'override']: r#92
 [#181 'struct']: r#92
-[#181 'type']: r#92
 [#181 'var']: r#92
 [#181 EndOfText]: r#92
 [#182 '@']: s#35
 [#183 '(']: s#334
 [#184 ';']: r#93
 [#184 '@']: r#93
+[#184 'alias']: r#93
 [#184 'const']: r#93
 [#184 'const_assert']: r#93
 [#184 'fn']: r#93
 [#184 'override']: r#93
 [#184 'struct']: r#93
-[#184 'type']: r#93
 [#184 'var']: r#93
 [#184 EndOfText]: r#93
 [#185 '{']: s#333
@@ -17370,6 +17369,7 @@ r#272 continuing_compound_statement/0.2/0 -> statement continuing_compound_state
 [#514 ';']: r#223
 [#514 '@']: r#223
 [#514 '_']: r#223
+[#514 'alias']: r#223
 [#514 'array']: r#223
 [#514 'atomic']: r#223
 [#514 'bool']: r#223
@@ -17422,7 +17422,6 @@ r#272 continuing_compound_statement/0.2/0 -> statement continuing_compound_state
 [#514 'texture_storage_2d']: r#223
 [#514 'texture_storage_2d_array']: r#223
 [#514 'texture_storage_3d']: r#223
-[#514 'type']: r#223
 [#514 'u32']: r#223
 [#514 'var']: r#223
 [#514 'vec2']: r#223
@@ -17525,12 +17524,12 @@ r#272 continuing_compound_statement/0.2/0 -> statement continuing_compound_state
 [#530 ',']: r#229
 [#531 ';']: r#230
 [#531 '@']: r#230
+[#531 'alias']: r#230
 [#531 'const']: r#230
 [#531 'const_assert']: r#230
 [#531 'fn']: r#230
 [#531 'override']: r#230
 [#531 'struct']: r#230
-[#531 'type']: r#230
 [#531 'var']: r#230
 [#531 EndOfText]: r#230
 [#532 '@']: r#231
