@@ -692,7 +692,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/5158783cfc5d9bc3e91599652637875ff9798f81/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/5158783cfc5d9bc3e91599652637875ff9798f81/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/d2e321856cba5dcd177f1776e7b67f89965cafa4/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/d2e321856cba5dcd177f1776e7b67f89965cafa4/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -2380,9 +2380,7 @@ Attributes are used for a variety of purposes such as specifying the interface w
 ignored for the purposes of type and semantic checking.
 Additionally, the attribute name is a <a data-link-type="dfn" href="#context-dependent-name" id="ref-for-context-dependent-name①">context-dependent name</a>, and
 some attribute parameters are also context-dependent names.</p>
-   <p>With one exception, an attribute <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①③">must not</a> be specified more than once per object or type.
-The exception is that more than one <a data-link-type="dfn" href="#attribute-diagnostic" id="ref-for-attribute-diagnostic">diagnostic</a> attribute may be specified on an object, provided
-they specify different <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule⑧">triggering rules</a>.</p>
+   <p>Unless explicitly permitted below, an attribute <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①③">must not</a> be specified more than once per object or type.</p>
    <table class="data">
     <caption>Attributes defined in WGSL</caption>
     <thead>
@@ -2434,10 +2432,11 @@ they specify different <a data-link-type="dfn" href="#diagnostic-triggering-rule
        Two parameters. 
        <p>The first parameter is a <a data-link-type="dfn" href="#syntax-severity_control_name" id="ref-for-syntax-severity_control_name">severity_control_name</a>.</p>
        <p>The second parameter is a <a data-link-type="dfn" href="#syntax-diagnostic_rule_name" id="ref-for-syntax-diagnostic_rule_name">diagnostic_rule_name</a> token
-        specifying a <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule⑨">triggering rule</a>.</p>
+        specifying a <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule⑧">triggering rule</a>.</p>
       <td>
        Specifies a <a data-link-type="dfn" href="#range-diagnostic-filter" id="ref-for-range-diagnostic-filter①">range diagnostic filter</a>.  See <a href="#diagnostics">§ 2.2 Diagnostics</a>. 
-       <p>Two diagnostic attributes applied to the same object <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④">must</a> specify different <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule①⓪">triggering rules</a>.</p>
+       <p>More than one <a data-link-type="dfn" href="#attribute-diagnostic" id="ref-for-attribute-diagnostic">diagnostic</a> attribute may be specified on an object,
+        but they <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④">must</a> specify different <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule⑨">triggering rules</a>.</p>
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-for="attribute" data-dfn-type="dfn" data-noexport id="attribute-group"><code>group</code></dfn> 
       <td><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑤">Must</a> be a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions③">const-expression</a> that <a data-link-type="dfn" href="#type-rule" id="ref-for-type-rule②">resolves</a> to an <a data-link-type="dfn" href="#i32" id="ref-for-i32③">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32③">u32</a>.<br> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑥">Must</a> be non-negative. 
@@ -10828,7 +10827,7 @@ There is no risk of being trapped in a cycle, as recurrence is forbidden in the 
    <p>Additionally, the analysis computes and propagates information about
 calls to functions that must only be invoked in uniform control flow.
 This is used to <a data-link-type="dfn" href="#triggered" id="ref-for-triggered④">trigger</a> and potentially filter <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic⑦">diagnostics</a> for <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure②">uniformity failures</a> on those calls.
-A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="witness">witness</dfn> is a pair containing a <a data-link-type="dfn" href="#call-site" id="ref-for-call-site①⓪">call site</a>, and a <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule①①">triggering rule</a>.
+A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="witness">witness</dfn> is a pair containing a <a data-link-type="dfn" href="#call-site" id="ref-for-call-site①⓪">call site</a>, and a <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule①⓪">triggering rule</a>.
 A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="witness-set">witness set</dfn> is a set of <a data-link-type="dfn" href="#witness" id="ref-for-witness">witnesses</a>, and only supports adding elements, not removing elements.
 In particular, a witness set is only formed via the following operations:</p>
    <ul>
@@ -11486,7 +11485,7 @@ being the same as input control flow node.</p>
        <p>Has a <a data-link-type="dfn" href="#function-tag" id="ref-for-function-tag⑤">function tag</a> of <a data-link-type="dfn" href="#norestriction" id="ref-for-norestriction②">NoRestriction</a>.</p>
       <li data-md>
        <p>Has a <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag⑦">call site tag</a> of <a data-link-type="dfn" href="#callsiterequiredtobeuniforms" id="ref-for-callsiterequiredtobeuniforms②">CallSiteRequiredToBeUniform.error</a>.
-The tag’s associated <a data-link-type="dfn" href="#witness" id="ref-for-witness②">witness</a> is the source location of the call site, combined with an unnamed <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule①②">triggering rule</a>.</p>
+The tag’s associated <a data-link-type="dfn" href="#witness" id="ref-for-witness②">witness</a> is the source location of the call site, combined with an unnamed <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule①①">triggering rule</a>.</p>
        <ul>
         <li data-md>
          <p class="note" role="note"><span class="marker">Note:</span> The triggering rule has no name, and so it cannot be filtered.</p>
@@ -11494,7 +11493,7 @@ The tag’s associated <a data-link-type="dfn" href="#witness" id="ref-for-witne
       <li data-md>
        <p>Additionally for the case of a call to <a href="#workgroupUniformLoad-builtin">workgroupUniformLoad</a>,
 the parameter <code>p</code> has a <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag⑧">parameter tag</a> of <a data-link-type="dfn" href="#parameterrequiredtobeuniforms" id="ref-for-parameterrequiredtobeuniforms②">ParameterRequiredToBeUniform.error</a>.
-The tag’s associated <a data-link-type="dfn" href="#witness" id="ref-for-witness③">witness</a> is the source location of the call site, combined with an unnamed <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule①③">triggering rule</a>.</p>
+The tag’s associated <a data-link-type="dfn" href="#witness" id="ref-for-witness③">witness</a> is the source location of the call site, combined with an unnamed <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule①②">triggering rule</a>.</p>
      </ul>
     <li data-md>
      <p>A call to a function in <a href="#derivative-builtin-functions">§ 17.4 Derivative Built-in Functions</a>, <a href="#texturesample">§ 17.5.8 textureSample</a>, <a href="#texturesamplebias">§ 17.5.9 textureSampleBias</a>, and <a href="#texturesamplecompare">§ 17.5.10 textureSampleCompare</a>:</p>
@@ -19312,9 +19311,9 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-diagnostic-triggering-rule②">2.2.1. Filterable Triggering Rules</a> <a href="#ref-for-diagnostic-triggering-rule③">(2)</a>
     <li><a href="#ref-for-diagnostic-triggering-rule④">2.2.2. Diagnostic Filtering</a> <a href="#ref-for-diagnostic-triggering-rule⑤">(2)</a> <a href="#ref-for-diagnostic-triggering-rule⑥">(3)</a>
     <li><a href="#ref-for-diagnostic-triggering-rule⑦">3.9. Diagnostic Rule Names</a>
-    <li><a href="#ref-for-diagnostic-triggering-rule⑧">3.10. Attributes</a> <a href="#ref-for-diagnostic-triggering-rule⑨">(2)</a> <a href="#ref-for-diagnostic-triggering-rule①⓪">(3)</a>
-    <li><a href="#ref-for-diagnostic-triggering-rule①①">13.2.2. Uniformity Analysis Overview</a>
-    <li><a href="#ref-for-diagnostic-triggering-rule①②">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-diagnostic-triggering-rule①③">(2)</a>
+    <li><a href="#ref-for-diagnostic-triggering-rule⑧">3.10. Attributes</a> <a href="#ref-for-diagnostic-triggering-rule⑨">(2)</a>
+    <li><a href="#ref-for-diagnostic-triggering-rule①⓪">13.2.2. Uniformity Analysis Overview</a>
+    <li><a href="#ref-for-diagnostic-triggering-rule①①">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-diagnostic-triggering-rule①②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="diagnostic-triggering-location">
