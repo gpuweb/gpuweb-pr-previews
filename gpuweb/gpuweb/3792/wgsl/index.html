@@ -692,7 +692,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/930ff5c0a3cebabf44fef014cc97cd4b93ad7127/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/930ff5c0a3cebabf44fef014cc97cd4b93ad7127/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/2d6e9091622487a734806e4dd284638a78a61756/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/2d6e9091622487a734806e4dd284638a78a61756/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -10280,6 +10280,10 @@ Version numbers are often written with the major number first, then a period ('<
    </ul>
    <p>A valid program for an earlier version of WGSL, with major number at least 1,
 is valid and has the same meaning in a later version of WGSL with the same major version number.</p>
+   <p>When an implementation says it supports a particular version of WGSL,
+then it supports <em>all</em> the features in that version.
+The implementation can support additional features, including features included in a <em>later</em> version of WGSL.
+See <a href="#wgsl-version-at-least-builtin">§ 17.1.4 wgsl_version_at_least</a>.</p>
    <p>This version of WGSL has major version 0, and minor version 0, or alternately, version <code>0.0</code>.</p>
    <h3 class="heading settled" data-level="11.2" id="language-extensions"><span class="secno">11.2. </span><span class="content">Language Extensions</span><a class="self-link" href="#language-extensions"></a></h3>
    <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="extension">extension</dfn> is a named grouping for a coherent
