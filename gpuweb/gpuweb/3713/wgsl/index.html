@@ -686,13 +686,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-01-30">30 January 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-02-01">1 February 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/4a473480f19753e919b08c9aeffabe453e2c3f6f/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/4a473480f19753e919b08c9aeffabe453e2c3f6f/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/6f23408a38ae0ad50e02ec1b5022d5d371170c1c/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/6f23408a38ae0ad50e02ec1b5022d5d371170c1c/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -11510,18 +11510,23 @@ The tag’s associated <a data-link-type="dfn" href="#witness" id="ref-for-witne
       <li data-md>
        <p>Has a <a data-link-type="dfn" href="#function-tag" id="ref-for-function-tag⑥">function tag</a> of <a data-link-type="dfn" href="#returnvaluemaybenonuniform" id="ref-for-returnvaluemaybenonuniform②">ReturnValueMayBeNonUniform</a>.</p>
       <li data-md>
-       <p>Has a <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag⑧">call site tag</a> of <a data-link-type="dfn" href="#callsiterequiredtobeuniforms" id="ref-for-callsiterequiredtobeuniforms③">CallSiteRequiredToBeUniform.S</a>:</p>
+       <p>Has a <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag⑧">call site tag</a> as follows:</p>
        <ul>
         <li data-md>
-         <p>Where <em>S</em> is:</p>
+         <p>Let <em>w</em> be the <a data-link-type="dfn" href="#witness" id="ref-for-witness④">witness</a> formed by combining the source location of the call site, with the <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity②">derivative_uniformity</a> triggering rule.</p>
+        <li data-md>
+         <p>Let <em>DF</em> be the <a data-link-type="dfn" href="#nearest-enclosing-diagnostic-filter" id="ref-for-nearest-enclosing-diagnostic-filter">nearest enclosing diagnostic filter</a> for <em>w</em>.</p>
+        <li data-md>
+         <p>If <em>DF</em> exists, then let <em>S</em> be the <em>DF</em>'s new severity parameter.</p>
          <ul>
           <li data-md>
-           <p>the NS (new severity) parameter of the <a data-link-type="dfn" href="#nearest-enclosing-diagnostic-filter" id="ref-for-nearest-enclosing-diagnostic-filter">nearest enclosing diagnostic filter</a> for the combination of the call site and the <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity②">derivative_uniformity</a> triggering rule.</p>
+           <p>If <em>S</em> is the severity <a data-link-type="dfn" href="#severity-off" id="ref-for-severity-off①">off</a>, the call site tag is <a data-link-type="dfn" href="#callsitenorestriction" id="ref-for-callsitenorestriction②">CallSiteNoRestriction</a>. Throw away the witness <em>w</em>.</p>
           <li data-md>
-           <p><a data-link-type="dfn" href="#severity-error" id="ref-for-severity-error⑨">error</a>, if no such filter exists.</p>
+           <p>Otherwise the call site tag is <a data-link-type="dfn" href="#callsiterequiredtobeuniforms" id="ref-for-callsiterequiredtobeuniforms③">CallSiteRequiredToBeUniform.S</a>, with witness <em>w</em>.</p>
          </ul>
         <li data-md>
-         <p>The tag’s associated <a data-link-type="dfn" href="#witness" id="ref-for-witness④">witness</a> is the source location of the call site, combined with the <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity③">derivative_uniformity</a> triggering rule.</p>
+         <p>If there is no such <em>DF</em>,
+the call site tag is <a data-link-type="dfn" href="#callsiterequiredtobeuniforms" id="ref-for-callsiterequiredtobeuniforms④">CallSiteRequiredToBeUniform.error</a>, with witness <em>w</em>.</p>
        </ul>
      </ul>
     <li data-md>
@@ -11530,7 +11535,7 @@ The tag’s associated <a data-link-type="dfn" href="#witness" id="ref-for-witne
       <li data-md>
        <p>Has a <a data-link-type="dfn" href="#function-tag" id="ref-for-function-tag⑦">function tag</a> of <a data-link-type="dfn" href="#norestriction" id="ref-for-norestriction③">NoRestriction</a>.</p>
       <li data-md>
-       <p>Has a <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag⑨">call site tag</a> of <a data-link-type="dfn" href="#callsitenorestriction" id="ref-for-callsitenorestriction②">CallSiteNoRestriction</a>.</p>
+       <p>Has a <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag⑨">call site tag</a> of <a data-link-type="dfn" href="#callsitenorestriction" id="ref-for-callsitenorestriction③">CallSiteNoRestriction</a>.</p>
       <li data-md>
        <p>The input parameter <code>p</code> has a <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag⑨">parameter tag</a> of <a data-link-type="dfn" href="#parameternorestriction" id="ref-for-parameternorestriction①">ParameterNoRestriction</a></p>
      </ul>
@@ -12070,7 +12075,7 @@ built-in functions described in <a href="#derivative-builtin-functions">§ 17.
    </ul>
    <p>Because neighbouring invocations collaborate to compute derivatives, these
 functions should only be invoked in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①②">uniform control flow</a> in a fragment shader.
-For each call to one of these functions, a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity④">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①①">diagnostic</a> is triggered if <a href="#uniformity">uniformity analysis</a> cannot prove the call occurs in uniform control flow.</p>
+For each call to one of these functions, a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity③">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①①">diagnostic</a> is triggered if <a href="#uniformity">uniformity analysis</a> cannot prove the call occurs in uniform control flow.</p>
    <p>If one of these functions is called in non-uniform control flow, then the result is an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value⑤">indeterminate value</a>.</p>
    <h3 class="heading settled" data-level="13.6" id="floating-point-evaluation"><span class="secno">13.6. </span><span class="content">Floating Point Evaluation</span><a class="self-link" href="#floating-point-evaluation"></a></h3>
    <p>WGSL follows the <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> standard for floating point computation with
@@ -15001,7 +15006,7 @@ but a value may infer the type.</p>
     <li data-md>
      <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①④">Must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment⑥">fragment</a> shader stage.</p>
     <li data-md>
-     <p><a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑥">Trigger</a> a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity⑤">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①②">diagnostic</a> if <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis②">uniformity analysis</a> cannot prove the call is in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①③">uniform control flow</a>.</p>
+     <p><a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑥">Trigger</a> a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity④">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①②">diagnostic</a> if <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis②">uniformity analysis</a> cannot prove the call is in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①③">uniform control flow</a>.</p>
    </ul>
    <h4 class="heading settled" data-level="17.4.1" id="dpdx-builtin"><span class="secno">17.4.1. </span><span class="content"><code>dpdx</code></span><a class="self-link" href="#dpdx-builtin"></a></h4>
    <table class="data builtin">
@@ -15779,7 +15784,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
    <p>Samples a texture.</p>
    <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②④">Must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment⑦">fragment</a> shader stage.</p>
    <p>If <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis③">uniformity analysis</a> cannot prove a call to this function is in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②③">uniform control flow</a>,
-then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity⑥">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①③">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑦">triggered</a>.</p>
+then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity⑤">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①③">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑦">triggered</a>.</p>
    <table class="data">
     <thead>
      <tr>
@@ -15925,7 +15930,7 @@ then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for
    <p>Samples a texture with a bias to the mip level.</p>
    <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②⑧">Must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment⑧">fragment</a> shader stage.</p>
    <p>If <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis④">uniformity analysis</a> cannot prove a call to this function is in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②⑤">uniform control flow</a>,
-then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity⑦">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①④">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑧">triggered</a>.</p>
+then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity⑥">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①④">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑧">triggered</a>.</p>
    <table class="data">
     <thead>
      <tr>
@@ -16027,7 +16032,7 @@ then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for
    <p>Samples a depth texture and compares the sampled depth values against a reference value.</p>
    <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③③">Must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment⑨">fragment</a> shader stage.</p>
    <p>If <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis⑤">uniformity analysis</a> cannot prove a call to this function is in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②⑦">uniform control flow</a>,
-then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity⑧">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①⑤">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑨">triggered</a>.</p>
+then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity⑦">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①⑤">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑨">triggered</a>.</p>
    <table class="data">
     <thead>
      <tr>
@@ -19349,7 +19354,6 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-severity-error③">2.2.1. Filterable Triggering Rules</a>
     <li><a href="#ref-for-severity-error④">13.2. Uniformity</a> <a href="#ref-for-severity-error⑤">(2)</a>
     <li><a href="#ref-for-severity-error⑥">13.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-severity-error⑦">(2)</a> <a href="#ref-for-severity-error⑧">(3)</a>
-    <li><a href="#ref-for-severity-error⑨">13.2.7. Uniformity Rules for Function Calls</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="severity-warning">
@@ -19370,6 +19374,7 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <b><a href="#severity-off">#severity-off</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-severity-off">2.2. Diagnostics</a>
+    <li><a href="#ref-for-severity-off①">13.2.7. Uniformity Rules for Function Calls</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="trigger-derivative_uniformity">
@@ -19377,12 +19382,12 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <ul>
     <li><a href="#ref-for-trigger-derivative_uniformity">2.2.1. Filterable Triggering Rules</a>
     <li><a href="#ref-for-trigger-derivative_uniformity①">13.2. Uniformity</a>
-    <li><a href="#ref-for-trigger-derivative_uniformity②">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-trigger-derivative_uniformity③">(2)</a>
-    <li><a href="#ref-for-trigger-derivative_uniformity④">13.5.2. Derivatives</a>
-    <li><a href="#ref-for-trigger-derivative_uniformity⑤">17.4. Derivative Built-in Functions</a>
-    <li><a href="#ref-for-trigger-derivative_uniformity⑥">17.5.8. textureSample</a>
-    <li><a href="#ref-for-trigger-derivative_uniformity⑦">17.5.9. textureSampleBias</a>
-    <li><a href="#ref-for-trigger-derivative_uniformity⑧">17.5.10. textureSampleCompare</a>
+    <li><a href="#ref-for-trigger-derivative_uniformity②">13.2.7. Uniformity Rules for Function Calls</a>
+    <li><a href="#ref-for-trigger-derivative_uniformity③">13.5.2. Derivatives</a>
+    <li><a href="#ref-for-trigger-derivative_uniformity④">17.4. Derivative Built-in Functions</a>
+    <li><a href="#ref-for-trigger-derivative_uniformity⑤">17.5.8. textureSample</a>
+    <li><a href="#ref-for-trigger-derivative_uniformity⑥">17.5.9. textureSampleBias</a>
+    <li><a href="#ref-for-trigger-derivative_uniformity⑦">17.5.10. textureSampleCompare</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="diagnostic-filter">
@@ -22813,14 +22818,14 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <b><a href="#callsiterequiredtobeuniforms">#callsiterequiredtobeuniforms</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-callsiterequiredtobeuniforms">13.2.3. Analyzing the Uniformity Requirements of a Function</a>
-    <li><a href="#ref-for-callsiterequiredtobeuniforms①">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-callsiterequiredtobeuniforms②">(2)</a> <a href="#ref-for-callsiterequiredtobeuniforms③">(3)</a>
+    <li><a href="#ref-for-callsiterequiredtobeuniforms①">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-callsiterequiredtobeuniforms②">(2)</a> <a href="#ref-for-callsiterequiredtobeuniforms③">(3)</a> <a href="#ref-for-callsiterequiredtobeuniforms④">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="callsitenorestriction">
    <b><a href="#callsitenorestriction">#callsitenorestriction</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-callsitenorestriction">13.2.3. Analyzing the Uniformity Requirements of a Function</a>
-    <li><a href="#ref-for-callsitenorestriction①">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-callsitenorestriction②">(2)</a>
+    <li><a href="#ref-for-callsitenorestriction①">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-callsitenorestriction②">(2)</a> <a href="#ref-for-callsitenorestriction③">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="returnvaluemaybenonuniform">
