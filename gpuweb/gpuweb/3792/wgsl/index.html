@@ -686,13 +686,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-01-31">31 January 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-02-01">1 February 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/316ab16cdc0e7e2a353f207546a07229747a43e1/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/316ab16cdc0e7e2a353f207546a07229747a43e1/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/930ff5c0a3cebabf44fef014cc97cd4b93ad7127/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/930ff5c0a3cebabf44fef014cc97cd4b93ad7127/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -10268,7 +10268,7 @@ where compatibility is defined by the following table.</p>
    <h2 class="heading settled" data-level="11" id="language-evolution"><span class="secno">11. </span><span class="content">Language Evolution</span><a class="self-link" href="#language-evolution"></a></h2>
    <p>The WGSL language is expected to evolve over time.</p>
    <h3 class="heading settled" data-level="11.1" id="language-verions"><span class="secno">11.1. </span><span class="content">Language Versions</span><a class="self-link" href="#language-verions"></a></h3>
-   <p>The WGSL language has a <dfn data-dfn-type="dfn" data-noexport id="version">version<a class="self-link" href="#version"></a></dfn>, with two non-negative integer components:
+   <p>The WGSL language has a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="version">version</dfn>, with two non-negative integer components:
 a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="major-version-number">major version number</dfn> and a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="minor-version-number">minor version number</dfn>.
 Version numbers are often written with the major number first, then a period ('<code>.</code>' <code>U+002E</code>), then the minor number.</p>
    <p>Versions are ordered lexicographically, i.e. <em>Version(major1, minor1)</em> is earlier than <em>Version(major2, minor2)</em> when:</p>
@@ -12953,13 +12953,14 @@ See <a href="#function-calls">§ 9.2 Function Calls</a>.</p>
      <tr>
       <td>Description 
       <td>
-       Where <em>WGSLMajor</em> is the WGSL <a data-link-type="dfn" href="#major-version-number" id="ref-for-major-version-number">major version number</a>, and <em>WGSLMinor</em> is the <a data-link-type="dfn" href="#minor-version-number" id="ref-for-minor-version-number">minor version number</a>,
-        returns: 
+       Returns true if the implementation’s WGSL <a data-link-type="dfn" href="#version" id="ref-for-version">version</a> is greater than or equal to the version specified in the parameters. 
+       <p>Where <em>WGSLMajor</em> is the WGSL <a data-link-type="dfn" href="#major-version-number" id="ref-for-major-version-number">major version number</a>, and <em>WGSLMinor</em> is the <a data-link-type="dfn" href="#minor-version-number" id="ref-for-minor-version-number">minor version number</a>,
+        returns:</p>
        <p>((<code>major</code> &lt; <em>WGSLMajor</em>) | ((<code>major</code> == <em>WSGSLMajor</em>) &amp; (<code>minor</code> ≤ <em>WGSLMinor</em>)))</p>
    </table>
-   <div class="example wgsl global-scope no-marker" id="example-37a83d4d">
-    <a class="self-link" href="#example-37a83d4d"></a>
-    <div class="marker">EXAMPLE: Ensure a shader only runs on an implementation with WGSL version 1.0</div>
+   <div class="example wgsl global-scope no-marker" id="example-4306a620">
+    <a class="self-link" href="#example-4306a620"></a>
+    <div class="marker">EXAMPLE: Ensure a shader only runs on an implementation supporting version 1.0 or later</div>
 <pre class="highlight"><c- n>const_assert</c-> <c- n>wgsl_version_at_least</c-><c- p>(</c-><c- mi>1</c-><c- p>,</c-><c- mi>0</c-><c- p>);</c->
 </pre>
    </div>
@@ -21864,6 +21865,12 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-resource-interface-of-a-shader">1.1. Technical Overview</a>
     <li><a href="#ref-for-resource-interface-of-a-shader①">6.3. var Declarations</a>
     <li><a href="#ref-for-resource-interface-of-a-shader②">8.2.2. Phony Assignment</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="version">
+   <b><a href="#version">#version</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-version">17.1.4. wgsl_version_at_least</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="major-version-number">
