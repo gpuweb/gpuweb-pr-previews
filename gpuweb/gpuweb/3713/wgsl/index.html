@@ -692,7 +692,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/ae23a8b04fe2011fddaf7059901911fc8f5a3575/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/ae23a8b04fe2011fddaf7059901911fc8f5a3575/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/c9785103ae2d480ab74e86220e4a01643785c73f/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/c9785103ae2d480ab74e86220e4a01643785c73f/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -11009,6 +11009,10 @@ This represents the function’s effect on the uniformity of the value pointed t
      </ul>
     <li data-md>
      <p>Walk over the syntax of the function, adding nodes and edges to the graph following the rules of the next sections (<a href="#func-var-value-analysis">§ 13.2.5 Function-scope Variable Value Analysis</a>, <a href="#uniformity-statements">§ 13.2.6 Uniformity Rules for Statements</a>, <a href="#uniformity-function-calls">§ 13.2.7 Uniformity Rules for Function Calls</a>, <a href="#uniformity-expressions">§ 13.2.8 Uniformity Rules for Expressions</a>), using <a data-link-type="dfn" href="#cf_start" id="ref-for-cf_start">CF_start</a> as the starting control-flow for the function’s body.</p>
+     <ul>
+      <li data-md>
+       <p>The nodes added in this step are called <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="interior-nodes">interior nodes</dfn>.</p>
+     </ul>
     <li data-md>
      <p>Initialize as follows:</p>
      <ul>
@@ -11029,7 +11033,7 @@ This represents the function’s effect on the uniformity of the value pointed t
       <li data-md>
        <p>Let <em>R.S</em> be the set of unvisited nodes reachable from <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms">RequiredToBeUniform.S</a>.</p>
       <li data-md>
-       <p>Mark the nodes in <em>R.S</em> as visited.</p>
+       <p>Mark the <a data-link-type="dfn" href="#interior-nodes" id="ref-for-interior-nodes">interior nodes</a> in <em>R.S</em> as visited.</p>
       <li data-md>
        <p>Let <em>W</em> be the <a data-link-type="dfn" href="#witness-set" id="ref-for-witness-set③">witness set</a> associated with <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms①">RequiredToBeUniform.S</a>.</p>
       <li data-md>
@@ -11050,15 +11054,14 @@ This represents the function’s effect on the uniformity of the value pointed t
        </ul>
      </ul>
     <li data-md>
-     <p>Mark all the nodes as unvisited.</p>
+     <p>Mark all the <a data-link-type="dfn" href="#interior-nodes" id="ref-for-interior-nodes①">interior nodes</a> as unvisited.</p>
     <li data-md>
      <p>If <a data-link-type="dfn" href="#value_return" id="ref-for-value_return">Value_return</a> exists, let <em>VR</em> be the set of nodes reachable from <a data-link-type="dfn" href="#value_return" id="ref-for-value_return①">Value_return</a>.</p>
      <ul>
       <li data-md>
        <p>If <em>VR</em> includes <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform⑨">MayBeNonUniform</a>, then set the <a data-link-type="dfn" href="#function-tag" id="ref-for-function-tag②">function tag</a> to <a data-link-type="dfn" href="#returnvaluemaybenonuniform" id="ref-for-returnvaluemaybenonuniform">ReturnValueMayBeNonUniform</a>.</p>
       <li data-md>
-       <p>For each <a data-link-type="dfn" href="#param_i" id="ref-for-param_i④">param_i</a> in <em>VR</em>, if the corresponding <a data-link-type="dfn" href="#parameter-return-tag" id="ref-for-parameter-return-tag②">parameter return tag</a> has not been updated since initialization,
- then set it to <a data-link-type="dfn" href="#parameterreturnrequiredtobeuniform" id="ref-for-parameterreturnrequiredtobeuniform">ParameterReturnRequiredToBeUniform</a>.</p>
+       <p>For each <a data-link-type="dfn" href="#param_i" id="ref-for-param_i④">param_i</a> in <em>VR</em>, set the corresponding <a data-link-type="dfn" href="#parameter-return-tag" id="ref-for-parameter-return-tag②">parameter return tag</a> to <a data-link-type="dfn" href="#parameterreturnrequiredtobeuniform" id="ref-for-parameterreturnrequiredtobeuniform">ParameterReturnRequiredToBeUniform</a>.</p>
       <li data-md>
        <p class="issue" id="issue-3fbfcd8b"><a class="self-link" href="#issue-3fbfcd8b"></a> <a href="https://github.com/gpuweb/gpuweb/issues/3677">#3677</a> For pointer parameters, handle the distinction between uniformity of the pointer
  value and the uniformity of the contents of the memory pointed at.</p>
@@ -11917,7 +11920,7 @@ end of the loop body (CF_after_if).</p>
    <h5 class="heading settled" data-level="13.2.10.5" id="uniformity-example5"><span class="secno">13.2.10.5. </span><span class="content">User-defined Function Calls</span><a class="self-link" href="#uniformity-example5"></a></h5>
    <p>This example is modification of the <a href="#uniformity-example1">first example</a>, but
 uses a user-defined function call.
-The analysis tags the <a data-link-type="dfn" href="#parameter-return-tag" id="ref-for-parameter-return-tag⑤">parameter return tag</a> of both parameters of <code>scale</code> as <a data-link-type="dfn" href="#parameterreturnrequiredtobeuniform" id="ref-for-parameterreturnrequiredtobeuniform③">ParameterReturnRequiredToBeUniform</a>.
+The analysis sets the <a data-link-type="dfn" href="#parameter-return-tag" id="ref-for-parameter-return-tag⑤">parameter return tag</a> of both parameters of <code>scale</code> as <a data-link-type="dfn" href="#parameterreturnrequiredtobeuniform" id="ref-for-parameterreturnrequiredtobeuniform③">ParameterReturnRequiredToBeUniform</a>.
 This leads to the path in <code>main</code> between the return value of the <code>scale</code> function call and the <code>position</code> built-in value.
 That path is a subpath of the overall invalid path from <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms⑦">RequiredToBeUniform.S</a> to <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform②⓪">MayBeNonUniform</a>.</p>
    <div class="example wgsl no-marker" id="example-2d91fe99">
@@ -17964,6 +17967,7 @@ registrations, it matches widespread industry conventions.</p>
    <li><a href="#integer-literal">integer literal</a><span>, in § 3.5.2</span>
    <li><a href="#integer-scalar">integer scalar</a><span>, in § 5.2.5</span>
    <li><a href="#interface-of-a-shader">interface of a shader</a><span>, in § 10.3</span>
+   <li><a href="#interior-nodes">interior nodes</a><span>, in § 13.2.3</span>
    <li><a href="#attribute-interpolate">interpolate</a><span>, in § 3.10</span>
    <li>
     interpolation_sample_name
@@ -22979,6 +22983,12 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <ul>
     <li><a href="#ref-for-value_return_i">13.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-value_return_i①">(2)</a>
     <li><a href="#ref-for-value_return_i②">13.2.6. Uniformity Rules for Statements</a> <a href="#ref-for-value_return_i③">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="interior-nodes">
+   <b><a href="#interior-nodes">#interior-nodes</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-interior-nodes">13.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-interior-nodes①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="full-assignment">
