@@ -686,13 +686,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-02-01">1 February 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-02-07">7 February 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/6f23408a38ae0ad50e02ec1b5022d5d371170c1c/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/6f23408a38ae0ad50e02ec1b5022d5d371170c1c/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/d07ab8b3abd81432d4209c0cf79b9d39c57ed099/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/d07ab8b3abd81432d4209c0cf79b9d39c57ed099/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -1740,36 +1740,36 @@ A <code>@diagnostic</code> attribute <a data-link-type="dfn" href="#shader-creat
       <th>Affected Range 
     <tbody>
      <tr>
-      <td>Beginning of a <a data-link-type="dfn" href="#compound-statement" id="ref-for-compound-statement">compound statement</a>.
+      <td><a data-link-type="dfn" href="#syntax-compound_statement" id="ref-for-syntax-compound_statement">Beginning</a> of a <a data-link-type="dfn" href="#compound-statement" id="ref-for-compound-statement">compound statement</a>.
       <td>The compound statement. 
      <tr>
-      <td>Beginning of a <a data-link-type="dfn" href="#function-declaration" id="ref-for-function-declaration">function declaration</a>.
+      <td><a data-link-type="dfn" href="#syntax-function_decl" id="ref-for-syntax-function_decl">Beginning</a> of a <a data-link-type="dfn" href="#function-declaration" id="ref-for-function-declaration">function declaration</a>.
       <td>The function declaration. 
      <tr>
-      <td>Beginning of an <a data-link-type="dfn" href="#statement-if" id="ref-for-statement-if">if</a> statement.
+      <td><a data-link-type="dfn" href="#syntax-if_statement" id="ref-for-syntax-if_statement">Beginning</a> of an <a data-link-type="dfn" href="#statement-if" id="ref-for-statement-if">if</a> statement.
       <td>The if statement: the <a data-link-type="dfn" href="#syntax-if_clause" id="ref-for-syntax-if_clause">if_clause</a> and all associated <a data-link-type="dfn" href="#syntax-else_if_clause" id="ref-for-syntax-else_if_clause">else_if_clause</a> and <a data-link-type="dfn" href="#syntax-else_clause" id="ref-for-syntax-else_clause">else_clause</a> clauses,
       including all controlling condition expressions. 
      <tr>
-      <td>Beginning of a <a data-link-type="dfn" href="#statement-switch" id="ref-for-statement-switch">switch</a> statement.
+      <td><a data-link-type="dfn" href="#syntax-switch_statement" id="ref-for-syntax-switch_statement">Beginning</a> of a <a data-link-type="dfn" href="#statement-switch" id="ref-for-statement-switch">switch</a> statement.
       <td>The switch statement: the selector expression and the <a data-link-type="dfn" href="#syntax-switch_body" id="ref-for-syntax-switch_body">switch_body</a>. 
      <tr>
-      <td>Beginning of a <a data-link-type="dfn" href="#syntax-switch_body" id="ref-for-syntax-switch_body①">switch_body</a>.
-      <td>The <a data-link-type="dfn" href="#syntax-switch_body" id="ref-for-syntax-switch_body②">switch_body</a>. 
+      <td><a data-link-type="dfn" href="#syntax-switch_body" id="ref-for-syntax-switch_body①">Beginning</a> of a <a data-link-type="dfn" href="#syntax-switch_body" id="ref-for-syntax-switch_body②">switch_body</a>.
+      <td>The <a data-link-type="dfn" href="#syntax-switch_body" id="ref-for-syntax-switch_body③">switch_body</a>. 
      <tr>
-      <td>Beginning of a <a data-link-type="dfn" href="#statement-loop" id="ref-for-statement-loop">loop</a> statement.
+      <td><a data-link-type="dfn" href="#syntax-loop_statement" id="ref-for-syntax-loop_statement">Beginning</a> of a <a data-link-type="dfn" href="#statement-loop" id="ref-for-statement-loop">loop</a> statement.
       <td>The loop statement. 
      <tr>
-      <td>Beginning of a <a data-link-type="dfn" href="#statement-while" id="ref-for-statement-while">while</a> statement.
+      <td><a data-link-type="dfn" href="#syntax-while_statement" id="ref-for-syntax-while_statement">Beginning</a> of a <a data-link-type="dfn" href="#statement-while" id="ref-for-statement-while">while</a> statement.
       <td>The while statement: both the condition expression and the loop body. 
      <tr>
-      <td>Beginning of a <a data-link-type="dfn" href="#statement-for" id="ref-for-statement-for">for</a> statement.
+      <td><a data-link-type="dfn" href="#syntax-for_statement" id="ref-for-syntax-for_statement">Beginning</a> of a <a data-link-type="dfn" href="#statement-for" id="ref-for-statement-for">for</a> statement.
       <td>The for statement: the <a data-link-type="dfn" href="#syntax-for_header" id="ref-for-syntax-for_header">for_header</a> and the loop body. 
      <tr>
       <td>Immediately before the opening brace (<code>'{'</code>) of the <a data-link-type="dfn" href="#loop-body" id="ref-for-loop-body">loop body</a> of a <a data-link-type="dfn" href="#statement-loop" id="ref-for-statement-loop①">loop</a>, <a data-link-type="dfn" href="#statement-while" id="ref-for-statement-while①">while</a>, or <a data-link-type="dfn" href="#statement-for" id="ref-for-statement-for①">for</a> loop.
       <td>The <a data-link-type="dfn" href="#loop-body" id="ref-for-loop-body①">loop body</a>. 
      <tr>
-      <td>Beginning of a <a data-link-type="dfn" href="#syntax-continuing_compound_statement" id="ref-for-syntax-continuing_compound_statement">continuing_compound_statement</a>.
-      <td>The <a data-link-type="dfn" href="#syntax-continuing_compound_statement" id="ref-for-syntax-continuing_compound_statement①">continuing_compound_statement</a>. 
+      <td><a data-link-type="dfn" href="#syntax-continuing_compound_statement" id="ref-for-syntax-continuing_compound_statement">Beginning</a> of a <a data-link-type="dfn" href="#syntax-continuing_compound_statement" id="ref-for-syntax-continuing_compound_statement①">continuing_compound_statement</a>.
+      <td>The <a data-link-type="dfn" href="#syntax-continuing_compound_statement" id="ref-for-syntax-continuing_compound_statement②">continuing_compound_statement</a>. 
    </table>
    <p class="note" role="note"><span class="marker">Note:</span> The following are also <a data-link-type="dfn" href="#compound-statement" id="ref-for-compound-statement①">compound statements</a>:
 a <a data-link-type="dfn" href="#function-body" id="ref-for-function-body">function body</a>, a <a data-link-type="dfn" href="#case-clause" id="ref-for-case-clause">case clause</a>, a <a data-link-type="dfn" href="#default-alone-clause" id="ref-for-default-alone-clause">default-alone clause</a>,
@@ -8428,7 +8428,7 @@ When a <a data-link-type="dfn" href="#declaration" id="ref-for-declaration④">d
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-compound_statement">compound_statement</dfn> : 
     <p>| <a data-link-type="dfn" href="#syntax-attribute" id="ref-for-syntax-attribute③">attribute</a> * <a data-link-type="dfn" href="#syntax_sym-brace_left" id="ref-for-syntax_sym-brace_left①"><code>'{'</code></a> <a data-link-type="dfn" href="#syntax-statement" id="ref-for-syntax-statement">statement</a> * <a data-link-type="dfn" href="#syntax_sym-brace_right" id="ref-for-syntax_sym-brace_right①"><code>'}'</code></a></p>
    </div>
-   <p>The <a data-link-type="dfn" href="#syntax-continuing_compound_statement" id="ref-for-syntax-continuing_compound_statement②">continuing_compound_statement</a> is a special form of compound
+   <p>The <a data-link-type="dfn" href="#syntax-continuing_compound_statement" id="ref-for-syntax-continuing_compound_statement③">continuing_compound_statement</a> is a special form of compound
 statement that forms the body of a <a href="#continuing-statement">continuing</a> statement, and allows an option <a href="#break-if-statement">break-if</a> statement at
 the end.</p>
    <h3 class="heading settled" data-level="8.2" id="assignment"><span class="secno">8.2. </span><span class="content">Assignment Statement</span><a class="self-link" href="#assignment"></a></h3>
@@ -8708,15 +8708,15 @@ the evaluation of condition expressions.</p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-if_clause">if_clause</dfn> : 
-    <p>| <a data-link-type="dfn" href="#syntax_kw-if" id="ref-for-syntax_kw-if"><code>'if'</code></a> <a data-link-type="dfn" href="#syntax-expression" id="ref-for-syntax-expression②⑤">expression</a> <a data-link-type="dfn" href="#syntax-compound_statement" id="ref-for-syntax-compound_statement">compound_statement</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax_kw-if" id="ref-for-syntax_kw-if"><code>'if'</code></a> <a data-link-type="dfn" href="#syntax-expression" id="ref-for-syntax-expression②⑤">expression</a> <a data-link-type="dfn" href="#syntax-compound_statement" id="ref-for-syntax-compound_statement①">compound_statement</a></p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-else_if_clause">else_if_clause</dfn> : 
-    <p>| <a data-link-type="dfn" href="#syntax_kw-else" id="ref-for-syntax_kw-else"><code>'else'</code></a> <a data-link-type="dfn" href="#syntax_kw-if" id="ref-for-syntax_kw-if①"><code>'if'</code></a> <a data-link-type="dfn" href="#syntax-expression" id="ref-for-syntax-expression②⑥">expression</a> <a data-link-type="dfn" href="#syntax-compound_statement" id="ref-for-syntax-compound_statement①">compound_statement</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax_kw-else" id="ref-for-syntax_kw-else"><code>'else'</code></a> <a data-link-type="dfn" href="#syntax_kw-if" id="ref-for-syntax_kw-if①"><code>'if'</code></a> <a data-link-type="dfn" href="#syntax-expression" id="ref-for-syntax-expression②⑥">expression</a> <a data-link-type="dfn" href="#syntax-compound_statement" id="ref-for-syntax-compound_statement②">compound_statement</a></p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-else_clause">else_clause</dfn> : 
-    <p>| <a data-link-type="dfn" href="#syntax_kw-else" id="ref-for-syntax_kw-else①"><code>'else'</code></a> <a data-link-type="dfn" href="#syntax-compound_statement" id="ref-for-syntax-compound_statement②">compound_statement</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax_kw-else" id="ref-for-syntax_kw-else①"><code>'else'</code></a> <a data-link-type="dfn" href="#syntax-compound_statement" id="ref-for-syntax-compound_statement③">compound_statement</a></p>
    </div>
    <p><a data-link-type="dfn" href="#type-rule-preconditions" id="ref-for-type-rule-preconditions①">Type rule precondition</a>:
 The expression in each <code>if</code> and <code>else if</code> clause <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①③⑨">must</a> be of <a data-link-type="dfn" href="#bool" id="ref-for-bool③">bool</a> type.</p>
@@ -8742,7 +8742,7 @@ associated with the <code>else</code> clause (if it exists).</p>
 depending on the evaluation of a selector expression.</p>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-switch_statement">switch_statement</dfn> : 
-    <p>| <a data-link-type="dfn" href="#syntax-attribute" id="ref-for-syntax-attribute⑤">attribute</a> * <a data-link-type="dfn" href="#syntax_kw-switch" id="ref-for-syntax_kw-switch"><code>'switch'</code></a> <a data-link-type="dfn" href="#syntax-expression" id="ref-for-syntax-expression②⑦">expression</a> <a data-link-type="dfn" href="#syntax-switch_body" id="ref-for-syntax-switch_body③">switch_body</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-attribute" id="ref-for-syntax-attribute⑤">attribute</a> * <a data-link-type="dfn" href="#syntax_kw-switch" id="ref-for-syntax_kw-switch"><code>'switch'</code></a> <a data-link-type="dfn" href="#syntax-expression" id="ref-for-syntax-expression②⑦">expression</a> <a data-link-type="dfn" href="#syntax-switch_body" id="ref-for-syntax-switch_body④">switch_body</a></p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-switch_body">switch_body</dfn> : 
@@ -8755,11 +8755,11 @@ depending on the evaluation of a selector expression.</p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-case_clause">case_clause</dfn> : 
-    <p>| <a data-link-type="dfn" href="#syntax_kw-case" id="ref-for-syntax_kw-case"><code>'case'</code></a> <a data-link-type="dfn" href="#syntax-case_selectors" id="ref-for-syntax-case_selectors">case_selectors</a> <a data-link-type="dfn" href="#syntax_sym-colon" id="ref-for-syntax_sym-colon②"><code>':'</code></a> ? <a data-link-type="dfn" href="#syntax-compound_statement" id="ref-for-syntax-compound_statement③">compound_statement</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax_kw-case" id="ref-for-syntax_kw-case"><code>'case'</code></a> <a data-link-type="dfn" href="#syntax-case_selectors" id="ref-for-syntax-case_selectors">case_selectors</a> <a data-link-type="dfn" href="#syntax_sym-colon" id="ref-for-syntax_sym-colon②"><code>':'</code></a> ? <a data-link-type="dfn" href="#syntax-compound_statement" id="ref-for-syntax-compound_statement④">compound_statement</a></p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-default_alone_clause">default_alone_clause</dfn> : 
-    <p>| <a data-link-type="dfn" href="#syntax_kw-default" id="ref-for-syntax_kw-default"><code>'default'</code></a> <a data-link-type="dfn" href="#syntax_sym-colon" id="ref-for-syntax_sym-colon③"><code>':'</code></a> ? <a data-link-type="dfn" href="#syntax-compound_statement" id="ref-for-syntax-compound_statement④">compound_statement</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax_kw-default" id="ref-for-syntax_kw-default"><code>'default'</code></a> <a data-link-type="dfn" href="#syntax_sym-colon" id="ref-for-syntax_sym-colon③"><code>':'</code></a> ? <a data-link-type="dfn" href="#syntax-compound_statement" id="ref-for-syntax-compound_statement⑤">compound_statement</a></p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-case_selectors">case_selectors</dfn> : 
@@ -8943,7 +8943,7 @@ for (int i = 0; i &lt; 4; i += step) {
    <h4 class="heading settled" data-level="8.4.4" id="for-statement"><span class="secno">8.4.4. </span><span class="content">For Statement</span><a class="self-link" href="#for-statement"></a></h4>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-for_statement">for_statement</dfn> : 
-    <p>| <a data-link-type="dfn" href="#syntax-attribute" id="ref-for-syntax-attribute⑨">attribute</a> * <a data-link-type="dfn" href="#syntax_kw-for" id="ref-for-syntax_kw-for"><code>'for'</code></a> <a data-link-type="dfn" href="#syntax_sym-paren_left" id="ref-for-syntax_sym-paren_left①⑥"><code>'('</code></a> <a data-link-type="dfn" href="#syntax-for_header" id="ref-for-syntax-for_header①">for_header</a> <a data-link-type="dfn" href="#syntax_sym-paren_right" id="ref-for-syntax_sym-paren_right④"><code>')'</code></a> <a data-link-type="dfn" href="#syntax-compound_statement" id="ref-for-syntax-compound_statement⑤">compound_statement</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-attribute" id="ref-for-syntax-attribute⑨">attribute</a> * <a data-link-type="dfn" href="#syntax_kw-for" id="ref-for-syntax_kw-for"><code>'for'</code></a> <a data-link-type="dfn" href="#syntax_sym-paren_left" id="ref-for-syntax_sym-paren_left①⑥"><code>'('</code></a> <a data-link-type="dfn" href="#syntax-for_header" id="ref-for-syntax-for_header①">for_header</a> <a data-link-type="dfn" href="#syntax_sym-paren_right" id="ref-for-syntax_sym-paren_right④"><code>')'</code></a> <a data-link-type="dfn" href="#syntax-compound_statement" id="ref-for-syntax-compound_statement⑥">compound_statement</a></p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-for_header">for_header</dfn> : 
@@ -9025,7 +9025,7 @@ for (var i: i32 = 0; i &lt; 4; i++) {
    <h4 class="heading settled" data-level="8.4.5" id="while-statement"><span class="secno">8.4.5. </span><span class="content">While Statement</span><a class="self-link" href="#while-statement"></a></h4>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-while_statement">while_statement</dfn> : 
-    <p>| <a data-link-type="dfn" href="#syntax-attribute" id="ref-for-syntax-attribute①⓪">attribute</a> * <a data-link-type="dfn" href="#syntax_kw-while" id="ref-for-syntax_kw-while"><code>'while'</code></a> <a data-link-type="dfn" href="#syntax-expression" id="ref-for-syntax-expression③⓪">expression</a> <a data-link-type="dfn" href="#syntax-compound_statement" id="ref-for-syntax-compound_statement⑥">compound_statement</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-attribute" id="ref-for-syntax-attribute①⓪">attribute</a> * <a data-link-type="dfn" href="#syntax_kw-while" id="ref-for-syntax_kw-while"><code>'while'</code></a> <a data-link-type="dfn" href="#syntax-expression" id="ref-for-syntax-expression③⓪">expression</a> <a data-link-type="dfn" href="#syntax-compound_statement" id="ref-for-syntax-compound_statement⑦">compound_statement</a></p>
    </div>
    <p>The <dfn class="dfn-paneled" data-dfn-for="statement" data-dfn-type="dfn" data-noexport id="statement-while">while</dfn> statement is a kind of loop parameterized by a condition.
 At the start of each loop <a data-link-type="dfn" href="#iteration" id="ref-for-iteration②">iteration</a>, a boolean condition is evaluated.
@@ -9142,7 +9142,7 @@ flow within another loop nested in the <code>continuing</code> statement. That i
    <h4 class="heading settled" data-level="8.4.9" id="continuing-statement"><span class="secno">8.4.9. </span><span class="content">Continuing Statement</span><a class="self-link" href="#continuing-statement"></a></h4>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-continuing_statement">continuing_statement</dfn> : 
-    <p>| <a data-link-type="dfn" href="#syntax_kw-continuing" id="ref-for-syntax_kw-continuing"><code>'continuing'</code></a> <a data-link-type="dfn" href="#syntax-continuing_compound_statement" id="ref-for-syntax-continuing_compound_statement③">continuing_compound_statement</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax_kw-continuing" id="ref-for-syntax_kw-continuing"><code>'continuing'</code></a> <a data-link-type="dfn" href="#syntax-continuing_compound_statement" id="ref-for-syntax-continuing_compound_statement④">continuing_compound_statement</a></p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-continuing_compound_statement">continuing_compound_statement</dfn> : 
@@ -9249,18 +9249,18 @@ This statement can be used at <a data-link-type="dfn" href="#module-scope" id="r
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-statement">statement</dfn> : 
     <p>| <a data-link-type="dfn" href="#syntax_sym-semicolon" id="ref-for-syntax_sym-semicolon④"><code>';'</code></a></p>
     <p>| <a data-link-type="dfn" href="#syntax-return_statement" id="ref-for-syntax-return_statement">return_statement</a> <a data-link-type="dfn" href="#syntax_sym-semicolon" id="ref-for-syntax_sym-semicolon⑤"><code>';'</code></a></p>
-    <p>| <a data-link-type="dfn" href="#syntax-if_statement" id="ref-for-syntax-if_statement">if_statement</a></p>
-    <p>| <a data-link-type="dfn" href="#syntax-switch_statement" id="ref-for-syntax-switch_statement">switch_statement</a></p>
-    <p>| <a data-link-type="dfn" href="#syntax-loop_statement" id="ref-for-syntax-loop_statement">loop_statement</a></p>
-    <p>| <a data-link-type="dfn" href="#syntax-for_statement" id="ref-for-syntax-for_statement">for_statement</a></p>
-    <p>| <a data-link-type="dfn" href="#syntax-while_statement" id="ref-for-syntax-while_statement">while_statement</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-if_statement" id="ref-for-syntax-if_statement①">if_statement</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-switch_statement" id="ref-for-syntax-switch_statement①">switch_statement</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-loop_statement" id="ref-for-syntax-loop_statement①">loop_statement</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-for_statement" id="ref-for-syntax-for_statement①">for_statement</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-while_statement" id="ref-for-syntax-while_statement①">while_statement</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-func_call_statement" id="ref-for-syntax-func_call_statement②">func_call_statement</a> <a data-link-type="dfn" href="#syntax_sym-semicolon" id="ref-for-syntax_sym-semicolon⑥"><code>';'</code></a></p>
     <p>| <a data-link-type="dfn" href="#syntax-variable_statement" id="ref-for-syntax-variable_statement①">variable_statement</a> <a data-link-type="dfn" href="#syntax_sym-semicolon" id="ref-for-syntax_sym-semicolon⑦"><code>';'</code></a></p>
     <p>| <a data-link-type="dfn" href="#syntax-break_statement" id="ref-for-syntax-break_statement">break_statement</a> <a data-link-type="dfn" href="#syntax_sym-semicolon" id="ref-for-syntax_sym-semicolon⑧"><code>';'</code></a></p>
     <p>| <a data-link-type="dfn" href="#syntax-continue_statement" id="ref-for-syntax-continue_statement">continue_statement</a> <a data-link-type="dfn" href="#syntax_sym-semicolon" id="ref-for-syntax_sym-semicolon⑨"><code>';'</code></a></p>
     <p>| <a data-link-type="dfn" href="#syntax_kw-discard" id="ref-for-syntax_kw-discard"><code>'discard'</code></a> <a data-link-type="dfn" href="#syntax_sym-semicolon" id="ref-for-syntax_sym-semicolon①⓪"><code>';'</code></a></p>
     <p>| <a data-link-type="dfn" href="#syntax-variable_updating_statement" id="ref-for-syntax-variable_updating_statement②">variable_updating_statement</a> <a data-link-type="dfn" href="#syntax_sym-semicolon" id="ref-for-syntax_sym-semicolon①①"><code>';'</code></a></p>
-    <p>| <a data-link-type="dfn" href="#syntax-compound_statement" id="ref-for-syntax-compound_statement⑦">compound_statement</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-compound_statement" id="ref-for-syntax-compound_statement⑧">compound_statement</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-const_assert_statement" id="ref-for-syntax-const_assert_statement">const_assert_statement</a> <a data-link-type="dfn" href="#syntax_sym-semicolon" id="ref-for-syntax_sym-semicolon①②"><code>';'</code></a></p>
    </div>
    <div class="syntax">
@@ -9274,7 +9274,7 @@ This statement can be used at <a data-link-type="dfn" href="#module-scope" id="r
     <li data-md>
      <p><a data-link-type="dfn" href="#syntax-break_if_statement" id="ref-for-syntax-break_if_statement①">break_if_statement</a></p>
     <li data-md>
-     <p><a data-link-type="dfn" href="#syntax-continuing_compound_statement" id="ref-for-syntax-continuing_compound_statement④">continuing_compound_statement</a></p>
+     <p><a data-link-type="dfn" href="#syntax-continuing_compound_statement" id="ref-for-syntax-continuing_compound_statement⑤">continuing_compound_statement</a></p>
    </ul>
    <h3 class="heading settled" data-level="8.8" id="behaviors"><span class="secno">8.8. </span><span class="content">Statements Behavior Analysis</span><a class="self-link" href="#behaviors"></a></h3>
    <h4 class="heading settled" data-level="8.8.1" id="behaviors-rules"><span class="secno">8.8.1. </span><span class="content">Rules</span><a class="self-link" href="#behaviors-rules"></a></h4>
@@ -9702,7 +9702,7 @@ parameters and return types:</p>
    </ul>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-function_decl">function_decl</dfn> : 
-    <p>| <a data-link-type="dfn" href="#syntax-attribute" id="ref-for-syntax-attribute①②">attribute</a> * <a data-link-type="dfn" href="#syntax-function_header" id="ref-for-syntax-function_header">function_header</a> <a data-link-type="dfn" href="#syntax-compound_statement" id="ref-for-syntax-compound_statement⑧">compound_statement</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-attribute" id="ref-for-syntax-attribute①②">attribute</a> * <a data-link-type="dfn" href="#syntax-function_header" id="ref-for-syntax-function_header">function_header</a> <a data-link-type="dfn" href="#syntax-compound_statement" id="ref-for-syntax-compound_statement⑨">compound_statement</a></p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-function_header">function_header</dfn> : 
@@ -10663,7 +10663,7 @@ the implementation can issue a clear diagnostic.</p>
     <p>| <a data-link-type="dfn" href="#syntax-global_constant_decl" id="ref-for-syntax-global_constant_decl">global_constant_decl</a> <a data-link-type="dfn" href="#syntax_sym-semicolon" id="ref-for-syntax_sym-semicolon①⑥"><code>';'</code></a></p>
     <p>| <a data-link-type="dfn" href="#syntax-type_alias_decl" id="ref-for-syntax-type_alias_decl">type_alias_decl</a> <a data-link-type="dfn" href="#syntax_sym-semicolon" id="ref-for-syntax_sym-semicolon①⑦"><code>';'</code></a></p>
     <p>| <a data-link-type="dfn" href="#syntax-struct_decl" id="ref-for-syntax-struct_decl">struct_decl</a></p>
-    <p>| <a data-link-type="dfn" href="#syntax-function_decl" id="ref-for-syntax-function_decl">function_decl</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-function_decl" id="ref-for-syntax-function_decl①">function_decl</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-const_assert_statement" id="ref-for-syntax-const_assert_statement①">const_assert_statement</a> <a data-link-type="dfn" href="#syntax_sym-semicolon" id="ref-for-syntax_sym-semicolon①⑧"><code>';'</code></a></p>
    </div>
    <h3 class="heading settled" data-level="12.1" id="limits"><span class="secno">12.1. </span><span class="content">Limits</span><a class="self-link" href="#limits"></a></h3>
@@ -10897,6 +10897,8 @@ and potentially triggering a <a data-link-type="dfn" href="#uniformity-failure" 
     <li data-md>
      <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="parameter-tag">parameter tag</dfn> describes the uniformity requirement of the parameter value.</p>
     <li data-md>
+     <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="parameter-return-tag">parameter return tag</dfn> describes the unifomity requirement of the parameter value on the function’s <a data-link-type="dfn" href="#return-value" id="ref-for-return-value⑥">return value</a>.</p>
+    <li data-md>
      <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="pointer-parameter-tag">pointer parameter tag</dfn>, when the parameter type is a pointer into the <a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function①①">function</a> address space.
   The tag describes whether the value in the memory pointed to by the parameter may become <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value③">non-uniform</a> during the execution of the function call.</p>
    </ul>
@@ -10926,7 +10928,7 @@ and potentially triggering a <a data-link-type="dfn" href="#uniformity-failure" 
     <tbody>
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="returnvaluemaybenonuniform">ReturnValueMayBeNonUniform</dfn> 
-      <td>The <a data-link-type="dfn" href="#return-value" id="ref-for-return-value⑥">return value</a> of the function may be non-uniform. 
+      <td>The <a data-link-type="dfn" href="#return-value" id="ref-for-return-value⑦">return value</a> of the function may be non-uniform. 
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="norestriction">NoRestriction</dfn> 
       <td>The function does not introduce non-uniformity. 
@@ -10945,10 +10947,21 @@ and potentially triggering a <a data-link-type="dfn" href="#uniformity-failure" 
           Otherwise a diagnostic with severity <var>S</var> will be triggered. 
        <p>Associated with a <a data-link-type="dfn" href="#witness-set" id="ref-for-witness-set①">witness set</a>.</p>
      <tr>
-      <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="parameterrequiredtobeuniformforreturnvalue">ParameterRequiredToBeUniformForReturnValue</dfn> 
-      <td>The parameter <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪③">must</a> be a <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value⑤">uniform value</a> in order for the <a data-link-type="dfn" href="#return-value" id="ref-for-return-value⑦">return value</a> to be a uniform value. 
-     <tr>
       <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="parameternorestriction">ParameterNoRestriction</dfn> 
+      <td>The parameter value has no uniformity requirement. 
+   </table>
+   <table class="data">
+    <caption><a data-link-type="dfn" href="#parameter-return-tag" id="ref-for-parameter-return-tag">Parameter return tag</a> values</caption>
+    <thead>
+     <tr>
+      <th>Parameter Return Tag
+      <th>Description 
+    <tbody>
+     <tr>
+      <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="parameterreturnrequiredtobeuniform">ParameterReturnRequiredToBeUniform</dfn> 
+      <td>The parameter <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪③">must</a> be a <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value⑤">uniform value</a> in order for the <a data-link-type="dfn" href="#return-value" id="ref-for-return-value⑧">return value</a> to be a uniform value. 
+     <tr>
+      <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="parameterreturnnorestriction">ParameterReturnNoRestriction</dfn> 
       <td>The parameter value has no uniformity requirement. 
    </table>
    <table class="data">
@@ -11006,13 +11019,17 @@ This represents the function’s effect on the uniformity of the value pointed t
       <li data-md>
        <p>The <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag①">parameter tag</a> for each <a data-link-type="dfn" href="#param_i" id="ref-for-param_i">param_i</a> is initialized to <a data-link-type="dfn" href="#parameternorestriction" id="ref-for-parameternorestriction">ParameterNoRestriction</a>.</p>
       <li data-md>
-       <p>The <a data-link-type="dfn" href="#pointer-parameter-tag" id="ref-for-pointer-parameter-tag①">pointer parameter tag</a> for each <a data-link-type="dfn" href="#param_i" id="ref-for-param_i①">param_i</a>, if it exists, is initialized to <a data-link-type="dfn" href="#pointerparameternorestriction" id="ref-for-pointerparameternorestriction">PointerParameterNoRestriction</a>.</p>
+       <p>The <a data-link-type="dfn" href="#parameter-return-tag" id="ref-for-parameter-return-tag①">parameter return tag</a> for each <a data-link-type="dfn" href="#param_i" id="ref-for-param_i①">param_i</a> is initialized to <a data-link-type="dfn" href="#parameterreturnnorestriction" id="ref-for-parameterreturnnorestriction">ParameterReturnNoRestriction</a>.</p>
+      <li data-md>
+       <p>The <a data-link-type="dfn" href="#pointer-parameter-tag" id="ref-for-pointer-parameter-tag①">pointer parameter tag</a> for each <a data-link-type="dfn" href="#param_i" id="ref-for-param_i②">param_i</a>, if it exists, is initialized to <a data-link-type="dfn" href="#pointerparameternorestriction" id="ref-for-pointerparameternorestriction">PointerParameterNoRestriction</a>.</p>
      </ul>
     <li data-md>
      <p>For each severity <em>S</em> in the order {<a data-link-type="dfn" href="#severity-error" id="ref-for-severity-error⑧">error</a>, <a data-link-type="dfn" href="#severity-warning" id="ref-for-severity-warning⑥">warning</a>, <a data-link-type="dfn" href="#severity-info" id="ref-for-severity-info⑦">info</a>}, perform the following:</p>
      <ul>
       <li data-md>
-       <p>Let <em>R.S</em> be the set of nodes reachable from <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms">RequiredToBeUniform.S</a>.</p>
+       <p>Let <em>R.S</em> be the set of unvisited nodes reachable from <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms">RequiredToBeUniform.S</a>.</p>
+      <li data-md>
+       <p>Mark the nodes in <em>R.S</em> as visited.</p>
       <li data-md>
        <p>Let <em>W</em> be the <a data-link-type="dfn" href="#witness-set" id="ref-for-witness-set③">witness set</a> associated with <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms①">RequiredToBeUniform.S</a>.</p>
       <li data-md>
@@ -11028,18 +11045,20 @@ This represents the function’s effect on the uniformity of the value pointed t
          <p>If <em>R.S</em> includes <a data-link-type="dfn" href="#cf_start" id="ref-for-cf_start①">CF_start</a>, and the <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag②">call site tag</a> has not been updated since initialization, then
  set the <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag③">call site tag</a> to <a data-link-type="dfn" href="#callsiterequiredtobeuniforms" id="ref-for-callsiterequiredtobeuniforms">CallSiteRequiredToBeUniform.S</a>, and set its <a data-link-type="dfn" href="#witness-set" id="ref-for-witness-set④">witness set</a> to <em>W</em>.</p>
         <li data-md>
-         <p>For each <a data-link-type="dfn" href="#param_i" id="ref-for-param_i②">param_i</a> in <em>R.S</em>, if its corresponding <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag②">parameter tag</a> has not been updated since initialization, then
+         <p>For each <a data-link-type="dfn" href="#param_i" id="ref-for-param_i③">param_i</a> in <em>R.S</em>, if its corresponding <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag②">parameter tag</a> has not been updated since initialization, then
  set that tag to <a data-link-type="dfn" href="#parameterrequiredtobeuniforms" id="ref-for-parameterrequiredtobeuniforms">ParameterRequiredToBeUniform.S</a>, and set its <a data-link-type="dfn" href="#witness-set" id="ref-for-witness-set⑤">witness set</a> to <em>W</em>.</p>
        </ul>
      </ul>
+    <li data-md>
+     <p>Mark all the nodes as unvisited.</p>
     <li data-md>
      <p>If <a data-link-type="dfn" href="#value_return" id="ref-for-value_return">Value_return</a> exists, let <em>VR</em> be the set of nodes reachable from <a data-link-type="dfn" href="#value_return" id="ref-for-value_return①">Value_return</a>.</p>
      <ul>
       <li data-md>
        <p>If <em>VR</em> includes <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform⑨">MayBeNonUniform</a>, then set the <a data-link-type="dfn" href="#function-tag" id="ref-for-function-tag②">function tag</a> to <a data-link-type="dfn" href="#returnvaluemaybenonuniform" id="ref-for-returnvaluemaybenonuniform">ReturnValueMayBeNonUniform</a>.</p>
       <li data-md>
-       <p>For each <a data-link-type="dfn" href="#param_i" id="ref-for-param_i③">param_i</a> in <em>VR</em>, if the corresponding <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag③">parameter tag</a> has not been updated since initialization,
- then set it to <a data-link-type="dfn" href="#parameterrequiredtobeuniformforreturnvalue" id="ref-for-parameterrequiredtobeuniformforreturnvalue">ParameterRequiredToBeUniformForReturnValue</a>.</p>
+       <p>For each <a data-link-type="dfn" href="#param_i" id="ref-for-param_i④">param_i</a> in <em>VR</em>, if the corresponding <a data-link-type="dfn" href="#parameter-return-tag" id="ref-for-parameter-return-tag②">parameter return tag</a> has not been updated since initialization,
+ then set it to <a data-link-type="dfn" href="#parameterreturnrequiredtobeuniform" id="ref-for-parameterreturnrequiredtobeuniform">ParameterReturnRequiredToBeUniform</a>.</p>
       <li data-md>
        <p class="issue" id="issue-3fbfcd8b"><a class="self-link" href="#issue-3fbfcd8b"></a> <a href="https://github.com/gpuweb/gpuweb/issues/3677">#3677</a> For pointer parameters, handle the distinction between uniformity of the pointer
  value and the uniformity of the contents of the memory pointed at.</p>
@@ -11460,15 +11479,15 @@ being the same as input control flow node.</p>
      <p>For each argument <em>i</em>:</p>
      <ul>
       <li data-md>
-       <p>If the corresponding <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag④">parameter tag</a> is <a data-link-type="dfn" href="#parameterrequiredtobeuniforms" id="ref-for-parameterrequiredtobeuniforms①">ParameterRequiredToBeUniform.S</a>, then:</p>
+       <p>If the corresponding <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag③">parameter tag</a> is <a data-link-type="dfn" href="#parameterrequiredtobeuniforms" id="ref-for-parameterrequiredtobeuniforms①">ParameterRequiredToBeUniform.S</a>, then:</p>
        <ul>
         <li data-md>
          <p>Add an edge from <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms④">RequiredToBeUniform.S</a> to <a data-link-type="dfn" href="#arg_i" id="ref-for-arg_i">arg_i</a>.</p>
         <li data-md>
-         <p>Add the <a data-link-type="dfn" href="#witness-set" id="ref-for-witness-set⑦">witness set</a> of the <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag⑤">parameter tag</a> to the witness set associated with <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms⑤">RequiredToBeUniform.S</a>.</p>
+         <p>Add the <a data-link-type="dfn" href="#witness-set" id="ref-for-witness-set⑦">witness set</a> of the <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag④">parameter tag</a> to the witness set associated with <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms⑤">RequiredToBeUniform.S</a>.</p>
        </ul>
       <li data-md>
-       <p>Otherwise if the <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag⑥">parameter tag</a> is <a data-link-type="dfn" href="#parameterrequiredtobeuniformforreturnvalue" id="ref-for-parameterrequiredtobeuniformforreturnvalue①">ParameterRequiredToBeUniformForReturnValue</a>, then add an edge from <a data-link-type="dfn" href="#result" id="ref-for-result②">Result</a> to <a data-link-type="dfn" href="#arg_i" id="ref-for-arg_i①">arg_i</a></p>
+       <p>If the <a data-link-type="dfn" href="#parameter-return-tag" id="ref-for-parameter-return-tag③">parameter return tag</a> is <a data-link-type="dfn" href="#parameterreturnrequiredtobeuniform" id="ref-for-parameterreturnrequiredtobeuniform①">ParameterReturnRequiredToBeUniform</a>, then add an edge from <a data-link-type="dfn" href="#result" id="ref-for-result②">Result</a> to <a data-link-type="dfn" href="#arg_i" id="ref-for-arg_i①">arg_i</a></p>
       <li data-md>
        <p>If the corresponding parameter has a <a data-link-type="dfn" href="#pointer-parameter-tag" id="ref-for-pointer-parameter-tag③">pointer parameter tag</a> of <a data-link-type="dfn" href="#pointerparametermaybenonuniform" id="ref-for-pointerparametermaybenonuniform①">PointerParameterMayBeNonUniform</a>, then add an edge from <em>Vout</em>(<em>call</em>) to <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①②">MayBeNonUniform</a></p>
       <li data-md>
@@ -11483,7 +11502,13 @@ being the same as input control flow node.</p>
     <li data-md>
      <p>A <a data-link-type="dfn" href="#function-tag" id="ref-for-function-tag④">function tag</a> of <a data-link-type="dfn" href="#norestriction" id="ref-for-norestriction①">NoRestriction</a>.</p>
     <li data-md>
-     <p>For each parameter, a <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag⑦">parameter tag</a> of <a data-link-type="dfn" href="#parameterrequiredtobeuniformforreturnvalue" id="ref-for-parameterrequiredtobeuniformforreturnvalue②">ParameterRequiredToBeUniformForReturnValue</a>.</p>
+     <p>For each parameter:</p>
+     <ul>
+      <li data-md>
+       <p>a <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag⑤">parameter tag</a> of <a data-link-type="dfn" href="#parameternorestriction" id="ref-for-parameternorestriction①">ParameterNoRestriction</a>.</p>
+      <li data-md>
+       <p>a <a data-link-type="dfn" href="#parameter-return-tag" id="ref-for-parameter-return-tag④">parameter return tag</a> of <a data-link-type="dfn" href="#parameterreturnrequiredtobeuniform" id="ref-for-parameterreturnrequiredtobeuniform②">ParameterReturnRequiredToBeUniform</a>.</p>
+     </ul>
    </ul>
    <p>Here is the list of exceptions:</p>
    <ul>
@@ -11501,7 +11526,7 @@ The tag’s associated <a data-link-type="dfn" href="#witness" id="ref-for-witne
        </ul>
       <li data-md>
        <p>Additionally for the case of a call to <a href="#workgroupUniformLoad-builtin">workgroupUniformLoad</a>,
-the parameter <code>p</code> has a <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag⑧">parameter tag</a> of <a data-link-type="dfn" href="#parameterrequiredtobeuniforms" id="ref-for-parameterrequiredtobeuniforms②">ParameterRequiredToBeUniform.error</a>.
+the parameter <code>p</code> has a <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag⑥">parameter tag</a> of <a data-link-type="dfn" href="#parameterrequiredtobeuniforms" id="ref-for-parameterrequiredtobeuniforms②">ParameterRequiredToBeUniform.error</a>.
 The tag’s associated <a data-link-type="dfn" href="#witness" id="ref-for-witness③">witness</a> is the source location of the call site, combined with an unnamed <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule①②">triggering rule</a>.</p>
      </ul>
     <li data-md>
@@ -11528,16 +11553,6 @@ The tag’s associated <a data-link-type="dfn" href="#witness" id="ref-for-witne
          <p>If there is no such <em>DF</em>,
 the call site tag is <a data-link-type="dfn" href="#callsiterequiredtobeuniforms" id="ref-for-callsiterequiredtobeuniforms④">CallSiteRequiredToBeUniform.error</a>, with witness <em>w</em>.</p>
        </ul>
-     </ul>
-    <li data-md>
-     <p><a href="#arrayLength-builtin">arrayLength</a>:</p>
-     <ul>
-      <li data-md>
-       <p>Has a <a data-link-type="dfn" href="#function-tag" id="ref-for-function-tag⑦">function tag</a> of <a data-link-type="dfn" href="#norestriction" id="ref-for-norestriction③">NoRestriction</a>.</p>
-      <li data-md>
-       <p>Has a <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag⑨">call site tag</a> of <a data-link-type="dfn" href="#callsitenorestriction" id="ref-for-callsitenorestriction③">CallSiteNoRestriction</a>.</p>
-      <li data-md>
-       <p>The input parameter <code>p</code> has a <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag⑨">parameter tag</a> of <a data-link-type="dfn" href="#parameternorestriction" id="ref-for-parameternorestriction①">ParameterNoRestriction</a></p>
      </ul>
    </ul>
    <p class="note" role="note"><span class="marker">Note:</span> A WGSL implementation will ensure that if control flow prior to a
@@ -11902,7 +11917,7 @@ end of the loop body (CF_after_if).</p>
    <h5 class="heading settled" data-level="13.2.10.5" id="uniformity-example5"><span class="secno">13.2.10.5. </span><span class="content">User-defined Function Calls</span><a class="self-link" href="#uniformity-example5"></a></h5>
    <p>This example is modification of the <a href="#uniformity-example1">first example</a>, but
 uses a user-defined function call.
-The analysis tags both parameters of <code>scale</code> as <a data-link-type="dfn" href="#parameterrequiredtobeuniformforreturnvalue" id="ref-for-parameterrequiredtobeuniformforreturnvalue③">ParameterRequiredToBeUniformForReturnValue</a>.
+The analysis tags the <a data-link-type="dfn" href="#parameter-return-tag" id="ref-for-parameter-return-tag⑤">parameter return tag</a> both parameters of <code>scale</code> as <a data-link-type="dfn" href="#parameterreturnrequiredtobeuniform" id="ref-for-parameterreturnrequiredtobeuniform③">ParameterReturnRequiredToBeUniform</a>.
 This leads to the path in <code>main</code> between the return value of the <code>scale</code> function call and the <code>position</code> built-in value.
 That path is a subpath of the overall invalid path from <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms⑦">RequiredToBeUniform.S</a> to <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform②⓪">MayBeNonUniform</a>.</p>
    <div class="example wgsl no-marker" id="example-2d91fe99">
@@ -12025,7 +12040,7 @@ As such, helper invocations are subject to the following restrictions:</p>
     <li data-md>
      <p><a href="#atomic-builtin-functions">Atomic built-in functions</a> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②③">will</a> return <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value④">indeterminate</a> results.</p>
     <li data-md>
-     <p>The <a data-link-type="dfn" href="#entry-point" id="ref-for-entry-point①⑥">Entry point</a> <a data-link-type="dfn" href="#return-value" id="ref-for-return-value⑧">return value</a> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②④">will</a> not be further processed
+     <p>The <a data-link-type="dfn" href="#entry-point" id="ref-for-entry-point①⑥">Entry point</a> <a data-link-type="dfn" href="#return-value" id="ref-for-return-value⑨">return value</a> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②④">will</a> not be further processed
 downstream in the <a data-link-type="dfn" href="#gpurenderpipeline" id="ref-for-gpurenderpipeline④">GPURenderPipeline</a>.</p>
    </ul>
    <p>If all of the invocations in a quad become helper invocations (e.g. due to
@@ -18112,8 +18127,10 @@ registrations, it matches widespread industry conventions.</p>
     </ul>
    <li><a href="#parameterized">parameterized</a><span>, in § 5.1</span>
    <li><a href="#parameternorestriction">ParameterNoRestriction</a><span>, in § 13.2.3</span>
-   <li><a href="#parameterrequiredtobeuniformforreturnvalue">ParameterRequiredToBeUniformForReturnValue</a><span>, in § 13.2.3</span>
    <li><a href="#parameterrequiredtobeuniforms">ParameterRequiredToBeUniform.S</a><span>, in § 13.2.3</span>
+   <li><a href="#parameterreturnnorestriction">ParameterReturnNoRestriction</a><span>, in § 13.2.3</span>
+   <li><a href="#parameterreturnrequiredtobeuniform">ParameterReturnRequiredToBeUniform</a><span>, in § 13.2.3</span>
+   <li><a href="#parameter-return-tag">parameter return tag</a><span>, in § 13.2.3</span>
    <li><a href="#parameter-tag">parameter tag</a><span>, in § 13.2.3</span>
    <li><a href="#param_i">param_i</a><span>, in § 13.2.3</span>
    <li><a href="#syntax-param_list">param_list</a><span>, in § 9.1</span>
@@ -21866,12 +21883,13 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
   <aside class="dfn-panel" data-for="syntax-compound_statement">
    <b><a href="#syntax-compound_statement">#syntax-compound_statement</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-syntax-compound_statement">8.4.1. If Statement</a> <a href="#ref-for-syntax-compound_statement①">(2)</a> <a href="#ref-for-syntax-compound_statement②">(3)</a>
-    <li><a href="#ref-for-syntax-compound_statement③">8.4.2. Switch Statement</a> <a href="#ref-for-syntax-compound_statement④">(2)</a>
-    <li><a href="#ref-for-syntax-compound_statement⑤">8.4.4. For Statement</a>
-    <li><a href="#ref-for-syntax-compound_statement⑥">8.4.5. While Statement</a>
-    <li><a href="#ref-for-syntax-compound_statement⑦">8.7. Statements Grammar Summary</a>
-    <li><a href="#ref-for-syntax-compound_statement⑧">9.1. Declaring a User-defined Function</a>
+    <li><a href="#ref-for-syntax-compound_statement">2.2.2. Diagnostic Filtering</a>
+    <li><a href="#ref-for-syntax-compound_statement①">8.4.1. If Statement</a> <a href="#ref-for-syntax-compound_statement②">(2)</a> <a href="#ref-for-syntax-compound_statement③">(3)</a>
+    <li><a href="#ref-for-syntax-compound_statement④">8.4.2. Switch Statement</a> <a href="#ref-for-syntax-compound_statement⑤">(2)</a>
+    <li><a href="#ref-for-syntax-compound_statement⑥">8.4.4. For Statement</a>
+    <li><a href="#ref-for-syntax-compound_statement⑦">8.4.5. While Statement</a>
+    <li><a href="#ref-for-syntax-compound_statement⑧">8.7. Statements Grammar Summary</a>
+    <li><a href="#ref-for-syntax-compound_statement⑨">9.1. Declaring a User-defined Function</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="statement-assignment">
@@ -21957,7 +21975,8 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
   <aside class="dfn-panel" data-for="syntax-if_statement">
    <b><a href="#syntax-if_statement">#syntax-if_statement</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-syntax-if_statement">8.7. Statements Grammar Summary</a>
+    <li><a href="#ref-for-syntax-if_statement">2.2.2. Diagnostic Filtering</a>
+    <li><a href="#ref-for-syntax-if_statement①">8.7. Statements Grammar Summary</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-if_clause">
@@ -21994,14 +22013,15 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
   <aside class="dfn-panel" data-for="syntax-switch_statement">
    <b><a href="#syntax-switch_statement">#syntax-switch_statement</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-syntax-switch_statement">8.7. Statements Grammar Summary</a>
+    <li><a href="#ref-for-syntax-switch_statement">2.2.2. Diagnostic Filtering</a>
+    <li><a href="#ref-for-syntax-switch_statement①">8.7. Statements Grammar Summary</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-switch_body">
    <b><a href="#syntax-switch_body">#syntax-switch_body</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-syntax-switch_body">2.2.2. Diagnostic Filtering</a> <a href="#ref-for-syntax-switch_body①">(2)</a> <a href="#ref-for-syntax-switch_body②">(3)</a>
-    <li><a href="#ref-for-syntax-switch_body③">8.4.2. Switch Statement</a>
+    <li><a href="#ref-for-syntax-switch_body">2.2.2. Diagnostic Filtering</a> <a href="#ref-for-syntax-switch_body①">(2)</a> <a href="#ref-for-syntax-switch_body②">(3)</a> <a href="#ref-for-syntax-switch_body③">(4)</a>
+    <li><a href="#ref-for-syntax-switch_body④">8.4.2. Switch Statement</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-switch_clause">
@@ -22060,7 +22080,8 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
   <aside class="dfn-panel" data-for="syntax-loop_statement">
    <b><a href="#syntax-loop_statement">#syntax-loop_statement</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-syntax-loop_statement">8.7. Statements Grammar Summary</a>
+    <li><a href="#ref-for-syntax-loop_statement">2.2.2. Diagnostic Filtering</a>
+    <li><a href="#ref-for-syntax-loop_statement①">8.7. Statements Grammar Summary</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="statement-loop">
@@ -22094,7 +22115,8 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
   <aside class="dfn-panel" data-for="syntax-for_statement">
    <b><a href="#syntax-for_statement">#syntax-for_statement</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-syntax-for_statement">8.7. Statements Grammar Summary</a>
+    <li><a href="#ref-for-syntax-for_statement">2.2.2. Diagnostic Filtering</a>
+    <li><a href="#ref-for-syntax-for_statement①">8.7. Statements Grammar Summary</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-for_header">
@@ -22130,7 +22152,8 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
   <aside class="dfn-panel" data-for="syntax-while_statement">
    <b><a href="#syntax-while_statement">#syntax-while_statement</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-syntax-while_statement">8.7. Statements Grammar Summary</a>
+    <li><a href="#ref-for-syntax-while_statement">2.2.2. Diagnostic Filtering</a>
+    <li><a href="#ref-for-syntax-while_statement①">8.7. Statements Grammar Summary</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="statement-while">
@@ -22191,10 +22214,10 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
   <aside class="dfn-panel" data-for="syntax-continuing_compound_statement">
    <b><a href="#syntax-continuing_compound_statement">#syntax-continuing_compound_statement</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-syntax-continuing_compound_statement">2.2.2. Diagnostic Filtering</a> <a href="#ref-for-syntax-continuing_compound_statement①">(2)</a>
-    <li><a href="#ref-for-syntax-continuing_compound_statement②">8.1. Compound Statement</a>
-    <li><a href="#ref-for-syntax-continuing_compound_statement③">8.4.9. Continuing Statement</a>
-    <li><a href="#ref-for-syntax-continuing_compound_statement④">8.7. Statements Grammar Summary</a>
+    <li><a href="#ref-for-syntax-continuing_compound_statement">2.2.2. Diagnostic Filtering</a> <a href="#ref-for-syntax-continuing_compound_statement①">(2)</a> <a href="#ref-for-syntax-continuing_compound_statement②">(3)</a>
+    <li><a href="#ref-for-syntax-continuing_compound_statement③">8.1. Compound Statement</a>
+    <li><a href="#ref-for-syntax-continuing_compound_statement④">8.4.9. Continuing Statement</a>
+    <li><a href="#ref-for-syntax-continuing_compound_statement⑤">8.7. Statements Grammar Summary</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="statement-continuing">
@@ -22229,8 +22252,8 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-return-value③">10.2. Entry Point Declaration</a>
     <li><a href="#ref-for-return-value④">10.3. Shader Interface</a>
     <li><a href="#ref-for-return-value⑤">10.3.1.1. Built-in Inputs and Outputs</a>
-    <li><a href="#ref-for-return-value⑥">13.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-return-value⑦">(2)</a>
-    <li><a href="#ref-for-return-value⑧">13.4. Fragment Shaders and Helper Invocations</a>
+    <li><a href="#ref-for-return-value⑥">13.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-return-value⑦">(2)</a> <a href="#ref-for-return-value⑧">(3)</a>
+    <li><a href="#ref-for-return-value⑨">13.4. Fragment Shaders and Helper Invocations</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="statement-discard">
@@ -22356,7 +22379,8 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
   <aside class="dfn-panel" data-for="syntax-function_decl">
    <b><a href="#syntax-function_decl">#syntax-function_decl</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-syntax-function_decl">12. WGSL Program</a>
+    <li><a href="#ref-for-syntax-function_decl">2.2.2. Diagnostic Filtering</a>
+    <li><a href="#ref-for-syntax-function_decl①">12. WGSL Program</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-function_header">
@@ -22790,21 +22814,29 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <b><a href="#call-site-tag">#call-site-tag</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-call-site-tag">13.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-call-site-tag①">(2)</a> <a href="#ref-for-call-site-tag②">(3)</a> <a href="#ref-for-call-site-tag③">(4)</a>
-    <li><a href="#ref-for-call-site-tag④">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-call-site-tag⑤">(2)</a> <a href="#ref-for-call-site-tag⑥">(3)</a> <a href="#ref-for-call-site-tag⑦">(4)</a> <a href="#ref-for-call-site-tag⑧">(5)</a> <a href="#ref-for-call-site-tag⑨">(6)</a>
+    <li><a href="#ref-for-call-site-tag④">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-call-site-tag⑤">(2)</a> <a href="#ref-for-call-site-tag⑥">(3)</a> <a href="#ref-for-call-site-tag⑦">(4)</a> <a href="#ref-for-call-site-tag⑧">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="function-tag">
    <b><a href="#function-tag">#function-tag</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-function-tag">13.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-function-tag①">(2)</a> <a href="#ref-for-function-tag②">(3)</a>
-    <li><a href="#ref-for-function-tag③">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-function-tag④">(2)</a> <a href="#ref-for-function-tag⑤">(3)</a> <a href="#ref-for-function-tag⑥">(4)</a> <a href="#ref-for-function-tag⑦">(5)</a>
+    <li><a href="#ref-for-function-tag③">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-function-tag④">(2)</a> <a href="#ref-for-function-tag⑤">(3)</a> <a href="#ref-for-function-tag⑥">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="parameter-tag">
    <b><a href="#parameter-tag">#parameter-tag</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-parameter-tag">13.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-parameter-tag①">(2)</a> <a href="#ref-for-parameter-tag②">(3)</a> <a href="#ref-for-parameter-tag③">(4)</a>
-    <li><a href="#ref-for-parameter-tag④">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-parameter-tag⑤">(2)</a> <a href="#ref-for-parameter-tag⑥">(3)</a> <a href="#ref-for-parameter-tag⑦">(4)</a> <a href="#ref-for-parameter-tag⑧">(5)</a> <a href="#ref-for-parameter-tag⑨">(6)</a>
+    <li><a href="#ref-for-parameter-tag">13.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-parameter-tag①">(2)</a> <a href="#ref-for-parameter-tag②">(3)</a>
+    <li><a href="#ref-for-parameter-tag③">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-parameter-tag④">(2)</a> <a href="#ref-for-parameter-tag⑤">(3)</a> <a href="#ref-for-parameter-tag⑥">(4)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="parameter-return-tag">
+   <b><a href="#parameter-return-tag">#parameter-return-tag</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-parameter-return-tag">13.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-parameter-return-tag①">(2)</a> <a href="#ref-for-parameter-return-tag②">(3)</a>
+    <li><a href="#ref-for-parameter-return-tag③">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-parameter-return-tag④">(2)</a>
+    <li><a href="#ref-for-parameter-return-tag⑤">13.2.10.5. User-defined Function Calls</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="pointer-parameter-tag">
@@ -22825,7 +22857,7 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <b><a href="#callsitenorestriction">#callsitenorestriction</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-callsitenorestriction">13.2.3. Analyzing the Uniformity Requirements of a Function</a>
-    <li><a href="#ref-for-callsitenorestriction①">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-callsitenorestriction②">(2)</a> <a href="#ref-for-callsitenorestriction③">(3)</a>
+    <li><a href="#ref-for-callsitenorestriction①">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-callsitenorestriction②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="returnvaluemaybenonuniform">
@@ -22839,7 +22871,7 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <b><a href="#norestriction">#norestriction</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-norestriction">13.2.3. Analyzing the Uniformity Requirements of a Function</a>
-    <li><a href="#ref-for-norestriction①">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-norestriction②">(2)</a> <a href="#ref-for-norestriction③">(3)</a>
+    <li><a href="#ref-for-norestriction①">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-norestriction②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="parameterrequiredtobeuniforms">
@@ -22849,19 +22881,25 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-parameterrequiredtobeuniforms①">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-parameterrequiredtobeuniforms②">(2)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="parameterrequiredtobeuniformforreturnvalue">
-   <b><a href="#parameterrequiredtobeuniformforreturnvalue">#parameterrequiredtobeuniformforreturnvalue</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-parameterrequiredtobeuniformforreturnvalue">13.2.3. Analyzing the Uniformity Requirements of a Function</a>
-    <li><a href="#ref-for-parameterrequiredtobeuniformforreturnvalue①">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-parameterrequiredtobeuniformforreturnvalue②">(2)</a>
-    <li><a href="#ref-for-parameterrequiredtobeuniformforreturnvalue③">13.2.10.5. User-defined Function Calls</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="parameternorestriction">
    <b><a href="#parameternorestriction">#parameternorestriction</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-parameternorestriction">13.2.3. Analyzing the Uniformity Requirements of a Function</a>
     <li><a href="#ref-for-parameternorestriction①">13.2.7. Uniformity Rules for Function Calls</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="parameterreturnrequiredtobeuniform">
+   <b><a href="#parameterreturnrequiredtobeuniform">#parameterreturnrequiredtobeuniform</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-parameterreturnrequiredtobeuniform">13.2.3. Analyzing the Uniformity Requirements of a Function</a>
+    <li><a href="#ref-for-parameterreturnrequiredtobeuniform①">13.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-parameterreturnrequiredtobeuniform②">(2)</a>
+    <li><a href="#ref-for-parameterreturnrequiredtobeuniform③">13.2.10.5. User-defined Function Calls</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="parameterreturnnorestriction">
+   <b><a href="#parameterreturnnorestriction">#parameterreturnnorestriction</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-parameterreturnnorestriction">13.2.3. Analyzing the Uniformity Requirements of a Function</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="pointerparametermaybenonuniform">
@@ -22926,7 +22964,7 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
   <aside class="dfn-panel" data-for="param_i">
    <b><a href="#param_i">#param_i</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-param_i">13.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-param_i①">(2)</a> <a href="#ref-for-param_i②">(3)</a> <a href="#ref-for-param_i③">(4)</a>
+    <li><a href="#ref-for-param_i">13.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-param_i①">(2)</a> <a href="#ref-for-param_i②">(3)</a> <a href="#ref-for-param_i③">(4)</a> <a href="#ref-for-param_i④">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="value_return">
