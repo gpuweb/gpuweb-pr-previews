@@ -898,13 +898,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-02-15">15 February 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-02-16">16 February 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/a78f7ff2cfe1cf6c66738af4cb442828ac49bdf9/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/a78f7ff2cfe1cf6c66738af4cb442828ac49bdf9/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/566aa51c7986b689087672276d5f95a7581b20c7/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/566aa51c7986b689087672276d5f95a7581b20c7/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -16564,15 +16564,15 @@ in addition to the core <code class="idl"><a data-link-type="idl" href="#dom-gpu
    <h3 class="heading settled" data-level="26.1" id="texture-format-caps"><span class="secno">26.1. </span><span class="content">Texture Format Capabilities</span><a class="self-link" href="#texture-format-caps"></a></h3>
    <h4 class="heading settled" data-level="26.1.1" id="plain-color-formats"><span class="secno">26.1.1. </span><span class="content">Plain color formats</span><a class="self-link" href="#plain-color-formats"></a></h4>
    <p>All plain color formats support <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-copy_src" id="ref-for-dom-gputextureusage-copy_src④">COPY_SRC</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-copy_dst" id="ref-for-dom-gputextureusage-copy_dst⑥">COPY_DST</a></code>, and <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-texture_binding" id="ref-for-dom-gputextureusage-texture_binding④">TEXTURE_BINDING</a></code> usage.</p>
-   <p>Only formats with <code class="idl"><a data-link-type="idl" href="#enumdef-gputexturesampletype" id="ref-for-enumdef-gputexturesampletype③">GPUTextureSampleType</a></code> <code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float⑨">"float"</a></code> can be blended.</p>
    <p>The <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-render_attachment" id="ref-for-dom-gputextureusage-render_attachment①⑤">RENDER_ATTACHMENT</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding⑧">STORAGE_BINDING</a></code> columns
 specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-render_attachment" id="ref-for-dom-gputextureusage-render_attachment①⑥">GPUTextureUsage.RENDER_ATTACHMENT</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding⑨">GPUTextureUsage.STORAGE_BINDING</a></code> usage respectively.</p>
    <table class="data">
     <thead class="stickyheader">
      <tr>
       <th>Format 
-      <th><code class="idl"><a data-link-type="idl" href="#enumdef-gputexturesampletype" id="ref-for-enumdef-gputexturesampletype④">GPUTextureSampleType</a></code> 
+      <th><code class="idl"><a data-link-type="idl" href="#enumdef-gputexturesampletype" id="ref-for-enumdef-gputexturesampletype③">GPUTextureSampleType</a></code> 
       <th><span class="vertical"><code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-render_attachment" id="ref-for-dom-gputextureusage-render_attachment①⑦">RENDER_ATTACHMENT</a></code></span> 
+      <th><span class="vertical">blending</span> 
       <th><span class="vertical">multisampling</span> 
       <th><span class="vertical">resolve</span> 
       <th><span class="vertical"><code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding①⓪">STORAGE_BINDING</a></code></span> 
@@ -16584,7 +16584,8 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <th>8-bit per component 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-r8unorm" id="ref-for-dom-gputextureformat-r8unorm①">r8unorm</a></code> 
-      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float①⓪">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float⑥">"unfilterable-float"</a></code> 
+      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float⑨">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float⑥">"unfilterable-float"</a></code> 
+      <td>✓ 
       <td>✓ 
       <td>✓ 
       <td>✓ 
@@ -16594,7 +16595,8 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>1 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-r8snorm" id="ref-for-dom-gputextureformat-r8snorm">r8snorm</a></code> 
-      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float①①">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float⑦">"unfilterable-float"</a></code> 
+      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float①⓪">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float⑦">"unfilterable-float"</a></code> 
+      <td>
       <td>
       <td>
       <td>
@@ -16606,6 +16608,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-r8uint" id="ref-for-dom-gputextureformat-r8uint">r8uint</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-uint" id="ref-for-dom-gputexturesampletype-uint④">"uint"</a></code> 
       <td>✓ 
+      <td>
       <td>✓ 
       <td>
       <td>
@@ -16616,6 +16619,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-r8sint" id="ref-for-dom-gputextureformat-r8sint">r8sint</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-sint" id="ref-for-dom-gputexturesampletype-sint④">"sint"</a></code> 
       <td>✓ 
+      <td>
       <td>✓ 
       <td>
       <td>
@@ -16624,7 +16628,8 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>1 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rg8unorm" id="ref-for-dom-gputextureformat-rg8unorm①">rg8unorm</a></code> 
-      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float①②">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float⑧">"unfilterable-float"</a></code> 
+      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float①①">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float⑧">"unfilterable-float"</a></code> 
+      <td>✓ 
       <td>✓ 
       <td>✓ 
       <td>✓ 
@@ -16634,7 +16639,8 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>1 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rg8snorm" id="ref-for-dom-gputextureformat-rg8snorm">rg8snorm</a></code> 
-      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float①③">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float⑨">"unfilterable-float"</a></code> 
+      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float①②">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float⑨">"unfilterable-float"</a></code> 
+      <td>
       <td>
       <td>
       <td>
@@ -16646,6 +16652,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rg8uint" id="ref-for-dom-gputextureformat-rg8uint">rg8uint</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-uint" id="ref-for-dom-gputexturesampletype-uint⑤">"uint"</a></code> 
       <td>✓ 
+      <td>
       <td>✓ 
       <td>
       <td>
@@ -16656,6 +16663,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rg8sint" id="ref-for-dom-gputextureformat-rg8sint">rg8sint</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-sint" id="ref-for-dom-gputexturesampletype-sint⑤">"sint"</a></code> 
       <td>✓ 
+      <td>
       <td>✓ 
       <td>
       <td>
@@ -16664,7 +16672,8 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>1 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgba8unorm" id="ref-for-dom-gputextureformat-rgba8unorm⑤">rgba8unorm</a></code> 
-      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float①④">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float①⓪">"unfilterable-float"</a></code> 
+      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float①③">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float①⓪">"unfilterable-float"</a></code> 
+      <td>✓ 
       <td>✓ 
       <td>✓ 
       <td>✓ 
@@ -16674,7 +16683,8 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>1 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgba8unorm-srgb" id="ref-for-dom-gputextureformat-rgba8unorm-srgb②">rgba8unorm-srgb</a></code> 
-      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float①⑤">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float①①">"unfilterable-float"</a></code> 
+      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float①④">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float①①">"unfilterable-float"</a></code> 
+      <td>✓ 
       <td>✓ 
       <td>✓ 
       <td>✓ 
@@ -16684,7 +16694,8 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>1 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgba8snorm" id="ref-for-dom-gputextureformat-rgba8snorm">rgba8snorm</a></code> 
-      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float①⑥">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float①②">"unfilterable-float"</a></code> 
+      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float①⑤">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float①②">"unfilterable-float"</a></code> 
+      <td>
       <td>
       <td>
       <td>
@@ -16696,6 +16707,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgba8uint" id="ref-for-dom-gputextureformat-rgba8uint">rgba8uint</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-uint" id="ref-for-dom-gputexturesampletype-uint⑥">"uint"</a></code> 
       <td>✓ 
+      <td>
       <td>✓ 
       <td>
       <td>✓ 
@@ -16706,6 +16718,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgba8sint" id="ref-for-dom-gputextureformat-rgba8sint">rgba8sint</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-sint" id="ref-for-dom-gputexturesampletype-sint⑥">"sint"</a></code> 
       <td>✓ 
+      <td>
       <td>✓ 
       <td>
       <td>✓ 
@@ -16714,7 +16727,8 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>1 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-bgra8unorm" id="ref-for-dom-gputextureformat-bgra8unorm⑥">bgra8unorm</a></code> 
-      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float①⑦">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float①③">"unfilterable-float"</a></code> 
+      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float①⑥">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float①③">"unfilterable-float"</a></code> 
+      <td>✓ 
       <td>✓ 
       <td>✓ 
       <td>✓ 
@@ -16724,7 +16738,8 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>1 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-bgra8unorm-srgb" id="ref-for-dom-gputextureformat-bgra8unorm-srgb②">bgra8unorm-srgb</a></code> 
-      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float①⑧">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float①④">"unfilterable-float"</a></code> 
+      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float①⑦">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float①④">"unfilterable-float"</a></code> 
+      <td>✓ 
       <td>✓ 
       <td>✓ 
       <td>✓ 
@@ -16738,6 +16753,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-r16uint" id="ref-for-dom-gputextureformat-r16uint">r16uint</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-uint" id="ref-for-dom-gputexturesampletype-uint⑦">"uint"</a></code> 
       <td>✓ 
+      <td>
       <td>✓ 
       <td>
       <td>
@@ -16748,6 +16764,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-r16sint" id="ref-for-dom-gputextureformat-r16sint">r16sint</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-sint" id="ref-for-dom-gputexturesampletype-sint⑦">"sint"</a></code> 
       <td>✓ 
+      <td>
       <td>✓ 
       <td>
       <td>
@@ -16756,7 +16773,8 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>2 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-r16float" id="ref-for-dom-gputextureformat-r16float①">r16float</a></code> 
-      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float①⑨">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float①⑤">"unfilterable-float"</a></code> 
+      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float①⑧">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float①⑤">"unfilterable-float"</a></code> 
+      <td>✓ 
       <td>✓ 
       <td>✓ 
       <td>✓ 
@@ -16768,6 +16786,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rg16uint" id="ref-for-dom-gputextureformat-rg16uint">rg16uint</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-uint" id="ref-for-dom-gputexturesampletype-uint⑧">"uint"</a></code> 
       <td>✓ 
+      <td>
       <td>✓ 
       <td>
       <td>
@@ -16778,6 +16797,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rg16sint" id="ref-for-dom-gputextureformat-rg16sint">rg16sint</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-sint" id="ref-for-dom-gputexturesampletype-sint⑧">"sint"</a></code> 
       <td>✓ 
+      <td>
       <td>✓ 
       <td>
       <td>
@@ -16786,7 +16806,8 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>2 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rg16float" id="ref-for-dom-gputextureformat-rg16float①">rg16float</a></code> 
-      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float②⓪">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float①⑥">"unfilterable-float"</a></code> 
+      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float①⑨">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float①⑥">"unfilterable-float"</a></code> 
+      <td>✓ 
       <td>✓ 
       <td>✓ 
       <td>✓ 
@@ -16798,6 +16819,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgba16uint" id="ref-for-dom-gputextureformat-rgba16uint">rgba16uint</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-uint" id="ref-for-dom-gputexturesampletype-uint⑨">"uint"</a></code> 
       <td>✓ 
+      <td>
       <td>✓ 
       <td>
       <td>✓ 
@@ -16808,6 +16830,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgba16sint" id="ref-for-dom-gputextureformat-rgba16sint">rgba16sint</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-sint" id="ref-for-dom-gputexturesampletype-sint⑨">"sint"</a></code> 
       <td>✓ 
+      <td>
       <td>✓ 
       <td>
       <td>✓ 
@@ -16816,7 +16839,8 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>2 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgba16float" id="ref-for-dom-gputextureformat-rgba16float②">rgba16float</a></code> 
-      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float②①">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float①⑦">"unfilterable-float"</a></code> 
+      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float②⓪">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float①⑦">"unfilterable-float"</a></code> 
+      <td>✓ 
       <td>✓ 
       <td>✓ 
       <td>✓ 
@@ -16832,6 +16856,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>✓ 
       <td>
       <td>
+      <td>
       <td>✓ 
       <td>4 
       <td>4 
@@ -16840,6 +16865,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-r32sint" id="ref-for-dom-gputextureformat-r32sint">r32sint</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-sint" id="ref-for-dom-gputexturesampletype-sint①⓪">"sint"</a></code> 
       <td>✓ 
+      <td>
       <td>
       <td>
       <td>✓ 
@@ -16852,9 +16878,10 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
        <code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float①⑧">"unfilterable-float"</a></code> 
        <ul>
         <li data-md>
-         <p><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float②②">"float"</a></code> if <code class="idl"><a data-link-type="idl" href="#float32-filterable" id="ref-for-float32-filterable①">"float32-filterable"</a></code> is enabled</p>
+         <p><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float②①">"float"</a></code> if <code class="idl"><a data-link-type="idl" href="#float32-filterable" id="ref-for-float32-filterable①">"float32-filterable"</a></code> is enabled</p>
        </ul>
       <td>✓ 
+      <td>
       <td>✓ 
       <td>
       <td>✓ 
@@ -16867,6 +16894,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>✓ 
       <td>
       <td>
+      <td>
       <td>✓ 
       <td>8 
       <td>8 
@@ -16875,6 +16903,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rg32sint" id="ref-for-dom-gputextureformat-rg32sint">rg32sint</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-sint" id="ref-for-dom-gputexturesampletype-sint①①">"sint"</a></code> 
       <td>✓ 
+      <td>
       <td>
       <td>
       <td>✓ 
@@ -16887,9 +16916,10 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
        <code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float①⑨">"unfilterable-float"</a></code> 
        <ul>
         <li data-md>
-         <p><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float②③">"float"</a></code> if <code class="idl"><a data-link-type="idl" href="#float32-filterable" id="ref-for-float32-filterable②">"float32-filterable"</a></code> is enabled</p>
+         <p><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float②②">"float"</a></code> if <code class="idl"><a data-link-type="idl" href="#float32-filterable" id="ref-for-float32-filterable②">"float32-filterable"</a></code> is enabled</p>
        </ul>
       <td>✓ 
+      <td>
       <td>
       <td>
       <td>✓ 
@@ -16902,6 +16932,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>✓ 
       <td>
       <td>
+      <td>
       <td>✓ 
       <td>16 
       <td>16 
@@ -16910,6 +16941,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgba32sint" id="ref-for-dom-gputextureformat-rgba32sint">rgba32sint</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-sint" id="ref-for-dom-gputexturesampletype-sint①②">"sint"</a></code> 
       <td>✓ 
+      <td>
       <td>
       <td>
       <td>✓ 
@@ -16922,9 +16954,10 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
        <code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float②⓪">"unfilterable-float"</a></code> 
        <ul>
         <li data-md>
-         <p><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float②④">"float"</a></code> if <code class="idl"><a data-link-type="idl" href="#float32-filterable" id="ref-for-float32-filterable③">"float32-filterable"</a></code> is enabled</p>
+         <p><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float②③">"float"</a></code> if <code class="idl"><a data-link-type="idl" href="#float32-filterable" id="ref-for-float32-filterable③">"float32-filterable"</a></code> is enabled</p>
        </ul>
       <td>✓ 
+      <td>
       <td>
       <td>
       <td>✓ 
@@ -16935,7 +16968,8 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <th>mixed component width 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgb10a2unorm" id="ref-for-dom-gputextureformat-rgb10a2unorm①">rgb10a2unorm</a></code> 
-      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float②⑤">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float②①">"unfilterable-float"</a></code> 
+      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float②④">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float②①">"unfilterable-float"</a></code> 
+      <td>✓ 
       <td>✓ 
       <td>✓ 
       <td>✓ 
@@ -16945,8 +16979,8 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>4 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rg11b10ufloat" id="ref-for-dom-gputextureformat-rg11b10ufloat①">rg11b10ufloat</a></code> 
-      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float②⑥">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float②②">"unfilterable-float"</a></code> 
-      <td colspan="2">If <code class="idl"><a data-link-type="idl" href="#rg11b10ufloat-renderable" id="ref-for-rg11b10ufloat-renderable①">"rg11b10ufloat-renderable"</a></code> is enabled 
+      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float②⑤">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float②②">"unfilterable-float"</a></code> 
+      <td colspan="3">If <code class="idl"><a data-link-type="idl" href="#rg11b10ufloat-renderable" id="ref-for-rg11b10ufloat-renderable①">"rg11b10ufloat-renderable"</a></code> is enabled 
       <td>
       <td>
       <td>4 
@@ -16969,7 +17003,7 @@ be used with <code class="idl"><a data-link-type="idl" href="#dom-gpusamplerbind
       <th>Bytes per texel 
       <th>Aspect 
       <th><a data-link-type="dfn" href="#texel-block-size" id="ref-for-texel-block-size⑤">Texel block size</a> (Bytes) 
-      <th><code class="idl"><a data-link-type="idl" href="#enumdef-gputexturesampletype" id="ref-for-enumdef-gputexturesampletype⑤">GPUTextureSampleType</a></code> 
+      <th><code class="idl"><a data-link-type="idl" href="#enumdef-gputexturesampletype" id="ref-for-enumdef-gputexturesampletype④">GPUTextureSampleType</a></code> 
       <th>Valid <a data-link-type="dfn" href="#image-copy" id="ref-for-image-copy③">image copy</a> source 
       <th>Valid <a data-link-type="dfn" href="#image-copy" id="ref-for-image-copy④">image copy</a> destination 
       <th><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="aspect-specific-format">Aspect-specific format</dfn> 
@@ -17086,7 +17120,7 @@ buffer (via a storage buffer binding in a compute shader).</p>
    </div>
    <h4 class="heading settled" data-level="26.1.3" id="packed-formats"><span class="secno">26.1.3. </span><span class="content">Packed formats</span><a class="self-link" href="#packed-formats"></a></h4>
    <p>All packed texture formats support <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-copy_src" id="ref-for-dom-gputextureusage-copy_src⑥">COPY_SRC</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-copy_dst" id="ref-for-dom-gputextureusage-copy_dst⑧">COPY_DST</a></code>,
-and <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-texture_binding" id="ref-for-dom-gputextureusage-texture_binding⑥">TEXTURE_BINDING</a></code> usages. All of these formats have <code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float②⑦">"float"</a></code> type and can be filtered on sampling. None of these formats support multisampling.</p>
+and <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-texture_binding" id="ref-for-dom-gputextureusage-texture_binding⑥">TEXTURE_BINDING</a></code> usages. All of these formats have <code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float②⑥">"float"</a></code> type and can be filtered on sampling. None of these formats support multisampling.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="compressed-format">compressed format</dfn> is any format with a block size greater than 1×1.</p>
    <p>The <a data-link-type="dfn" href="#texel-block-size" id="ref-for-texel-block-size⑥">texel block size</a> (in bytes) of a packed format is equal to the Bytes per block column below.</p>
    <table class="data">
@@ -17094,20 +17128,20 @@ and <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-texture
      <tr>
       <th>Format 
       <th>Bytes per block 
-      <th><code class="idl"><a data-link-type="idl" href="#enumdef-gputexturesampletype" id="ref-for-enumdef-gputexturesampletype⑥">GPUTextureSampleType</a></code> 
+      <th><code class="idl"><a data-link-type="idl" href="#enumdef-gputexturesampletype" id="ref-for-enumdef-gputexturesampletype⑤">GPUTextureSampleType</a></code> 
       <th>Block Size 
       <th><a data-link-type="dfn" href="#feature" id="ref-for-feature①②">Feature</a> 
     <tbody>
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgb9e5ufloat" id="ref-for-dom-gputextureformat-rgb9e5ufloat">rgb9e5ufloat</a></code> 
       <td>4 
-      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float②⑧">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float②⑧">"unfilterable-float"</a></code> 
+      <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float②⑦">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float②⑧">"unfilterable-float"</a></code> 
       <td>1 × 1 
       <td>
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-bc1-rgba-unorm" id="ref-for-dom-gputextureformat-bc1-rgba-unorm①">bc1-rgba-unorm</a></code> 
       <td rowspan="2">8 
-      <td rowspan="14"><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float②⑨">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float②⑨">"unfilterable-float"</a></code> 
+      <td rowspan="14"><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float②⑧">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float②⑨">"unfilterable-float"</a></code> 
       <td rowspan="14">4 × 4 
       <td rowspan="14"><code class="idl"><a data-link-type="idl" href="#texture-compression-bc" id="ref-for-texture-compression-bc①">texture-compression-bc</a></code> 
      <tr>
@@ -17145,7 +17179,7 @@ and <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-texture
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-etc2-rgb8unorm" id="ref-for-dom-gputextureformat-etc2-rgb8unorm①">etc2-rgb8unorm</a></code> 
       <td rowspan="2">8 
-      <td rowspan="10"><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float③⓪">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float③⓪">"unfilterable-float"</a></code> 
+      <td rowspan="10"><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float②⑨">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float③⓪">"unfilterable-float"</a></code> 
       <td rowspan="10">4 × 4 
       <td rowspan="10"><code class="idl"><a data-link-type="idl" href="#texture-compression-etc2" id="ref-for-texture-compression-etc2①">texture-compression-etc2</a></code> 
      <tr>
@@ -17173,7 +17207,7 @@ and <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-texture
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-astc-4x4-unorm" id="ref-for-dom-gputextureformat-astc-4x4-unorm①">astc-4x4-unorm</a></code> 
       <td rowspan="2">16 
-      <td rowspan="28"><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float③①">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float③①">"unfilterable-float"</a></code> 
+      <td rowspan="28"><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float③⓪">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float③①">"unfilterable-float"</a></code> 
       <td rowspan="2">4 × 4 
       <td rowspan="28"><code class="idl"><a data-link-type="idl" href="#texture-compression-astc" id="ref-for-texture-compression-astc②">texture-compression-astc</a></code> 
      <tr>
@@ -25675,9 +25709,9 @@ restriction entirely and allow writable bindings to alias with undefined results
    <ul>
     <li><a href="#ref-for-enumdef-gputexturesampletype">8.1.1. Bind Group Layout Creation</a> <a href="#ref-for-enumdef-gputexturesampletype①">(2)</a>
     <li><a href="#ref-for-enumdef-gputexturesampletype②">25.11. "float32-filterable" </a>
-    <li><a href="#ref-for-enumdef-gputexturesampletype③">26.1.1. Plain color formats</a> <a href="#ref-for-enumdef-gputexturesampletype④">(2)</a>
-    <li><a href="#ref-for-enumdef-gputexturesampletype⑤">26.1.2. Depth-stencil formats</a>
-    <li><a href="#ref-for-enumdef-gputexturesampletype⑥">26.1.3. Packed formats</a>
+    <li><a href="#ref-for-enumdef-gputexturesampletype③">26.1.1. Plain color formats</a>
+    <li><a href="#ref-for-enumdef-gputexturesampletype④">26.1.2. Depth-stencil formats</a>
+    <li><a href="#ref-for-enumdef-gputexturesampletype⑤">26.1.3. Packed formats</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gputexturesampletype-float">
@@ -25687,8 +25721,8 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-dom-gputexturesampletype-float②">10.1.1. Default pipeline layout</a> <a href="#ref-for-dom-gputexturesampletype-float③">(2)</a> <a href="#ref-for-dom-gputexturesampletype-float④">(3)</a>
     <li><a href="#ref-for-dom-gputexturesampletype-float⑤">10.1.2. GPUProgrammableStage </a> <a href="#ref-for-dom-gputexturesampletype-float⑥">(2)</a> <a href="#ref-for-dom-gputexturesampletype-float⑦">(3)</a>
     <li><a href="#ref-for-dom-gputexturesampletype-float⑧">25.11. "float32-filterable" </a>
-    <li><a href="#ref-for-dom-gputexturesampletype-float⑨">26.1.1. Plain color formats</a> <a href="#ref-for-dom-gputexturesampletype-float①⓪">(2)</a> <a href="#ref-for-dom-gputexturesampletype-float①①">(3)</a> <a href="#ref-for-dom-gputexturesampletype-float①②">(4)</a> <a href="#ref-for-dom-gputexturesampletype-float①③">(5)</a> <a href="#ref-for-dom-gputexturesampletype-float①④">(6)</a> <a href="#ref-for-dom-gputexturesampletype-float①⑤">(7)</a> <a href="#ref-for-dom-gputexturesampletype-float①⑥">(8)</a> <a href="#ref-for-dom-gputexturesampletype-float①⑦">(9)</a> <a href="#ref-for-dom-gputexturesampletype-float①⑧">(10)</a> <a href="#ref-for-dom-gputexturesampletype-float①⑨">(11)</a> <a href="#ref-for-dom-gputexturesampletype-float②⓪">(12)</a> <a href="#ref-for-dom-gputexturesampletype-float②①">(13)</a> <a href="#ref-for-dom-gputexturesampletype-float②②">(14)</a> <a href="#ref-for-dom-gputexturesampletype-float②③">(15)</a> <a href="#ref-for-dom-gputexturesampletype-float②④">(16)</a> <a href="#ref-for-dom-gputexturesampletype-float②⑤">(17)</a> <a href="#ref-for-dom-gputexturesampletype-float②⑥">(18)</a>
-    <li><a href="#ref-for-dom-gputexturesampletype-float②⑦">26.1.3. Packed formats</a> <a href="#ref-for-dom-gputexturesampletype-float②⑧">(2)</a> <a href="#ref-for-dom-gputexturesampletype-float②⑨">(3)</a> <a href="#ref-for-dom-gputexturesampletype-float③⓪">(4)</a> <a href="#ref-for-dom-gputexturesampletype-float③①">(5)</a>
+    <li><a href="#ref-for-dom-gputexturesampletype-float⑨">26.1.1. Plain color formats</a> <a href="#ref-for-dom-gputexturesampletype-float①⓪">(2)</a> <a href="#ref-for-dom-gputexturesampletype-float①①">(3)</a> <a href="#ref-for-dom-gputexturesampletype-float①②">(4)</a> <a href="#ref-for-dom-gputexturesampletype-float①③">(5)</a> <a href="#ref-for-dom-gputexturesampletype-float①④">(6)</a> <a href="#ref-for-dom-gputexturesampletype-float①⑤">(7)</a> <a href="#ref-for-dom-gputexturesampletype-float①⑥">(8)</a> <a href="#ref-for-dom-gputexturesampletype-float①⑦">(9)</a> <a href="#ref-for-dom-gputexturesampletype-float①⑧">(10)</a> <a href="#ref-for-dom-gputexturesampletype-float①⑨">(11)</a> <a href="#ref-for-dom-gputexturesampletype-float②⓪">(12)</a> <a href="#ref-for-dom-gputexturesampletype-float②①">(13)</a> <a href="#ref-for-dom-gputexturesampletype-float②②">(14)</a> <a href="#ref-for-dom-gputexturesampletype-float②③">(15)</a> <a href="#ref-for-dom-gputexturesampletype-float②④">(16)</a> <a href="#ref-for-dom-gputexturesampletype-float②⑤">(17)</a>
+    <li><a href="#ref-for-dom-gputexturesampletype-float②⑥">26.1.3. Packed formats</a> <a href="#ref-for-dom-gputexturesampletype-float②⑦">(2)</a> <a href="#ref-for-dom-gputexturesampletype-float②⑧">(3)</a> <a href="#ref-for-dom-gputexturesampletype-float②⑨">(4)</a> <a href="#ref-for-dom-gputexturesampletype-float③⓪">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gputexturesampletype-unfilterable-float">
