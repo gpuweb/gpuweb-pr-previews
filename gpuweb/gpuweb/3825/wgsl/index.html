@@ -689,13 +689,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-02-14">14 February 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-02-17">17 February 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/f87aa4274704e1d59ff340b9479cf2e5d8cdbc07/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/f87aa4274704e1d59ff340b9479cf2e5d8cdbc07/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/3edf49634eaa9bcb167ed819345d7f0dcc7ec4ba/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/3edf49634eaa9bcb167ed819345d7f0dcc7ec4ba/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -3096,7 +3096,7 @@ Second, when a load from a reference-to-memory occurs, yielding the value stored
       <td>infinity 
       <td>There are no automatic conversions between other types. 
    </table>
-   <p>For a given expression <code>e: S</code>, the type <code>T</code> is the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="concretization">concretization</dfn> of type <code>S</code> if:</p>
+   <p>The type <code>T</code> is the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="concretization">concretization</dfn> of type <code>S</code> if:</p>
    <ul>
     <li data-md>
      <p><code>T</code> is not a reference type, and</p>
@@ -3144,11 +3144,8 @@ Let <var>C</var>.<var>R</var>(i) be the <a data-link-type="dfn" href="#conversio
     <li data-md>
      <p>Eliminate any candidate where one of its subexpressions resolves to an <a data-link-type="dfn" href="#type-abstract" id="ref-for-type-abstract②">abstract</a> type after <a data-link-type="dfn" href="#feasible-automatic-conversion" id="ref-for-feasible-automatic-conversion④">feasible automatic conversions</a>, but another
 of the candidate’s subexpressions is not a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑨">const-expression</a>.</p>
-     <ul>
-      <li data-md>
-       <p>That is, overload resolution <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②">will</a> <a data-link-type="dfn" href="#concretization" id="ref-for-concretization">concretize</a> the type of
-an expression unless all its subexpressions are <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions①⓪">const-expressions</a>.</p>
-     </ul>
+     <p class="note" role="note"><span class="marker">Note:</span> As a consequence, if any subexpression in the phrase is not a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions①⓪">const-expression</a>,
+    then all subexpressions in the phrase must have a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③">concrete</a> type.</p>
     <li data-md>
      <p>Rank candidates: Given two overload candidates <var>C1</var> and <var>C2</var>, <var>C1</var> is <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="preferable candidate" data-noexport id="preferable-candidate">preferred</dfn> over <var>C2</var> if:</p>
      <ul>
@@ -3662,7 +3659,7 @@ In this interpretation, the vectors of a matrix are treated as column vectors.</
       <td>mat4x4&lt;f16> 
    </table>
    <h4 class="heading settled" data-level="5.2.8" id="atomic-types"><span class="secno">5.2.8. </span><span class="content">Atomic Types</span><a class="self-link" href="#atomic-types"></a></h4>
-   <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="atomic-type">atomic type</dfn> encapsulates a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar③">integer scalar</a> type such that:</p>
+   <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="atomic-type">atomic type</dfn> encapsulates a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar③">integer scalar</a> type such that:</p>
    <ul>
     <li data-md>
      <p>atomic objects provide <a href="#memory-model">certain guarantees</a> to concurrent observers, and</p>
@@ -3718,7 +3715,7 @@ See <a href="#array-access-expr">§ 7.7.3 Array Access Expression</a>.</p>
     <li data-md>
      <p>It <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error⑥①">must</a> be an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions①">override-expression</a>.</p>
     <li data-md>
-     <p>It <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error⑥②">must</a> evaluate to a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar④">integer scalar</a>.</p>
+     <p>It <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error⑥②">must</a> evaluate to a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑤">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar④">integer scalar</a>.</p>
     <li data-md>
      <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error①">pipeline-creation error</a> if <var>N</var> is not greater than zero.</p>
    </ul>
@@ -3854,7 +3851,7 @@ See <a href="#declaration-and-scope">§ 4 Declaration and Scope</a>.</p>
     <li data-md>
      <p>a <a data-link-type="dfn" href="#structure" id="ref-for-structure⑦">structure</a> type that has a <a data-link-type="dfn" href="#creation-fixed-footprint" id="ref-for-creation-fixed-footprint⑤">creation-fixed footprint</a></p>
    </ul>
-   <p class="note" role="note"><span class="marker">Note:</span> All user-declared structure types are <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑤">concrete</a>.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> All user-declared structure types are <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑥">concrete</a>.</p>
    <p class="note" role="note"><span class="marker">Note:</span> Each member type must be a <a data-link-type="dfn" href="#plain-type" id="ref-for-plain-type②">plain type</a>.</p>
    <p>Some consequences of the restrictions structure member and array element types are:</p>
    <ul>
@@ -4034,7 +4031,7 @@ describe the contents of memory.</p>
    <p>Memory consists of a set of distinct <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="memory-locations">memory locations</dfn>.
 Each memory location is 8-bits in size.
 An operation affecting memory interacts with a set of one or more memory locations.
-Memory operations on <a data-link-type="dfn" href="#composite" id="ref-for-composite②">composites</a> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements③">will not</a> access padding memory locations.</p>
+Memory operations on <a data-link-type="dfn" href="#composite" id="ref-for-composite②">composites</a> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②">will not</a> access padding memory locations.</p>
    <p>Two sets of memory locations <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="overlap">overlap</dfn> if the intersection of
 their sets of memory locations is non-empty.</p>
    <h4 class="heading settled" data-level="5.3.2" id="memory-access-mode"><span class="secno">5.3.2. </span><span class="content">Memory Access Mode</span><a class="self-link" href="#memory-access-mode"></a></h4>
@@ -4066,7 +4063,7 @@ In particular, the token does not <a data-link-type="dfn" href="#resolves" id="r
 A storable type may have an explicit representation defined by WGSL,
 as described in <a href="#internal-value-layout">§ 5.3.6.4 Internal Layout of Values</a>,
 or it may be opaque, such as for <a data-link-type="dfn" href="#texture-resource" id="ref-for-texture-resource">textures</a> and <a data-link-type="dfn" href="#sampler-resource" id="ref-for-sampler-resource">samplers</a>.</p>
-   <p>A type is <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="storable">storable</dfn> if it is both <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑥">concrete</a> and one of:</p>
+   <p>A type is <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="storable">storable</dfn> if it is both <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑦">concrete</a> and one of:</p>
    <ul>
     <li data-md>
      <p>a <a data-link-type="dfn" href="#scalar" id="ref-for-scalar①⓪">scalar</a> type</p>
@@ -4085,14 +4082,14 @@ or it may be opaque, such as for <a data-link-type="dfn" href="#texture-resource
     <li data-md>
      <p>a <a data-link-type="dfn" href="#sampler" id="ref-for-sampler">sampler</a> type</p>
    </ul>
-   <p class="note" role="note"><span class="marker">Note:</span> That is, the storable types are the <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑦">concrete</a> <a data-link-type="dfn" href="#plain-type" id="ref-for-plain-type③">plain types</a>, texture types, and sampler types.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> That is, the storable types are the <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑧">concrete</a> <a data-link-type="dfn" href="#plain-type" id="ref-for-plain-type③">plain types</a>, texture types, and sampler types.</p>
    <h4 class="heading settled" data-level="5.3.4" id="host-shareable-types"><span class="secno">5.3.4. </span><span class="content">Host-shareable Types</span><a class="self-link" href="#host-shareable-types"></a></h4>
    <p>Host-shareable types are used to describe the contents of buffers which are shared between
 the host and the GPU, or copied between host and GPU without format translation.
 When used for this purpose, the type may additionally have <a data-link-type="dfn" href="#layout-attributes" id="ref-for-layout-attributes①">layout
 attributes</a> applied as described in <a href="#memory-layouts">§ 5.3.6 Memory Layout</a>.
 As described in <a href="#var-decls">§ 6.3 var Declarations</a>, the <a data-link-type="dfn" href="#store-type" id="ref-for-store-type④">store type</a> of <a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer①">uniform buffer</a> and <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer②">storage buffer</a> variables <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error⑥⑨">must</a> be host-shareable.</p>
-   <p>A type is <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="host-shareable">host-shareable</dfn> if it is both <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑧">concrete</a> and one of:</p>
+   <p>A type is <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="host-shareable">host-shareable</dfn> if it is both <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑨">concrete</a> and one of:</p>
    <ul>
     <li data-md>
      <p>a <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar②">numeric scalar</a> type</p>
@@ -4211,7 +4208,7 @@ or structure member.
 The size may include non-addressable padding at the end of the type.
 Consequently, loads and stores of a value might access fewer memory locations
 than the value’s size.</p>
-   <p>Alignment and size of non-opaque types are defined recursively in the
+   <p>Alignment and size of <a data-link-type="dfn" href="#host-shareable" id="ref-for-host-shareable③">host-shareable</a> types are defined recursively in the
 following table:</p>
    <table class="data">
     <caption> Alignment and size for host-shareable types<br> </caption>
@@ -4485,7 +4482,7 @@ and the <a data-link-type="dfn" href="#attribute-align" id="ref-for-attribute-al
    <p>The buffer byte offset at which a value is placed <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error⑦④">must</a> satisfy the type alignment requirement: If a value of type <var>T</var> is
 placed at buffer offset <var>k</var>, then <var>k</var> = <var>c</var> × <a data-link-type="dfn" href="#alignof" id="ref-for-alignof①⓪">AlignOf</a>(<var>T</var>), for some
 non-negative integer <var>c</var>.</p>
-   <p>The data <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements④">will</a> appear identically regardless of the address space.</p>
+   <p>The data <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements③">will</a> appear identically regardless of the address space.</p>
    <p>When a value <var>V</var> of type <a data-link-type="dfn" href="#u32" id="ref-for-u32①⑧">u32</a> or <a data-link-type="dfn" href="#i32" id="ref-for-i32①⑧">i32</a> is placed at byte offset <var>k</var> of a
 host-shared buffer, then:</p>
    <ul>
@@ -5250,7 +5247,7 @@ The memory for a WGSL variable becomes inaccessible only when the variable goes 
    <p class="note" role="note"><span class="marker">Note:</span> From the above rules, it is not possible to form a "dangling" pointer,
 i.e. a pointer that does not reference the memory for a "live"
 originating variable.
-A <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view⑦">memory view</a> may be an <a data-link-type="dfn" href="#invalid-memory-reference" id="ref-for-invalid-memory-reference">invalid memory reference</a>, but it <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements⑤">will never</a> access <a data-link-type="dfn" href="#memory-locations" id="ref-for-memory-locations①①">memory locations</a> not associated with the <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable⑤">originating variable</a> or buffer.</p>
+A <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view⑦">memory view</a> may be an <a data-link-type="dfn" href="#invalid-memory-reference" id="ref-for-invalid-memory-reference">invalid memory reference</a>, but it <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements④">will never</a> access <a data-link-type="dfn" href="#memory-locations" id="ref-for-memory-locations①①">memory locations</a> not associated with the <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable⑤">originating variable</a> or buffer.</p>
    <h3 class="heading settled" data-level="5.5" id="texture-sampler-types"><span class="secno">5.5. </span><span class="content">Texture and Sampler Types</span><a class="self-link" href="#texture-sampler-types"></a></h3>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="texel">texel</dfn> is a scalar or vector used as the smallest independently accessible element of a <a data-link-type="dfn" href="#texture" id="ref-for-texture①">texture</a>.
 The word <em>texel</em> is short for <em>texture element</em>.</p>
@@ -5838,7 +5835,7 @@ The effective-value-type of the declaration is:</p>
        <p>For a <code>const</code> declaration, the effective-value-type is <code>T</code> itself.</p>
       <li data-md>
        <p>For a <code>override</code>, <code>let</code>, or <code>var</code> declaration, the effective-value-type
-is the <a data-link-type="dfn" href="#concretization" id="ref-for-concretization①">concretization</a> of <code>T</code>.</p>
+is the <a data-link-type="dfn" href="#concretization" id="ref-for-concretization">concretization</a> of <code>T</code>.</p>
      </ul>
    </ul>
    <p>Each kind of value or variable declaration may place additional constraints on
@@ -5860,7 +5857,7 @@ effective-value-type.</p>
       <td><a data-link-type="dfn" href="#const-declaration" id="ref-for-const-declaration">const</a> 
       <td>Immutable 
       <td><a data-link-type="dfn" href="#module-scope" id="ref-for-module-scope⑧">Module</a> or <a data-link-type="dfn" href="#function-scope" id="ref-for-function-scope">function</a> 
-      <td><a data-link-type="dfn" href="#constructible" id="ref-for-constructible③">Constructible</a> (<a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑨">Concrete</a> or <a data-link-type="dfn" href="#type-abstract" id="ref-for-type-abstract③">abstract</a>) 
+      <td><a data-link-type="dfn" href="#constructible" id="ref-for-constructible③">Constructible</a> (<a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete①⓪">Concrete</a> or <a data-link-type="dfn" href="#type-abstract" id="ref-for-type-abstract③">abstract</a>) 
       <td>Required 
       <td><a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions①③">const-expression</a> 
       <td>No 
@@ -5868,7 +5865,7 @@ effective-value-type.</p>
       <td><a data-link-type="dfn" href="#override-declaration" id="ref-for-override-declaration①">override</a> 
       <td>Immutable 
       <td><a data-link-type="dfn" href="#module-scope" id="ref-for-module-scope⑨">Module</a> 
-      <td><a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete①⓪">Concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar①①">scalar</a> 
+      <td><a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete①①">Concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar①①">scalar</a> 
       <td>Optional<sup>3</sup> 
       <td><a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions①④">const-expression</a> or <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③">override-expression</a> 
       <td>No<sup>4</sup> 
@@ -5876,7 +5873,7 @@ effective-value-type.</p>
       <td><a data-link-type="dfn" href="#let-declaration" id="ref-for-let-declaration①">let</a> 
       <td>Immutable 
       <td><a data-link-type="dfn" href="#function-scope" id="ref-for-function-scope①">Function</a> 
-      <td><a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete①①">Concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible④">constructible</a> or <a data-link-type="dfn" href="#pointer-type" id="ref-for-pointer-type②">pointer type</a> 
+      <td><a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete①②">Concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible④">constructible</a> or <a data-link-type="dfn" href="#pointer-type" id="ref-for-pointer-type②">pointer type</a> 
       <td>Required 
       <td><a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions①⑤">const-expression</a>, <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions④">override-expression</a>, or <a data-link-type="dfn" href="#runtime-expression" id="ref-for-runtime-expression">runtime expression</a> 
       <td>No 
@@ -5884,7 +5881,7 @@ effective-value-type.</p>
       <td class="nowrap"> <a data-link-type="dfn" href="#variable" id="ref-for-variable③">var</a>&lt;<a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage①①">storage</a>, read><br> <a data-link-type="dfn" href="#variable" id="ref-for-variable④">var</a>&lt;<a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage①②">storage</a>> 
       <td>Immutable 
       <td><a data-link-type="dfn" href="#module-scope" id="ref-for-module-scope①⓪">Module</a> 
-      <td><a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete①②">Concrete</a> <a data-link-type="dfn" href="#host-shareable" id="ref-for-host-shareable③">host-shareable</a> 
+      <td><a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete①③">Concrete</a> <a data-link-type="dfn" href="#host-shareable" id="ref-for-host-shareable④">host-shareable</a> 
       <td>Disallowed 
       <td>
       <td>Yes.<br><a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer⑨">storage buffer</a> 
@@ -5892,7 +5889,7 @@ effective-value-type.</p>
       <td class="nowrap"> <a data-link-type="dfn" href="#variable" id="ref-for-variable⑤">var</a>&lt;<a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage①③">storage</a>, read_write><sup>5</sup> 
       <td>Mutable 
       <td><a data-link-type="dfn" href="#module-scope" id="ref-for-module-scope①①">Module</a> 
-      <td><a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete①③">Concrete</a> <a data-link-type="dfn" href="#host-shareable" id="ref-for-host-shareable④">host-shareable</a> 
+      <td><a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete①④">Concrete</a> <a data-link-type="dfn" href="#host-shareable" id="ref-for-host-shareable⑤">host-shareable</a> 
       <td>Disallowed 
       <td>
       <td>Yes.<br><a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer①⓪">storage buffer</a> 
@@ -5900,7 +5897,7 @@ effective-value-type.</p>
       <td><a data-link-type="dfn" href="#variable" id="ref-for-variable⑥">var</a>&lt;<a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform⑨">uniform</a>> 
       <td>Immutable 
       <td><a data-link-type="dfn" href="#module-scope" id="ref-for-module-scope①②">Module</a> 
-      <td><a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete①④">Concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible⑤">constructible</a> <a data-link-type="dfn" href="#host-shareable" id="ref-for-host-shareable⑤">host-shareable</a> 
+      <td><a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete①⑤">Concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible⑤">constructible</a> <a data-link-type="dfn" href="#host-shareable" id="ref-for-host-shareable⑥">host-shareable</a> 
       <td>Disallowed 
       <td>
       <td>Yes.<br><a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer⑧">uniform buffer</a> 
@@ -5924,7 +5921,7 @@ effective-value-type.</p>
       <td><a data-link-type="dfn" href="#variable" id="ref-for-variable⑨">var</a>&lt;<a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup⑦">workgroup</a>><sup>5</sup> 
       <td>Mutable 
       <td><a data-link-type="dfn" href="#module-scope" id="ref-for-module-scope①⑤">Module</a> 
-      <td><a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete①⑤">Concrete</a> <a data-link-type="dfn" href="#plain-type" id="ref-for-plain-type⑤">plain type</a> with a <a data-link-type="dfn" href="#fixed-footprint" id="ref-for-fixed-footprint③">fixed footprint</a><sup>7</sup> 
+      <td><a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete①⑥">Concrete</a> <a data-link-type="dfn" href="#plain-type" id="ref-for-plain-type⑤">plain type</a> with a <a data-link-type="dfn" href="#fixed-footprint" id="ref-for-fixed-footprint③">fixed footprint</a><sup>7</sup> 
       <td>Disallowed<sup>8</sup> 
       <td>
       <td>No 
@@ -5932,7 +5929,7 @@ effective-value-type.</p>
       <td><a data-link-type="dfn" href="#variable" id="ref-for-variable①⓪">var</a>&lt;<a data-link-type="dfn" href="#address-spaces-private" id="ref-for-address-spaces-private②">private</a>> 
       <td>Mutable 
       <td><a data-link-type="dfn" href="#module-scope" id="ref-for-module-scope①⑥">Module</a> 
-      <td><a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete①⑥">Concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible⑥">constructible</a> 
+      <td><a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete①⑦">Concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible⑥">constructible</a> 
       <td>Optional<sup>8</sup> 
       <td><a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions①⑥">const-expression</a> or <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions⑤">override-expression</a> 
       <td>No 
@@ -5940,7 +5937,7 @@ effective-value-type.</p>
       <td><a data-link-type="dfn" href="#variable" id="ref-for-variable①①">var</a>&lt;<a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function②">function</a>><br> <a data-link-type="dfn" href="#variable" id="ref-for-variable①②">var</a> 
       <td>Mutable 
       <td><a data-link-type="dfn" href="#function-scope" id="ref-for-function-scope②">Function</a> 
-      <td><a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete①⑦">Concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible⑦">constructible</a> 
+      <td><a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete①⑧">Concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible⑦">constructible</a> 
       <td>Optional<sup>8</sup> 
       <td><a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions①⑦">const-expression</a>, <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions⑥">override-expression</a>, or <a data-link-type="dfn" href="#runtime-expression" id="ref-for-runtime-expression①">runtime expression</a> 
       <td>No 
@@ -6012,7 +6009,7 @@ is fixed at <a data-link-type="dfn" href="#shader-module-creation" id="ref-for-s
 Each const-declaration requires an initializer.
 A const-declaration can be declared in <a data-link-type="dfn" href="#module-scope" id="ref-for-module-scope①⑦">module</a> or <a data-link-type="dfn" href="#function-scope" id="ref-for-function-scope③">function</a> scope.
 The initializer expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error⑨⑦">must</a> be a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions①⑧">const-expression</a>.
-The type of a const-declaration must be a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete①⑧">concrete</a> or <a data-link-type="dfn" href="#type-abstract" id="ref-for-type-abstract⑤">abstract</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible⑧">constructible</a> type.
+The type of a const-declaration must be a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete①⑨">concrete</a> or <a data-link-type="dfn" href="#type-abstract" id="ref-for-type-abstract⑤">abstract</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible⑧">constructible</a> type.
 const-declarations are the only declarations where the <a data-link-type="dfn" href="#effective-value-type" id="ref-for-effective-value-type②">effective-value-type</a> may be <a data-link-type="dfn" href="#type-abstract" id="ref-for-type-abstract⑥">abstract</a>.</p>
    <p class="note" role="note"><span class="marker">Note:</span> Since <a data-link-type="dfn" href="#abstract-numeric-types" id="ref-for-abstract-numeric-types③">abstract numeric types</a> cannot be spelled in WGSL, they can only
 be used via type inference.</p>
@@ -6038,7 +6035,7 @@ const h = array(a, f, a, f);  // array of AbstractFloat with 4 components:
 The value of a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="pipeline-overridable">pipeline-overridable</dfn> constant is fixed at <a data-link-type="dfn" href="#pipeline-creation" id="ref-for-pipeline-creation⑥">pipeline-creation time</a>.
 The value is one provided by the WebGPU pipeline-creation method, if
 specified, and otherwise is the value of its <a data-link-type="dfn" href="#concretization-of-a-value" id="ref-for-concretization-of-a-value">concretized</a> initializer expression.
-The <a data-link-type="dfn" href="#effective-value-type" id="ref-for-effective-value-type③">effective-value-type</a> of an override-declaration must be a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete①⑨">concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar①②">scalar</a> type.</p>
+The <a data-link-type="dfn" href="#effective-value-type" id="ref-for-effective-value-type③">effective-value-type</a> of an override-declaration must be a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②⓪">concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar①②">scalar</a> type.</p>
    <p>An initializer expression is optional.
 If present, it must be an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions⑧">override-expression</a> and represents the <dfn data-dfn-type="dfn" data-noexport id="pipeline-overridable-constant-default-value">pipeline-overridable constant default value<a class="self-link" href="#pipeline-overridable-constant-default-value"></a></dfn>.
 If no initializer is specified, it is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error③">pipeline-creation error</a> if a value
@@ -6077,7 +6074,7 @@ A let-declaration must only be declared in <a data-link-type="dfn" href="#functi
 a <a data-link-type="dfn" href="#dynamic-context" id="ref-for-dynamic-context①">dynamic context</a>.
 A let-declaration must have an initializer expression.
 The value is the <a data-link-type="dfn" href="#concretization-of-a-value" id="ref-for-concretization-of-a-value①">concretized</a> value of the initializer.
-The <a data-link-type="dfn" href="#effective-value-type" id="ref-for-effective-value-type④">effective-value-type</a> of a let-declaration must be either a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②⓪">concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible⑨">constructible</a> type or a <a data-link-type="dfn" href="#pointer-type" id="ref-for-pointer-type④">pointer type</a>.</p>
+The <a data-link-type="dfn" href="#effective-value-type" id="ref-for-effective-value-type④">effective-value-type</a> of a let-declaration must be either a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②①">concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible⑨">constructible</a> type or a <a data-link-type="dfn" href="#pointer-type" id="ref-for-pointer-type④">pointer type</a>.</p>
    <div class="example wgsl let-declaration at function-scope no-marker" id="example-4662849a">
     <a class="self-link" href="#example-4662849a"></a>
     <div class="marker">EXAMPLE: let-declared constants at function scope</div>
@@ -6095,7 +6092,7 @@ of a particular <a data-link-type="dfn" href="#storable" id="ref-for-storable⑤
 that may be placed in the referenced memory) and its <a data-link-type="dfn" href="#reference-type" id="ref-for-reference-type③">reference type</a> (the type
 of the variable itself).
 If a variable has store type <code>T</code>, <a data-link-type="dfn" href="#address-spaces" id="ref-for-address-spaces①①">address space</a> <code>AS</code>, and <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode⑨">access mode</a> <code>AM</code>, then its reference type is <code>ref&lt;AS,T,AM></code>.
-The store type of a variable is always <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②①">concrete</a>.</p>
+The store type of a variable is always <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②②">concrete</a>.</p>
    <p>A variable declaration:</p>
    <ul>
     <li data-md>
@@ -6134,11 +6131,11 @@ Specifying the function address space is optional.</p>
 specified in the WGSL source.
 See <a href="#access-mode-defaults">§ 5.4.2 Access Mode Defaults</a>.</p>
    <p>A variable in the <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform①①">uniform</a> address space is a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="uniform-buffer">uniform buffer</dfn> variable.
-Its <a data-link-type="dfn" href="#store-type" id="ref-for-store-type①③">store type</a> must be a <a data-link-type="dfn" href="#host-shareable" id="ref-for-host-shareable⑥">host-shareable</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①⓪">constructible</a> type, and
+Its <a data-link-type="dfn" href="#store-type" id="ref-for-store-type①③">store type</a> must be a <a data-link-type="dfn" href="#host-shareable" id="ref-for-host-shareable⑦">host-shareable</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①⓪">constructible</a> type, and
 must satisfy the <a href="#address-space-layout-constraints">address space layout
 constraints</a>.</p>
    <p>A variable in the <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage①⑥">storage</a> address space is a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="storage-buffer">storage buffer</dfn> variable.
-Its <a data-link-type="dfn" href="#store-type" id="ref-for-store-type①④">store type</a> must be a <a data-link-type="dfn" href="#host-shareable" id="ref-for-host-shareable⑦">host-shareable</a> type and must satisfy the <a href="#address-space-layout-constraints">address space layout constraints</a>.
+Its <a data-link-type="dfn" href="#store-type" id="ref-for-store-type①④">store type</a> must be a <a data-link-type="dfn" href="#host-shareable" id="ref-for-host-shareable⑧">host-shareable</a> type and must satisfy the <a href="#address-space-layout-constraints">address space layout constraints</a>.
 The variable may be declared with a <a data-link-type="dfn" href="#access-read" id="ref-for-access-read⑦">read</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write⑨">read_write</a> access mode; the default is read.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="texture-resource">texture resource</dfn> is a variable whose <a data-link-type="dfn" href="#effective-value-type" id="ref-for-effective-value-type⑥">effective-value-type</a> is a <a data-link-type="dfn" href="#texture-types" id="ref-for-texture-types①">texture type</a>.
 It is declared at <a data-link-type="dfn" href="#module-scope" id="ref-for-module-scope①⑨">module scope</a>.
@@ -6168,13 +6165,13 @@ the name is in scope.</p>
    </ul>
    <p>Two <a data-link-type="dfn" href="#resource" id="ref-for-resource⑥">resource</a> variables may have <a data-link-type="dfn" href="#overlap" id="ref-for-overlap">overlapping memory</a> locations,
 but it is a <a data-link-type="dfn" href="#dynamic-error" id="ref-for-dynamic-error②">dynamic error</a> if either of those variables is mutable.
-Other variables with overlapping lifetimes <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements⑥">will</a> not
+Other variables with overlapping lifetimes <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements⑤">will</a> not
 have overlapping memory locations.
 When a variable’s lifetime ends, its memory may be used for another variable.</p>
    <p class="note" role="note"><span class="marker">Note:</span> WGSL ensures the contents of a variable are only observable during the
 variable’s lifetime.</p>
    <p>When a variable in the <a data-link-type="dfn" href="#address-spaces-private" id="ref-for-address-spaces-private⑧">private</a>, <a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function⑦">function</a>,
-or <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup⑨">workgroup</a> address spaces is created, it <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements⑦">will</a> have an initial value.
+or <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup⑨">workgroup</a> address spaces is created, it <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements⑥">will</a> have an initial value.
 If no initializer is specified the initial value is the <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="default initial value" data-noexport id="default-initial-value">default
 initial value</dfn>.
 The initial values are computed as follows:</p>
@@ -6208,7 +6205,7 @@ fixed no later than <a data-link-type="dfn" href="#pipeline-creation" id="ref-fo
 store type.</p>
       <li data-md>
        <p>If the <a data-link-type="dfn" href="#store-type" id="ref-for-store-type①⑧">store type</a> is an <a data-link-type="dfn" href="#atomic-type" id="ref-for-atomic-type①①">atomic type</a>, the <a data-link-type="dfn" href="#zero-value" id="ref-for-zero-value④">zero value</a> is that
-of the underlying type (<a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②②">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar⑤">integer scalar</a>).</p>
+of the underlying type (<a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②③">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar⑤">integer scalar</a>).</p>
       <li data-md>
        <p>Otherwise, if the <a data-link-type="dfn" href="#store-type" id="ref-for-store-type①⑨">store type</a> is not <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①②">constructible</a>, the <a data-link-type="dfn" href="#zero-value" id="ref-for-zero-value⑤">zero
 value</a> is determined by recursively applying these rules to each <a data-link-type="dfn" href="#components" id="ref-for-components">component</a> of the <a data-link-type="dfn" href="#composite" id="ref-for-composite④">composite</a> until a <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①③">constructible</a> type is
@@ -6366,12 +6363,12 @@ An expression is a const-expression if all its <a data-link-type="dfn" href="#id
    </ul>
    <p>The type of a <code>const</code> expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⓪②">must</a> <a data-link-type="dfn" href="#type-rule" id="ref-for-type-rule⑨">resolve</a> to a type with a <a data-link-type="dfn" href="#creation-fixed-footprint" id="ref-for-creation-fixed-footprint①④">creation-fixed footprint</a>.</p>
    <p class="note" role="note"><span class="marker">Note:</span> <a data-link-type="dfn" href="#type-abstract" id="ref-for-type-abstract⑦">Abstract types</a> can be the inferred type of a const-expression.</p>
-   <p>A const-expression <var>E</var> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements⑧">will</a> be evaluated if and only if:</p>
+   <p>A const-expression <var>E</var> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements⑦">will</a> be evaluated if and only if:</p>
    <ul>
     <li data-md>
      <p><var>E</var> is <a data-link-type="dfn" href="#top-level-expression" id="ref-for-top-level-expression④">top-level expression</a>, or</p>
     <li data-md>
-     <p><var>E</var> is a <a data-link-type="dfn" href="#subexpressions" id="ref-for-subexpressions①">subexpression</a> of an expression <var>OuterE</var>, and <var>OuterE</var> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements⑨">will</a> be evaluated, and evaluation of <var>OuterE</var> requires <var>E</var> to be evaluated.</p>
+     <p><var>E</var> is a <a data-link-type="dfn" href="#subexpressions" id="ref-for-subexpressions①">subexpression</a> of an expression <var>OuterE</var>, and <var>OuterE</var> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements⑧">will</a> be evaluated, and evaluation of <var>OuterE</var> requires <var>E</var> to be evaluated.</p>
    </ul>
    <p class="note" role="note"><span class="marker">Note:</span> The evaluation rule implies that short-circuiting operators <code>&amp;&amp;</code> and <code>||</code> guard evaluation of their right-hand
 side subexpressions.</p>
@@ -6414,7 +6411,7 @@ of type <a data-link-type="dfn" href="#abstractint" id="ref-for-abstractint②�
     <li data-md>
      <p>As above, <code>-2147483648</code> evaluates to a <a data-link-type="dfn" href="#abstractint" id="ref-for-abstractint②⑦">AbstractInt</a> value -2147483648.</p>
     <li data-md>
-     <p>A <a data-link-type="dfn" href="#let-declaration" id="ref-for-let-declaration④">let-declaration</a> requires the initializer to be a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②③">concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①④">constructible</a> type or a pointer type.</p>
+     <p>A <a data-link-type="dfn" href="#let-declaration" id="ref-for-let-declaration④">let-declaration</a> requires the initializer to be a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②④">concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①④">constructible</a> type or a pointer type.</p>
     <li data-md>
      <p>The let-declaration does not have an explicit type, so <a data-link-type="dfn" href="#overload-resolution" id="ref-for-overload-resolution①">overload resolution</a> is used.
 The overload candidates that apply use <a data-link-type="dfn" href="#feasible-automatic-conversion" id="ref-for-feasible-automatic-conversion⑧">feasible automatic conversions</a> from <a data-link-type="dfn" href="#abstractint" id="ref-for-abstractint②⑧">AbstractInt</a> to either <a data-link-type="dfn" href="#i32" id="ref-for-i32②①">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32②⓪">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32①⑨">f32</a>.
@@ -6448,20 +6445,20 @@ An expression is an override-expression if all its <a data-link-type="dfn" href=
      <p><a data-link-type="dfn" href="#structure" id="ref-for-structure②⓪">structure</a> names.</p>
    </ul>
    <p class="note" role="note"><span class="marker">Note:</span> All <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions②④">const-expressions</a> are also override-expressions.</p>
-   <p>An override-expression <var>E</var> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements①⓪">will</a> be evaluated if and only if:</p>
+   <p>An override-expression <var>E</var> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements⑨">will</a> be evaluated if and only if:</p>
    <ul>
     <li data-md>
      <p><var>E</var> is <a data-link-type="dfn" href="#top-level-expression" id="ref-for-top-level-expression⑤">top-level expression</a>, or</p>
     <li data-md>
-     <p><var>E</var> is a <a data-link-type="dfn" href="#subexpressions" id="ref-for-subexpressions②">subexpression</a> of an expression <var>OuterE</var>, and <var>OuterE</var> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements①①">will</a> be evaluated, and evaluation of <var>OuterE</var> requires <var>E</var> to be evaluated.</p>
+     <p><var>E</var> is a <a data-link-type="dfn" href="#subexpressions" id="ref-for-subexpressions②">subexpression</a> of an expression <var>OuterE</var>, and <var>OuterE</var> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements①⓪">will</a> be evaluated, and evaluation of <var>OuterE</var> requires <var>E</var> to be evaluated.</p>
    </ul>
-   <p class="note" role="note"><span class="marker">Note:</span> An override-expression may not be usable as the initializer for an <a data-link-type="dfn" href="#override-declaration" id="ref-for-override-declaration⑥">override-declaration</a>, because such initializers must <a data-link-type="dfn" href="#type-rule" id="ref-for-type-rule①⓪">resolve</a> to a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②④">concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar①③">scalar</a> type.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> An override-expression may not be usable as the initializer for an <a data-link-type="dfn" href="#override-declaration" id="ref-for-override-declaration⑥">override-declaration</a>, because such initializers must <a data-link-type="dfn" href="#type-rule" id="ref-for-type-rule①⓪">resolve</a> to a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②⑤">concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar①③">scalar</a> type.</p>
    <p>Example: <code>override x = 42;</code> is analyzed as follows:</p>
    <ul>
     <li data-md>
      <p>The term <code>42</code> is the <a data-link-type="dfn" href="#abstractint" id="ref-for-abstractint③①">AbstractInt</a> value 42.</p>
     <li data-md>
-     <p>An <a data-link-type="dfn" href="#override-declaration" id="ref-for-override-declaration⑦">override-declaration</a> requires a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②⑤">concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar①④">scalar</a> type.</p>
+     <p>An <a data-link-type="dfn" href="#override-declaration" id="ref-for-override-declaration⑦">override-declaration</a> requires a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②⑥">concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar①④">scalar</a> type.</p>
     <li data-md>
      <p><code>42</code> is converted to <a data-link-type="dfn" href="#i32" id="ref-for-i32②⑤">i32</a> via a <a data-link-type="dfn" href="#feasible-automatic-conversion" id="ref-for-feasible-automatic-conversion⑨">feasible automatic conversion</a>.</p>
    </ul>
@@ -6603,7 +6600,7 @@ the indeterminate value produced at runtime may be a NaN value.</p>
       <td>Evaluates to <var>e</var>.<br> Use parentheses to isolate an expression from the surrounding text. 
    </table>
    <h3 class="heading settled" data-level="7.5" id="type-constructor-expr"><span class="secno">7.5. </span><span class="content">Type Constructor Expressions</span><a class="self-link" href="#type-constructor-expr"></a></h3>
-   <p>A type constructor expression explicitly creates a value of a given <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②⑥">concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①⑤">constructible</a> type.
+   <p>A type constructor expression explicitly creates a value of a given <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②⑦">concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①⑤">constructible</a> type.
 It is a <a data-link-type="dfn" href="#syntax-call_expression" id="ref-for-syntax-call_expression">call_expression</a> where the <a data-link-type="dfn" href="#syntax-callable" id="ref-for-syntax-callable">callable</a> item names a <a data-link-type="dfn" href="#type" id="ref-for-type②">type</a>.</p>
    <p>There are three kinds of constructor expressions:</p>
    <ul>
@@ -6829,7 +6826,7 @@ specify the component type; the component type is inferred from the constructor 
       <th>Notes 
     <tbody>
      <tr class="algorithm" data-algorithm="array value construction">
-      <td><var>e1</var>: <var>T</var><br> ...<br> <var>eN</var>: <var>T</var>,<br> <var>T</var> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②⑦">concrete</a> and <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①⑦">constructible</a><br> 
+      <td><var>e1</var>: <var>T</var><br> ...<br> <var>eN</var>: <var>T</var>,<br> <var>T</var> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②⑧">concrete</a> and <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①⑦">constructible</a><br> 
       <td class="nowrap"><code>array&lt;</code><var>T</var>,<var>N</var><code>>(</code><var>e1</var>,...,<var>eN</var><code>)</code> : array&lt;<var>T</var>,<var>N</var>> 
       <td>
        Construction of an array from elements. 
@@ -6855,7 +6852,7 @@ specify the component type; the component type is inferred from the constructor 
       <td>Construction of a structure from members. 
    </table>
    <h4 class="heading settled" data-level="7.5.2" id="zero-value-expr"><span class="secno">7.5.2. </span><span class="content">Zero Value Expressions</span><a class="self-link" href="#zero-value-expr"></a></h4>
-   <p>Each <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②⑧">concrete</a>, <a data-link-type="dfn" href="#constructible" id="ref-for-constructible②①">constructible</a> <em>T</em> has a unique <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="zero-value">zero value</dfn> written in WGSL as the type followed by an empty pair of parentheses: <em>T</em> <code>()</code>.</p>
+   <p>Each <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②⑨">concrete</a>, <a data-link-type="dfn" href="#constructible" id="ref-for-constructible②①">constructible</a> <em>T</em> has a unique <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="zero-value">zero value</dfn> written in WGSL as the type followed by an empty pair of parentheses: <em>T</em> <code>()</code>.</p>
    <p>The zero values are as follows:</p>
    <ul>
     <li data-md>
@@ -7016,7 +7013,7 @@ specify the component type; the component type is inferred from the constructor 
 </pre>
    </div>
    <h4 class="heading settled" data-level="7.5.3" id="conversion-expr"><span class="secno">7.5.3. </span><span class="content">Conversion Expressions</span><a class="self-link" href="#conversion-expr"></a></h4>
-   <p>WGSL does not implicitly convert or promote a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②⑨">concrete</a> numeric or boolean value to another type.
+   <p>WGSL does not implicitly convert or promote a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⓪">concrete</a> numeric or boolean value to another type.
 Instead use a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="conversion-expression">conversion expression</dfn> as defined in the tables below.</p>
    <p>For details on conversion to and from floating point types, see <a href="#floating-point-conversion">§ 13.6.2 Floating Point Conversion</a>.</p>
    <table class="data">
@@ -7239,7 +7236,7 @@ value in one type as a value in another type.</p>
       <th>Notes 
     <tbody>
      <tr class="algorithm" data-algorithm="identity reinterpretation">
-      <td><var>e</var>: <var>T</var><br> <var>T</var> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⓪">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar③">numeric scalar</a> or <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③①">concrete</a> <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector②">numeric vector</a> type 
+      <td><var>e</var>: <var>T</var><br> <var>T</var> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③①">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar③">numeric scalar</a> or <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③②">concrete</a> <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector②">numeric vector</a> type 
       <td class="nowrap">bitcast&lt;<var>T</var>>(<var>e</var>): <var>T</var> 
       <td>Identity transform. <a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise②②">Component-wise</a> when <var>T</var> is a vector.<br> The result is <var>e</var>. 
      <tr class="algorithm" data-algorithm="32-bit scalar reinterpretation">
@@ -7344,7 +7341,7 @@ That is, using convenience letters can only produce a valid vector type.</p>
       <td class="nowrap"> <var>e</var><code>.w</code>: <var>T</var><br> <var>e</var><code>.a</code>: <var>T</var> 
       <td>Select the fourth component of <var>e</var> 
      <tr class="algorithm" data-algorithm="vector indexed component selection concrete">
-      <td><var>e</var>: vec<var>N</var>&lt;<var>T</var>><br> <var>i</var>: i32 or u32<br> <var>T</var> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③②">concrete</a> 
+      <td><var>e</var>: vec<var>N</var>&lt;<var>T</var>><br> <var>i</var>: i32 or u32<br> <var>T</var> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③③">concrete</a> 
       <td class="nowrap"> <var>e</var>[<var>i</var>]: <var>T</var> 
       <td>
        Select the <var>i</var>’<sup>th</sup> component of vector<br> The first component is at index <var>i</var>=0. 
@@ -7461,7 +7458,7 @@ See <a href="#sync-builtin-functions">§ 17.9 Synchronization Built-in Functio
       <th>Description 
     <tbody>
      <tr class="algorithm" data-algorithm="matrix indexed column vector selection concrete">
-      <td class="nowrap"> <var>e</var>: mat<var>C</var>x<var>R</var>&lt;<var>T</var>><br> <var>i</var>: i32 or u32<br> <var>T</var> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③③">concrete</a> 
+      <td class="nowrap"> <var>e</var>: mat<var>C</var>x<var>R</var>&lt;<var>T</var>><br> <var>i</var>: i32 or u32<br> <var>T</var> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③④">concrete</a> 
       <td class="nowrap"> <var>e</var>[<var>i</var>]: vec<var>R</var>&lt;<var>T</var>> 
       <td>
        The result is the <var>i</var>’<sup>th</sup> column vector of <var>e</var>. 
@@ -7519,7 +7516,7 @@ See <a href="#sync-builtin-functions">§ 17.9 Synchronization Built-in Functio
       <th>Description 
     <tbody>
      <tr class="algorithm" data-algorithm="fixed-size array indexed element selection concrete">
-      <td class="nowrap"> <var>e</var>: array&lt;<var>T</var>,<var>N</var>><br> <var>i</var>: i32 or u32<br> <var>T</var> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③④">concrete</a> 
+      <td class="nowrap"> <var>e</var>: array&lt;<var>T</var>,<var>N</var>><br> <var>i</var>: i32 or u32<br> <var>T</var> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⑤">concrete</a> 
       <td class="nowrap"> <var>e</var>[<var>i</var>] : <var>T</var> 
       <td>
        The result is the value of the <var>i</var>’<sup>th</sup> element of the array value <var>e</var>. 
@@ -7683,17 +7680,17 @@ See <a href="#sync-builtin-functions">§ 17.9 Synchronization Built-in Functio
       <td><var>e1</var> : <var>T</var><br><var>e2</var> : <var>T</var><br>S is AbstractInt, AbstractFloat, i32, u32, f32, or f16<br>T is S, or vecN&lt;S> 
       <td><var>e1</var> <code>+</code> <var>e2</var> : <var>T</var> 
       <td>Addition. <a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise②⑧">Component-wise</a> when <var>T</var> is a vector.
-    If <var>T</var> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⑤">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar⑦">integer scalar</a> type, then the result is modulo 2<sup>32</sup>. 
+    If <var>T</var> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⑥">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar⑦">integer scalar</a> type, then the result is modulo 2<sup>32</sup>. 
      <tr class="algorithm" data-algorithm="subtraction">
       <td><var>e1</var> : <var>T</var><br><var>e2</var> : <var>T</var><br>S is AbstractInt, AbstractFloat, i32, u32, f32, or f16<br>T is S, or vecN&lt;S> 
       <td><var>e1</var> <code>-</code> <var>e2</var> : <var>T</var> 
       <td>Subtraction <a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise②⑨">Component-wise</a> when <var>T</var> is a vector.
-    If <var>T</var> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⑥">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar⑧">integer scalar</a> type, then the result is modulo 2<sup>32</sup>. 
+    If <var>T</var> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⑦">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar⑧">integer scalar</a> type, then the result is modulo 2<sup>32</sup>. 
      <tr class="algorithm" data-algorithm="multiplication">
       <td><var>e1</var> : <var>T</var><br><var>e2</var> : <var>T</var><br>S is AbstractInt, AbstractFloat, i32, u32, f32, or f16<br>T is S, or vecN&lt;S> 
       <td><var>e1</var> <code>*</code> <var>e2</var> : <var>T</var> 
       <td>Multiplication. <a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise③⓪">Component-wise</a> when <var>T</var> is a vector.
-    If <var>T</var> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⑦">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar⑨">integer scalar</a> type, then the result is modulo 2<sup>32</sup>. 
+    If <var>T</var> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⑧">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar⑨">integer scalar</a> type, then the result is modulo 2<sup>32</sup>. 
      <tr class="algorithm" data-algorithm="division">
       <td><var>e1</var> : <var>T</var><br><var>e2</var> : <var>T</var><br>S is AbstractInt, AbstractFloat, i32, u32, f32, or f16<br>T is S, or vecN&lt;S> 
       <td><var>e1</var> <code>/</code> <var>e2</var> : <var>T</var> 
@@ -8457,7 +8454,7 @@ In this case the value of the <a data-link-type="dfn" href="#right-hand-side" id
       <th>Description 
     <tbody>
      <tr class="algorithm" data-algorithm="updating assignment">
-      <td><var>e</var>: <var>T</var>,<br> <var>T</var> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⑧">concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible②⑦">constructible</a> type,<br> <var>r</var>: ref&lt;<var>AS</var>,<var>T</var>,<var>AM</var>>,<br> <var>AS</var> is a writable <a data-link-type="dfn" href="#address-spaces" id="ref-for-address-spaces①④">address space</a>,<br> <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode①③">access mode</a> <var>AM</var> is <a data-link-type="dfn" href="#access-write" id="ref-for-access-write③">write</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①⓪">read_write</a><br> 
+      <td><var>e</var>: <var>T</var>,<br> <var>T</var> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⑨">concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible②⑦">constructible</a> type,<br> <var>r</var>: ref&lt;<var>AS</var>,<var>T</var>,<var>AM</var>>,<br> <var>AS</var> is a writable <a data-link-type="dfn" href="#address-spaces" id="ref-for-address-spaces①④">address space</a>,<br> <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode①③">access mode</a> <var>AM</var> is <a data-link-type="dfn" href="#access-write" id="ref-for-access-write③">write</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①⓪">read_write</a><br> 
       <td class="nowrap"><var>r</var> = <var>e</var> 
       <td>Evaluates <var>e</var>, evaluates <var>r</var>, then writes the value computed for <var>e</var> into
         the <a data-link-type="dfn" href="#memory-locations" id="ref-for-memory-locations①⑦">memory locations</a> referenced by <var>r</var>.
@@ -8671,7 +8668,7 @@ A <dfn data-dfn-type="dfn" data-noexport id="decrement-statement">decrement stat
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-decrement_statement">decrement_statement</dfn> : 
     <p>| <a data-link-type="dfn" href="#syntax-lhs_expression" id="ref-for-syntax-lhs_expression⑤">lhs_expression</a> <a data-link-type="dfn" href="#syntax_sym-minus_minus" id="ref-for-syntax_sym-minus_minus"><code>'--'</code></a></p>
    </div>
-   <p>The expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①③②">must</a> evaluate to a reference with a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⑨">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar①④">integer scalar</a> <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②①">store type</a> and <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①②">read_write</a> <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode①⑤">access mode</a>.</p>
+   <p>The expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①③②">must</a> evaluate to a reference with a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④⓪">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar①④">integer scalar</a> <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②①">store type</a> and <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①②">read_write</a> <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode①⑤">access mode</a>.</p>
    <table class="data">
     <thead>
      <tr>
@@ -8680,11 +8677,11 @@ A <dfn data-dfn-type="dfn" data-noexport id="decrement-statement">decrement stat
       <th>Description 
     <tbody>
      <tr class="algorithm" data-algorithm="increment statement">
-      <td class="nowrap"><var>r</var> : ref&lt;<var>AS</var>,<var>T</var>,<a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①③">read_write</a>>,<br> <var>T</var> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④⓪">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar①⑤">integer scalar</a><br> 
+      <td class="nowrap"><var>r</var> : ref&lt;<var>AS</var>,<var>T</var>,<a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①③">read_write</a>>,<br> <var>T</var> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④①">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar①⑤">integer scalar</a><br> 
       <td class="nowrap"><var>r</var><code>++</code> 
       <td>Adds 1 to the contents of memory referenced by <var>r</var>. <br>Same as <var>r</var> += <var>T</var>(1) 
      <tr class="algorithm" data-algorithm="decrement statement">
-      <td class="nowrap"><var>r</var> : ref&lt;<var>AS</var>,<var>T</var>,<a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①④">read_write</a>>,<br> <var>T</var> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④①">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar①⑥">integer scalar</a><br> 
+      <td class="nowrap"><var>r</var> : ref&lt;<var>AS</var>,<var>T</var>,<a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①④">read_write</a>>,<br> <var>T</var> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④②">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar①⑥">integer scalar</a><br> 
       <td class="nowrap"><var>r</var><code>--</code> 
       <td>Subtracts 1 from the contents of memory referenced by <var>r</var>. <br>Same as <var>r</var> -= <var>T</var>(1) 
    </table>
@@ -8783,7 +8780,7 @@ body in the form of a <a data-link-type="dfn" href="#compound-statement" id="ref
    <p>Each switch statement <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①③④">must</a> have exactly one <a data-link-type="dfn" href="#default-clause" id="ref-for-default-clause①">default clause</a>.</p>
    <p>The <a data-link-type="dfn" href="#syntax_kw-default" id="ref-for-syntax_kw-default④"><code>'default'</code></a> token <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①③⑤">must</a> not appear more than once in a single <a data-link-type="dfn" href="#syntax-case_selector" id="ref-for-syntax-case_selector③">case_selector</a> list.</p>
    <p><a data-link-type="dfn" href="#type-rule-preconditions" id="ref-for-type-rule-preconditions②">Type rule precondition</a>:
-For a single switch statement, the selector expression and all case selector expressions <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①③⑥">must</a> be of the same <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④②">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar①⑦">integer scalar</a> type.</p>
+For a single switch statement, the selector expression and all case selector expressions <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①③⑥">must</a> be of the same <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④③">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar①⑦">integer scalar</a> type.</p>
    <p>The expressions in the <a data-link-type="dfn" href="#syntax-case_selectors" id="ref-for-syntax-case_selectors①">case_selectors</a> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①③⑦">must</a> be <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions④⑨">const-expressions</a>.</p>
    <p>Two different case selector expressions in the same switch statement <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①③⑧">must not</a> have the same value.</p>
    <p>If the selector value equals the value of an expression in a <a data-link-type="dfn" href="#syntax-case_selector" id="ref-for-syntax-case_selector④">case_selector</a> list,
@@ -9170,14 +9167,14 @@ The type of the return value <a data-link-type="dfn" href="#shader-creation-erro
    <p>A <dfn class="dfn-paneled" data-dfn-for="statement" data-dfn-type="dfn" data-noexport id="statement-discard">discard</dfn> statement converts the invocation into
 a <a data-link-type="dfn" href="#helper-invocation" id="ref-for-helper-invocation">helper invocation</a> and throws away the fragment.
 The <code>discard</code> statement <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑤①">must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment①">fragment</a> shader stage.</p>
-   <p>More precisely, executing a <code>discard</code> statement <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements①②">will</a>:</p>
+   <p>More precisely, executing a <code>discard</code> statement <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements①①">will</a>:</p>
    <ul>
     <li data-md>
      <p>convert the current invocation into a <a data-link-type="dfn" href="#helper-invocation" id="ref-for-helper-invocation①">helper invocation</a>, and</p>
     <li data-md>
      <p>prevent the current fragment from being processed downstream in the <a data-link-type="dfn" href="#gpurenderpipeline" id="ref-for-gpurenderpipeline③">GPURenderPipeline</a>.</p>
    </ul>
-   <p>Only statements executed prior to the <code>discard</code> statement <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements①③">will</a> have observable effects.</p>
+   <p>Only statements executed prior to the <code>discard</code> statement <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements①②">will</a> have observable effects.</p>
    <p class="note" role="note"><span class="marker">Note:</span> A <code>discard</code> statement may be executed by any <a data-link-type="dfn" href="#functions-in-a-shader-stage" id="ref-for-functions-in-a-shader-stage①">function in a fragment stage</a> and the effect is the same:
 the fragment will be thrown away.</p>
    <div class="example wgsl no-marker" id="example-e08ccdbe">
@@ -10666,7 +10663,7 @@ the implementation can issue a clear diagnostic.</p>
     <p>| <a data-link-type="dfn" href="#syntax-const_assert_statement" id="ref-for-syntax-const_assert_statement①">const_assert_statement</a> <a data-link-type="dfn" href="#syntax_sym-semicolon" id="ref-for-syntax_sym-semicolon①⑦"><code>';'</code></a></p>
    </div>
    <h3 class="heading settled" data-level="12.1" id="limits"><span class="secno">12.1. </span><span class="content">Limits</span><a class="self-link" href="#limits"></a></h3>
-   <p>A WGSL implementation <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements①④">will</a> support shaders that
+   <p>A WGSL implementation <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements①③">will</a> support shaders that
 satisfy the following limits.
 A WGSL implementation may support shaders that go beyond the specified limits.</p>
    <p class="note" role="note"><span class="marker">Note:</span> A WGSL implementation should issue an error if it does not support a
@@ -10701,7 +10698,8 @@ shader that goes beyond the specified limits.</p>
      <tr>
       <td>
        Maximum <a data-link-type="dfn" href="#byte-size" id="ref-for-byte-size③">byte-size</a> of an <a data-link-type="dfn" href="#array" id="ref-for-array①②">array</a> type instantiated in the <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup①②">workgroup</a> address space 
-       <p>For the purposes of this limit, <a data-link-type="dfn" href="#bool" id="ref-for-bool①①">bool</a> has a size of 1 byte.</p>
+       <p>For the purposes of this limit, <a data-link-type="dfn" href="#bool" id="ref-for-bool①①">bool</a> has a size of 1 byte and a <a data-link-type="dfn" href="#fixed-footprint" id="ref-for-fixed-footprint④">fixed-footprint</a> array is treated as a <a data-link-type="dfn" href="#creation-fixed-footprint" id="ref-for-creation-fixed-footprint①⑤">creation-fixed
+            footprint</a> array when substituting the override value.</p>
       <td><a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/#dom-supported-limits-maxcomputeworkgroupstoragesize" id="ref-for-dom-supported-limits-maxcomputeworkgroupstoragesize">16384</a> 
      <tr>
       <td>Maximum number of elements in <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑤③">const-expression</a> of <a data-link-type="dfn" href="#array" id="ref-for-array①③">array</a> type
@@ -10755,7 +10753,7 @@ These sources include, but are not limited to:</p>
      <p>Certain <a data-link-type="dfn" href="#built-in-functions" id="ref-for-built-in-functions⑨">built-in functions</a> (see <a href="#uniformity-function-calls">§ 13.2.7 Uniformity Rules for Function Calls</a>)</p>
    </ul>
    <p>The remainder of this section is devoted to a description of this static
-analysis an implementation <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements①⑤">will</a> perform to validate
+analysis an implementation <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements①④">will</a> perform to validate
 the WGSL program.</p>
    <h4 class="heading settled" data-level="13.2.1" id="uniformity-concepts"><span class="secno">13.2.1. </span><span class="content">Terminology and Concepts</span><a class="self-link" href="#uniformity-concepts"></a></h4>
    <p>The following definitions are merely informative, trying to give an intuition for what the analysis in the next subsection is computing.
@@ -11651,7 +11649,7 @@ if statement.</p>
    <p class="note" role="note"><span class="marker">Note:</span> The subgraphs are only included in the example for ease of understanding.</p>
    <h5 class="heading settled" data-level="13.2.10.3" id="uniformity-example3"><span class="secno">13.2.10.3. </span><span class="content">Composite Value Analysis Limitations</span><a class="self-link" href="#uniformity-example3"></a></h5>
    <p>One limitation of the uniformity analysis is that it does not track the <a data-link-type="dfn" href="#components" id="ref-for-components③">components</a> of a <a data-link-type="dfn" href="#composite" id="ref-for-composite⑨">composite</a> value independently.
-That is, any non-uniform component value <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements①⑥">will</a> cause
+That is, any non-uniform component value <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements①⑤">will</a> cause
 the analysis to treat the entire composite value as non-uniform.
 This example illustrates this issue and a potential workaround that shader
 authors can employ to avoid this limitation.</p>
@@ -11853,7 +11851,7 @@ invocation of a fragment shader for each <a data-link-type="dfn" href="https://g
 Sometimes there may be insufficient RasterizationPoints to fully populate a
 quad, for example at the edge of a graphics primitive.
 When a quad has only 1, 2, or 3 invocations corresponding to
-RasterizationPoints, fragment processing <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements①⑦">will</a> create
+RasterizationPoints, fragment processing <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements①⑥">will</a> create
 a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="helper-invocation">helper invocation</dfn> for each unpopulated position in the
 quad.</p>
    <p>Helper invocations do not have observable effects, except that they help
@@ -11861,11 +11859,11 @@ compute <a href="#derivatives">derivatives</a>.
 As such, helper invocations are subject to the following restrictions:</p>
    <ul>
     <li data-md>
-     <p>No <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑦">write accesses</a> (see also <a href="#memory-operation">§ 14.1 Memory Operation</a>) <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements①⑧">will</a> be performed on the <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage①⑧">storage</a>, <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup①④">workgroup</a>, or <a data-link-type="dfn" href="#address-spaces-handle" id="ref-for-address-spaces-handle⑥">handle</a> address spaces.</p>
+     <p>No <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑦">write accesses</a> (see also <a href="#memory-operation">§ 14.1 Memory Operation</a>) <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements①⑦">will</a> be performed on the <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage①⑧">storage</a>, <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup①④">workgroup</a>, or <a data-link-type="dfn" href="#address-spaces-handle" id="ref-for-address-spaces-handle⑥">handle</a> address spaces.</p>
     <li data-md>
-     <p><a href="#atomic-builtin-functions">Atomic built-in functions</a> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements①⑨">will</a> return <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value④">indeterminate</a> results.</p>
+     <p><a href="#atomic-builtin-functions">Atomic built-in functions</a> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements①⑧">will</a> return <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value④">indeterminate</a> results.</p>
     <li data-md>
-     <p>The <a data-link-type="dfn" href="#entry-point" id="ref-for-entry-point①⑥">Entry point</a> <a data-link-type="dfn" href="#return-value" id="ref-for-return-value⑧">return value</a> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②⓪">will</a> not be further processed
+     <p>The <a data-link-type="dfn" href="#entry-point" id="ref-for-entry-point①⑥">Entry point</a> <a data-link-type="dfn" href="#return-value" id="ref-for-return-value⑧">return value</a> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements①⑨">will</a> not be further processed
 downstream in the <a data-link-type="dfn" href="#gpurenderpipeline" id="ref-for-gpurenderpipeline④">GPURenderPipeline</a>.</p>
    </ul>
    <p>If all of the invocations in a quad become helper invocations (e.g. due to
@@ -14141,7 +14139,7 @@ but a value may infer the type.</p>
 </pre>
      <tr>
       <td style="width:10%">Parameterization 
-      <td>S is AbstractFloat, f32, or f16<br>T is S or vecN&lt;S><br> <code>I</code> is AbstractInt, i32, vecN&lt;AbstractInt>, or vecN&lt;i32><br> <code>I</code> is a vector if and only if <code>T</code> is a vector<br> <code>I</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④③">concrete</a> if and only if <code>T</code> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④④">concrete</a> 
+      <td>S is AbstractFloat, f32, or f16<br>T is S or vecN&lt;S><br> <code>I</code> is AbstractInt, i32, vecN&lt;AbstractInt>, or vecN&lt;i32><br> <code>I</code> is a vector if and only if <code>T</code> is a vector<br> <code>I</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④④">concrete</a> if and only if <code>T</code> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④⑤">concrete</a> 
      <tr>
       <td>Description 
       <td>
@@ -16340,7 +16338,7 @@ with texture coordinates clamped to the edge as described below.</p>
       <td><code>coords</code>
       <td>
         The texture coordinates used for sampling. 
-       <p>Before sampling, the given coordinates <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②①">will</a> be clamped to the rectangle</p>
+       <p>Before sampling, the given coordinates <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②⓪">will</a> be clamped to the rectangle</p>
        <blockquote>
         <p>[ <em>half_texel</em>, 1 - <em>half_texel</em> ]</p>
        </blockquote>
@@ -16725,7 +16723,7 @@ the <a data-link-type="dfn" href="#compute" id="ref-for-compute③">compute</a> 
 </pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④⑤">concrete</a> <a data-link-type="dfn" href="#plain-type" id="ref-for-plain-type⑥">plain type</a> with a <a data-link-type="dfn" href="#fixed-footprint" id="ref-for-fixed-footprint④">fixed footprint</a> that does not contain any <a data-link-type="dfn" href="#atomic-type" id="ref-for-atomic-type①④">atomic types</a> 
+      <td><code>T</code> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④⑥">concrete</a> <a data-link-type="dfn" href="#plain-type" id="ref-for-plain-type⑥">plain type</a> with a <a data-link-type="dfn" href="#fixed-footprint" id="ref-for-fixed-footprint⑤">fixed footprint</a> that does not contain any <a data-link-type="dfn" href="#atomic-type" id="ref-for-atomic-type①④">atomic types</a> 
      <tr>
       <td>Description 
       <td>
@@ -18774,19 +18772,18 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <ul>
     <li><a href="#ref-for-behavioral-requirements">2.1. Processing Errors</a>
     <li><a href="#ref-for-behavioral-requirements①">5.1. Type Checking</a>
-    <li><a href="#ref-for-behavioral-requirements②">5.1.3. Overload Resolution</a>
-    <li><a href="#ref-for-behavioral-requirements③">5.3.1. Memory Locations</a>
-    <li><a href="#ref-for-behavioral-requirements④">5.3.6.4. Internal Layout of Values</a>
-    <li><a href="#ref-for-behavioral-requirements⑤">5.4.7. Comparison with References and Pointers in Other Languages</a>
-    <li><a href="#ref-for-behavioral-requirements⑥">6.3. var Declarations</a> <a href="#ref-for-behavioral-requirements⑦">(2)</a>
-    <li><a href="#ref-for-behavioral-requirements⑧">7.1.1. const Expressions</a> <a href="#ref-for-behavioral-requirements⑨">(2)</a>
-    <li><a href="#ref-for-behavioral-requirements①⓪">7.1.2. override Expressions</a> <a href="#ref-for-behavioral-requirements①①">(2)</a>
-    <li><a href="#ref-for-behavioral-requirements①②">8.4.11. Discard Statement</a> <a href="#ref-for-behavioral-requirements①③">(2)</a>
-    <li><a href="#ref-for-behavioral-requirements①④">12.1. Limits</a>
-    <li><a href="#ref-for-behavioral-requirements①⑤">13.2. Uniformity</a>
-    <li><a href="#ref-for-behavioral-requirements①⑥">13.2.10.3. Composite Value Analysis Limitations</a>
-    <li><a href="#ref-for-behavioral-requirements①⑦">13.4. Fragment Shaders and Helper Invocations</a> <a href="#ref-for-behavioral-requirements①⑧">(2)</a> <a href="#ref-for-behavioral-requirements①⑨">(3)</a> <a href="#ref-for-behavioral-requirements②⓪">(4)</a>
-    <li><a href="#ref-for-behavioral-requirements②①">17.5.14. textureSampleBaseClampToEdge</a>
+    <li><a href="#ref-for-behavioral-requirements②">5.3.1. Memory Locations</a>
+    <li><a href="#ref-for-behavioral-requirements③">5.3.6.4. Internal Layout of Values</a>
+    <li><a href="#ref-for-behavioral-requirements④">5.4.7. Comparison with References and Pointers in Other Languages</a>
+    <li><a href="#ref-for-behavioral-requirements⑤">6.3. var Declarations</a> <a href="#ref-for-behavioral-requirements⑥">(2)</a>
+    <li><a href="#ref-for-behavioral-requirements⑦">7.1.1. const Expressions</a> <a href="#ref-for-behavioral-requirements⑧">(2)</a>
+    <li><a href="#ref-for-behavioral-requirements⑨">7.1.2. override Expressions</a> <a href="#ref-for-behavioral-requirements①⓪">(2)</a>
+    <li><a href="#ref-for-behavioral-requirements①①">8.4.11. Discard Statement</a> <a href="#ref-for-behavioral-requirements①②">(2)</a>
+    <li><a href="#ref-for-behavioral-requirements①③">12.1. Limits</a>
+    <li><a href="#ref-for-behavioral-requirements①④">13.2. Uniformity</a>
+    <li><a href="#ref-for-behavioral-requirements①⑤">13.2.10.3. Composite Value Analysis Limitations</a>
+    <li><a href="#ref-for-behavioral-requirements①⑥">13.4. Fragment Shaders and Helper Invocations</a> <a href="#ref-for-behavioral-requirements①⑦">(2)</a> <a href="#ref-for-behavioral-requirements①⑧">(3)</a> <a href="#ref-for-behavioral-requirements①⑨">(4)</a>
+    <li><a href="#ref-for-behavioral-requirements②⓪">17.5.14. textureSampleBaseClampToEdge</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="angles">
@@ -19678,8 +19675,7 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
   <aside class="dfn-panel" data-for="concretization">
    <b><a href="#concretization">#concretization</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concretization">5.1.3. Overload Resolution</a>
-    <li><a href="#ref-for-concretization①">6. Variable and Value Declarations</a>
+    <li><a href="#ref-for-concretization">6. Variable and Value Declarations</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="concretization-of-a-value">
@@ -19780,32 +19776,33 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <ul>
     <li><a href="#ref-for-type-concrete">1.1. Technical Overview</a> <a href="#ref-for-type-concrete①">(2)</a>
     <li><a href="#ref-for-type-concrete②">3.5.2. Numeric Literals</a>
-    <li><a href="#ref-for-type-concrete③">5.2.8. Atomic Types</a>
-    <li><a href="#ref-for-type-concrete④">5.2.9. Array Types</a>
-    <li><a href="#ref-for-type-concrete⑤">5.2.10. Structure Types</a>
-    <li><a href="#ref-for-type-concrete⑥">5.3.3. Storable Types</a> <a href="#ref-for-type-concrete⑦">(2)</a>
-    <li><a href="#ref-for-type-concrete⑧">5.3.4. Host-shareable Types</a>
-    <li><a href="#ref-for-type-concrete⑨">6. Variable and Value Declarations</a> <a href="#ref-for-type-concrete①⓪">(2)</a> <a href="#ref-for-type-concrete①①">(3)</a> <a href="#ref-for-type-concrete①②">(4)</a> <a href="#ref-for-type-concrete①③">(5)</a> <a href="#ref-for-type-concrete①④">(6)</a> <a href="#ref-for-type-concrete①⑤">(7)</a> <a href="#ref-for-type-concrete①⑥">(8)</a> <a href="#ref-for-type-concrete①⑦">(9)</a>
-    <li><a href="#ref-for-type-concrete①⑧">6.2.1. const Declarations</a>
-    <li><a href="#ref-for-type-concrete①⑨">6.2.2. override Declarations</a>
-    <li><a href="#ref-for-type-concrete②⓪">6.2.3. let Declarations</a>
-    <li><a href="#ref-for-type-concrete②①">6.3. var Declarations</a> <a href="#ref-for-type-concrete②②">(2)</a>
-    <li><a href="#ref-for-type-concrete②③">7.1.1. const Expressions</a>
-    <li><a href="#ref-for-type-concrete②④">7.1.2. override Expressions</a> <a href="#ref-for-type-concrete②⑤">(2)</a>
-    <li><a href="#ref-for-type-concrete②⑥">7.5. Type Constructor Expressions</a>
-    <li><a href="#ref-for-type-concrete②⑦">7.5.1. Construction From Components</a>
-    <li><a href="#ref-for-type-concrete②⑧">7.5.2. Zero Value Expressions</a>
-    <li><a href="#ref-for-type-concrete②⑨">7.5.3. Conversion Expressions</a>
-    <li><a href="#ref-for-type-concrete③⓪">7.6. Reinterpretation of Representation Expressions</a> <a href="#ref-for-type-concrete③①">(2)</a>
-    <li><a href="#ref-for-type-concrete③②">7.7.1.1. Vector Single Component Selection</a>
-    <li><a href="#ref-for-type-concrete③③">7.7.2. Matrix Access Expression</a>
-    <li><a href="#ref-for-type-concrete③④">7.7.3. Array Access Expression</a>
-    <li><a href="#ref-for-type-concrete③⑤">7.9. Arithmetic Expressions</a> <a href="#ref-for-type-concrete③⑥">(2)</a> <a href="#ref-for-type-concrete③⑦">(3)</a>
-    <li><a href="#ref-for-type-concrete③⑧">8.2.1. Simple Assignment</a>
-    <li><a href="#ref-for-type-concrete③⑨">8.3. Increment and Decrement Statements</a> <a href="#ref-for-type-concrete④⓪">(2)</a> <a href="#ref-for-type-concrete④①">(3)</a>
-    <li><a href="#ref-for-type-concrete④②">8.4.2. Switch Statement</a>
-    <li><a href="#ref-for-type-concrete④③">17.3.35. ldexp</a> <a href="#ref-for-type-concrete④④">(2)</a>
-    <li><a href="#ref-for-type-concrete④⑤">17.9.3. workgroupUniformLoad</a>
+    <li><a href="#ref-for-type-concrete③">5.1.3. Overload Resolution</a>
+    <li><a href="#ref-for-type-concrete④">5.2.8. Atomic Types</a>
+    <li><a href="#ref-for-type-concrete⑤">5.2.9. Array Types</a>
+    <li><a href="#ref-for-type-concrete⑥">5.2.10. Structure Types</a>
+    <li><a href="#ref-for-type-concrete⑦">5.3.3. Storable Types</a> <a href="#ref-for-type-concrete⑧">(2)</a>
+    <li><a href="#ref-for-type-concrete⑨">5.3.4. Host-shareable Types</a>
+    <li><a href="#ref-for-type-concrete①⓪">6. Variable and Value Declarations</a> <a href="#ref-for-type-concrete①①">(2)</a> <a href="#ref-for-type-concrete①②">(3)</a> <a href="#ref-for-type-concrete①③">(4)</a> <a href="#ref-for-type-concrete①④">(5)</a> <a href="#ref-for-type-concrete①⑤">(6)</a> <a href="#ref-for-type-concrete①⑥">(7)</a> <a href="#ref-for-type-concrete①⑦">(8)</a> <a href="#ref-for-type-concrete①⑧">(9)</a>
+    <li><a href="#ref-for-type-concrete①⑨">6.2.1. const Declarations</a>
+    <li><a href="#ref-for-type-concrete②⓪">6.2.2. override Declarations</a>
+    <li><a href="#ref-for-type-concrete②①">6.2.3. let Declarations</a>
+    <li><a href="#ref-for-type-concrete②②">6.3. var Declarations</a> <a href="#ref-for-type-concrete②③">(2)</a>
+    <li><a href="#ref-for-type-concrete②④">7.1.1. const Expressions</a>
+    <li><a href="#ref-for-type-concrete②⑤">7.1.2. override Expressions</a> <a href="#ref-for-type-concrete②⑥">(2)</a>
+    <li><a href="#ref-for-type-concrete②⑦">7.5. Type Constructor Expressions</a>
+    <li><a href="#ref-for-type-concrete②⑧">7.5.1. Construction From Components</a>
+    <li><a href="#ref-for-type-concrete②⑨">7.5.2. Zero Value Expressions</a>
+    <li><a href="#ref-for-type-concrete③⓪">7.5.3. Conversion Expressions</a>
+    <li><a href="#ref-for-type-concrete③①">7.6. Reinterpretation of Representation Expressions</a> <a href="#ref-for-type-concrete③②">(2)</a>
+    <li><a href="#ref-for-type-concrete③③">7.7.1.1. Vector Single Component Selection</a>
+    <li><a href="#ref-for-type-concrete③④">7.7.2. Matrix Access Expression</a>
+    <li><a href="#ref-for-type-concrete③⑤">7.7.3. Array Access Expression</a>
+    <li><a href="#ref-for-type-concrete③⑥">7.9. Arithmetic Expressions</a> <a href="#ref-for-type-concrete③⑦">(2)</a> <a href="#ref-for-type-concrete③⑧">(3)</a>
+    <li><a href="#ref-for-type-concrete③⑨">8.2.1. Simple Assignment</a>
+    <li><a href="#ref-for-type-concrete④⓪">8.3. Increment and Decrement Statements</a> <a href="#ref-for-type-concrete④①">(2)</a> <a href="#ref-for-type-concrete④②">(3)</a>
+    <li><a href="#ref-for-type-concrete④③">8.4.2. Switch Statement</a>
+    <li><a href="#ref-for-type-concrete④④">17.3.35. ldexp</a> <a href="#ref-for-type-concrete④⑤">(2)</a>
+    <li><a href="#ref-for-type-concrete④⑥">17.9.3. workgroupUniformLoad</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="bool">
@@ -20269,6 +20266,7 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-creation-fixed-footprint⑧">5.2.13. Fixed-Footprint Types</a> <a href="#ref-for-creation-fixed-footprint⑨">(2)</a> <a href="#ref-for-creation-fixed-footprint①⓪">(3)</a> <a href="#ref-for-creation-fixed-footprint①①">(4)</a> <a href="#ref-for-creation-fixed-footprint①②">(5)</a>
     <li><a href="#ref-for-creation-fixed-footprint①③">5.3.4. Host-shareable Types</a>
     <li><a href="#ref-for-creation-fixed-footprint①④">7.1.1. const Expressions</a>
+    <li><a href="#ref-for-creation-fixed-footprint①⑤">12.1. Limits</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="fixed-footprint">
@@ -20277,7 +20275,8 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
     <li><a href="#ref-for-fixed-footprint">5.2.13. Fixed-Footprint Types</a> <a href="#ref-for-fixed-footprint①">(2)</a>
     <li><a href="#ref-for-fixed-footprint②">5.3.6.1. Alignment and Size</a>
     <li><a href="#ref-for-fixed-footprint③">6. Variable and Value Declarations</a>
-    <li><a href="#ref-for-fixed-footprint④">17.9.3. workgroupUniformLoad</a>
+    <li><a href="#ref-for-fixed-footprint④">12.1. Limits</a>
+    <li><a href="#ref-for-fixed-footprint⑤">17.9.3. workgroupUniformLoad</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="memory-locations">
@@ -20406,9 +20405,9 @@ I’ve written what an NVIDIA GPU does.  See https://github.com/google/amber/pul
    <b><a href="#host-shareable">#host-shareable</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-host-shareable">5.3.6. Memory Layout</a> <a href="#ref-for-host-shareable①">(2)</a>
-    <li><a href="#ref-for-host-shareable②">5.3.6.1. Alignment and Size</a>
-    <li><a href="#ref-for-host-shareable③">6. Variable and Value Declarations</a> <a href="#ref-for-host-shareable④">(2)</a> <a href="#ref-for-host-shareable⑤">(3)</a>
-    <li><a href="#ref-for-host-shareable⑥">6.3. var Declarations</a> <a href="#ref-for-host-shareable⑦">(2)</a>
+    <li><a href="#ref-for-host-shareable②">5.3.6.1. Alignment and Size</a> <a href="#ref-for-host-shareable③">(2)</a>
+    <li><a href="#ref-for-host-shareable④">6. Variable and Value Declarations</a> <a href="#ref-for-host-shareable⑤">(2)</a> <a href="#ref-for-host-shareable⑥">(3)</a>
+    <li><a href="#ref-for-host-shareable⑦">6.3. var Declarations</a> <a href="#ref-for-host-shareable⑧">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="address-spaces">
