@@ -689,13 +689,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-02-15">15 February 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-02-18">18 February 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/f0e253fc0c6e71bdb5a9529b0a65dec784db8f45/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/f0e253fc0c6e71bdb5a9529b0a65dec784db8f45/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/6d329a354d60c1924318c383144089cc3ed34659/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/6d329a354d60c1924318c383144089cc3ed34659/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -1266,7 +1266,7 @@ This set includes both <a data-link-type="dfn" href="#user-defined-function" id=
    </ul>
    <p class="note" role="note"><span class="marker">Note:</span> A WGSL program does not require an <a data-link-type="dfn" href="#entry-point" id="ref-for-entry-point①">entry point</a>; however, such a
 program cannot be executed by the API because an entry point is required to
-create a <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dictdef-gpuprogrammablestage" id="ref-for-dictdef-gpuprogrammablestage">GPUProgrammableStage</a></code>.</p>
+create a <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#gpuprogrammablestage" id="ref-for-gpuprogrammablestage">GPUProgrammableStage</a></code>.</p>
    <p>When executing a shader stage, the implementation:</p>
    <ul>
     <li data-md>
@@ -5568,7 +5568,7 @@ them you get a 32-bit float result (or vec-of-f32).</p>
    <p><code>texture_external</code> is an opaque 2d float-sampled texture type similar to <code>texture_2d&lt;f32></code> but potentially with a different representation.
 It can be read using <a href="#textureload">textureLoad</a> or <a href="#textureSampleBaseClampToEdge">textureSampleBaseClampToEdge</a> built-in functions,
 which handle these different representations opaquely.</p>
-   <p>See <a href="https://gpuweb.github.io/gpuweb/#gpu-external-texture"><cite>WebGPU</cite> § 6.4 GPUExternalTexture</a>.</p>
+   <p>See <a href="https://www.w3.org/TR/webgpu/#gpu-external-texture"><cite>WebGPU</cite> § 6.4 GPUExternalTexture</a>.</p>
    <h4 class="heading settled" data-level="5.5.5" id="texture-storage"><span class="secno">5.5.5. </span><span class="content">Storage Texture Types</span><a class="self-link" href="#texture-storage"></a></h4>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="storage-texture">storage texture</dfn> supports accessing a single texel without the use of a sampler.</p>
    <ul>
@@ -10087,7 +10087,7 @@ programmable parts of pipelines:</p>
    <p>To create an <a data-link-type="dfn" href="#entry-point" id="ref-for-entry-point①⓪">entry point</a>, declare a <a data-link-type="dfn" href="#user-defined-function" id="ref-for-user-defined-function⑨">user-defined function</a> with a <a data-link-type="dfn" href="#shader-stage-attributes" id="ref-for-shader-stage-attributes①">shader stage attribute</a>.</p>
    <p>When configuring a <a data-link-type="dfn" href="#pipeline" id="ref-for-pipeline①">pipeline</a> in the WebGPU API,
 the entry point’s function name maps to the <code>entryPoint</code> attribute of the
-WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dictdef-gpuprogrammablestage" id="ref-for-dictdef-gpuprogrammablestage①">GPUProgrammableStage</a></code> object.</p>
+WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#gpuprogrammablestage" id="ref-for-gpuprogrammablestage①">GPUProgrammableStage</a></code> object.</p>
    <p>The entry point’s <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter①③">formal parameters</a> denote the stage’s <a data-link-type="dfn" href="#shader-stage-input" id="ref-for-shader-stage-input③">shader stage inputs</a>.
 The entry point’s <a data-link-type="dfn" href="#return-value" id="ref-for-return-value③">return value</a>, if specified, denotes the stage’s <a data-link-type="dfn" href="#shader-stage-output" id="ref-for-shader-stage-output②">shader stage outputs</a>.</p>
    <p>The type of each formal parameter, and the entry point’s return type, <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑦⑧">must</a> be one of:</p>
@@ -10457,12 +10457,12 @@ resource variables <a data-link-type="dfn" href="#statically-accessed" id="ref-f
    <p>Each resource variable <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑨③">must</a> be declared with both <a data-link-type="dfn" href="#attribute-group" id="ref-for-attribute-group①">group</a> and <a data-link-type="dfn" href="#attribute-binding" id="ref-for-attribute-binding">binding</a> attributes.
 Together with the shader’s stage, these identify the binding address
 of the resource on the shader’s pipeline.
-See <a href="https://gpuweb.github.io/gpuweb/#pipeline-layout"><cite>WebGPU</cite> § 8.3 GPUPipelineLayout</a>.</p>
+See <a href="https://www.w3.org/TR/webgpu/#pipeline-layout"><cite>WebGPU</cite> § 8.3 GPUPipelineLayout</a>.</p>
    <p>Two different resource variables in a <a data-link-type="dfn" href="#shader" id="ref-for-shader">shader</a> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑨④">must
 not</a> have the same <a data-link-type="dfn" href="#attribute-group" id="ref-for-attribute-group②">group</a> and <a data-link-type="dfn" href="#attribute-binding" id="ref-for-attribute-binding①">binding</a> values, when
 considered as a pair.</p>
    <h4 class="heading settled" data-level="10.3.3" id="resource-layout-compatibility"><span class="secno">10.3.3. </span><span class="content">Resource Layout Compatibility</span><a class="self-link" href="#resource-layout-compatibility"></a></h4>
-   <p>WebGPU requires that a shader’s resource interface match the <a href="https://gpuweb.github.io/gpuweb/#pipeline-layout">layout of the pipeline</a> using the shader.</p>
+   <p>WebGPU requires that a shader’s resource interface match the <a href="https://www.w3.org/TR/webgpu/#pipeline-layout">layout of the pipeline</a> using the shader.</p>
    <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error②①">pipeline-creation error</a> if a WGSL variable in a resource interface is bound to an incompatible WebGPU <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/#binding-resource-type" id="ref-for-binding-resource-type">binding resource type</a> or <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/#binding-type" id="ref-for-binding-type">binding type</a>,
 where compatibility is defined by the following table.</p>
    <table class="data">
@@ -13070,7 +13070,7 @@ A WGSL program <a data-link-type="dfn" href="#shader-creation-error" id="ref-for
       <td>input 
       <td>u32 
       <td style="width:50%">Sample index for the current fragment.
-         The value is least 0 and at most <code>sampleCount</code>-1, where <code>sampleCount</code> is the MSAA sample <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpumultisamplestate-count" id="ref-for-dom-gpumultisamplestate-count">count</a></code> specified for the GPU render pipeline. <br>See <a href="https://gpuweb.github.io/gpuweb/#render-pipeline"><cite>WebGPU</cite> § 10.3 GPURenderPipeline</a>. 
+         The value is least 0 and at most <code>sampleCount</code>-1, where <code>sampleCount</code> is the MSAA sample <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpumultisamplestate-count" id="ref-for-dom-gpumultisamplestate-count">count</a></code> specified for the GPU render pipeline. <br>See <a href="https://www.w3.org/TR/webgpu/#render-pipeline"><cite>WebGPU</cite> § 10.3 GPURenderPipeline</a>. 
      <tr>
       <td rowspan="2"><dfn data-dfn-for="built-in values" data-dfn-type="dfn" data-noexport id="built-in-values-sample_mask"><code>sample_mask</code><a class="self-link" href="#built-in-values-sample_mask"></a></dfn> 
       <td>fragment 
@@ -18426,11 +18426,11 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-enumdef-gpufiltermode①">17.5.14. textureSampleBaseClampToEdge</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-dictdef-gpuprogrammablestage">
-   <a href="https://gpuweb.github.io/gpuweb/#dictdef-gpuprogrammablestage">https://gpuweb.github.io/gpuweb/#dictdef-gpuprogrammablestage</a><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="term-for-gpuprogrammablestage">
+   <a href="https://gpuweb.github.io/gpuweb/#gpuprogrammablestage">https://gpuweb.github.io/gpuweb/#gpuprogrammablestage</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dictdef-gpuprogrammablestage">1.1. Technical Overview</a>
-    <li><a href="#ref-for-dictdef-gpuprogrammablestage①">10.2. Entry Point Declaration</a>
+    <li><a href="#ref-for-gpuprogrammablestage">1.1. Technical Overview</a>
+    <li><a href="#ref-for-gpuprogrammablestage①">10.2. Entry Point Declaration</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-gpusampler">
@@ -18646,7 +18646,7 @@ registrations, it matches widespread industry conventions.</p>
      <li><span class="dfn-paneled" id="term-for-enumdef-gpucomparefunction">GPUCompareFunction</span>
      <li><span class="dfn-paneled" id="term-for-gpuexternaltexture">GPUExternalTexture</span>
      <li><span class="dfn-paneled" id="term-for-enumdef-gpufiltermode">GPUFilterMode</span>
-     <li><span class="dfn-paneled" id="term-for-dictdef-gpuprogrammablestage">GPUProgrammableStage</span>
+     <li><span class="dfn-paneled" id="term-for-gpuprogrammablestage">GPUProgrammableStage</span>
      <li><span class="dfn-paneled" id="term-for-gpusampler">GPUSampler</span>
      <li><span class="dfn-paneled" id="term-for-enumdef-gpustoragetextureaccess">GPUStorageTextureAccess</span>
      <li><span class="dfn-paneled" id="term-for-gputexture">GPUTexture</span>
