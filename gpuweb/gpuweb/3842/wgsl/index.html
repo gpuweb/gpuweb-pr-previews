@@ -695,7 +695,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/bb8c1dba1cab703edf6c6629c08e2fc3bffdb511/wgsl/index.bs">https://github.com/gpuweb/gpuweb/blob/bb8c1dba1cab703edf6c6629c08e2fc3bffdb511/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/1d6d3f0c84e95350583518053ff6cefedbc9814d/wgsl/index.bs">https://github.com/gpuweb/gpuweb/blob/1d6d3f0c84e95350583518053ff6cefedbc9814d/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -1234,8 +1234,8 @@ Learn more about <a href="http://www.w3.org/community/">W3C Community and Busine
    <p>WebGPU Shading Language (WGSL) is the shader language for <a data-link-type="biblio" href="#biblio-webgpu" title="WebGPU">[WebGPU]</a>.
 That is, an application using the WebGPU API uses WGSL to express the programs, known as shaders,
 that run on the GPU.</p>
-   <div class="example wgsl global-scope" id="example-9405a927">
-    <a class="self-link" href="#example-9405a927"></a> 
+   <div class="example wgsl global-scope" id="example-4108cdf8">
+    <a class="self-link" href="#example-4108cdf8"></a> 
 <pre class="highlight"><c- c1>// A fragment shader which lights textured geometry with point lights.</c->
 
 <c- c1>// Lights from a storage buffer binding.</c->
@@ -1273,10 +1273,10 @@ that run on the GPU.</p>
 
     <c- c1>// Determine the contribution of this light to the surface color.</c->
     <c- a>let</c-> <c- n>radiance</c-> <c- o>=</c-> <c- n>lights</c-><c- p>.</c-><c- n>point</c-><c- p>[</c-><c- n>i</c-><c- p>].</c-><c- n>color</c-> <c- o>*</c-> <c- p>(</c-><c- mi>1</c-> <c- o>/</c-> <c- n>pow</c-><c- p>(</c-><c- n>dist</c-><c- p>,</c-> <c- mi>2</c-><c- p>));</c->
-    <c- a>let</c-> <c- n>nDotL</c-> <c- o>=</c-> <c- n>max</c-><c- p>(</c-><c- n>dot</c-><c- p>(</c-><c- n>N</c-><c- p>,</c-> <c- n>dir</c-><c- p>),</c-> <c- mf>0.0</c-><c- p>);</c->
+    <c- a>let</c-> <c- n>nDotL</c-> <c- o>=</c-> <c- n>max</c-><c- p>(</c-><c- n>dot</c-><c- p>(</c-><c- n>N</c-><c- p>,</c-> <c- n>dir</c-><c- p>),</c-> <c- mi>0</c-><c- p>);</c->
 
     <c- c1>// Accumulate light contribution to the surface color.</c->
-    <c- n>surfaceColor</c-> <c- o>+=</c-> <c- p>(</c-><c- n>baseColor</c-><c- p>.</c-><c- n>rgb</c-> <c- o>*</c-> <c- n>radiance</c-> <c- o>*</c-> <c- n>nDotL</c-><c- p>);</c->
+    <c- n>surfaceColor</c-> <c- o>+=</c-> <c- n>baseColor</c-><c- p>.</c-><c- n>rgb</c-> <c- o>*</c-> <c- n>radiance</c-> <c- o>*</c-> <c- n>nDotL</c-><c- p>;</c->
   <c- p>}</c->
 
   <c- c1>// Return the accumulated surface color.</c->
