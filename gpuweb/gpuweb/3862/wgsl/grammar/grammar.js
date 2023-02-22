@@ -460,10 +460,6 @@
             token('/[xyzw][xyzw][xyzw][xyzw]/')
         ),
         _reserved: $ => choice(
-            token('CompileShader'),
-            token('ComputeShader'),
-            token('DomainShader'),
-            token('GeometryShader'),
             token('Hullshader'),
             token('NULL'),
             token('Self'),
@@ -531,7 +527,6 @@
             token('implements'),
             token('import'),
             token('inline'),
-            token('inout'),
             token('instanceof'),
             token('interface'),
             token('layout'),
@@ -582,7 +577,6 @@
             token('self'),
             token('set'),
             token('shared'),
-            token('signed'),
             token('sizeof'),
             token('smooth'),
             token('snorm'),
