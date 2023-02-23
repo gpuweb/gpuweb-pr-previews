@@ -695,7 +695,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/86bb983a14d362a42a825d4b72a392d54af7d00f/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/86bb983a14d362a42a825d4b72a392d54af7d00f/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/d85490d8e894b5567e788b53d4188870d6042965/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/d85490d8e894b5567e788b53d4188870d6042965/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -10085,13 +10085,13 @@ Extension names are not <a data-link-type="dfn" href="#identifier" id="ref-for-i
 The program does not have to explicitly request it.</p>
    <p><a data-link-type="dfn" href="#software-extension" id="ref-for-software-extension①">Software extensions</a> embody functionality which could reasonably be supported on any WebGPU implementation.
 If the feature is not universally available, that it is because some WebGPU implementation has not yet implemented it.</p>
-   <p>A WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#gpuadapter" id="ref-for-gpuadapter">GPUAdapter</a></code> signals support for a <a data-link-type="dfn" href="#software-extension" id="ref-for-software-extension②">software extension</a> by including the corresponding <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#gpufeaturename" id="ref-for-gpufeaturename②">GPUFeatureName</a></code> as one of its supported <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpuadapter-features" id="ref-for-dom-gpuadapter-features">features</a></code>.</p>
-   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="requires-directive">requires-directive</dfn> is a <a data-link-type="dfn" href="#directive" id="ref-for-directive①">directive</a> that <em>documents</em> the program’s use of one or more <a data-link-type="dfn" href="#software-extension" id="ref-for-software-extension③">software extensions</a>.
+   <p>TODO: https://github.com/gpuweb/gpuweb/issues/3875 How does WebGPU signal support for a software extension?</p>
+   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="requires-directive">requires-directive</dfn> is a <a data-link-type="dfn" href="#directive" id="ref-for-directive①">directive</a> that <em>documents</em> the program’s use of one or more <a data-link-type="dfn" href="#software-extension" id="ref-for-software-extension②">software extensions</a>.
 It does not change the functionality exposed by the implementation.
 A <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑧⑨">shader-creation error</a> results if the implementation does not support one of the extensions.</p>
    <p>A WGSL program <em>can</em> use a <a data-link-type="dfn" href="#requires-directive" id="ref-for-requires-directive">requires-directive</a> to signal the potential for non-portability,
 and to signal the <em>intended</em> minimum bar for portability.</p>
-   <p class="note" role="note"><span class="marker">Note:</span> Tooling outside of a WebGPU implementation could check whether all the <a data-link-type="dfn" href="#software-extension" id="ref-for-software-extension④">software extensions</a> used by a
+   <p class="note" role="note"><span class="marker">Note:</span> Tooling outside of a WebGPU implementation could check whether all the <a data-link-type="dfn" href="#software-extension" id="ref-for-software-extension③">software extensions</a> used by a
 program are covered by <a data-link-type="dfn" href="#requires-directive" id="ref-for-requires-directive①">requires-directives</a> in the program.</p>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-requires_directive">requires_directive</dfn> : 
@@ -10108,11 +10108,11 @@ Extension names are not <a data-link-type="dfn" href="#identifier" id="ref-for-i
     <thead>
      <tr>
       <th>WGSL software extension 
-      <th>WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#gpufeaturename" id="ref-for-gpufeaturename③">GPUFeatureName</a></code> 
+      <th>WebGPU extension name 
       <th>Description 
     <tbody>
      <tr>
-      <td class="note" colspan="3"><span class="marker">Note:</span> No <a data-link-type="dfn" href="#software-extension" id="ref-for-software-extension⑤">software extensions</a> are currently defined. 
+      <td class="note" colspan="3"><span class="marker">Note:</span> No <a data-link-type="dfn" href="#software-extension" id="ref-for-software-extension④">software extensions</a> are currently defined. 
    </table>
    <p class="note" role="note"><span class="marker">Note:</span> The intent is that, over time, WGSL will define software extensions embodying all functionality in software features commonly supported at that time.
 In a <a data-link-type="dfn" href="#requires-directive" id="ref-for-requires-directive③">requires-directive</a>, these serve as a shorthand for listing all those common features.
@@ -13073,7 +13073,7 @@ A WGSL program <a data-link-type="dfn" href="#shader-creation-error" id="ref-for
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-enable_extension_name">enable_extension_name</dfn> : 
     <p>| <code>'f16'</code></p>
    </div>
-   <p>There are no <a data-link-type="dfn" href="#software-extension" id="ref-for-software-extension⑥">software extension</a> names, but they have the same form as an <a data-link-type="dfn" href="#identifier" id="ref-for-identifier②①">identifier</a>:</p>
+   <p>There are no <a data-link-type="dfn" href="#software-extension" id="ref-for-software-extension⑤">software extension</a> names, but they have the same form as an <a data-link-type="dfn" href="#identifier" id="ref-for-identifier②①">identifier</a>:</p>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-software_extension_name">software_extension_name</dfn> : 
     <p>| <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token⑤">ident_pattern_token</a></p>
@@ -18537,12 +18537,6 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-dom-gpustoragetextureaccess-write-only">10.3.3. Resource Layout Compatibility</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-gpuadapter">
-   <a href="https://gpuweb.github.io/gpuweb/#gpuadapter">https://gpuweb.github.io/gpuweb/#gpuadapter</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-gpuadapter">11.2. Software Extensions</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="term-for-enumdef-gpuaddressmode">
    <a href="https://gpuweb.github.io/gpuweb/#enumdef-gpuaddressmode">https://gpuweb.github.io/gpuweb/#enumdef-gpuaddressmode</a><b>Referenced in:</b>
    <ul>
@@ -18585,7 +18579,6 @@ registrations, it matches widespread industry conventions.</p>
    <a href="https://gpuweb.github.io/gpuweb/#gpufeaturename">https://gpuweb.github.io/gpuweb/#gpufeaturename</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-gpufeaturename">11.1. Enable Extensions</a> <a href="#ref-for-gpufeaturename①">(2)</a>
-    <li><a href="#ref-for-gpufeaturename②">11.2. Software Extensions</a> <a href="#ref-for-gpufeaturename③">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-enumdef-gpufiltermode">
@@ -18691,12 +18684,6 @@ registrations, it matches widespread industry conventions.</p>
    <a href="https://gpuweb.github.io/gpuweb/#dom-gpubindgrouplayoutentry-externaltexture">https://gpuweb.github.io/gpuweb/#dom-gpubindgrouplayoutentry-externaltexture</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-gpubindgrouplayoutentry-externaltexture">10.3.3. Resource Layout Compatibility</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-dom-gpuadapter-features">
-   <a href="https://gpuweb.github.io/gpuweb/#dom-gpuadapter-features">https://gpuweb.github.io/gpuweb/#dom-gpuadapter-features</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-gpuadapter-features">11.2. Software Extensions</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-framebuffer">
@@ -18815,7 +18802,6 @@ registrations, it matches widespread industry conventions.</p>
      <li><span class="dfn-paneled" id="term-for-dom-gputexturesampletype-unfilterable-float">"unfilterable-float"</span>
      <li><span class="dfn-paneled" id="term-for-dom-gpubufferbindingtype-uniform">"uniform"</span>
      <li><span class="dfn-paneled" id="term-for-dom-gpustoragetextureaccess-write-only">"write-only"</span>
-     <li><span class="dfn-paneled" id="term-for-gpuadapter">GPUAdapter</span>
      <li><span class="dfn-paneled" id="term-for-enumdef-gpuaddressmode">GPUAddressMode</span>
      <li><span class="dfn-paneled" id="term-for-gpubuffer">GPUBuffer</span>
      <li><span class="dfn-paneled" id="term-for-dictdef-gpubufferbinding">GPUBufferBinding</span>
@@ -18840,7 +18826,6 @@ registrations, it matches widespread industry conventions.</p>
      <li><span class="dfn-paneled" id="term-for-dom-gpudevice-createrenderpipeline">createRenderPipeline(descriptor)</span>
      <li><span class="dfn-paneled" id="term-for-dom-gpudevice-createshadermodule">createShaderModule(descriptor)</span>
      <li><span class="dfn-paneled" id="term-for-dom-gpubindgrouplayoutentry-externaltexture">externalTexture</span>
-     <li><span class="dfn-paneled" id="term-for-dom-gpuadapter-features">features</span>
      <li><span class="dfn-paneled" id="term-for-framebuffer">framebuffer</span>
      <li><span class="dfn-paneled" id="term-for-front-facing">front-facing</span>
      <li><span class="dfn-paneled" id="term-for-gpu-command">gpu command</span>
@@ -22137,8 +22122,8 @@ registrations, it matches widespread industry conventions.</p>
    <b><a href="#software-extension">#software-extension</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-software-extension">11. Language Extensions</a>
-    <li><a href="#ref-for-software-extension①">11.2. Software Extensions</a> <a href="#ref-for-software-extension②">(2)</a> <a href="#ref-for-software-extension③">(3)</a> <a href="#ref-for-software-extension④">(4)</a> <a href="#ref-for-software-extension⑤">(5)</a>
-    <li><a href="#ref-for-software-extension⑥">15.4. Context-Dependent Name Tokens</a>
+    <li><a href="#ref-for-software-extension①">11.2. Software Extensions</a> <a href="#ref-for-software-extension②">(2)</a> <a href="#ref-for-software-extension③">(3)</a> <a href="#ref-for-software-extension④">(4)</a>
+    <li><a href="#ref-for-software-extension⑤">15.4. Context-Dependent Name Tokens</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="requires-directive">
