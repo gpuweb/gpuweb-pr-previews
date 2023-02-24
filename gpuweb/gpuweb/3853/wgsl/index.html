@@ -695,7 +695,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/a88d4a7dc4716d8dfd839c80769a1b069ae40ef3/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/a88d4a7dc4716d8dfd839c80769a1b069ae40ef3/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/51456717f5094212750c8e984bf8e077fe440afb/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/51456717f5094212750c8e984bf8e077fe440afb/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -7225,7 +7225,6 @@ as part of a <a data-link-type="dfn" href="#value-constructor" id="ref-for-value
     <p>| <a data-link-type="dfn" href="#syntax-call_expression" id="ref-for-syntax-call_expression">call_expression</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-literal" id="ref-for-syntax-literal">literal</a></p>
     <p>| <a data-link-type="dfn" href="#syntax-paren_expression" id="ref-for-syntax-paren_expression">paren_expression</a></p>
-    <p>| <a data-link-type="dfn" href="#syntax_kw-bitcast" id="ref-for-syntax_kw-bitcast"><code>'bitcast'</code></a> <span class="hidden">_disambiguate_template</span> <a data-link-type="dfn" href="#syntax_sym-_template_args_start" id="ref-for-syntax_sym-_template_args_start⑤">_template_args_start</a> <a data-link-type="dfn" href="#syntax-type_specifier" id="ref-for-syntax-type_specifier③">type_specifier</a> <a data-link-type="dfn" href="#syntax_sym-_template_args_end" id="ref-for-syntax_sym-_template_args_end⑤">_template_args_end</a> <a data-link-type="dfn" href="#syntax-paren_expression" id="ref-for-syntax-paren_expression①">paren_expression</a></p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-call_expression">call_expression</dfn> : 
@@ -7417,7 +7416,7 @@ to bind with this operator. This column is necessary for linearly listing operat
       <th>Binding 
     <tbody>
      <tr>
-      <td><a data-link-type="dfn" href="#syntax-paren_expression" id="ref-for-syntax-paren_expression②">Parenthesized</a> 
+      <td><a data-link-type="dfn" href="#syntax-paren_expression" id="ref-for-syntax-paren_expression①">Parenthesized</a> 
       <td><code>(...)</code> 
       <td>
       <td>
@@ -8775,7 +8774,7 @@ parameters and return types:</p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-param">param</dfn> : 
-    <p>| <a data-link-type="dfn" href="#syntax-attribute" id="ref-for-syntax-attribute⑤">attribute</a> * <a data-link-type="dfn" href="#syntax-ident" id="ref-for-syntax-ident⑨">ident</a> <a data-link-type="dfn" href="#syntax_sym-colon" id="ref-for-syntax_sym-colon④"><code>':'</code></a> <a data-link-type="dfn" href="#syntax-type_specifier" id="ref-for-syntax-type_specifier④">type_specifier</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-attribute" id="ref-for-syntax-attribute⑤">attribute</a> * <a data-link-type="dfn" href="#syntax-ident" id="ref-for-syntax-ident⑨">ident</a> <a data-link-type="dfn" href="#syntax_sym-colon" id="ref-for-syntax_sym-colon④"><code>':'</code></a> <a data-link-type="dfn" href="#syntax-type_specifier" id="ref-for-syntax-type_specifier③">type_specifier</a></p>
    </div>
    <div class="example wgsl no-marker" id="example-17347226">
     <a class="self-link" href="#example-17347226"></a>
@@ -12147,8 +12146,6 @@ the source type is a floating point type with fewer exponent and mantissa bits t
     <li data-md>
      <p><dfn class="dfn-paneled" data-dfn-for="syntax_kw" data-dfn-type="dfn" data-noexport id="syntax_kw-alias"><code>alias</code></dfn></p>
     <li data-md>
-     <p><dfn class="dfn-paneled" data-dfn-for="syntax_kw" data-dfn-type="dfn" data-noexport id="syntax_kw-bitcast"><code>bitcast</code></dfn></p>
-    <li data-md>
      <p><dfn class="dfn-paneled" data-dfn-for="syntax_kw" data-dfn-type="dfn" data-noexport id="syntax_kw-break"><code>break</code></dfn></p>
     <li data-md>
      <p><dfn class="dfn-paneled" data-dfn-for="syntax_kw" data-dfn-type="dfn" data-noexport id="syntax_kw-case"><code>case</code></dfn></p>
@@ -13630,7 +13627,7 @@ a value in one type as a value in another type.</p>
    <table class="data builtin">
     <tbody>
      <tr>
-      <td styleU0003AU00022widthU0003A10U00025U00022>Overload 
+      <td style="width:10%">Overload 
       <td>
 <pre class="highlight"><c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>bitcast</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>(</c-><c- n>e</c-> : <c- nc>T</c-><c- p>)</c-> -> <c- nc>T</c-></pre>
      <tr>
@@ -13643,7 +13640,7 @@ a value in one type as a value in another type.</p>
    <table class="data builtin">
     <tbody>
      <tr>
-      <td styleU0003AU00022widthU0003A10U00025U00022>Overload 
+      <td style="width:10%">Overload 
       <td>
 <pre class="highlight"><c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>bitcast</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>(</c-><c- n>e</c-> : <c- nc>S</c-><c- p>)</c-> -> <c- nc>T</c-></pre>
      <tr>
@@ -13656,7 +13653,7 @@ a value in one type as a value in another type.</p>
    <table class="data builtin">
     <tbody>
      <tr>
-      <td styleU0003AU00022widthU0003A10U00025U00022>Overload 
+      <td style="width:10%">Overload 
       <td>
 <pre class="highlight"><c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>bitcast</c-><c- o>&lt;</c-><c- n>vecN</c-><c- o>&lt;</c-><c- n>T</c-><c- o>>></c-><c- p>(</c-><c- n>e</c-> : <c- nc>vecN</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-><c- p>)</c-> -> <c- nc>T</c-></pre>
      <tr>
@@ -13669,7 +13666,7 @@ a value in one type as a value in another type.</p>
    <table class="data builtin">
     <tbody>
      <tr>
-      <td styleU0003AU00022widthU0003A10U00025U00022>Overload 
+      <td style="width:10%">Overload 
       <td>
 <pre class="highlight"><c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>bitcast</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>(</c-><c- n>e</c-> : <c- nc>vec2</c-><c- o>&lt;</c-><c- mi>16</c-><c- o>></c-><c- p>)</c-> -> <c- nc>T</c-></pre>
      <tr>
@@ -13682,7 +13679,7 @@ a value in one type as a value in another type.</p>
    <table class="data builtin">
     <tbody>
      <tr>
-      <td styleU0003AU00022widthU0003A10U00025U00022>Overload 
+      <td style="width:10%">Overload 
       <td>
 <pre class="highlight"><c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>bitcast</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>(</c-><c- n>e</c-> : <c- nc>vec4</c-><c- o>&lt;</c-><c- n>f16</c-><c- o>></c-><c- p>)</c-> -> <c- nc>T</c-></pre>
      <tr>
@@ -13695,7 +13692,7 @@ a value in one type as a value in another type.</p>
    <table class="data builtin">
     <tbody>
      <tr>
-      <td styleU0003AU00022widthU0003A10U00025U00022>Overload 
+      <td style="width:10%">Overload 
       <td>
 <pre class="highlight"><c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>bitcast</c-><c- o>&lt;</c-><c- n>vec2</c-><c- o>&lt;</c-><c- n>f16</c-><c- o>>></c-><c- p>(</c-><c- n>e</c-> : <c- nc>T</c-><c- p>)</c-> -> <c- nc>vec2</c-><c- o>&lt;</c-><c- n>f16</c-><c- o>></c-></pre>
      <tr>
@@ -13708,7 +13705,7 @@ a value in one type as a value in another type.</p>
    <table class="data builtin">
     <tbody>
      <tr>
-      <td styleU0003AU00022widthU0003A10U00025U00022>Overload 
+      <td style="width:10%">Overload 
       <td>
 <pre class="highlight"><c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>bitcast</c-><c- o>&lt;</c-><c- n>vec4</c-><c- o>&lt;</c-><c- n>f16</c-><c- o>>></c-><c- p>(</c-><c- n>e</c-> : <c- nc>vec2</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>f16</c-><c- o>></c-></pre>
      <tr>
@@ -17432,7 +17429,7 @@ Use token definitions from the main part of the specification.</p>
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-global_decl">global_decl</dfn>: 
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute">attribute</a> * <code>'fn'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident③">ident</a> <code>'('</code> ( <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute①">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident④">ident</a> <code>':'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier">type_specifier</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-param" id="ref-for-recursive-descent-syntax-param">param</a> )* <code>','</code> ? )? <code>')'</code> ( <code>'->'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute②">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑤">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident②">template_elaborated_ident.post.ident</a> )? <code>'{'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-statement" id="ref-for-recursive-descent-syntax-statement①">statement</a> * <code>'}'</code></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute③">attribute</a> * <code>'override'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-optionally_typed_ident" id="ref-for-recursive-descent-syntax-optionally_typed_ident">optionally_typed_ident</a> ( <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②⓪">expression</a> )? <code>';'</code></p>
-    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute④">attribute</a> * <code>'var'</code> ( <a data-link-type="dfn" href="#syntax_sym-_template_args_start" id="ref-for-syntax_sym-_template_args_start⑥">_template_args_start</a> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②①">expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②②">expression</a> )* <code>','</code> ? <a data-link-type="dfn" href="#syntax_sym-_template_args_end" id="ref-for-syntax_sym-_template_args_end⑥">_template_args_end</a> )? <a data-link-type="dfn" href="#recursive-descent-syntax-optionally_typed_ident" id="ref-for-recursive-descent-syntax-optionally_typed_ident①">optionally_typed_ident</a> ( <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②③">expression</a> )? <code>';'</code></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute④">attribute</a> * <code>'var'</code> ( <a data-link-type="dfn" href="#syntax_sym-_template_args_start" id="ref-for-syntax_sym-_template_args_start⑤">_template_args_start</a> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②①">expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②②">expression</a> )* <code>','</code> ? <a data-link-type="dfn" href="#syntax_sym-_template_args_end" id="ref-for-syntax_sym-_template_args_end⑤">_template_args_end</a> )? <a data-link-type="dfn" href="#recursive-descent-syntax-optionally_typed_ident" id="ref-for-recursive-descent-syntax-optionally_typed_ident①">optionally_typed_ident</a> ( <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②③">expression</a> )? <code>';'</code></p>
     <p>| <code>';'</code></p>
     <p>| <code>'alias'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑥">ident</a> <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑦">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident③">template_elaborated_ident.post.ident</a> <code>';'</code></p>
     <p>| <code>'const'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-optionally_typed_ident" id="ref-for-recursive-descent-syntax-optionally_typed_ident②">optionally_typed_ident</a> <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②④">expression</a> <code>';'</code></p>
@@ -17487,7 +17484,6 @@ Use token definitions from the main part of the specification.</p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①②">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident⑤">template_elaborated_ident.post.ident</a> <code>'('</code> ( <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②⑥">expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②⑦">expression</a> )* <code>','</code> ? )? <code>')'</code></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-literal" id="ref-for-recursive-descent-syntax-literal">literal</a></p>
     <p>| <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②⑧">expression</a> <code>')'</code></p>
-    <p>| <code>'bitcast'</code> <a data-link-type="dfn" href="#syntax_sym-_template_args_start" id="ref-for-syntax_sym-_template_args_start⑦">_template_args_start</a> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier⑤">type_specifier</a> <a data-link-type="dfn" href="#syntax_sym-_template_args_end" id="ref-for-syntax_sym-_template_args_end⑦">_template_args_end</a> <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②⑨">expression</a> <code>')'</code></p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-relational_expressionpostunary_expression">relational_expression.post.unary_expression</dfn>: 
@@ -17508,20 +17504,20 @@ Use token definitions from the main part of the specification.</p>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-statement">statement</dfn>: 
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement">compound_statement</a></p>
-    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①③">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident⑥">template_elaborated_ident.post.ident</a> <code>'('</code> ( <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③⓪">expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③①">expression</a> )* <code>','</code> ? )? <code>')'</code> <code>';'</code></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①③">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident⑥">template_elaborated_ident.post.ident</a> <code>'('</code> ( <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②⑨">expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③⓪">expression</a> )* <code>','</code> ? )? <code>')'</code> <code>';'</code></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-variable_statement" id="ref-for-recursive-descent-syntax-variable_statement①">variable_statement</a> <code>';'</code></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-variable_updating_statement" id="ref-for-recursive-descent-syntax-variable_updating_statement②">variable_updating_statement</a> <code>';'</code></p>
     <p>| <a data-link-type="dfn" href="#syntax-break_statement" id="ref-for-syntax-break_statement①">break_statement</a> <code>';'</code></p>
     <p>| <a data-link-type="dfn" href="#syntax-continue_statement" id="ref-for-syntax-continue_statement①">continue_statement</a> <code>';'</code></p>
     <p>| <code>';'</code></p>
-    <p>| <code>'const_assert'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③②">expression</a> <code>';'</code></p>
+    <p>| <code>'const_assert'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③①">expression</a> <code>';'</code></p>
     <p>| <code>'discard'</code> <code>';'</code></p>
-    <p>| <code>'for'</code> <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-for_init" id="ref-for-recursive-descent-syntax-for_init">for_init</a> ? <code>';'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③③">expression</a> ? <code>';'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-for_update" id="ref-for-recursive-descent-syntax-for_update">for_update</a> ? <code>')'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement①">compound_statement</a></p>
-    <p>| <code>'if'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③④">expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement②">compound_statement</a> ( <code>'else'</code> <code>'if'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③⑤">expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement③">compound_statement</a> )* ( <code>'else'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement④">compound_statement</a> )?</p>
-    <p>| <code>'loop'</code> <code>'{'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-statement" id="ref-for-recursive-descent-syntax-statement②">statement</a> * ( <code>'continuing'</code> <code>'{'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-statement" id="ref-for-recursive-descent-syntax-statement③">statement</a> * ( <code>'break'</code> <code>'if'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③⑥">expression</a> <code>';'</code> )? <code>'}'</code> )? <code>'}'</code></p>
-    <p>| <code>'return'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③⑦">expression</a> ? <code>';'</code></p>
-    <p>| <code>'switch'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③⑧">expression</a> <code>'{'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-switch_body" id="ref-for-recursive-descent-syntax-switch_body">switch_body</a> * <code>'}'</code></p>
-    <p>| <code>'while'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③⑨">expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement⑤">compound_statement</a></p>
+    <p>| <code>'for'</code> <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-for_init" id="ref-for-recursive-descent-syntax-for_init">for_init</a> ? <code>';'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③②">expression</a> ? <code>';'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-for_update" id="ref-for-recursive-descent-syntax-for_update">for_update</a> ? <code>')'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement①">compound_statement</a></p>
+    <p>| <code>'if'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③③">expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement②">compound_statement</a> ( <code>'else'</code> <code>'if'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③④">expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement③">compound_statement</a> )* ( <code>'else'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement④">compound_statement</a> )?</p>
+    <p>| <code>'loop'</code> <code>'{'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-statement" id="ref-for-recursive-descent-syntax-statement②">statement</a> * ( <code>'continuing'</code> <code>'{'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-statement" id="ref-for-recursive-descent-syntax-statement③">statement</a> * ( <code>'break'</code> <code>'if'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③⑤">expression</a> <code>';'</code> )? <code>'}'</code> )? <code>'}'</code></p>
+    <p>| <code>'return'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③⑥">expression</a> ? <code>';'</code></p>
+    <p>| <code>'switch'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③⑦">expression</a> <code>'{'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-switch_body" id="ref-for-recursive-descent-syntax-switch_body">switch_body</a> * <code>'}'</code></p>
+    <p>| <code>'while'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③⑧">expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement⑤">compound_statement</a></p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-switch_body">switch_body</dfn>: 
@@ -17539,10 +17535,10 @@ Use token definitions from the main part of the specification.</p>
     <p>| <code>'/[xyzw][xyzw][xyzw]/'</code></p>
     <p>| <code>'/[xyzw][xyzw][xyzw][xyzw]/'</code></p>
    </div>
-   <div class="syntax"> <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-template_arg_expression">template_arg_expression</dfn>: <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④⓪">expression</a> </div>
+   <div class="syntax"> <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-template_arg_expression">template_arg_expression</dfn>: <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③⑨">expression</a> </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-template_elaborated_identpostident">template_elaborated_ident.post.ident</dfn>: 
-    <p>| ( <a data-link-type="dfn" href="#syntax_sym-_template_args_start" id="ref-for-syntax_sym-_template_args_start⑧">_template_args_start</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_arg_expression" id="ref-for-recursive-descent-syntax-template_arg_expression">template_arg_expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④①">expression</a> )* <code>','</code> ? <a data-link-type="dfn" href="#syntax_sym-_template_args_end" id="ref-for-syntax_sym-_template_args_end⑧">_template_args_end</a> )?</p>
+    <p>| ( <a data-link-type="dfn" href="#syntax_sym-_template_args_start" id="ref-for-syntax_sym-_template_args_start⑥">_template_args_start</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_arg_expression" id="ref-for-recursive-descent-syntax-template_arg_expression">template_arg_expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④⓪">expression</a> )* <code>','</code> ? <a data-link-type="dfn" href="#syntax_sym-_template_args_end" id="ref-for-syntax_sym-_template_args_end⑥">_template_args_end</a> )?</p>
    </div>
    <div class="syntax">
      <dfn data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-translation_unit">translation_unit<a class="self-link" href="#recursive-descent-syntax-translation_unit"></a></dfn>: 
@@ -17550,7 +17546,7 @@ Use token definitions from the main part of the specification.</p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-type_specifier">type_specifier</dfn>: 
-    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①④">ident</a> ( <a data-link-type="dfn" href="#syntax_sym-_template_args_start" id="ref-for-syntax_sym-_template_args_start⑨">_template_args_start</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_arg_expression" id="ref-for-recursive-descent-syntax-template_arg_expression①">template_arg_expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④②">expression</a> )* <code>','</code> ? <a data-link-type="dfn" href="#syntax_sym-_template_args_end" id="ref-for-syntax_sym-_template_args_end⑨">_template_args_end</a> )?</p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①④">ident</a> ( <a data-link-type="dfn" href="#syntax_sym-_template_args_start" id="ref-for-syntax_sym-_template_args_start⑦">_template_args_start</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_arg_expression" id="ref-for-recursive-descent-syntax-template_arg_expression①">template_arg_expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④①">expression</a> )* <code>','</code> ? <a data-link-type="dfn" href="#syntax_sym-_template_args_end" id="ref-for-syntax_sym-_template_args_end⑦">_template_args_end</a> )?</p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-unary_expression">unary_expression</dfn>: 
@@ -17563,21 +17559,21 @@ Use token definitions from the main part of the specification.</p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-variable_decl">variable_decl</dfn>: 
-    <p>| <code>'var'</code> ( <a data-link-type="dfn" href="#syntax_sym-_template_args_start" id="ref-for-syntax_sym-_template_args_start①⓪">_template_args_start</a> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④③">expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④④">expression</a> )* <code>','</code> ? <a data-link-type="dfn" href="#syntax_sym-_template_args_end" id="ref-for-syntax_sym-_template_args_end①⓪">_template_args_end</a> )? <a data-link-type="dfn" href="#recursive-descent-syntax-optionally_typed_ident" id="ref-for-recursive-descent-syntax-optionally_typed_ident③">optionally_typed_ident</a></p>
+    <p>| <code>'var'</code> ( <a data-link-type="dfn" href="#syntax_sym-_template_args_start" id="ref-for-syntax_sym-_template_args_start⑧">_template_args_start</a> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④②">expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④③">expression</a> )* <code>','</code> ? <a data-link-type="dfn" href="#syntax_sym-_template_args_end" id="ref-for-syntax_sym-_template_args_end⑧">_template_args_end</a> )? <a data-link-type="dfn" href="#recursive-descent-syntax-optionally_typed_ident" id="ref-for-recursive-descent-syntax-optionally_typed_ident③">optionally_typed_ident</a></p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-variable_statement">variable_statement</dfn>: 
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-variable_decl" id="ref-for-recursive-descent-syntax-variable_decl">variable_decl</a></p>
-    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-variable_decl" id="ref-for-recursive-descent-syntax-variable_decl①">variable_decl</a> <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④⑤">expression</a></p>
-    <p>| <code>'const'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-optionally_typed_ident" id="ref-for-recursive-descent-syntax-optionally_typed_ident④">optionally_typed_ident</a> <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④⑥">expression</a></p>
-    <p>| <code>'let'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-optionally_typed_ident" id="ref-for-recursive-descent-syntax-optionally_typed_ident⑤">optionally_typed_ident</a> <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④⑦">expression</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-variable_decl" id="ref-for-recursive-descent-syntax-variable_decl①">variable_decl</a> <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④④">expression</a></p>
+    <p>| <code>'const'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-optionally_typed_ident" id="ref-for-recursive-descent-syntax-optionally_typed_ident④">optionally_typed_ident</a> <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④⑤">expression</a></p>
+    <p>| <code>'let'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-optionally_typed_ident" id="ref-for-recursive-descent-syntax-optionally_typed_ident⑤">optionally_typed_ident</a> <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④⑥">expression</a></p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-variable_updating_statement">variable_updating_statement</dfn>: 
-    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-lhs_expression" id="ref-for-recursive-descent-syntax-lhs_expression③">lhs_expression</a> ( <code>'='</code> | <a data-link-type="dfn" href="#recursive-descent-syntax-compound_assignment_operator" id="ref-for-recursive-descent-syntax-compound_assignment_operator①">compound_assignment_operator</a> ) <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④⑧">expression</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-lhs_expression" id="ref-for-recursive-descent-syntax-lhs_expression③">lhs_expression</a> ( <code>'='</code> | <a data-link-type="dfn" href="#recursive-descent-syntax-compound_assignment_operator" id="ref-for-recursive-descent-syntax-compound_assignment_operator①">compound_assignment_operator</a> ) <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④⑦">expression</a></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-lhs_expression" id="ref-for-recursive-descent-syntax-lhs_expression④">lhs_expression</a> <code>'++'</code></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-lhs_expression" id="ref-for-recursive-descent-syntax-lhs_expression⑤">lhs_expression</a> <code>'--'</code></p>
-    <p>| <code>'_'</code> <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④⑨">expression</a></p>
+    <p>| <code>'_'</code> <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④⑧">expression</a></p>
    </div>
    <h2 class="heading settled" id="text-wgsl-media-type"><span class="content">Appendix A: The <code>text/wgsl</code> Media Type</span><a class="self-link" href="#text-wgsl-media-type"></a></h2>
    <p>The Internet Assigned Numbers Authority (IANA) maintains a registry of media types, at <a data-link-type="biblio" href="#biblio-iana-media-types" title="Media Types">[IANA-MEDIA-TYPES]</a>.</p>
@@ -17763,7 +17759,6 @@ registrations, it matches widespread industry conventions.</p>
    <li><a href="#syntax-binary_or_expression">binary_or_expression</a><span>, in § 7.18</span>
    <li><a href="#syntax-binary_xor_expression">binary_xor_expression</a><span>, in § 7.18</span>
    <li><a href="#attribute-binding">binding</a><span>, in § 3.10</span>
-   <li><a href="#syntax_kw-bitcast">bitcast</a><span>, in § 15.1</span>
    <li><a href="#syntax-bitwise_expression">bitwise_expression</a><span>, in § 7.18</span>
    <li><a href="#recursive-descent-syntax-bitwise_expressionpostunary_expression">bitwise_expression.post.unary_expression</a><span>, in § 18</span>
    <li><a href="#syntax-_blankspace">_blankspace</a><span>, in § 3.2</span>
@@ -21095,8 +21090,7 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-syntax-type_specifier">5.2.10. Structure Types</a>
     <li><a href="#ref-for-syntax-type_specifier①">5.7. Type Aliases</a>
     <li><a href="#ref-for-syntax-type_specifier②">6.4. Variable and Value Declaration Grammar Summary</a>
-    <li><a href="#ref-for-syntax-type_specifier③">7.18. Expression Grammar Summary</a>
-    <li><a href="#ref-for-syntax-type_specifier④">9.1. Declaring a User-defined Function</a>
+    <li><a href="#ref-for-syntax-type_specifier③">9.1. Declaring a User-defined Function</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-template_elaborated_ident">
@@ -21465,8 +21459,8 @@ registrations, it matches widespread industry conventions.</p>
   <aside class="dfn-panel" data-for="syntax-paren_expression">
    <b><a href="#syntax-paren_expression">#syntax-paren_expression</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-syntax-paren_expression">7.18. Expression Grammar Summary</a> <a href="#ref-for-syntax-paren_expression①">(2)</a>
-    <li><a href="#ref-for-syntax-paren_expression②">7.19. Operator Precedence and Associativity</a>
+    <li><a href="#ref-for-syntax-paren_expression">7.18. Expression Grammar Summary</a>
+    <li><a href="#ref-for-syntax-paren_expression①">7.19. Operator Precedence and Associativity</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-argument_expression_list">
@@ -23134,12 +23128,6 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-syntax_kw-alias">5.7. Type Aliases</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="syntax_kw-bitcast">
-   <b><a href="#syntax_kw-bitcast">#syntax_kw-bitcast</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-syntax_kw-bitcast">7.18. Expression Grammar Summary</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="syntax_kw-break">
    <b><a href="#syntax_kw-break">#syntax_kw-break</a></b><b>Referenced in:</b>
    <ul>
@@ -23619,8 +23607,7 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-syntax_sym-_template_args_end">3.1. Parsing</a>
     <li><a href="#ref-for-syntax_sym-_template_args_end①">3.9. Template Lists</a> <a href="#ref-for-syntax_sym-_template_args_end②">(2)</a>
     <li><a href="#ref-for-syntax_sym-_template_args_end③">7.17. Type Expressions</a> <a href="#ref-for-syntax_sym-_template_args_end④">(2)</a>
-    <li><a href="#ref-for-syntax_sym-_template_args_end⑤">7.18. Expression Grammar Summary</a>
-    <li><a href="#ref-for-syntax_sym-_template_args_end⑥">18. Grammar for Recursive Descent Parsing</a> <a href="#ref-for-syntax_sym-_template_args_end⑦">(2)</a> <a href="#ref-for-syntax_sym-_template_args_end⑧">(3)</a> <a href="#ref-for-syntax_sym-_template_args_end⑨">(4)</a> <a href="#ref-for-syntax_sym-_template_args_end①⓪">(5)</a>
+    <li><a href="#ref-for-syntax_sym-_template_args_end⑤">18. Grammar for Recursive Descent Parsing</a> <a href="#ref-for-syntax_sym-_template_args_end⑥">(2)</a> <a href="#ref-for-syntax_sym-_template_args_end⑦">(3)</a> <a href="#ref-for-syntax_sym-_template_args_end⑧">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax_sym-_template_args_start">
@@ -23629,8 +23616,7 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-syntax_sym-_template_args_start">3.1. Parsing</a>
     <li><a href="#ref-for-syntax_sym-_template_args_start①">3.9. Template Lists</a> <a href="#ref-for-syntax_sym-_template_args_start②">(2)</a>
     <li><a href="#ref-for-syntax_sym-_template_args_start③">7.17. Type Expressions</a> <a href="#ref-for-syntax_sym-_template_args_start④">(2)</a>
-    <li><a href="#ref-for-syntax_sym-_template_args_start⑤">7.18. Expression Grammar Summary</a>
-    <li><a href="#ref-for-syntax_sym-_template_args_start⑥">18. Grammar for Recursive Descent Parsing</a> <a href="#ref-for-syntax_sym-_template_args_start⑦">(2)</a> <a href="#ref-for-syntax_sym-_template_args_start⑧">(3)</a> <a href="#ref-for-syntax_sym-_template_args_start⑨">(4)</a> <a href="#ref-for-syntax_sym-_template_args_start①⓪">(5)</a>
+    <li><a href="#ref-for-syntax_sym-_template_args_start⑤">18. Grammar for Recursive Descent Parsing</a> <a href="#ref-for-syntax_sym-_template_args_start⑥">(2)</a> <a href="#ref-for-syntax_sym-_template_args_start⑦">(3)</a> <a href="#ref-for-syntax_sym-_template_args_start⑧">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-extension_name">
@@ -23833,7 +23819,7 @@ registrations, it matches widespread industry conventions.</p>
   <aside class="dfn-panel" data-for="recursive-descent-syntax-expression">
    <b><a href="#recursive-descent-syntax-expression">#recursive-descent-syntax-expression</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-recursive-descent-syntax-expression">18. Grammar for Recursive Descent Parsing</a> <a href="#ref-for-recursive-descent-syntax-expression①">(2)</a> <a href="#ref-for-recursive-descent-syntax-expression②">(3)</a> <a href="#ref-for-recursive-descent-syntax-expression③">(4)</a> <a href="#ref-for-recursive-descent-syntax-expression④">(5)</a> <a href="#ref-for-recursive-descent-syntax-expression⑤">(6)</a> <a href="#ref-for-recursive-descent-syntax-expression⑥">(7)</a> <a href="#ref-for-recursive-descent-syntax-expression⑦">(8)</a> <a href="#ref-for-recursive-descent-syntax-expression⑧">(9)</a> <a href="#ref-for-recursive-descent-syntax-expression⑨">(10)</a> <a href="#ref-for-recursive-descent-syntax-expression①⓪">(11)</a> <a href="#ref-for-recursive-descent-syntax-expression①①">(12)</a> <a href="#ref-for-recursive-descent-syntax-expression①②">(13)</a> <a href="#ref-for-recursive-descent-syntax-expression①③">(14)</a> <a href="#ref-for-recursive-descent-syntax-expression①④">(15)</a> <a href="#ref-for-recursive-descent-syntax-expression①⑤">(16)</a> <a href="#ref-for-recursive-descent-syntax-expression①⑥">(17)</a> <a href="#ref-for-recursive-descent-syntax-expression①⑦">(18)</a> <a href="#ref-for-recursive-descent-syntax-expression①⑧">(19)</a> <a href="#ref-for-recursive-descent-syntax-expression①⑨">(20)</a> <a href="#ref-for-recursive-descent-syntax-expression②⓪">(21)</a> <a href="#ref-for-recursive-descent-syntax-expression②①">(22)</a> <a href="#ref-for-recursive-descent-syntax-expression②②">(23)</a> <a href="#ref-for-recursive-descent-syntax-expression②③">(24)</a> <a href="#ref-for-recursive-descent-syntax-expression②④">(25)</a> <a href="#ref-for-recursive-descent-syntax-expression②⑤">(26)</a> <a href="#ref-for-recursive-descent-syntax-expression②⑥">(27)</a> <a href="#ref-for-recursive-descent-syntax-expression②⑦">(28)</a> <a href="#ref-for-recursive-descent-syntax-expression②⑧">(29)</a> <a href="#ref-for-recursive-descent-syntax-expression②⑨">(30)</a> <a href="#ref-for-recursive-descent-syntax-expression③⓪">(31)</a> <a href="#ref-for-recursive-descent-syntax-expression③①">(32)</a> <a href="#ref-for-recursive-descent-syntax-expression③②">(33)</a> <a href="#ref-for-recursive-descent-syntax-expression③③">(34)</a> <a href="#ref-for-recursive-descent-syntax-expression③④">(35)</a> <a href="#ref-for-recursive-descent-syntax-expression③⑤">(36)</a> <a href="#ref-for-recursive-descent-syntax-expression③⑥">(37)</a> <a href="#ref-for-recursive-descent-syntax-expression③⑦">(38)</a> <a href="#ref-for-recursive-descent-syntax-expression③⑧">(39)</a> <a href="#ref-for-recursive-descent-syntax-expression③⑨">(40)</a> <a href="#ref-for-recursive-descent-syntax-expression④⓪">(41)</a> <a href="#ref-for-recursive-descent-syntax-expression④①">(42)</a> <a href="#ref-for-recursive-descent-syntax-expression④②">(43)</a> <a href="#ref-for-recursive-descent-syntax-expression④③">(44)</a> <a href="#ref-for-recursive-descent-syntax-expression④④">(45)</a> <a href="#ref-for-recursive-descent-syntax-expression④⑤">(46)</a> <a href="#ref-for-recursive-descent-syntax-expression④⑥">(47)</a> <a href="#ref-for-recursive-descent-syntax-expression④⑦">(48)</a> <a href="#ref-for-recursive-descent-syntax-expression④⑧">(49)</a> <a href="#ref-for-recursive-descent-syntax-expression④⑨">(50)</a>
+    <li><a href="#ref-for-recursive-descent-syntax-expression">18. Grammar for Recursive Descent Parsing</a> <a href="#ref-for-recursive-descent-syntax-expression①">(2)</a> <a href="#ref-for-recursive-descent-syntax-expression②">(3)</a> <a href="#ref-for-recursive-descent-syntax-expression③">(4)</a> <a href="#ref-for-recursive-descent-syntax-expression④">(5)</a> <a href="#ref-for-recursive-descent-syntax-expression⑤">(6)</a> <a href="#ref-for-recursive-descent-syntax-expression⑥">(7)</a> <a href="#ref-for-recursive-descent-syntax-expression⑦">(8)</a> <a href="#ref-for-recursive-descent-syntax-expression⑧">(9)</a> <a href="#ref-for-recursive-descent-syntax-expression⑨">(10)</a> <a href="#ref-for-recursive-descent-syntax-expression①⓪">(11)</a> <a href="#ref-for-recursive-descent-syntax-expression①①">(12)</a> <a href="#ref-for-recursive-descent-syntax-expression①②">(13)</a> <a href="#ref-for-recursive-descent-syntax-expression①③">(14)</a> <a href="#ref-for-recursive-descent-syntax-expression①④">(15)</a> <a href="#ref-for-recursive-descent-syntax-expression①⑤">(16)</a> <a href="#ref-for-recursive-descent-syntax-expression①⑥">(17)</a> <a href="#ref-for-recursive-descent-syntax-expression①⑦">(18)</a> <a href="#ref-for-recursive-descent-syntax-expression①⑧">(19)</a> <a href="#ref-for-recursive-descent-syntax-expression①⑨">(20)</a> <a href="#ref-for-recursive-descent-syntax-expression②⓪">(21)</a> <a href="#ref-for-recursive-descent-syntax-expression②①">(22)</a> <a href="#ref-for-recursive-descent-syntax-expression②②">(23)</a> <a href="#ref-for-recursive-descent-syntax-expression②③">(24)</a> <a href="#ref-for-recursive-descent-syntax-expression②④">(25)</a> <a href="#ref-for-recursive-descent-syntax-expression②⑤">(26)</a> <a href="#ref-for-recursive-descent-syntax-expression②⑥">(27)</a> <a href="#ref-for-recursive-descent-syntax-expression②⑦">(28)</a> <a href="#ref-for-recursive-descent-syntax-expression②⑧">(29)</a> <a href="#ref-for-recursive-descent-syntax-expression②⑨">(30)</a> <a href="#ref-for-recursive-descent-syntax-expression③⓪">(31)</a> <a href="#ref-for-recursive-descent-syntax-expression③①">(32)</a> <a href="#ref-for-recursive-descent-syntax-expression③②">(33)</a> <a href="#ref-for-recursive-descent-syntax-expression③③">(34)</a> <a href="#ref-for-recursive-descent-syntax-expression③④">(35)</a> <a href="#ref-for-recursive-descent-syntax-expression③⑤">(36)</a> <a href="#ref-for-recursive-descent-syntax-expression③⑥">(37)</a> <a href="#ref-for-recursive-descent-syntax-expression③⑦">(38)</a> <a href="#ref-for-recursive-descent-syntax-expression③⑧">(39)</a> <a href="#ref-for-recursive-descent-syntax-expression③⑨">(40)</a> <a href="#ref-for-recursive-descent-syntax-expression④⓪">(41)</a> <a href="#ref-for-recursive-descent-syntax-expression④①">(42)</a> <a href="#ref-for-recursive-descent-syntax-expression④②">(43)</a> <a href="#ref-for-recursive-descent-syntax-expression④③">(44)</a> <a href="#ref-for-recursive-descent-syntax-expression④④">(45)</a> <a href="#ref-for-recursive-descent-syntax-expression④⑤">(46)</a> <a href="#ref-for-recursive-descent-syntax-expression④⑥">(47)</a> <a href="#ref-for-recursive-descent-syntax-expression④⑦">(48)</a> <a href="#ref-for-recursive-descent-syntax-expression④⑧">(49)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="recursive-descent-syntax-float_literal">
@@ -23965,7 +23951,7 @@ registrations, it matches widespread industry conventions.</p>
   <aside class="dfn-panel" data-for="recursive-descent-syntax-type_specifier">
    <b><a href="#recursive-descent-syntax-type_specifier">#recursive-descent-syntax-type_specifier</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-recursive-descent-syntax-type_specifier">18. Grammar for Recursive Descent Parsing</a> <a href="#ref-for-recursive-descent-syntax-type_specifier①">(2)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier②">(3)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier③">(4)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier④">(5)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier⑤">(6)</a>
+    <li><a href="#ref-for-recursive-descent-syntax-type_specifier">18. Grammar for Recursive Descent Parsing</a> <a href="#ref-for-recursive-descent-syntax-type_specifier①">(2)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier②">(3)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier③">(4)</a> <a href="#ref-for-recursive-descent-syntax-type_specifier④">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="recursive-descent-syntax-unary_expression">

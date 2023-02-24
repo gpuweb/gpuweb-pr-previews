@@ -142,8 +142,7 @@
             $.template_elaborated_ident,
             $.call_expression,
             $.literal,
-            $.paren_expression,
-            seq(token('bitcast'), $._disambiguate_template, $._template_args_start, $.type_specifier, $._template_args_end, $.paren_expression)
+            $.paren_expression
         ),
         call_expression: $ => $.call_phrase,
         call_phrase: $ => seq($.template_elaborated_ident, $.argument_expression_list),
