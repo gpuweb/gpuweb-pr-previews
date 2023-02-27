@@ -689,13 +689,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-02-24">24 February 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-02-27">27 February 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/51456717f5094212750c8e984bf8e077fe440afb/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/51456717f5094212750c8e984bf8e077fe440afb/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/7b416c0420d71325c8888144d9c567ed79f8c9eb/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/7b416c0420d71325c8888144d9c567ed79f8c9eb/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -5373,7 +5373,8 @@ and via <a href="#parenthesized-expressions">parenthesization</a>.</p>
       <td><a data-link-type="dfn" href="#u32" id="ref-for-u32①④">u32</a>
       <td>See <a href="#integer-types">§ 5.2.3 Integer Types</a> 
    </table>
-   <p>WGSL also predeclares the return types for the <a href="#frexp-builtin">frexp</a> and <a href="#modf-builtin">modf</a> built-in functions.
+   <p>WGSL also predeclares the return types for the <a href="#frexp-builtin">frexp</a>, <a href="#modf-builtin">modf</a>, and <a href="#atomic-rmw">atomicCompareExchangeWeak</a> built-in
+functions.
 However, they cannot be spelled in WGSL source.</p>
    <p>TODO: Editorial: Make dfn nodes for each predeclared type.</p>
    <p>The predeclared <a data-link-type="dfn" href="#type-generator" id="ref-for-type-generator③">type-generators</a> are listed in the following table:</p>
@@ -12704,7 +12705,8 @@ value of a given type.</p>
    <p>WGSL provides value constructors for all <a data-link-type="dfn" href="#predeclared" id="ref-for-predeclared②⓪">predeclared</a> types and all <a data-link-type="dfn" href="#constructible" id="ref-for-constructible②⓪">constructible</a> <a data-link-type="dfn" href="#structure" id="ref-for-structure②③">structure</a> types.
 The constructor built-in functions have the same spelling as the types.
 Wherever such a built-in function is used, the <a data-link-type="dfn" href="#identifier" id="ref-for-identifier②④">identifier</a> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①⓪">must</a> be <a data-link-type="dfn" href="#in-scope" id="ref-for-in-scope①⑤">in scope</a> of the type and the <a data-link-type="dfn" href="#identifier" id="ref-for-identifier②⑤">identifier</a> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①①">must not</a> <a data-link-type="dfn" href="#resolves" id="ref-for-resolves④①">resolve</a> to another declaration.</p>
-   <p class="note" role="note"><span class="marker">Note:</span> The structure types returned by <a href="#frexp-builtin">frexp</a> and <a href="#modf-builtin">modf</a> cannot be written in WGSL programs.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> The structure types returned by <a href="#frexp-builtin">frexp</a>, <a href="#modf-builtin">modf</a>, and <a href="#atomic-rmw">atomicCompareExchangeWeak</a> cannot be
+written in WGSL programs.</p>
    <p class="note" role="note"><span class="marker">Note:</span> A value declaration of the type needs to be valid at that statement of
 the WGSL text.</p>
    <p>WGSL provides two kinds of value constructors:</p>
