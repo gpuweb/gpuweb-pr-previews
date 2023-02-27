@@ -695,7 +695,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/9d4ecf530c0fc5cae6509f586cc1850419b0bbef/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/9d4ecf530c0fc5cae6509f586cc1850419b0bbef/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/5da820ee428459ef8ede86d88ed9ac9276f7e4b5/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/5da820ee428459ef8ede86d88ed9ac9276f7e4b5/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -10336,7 +10336,7 @@ Extension names are not <a data-link-type="dfn" href="#identifier" id="ref-for-i
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-for="extension" data-dfn-type="dfn" data-noexport id="extension-f16"><code>f16</code></dfn> 
       <td><code>"shader-f16"</code> 
-      <td>Keyword <code>f16</code> and any <a data-link-type="dfn" href="#floating-point-literal" id="ref-for-floating-point-literal①⓪">floating point literal</a> with a <code>h</code> suffix is valid if and only if this extension is enabled. Otherwise, using <code>f16</code> keyword or any <a data-link-type="dfn" href="#floating-point-literal" id="ref-for-floating-point-literal①①">floating point literal</a> with a <code>h</code> suffix will result in a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑧⑧">shader-creation error</a>. 
+      <td>The <a data-link-type="dfn" href="#f16" id="ref-for-f16①②">f16</a> type is valid to use in the WGSL program. Otherwise, using <a data-link-type="dfn" href="#f16" id="ref-for-f16①③">f16</a> (directly or indirectly) will result in a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑧⑧">shader-creation error</a>. 
    </table>
    <div class="example wgsl using extensions expect-error no-marker" id="example-28422aa8">
     <a class="self-link" href="#example-28422aa8"></a>
@@ -10628,7 +10628,7 @@ following table:</p>
       <td>4 
       <td>4 
      <tr>
-      <td><a data-link-type="dfn" href="#f16" id="ref-for-f16①②">f16</a> 
+      <td><a data-link-type="dfn" href="#f16" id="ref-for-f16①④">f16</a> 
       <td>2 
       <td>2 
      <tr>
@@ -10919,7 +10919,7 @@ When <var>V</var> is placed at byte offset <var>k</var> of host-shared buffer, t
     <li data-md>
      <p>Bit 7 of byte <var>k</var>+3 contains the sign bit.</p>
    </ul>
-   <p>A value <var>V</var> of type <a data-link-type="dfn" href="#f16" id="ref-for-f16①③">f16</a> is represented in <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> binary16 format.
+   <p>A value <var>V</var> of type <a data-link-type="dfn" href="#f16" id="ref-for-f16①⑤">f16</a> is represented in <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> binary16 format.
 It has one sign bit, 5 exponent bits, and 10 fraction bits.
 When <var>V</var> is placed at byte offset <var>k</var> of host-shared buffer, then:</p>
    <ul>
@@ -10986,7 +10986,7 @@ used in address space <var>C</var>.</p>
       <th><a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof②">RequiredAlignOf</a>(<var>S</var>, <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform①⓪">uniform</a>) 
     <tbody>
      <tr>
-      <td><a data-link-type="dfn" href="#i32" id="ref-for-i32③①">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32②②">u32</a>, <a data-link-type="dfn" href="#f32" id="ref-for-f32②①">f32</a>, or <a data-link-type="dfn" href="#f16" id="ref-for-f16①④">f16</a> 
+      <td><a data-link-type="dfn" href="#i32" id="ref-for-i32③①">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32②②">u32</a>, <a data-link-type="dfn" href="#f32" id="ref-for-f32②①">f32</a>, or <a data-link-type="dfn" href="#f16" id="ref-for-f16①⑥">f16</a> 
       <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①②">AlignOf</a>(<var>S</var>) 
       <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①③">AlignOf</a>(<var>S</var>) 
      <tr>
@@ -12745,11 +12745,11 @@ than performing a multiply followed by an addition.</p>
    <p>In this section, a floating point type may be any of:</p>
    <ul>
     <li data-md>
-     <p>The <a data-link-type="dfn" href="#f32" id="ref-for-f32②②">f32</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16①⑤">f16</a>, and <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②①">AbstractFloat</a> types in WGSL.</p>
+     <p>The <a data-link-type="dfn" href="#f32" id="ref-for-f32②②">f32</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16①⑦">f16</a>, and <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②①">AbstractFloat</a> types in WGSL.</p>
     <li data-md>
      <p>A hypothetical type corresponding to a binary format defined by the <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> floating point standard.</p>
    </ul>
-   <p class="note" role="note"><span class="marker">Note:</span> Recall that the <a data-link-type="dfn" href="#f32" id="ref-for-f32②③">f32</a> WGSL type corresponds to the IEEE-754 binary32 format, and the <a data-link-type="dfn" href="#f16" id="ref-for-f16①⑥">f16</a> WGSL type corresponds to the IEEE-754 binary16 format.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> Recall that the <a data-link-type="dfn" href="#f32" id="ref-for-f32②③">f32</a> WGSL type corresponds to the IEEE-754 binary32 format, and the <a data-link-type="dfn" href="#f16" id="ref-for-f16①⑧">f16</a> WGSL type corresponds to the IEEE-754 binary16 format.</p>
    <p>When converting a floating point scalar value to an <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar①⑧">integer scalar</a> type:</p>
    <ul>
     <li data-md>
@@ -19115,7 +19115,6 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-floating-point-literal①">3.5.2. Numeric Literals</a> <a href="#ref-for-floating-point-literal②">(2)</a> <a href="#ref-for-floating-point-literal③">(3)</a> <a href="#ref-for-floating-point-literal④">(4)</a> <a href="#ref-for-floating-point-literal⑤">(5)</a>
     <li><a href="#ref-for-floating-point-literal⑥">5.2.1. Abstract Numeric Types</a>
     <li><a href="#ref-for-floating-point-literal⑦">7.3. Literal Value Expressions</a> <a href="#ref-for-floating-point-literal⑧">(2)</a> <a href="#ref-for-floating-point-literal⑨">(3)</a>
-    <li><a href="#ref-for-floating-point-literal①⓪">11.1. Enable Extensions</a> <a href="#ref-for-floating-point-literal①①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-float_literal">
@@ -19989,10 +19988,11 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-f16⑧">5.2.5. Scalar Types</a> <a href="#ref-for-f16⑨">(2)</a>
     <li><a href="#ref-for-f16①⓪">5.2.7. Matrix Types</a>
     <li><a href="#ref-for-f16①①">5.9. Predeclared Types and Type-Generators Summary</a>
-    <li><a href="#ref-for-f16①②">13.4.1. Alignment and Size</a>
-    <li><a href="#ref-for-f16①③">13.5. Internal Layout of Values</a>
-    <li><a href="#ref-for-f16①④">13.5.1. Address Space Layout Constraints</a>
-    <li><a href="#ref-for-f16①⑤">14.6.2. Floating Point Conversion</a> <a href="#ref-for-f16①⑥">(2)</a>
+    <li><a href="#ref-for-f16①②">11.1. Enable Extensions</a> <a href="#ref-for-f16①③">(2)</a>
+    <li><a href="#ref-for-f16①④">13.4.1. Alignment and Size</a>
+    <li><a href="#ref-for-f16①⑤">13.5. Internal Layout of Values</a>
+    <li><a href="#ref-for-f16①⑥">13.5.1. Address Space Layout Constraints</a>
+    <li><a href="#ref-for-f16①⑦">14.6.2. Floating Point Conversion</a> <a href="#ref-for-f16①⑧">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="scalar">
