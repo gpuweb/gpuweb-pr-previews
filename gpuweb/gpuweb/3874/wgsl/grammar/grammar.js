@@ -323,9 +323,9 @@
         enable_directive: $ => seq(token('enable'), $.enable_extension_name, token(';')),
         requires_directive: $ => seq(token('requires'), $.software_extension_list, token(';')),
         software_extension_list: $ => seq($.software_extension_name, optional(repeat1(seq(token(','), $.software_extension_name))), optional(token(','))),
+        enable_extension_name: $ => $.ident_pattern_token,
         software_extension_name: $ => $.ident_pattern_token,
         ident_pattern_token: $ => token(/([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/uy),
-        enable_extension_name: $ => token('f16'),
         swizzle_name: $ => choice(
             token('/[rgba]/'),
             token('/[rgba][rgba]/'),

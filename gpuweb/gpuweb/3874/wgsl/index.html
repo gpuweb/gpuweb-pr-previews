@@ -695,7 +695,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/d9451fe710be578e8131c2d57e8eb0457a26c394/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/d9451fe710be578e8131c2d57e8eb0457a26c394/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/4d656b95ad6fbc6ce91e8d016538b120695abf21/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/4d656b95ad6fbc6ce91e8d016538b120695abf21/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -13189,15 +13189,15 @@ A WGSL program <a data-link-type="dfn" href="#shader-creation-error" id="ref-for
     <li data-md>
      <p><code>'workgroup_size'</code></p>
    </ul>
-   <p>The <a data-link-type="dfn" href="#enable-extension" id="ref-for-enable-extension③">enable-extension</a> names are:</p>
+   <p>The valid <a data-link-type="dfn" href="#enable-extension" id="ref-for-enable-extension③">enable-extension</a> names are listed in <a href="#enable-extensions-sec">§ 11.1 Enable Extensions</a> but in general have the same form as an <a data-link-type="dfn" href="#identifier" id="ref-for-identifier②⑥">identifier</a>:</p>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-enable_extension_name">enable_extension_name</dfn> : 
-    <p>| <code>'f16'</code></p>
+    <p>| <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token⑤">ident_pattern_token</a></p>
    </div>
-   <p>There are no <a data-link-type="dfn" href="#software-extension" id="ref-for-software-extension⑤">software extension</a> names, but they have the same form as an <a data-link-type="dfn" href="#identifier" id="ref-for-identifier②⑥">identifier</a>:</p>
+   <p>There are no <a data-link-type="dfn" href="#software-extension" id="ref-for-software-extension⑤">software extension</a> names, but they have the same form as an <a data-link-type="dfn" href="#identifier" id="ref-for-identifier②⑦">identifier</a>:</p>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-software_extension_name">software_extension_name</dfn> : 
-    <p>| <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token⑤">ident_pattern_token</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token⑥">ident_pattern_token</a></p>
    </div>
    <p>The <a data-link-type="dfn" href="#swizzle" id="ref-for-swizzle①">swizzle</a> names are used in <a href="#vector-access-expr">vector access expressions</a>:</p>
    <div class="syntax">
@@ -17113,8 +17113,8 @@ Use token definitions from the main part of the specification.</p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-global_directive">global_directive</dfn>: 
-    <p>| <code>'enable'</code> <a data-link-type="dfn" href="#syntax-enable_extension_name" id="ref-for-syntax-enable_extension_name①">enable_extension_name</a> <code>';'</code></p>
-    <p>| <code>'requires'</code> <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token⑥">ident_pattern_token</a> ( <code>','</code> <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token⑦">ident_pattern_token</a> )* <code>','</code> ? <code>';'</code></p>
+    <p>| <code>'enable'</code> <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token⑦">ident_pattern_token</a> <code>';'</code></p>
+    <p>| <code>'requires'</code> <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token⑧">ident_pattern_token</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-software_extension_name" id="ref-for-recursive-descent-syntax-software_extension_name">software_extension_name</a> )* <code>','</code> ? <code>';'</code></p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-hex_float_literal">hex_float_literal</dfn>: 
@@ -17124,7 +17124,7 @@ Use token definitions from the main part of the specification.</p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-ident">ident</dfn>: 
-    <p>| <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token⑧">ident_pattern_token</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token⑨">ident_pattern_token</a></p>
    </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-int_literal">int_literal</dfn>: 
@@ -17143,7 +17143,7 @@ Use token definitions from the main part of the specification.</p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-float_literal" id="ref-for-recursive-descent-syntax-float_literal">float_literal</a></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-int_literal" id="ref-for-recursive-descent-syntax-int_literal">int_literal</a></p>
    </div>
-   <div class="syntax"> <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-member_ident">member_ident</dfn>: <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token⑨">ident_pattern_token</a> </div>
+   <div class="syntax"> <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-member_ident">member_ident</dfn>: <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token①⓪">ident_pattern_token</a> </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-multiplicative_operator">multiplicative_operator</dfn>: 
     <p>| <code>'%'</code></p>
@@ -17182,6 +17182,7 @@ Use token definitions from the main part of the specification.</p>
     <p>| <a data-link-type="dfn" href="#syntax_sym-shift_left" id="ref-for-syntax_sym-shift_left①">shift_left</a> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression②③">unary_expression</a></p>
     <p>| <a data-link-type="dfn" href="#syntax_sym-shift_right" id="ref-for-syntax_sym-shift_right①">shift_right</a> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression②④">unary_expression</a></p>
    </div>
+   <div class="syntax"> <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-software_extension_name">software_extension_name</dfn>: <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token①①">ident_pattern_token</a> </div>
    <div class="syntax">
      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-statement">statement</dfn>: 
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement">compound_statement</a></p>
@@ -18042,7 +18043,12 @@ registrations, it matches widespread industry conventions.</p>
    <li><a href="#sizeofmember">SizeOfMember</a><span>, in § 13.4</span>
    <li><a href="#software-extension">software extension</a><span>, in § 11.2</span>
    <li><a href="#syntax-software_extension_list">software_extension_list</a><span>, in § 11.2</span>
-   <li><a href="#syntax-software_extension_name">software_extension_name</a><span>, in § 15.4</span>
+   <li>
+    software_extension_name
+    <ul>
+     <li><a href="#recursive-descent-syntax-software_extension_name">dfn for recursive descent syntax</a><span>, in § 18</span>
+     <li><a href="#syntax-software_extension_name">dfn for syntax</a><span>, in § 15.4</span>
+    </ul>
    <li><a href="#syntax_sym-star">star</a><span>, in § 15.3</span>
    <li>
     statement
@@ -19184,7 +19190,7 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-identifier②③">11.1. Enable Extensions</a>
     <li><a href="#ref-for-identifier②④">11.2. Software Extensions</a>
     <li><a href="#ref-for-identifier②⑤">14.2.4. Pointer Desugaring</a>
-    <li><a href="#ref-for-identifier②⑥">15.4. Context-Dependent Name Tokens</a>
+    <li><a href="#ref-for-identifier②⑥">15.4. Context-Dependent Name Tokens</a> <a href="#ref-for-identifier②⑦">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-ident">
@@ -19214,8 +19220,8 @@ registrations, it matches widespread industry conventions.</p>
    <ul>
     <li><a href="#ref-for-syntax-ident_pattern_token">3.7. Identifiers</a> <a href="#ref-for-syntax-ident_pattern_token①">(2)</a>
     <li><a href="#ref-for-syntax-ident_pattern_token②">3.9. Template Lists</a> <a href="#ref-for-syntax-ident_pattern_token③">(2)</a> <a href="#ref-for-syntax-ident_pattern_token④">(3)</a>
-    <li><a href="#ref-for-syntax-ident_pattern_token⑤">15.4. Context-Dependent Name Tokens</a>
-    <li><a href="#ref-for-syntax-ident_pattern_token⑥">18. Grammar for Recursive Descent Parsing</a> <a href="#ref-for-syntax-ident_pattern_token⑦">(2)</a> <a href="#ref-for-syntax-ident_pattern_token⑧">(3)</a> <a href="#ref-for-syntax-ident_pattern_token⑨">(4)</a>
+    <li><a href="#ref-for-syntax-ident_pattern_token⑤">15.4. Context-Dependent Name Tokens</a> <a href="#ref-for-syntax-ident_pattern_token⑥">(2)</a>
+    <li><a href="#ref-for-syntax-ident_pattern_token⑦">18. Grammar for Recursive Descent Parsing</a> <a href="#ref-for-syntax-ident_pattern_token⑧">(2)</a> <a href="#ref-for-syntax-ident_pattern_token⑨">(3)</a> <a href="#ref-for-syntax-ident_pattern_token①⓪">(4)</a> <a href="#ref-for-syntax-ident_pattern_token①①">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="context-dependent-name">
@@ -23343,7 +23349,6 @@ registrations, it matches widespread industry conventions.</p>
    <b><a href="#syntax-enable_extension_name">#syntax-enable_extension_name</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-syntax-enable_extension_name">11.1. Enable Extensions</a>
-    <li><a href="#ref-for-syntax-enable_extension_name①">18. Grammar for Recursive Descent Parsing</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="syntax-software_extension_name">
@@ -23630,6 +23635,12 @@ registrations, it matches widespread industry conventions.</p>
    <b><a href="#recursive-descent-syntax-shift_expressionpostunary_expression">#recursive-descent-syntax-shift_expressionpostunary_expression</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-recursive-descent-syntax-shift_expressionpostunary_expression">18. Grammar for Recursive Descent Parsing</a> <a href="#ref-for-recursive-descent-syntax-shift_expressionpostunary_expression①">(2)</a> <a href="#ref-for-recursive-descent-syntax-shift_expressionpostunary_expression②">(3)</a> <a href="#ref-for-recursive-descent-syntax-shift_expressionpostunary_expression③">(4)</a> <a href="#ref-for-recursive-descent-syntax-shift_expressionpostunary_expression④">(5)</a> <a href="#ref-for-recursive-descent-syntax-shift_expressionpostunary_expression⑤">(6)</a> <a href="#ref-for-recursive-descent-syntax-shift_expressionpostunary_expression⑥">(7)</a> <a href="#ref-for-recursive-descent-syntax-shift_expressionpostunary_expression⑦">(8)</a> <a href="#ref-for-recursive-descent-syntax-shift_expressionpostunary_expression⑧">(9)</a> <a href="#ref-for-recursive-descent-syntax-shift_expressionpostunary_expression⑨">(10)</a> <a href="#ref-for-recursive-descent-syntax-shift_expressionpostunary_expression①⓪">(11)</a> <a href="#ref-for-recursive-descent-syntax-shift_expressionpostunary_expression①①">(12)</a> <a href="#ref-for-recursive-descent-syntax-shift_expressionpostunary_expression①②">(13)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="recursive-descent-syntax-software_extension_name">
+   <b><a href="#recursive-descent-syntax-software_extension_name">#recursive-descent-syntax-software_extension_name</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-recursive-descent-syntax-software_extension_name">18. Grammar for Recursive Descent Parsing</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="recursive-descent-syntax-statement">
