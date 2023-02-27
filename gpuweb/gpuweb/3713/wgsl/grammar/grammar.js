@@ -51,7 +51,8 @@
         translation_unit: $ => seq(optional(repeat1($.global_directive)), optional(repeat1($.global_decl))),
         global_directive: $ => choice(
             $.diagnostic_directive,
-            $.enable_directive
+            $.enable_directive,
+            $.requires_directive
         ),
         global_decl: $ => choice(
             token(';'),
@@ -149,8 +150,7 @@
             $.template_elaborated_ident,
             $.call_expression,
             $.literal,
-            $.paren_expression,
-            seq(token('bitcast'), $._disambiguate_template, $._template_args_start, $.type_specifier, $._template_args_end, $.paren_expression)
+            $.paren_expression
         ),
         call_expression: $ => $.call_phrase,
         call_phrase: $ => seq($.template_elaborated_ident, $.argument_expression_list),
@@ -325,7 +325,11 @@
         function_header: $ => seq(token('fn'), $.ident, token('('), optional($.param_list), token(')'), optional(seq(token('->'), optional(repeat1($.attribute)), $.template_elaborated_ident))),
         param_list: $ => seq($.param, optional(repeat1(seq(token(','), $.param))), optional(token(','))),
         param: $ => seq(optional(repeat1($.attribute)), $.ident, token(':'), $.type_specifier),
-        enable_directive: $ => seq(token('enable'), $.extension_name, token(';')),
+        enable_directive: $ => seq(token('enable'), $.enable_extension_name, token(';')),
+        requires_directive: $ => seq(token('requires'), $.software_extension_list, token(';')),
+        software_extension_list: $ => seq($.software_extension_name, optional(repeat1(seq(token(','), $.software_extension_name))), optional(token(','))),
+        enable_extension_name: $ => $.ident_pattern_token,
+        software_extension_name: $ => $.ident_pattern_token,
         ident_pattern_token: $ => token(/([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/uy),
         severity_control_name: $ => choice(
             token('error'),
@@ -333,7 +337,6 @@
             token('info'),
             token('off')
         ),
-        extension_name: $ => token('f16'),
         swizzle_name: $ => choice(
             token('/[rgba]/'),
             token('/[rgba][rgba]/'),
@@ -448,7 +451,7 @@
             token('regardless'),
             token('register'),
             token('reinterpret_cast'),
-            token('requires'),
+            token('require'),
             token('resource'),
             token('restrict'),
             token('self'),
