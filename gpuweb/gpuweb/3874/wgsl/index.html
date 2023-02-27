@@ -695,7 +695,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/17efa8fc09a87dc9bac01579e8d0479e0bd1a36c/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/17efa8fc09a87dc9bac01579e8d0479e0bd1a36c/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/d9451fe710be578e8131c2d57e8eb0457a26c394/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/d9451fe710be578e8131c2d57e8eb0457a26c394/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -10369,7 +10369,7 @@ If the feature is not universally available, that it is because some WebGPU impl
    <p>TODO: https://github.com/gpuweb/gpuweb/issues/3875 How does WebGPU signal support for a software extension?</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="requires-directive">requires-directive</dfn> is a <a data-link-type="dfn" href="#directive" id="ref-for-directive①">directive</a> that <em>documents</em> the program’s use of one or more <a data-link-type="dfn" href="#software-extension" id="ref-for-software-extension②">software extensions</a>.
 It does not change the functionality exposed by the implementation.
-A <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑧⑨">shader-creation error</a> results if the implementation does not support one of the extensions.</p>
+A <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑧⑨">shader-creation error</a> results if the implementation does not support one of the required extensions.</p>
    <p>A WGSL program <em>can</em> use a <a data-link-type="dfn" href="#requires-directive" id="ref-for-requires-directive">requires-directive</a> to signal the potential for non-portability,
 and to signal the <em>intended</em> minimum bar for portability.</p>
    <p class="note" role="note"><span class="marker">Note:</span> Tooling outside of a WebGPU implementation could check whether all the <a data-link-type="dfn" href="#software-extension" id="ref-for-software-extension③">software extensions</a> used by a
