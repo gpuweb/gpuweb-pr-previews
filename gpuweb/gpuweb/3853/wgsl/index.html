@@ -695,7 +695,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/7b416c0420d71325c8888144d9c567ed79f8c9eb/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/7b416c0420d71325c8888144d9c567ed79f8c9eb/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/63c6ff6926cd479295c180456aeccbf4fa74c18f/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/63c6ff6926cd479295c180456aeccbf4fa74c18f/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -1092,7 +1092,7 @@ Learn more about <a href="http://www.w3.org/community/">W3C Community and Busine
          </ol>
        </ol>
       <li>
-       <a href="#value-reinterp-builtin-functions"><span class="secno">17.2</span> <span class="content">Value Reinterpretation Built-in Functions</span></a>
+       <a href="#bit-reinterp-builtin-functions"><span class="secno">17.2</span> <span class="content">Bit Reinterpretation Built-in Functions</span></a>
        <ol class="toc">
         <li><a href="#bitcast-builtin"><span class="secno">17.2.1</span> <span class="content"><code>bitcast</code></span></a>
        </ol>
@@ -12857,7 +12857,7 @@ specify the component type; the component type is inferred from the constructor 
       <td>
        Construct a <a data-link-type="dfn" href="#bool" id="ref-for-bool①④">bool</a> value. 
        <p>If <code>T</code> is <a data-link-type="dfn" href="#bool" id="ref-for-bool①⑤">bool</a>, this is an identity operation.<br> Otherwise this is a boolean coercion.
-      The result is <code>false</code> if <code>e</code> is <a data-link-type="dfn" href="#zero-value" id="ref-for-zero-value⑦">zero value</a> (or -0.0 for floating point types) and <code>true</code> otherwise.</p>
+      The result is <code>false</code> if <code>e</code> is a <a data-link-type="dfn" href="#zero-value" id="ref-for-zero-value⑦">zero value</a> (or -0.0 for floating point types) and <code>true</code> otherwise.</p>
    </table>
    <h5 class="heading settled" data-level="17.1.2.3" id="f16-builtin"><span class="secno">17.1.2.3. </span><span class="content"><code>f16</code></span><a class="self-link" href="#f16-builtin"></a></h5>
    <table class="data builtin">
@@ -13538,7 +13538,7 @@ specify the component type; the component type is inferred from the constructor 
       <td style="width:10%">Overload 
       <td>
 <pre class="highlight"><c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>vec4</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>(</c-><c- n>e1</c-> : <c- nc>T</c-><c- p>,</c-> <c- n>v1</c-> : <c- nc>vec2</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> <c- n>e2</c-> : <c- nc>T</c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c->
-<c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>vec4</c-><c- p>(</c-><c- n>v1</c-> : <c- nc>vec2</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> <c- n>v2</c-> : <c- nc>vec2</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c->
+<c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>vec4</c-><c- p>(</c-><c- n>e1</c-> : <c- nc>T</c-><c- p>,</c-> <c- n>v1</c-> : <c- nc>vec2</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> <c- n>e2</c-> : <c- nc>T</c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c->
 </pre>
      <tr>
       <td>Parameterization 
@@ -13622,10 +13622,11 @@ specify the component type; the component type is inferred from the constructor 
       <td>Description 
       <td><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise③⑥">Component-wise</a> construction of a four-component <a data-link-type="dfn" href="#vector" id="ref-for-vector②⑧">vector</a> with <code>e1</code>, <code>v1.x</code>, <code>v1.y</code>, and <code>v1.z</code> as components. 
    </table>
-   <h3 class="heading settled" data-level="17.2" id="value-reinterp-builtin-functions"><span class="secno">17.2. </span><span class="content">Value Reinterpretation Built-in Functions</span><a class="self-link" href="#value-reinterp-builtin-functions"></a></h3>
+   <h3 class="heading settled" data-level="17.2" id="bit-reinterp-builtin-functions"><span class="secno">17.2. </span><span class="content">Bit Reinterpretation Built-in Functions</span><a class="self-link" href="#bit-reinterp-builtin-functions"></a></h3>
    <h4 class="heading settled" data-level="17.2.1" id="bitcast-builtin"><span class="secno">17.2.1. </span><span class="content"><code>bitcast</code></span><a class="self-link" href="#bitcast-builtin"></a></h4>
    <p>A <code>bitcast</code> built-in function is used to reinterpret the bit representation of
 a value in one type as a value in another type.</p>
+   <p>The internal layout rules are described in <a href="#internal-value-layout">§ 13.5 Internal Layout of Values</a>.</p>
    <table class="data builtin">
     <tbody>
      <tr>
@@ -13670,7 +13671,7 @@ a value in one type as a value in another type.</p>
      <tr>
       <td style="width:10%">Overload 
       <td>
-<pre class="highlight"><c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>bitcast</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>(</c-><c- n>e</c-> : <c- nc>vec2</c-><c- o>&lt;</c-><c- mi>16</c-><c- o>></c-><c- p>)</c-> -> <c- nc>T</c-></pre>
+<pre class="highlight"><c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>bitcast</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>(</c-><c- n>e</c-> : <c- nc>vec2</c-><c- o>&lt;</c-><c- n>f16</c-><c- o>></c-><c- p>)</c-> -> <c- nc>T</c-></pre>
      <tr>
       <td>Parameterization 
       <td><code>T</code> is i32, u32, or f32 
@@ -13683,10 +13684,10 @@ a value in one type as a value in another type.</p>
      <tr>
       <td style="width:10%">Overload 
       <td>
-<pre class="highlight"><c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>bitcast</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>(</c-><c- n>e</c-> : <c- nc>vec4</c-><c- o>&lt;</c-><c- n>f16</c-><c- o>></c-><c- p>)</c-> -> <c- nc>T</c-></pre>
+<pre class="highlight"><c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>bitcast</c-><c- o>&lt;</c-><c- n>vec2</c-><c- o>&lt;</c-><c- n>T</c-><c- o>>></c-><c- p>(</c-><c- n>e</c-> : <c- nc>vec4</c-><c- o>&lt;</c-><c- n>f16</c-><c- o>></c-><c- p>)</c-> -> <c- nc>vec2</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-></pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is i32, u32, or f32 
+      <td><code>T</code> is i32, u32, or f32<br> 
      <tr>
       <td>Description 
       <td><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise④⓪">Component-wise</a> reinterpretation of bits as <code>T</code>.<br> The result is the reintepretation of the 64 bits in <code>e</code> as a <code>T</code> value, following the internal layout rules. 
@@ -13717,7 +13718,6 @@ a value in one type as a value in another type.</p>
       <td>Description 
       <td><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise④②">Component-wise</a> reinterpretation of bits as <code>vec2&lt;f16></code>.<br> The result is the reintepretation of the 64 bits in <code>e</code> as an f16 value, following the internal layout rules. 
    </table>
-   <p>The internal layout rules are described in <a href="#internal-value-layout">§ 13.5 Internal Layout of Values</a>.</p>
    <h3 class="heading settled" data-level="17.3" id="logical-builtin-functions"><span class="secno">17.3. </span><span class="content">Logical Built-in Functions</span><a class="self-link" href="#logical-builtin-functions"></a></h3>
    <h4 class="heading settled" data-level="17.3.1" id="all-builtin"><span class="secno">17.3.1. </span><span class="content"><code>all</code></span><a class="self-link" href="#all-builtin"></a></h4>
    <table class="data builtin">
