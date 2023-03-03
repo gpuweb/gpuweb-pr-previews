@@ -689,13 +689,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-02-27">27 February 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-03-03">3 March 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/08f0f1b32da0da6674886ecb04756ee33811d989/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/08f0f1b32da0da6674886ecb04756ee33811d989/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/fccb9177e1c1f4bbeb979f5f9da78f1b409cd9e5/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/fccb9177e1c1f4bbeb979f5f9da78f1b409cd9e5/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -2486,7 +2486,7 @@ and <code>&lt;f32></code> is a template list containing one parameter, the <a da
 Together, <code>vec3&lt;f32></code> denotes a specific <a data-link-type="dfn" href="#vector" id="ref-for-vector①">vector</a> type.</p>
    <p class="note" role="note"><span class="marker">Note:</span> For example, the phrase <code>var&lt;storage,read_write></code> modifies the general <code>var</code> concept with template parameters <code>storage</code> and <code>read_write</code>.</p>
    <div class="note" role="note">
-     Note: For example, the phrase <code>array&lt;vec4&lt;f32>></code> has two template parameterizations: 
+     <span class="marker">Note:</span>For example, the phrase <code>array&lt;vec4&lt;f32>></code> has two template parameterizations: 
     <ul>
      <li data-md>
       <p><code>vec4&lt;f32></code> modifies the general <code>vec4</code> concept with template parameter <code>f32</code>.</p>
@@ -2741,7 +2741,7 @@ Skip over the <code>'='</code> (U+003D) code point so a later step does not mist
     </ul>
    </blockquote>
    <div class="note algorithm" data-algorithm="find template paramters" role="note">
-     Note: The algorithm can be modified to find the source ranges for <a data-link-type="dfn" href="#template-parameters" id="ref-for-template-parameters②">template parameters</a>, as follows: 
+     <span class="marker">Note:</span>The algorithm can be modified to find the source ranges for <a data-link-type="dfn" href="#template-parameters" id="ref-for-template-parameters②">template parameters</a>, as follows: 
     <ul>
      <li data-md>
       <p>Modify <var>UnclosedCandidate</var> to add the following fields:</p>
@@ -4733,6 +4733,9 @@ As described in <a href="#var-decls">§ 6.3 var Declarations</a>, the <a data-
    <p class="note" role="note"><span class="marker">Note:</span> Restrictions on the types of inter-stage inputs and outputs]] are
 described in <a href="#stage-inputs-outputs">§ 10.3.1 Inter-stage Input and Output Interface</a> and subsequent sections.
 Those types are also sized, but the counting is differs.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> <a href="#texture-sampler-types">Textures and samplers</a> can also be shared
+between the host and the GPU, but their contents are opaque.
+The host-shareable types in this section are specifically for use in <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer③">storage</a> and <a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer②">uniform</a> buffers.</p>
    <h4 class="heading settled" data-level="5.4.3" id="ref-ptr-types"><span class="secno">5.4.3. </span><span class="content">Reference and Pointer Types</span><a class="self-link" href="#ref-ptr-types"></a></h4>
    <p>WGSL has two kinds of types for representing <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view③">memory views</a>: <a data-link-type="dfn" href="#reference-type" id="ref-for-reference-type①">reference types</a> and <a data-link-type="dfn" href="#pointer-type" id="ref-for-pointer-type">pointer types</a>.</p>
    <table class="data">
@@ -4836,10 +4839,10 @@ access is an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="inva
    <p><a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule①">Loads</a> from an invalid reference return one of:</p>
    <ul>
     <li data-md>
-     <p>when the <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable">originating variable</a> is a <a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer②">uniform buffer</a> or a <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer③">storage buffer</a>,
+     <p>when the <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable">originating variable</a> is a <a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer③">uniform buffer</a> or a <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer④">storage buffer</a>,
 the value from any <a data-link-type="dfn" href="#memory-locations" id="ref-for-memory-locations③">memory location(s)</a> of the WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#gpubuffer" id="ref-for-gpubuffer">GPUBuffer</a></code> bound to the originating variable</p>
     <li data-md>
-     <p>when the originating variable is not a <a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer③">uniform buffer</a> or <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer④">storage buffer</a>,
+     <p>when the originating variable is not a <a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer④">uniform buffer</a> or <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer⑤">storage buffer</a>,
 a value from any <a data-link-type="dfn" href="#memory-locations" id="ref-for-memory-locations④">memory location(s)</a> in the originating variable</p>
     <li data-md>
      <p>the <a data-link-type="dfn" href="#zero-value" id="ref-for-zero-value">zero value</a> for store type of the reference</p>
@@ -4855,11 +4858,11 @@ a value from any <a data-link-type="dfn" href="#memory-locations" id="ref-for-me
    <a data-link-type="dfn" href="#statement-assignment" id="ref-for-statement-assignment①">Stores</a> to an invalid reference may do one of: 
    <ul>
     <li data-md>
-     <p>when the <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable①">originating variable</a> is a <a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer④">uniform buffer</a> or a <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer⑤">storage buffer</a>,
+     <p>when the <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable①">originating variable</a> is a <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer⑥">storage buffer</a>,
 store the value to any <a data-link-type="dfn" href="#memory-locations" id="ref-for-memory-locations⑤">memory location(s)</a> of the
 WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#gpubuffer" id="ref-for-gpubuffer①">GPUBuffer</a></code> bound to the <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable②">originating variable</a></p>
     <li data-md>
-     <p>when the <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable③">originating variable</a> is not a <a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer⑤">uniform buffer</a> or <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer⑥">storage buffer</a>,
+     <p>when the <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable③">originating variable</a> is not a <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer⑦">storage buffer</a>,
 store the value to any <a data-link-type="dfn" href="#memory-locations" id="ref-for-memory-locations⑥">memory locations(s)</a> in the
 originating variable</p>
     <li data-md>
@@ -4871,6 +4874,7 @@ operate on an invalid memory reference load and store from different <a data-lin
 still be within memory locations of the originating variable.
 Each access into a <a data-link-type="dfn" href="#composite" id="ref-for-composite②">composite</a> type must be made by a valid memory reference.
 See <a href="#composite-value-decomposition-expr">§ 7.5 Composite Value Decomposition Expressions</a>.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> <a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer⑤">Uniform buffers</a> do not support stores.</p>
    <h4 class="heading settled" data-level="5.4.6" id="ref-ptr-use-cases"><span class="secno">5.4.6. </span><span class="content">Use Cases for References and Pointers</span><a class="self-link" href="#ref-ptr-use-cases"></a></h4>
    <p>References and pointers are distinguished by how they are used:</p>
    <ul>
@@ -5689,8 +5693,8 @@ sampler_comparison
    <p>There is no way to write the AllTypes type in WGSL source.</p>
    <p>See <a href="#predeclared-types">§ 5.9 Predeclared Types and Type-Generators Summary</a> for the list of all <a data-link-type="dfn" href="#predeclared" id="ref-for-predeclared⑧">predeclared</a> types and <a data-link-type="dfn" href="#type-generator" id="ref-for-type-generator②">type-generators</a>.</p>
    <div class="note" role="note">
-    <p> Note: A type is not a value in an ordinary sense.
-It is not data that is manipulated by a shader at runtime. </p>
+     <span class="marker">Note:</span>A type is not a value in an ordinary sense.
+It is not data that is manipulated by a shader at runtime. 
     <p> Instead, the AllTypes type exists so <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking①">type checking</a> rules will apply to any phrase that <em>may</em> contain an ordinary value.
 WGSL makes the rules consistent by defining a type to be a kind of value, and allowing an expression to denote a type. </p>
     <p> The motivating case is a <a data-link-type="dfn" href="#template-parameters" id="ref-for-template-parameters④">template parameter</a>, which in various contexts may denote several kinds of things,
@@ -5733,49 +5737,35 @@ all properties of the members of <em>S</em>, including attributes, carry over to
    <p class="note" role="note"><span class="marker">Note:</span> An <a data-link-type="dfn" href="#expression" id="ref-for-expression④">expression</a> can also denote a type, by expanding via the <a data-link-type="dfn" href="#syntax-primary_expression" id="ref-for-syntax-primary_expression">primary_expression</a> grammar rule to <a data-link-type="dfn" href="#syntax-template_elaborated_ident" id="ref-for-syntax-template_elaborated_ident①">template_elaborated_ident</a>,
 and via <a href="#parenthesized-expressions">parenthesization</a>.</p>
    <h3 class="heading settled" data-level="5.9" id="predeclared-types"><span class="secno">5.9. </span><span class="content">Predeclared Types and Type-Generators Summary</span><a class="self-link" href="#predeclared-types"></a></h3>
-   <p>The <a data-link-type="dfn" href="#predeclared" id="ref-for-predeclared⑨">predeclared</a> <a data-link-type="dfn" href="#type" id="ref-for-type④">types</a> that can be spelled in WGSL source are listed in the following table:</p>
-   <table class="data">
-    <caption>Predeclared types</caption>
-    <thead>
-     <tr>
-      <th>Predeclared type
-      <th>Cross-reference 
-    <tbody>
-     <tr>
-      <td><a data-link-type="dfn" href="#bool" id="ref-for-bool③">bool</a>
-      <td>See <a href="#bool-type">§ 5.2.2 Boolean Type</a> 
-     <tr>
-      <td><a data-link-type="dfn" href="#f16" id="ref-for-f16①①">f16</a>
-      <td rowspan="2">See <a href="#floating-point-types">§ 5.2.4 Floating Point Type</a> 
-     <tr>
-      <td><a data-link-type="dfn" href="#f32" id="ref-for-f32①③">f32</a> 
-     <tr>
-      <td><a data-link-type="dfn" href="#i32" id="ref-for-i32①④">i32</a>
-      <td>See <a href="#integer-types">§ 5.2.3 Integer Types</a> 
-     <tr>
-      <td><a data-link-type="dfn" href="#type-sampler" id="ref-for-type-sampler①">sampler</a>
-      <td rowspan="2">See <a href="#sampler-type">§ 5.5.7 Sampler Type</a> 
-     <tr>
-      <td><a data-link-type="dfn" href="#type-sampler_comparison" id="ref-for-type-sampler_comparison②">sampler_comparison</a> 
-     <tr>
-      <td>texture_depth_2d
-      <td rowspan="4">See <a href="#sampled-texture-type">§ 5.5.2 Sampled Texture Types</a> 
-     <tr>
-      <td>texture_depth_2d_array 
-     <tr>
-      <td>texture_depth_cube 
-     <tr>
-      <td>texture_depth_cube_array 
-     <tr>
-      <td>texture_depth_multisampled_2d
-      <td>See <a href="#multisampled-texture-type">§ 5.5.3 Multisampled Texture Types</a> 
-     <tr>
-      <td>texture_external
-      <td>See <a href="#external-texture-type">§ 5.5.4 External Sampled Texture Types</a> 
-     <tr>
-      <td><a data-link-type="dfn" href="#u32" id="ref-for-u32①④">u32</a>
-      <td>See <a href="#integer-types">§ 5.2.3 Integer Types</a> 
-   </table>
+   <p>The <a data-link-type="dfn" href="#predeclared" id="ref-for-predeclared⑨">predeclared</a> <a data-link-type="dfn" href="#type" id="ref-for-type④">types</a> that can be spelled in WGSL source are:</p>
+   <ul>
+    <li data-md>
+     <p><a data-link-type="dfn" href="#bool" id="ref-for-bool③">bool</a></p>
+    <li data-md>
+     <p><a data-link-type="dfn" href="#f16" id="ref-for-f16①①">f16</a></p>
+    <li data-md>
+     <p><a data-link-type="dfn" href="#f32" id="ref-for-f32①③">f32</a></p>
+    <li data-md>
+     <p><a data-link-type="dfn" href="#i32" id="ref-for-i32①④">i32</a></p>
+    <li data-md>
+     <p><a data-link-type="dfn" href="#type-sampler" id="ref-for-type-sampler①">sampler</a></p>
+    <li data-md>
+     <p><a data-link-type="dfn" href="#type-sampler_comparison" id="ref-for-type-sampler_comparison②">sampler_comparison</a></p>
+    <li data-md>
+     <p><a href="#sampled-texture-type">texture_depth_2d</a></p>
+    <li data-md>
+     <p><a href="#sampled-texture-type">texture_depth_2d_array</a></p>
+    <li data-md>
+     <p><a href="#sampled-texture-type">texture_depth_cube</a></p>
+    <li data-md>
+     <p><a href="#sampled-texture-type">texture_depth_cube_array</a></p>
+    <li data-md>
+     <p><a href="#multisampled-texture-type">texture_depth_multisampled_2d</a></p>
+    <li data-md>
+     <p><a href="#external-texture-type">texture_external</a></p>
+    <li data-md>
+     <p><a data-link-type="dfn" href="#u32" id="ref-for-u32①④">u32</a></p>
+   </ul>
    <p>WGSL also predeclares the return types for the <a href="#frexp-builtin">frexp</a>, <a href="#modf-builtin">modf</a>, and <a href="#atomic-rmw">atomicCompareExchangeWeak</a> built-in
 functions.
 However, they cannot be spelled in WGSL source.</p>
@@ -5797,7 +5787,7 @@ However, they cannot be spelled in WGSL source.</p>
      <tr>
       <td>mat2x2
       <td rowspan="9">
-       See <a href="#matrix-types">§ 5.2.7 Matrix Types</a>, which also lists 
+       See <a href="#matrix-types">§ 5.2.7 Matrix Types</a>, which also lists
      predeclared <a data-link-type="dfn" href="#type-alias" id="ref-for-type-alias④">aliases</a> for matrix types. 
        <p class="note" role="note"><span class="marker">Note:</span> These are also used in <a data-link-type="dfn" href="#value-constructor" id="ref-for-value-constructor①">value constructor</a> expressions
      to create matrices.</p>
@@ -5963,7 +5953,7 @@ effective-value-type.</p>
       <td><a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete①④">Concrete</a> <a data-link-type="dfn" href="#host-shareable" id="ref-for-host-shareable">host-shareable</a> 
       <td>Disallowed 
       <td>
-      <td>Yes.<br><a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer⑦">storage buffer</a> 
+      <td>Yes.<br><a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer⑧">storage buffer</a> 
      <tr>
       <td class="nowrap"> <a data-link-type="dfn" href="#variable" id="ref-for-variable⑤">var</a>&lt;<a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage④">storage</a>, read_write><sup>5</sup> 
       <td>Mutable 
@@ -5971,7 +5961,7 @@ effective-value-type.</p>
       <td><a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete①⑤">Concrete</a> <a data-link-type="dfn" href="#host-shareable" id="ref-for-host-shareable①">host-shareable</a> 
       <td>Disallowed 
       <td>
-      <td>Yes.<br><a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer⑧">storage buffer</a> 
+      <td>Yes.<br><a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer⑨">storage buffer</a> 
      <tr>
       <td><a data-link-type="dfn" href="#variable" id="ref-for-variable⑥">var</a>&lt;<a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform①">uniform</a>> 
       <td>Immutable 
@@ -6637,7 +6627,7 @@ the indeterminate value produced at runtime may be a NaN value.</p>
      <tr>
       <th>Precondition
       <th>Conclusion
-      <th>Notes 
+      <th>Description 
     <tbody>
      <tr>
       <td>
@@ -7038,7 +7028,7 @@ See <a href="#sync-builtin-functions">§ 17.11 Synchronization Built-in Functi
      <tr>
       <th>Precondition
       <th>Conclusion
-      <th>Notes 
+      <th>Description 
     <tbody>
      <tr class="algorithm" data-algorithm="boolean negation">
       <td><var>e</var>: T<br><var>T</var> is bool or vec<var>N</var>&lt;bool> 
@@ -7052,7 +7042,7 @@ See <a href="#sync-builtin-functions">§ 17.11 Synchronization Built-in Functi
      <tr>
       <th>Precondition
       <th>Conclusion
-      <th>Notes 
+      <th>Description 
     <tbody>
      <tr class="algorithm" data-algorithm="short-circuiting or">
       <td><var>e1</var>: bool<br><var>e2</var>: bool
@@ -7080,7 +7070,7 @@ See <a href="#sync-builtin-functions">§ 17.11 Synchronization Built-in Functi
      <tr>
       <th>Precondition
       <th>Conclusion
-      <th>Notes 
+      <th>Description 
     <tbody>
      <tr class="algorithm" data-algorithm="negation">
       <td><var>e</var>: <var>T</var><br> <var>T</var> is AbstractInt, AbstractFloat, i32, f32, f16, vec<var>N</var>&lt;AbstractInt>,
@@ -7095,7 +7085,7 @@ See <a href="#sync-builtin-functions">§ 17.11 Synchronization Built-in Functi
      <tr>
       <th>Precondition
       <th>Conclusion
-      <th>Notes 
+      <th>Description 
     <tbody>
      <tr class="algorithm" data-algorithm="addition">
       <td><var>e1</var> : <var>T</var><br><var>e2</var> : <var>T</var><br>S is AbstractInt, AbstractFloat, i32, u32, f32, or f16<br>T is S, or vecN&lt;S> 
@@ -7296,7 +7286,7 @@ where 0 ≤ <var>r</var> &lt; <var>e2</var>.</p>
      <tr>
       <th>Precondition
       <th>Conclusion
-      <th>Notes 
+      <th>Description 
     <tbody>
      <tr class="algorithm" data-algorithm="equality">
       <td><var>e1</var>: <var>T</var><br><var>e2</var>: <var>T</var><br> <var>S</var> is AbstractInt, AbstractFloat, bool, i32, u32, f32, or f16<br> <var>T</var> is <var>S</var> or vec<var>N</var>&lt;<var>S</var>><br> <var>TB</var> is vec<var>N</var>&lt;bool> if <var>T</var> is a vector,<br> otherwise <var>TB</var> is bool 
@@ -7330,7 +7320,7 @@ where 0 ≤ <var>r</var> &lt; <var>e2</var>.</p>
      <tr>
       <th>Precondition
       <th>Conclusion
-      <th>Notes 
+      <th>Description 
     <tbody>
      <tr class="algorithm" data-algorithm="complement">
       <td><var>e</var>: <var>T</var><br> S is AbstractInt, i32, or u32<br>T is S or vecN&lt;S> 
@@ -7344,7 +7334,7 @@ where 0 ≤ <var>r</var> &lt; <var>e2</var>.</p>
      <tr>
       <th>Precondition
       <th>Conclusion
-      <th>Notes 
+      <th>Description 
     <tbody>
      <tr class="algorithm" data-algorithm="bitwise or">
       <td><var>e1</var>: <var>T</var><br> <var>e2</var>: <var>T</var><br> S is AbstractInt, i32, or u32<br>T is S or vecN&lt;S> 
@@ -7365,7 +7355,7 @@ where 0 ≤ <var>r</var> &lt; <var>e2</var>.</p>
      <tr>
       <th>Precondition
       <th>Conclusion
-      <th>Notes 
+      <th>Description 
     <tbody>
      <tr class="algorithm" data-algorithm="concrete shift left">
       <td><var>e1</var>: <var>T</var><br> <var>e2</var>: <var>TS</var><br> <var>S</var> is i32 or u32<br> <var>T</var> is <var>S</var> or vec<var>N</var>&lt;<var>S</var>><br> <var>TS</var> is u32 when <var>T</var> is <var>S</var>, otherwise <var>TS</var> is vec<var>N</var>&lt;u32> 
@@ -9679,7 +9669,7 @@ The interface includes:</p>
       <li data-md>
        <p><a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer⑦">Uniform buffers</a></p>
       <li data-md>
-       <p><a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer⑨">Storage buffers</a></p>
+       <p><a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer①⓪">Storage buffers</a></p>
       <li data-md>
        <p><a data-link-type="dfn" href="#texture-resource" id="ref-for-texture-resource③">Texture resources</a></p>
       <li data-md>
@@ -9698,7 +9688,7 @@ The interface includes:</p>
      <p>An identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves②⑦">resolving</a> to <em>D</em> is used by an attribute used by a <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed⑤">statically accessed</a> declaration.</p>
    </ul>
    <div class="note" role="note">
-    Note: Static access is recursively defined, taking into account the following: 
+    <span class="marker">Note:</span>Static access is recursively defined, taking into account the following: 
     <ul>
      <li data-md>
       <p>All the parts of a <a data-link-type="dfn" href="#function-declaration" id="ref-for-function-declaration⑤">function declaration</a> including attributes, formal parameters, return type, and function body.</p>
@@ -9723,7 +9713,7 @@ when that variable itself is statically accessed.</p>
      <p>The <a data-link-type="dfn" href="#return-value" id="ref-for-return-value④">return value</a> of the entry point.
  This denotes the shader stage outputs.</p>
     <li data-md>
-     <p>The <a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer⑧">uniform buffer</a>, <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer①⓪">storage buffer</a>, <a data-link-type="dfn" href="#texture-resource" id="ref-for-texture-resource④">texture resource</a>, and <a data-link-type="dfn" href="#sampler-resource" id="ref-for-sampler-resource③">sampler resource</a> variables <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed⑥">statically accessed</a> by the shader.</p>
+     <p>The <a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer⑧">uniform buffer</a>, <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer①①">storage buffer</a>, <a data-link-type="dfn" href="#texture-resource" id="ref-for-texture-resource④">texture resource</a>, and <a data-link-type="dfn" href="#sampler-resource" id="ref-for-sampler-resource③">sampler resource</a> variables <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed⑥">statically accessed</a> by the shader.</p>
     <li data-md>
      <p>The <a data-link-type="dfn" href="#override-declaration" id="ref-for-override-declaration①③">override-declarations</a> <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed⑦">statically accessed</a> by the shader.</p>
    </ul>
@@ -9953,7 +9943,7 @@ Resources are shared by all invocations of the shader.</p>
     <li data-md>
      <p><a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer⑨">Uniform buffers</a></p>
     <li data-md>
-     <p><a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer①①">Storage buffers</a></p>
+     <p><a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer①②">Storage buffers</a></p>
     <li data-md>
      <p><a data-link-type="dfn" href="#texture-resource" id="ref-for-texture-resource⑤">Texture resources</a></p>
     <li data-md>
@@ -9988,10 +9978,10 @@ where compatibility is defined by the following table.</p>
       <td rowspan="3">GPUBufferBindingType 
       <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpubufferbindingtype-uniform" id="ref-for-dom-gpubufferbindingtype-uniform">"uniform"</a></code> 
      <tr>
-      <td><a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer①②">storage buffer</a> with <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①③">read_write</a> access 
+      <td><a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer①③">storage buffer</a> with <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①③">read_write</a> access 
       <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpubufferbindingtype-storage" id="ref-for-dom-gpubufferbindingtype-storage">"storage"</a></code> 
      <tr>
-      <td><a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer①③">storage buffer</a> with <a data-link-type="dfn" href="#access-read" id="ref-for-access-read④">read</a> access 
+      <td><a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer①④">storage buffer</a> with <a data-link-type="dfn" href="#access-read" id="ref-for-access-read④">read</a> access 
       <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpubufferbindingtype-read-only-storage" id="ref-for-dom-gpubufferbindingtype-read-only-storage">"read-only-storage"</a></code> 
      <tr>
       <td rowspan="2">sampler 
@@ -10305,7 +10295,7 @@ table.</p>
       <td><dfn class="dfn-paneled" data-dfn-for="address spaces" data-dfn-type="dfn" data-noexport id="address-spaces-storage">storage</dfn> 
       <td>Invocations in the same <a data-link-type="dfn" href="#shader-stages" id="ref-for-shader-stages①⓪">shader stage</a> 
       <td><a data-link-type="dfn" href="#access-read" id="ref-for-access-read⑦">read</a> 
-      <td>For <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer①④">storage buffer</a> variables 
+      <td>For <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer①⑤">storage buffer</a> variables 
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-for="address spaces" data-dfn-type="dfn" data-noexport id="address-spaces-handle">handle</dfn> 
       <td>Invocations in the same shader stage 
@@ -10324,7 +10314,7 @@ table.</p>
    <h3 class="heading settled" data-level="13.4" id="memory-layouts"><span class="secno">13.4. </span><span class="content">Memory Layout</span><a class="self-link" href="#memory-layouts"></a></h3>
    <p>The layout of types in WGSL is independent of <a data-link-type="dfn" href="#address-spaces" id="ref-for-address-spaces①⑦">address space</a>.
 Strictly speaking, however, that layout can only be observed by host-shareable
-buffers. <a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer①②">Uniform buffer</a> and <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer①⑤">storage buffer</a> variables are used to share
+buffers. <a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer①②">Uniform buffer</a> and <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer①⑥">storage buffer</a> variables are used to share
 bulk data organized as a sequence of bytes in memory.
 Buffers are shared between the CPU and the GPU, or between different shader stages
 in a pipeline, or between different pipelines.</p>
@@ -11052,19 +11042,7 @@ it is said to be a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id
    <h4 class="heading settled" data-level="14.2.2" id="uniformity-overview"><span class="secno">14.2.2. </span><span class="content">Uniformity Analysis Overview</span><a class="self-link" href="#uniformity-overview"></a></h4>
    <p>The remaining subsections specify a static analysis that verifies that <a href="#collective-operations">collective operations</a> are only executed in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow④">uniform
 control flow</a>.</p>
-   <div class="note" role="note">
-    Note: This analysis has the following desirable properties: 
-    <ul>
-     <li data-md>
-      <p>Sound, meaning that a <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure">uniformity failure</a> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②⓪">will</a> be triggered for a program that would break the uniformity requirements of builtins.</p>
-     <li data-md>
-      <p>Linear time complexity, in the number of tokens in the program.</p>
-     <li data-md>
-      <p>Refactoring a piece of code into a function, or inlining a function, cannot make a shader invalid if it was valid before the transformation.</p>
-     <li data-md>
-      <p>If the analysis refuses a program, it provides a straightforward chain of implications that can be used by the user agent to craft a good error message.</p>
-    </ul>
-   </div>
+   <div class="note" role="note"><span class="marker">Note:This analysis has the following desirable properties: <ul><li data-md><p>Sound, meaning that a <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure">uniformity failure</a> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②⓪">will</a> be triggered for a program that would break the uniformity requirements of builtins.</p> </li><li data-md><p>Linear time complexity, in the number of tokens in the program.</p> </li><li data-md><p>Refactoring a piece of code into a function, or inlining a function, cannot make a shader invalid if it was valid before the transformation.</p> </li><li data-md><p>If the analysis refuses a program, it provides a straightforward chain of implications that can be used by the user agent to craft a good error message.</p> </li></ul></span></div>
    <p>Each function is analyzed, trying to ensure two things:</p>
    <ul>
     <li data-md>
@@ -11078,27 +11056,27 @@ This means that the call graph must first be built, and functions must be analyz
 This way, whenever a function is analyzed, the metadata for all of its callees has already been computed.
 There is no risk of being trapped in a cycle, as recurrence is forbidden in the language.</p>
    <p class="note" role="note"><span class="marker">Note:</span> Another way of saying the same thing is that we do a topological sort of functions ordered by the "is a (possibly indirect) callee of" partial order, and analyze them in that order.</p>
-   <p>Additionally, the analysis computes and propagates information about
-calls to functions that must only be invoked in uniform control flow.
-This is used to <a data-link-type="dfn" href="#triggered" id="ref-for-triggered④">trigger</a> and potentially filter <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic⑦">diagnostics</a> for <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure②">uniformity failures</a> on those calls.
-A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="witness">witness</dfn> is a pair containing a <a data-link-type="dfn" href="#call-site" id="ref-for-call-site①⓪">call site</a>, and a <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule①⓪">triggering rule</a>.
-A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="witness-set">witness set</dfn> is a set of <a data-link-type="dfn" href="#witness" id="ref-for-witness">witnesses</a>, and only supports adding elements, not removing elements.
-In particular, a witness set is only formed via the following operations:</p>
+   <p>Additionally, for each function call, the analysis computes and propagates
+the set of <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule①⓪">triggering rules</a>, if any, that would be triggered if that call cannot be proven to be in uniform control flow.
+We call this the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="potential-trigger-set">potential-trigger-set</dfn> for the call.
+The elements of this set are drawn from two possibilites:</p>
    <ul>
     <li data-md>
-     <p>Create an empty set.</p>
+     <p><a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity②">derivative_uniformity</a>, for functions relying on computing a derivative, or</p>
     <li data-md>
-     <p>Create a witness set containing a single witness.</p>
-    <li data-md>
-     <p>Form a witness set from the union of two others.</p>
+     <p>an unnamed triggering rule, for the uniformity requirements that cannot be filtered.</p>
+     <ul>
+      <li data-md>
+       <p>This is used for compute shader functions relying on <a href="#sync-builtin-functions">synchronization functions</a>.</p>
+     </ul>
    </ul>
    <h4 class="heading settled" data-level="14.2.3" id="uniformity-function"><span class="secno">14.2.3. </span><span class="content">Analyzing the Uniformity Requirements of a Function</span><a class="self-link" href="#uniformity-function"></a></h4>
    <p>Each function is analyzed in two phases.</p>
    <p>The first phase walks over the syntax of the function, building a directed graph along the way based on the rules in the following subsections.
 The second phase explores that graph, computing the constraints on calling this function,
-and potentially triggering a <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure③">uniformity failure</a>.</p>
+and potentially triggering a <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure②">uniformity failure</a>.</p>
    <div class="note" role="note">
-    Note: Apart from four special nodes <a data-link-type="dfn" href="#requiredtobeuniformerror" id="ref-for-requiredtobeuniformerror">RequiredToBeUniform.error</a>, <a data-link-type="dfn" href="#requiredtobeuniformwarning" id="ref-for-requiredtobeuniformwarning">RequiredToBeUniform.warning</a>, <a data-link-type="dfn" href="#requiredtobeuniforminfo" id="ref-for-requiredtobeuniforminfo">RequiredToBeUniform.info</a>, and <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform">MayBeNonUniform</a>, each node can be understood as capturing the truth-value one of the following statements: 
+    <span class="marker">Note:</span>Apart from four special nodes <a data-link-type="dfn" href="#requiredtobeuniformerror" id="ref-for-requiredtobeuniformerror">RequiredToBeUniform.error</a>, <a data-link-type="dfn" href="#requiredtobeuniformwarning" id="ref-for-requiredtobeuniformwarning">RequiredToBeUniform.warning</a>, <a data-link-type="dfn" href="#requiredtobeuniforminfo" id="ref-for-requiredtobeuniforminfo">RequiredToBeUniform.info</a>, and <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform">MayBeNonUniform</a>, each node can be understood as capturing the truth-value one of the following statements: 
     <ul>
      <li data-md>
       <p>A specific point of the program must be executed in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow⑤">uniform control flow</a>.</p>
@@ -11111,29 +11089,29 @@ and potentially triggering a <a data-link-type="dfn" href="#uniformity-failure" 
     </ul>
     <p>An edge can be understood as an implication from the statement corresponding to its source node to the statement corresponding to its target node.</p>
     <p>For example, one uniformity requirement is that the <code>workgroupBarrier</code> builtin function must only be called within uniform control flow.
-        To express this, we add an edge from <a data-link-type="dfn" href="#requiredtobeuniformerror" id="ref-for-requiredtobeuniformerror①">RequiredToBeUniform.error</a> to the node corresponding to the <code>workgroupBarrier</code> <a data-link-type="dfn" href="#call-site" id="ref-for-call-site①①">call site</a>.
+        To express this, we add an edge from <a data-link-type="dfn" href="#requiredtobeuniformerror" id="ref-for-requiredtobeuniformerror①">RequiredToBeUniform.error</a> to the node corresponding to the <code>workgroupBarrier</code> <a data-link-type="dfn" href="#call-site" id="ref-for-call-site①⓪">call site</a>.
         One way to understand this is that <a data-link-type="dfn" href="#requiredtobeuniformerror" id="ref-for-requiredtobeuniformerror②">RequiredToBeUniform.error</a> corresponds to the proposition True,
         so that <a data-link-type="dfn" href="#requiredtobeuniformerror" id="ref-for-requiredtobeuniformerror③">RequiredToBeUniform.error</a> -> X is the same as saying that X is true.</p>
     <p>Reciprocally, to express that we cannot ensure the uniformity of something (e.g. a variable which holds the thread id), we add an edge from the corresponding node to <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①">MayBeNonUniform</a>.
         One way to understand this, is that <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform②">MayBeNonUniform</a> corresponds to the proposition False, so that X -> <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform③">MayBeNonUniform</a> is the same as saying that X is false.</p>
     <p>A consequence of this interpretation is that every node reachable from <a data-link-type="dfn" href="#requiredtobeuniformerror" id="ref-for-requiredtobeuniformerror④">RequiredToBeUniform.error</a> corresponds to
         something which is required to be uniform for the program to be valid, and every node from which <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform④">MayBeNonUniform</a> is reachable corresponds to something whose uniformity we cannot guarantee.
-        It follows that we have a uniformity violation, triggering a <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure④">uniformity failure</a>, if there is any
+        It follows that we have a uniformity violation, triggering a <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure③">uniformity failure</a>, if there is any
         path from <a data-link-type="dfn" href="#requiredtobeuniformerror" id="ref-for-requiredtobeuniformerror⑤">RequiredToBeUniform.error</a> to <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform⑤">MayBeNonUniform</a>.</p>
     <p>The nodes <a data-link-type="dfn" href="#requiredtobeuniformwarning" id="ref-for-requiredtobeuniformwarning①">RequiredToBeUniform.warning</a> and <a data-link-type="dfn" href="#requiredtobeuniforminfo" id="ref-for-requiredtobeuniforminfo①">RequiredToBeUniform.info</a> are used in a similar way,
-        but instead help determine when <a data-link-type="dfn" href="#severity-warning" id="ref-for-severity-warning②">warning</a> or <a data-link-type="dfn" href="#severity-info" id="ref-for-severity-info③">info</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic⑧">diagnostics</a> should be triggered:</p>
+        but instead help determine when <a data-link-type="dfn" href="#severity-warning" id="ref-for-severity-warning②">warning</a> or <a data-link-type="dfn" href="#severity-info" id="ref-for-severity-info③">info</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic⑦">diagnostics</a> should be triggered:</p>
     <ul>
      <li data-md>
-      <p>If there is a path from <a data-link-type="dfn" href="#requiredtobeuniformwarning" id="ref-for-requiredtobeuniformwarning②">RequiredToBeUniform.warning</a> to <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform⑥">MayBeNonUniform</a>, then a <a data-link-type="dfn" href="#severity-warning" id="ref-for-severity-warning③">warning</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic⑨">diagnostic</a> will be triggered.</p>
+      <p>If there is a path from <a data-link-type="dfn" href="#requiredtobeuniformwarning" id="ref-for-requiredtobeuniformwarning②">RequiredToBeUniform.warning</a> to <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform⑥">MayBeNonUniform</a>, then a <a data-link-type="dfn" href="#severity-warning" id="ref-for-severity-warning③">warning</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic⑧">diagnostic</a> will be triggered.</p>
      <li data-md>
-      <p>If there is a path from <a data-link-type="dfn" href="#requiredtobeuniforminfo" id="ref-for-requiredtobeuniforminfo②">RequiredToBeUniform.info</a> to <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform⑦">MayBeNonUniform</a>, then an <a data-link-type="dfn" href="#severity-info" id="ref-for-severity-info④">info</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①⓪">diagnostic</a> will be triggered.</p>
+      <p>If there is a path from <a data-link-type="dfn" href="#requiredtobeuniforminfo" id="ref-for-requiredtobeuniforminfo②">RequiredToBeUniform.info</a> to <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform⑦">MayBeNonUniform</a>, then an <a data-link-type="dfn" href="#severity-info" id="ref-for-severity-info④">info</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic⑨">diagnostic</a> will be triggered.</p>
     </ul>
     <p>As described in <a href="#diagnostics">§ 2.2 Diagnostics</a>, lower severity diagnostics may be discarded if higher severity diagnostics have also been generated.</p>
    </div>
    <p>For each function, two tags are computed:</p>
    <ul>
     <li data-md>
-     <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="call-site-tag">call site tag</dfn> describing the control flow uniformity requirements on the <a data-link-type="dfn" href="#call-site" id="ref-for-call-site①②">call sites</a> of the function, and</p>
+     <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="call-site-tag">call site tag</dfn> describing the control flow uniformity requirements on the <a data-link-type="dfn" href="#call-site" id="ref-for-call-site①①">call sites</a> of the function, and</p>
     <li data-md>
      <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="function-tag">function tag</dfn> describing the function’s effects on uniformity.</p>
    </ul>
@@ -11159,7 +11137,7 @@ and potentially triggering a <a data-link-type="dfn" href="#uniformity-failure" 
       <td>
        The function must only be called from <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow⑥">uniform control flow</a>.
           Otherwise a diagnostic with severity <var>S</var> will be triggered. 
-       <p>Associated with a <a data-link-type="dfn" href="#witness-set" id="ref-for-witness-set">witness set</a>.</p>
+       <p>Associated with a <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set">potential-trigger-set</a>.</p>
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="callsitenorestriction">CallSiteNoRestriction</dfn> 
       <td>The function may be called from <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow⑦">non-uniform control flow</a>. 
@@ -11190,7 +11168,7 @@ and potentially triggering a <a data-link-type="dfn" href="#uniformity-failure" 
       <td>
        The parameter must be a <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value④">uniform value</a>.
           Otherwise a diagnostic with severity <var>S</var> will be triggered. 
-       <p>Associated with a <a data-link-type="dfn" href="#witness-set" id="ref-for-witness-set①">witness set</a>.</p>
+       <p>Associated with a <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set①">potential-trigger-set</a>.</p>
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="parameternorestriction">ParameterNoRestriction</dfn> 
       <td>The parameter value has no uniformity requirement. 
@@ -11233,7 +11211,7 @@ and potentially triggering a <a data-link-type="dfn" href="#uniformity-failure" 
 Collectively these are called the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="requiredtobeuniforms">RequiredToBeUniform.S</dfn> nodes.</p>
        <ul>
         <li data-md>
-         <p>Each such node is associated with a <a data-link-type="dfn" href="#witness-set" id="ref-for-witness-set②">witness set</a>, which is initially empty.</p>
+         <p>Each such node is associated with a <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set②">potential-trigger-set</a>, which is initially empty.</p>
        </ul>
       <li data-md>
        <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="maybenonuniform">MayBeNonUniform</dfn></p>
@@ -11280,22 +11258,22 @@ This represents the function’s effect on the uniformity of the value pointed t
       <li data-md>
        <p>Mark the <a data-link-type="dfn" href="#interior-nodes" id="ref-for-interior-nodes">interior nodes</a> in <em>R.S</em> as visited.</p>
       <li data-md>
-       <p>Let <em>W</em> be the <a data-link-type="dfn" href="#witness-set" id="ref-for-witness-set③">witness set</a> associated with <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms①">RequiredToBeUniform.S</a>.</p>
+       <p>Let <em>PTS</em> be the <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set③">potential-trigger-set</a> associated with <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms①">RequiredToBeUniform.S</a>.</p>
       <li data-md>
-       <p>If <em>R.S</em> includes the node <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform⑧">MayBeNonUniform</a>, then trigger a <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure⑤">uniformity failure</a>:</p>
+       <p>If <em>R.S</em> includes the node <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform⑧">MayBeNonUniform</a>, then trigger a <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure④">uniformity failure</a>:</p>
        <ul>
         <li data-md>
-         <p>For each <a data-link-type="dfn" href="#witness" id="ref-for-witness①">witness</a> <em>w</em> in <em>W</em>, <a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑤">trigger</a> a diagnostic with severity <em>S</em>, using the call site and triggering rule from <em>w</em>.</p>
+         <p><a data-link-type="dfn" href="#triggered" id="ref-for-triggered④">Trigger</a> a diagnostic with severity <em>S</em> and triggering rule <em>t</em>, for each <em>t</em> in <em>PTS</em>.</p>
        </ul>
       <li data-md>
        <p>Otherwise:</p>
        <ul>
         <li data-md>
          <p>If <em>R.S</em> includes <a data-link-type="dfn" href="#cf_start" id="ref-for-cf_start①">CF_start</a>, and the <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag②">call site tag</a> has not been updated since initialization, then
- set the <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag③">call site tag</a> to <a data-link-type="dfn" href="#callsiterequiredtobeuniforms" id="ref-for-callsiterequiredtobeuniforms">CallSiteRequiredToBeUniform.S</a>, and set its <a data-link-type="dfn" href="#witness-set" id="ref-for-witness-set④">witness set</a> to <em>W</em>.</p>
+ set the <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag③">call site tag</a> to <a data-link-type="dfn" href="#callsiterequiredtobeuniforms" id="ref-for-callsiterequiredtobeuniforms">CallSiteRequiredToBeUniform.S</a>, and set its <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set④">potential-trigger-set</a> to <em>PTS</em>.</p>
         <li data-md>
          <p>For each <a data-link-type="dfn" href="#param_i" id="ref-for-param_i③">param_i</a> in <em>R.S</em>, if its corresponding <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag②">parameter tag</a> has not been updated since initialization, then
- set that tag to <a data-link-type="dfn" href="#parameterrequiredtobeuniforms" id="ref-for-parameterrequiredtobeuniforms">ParameterRequiredToBeUniform.S</a>, and set its <a data-link-type="dfn" href="#witness-set" id="ref-for-witness-set⑤">witness set</a> to <em>W</em>.</p>
+ set that tag to <a data-link-type="dfn" href="#parameterrequiredtobeuniforms" id="ref-for-parameterrequiredtobeuniforms">ParameterRequiredToBeUniform.S</a>, and set its <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set⑤">potential-trigger-set</a> to <em>PTS</em>.</p>
        </ul>
      </ul>
     <li data-md>
@@ -11420,7 +11398,7 @@ for the corresponding <a data-link-type="dfn" href="#originating-variable" id="r
 originating variable, but with a different <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②④">store type</a>.</p>
    </ul>
    <div class="note" role="note">
-     Note: A <a data-link-type="dfn" href="#partial-reference" id="ref-for-partial-reference">partial reference</a> can still cover all the same memory locations
+     <span class="marker">Note:</span> A <a data-link-type="dfn" href="#partial-reference" id="ref-for-partial-reference">partial reference</a> can still cover all the same memory locations
 as a full reference, i.e. all the locations used by a variable declaration.
 This can occur when the store type is a structure type having only one member,
 or when the store type is an array type with one element. 
@@ -11443,7 +11421,7 @@ Their memory views cover the same memory
 locations, but the store type for <code>arr</code> is <code>array&lt;i32,1></code> and the store type of <code>arr[0]</code> is <code>i32</code>.</p>
     <p>To simplify analysis, an assignment via <em>any</em> kind of <a data-link-type="dfn" href="#partial-reference" id="ref-for-partial-reference①">partial reference</a> is treated as if
 it does <em>not</em> modify every memory location in the associated <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable②①">originating variable</a>.
-This causes the analysis to be conservative, potentially triggering a <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure⑥">uniformity failure</a> for
+This causes the analysis to be conservative, potentially triggering a <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure⑤">uniformity failure</a> for
 more programs than strictly necessary.</p>
    </div>
    <p>An assignment through a <a data-link-type="dfn" href="#full-reference" id="ref-for-full-reference④">full reference</a> is a <a data-link-type="dfn" href="#full-assignment" id="ref-for-full-assignment">full assignment</a>.</p>
@@ -11715,7 +11693,7 @@ being the same as input control flow node.</p>
       <li data-md>
        <p>Add an edge from <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms②">RequiredToBeUniform.S</a> to the last <a data-link-type="dfn" href="#cf_i" id="ref-for-cf_i">CF_i</a>.</p>
       <li data-md>
-       <p>Add the <a data-link-type="dfn" href="#witness-set" id="ref-for-witness-set⑥">witness set</a> of the <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag⑤">call site tag</a> to the witness set associated with <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms③">RequiredToBeUniform.S</a>.</p>
+       <p>Add the members of the <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set⑥">potential-trigger-set</a> of the <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag⑤">call site tag</a> to the potential-trigger-set associated with <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms③">RequiredToBeUniform.S</a>.</p>
      </ul>
     <li data-md>
      <p>Otherwise add an edge from <a data-link-type="dfn" href="#cf_after" id="ref-for-cf_after">CF_after</a> to the last <a data-link-type="dfn" href="#cf_i" id="ref-for-cf_i①">CF_i</a></p>
@@ -11732,7 +11710,7 @@ being the same as input control flow node.</p>
         <li data-md>
          <p>Add an edge from <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms④">RequiredToBeUniform.S</a> to <a data-link-type="dfn" href="#arg_i" id="ref-for-arg_i">arg_i</a>.</p>
         <li data-md>
-         <p>Add the <a data-link-type="dfn" href="#witness-set" id="ref-for-witness-set⑦">witness set</a> of the <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag④">parameter tag</a> to the witness set associated with <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms⑤">RequiredToBeUniform.S</a>.</p>
+         <p>Add the members of the <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set⑦">potential-trigger-set</a> of the <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag④">parameter tag</a> to the potential-trigger-set associated with <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms⑤">RequiredToBeUniform.S</a>.</p>
        </ul>
       <li data-md>
        <p>If the <a data-link-type="dfn" href="#parameter-return-tag" id="ref-for-parameter-return-tag③">parameter return tag</a> is <a data-link-type="dfn" href="#parameterreturnrequiredtobeuniform" id="ref-for-parameterreturnrequiredtobeuniform①">ParameterReturnRequiredToBeUniform</a>, then add an edge from <a data-link-type="dfn" href="#result" id="ref-for-result②">Result</a> to <a data-link-type="dfn" href="#arg_i" id="ref-for-arg_i①">arg_i</a></p>
@@ -11767,16 +11745,15 @@ being the same as input control flow node.</p>
       <li data-md>
        <p>Has a <a data-link-type="dfn" href="#function-tag" id="ref-for-function-tag⑤">function tag</a> of <a data-link-type="dfn" href="#norestriction" id="ref-for-norestriction②">NoRestriction</a>.</p>
       <li data-md>
-       <p>Has a <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag⑦">call site tag</a> of <a data-link-type="dfn" href="#callsiterequiredtobeuniforms" id="ref-for-callsiterequiredtobeuniforms②">CallSiteRequiredToBeUniform.error</a>.
-The tag’s associated <a data-link-type="dfn" href="#witness" id="ref-for-witness②">witness</a> is the source location of the call site, combined with an unnamed <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule①①">triggering rule</a>.</p>
+       <p>Has a <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag⑦">call site tag</a> of <a data-link-type="dfn" href="#callsiterequiredtobeuniforms" id="ref-for-callsiterequiredtobeuniforms②">CallSiteRequiredToBeUniform.error</a>, with <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set⑧">potential-trigger-set</a> consisting of an unnamed <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule①①">triggering rule</a>.</p>
        <ul>
         <li data-md>
          <p class="note" role="note"><span class="marker">Note:</span> The triggering rule has no name, and so it cannot be filtered.</p>
        </ul>
       <li data-md>
        <p>Additionally for the case of a call to <a href="#workgroupUniformLoad-builtin">workgroupUniformLoad</a>,
-the parameter <code>p</code> has a <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag⑥">parameter tag</a> of <a data-link-type="dfn" href="#parameterrequiredtobeuniforms" id="ref-for-parameterrequiredtobeuniforms②">ParameterRequiredToBeUniform.error</a>.
-The tag’s associated <a data-link-type="dfn" href="#witness" id="ref-for-witness③">witness</a> is the source location of the call site, combined with an unnamed <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule①②">triggering rule</a>.</p>
+the parameter <code>p</code> has a <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag⑥">parameter tag</a> of <a data-link-type="dfn" href="#parameterrequiredtobeuniforms" id="ref-for-parameterrequiredtobeuniforms②">ParameterRequiredToBeUniform.error</a>,
+with <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set⑨">potential-trigger-set</a> consisting of an unnamed <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule①②">triggering rule</a>.</p>
      </ul>
     <li data-md>
      <p>A call to a function in <a href="#derivative-builtin-functions">§ 17.6 Derivative Built-in Functions</a>, <a href="#texturesample">§ 17.7.8 textureSample</a>, <a href="#texturesamplebias">§ 17.7.9 textureSampleBias</a>, and <a href="#texturesamplecompare">§ 17.7.10 textureSampleCompare</a>:</p>
@@ -11787,20 +11764,18 @@ The tag’s associated <a data-link-type="dfn" href="#witness" id="ref-for-witne
        <p>Has a <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag⑧">call site tag</a> as follows:</p>
        <ul>
         <li data-md>
-         <p>Let <em>w</em> be the <a data-link-type="dfn" href="#witness" id="ref-for-witness④">witness</a> formed by combining the source location of the call site, with the <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity②">derivative_uniformity</a> triggering rule.</p>
-        <li data-md>
-         <p>Let <em>DF</em> be the <a data-link-type="dfn" href="#nearest-enclosing-diagnostic-filter" id="ref-for-nearest-enclosing-diagnostic-filter">nearest enclosing diagnostic filter</a> for <em>w</em>.</p>
+         <p>Let <em>DF</em> be the <a data-link-type="dfn" href="#nearest-enclosing-diagnostic-filter" id="ref-for-nearest-enclosing-diagnostic-filter">nearest enclosing diagnostic filter</a> for the call site location and triggering rule <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity③">derivative_uniformity</a></p>
         <li data-md>
          <p>If <em>DF</em> exists, then let <em>S</em> be the <em>DF</em>'s new severity parameter.</p>
          <ul>
           <li data-md>
-           <p>If <em>S</em> is the severity <a data-link-type="dfn" href="#severity-off" id="ref-for-severity-off①">off</a>, the call site tag is <a data-link-type="dfn" href="#callsitenorestriction" id="ref-for-callsitenorestriction②">CallSiteNoRestriction</a>. Throw away the witness <em>w</em>.</p>
+           <p>If <em>S</em> is the severity <a data-link-type="dfn" href="#severity-off" id="ref-for-severity-off①">off</a>, the call site tag is <a data-link-type="dfn" href="#callsitenorestriction" id="ref-for-callsitenorestriction②">CallSiteNoRestriction</a>.</p>
           <li data-md>
-           <p>Otherwise the call site tag is <a data-link-type="dfn" href="#callsiterequiredtobeuniforms" id="ref-for-callsiterequiredtobeuniforms③">CallSiteRequiredToBeUniform.S</a>, with witness <em>w</em>.</p>
+           <p>Otherwise the call site tag is <a data-link-type="dfn" href="#callsiterequiredtobeuniforms" id="ref-for-callsiterequiredtobeuniforms③">CallSiteRequiredToBeUniform.S</a>, with <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set①⓪">potential-trigger-set</a> consisting of a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity④">derivative_uniformity</a> element.</p>
          </ul>
         <li data-md>
          <p>If there is no such <em>DF</em>,
-the call site tag is <a data-link-type="dfn" href="#callsiterequiredtobeuniforms" id="ref-for-callsiterequiredtobeuniforms④">CallSiteRequiredToBeUniform.error</a>, with witness <em>w</em>.</p>
+the call site tag is <a data-link-type="dfn" href="#callsiterequiredtobeuniforms" id="ref-for-callsiterequiredtobeuniforms④">CallSiteRequiredToBeUniform.error</a>, with <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set①①">potential-trigger-set</a> consisting of a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity⑤">derivative_uniformity</a> element.</p>
        </ul>
      </ul>
    </ul>
@@ -12339,7 +12314,7 @@ built-in functions described in <a href="#derivative-builtin-functions">§ 17.
    </ul>
    <p>Because neighbouring invocations collaborate to compute derivatives, these
 functions should only be invoked in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①②">uniform control flow</a> in a fragment shader.
-For each call to one of these functions, a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity③">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①①">diagnostic</a> is triggered if <a href="#uniformity">uniformity analysis</a> cannot prove the call occurs in uniform control flow.</p>
+For each call to one of these functions, a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity⑥">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①⓪">diagnostic</a> is triggered if <a href="#uniformity">uniformity analysis</a> cannot prove the call occurs in uniform control flow.</p>
    <p>If one of these functions is called in non-uniform control flow, then the result is an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value⑤">indeterminate value</a>.</p>
    <h3 class="heading settled" data-level="14.6" id="floating-point-evaluation"><span class="secno">14.6. </span><span class="content">Floating Point Evaluation</span><a class="self-link" href="#floating-point-evaluation"></a></h3>
    <p>WGSL follows the <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> standard for floating point computation with
@@ -12490,13 +12465,33 @@ value with the same sign.</p>
       <td colspan="2" style="text-align:left;">Correctly rounded 
      <tr>
       <td><code>acos(x)</code>
-      <td colspan="2" style="text-align:left;">Inherited from <code>atan2(sqrt(1.0 - x * x), x)</code> 
+      <td>
+        The worse of: 
+       <ul>
+        <li data-md>
+         <p>Absolute error 6.77×10<sup>-5</sup></p>
+        <li data-md>
+         <p>Inherited from <code>atan2(sqrt(1.0 - x * x), x)</code></p>
+       </ul>
+      <td>
+       Inherited from <code>atan2(sqrt(1.0 - x * x), x)</code> 
+       <p>TODO: check this with conformance tests </p>
      <tr>
       <td><code>acosh(x)</code>
       <td colspan="2" style="text-align:left;">Inherited from <code>log(x + sqrt(x * x - 1.0))</code> 
      <tr>
       <td><code>asin(x)</code>
-      <td colspan="2" style="text-align:left;">Inherited from <code>atan2(x, sqrt(1.0 - x * x))</code> 
+      <td>
+        The worse of: 
+       <ul>
+        <li data-md>
+         <p>Absolute error 6.77×10<sup>-5</sup></p>
+        <li data-md>
+         <p>Inherited from <code>atan2(x, sqrt(1.0 - x * x))</code></p>
+       </ul>
+      <td>
+       Inherited from <code>atan2(x, sqrt(1.0 - x * x))</code> 
+       <p>TODO: check this with conformance tests </p>
      <tr>
       <td><code>asinh(x)</code>
       <td colspan="2" style="text-align:left;">Inherited from <code>log(x + sqrt(x * x + 1.0))</code> 
@@ -12534,14 +12529,20 @@ value with the same sign.</p>
       <td><code>degrees(x)</code>
       <td colspan="2" style="text-align:left;">Inherited from <code>x * 57.295779513082322865</code> 
      <tr>
-      <td><code>determinant(m:mat2x2&lt;T>)</code>
-      <td colspan="2" style="text-align:left;">Inherited from <code>m[0][0] * m[1][1] - m[0][1] * m[1][0]</code>. 
-     <tr>
-      <td><code>determinant(m:mat3x3&lt;T>)</code>
-      <td colspan="2" style="text-align:left;">Inherited from<br> <code>m[0][0] * determinant(m0)</code><br> <code>- m[1][0] * determinant(m1)</code><br> <code>+ m[2][0] * determinant(m2)</code><br> where:<br> m0 = mat2x2(m[1].yz,m[2].yz)<br> m1 = mat2x2(m[0].yz,m[2].yz)<br> m2 = mat2x2(m[0].yz,m[1].yz) 
-     <tr>
-      <td><code>determinant(m:mat4x4&lt;T>)</code>
-      <td colspan="2" style="text-align:left;">Inherited from<br> <code>m[0][0] * determinant(m0)</code><br> <code>- m[1][0] * determinant(m1)</code><br> <code>+ m[2][0] * determinant(m2)</code><br> <code>- m[3][0] * determinant(m3)</code><br> where:<br> m0 = mat3x3(m[1].yzw,m[2].yzw,m[3].yzw)<br> m1 = mat3x3(m[0].yzw,m[2].yzw,m[3].yzw)<br> m2 = mat3x3(m[0].yzw,m[1].yzw,m[3].yzw)<br> m3 = mat3x3(m[0].yzw,m[1].yzw,m[2].yzw) 
+      <td><code>determinant(m:mat2x2&lt;T>)</code><br> <code>determinant(m:mat3x3&lt;T>)</code><br> <code>determinant(m:mat4x4&lt;T>)</code> 
+      <td colspan="2" style="text-align:left;">
+       Infinite ULP. 
+       <div class="note" role="note">
+         <span class="marker">Note:</span>WebGPU implementations should provide a pragmatically useful determinant function. 
+        <p>In ideal math, determinants are computed with add, subtract, and multiply operations.</p>
+        <p>However, GPUs use floating point math, and GPU implementations of determinant
+     favour speed and simplicity over robustness against overflow and error.</p>
+        <p>For example, the naive computation of even a 2x2 determinant (<code>m[0][0] * m[1][1] - m[1][0] * m[0][1]</code>)
+     fails to guard against catastrophic cancellation.
+     Providing tighter error bounds for 2x2 determinants is the subject of relatively recent research <a data-link-type="biblio" href="#biblio-jeannerod2013" title="Further Analysis of Kahan&apos;s Algorithm for the Accurate Computation of 2x2 Determinants">[Jeannerod2013]</a>.
+     The challenges compound quickly as matrix sizes increase.</p>
+        <p>The lack of a finite error bound for determinants in WGSL reflects the same lack in underlying implementations.</p>
+       </div>
      <tr>
       <td><code>distance(x, y)</code>
       <td colspan="2" style="text-align:left;">Inherited from <code>length(x - y)</code> 
@@ -16066,7 +16067,7 @@ but a value may infer the type.</p>
     <li data-md>
      <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②①">Must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment⑥">fragment</a> shader stage.</p>
     <li data-md>
-     <p><a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑥">Trigger</a> a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity④">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①②">diagnostic</a> if <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis②">uniformity analysis</a> cannot prove the call is in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①③">uniform control flow</a>.</p>
+     <p><a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑤">Trigger</a> a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity⑦">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①①">diagnostic</a> if <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis②">uniformity analysis</a> cannot prove the call is in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①③">uniform control flow</a>.</p>
    </ul>
    <h4 class="heading settled" data-level="17.6.1" id="dpdx-builtin"><span class="secno">17.6.1. </span><span class="content"><code>dpdx</code></span><a class="self-link" href="#dpdx-builtin"></a></h4>
    <table class="data builtin">
@@ -16844,7 +16845,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
    <p>Samples a texture.</p>
    <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③①">Must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment⑦">fragment</a> shader stage.</p>
    <p>If <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis③">uniformity analysis</a> cannot prove a call to this function is in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②③">uniform control flow</a>,
-then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity⑤">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①③">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑦">triggered</a>.</p>
+then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity⑧">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①②">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑥">triggered</a>.</p>
    <table class="data">
     <thead>
      <tr>
@@ -16990,7 +16991,7 @@ then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for
    <p>Samples a texture with a bias to the mip level.</p>
    <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③⑤">Must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment⑧">fragment</a> shader stage.</p>
    <p>If <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis④">uniformity analysis</a> cannot prove a call to this function is in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②⑤">uniform control flow</a>,
-then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity⑥">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①④">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑧">triggered</a>.</p>
+then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity⑨">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①③">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑦">triggered</a>.</p>
    <table class="data">
     <thead>
      <tr>
@@ -17092,7 +17093,7 @@ then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for
    <p>Samples a depth texture and compares the sampled depth values against a reference value.</p>
    <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④⓪">Must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment⑨">fragment</a> shader stage.</p>
    <p>If <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis⑤">uniformity analysis</a> cannot prove a call to this function is in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②⑦">uniform control flow</a>,
-then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity⑦">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①⑤">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑨">triggered</a>.</p>
+then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity①⓪">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①④">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑧">triggered</a>.</p>
    <table class="data">
     <thead>
      <tr>
@@ -18997,6 +18998,7 @@ registrations, it matches widespread industry conventions.</p>
    <li><a href="#pointer-parameter-tag">pointer parameter tag</a><span>, in § 14.2.3</span>
    <li><a href="#pointer-type">pointer type</a><span>, in § 5.4.3</span>
    <li><a href="#built-in-values-position">position</a><span>, in § 16</span>
+   <li><a href="#potential-trigger-set">potential-trigger-set</a><span>, in § 14.2.2</span>
    <li><a href="#predeclared">predeclared</a><span>, in § 4</span>
    <li><a href="#preferable-candidate">preferable candidate</a><span>, in § 5.1.3</span>
    <li>
@@ -19299,8 +19301,6 @@ registrations, it matches widespread industry conventions.</p>
      <li><a href="#syntax_kw-while">dfn for syntax_kw</a><span>, in § 15.1</span>
     </ul>
    <li><a href="#syntax-while_statement">while_statement</a><span>, in § 8.4.5</span>
-   <li><a href="#witness">witness</a><span>, in § 14.2.2</span>
-   <li><a href="#witness-set">witness set</a><span>, in § 14.2.2</span>
    <li>
     workgroup
     <ul>
@@ -19835,6 +19835,8 @@ registrations, it matches widespread industry conventions.</p>
    <dd>François Remy; Greg Whitworth; David Baron. <a href="https://drafts.csswg.org/css-tables-3/"><cite>CSS Table Module Level 3</cite></a>. URL: <a href="https://drafts.csswg.org/css-tables-3/">https://drafts.csswg.org/css-tables-3/</a>
    <dt id="biblio-iana-media-types">[IANA-MEDIA-TYPES]
    <dd><a href="https://www.iana.org/assignments/media-types/"><cite>Media Types</cite></a>. URL: <a href="https://www.iana.org/assignments/media-types/">https://www.iana.org/assignments/media-types/</a>
+   <dt id="biblio-jeannerod2013">[Jeannerod2013]
+   <dd>Claude-Pierre Jeannerod; Nicolas Louvet; Jean-Michel Muller. <a href="https://www.ams.org/journals/mcom/2013-82-284/S0025-5718-2013-02679-8/S0025-5718-2013-02679-8.pdf"><cite>Further Analysis of Kahan's Algorithm for the Accurate Computation of 2x2 Determinants</cite></a>. URL: <a href="https://www.ams.org/journals/mcom/2013-82-284/S0025-5718-2013-02679-8/S0025-5718-2013-02679-8.pdf">https://www.ams.org/journals/mcom/2013-82-284/S0025-5718-2013-02679-8/S0025-5718-2013-02679-8.pdf</a>
   </dl>
   <h2 class="no-num no-ref heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
   <div style="counter-reset:issue">
@@ -20135,13 +20137,12 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-diagnostic③">2.2.1. Filterable Triggering Rules</a>
     <li><a href="#ref-for-diagnostic④">2.2.2. Diagnostic Filtering</a>
     <li><a href="#ref-for-diagnostic⑤">14.2. Uniformity</a> <a href="#ref-for-diagnostic⑥">(2)</a>
-    <li><a href="#ref-for-diagnostic⑦">14.2.2. Uniformity Analysis Overview</a>
-    <li><a href="#ref-for-diagnostic⑧">14.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-diagnostic⑨">(2)</a> <a href="#ref-for-diagnostic①⓪">(3)</a>
-    <li><a href="#ref-for-diagnostic①①">14.5.2. Derivatives</a>
-    <li><a href="#ref-for-diagnostic①②">17.6. Derivative Built-in Functions</a>
-    <li><a href="#ref-for-diagnostic①③">17.7.8. textureSample</a>
-    <li><a href="#ref-for-diagnostic①④">17.7.9. textureSampleBias</a>
-    <li><a href="#ref-for-diagnostic①⑤">17.7.10. textureSampleCompare</a>
+    <li><a href="#ref-for-diagnostic⑦">14.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-diagnostic⑧">(2)</a> <a href="#ref-for-diagnostic⑨">(3)</a>
+    <li><a href="#ref-for-diagnostic①⓪">14.5.2. Derivatives</a>
+    <li><a href="#ref-for-diagnostic①①">17.6. Derivative Built-in Functions</a>
+    <li><a href="#ref-for-diagnostic①②">17.7.8. textureSample</a>
+    <li><a href="#ref-for-diagnostic①③">17.7.9. textureSampleBias</a>
+    <li><a href="#ref-for-diagnostic①④">17.7.10. textureSampleCompare</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="triggered">
@@ -20150,12 +20151,11 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-triggered">2.1. Processing Errors</a>
     <li><a href="#ref-for-triggered①">2.2.2. Diagnostic Filtering</a>
     <li><a href="#ref-for-triggered②">14.2. Uniformity</a> <a href="#ref-for-triggered③">(2)</a>
-    <li><a href="#ref-for-triggered④">14.2.2. Uniformity Analysis Overview</a>
-    <li><a href="#ref-for-triggered⑤">14.2.3. Analyzing the Uniformity Requirements of a Function</a>
-    <li><a href="#ref-for-triggered⑥">17.6. Derivative Built-in Functions</a>
-    <li><a href="#ref-for-triggered⑦">17.7.8. textureSample</a>
-    <li><a href="#ref-for-triggered⑧">17.7.9. textureSampleBias</a>
-    <li><a href="#ref-for-triggered⑨">17.7.10. textureSampleCompare</a>
+    <li><a href="#ref-for-triggered④">14.2.3. Analyzing the Uniformity Requirements of a Function</a>
+    <li><a href="#ref-for-triggered⑤">17.6. Derivative Built-in Functions</a>
+    <li><a href="#ref-for-triggered⑥">17.7.8. textureSample</a>
+    <li><a href="#ref-for-triggered⑦">17.7.9. textureSampleBias</a>
+    <li><a href="#ref-for-triggered⑧">17.7.10. textureSampleCompare</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="diagnostic-triggering-rule">
@@ -20222,12 +20222,13 @@ registrations, it matches widespread industry conventions.</p>
    <ul>
     <li><a href="#ref-for-trigger-derivative_uniformity">2.2.1. Filterable Triggering Rules</a>
     <li><a href="#ref-for-trigger-derivative_uniformity①">14.2. Uniformity</a>
-    <li><a href="#ref-for-trigger-derivative_uniformity②">14.2.7. Uniformity Rules for Function Calls</a>
-    <li><a href="#ref-for-trigger-derivative_uniformity③">14.5.2. Derivatives</a>
-    <li><a href="#ref-for-trigger-derivative_uniformity④">17.6. Derivative Built-in Functions</a>
-    <li><a href="#ref-for-trigger-derivative_uniformity⑤">17.7.8. textureSample</a>
-    <li><a href="#ref-for-trigger-derivative_uniformity⑥">17.7.9. textureSampleBias</a>
-    <li><a href="#ref-for-trigger-derivative_uniformity⑦">17.7.10. textureSampleCompare</a>
+    <li><a href="#ref-for-trigger-derivative_uniformity②">14.2.2. Uniformity Analysis Overview</a>
+    <li><a href="#ref-for-trigger-derivative_uniformity③">14.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-trigger-derivative_uniformity④">(2)</a> <a href="#ref-for-trigger-derivative_uniformity⑤">(3)</a>
+    <li><a href="#ref-for-trigger-derivative_uniformity⑥">14.5.2. Derivatives</a>
+    <li><a href="#ref-for-trigger-derivative_uniformity⑦">17.6. Derivative Built-in Functions</a>
+    <li><a href="#ref-for-trigger-derivative_uniformity⑧">17.7.8. textureSample</a>
+    <li><a href="#ref-for-trigger-derivative_uniformity⑨">17.7.9. textureSampleBias</a>
+    <li><a href="#ref-for-trigger-derivative_uniformity①⓪">17.7.10. textureSampleCompare</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="diagnostic-filter">
@@ -22254,8 +22255,8 @@ registrations, it matches widespread industry conventions.</p>
    <b><a href="#uniform-buffer">#uniform-buffer</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-uniform-buffer">5.2.10. Structure Types</a>
-    <li><a href="#ref-for-uniform-buffer①">5.4.2. Host-shareable Types</a>
-    <li><a href="#ref-for-uniform-buffer②">5.4.5. Invalid Memory Reference</a> <a href="#ref-for-uniform-buffer③">(2)</a> <a href="#ref-for-uniform-buffer④">(3)</a> <a href="#ref-for-uniform-buffer⑤">(4)</a>
+    <li><a href="#ref-for-uniform-buffer①">5.4.2. Host-shareable Types</a> <a href="#ref-for-uniform-buffer②">(2)</a>
+    <li><a href="#ref-for-uniform-buffer③">5.4.5. Invalid Memory Reference</a> <a href="#ref-for-uniform-buffer④">(2)</a> <a href="#ref-for-uniform-buffer⑤">(3)</a>
     <li><a href="#ref-for-uniform-buffer⑥">6. Variable and Value Declarations</a>
     <li><a href="#ref-for-uniform-buffer⑦">10.3. Shader Interface</a> <a href="#ref-for-uniform-buffer⑧">(2)</a>
     <li><a href="#ref-for-uniform-buffer⑨">10.3.2. Resource Interface</a>
@@ -22270,14 +22271,14 @@ registrations, it matches widespread industry conventions.</p>
    <ul>
     <li><a href="#ref-for-storage-buffer">5.2.8. Atomic Types</a>
     <li><a href="#ref-for-storage-buffer①">5.2.10. Structure Types</a>
-    <li><a href="#ref-for-storage-buffer②">5.4.2. Host-shareable Types</a>
-    <li><a href="#ref-for-storage-buffer③">5.4.5. Invalid Memory Reference</a> <a href="#ref-for-storage-buffer④">(2)</a> <a href="#ref-for-storage-buffer⑤">(3)</a> <a href="#ref-for-storage-buffer⑥">(4)</a>
-    <li><a href="#ref-for-storage-buffer⑦">6. Variable and Value Declarations</a> <a href="#ref-for-storage-buffer⑧">(2)</a>
-    <li><a href="#ref-for-storage-buffer⑨">10.3. Shader Interface</a> <a href="#ref-for-storage-buffer①⓪">(2)</a>
-    <li><a href="#ref-for-storage-buffer①①">10.3.2. Resource Interface</a>
-    <li><a href="#ref-for-storage-buffer①②">10.3.3. Resource Layout Compatibility</a> <a href="#ref-for-storage-buffer①③">(2)</a>
-    <li><a href="#ref-for-storage-buffer①④">13.3. Address Spaces</a>
-    <li><a href="#ref-for-storage-buffer①⑤">13.4. Memory Layout</a>
+    <li><a href="#ref-for-storage-buffer②">5.4.2. Host-shareable Types</a> <a href="#ref-for-storage-buffer③">(2)</a>
+    <li><a href="#ref-for-storage-buffer④">5.4.5. Invalid Memory Reference</a> <a href="#ref-for-storage-buffer⑤">(2)</a> <a href="#ref-for-storage-buffer⑥">(3)</a> <a href="#ref-for-storage-buffer⑦">(4)</a>
+    <li><a href="#ref-for-storage-buffer⑧">6. Variable and Value Declarations</a> <a href="#ref-for-storage-buffer⑨">(2)</a>
+    <li><a href="#ref-for-storage-buffer①⓪">10.3. Shader Interface</a> <a href="#ref-for-storage-buffer①①">(2)</a>
+    <li><a href="#ref-for-storage-buffer①②">10.3.2. Resource Interface</a>
+    <li><a href="#ref-for-storage-buffer①③">10.3.3. Resource Layout Compatibility</a> <a href="#ref-for-storage-buffer①④">(2)</a>
+    <li><a href="#ref-for-storage-buffer①⑤">13.3. Address Spaces</a>
+    <li><a href="#ref-for-storage-buffer①⑥">13.4. Memory Layout</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="texture-resource">
@@ -23240,8 +23241,7 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-call-site⑥">9.2. Function Calls</a>
     <li><a href="#ref-for-call-site⑦">9.4.1.2. Aliasing</a> <a href="#ref-for-call-site⑧">(2)</a>
     <li><a href="#ref-for-call-site⑨">14.2. Uniformity</a>
-    <li><a href="#ref-for-call-site①⓪">14.2.2. Uniformity Analysis Overview</a>
-    <li><a href="#ref-for-call-site①①">14.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-call-site①②">(2)</a>
+    <li><a href="#ref-for-call-site①⓪">14.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-call-site①①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="const-functions">
@@ -23945,9 +23945,9 @@ registrations, it matches widespread industry conventions.</p>
   <aside class="dfn-panel" data-for="uniformity-failure">
    <b><a href="#uniformity-failure">#uniformity-failure</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-uniformity-failure">14.2.2. Uniformity Analysis Overview</a> <a href="#ref-for-uniformity-failure①">(2)</a> <a href="#ref-for-uniformity-failure②">(3)</a>
-    <li><a href="#ref-for-uniformity-failure③">14.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-uniformity-failure④">(2)</a> <a href="#ref-for-uniformity-failure⑤">(3)</a>
-    <li><a href="#ref-for-uniformity-failure⑥">14.2.5. Function-scope Variable Value Analysis</a>
+    <li><a href="#ref-for-uniformity-failure">14.2.2. Uniformity Analysis Overview</a> <a href="#ref-for-uniformity-failure①">(2)</a>
+    <li><a href="#ref-for-uniformity-failure②">14.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-uniformity-failure③">(2)</a> <a href="#ref-for-uniformity-failure④">(3)</a>
+    <li><a href="#ref-for-uniformity-failure⑤">14.2.5. Function-scope Variable Value Analysis</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="uniform-control-flow">
@@ -23993,19 +23993,11 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-uniform-variable">14.2.3. Analyzing the Uniformity Requirements of a Function</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="witness">
-   <b><a href="#witness">#witness</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="potential-trigger-set">
+   <b><a href="#potential-trigger-set">#potential-trigger-set</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-witness">14.2.2. Uniformity Analysis Overview</a>
-    <li><a href="#ref-for-witness①">14.2.3. Analyzing the Uniformity Requirements of a Function</a>
-    <li><a href="#ref-for-witness②">14.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-witness③">(2)</a> <a href="#ref-for-witness④">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="witness-set">
-   <b><a href="#witness-set">#witness-set</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-witness-set">14.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-witness-set①">(2)</a> <a href="#ref-for-witness-set②">(3)</a> <a href="#ref-for-witness-set③">(4)</a> <a href="#ref-for-witness-set④">(5)</a> <a href="#ref-for-witness-set⑤">(6)</a>
-    <li><a href="#ref-for-witness-set⑥">14.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-witness-set⑦">(2)</a>
+    <li><a href="#ref-for-potential-trigger-set">14.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-potential-trigger-set①">(2)</a> <a href="#ref-for-potential-trigger-set②">(3)</a> <a href="#ref-for-potential-trigger-set③">(4)</a> <a href="#ref-for-potential-trigger-set④">(5)</a> <a href="#ref-for-potential-trigger-set⑤">(6)</a>
+    <li><a href="#ref-for-potential-trigger-set⑥">14.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-potential-trigger-set⑦">(2)</a> <a href="#ref-for-potential-trigger-set⑧">(3)</a> <a href="#ref-for-potential-trigger-set⑨">(4)</a> <a href="#ref-for-potential-trigger-set①⓪">(5)</a> <a href="#ref-for-potential-trigger-set①①">(6)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="call-site-tag">
