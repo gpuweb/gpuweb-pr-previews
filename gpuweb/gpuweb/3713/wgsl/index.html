@@ -689,13 +689,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-03-03">3 March 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-03-06">6 March 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/fccb9177e1c1f4bbeb979f5f9da78f1b409cd9e5/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/fccb9177e1c1f4bbeb979f5f9da78f1b409cd9e5/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/f4295bc880f0c902f0a1b07e0774dbc06171e4f5/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/f4295bc880f0c902f0a1b07e0774dbc06171e4f5/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -1764,8 +1764,8 @@ The following table lists the standard set of triggering rules that can be filte
       <td><dfn class="dfn-paneled" data-dfn-for="trigger" data-dfn-type="dfn" data-noexport id="trigger-derivative_uniformity">derivative_uniformity</dfn> 
       <td><a data-link-type="dfn" href="#severity-error" id="ref-for-severity-error③">error</a> 
       <td>
-       The <a data-link-type="dfn" href="#call-site" id="ref-for-call-site">call site</a> for any <a data-link-type="dfn" href="#builtin-functions-that-compute-a-derivative" id="ref-for-builtin-functions-that-compute-a-derivative">builtin function that computes a derivative</a>.
-        That is, the <a data-link-type="dfn" href="#call-site" id="ref-for-call-site①">call site</a> for any of: 
+       The location of the <a data-link-type="dfn" href="#call-site" id="ref-for-call-site">call site</a> for any <a data-link-type="dfn" href="#builtin-functions-that-compute-a-derivative" id="ref-for-builtin-functions-that-compute-a-derivative">builtin function that computes a derivative</a>.
+        That is, the location of a call to any of: 
        <ul>
         <li data-md>
          <p>the <a href="#derivative-builtin-functions">derivative builtin functions</a></p>
@@ -4829,7 +4829,7 @@ This defines the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="
    <p>A pointer value always corresponds to a reference value, and so the originating variable
 of a pointer is the same as the originating variable of the corresponding reference.</p>
    <p class="note" role="note"><span class="marker">Note:</span> The originating variable is a dynamic concept.
-The originating variable for a formal parameter of a function depends on the <a data-link-type="dfn" href="#call-site" id="ref-for-call-site②">call sites</a> for the function.
+The originating variable for a formal parameter of a function depends on the <a data-link-type="dfn" href="#call-site" id="ref-for-call-site①">call sites</a> for the function.
 Different call sites may supply pointers into different originating variables.</p>
    <h4 class="heading settled" data-level="5.4.5" id="invalid-mem-reference"><span class="secno">5.4.5. </span><span class="content">Invalid Memory Reference</span><a class="self-link" href="#invalid-mem-reference"></a></h4>
    <p>An operation that accesses one or more <a data-link-type="dfn" href="#memory-locations" id="ref-for-memory-locations②">memory locations</a> outside those
@@ -5174,7 +5174,7 @@ See <a href="#struct-access-expr">§ 7.5.4 Structure Access Expression</a>.</p
     <li data-md>
      <p>If a function <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter⑤">formal parameter</a> has pointer type, then when the function is invoked
 at runtime the uses of the formal parameter denote the pointer value
-provided to the corresponding operand at the <a data-link-type="dfn" href="#call-site" id="ref-for-call-site③">call site</a> in the <a data-link-type="dfn" href="#calling-function" id="ref-for-calling-function①">calling function</a>.</p>
+provided to the corresponding operand at the <a data-link-type="dfn" href="#call-site" id="ref-for-call-site②">call site</a> in the <a data-link-type="dfn" href="#calling-function" id="ref-for-calling-function①">calling function</a>.</p>
      <ul>
       <li data-md>
        <p>The originating variable of the formal parameter (at runtime) is defined as
@@ -7474,7 +7474,7 @@ See <a href="#function-call-statement">§ 8.5 Function Call Statement</a>.</p>
       <td> <var>a</var> is an <a data-link-type="dfn" href="#identifier" id="ref-for-identifier①①">identifier</a> <a data-link-type="dfn" href="#resolves" id="ref-for-resolves①②">resolving</a> to
           an <a data-link-type="dfn" href="#in-scope" id="ref-for-in-scope⑦">in-scope</a> formal parameter declaration with type <var>T</var> 
       <td class="nowrap"> <var>a</var>: <var>T</var> 
-      <td>Result is the value supplied for the corresponding function call operand at the <a data-link-type="dfn" href="#call-site" id="ref-for-call-site④">call site</a> invoking this instance of the function. 
+      <td>Result is the value supplied for the corresponding function call operand at the <a data-link-type="dfn" href="#call-site" id="ref-for-call-site③">call site</a> invoking this instance of the function. 
    </table>
    <h3 class="heading settled" data-level="7.13" id="address-of-expr"><span class="secno">7.13. </span><span class="content">Address-Of Expression</span><a class="self-link" href="#address-of-expr"></a></h3>
    <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="address-of">address-of</dfn> operator converts a reference to its corresponding pointer.</p>
@@ -8614,7 +8614,7 @@ The construct is optional.</p>
 If the function is an <a data-link-type="dfn" href="#entry-point" id="ref-for-entry-point⑧">entry point</a>, then the current shader invocation
 is terminated.
 Otherwise, evaluation continues with the next expression or statement after
-the evaluation of the <a data-link-type="dfn" href="#call-site" id="ref-for-call-site⑤">call site</a> of the current function invocation.</p>
+the evaluation of the <a data-link-type="dfn" href="#call-site" id="ref-for-call-site④">call site</a> of the current function invocation.</p>
    <p>If the function does not have a <a data-link-type="dfn" href="#return-type" id="ref-for-return-type④">return type</a>, then the <a data-link-type="dfn" href="#statement-return" id="ref-for-statement-return②">return</a> statement is
 optional. If the return statement is provided for such a function, it <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①④⑤">must not</a> supply a value.
 Otherwise the expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①④⑥">must</a> be present, and is called the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="return-value">return value</dfn>.
@@ -9247,7 +9247,7 @@ memory is allocated for each function scope variable in the called function.</p>
      <p>Values for the formal parameters of the called function are determined
 by matching the function call argument values by position.
 For example, the first formal parameter of the called function will have
-the value of the first argument at the <a data-link-type="dfn" href="#call-site" id="ref-for-call-site⑥">call site</a>.</p>
+the value of the first argument at the <a data-link-type="dfn" href="#call-site" id="ref-for-call-site⑤">call site</a>.</p>
     <li data-md>
      <p>Control is transferred to the called function.
 If the called function is <a data-link-type="dfn" href="#user-defined-function" id="ref-for-user-defined-function⑤">user-defined</a>, execution
@@ -9435,7 +9435,7 @@ but each expression has a statically determinable root identifier.</p>
    </ul>
    <h5 class="heading settled" data-level="9.4.1.2" id="aliasing"><span class="secno">9.4.1.2. </span><span class="content">Aliasing</span><a class="self-link" href="#aliasing"></a></h5>
    <p>While the <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable①⑥">originating variable</a> of a <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier②">root identifier</a> is a dynamic concept that
-depends on the <a data-link-type="dfn" href="#call-site" id="ref-for-call-site⑦">call sites</a> for the function, WGSL programs can be
+depends on the <a data-link-type="dfn" href="#call-site" id="ref-for-call-site⑥">call sites</a> for the function, WGSL programs can be
 statically analyzed to determine the set of all possible <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable①⑦">originating
 variables</a> for each root identifier.</p>
    <p>Two <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier③">root identifiers</a> <dfn data-dfn-type="dfn" data-noexport id="alias">alias<a class="self-link" href="#alias"></a></dfn> when they have the same <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable①⑧">originating variable</a>.
@@ -9457,7 +9457,7 @@ This includes any module-scope variables that are read in functions called from 
     <li data-md>
      <p>Pointer parameters used as root identifiers of memory views that are <a data-link-type="dfn" href="#read-access" id="ref-for-read-access④">read</a> in this function or in called functions.</p>
    </ul>
-   <p>At each <a data-link-type="dfn" href="#call-site" id="ref-for-call-site⑧">call site</a> of a function, it is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑦④">shader-creation error</a> if any
+   <p>At each <a data-link-type="dfn" href="#call-site" id="ref-for-call-site⑦">call site</a> of a function, it is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑦④">shader-creation error</a> if any
 of the following occur:</p>
    <ul>
     <li data-md>
@@ -11008,7 +11008,7 @@ when <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-
 a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity①">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic⑤">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered②">triggered</a>.</p>
      <ul>
       <li data-md>
-       <p>The diagnostic’s <a data-link-type="dfn" href="#diagnostic-triggering-location" id="ref-for-diagnostic-triggering-location③">triggering location</a> is the <a data-link-type="dfn" href="#call-site" id="ref-for-call-site⑨">call site</a> of that builtin.</p>
+       <p>The diagnostic’s <a data-link-type="dfn" href="#diagnostic-triggering-location" id="ref-for-diagnostic-triggering-location③">triggering location</a> is the location of the <a data-link-type="dfn" href="#call-site" id="ref-for-call-site⑧">call site</a> of that builtin.</p>
       <li data-md>
        <p>The diagnostic’s <a data-link-type="dfn" href="#diagnostic-severity" id="ref-for-diagnostic-severity④">severity</a> defaults to an <a data-link-type="dfn" href="#severity-error" id="ref-for-severity-error④">error</a> but can be controlled with a <a data-link-type="dfn" href="#diagnostic-filter" id="ref-for-diagnostic-filter⑤">diagnostic filter</a>.</p>
      </ul>
@@ -11042,7 +11042,19 @@ it is said to be a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id
    <h4 class="heading settled" data-level="14.2.2" id="uniformity-overview"><span class="secno">14.2.2. </span><span class="content">Uniformity Analysis Overview</span><a class="self-link" href="#uniformity-overview"></a></h4>
    <p>The remaining subsections specify a static analysis that verifies that <a href="#collective-operations">collective operations</a> are only executed in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow④">uniform
 control flow</a>.</p>
-   <div class="note" role="note"><span class="marker">Note:This analysis has the following desirable properties: <ul><li data-md><p>Sound, meaning that a <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure">uniformity failure</a> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②⓪">will</a> be triggered for a program that would break the uniformity requirements of builtins.</p> </li><li data-md><p>Linear time complexity, in the number of tokens in the program.</p> </li><li data-md><p>Refactoring a piece of code into a function, or inlining a function, cannot make a shader invalid if it was valid before the transformation.</p> </li><li data-md><p>If the analysis refuses a program, it provides a straightforward chain of implications that can be used by the user agent to craft a good error message.</p> </li></ul></span></div>
+   <div class="note" role="note">
+    <span class="marker">Note:</span>This analysis has the following desirable properties: 
+    <ul>
+     <li data-md>
+      <p>Sound, meaning that a <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure">uniformity failure</a> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②⓪">will</a> be triggered for a program that would break the uniformity requirements of builtins.</p>
+     <li data-md>
+      <p>Linear time complexity, in the number of tokens in the program.</p>
+     <li data-md>
+      <p>Refactoring a piece of code into a function, or inlining a function, cannot make a shader invalid if it was valid before the transformation.</p>
+     <li data-md>
+      <p>If the analysis refuses a program, it provides a straightforward chain of implications that can be used by the user agent to craft a good error message.</p>
+    </ul>
+   </div>
    <p>Each function is analyzed, trying to ensure two things:</p>
    <ul>
     <li data-md>
@@ -11089,7 +11101,7 @@ and potentially triggering a <a data-link-type="dfn" href="#uniformity-failure" 
     </ul>
     <p>An edge can be understood as an implication from the statement corresponding to its source node to the statement corresponding to its target node.</p>
     <p>For example, one uniformity requirement is that the <code>workgroupBarrier</code> builtin function must only be called within uniform control flow.
-        To express this, we add an edge from <a data-link-type="dfn" href="#requiredtobeuniformerror" id="ref-for-requiredtobeuniformerror①">RequiredToBeUniform.error</a> to the node corresponding to the <code>workgroupBarrier</code> <a data-link-type="dfn" href="#call-site" id="ref-for-call-site①⓪">call site</a>.
+        To express this, we add an edge from <a data-link-type="dfn" href="#requiredtobeuniformerror" id="ref-for-requiredtobeuniformerror①">RequiredToBeUniform.error</a> to the node corresponding to the <code>workgroupBarrier</code> <a data-link-type="dfn" href="#call-site" id="ref-for-call-site⑨">call site</a>.
         One way to understand this is that <a data-link-type="dfn" href="#requiredtobeuniformerror" id="ref-for-requiredtobeuniformerror②">RequiredToBeUniform.error</a> corresponds to the proposition True,
         so that <a data-link-type="dfn" href="#requiredtobeuniformerror" id="ref-for-requiredtobeuniformerror③">RequiredToBeUniform.error</a> -> X is the same as saying that X is true.</p>
     <p>Reciprocally, to express that we cannot ensure the uniformity of something (e.g. a variable which holds the thread id), we add an edge from the corresponding node to <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①">MayBeNonUniform</a>.
@@ -11111,7 +11123,7 @@ and potentially triggering a <a data-link-type="dfn" href="#uniformity-failure" 
    <p>For each function, two tags are computed:</p>
    <ul>
     <li data-md>
-     <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="call-site-tag">call site tag</dfn> describing the control flow uniformity requirements on the <a data-link-type="dfn" href="#call-site" id="ref-for-call-site①①">call sites</a> of the function, and</p>
+     <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="call-site-tag">call site tag</dfn> describing the control flow uniformity requirements on the <a data-link-type="dfn" href="#call-site" id="ref-for-call-site①⓪">call sites</a> of the function, and</p>
     <li data-md>
      <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="function-tag">function tag</dfn> describing the function’s effects on uniformity.</p>
    </ul>
@@ -23233,15 +23245,15 @@ registrations, it matches widespread industry conventions.</p>
   <aside class="dfn-panel" data-for="call-site">
    <b><a href="#call-site">#call-site</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-call-site">2.2.1. Filterable Triggering Rules</a> <a href="#ref-for-call-site①">(2)</a>
-    <li><a href="#ref-for-call-site②">5.4.4. Originating Variable</a>
-    <li><a href="#ref-for-call-site③">5.4.7. Forming Reference and Pointer Values</a>
-    <li><a href="#ref-for-call-site④">7.12. Formal Parameter Expression</a>
-    <li><a href="#ref-for-call-site⑤">8.4.10. Return Statement</a>
-    <li><a href="#ref-for-call-site⑥">9.2. Function Calls</a>
-    <li><a href="#ref-for-call-site⑦">9.4.1.2. Aliasing</a> <a href="#ref-for-call-site⑧">(2)</a>
-    <li><a href="#ref-for-call-site⑨">14.2. Uniformity</a>
-    <li><a href="#ref-for-call-site①⓪">14.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-call-site①①">(2)</a>
+    <li><a href="#ref-for-call-site">2.2.1. Filterable Triggering Rules</a>
+    <li><a href="#ref-for-call-site①">5.4.4. Originating Variable</a>
+    <li><a href="#ref-for-call-site②">5.4.7. Forming Reference and Pointer Values</a>
+    <li><a href="#ref-for-call-site③">7.12. Formal Parameter Expression</a>
+    <li><a href="#ref-for-call-site④">8.4.10. Return Statement</a>
+    <li><a href="#ref-for-call-site⑤">9.2. Function Calls</a>
+    <li><a href="#ref-for-call-site⑥">9.4.1.2. Aliasing</a> <a href="#ref-for-call-site⑦">(2)</a>
+    <li><a href="#ref-for-call-site⑧">14.2. Uniformity</a>
+    <li><a href="#ref-for-call-site⑨">14.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-call-site①⓪">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="const-functions">
