@@ -695,7 +695,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/f4295bc880f0c902f0a1b07e0774dbc06171e4f5/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/f4295bc880f0c902f0a1b07e0774dbc06171e4f5/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/98531bbc20b92ae6dd98242abd0197ac4faadb1f/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/98531bbc20b92ae6dd98242abd0197ac4faadb1f/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -1870,7 +1870,7 @@ and the bodies of <a data-link-type="dfn" href="#syntax-if_clause" id="ref-for-s
    </div>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="global-diagnostic-filter">global diagnostic filter</dfn> is a diagnostic filter whose <a data-link-type="dfn" href="#affected-range" id="ref-for-affected-range②">affected range</a> is the whole WGSL program.
 It is a <a data-link-type="dfn" href="#directive" id="ref-for-directive">directive</a>, thus appearing before any <a data-link-type="dfn" href="#module-scope" id="ref-for-module-scope②">module-scope</a> declarations.
-It is spelled like the attribute form, but without the leading <code>@</code> (U+0040) codepoint, and with a terminating semicolon.</p>
+It is spelled like the attribute form, but without the leading <code>@</code> (U+0040) code point, and with a terminating semicolon.</p>
    <div class="example wgsl global-scope no-marker" id="example-e515f7e4">
     <a class="self-link" href="#example-e515f7e4"></a>
     <div class="marker">EXAMPLE: Global diagnostic filter for derivative uniformity</div>
@@ -2890,7 +2890,7 @@ some attribute parameters are also context-dependent names.</p>
         specifying a <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule⑧">triggering rule</a>.</p>
       <td>
        Specifies a <a data-link-type="dfn" href="#range-diagnostic-filter" id="ref-for-range-diagnostic-filter①">range diagnostic filter</a>.  See <a href="#diagnostics">§ 2.2 Diagnostics</a>. 
-       <p>More than one <a data-link-type="dfn" href="#attribute-diagnostic" id="ref-for-attribute-diagnostic">diagnostic</a> attribute may be specified on an object,
+       <p>More than one <a data-link-type="dfn" href="#attribute-diagnostic" id="ref-for-attribute-diagnostic">diagnostic</a> attribute may be specified on a syntactic form,
         but they <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑤">must</a> specify different <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule⑨">triggering rules</a>.</p>
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-for="attribute" data-dfn-type="dfn" data-noexport id="attribute-group"><code>group</code></dfn> 
@@ -11132,7 +11132,7 @@ and potentially triggering a <a data-link-type="dfn" href="#uniformity-failure" 
     <li data-md>
      <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="parameter-tag">parameter tag</dfn> describes the uniformity requirement of the parameter value.</p>
     <li data-md>
-     <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="parameter-return-tag">parameter return tag</dfn> describes the unifomity requirement of the parameter value on the function’s <a data-link-type="dfn" href="#return-value" id="ref-for-return-value⑥">return value</a>.</p>
+     <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="parameter-return-tag">parameter return tag</dfn> describes how the uniformity of the parameter influences that of the function’s <a data-link-type="dfn" href="#return-value" id="ref-for-return-value⑥">return value</a>.</p>
     <li data-md>
      <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="pointer-parameter-tag">pointer parameter tag</dfn>, when the parameter type is a pointer into the <a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function①②">function</a> address space.
   The tag describes whether the value in the memory pointed to by the parameter may become <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value③">non-uniform</a> during the execution of the function call.</p>
