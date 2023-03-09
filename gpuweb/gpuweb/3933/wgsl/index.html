@@ -695,12 +695,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/1ee0f5994a06669ff7a4240243d96bd32aa71ee4/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/1ee0f5994a06669ff7a4240243d96bd32aa71ee4/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/2f3f6bc5770bcbd14699302090062fb282d75356/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/2f3f6bc5770bcbd14699302090062fb282d75356/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
       <dd><a href="https://github.com/gpuweb/gpuweb/issues/">GitHub</a>
-      <dd><a href="#issues-index">Inline In Spec</a>
       <dt class="editor">Editors:
       <dd class="editor p-author h-card vcard" data-editor-id="129277"><a class="p-name fn u-email email" href="mailto:alanbaker@google.com">Alan Baker</a> (<a class="p-org org" href="https://www.google.com">Google</a>)
       <dd class="editor p-author h-card vcard" data-editor-id="101130"><a class="p-name fn u-email email" href="mailto:mehmetoguzderin@mehmetoguzderin.com">Mehmet Oguz Derin</a>
@@ -1267,7 +1266,6 @@ Learn more about <a href="http://www.w3.org/community/">W3C Community and Busine
       <li><a href="#normative"><span class="secno"></span> <span class="content">Normative References</span></a>
       <li><a href="#informative"><span class="secno"></span> <span class="content">Informative References</span></a>
      </ol>
-    <li><a href="#issues-index"><span class="secno"></span> <span class="content">Issues Index</span></a>
    </ol>
   </nav>
   <main>
@@ -10041,9 +10039,9 @@ the number of elements in the runtime-sized array,
 is the largest integer such that <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①">SizeOf</a>(<var>T</var>) ≤ <var>EBS</var>.</p>
     </ul>
    </blockquote>
-   <p>In general, the <a data-link-type="dfn" href="#nruntime" id="ref-for-nruntime">NRuntime</a> for a runtime-size array is:</p>
-   <blockquote>
-     <a data-link-type="dfn" href="#truncate" id="ref-for-truncate②">truncate</a>((EBBS − <em>array_offset</em>) ÷ <em>array_element_size</em>), where: 
+   <p>In more detail, the <a data-link-type="dfn" href="#nruntime" id="ref-for-nruntime">NRuntime</a> for a runtime-size array of type <em>RAT</em> is:</p>
+   <blockquote class="algorithm" data-algorithm="element count of runtime-sized array, expanded">
+     <a data-link-type="dfn" href="#truncate" id="ref-for-truncate②">truncate</a>((EBBS − <em>array_offset</em>) ÷ <em>array_stride</em>), where: 
     <ul>
      <li data-md>
       <p>EBBS is the <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/#abstract-opdef-effective-buffer-binding-size" id="ref-for-abstract-opdef-effective-buffer-binding-size①">effective buffer binding size</a> associated with the variable,</p>
@@ -10051,21 +10049,22 @@ is the largest integer such that <a data-link-type="dfn" href="#sizeof" id="ref-
       <p><em>array_offset</em> is the byte offset of the runtime-sized array within the store type of the variable.</p>
       <ul>
        <li data-md>
-        <p>It is zero if the store type is the runtime-sized array itself.</p>
+        <p>It is zero if the store type is <var>RAT</var>, the runtime-sized array type itself.</p>
        <li data-md>
         <p>Otherwise the store type is a structure, and its last member is the runtime-sized array.
 In this case <em>array_offset</em> is the <a data-link-type="dfn" href="#offsetofmember" id="ref-for-offsetofmember">byte offset of that member</a> within the structure.</p>
       </ul>
      <li data-md>
-      <p><em>array_element_size</em> is the <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof②">size of</a> the element type of the runtime-sized array.</p>
+      <p><em>array_stride</em> is the stride of the array type, i.e. <a data-link-type="dfn" href="#strideof" id="ref-for-strideof">StrideOf</a>(<var>RAT</var>).</p>
     </ul>
    </blockquote>
+   <p>A shader can compute <a data-link-type="dfn" href="#nruntime" id="ref-for-nruntime①">NRuntime</a> via the <a href="#arrayLength-builtin">arrayLength</a> builtin function.</p>
    <div class="note" role="note">
      <span class="marker">Note:</span> This algorithm is unambiguous:
 When a runtime-sized array is part of a larger type, it may only appear as the last element of a structure,
 which itself cannot be part of an enclosing array or structure. 
-    <p><a data-link-type="dfn" href="#nruntime" id="ref-for-nruntime①">NRuntime</a> is determined by the size of the corresponding buffer binding, and that can be different for each <a data-link-type="dfn" href="#draw-command" id="ref-for-draw-command④">draw</a> or <a data-link-type="dfn" href="#dispatch-command" id="ref-for-dispatch-command④">dispatch command</a>.</p>
-    <p>WebGPU validation rules ensure that 1 ≤ <a data-link-type="dfn" href="#nruntime" id="ref-for-nruntime②">NRuntime</a>.</p>
+    <p><a data-link-type="dfn" href="#nruntime" id="ref-for-nruntime②">NRuntime</a> is determined by the size of the corresponding buffer binding, and that can be different for each <a data-link-type="dfn" href="#draw-command" id="ref-for-draw-command④">draw</a> or <a data-link-type="dfn" href="#dispatch-command" id="ref-for-dispatch-command④">dispatch command</a>.</p>
+    <p>WebGPU validation rules ensure that 1 ≤ <a data-link-type="dfn" href="#nruntime" id="ref-for-nruntime③">NRuntime</a>.</p>
    </div>
    <div class="note" role="note">
      In the following code sample: 
@@ -10077,7 +10076,7 @@ which itself cannot be part of an enclosing array or structure.
      <li data-md>
       <p>The array offset is 0.</p>
      <li data-md>
-      <p>The array element size is <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof③">SizeOf</a>(<a data-link-type="dfn" href="#f32" id="ref-for-f32①⑥">f32</a>), which is 4.</p>
+      <p>The array stride is <a data-link-type="dfn" href="#strideof" id="ref-for-strideof①">StrideOf</a>(array&lt;f32>), which is 4.</p>
     </ul>
     <div class="example wgsl no-marker" id="example-2f700e5b">
      <a class="self-link" href="#example-2f700e5b"></a>
@@ -10085,7 +10084,7 @@ which itself cannot be part of an enclosing array or structure.
 <pre class="highlight"><c- o>@</c-><c- n>group</c-><c- p>(</c-><c- mi>0</c-><c- p>)</c-> <c- o>@</c-><c- n>binding</c-><c- p>(</c-><c- mi>1</c-><c- p>)</c-> <c- n>var</c-><c- o>&lt;</c-><c- n>storage</c-><c- o>></c-> <c- n>weights</c->: <c- nc>array</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-><c- p>;</c->
 </pre>
     </div>
-    <p>The following table shows examples of <a data-link-type="dfn" href="#nruntime" id="ref-for-nruntime③">NRuntime</a> for the <code>weights</code> array, based on
+    <p>The following table shows examples of <a data-link-type="dfn" href="#nruntime" id="ref-for-nruntime④">NRuntime</a> for the <code>weights</code> variable, based on
 the corresponding effective buffer binding size.</p>
     <table class="data">
      <caption>Example number of elements for simple runtime-sized array</caption>
@@ -10098,23 +10097,23 @@ the corresponding effective buffer binding size.</p>
       <tr>
        <td>1024
        <td>256
-       <td><a data-link-type="dfn" href="#truncate" id="ref-for-truncate③">truncate</a>( 1024 ÷ <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof④">SizeOf</a>(<a data-link-type="dfn" href="#f32" id="ref-for-f32①⑦">f32</a>) ) 
+       <td><a data-link-type="dfn" href="#truncate" id="ref-for-truncate③">truncate</a>( 1024 ÷ 4 ) 
       <tr>
        <td>1025
        <td>256
-       <td><a data-link-type="dfn" href="#truncate" id="ref-for-truncate④">truncate</a>( 1025 ÷ <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof⑤">SizeOf</a>(<a data-link-type="dfn" href="#f32" id="ref-for-f32①⑧">f32</a>) ) 
+       <td><a data-link-type="dfn" href="#truncate" id="ref-for-truncate④">truncate</a>( 1025 ÷ 4 ) 
       <tr>
        <td>1026
        <td>256
-       <td><a data-link-type="dfn" href="#truncate" id="ref-for-truncate⑤">truncate</a>( 1026 ÷ <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof⑥">SizeOf</a>(<a data-link-type="dfn" href="#f32" id="ref-for-f32①⑨">f32</a>) ) 
+       <td><a data-link-type="dfn" href="#truncate" id="ref-for-truncate⑤">truncate</a>( 1026 ÷ 4 ) 
       <tr>
        <td>1027
        <td>256
-       <td><a data-link-type="dfn" href="#truncate" id="ref-for-truncate⑥">truncate</a>( 1027 ÷ <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof⑦">SizeOf</a>(<a data-link-type="dfn" href="#f32" id="ref-for-f32②⓪">f32</a>) ) 
+       <td><a data-link-type="dfn" href="#truncate" id="ref-for-truncate⑥">truncate</a>( 1027 ÷ 4 ) 
       <tr>
        <td>1028
        <td>257
-       <td><a data-link-type="dfn" href="#truncate" id="ref-for-truncate⑦">truncate</a>( 1028 ÷ <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof⑧">SizeOf</a>(<a data-link-type="dfn" href="#f32" id="ref-for-f32②①">f32</a>) ) 
+       <td><a data-link-type="dfn" href="#truncate" id="ref-for-truncate⑦">truncate</a>( 1028 ÷ 4 ) 
     </table>
    </div>
    <div class="note" role="note">
@@ -10130,7 +10129,7 @@ the corresponding effective buffer binding size.</p>
        <li data-md>
         <p>The member is at byte offset 16 in the variable’s storage.</p>
        <li data-md>
-        <p>Its element size is <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof⑨">SizeOf</a>(<code>PointLight</code>), which is 32.</p>
+        <p>The array stride is <a data-link-type="dfn" href="#strideof" id="ref-for-strideof②">StrideOf</a>(array&lt;<code>PointLight</code>>) = <a data-link-type="dfn" href="#roundup" id="ref-for-roundup">roundUp</a>(<a data-link-type="dfn" href="#alignof" id="ref-for-alignof">AlignOf</a>(<code>PointLight</code>),<a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof②">SizeOf</a>(<code>PointLight</code>)) = <a data-link-type="dfn" href="#roundup" id="ref-for-roundup①">roundUp</a>(16,32) = 32</p>
       </ul>
     </ul>
     <div class="example wgsl no-marker" id="example-81d0297d">
@@ -10152,7 +10151,7 @@ the corresponding effective buffer binding size.</p>
 <c- o>@</c-><c- n>group</c-><c- p>(</c-><c- mi>0</c-><c- p>)</c-> <c- o>@</c-><c- n>binding</c-><c- p>(</c-><c- mi>1</c-><c- p>)</c-> <c- n>var</c-><c- o>&lt;</c-><c- n>storage</c-><c- o>></c-> <c- n>lights</c-> : <c- nc>LightStorage</c-><c- p>;</c->
 </pre>
     </div>
-    <p>The following table shows examples of <a data-link-type="dfn" href="#nruntime" id="ref-for-nruntime④">NRuntime</a> for the <code>point</code> member of the <code>lights</code> variable.</p>
+    <p>The following table shows examples of <a data-link-type="dfn" href="#nruntime" id="ref-for-nruntime⑤">NRuntime</a> for the <code>point</code> member of the <code>lights</code> variable.</p>
     <table class="data">
      <caption>Example number of elements for complex runtime-sized array</caption>
      <thead>
@@ -10170,11 +10169,11 @@ the corresponding effective buffer binding size.</p>
        <td>31
        <td><a data-link-type="dfn" href="#truncate" id="ref-for-truncate⑨">truncate</a>( ( 1025 - 16 ) ÷ 32) ) 
       <tr>
-       <td>1035
+       <td>1039
        <td>31
        <td><a data-link-type="dfn" href="#truncate" id="ref-for-truncate①⓪">truncate</a>( ( 1039 - 16 ) ÷ 32) ) 
       <tr>
-       <td>1036
+       <td>1040
        <td>32
        <td><a data-link-type="dfn" href="#truncate" id="ref-for-truncate①①">truncate</a>( ( 1040 - 16 ) ÷ 32) ) 
     </table>
@@ -10512,7 +10511,7 @@ The terms defined in this section express counts of 8-bit bytes.</p>
      <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="strideof">StrideOf</dfn>(<var>A</var>) is the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="element-stride">element stride</dfn> of host-shareable array type <var>A</var>, defined
 as the number of bytes from the start of one array element to the start of the next element.
 It equals the size of the array’s element type, rounded up to the alignment of the element type:</p>
-     <p class="algorithm" data-algorithm="array element stride"> <a data-link-type="dfn" href="#strideof" id="ref-for-strideof">StrideOf</a>(array&lt;<var>E</var>, <var>N</var>>) = <a data-link-type="dfn" href="#roundup" id="ref-for-roundup">roundUp</a>(<a data-link-type="dfn" href="#alignof" id="ref-for-alignof">AlignOf</a>(E), <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①⓪">SizeOf</a>(E))<br> <a data-link-type="dfn" href="#strideof" id="ref-for-strideof①">StrideOf</a>(array&lt;<var>E</var>>) = <a data-link-type="dfn" href="#roundup" id="ref-for-roundup①">roundUp</a>(<a data-link-type="dfn" href="#alignof" id="ref-for-alignof①">AlignOf</a>(E), <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①①">SizeOf</a>(E)) </p>
+     <p class="algorithm" data-algorithm="array element stride"> <a data-link-type="dfn" href="#strideof" id="ref-for-strideof③">StrideOf</a>(array&lt;<var>E</var>, <var>N</var>>) = <a data-link-type="dfn" href="#roundup" id="ref-for-roundup②">roundUp</a>(<a data-link-type="dfn" href="#alignof" id="ref-for-alignof①">AlignOf</a>(E), <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof③">SizeOf</a>(E))<br> <a data-link-type="dfn" href="#strideof" id="ref-for-strideof④">StrideOf</a>(array&lt;<var>E</var>>) = <a data-link-type="dfn" href="#roundup" id="ref-for-roundup③">roundUp</a>(<a data-link-type="dfn" href="#alignof" id="ref-for-alignof②">AlignOf</a>(E), <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof④">SizeOf</a>(E)) </p>
    </ul>
    <h4 class="heading settled" data-level="13.4.1" id="alignment-and-size"><span class="secno">13.4.1. </span><span class="content">Alignment and Size</span><a class="self-link" href="#alignment-and-size"></a></h4>
    <p>Each <a data-link-type="dfn" href="#host-shareable" id="ref-for-host-shareable⑦">host-shareable</a> or <a data-link-type="dfn" href="#fixed-footprint" id="ref-for-fixed-footprint④">fixed footprint</a> data type <var>T</var> has an alignment and size.</p>
@@ -10537,11 +10536,11 @@ following table:</p>
     <thead>
      <tr>
       <th>Host-shareable type <var>T</var> 
-      <th><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②">AlignOf</a>(<var>T</var>) 
-      <th><a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①②">SizeOf</a>(<var>T</var>) 
+      <th><a data-link-type="dfn" href="#alignof" id="ref-for-alignof③">AlignOf</a>(<var>T</var>) 
+      <th><a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof⑤">SizeOf</a>(<var>T</var>) 
     <tbody>
      <tr>
-      <td><a data-link-type="dfn" href="#i32" id="ref-for-i32②④">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32①⑥">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32②②">f32</a> 
+      <td><a data-link-type="dfn" href="#i32" id="ref-for-i32②④">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32①⑥">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32①⑥">f32</a> 
       <td>4 
       <td>4 
      <tr>
@@ -10553,7 +10552,7 @@ following table:</p>
       <td>4 
       <td>4 
      <tr>
-      <td><a data-link-type="dfn" href="#vector" id="ref-for-vector①②">vec</a>2&lt;<var>T</var>>, <var>T</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32②⑤">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32①⑦">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32②③">f32</a> 
+      <td><a data-link-type="dfn" href="#vector" id="ref-for-vector①②">vec</a>2&lt;<var>T</var>>, <var>T</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32②⑤">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32①⑦">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32①⑦">f32</a> 
       <td>8 
       <td>8 
      <tr>
@@ -10561,7 +10560,7 @@ following table:</p>
       <td>4 
       <td>4 
      <tr>
-      <td>vec3&lt;<var>T</var>>, <var>T</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32②⑥">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32①⑧">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32②④">f32</a> 
+      <td>vec3&lt;<var>T</var>>, <var>T</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32②⑥">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32①⑧">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32①⑧">f32</a> 
       <td>16 
       <td>12 
      <tr>
@@ -10569,7 +10568,7 @@ following table:</p>
       <td>8 
       <td>6 
      <tr>
-      <td>vec4&lt;<var>T</var>>, <var>T</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32②⑦">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32①⑨">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32②⑤">f32</a> 
+      <td>vec4&lt;<var>T</var>>, <var>T</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32②⑦">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32①⑨">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32①⑨">f32</a> 
       <td>16 
       <td>16 
      <tr>
@@ -10580,8 +10579,8 @@ following table:</p>
       <td>
        <a data-link-type="dfn" href="#matrix" id="ref-for-matrix⑧">mat</a><var>C</var>x<var>R</var> (col-major)<br> 
        <p class="small">(General form)</p>
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof③">AlignOf</a>(vec<var>R</var>) 
-      <td><a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①③">SizeOf</a>(array&lt;vec<var>R</var>, <var>C</var>>) 
+      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof④">AlignOf</a>(vec<var>R</var>) 
+      <td><a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof⑥">SizeOf</a>(array&lt;vec<var>R</var>, <var>C</var>>) 
      <tr>
       <td>mat2x2&lt;f32> 
       <td>8 
@@ -10657,15 +10656,15 @@ following table:</p>
      <tr>
       <td><a data-link-type="dfn" href="#structure" id="ref-for-structure①⑨">struct</a> <var>S</var> with members M<sub>1</sub>...M<sub>N</sub> 
       <td>max(<a data-link-type="dfn" href="#alignofmember" id="ref-for-alignofmember">AlignOfMember</a>(S,1), ... , <a data-link-type="dfn" href="#alignofmember" id="ref-for-alignofmember①">AlignOfMember</a>(S,N))<br> 
-      <td><a data-link-type="dfn" href="#roundup" id="ref-for-roundup②">roundUp</a>(<a data-link-type="dfn" href="#alignof" id="ref-for-alignof④">AlignOf</a>(<var>S</var>), justPastLastMember)<br><br> where justPastLastMember = <a data-link-type="dfn" href="#offsetofmember" id="ref-for-offsetofmember①">OffsetOfMember</a>(<var>S</var>,N) + <a data-link-type="dfn" href="#sizeofmember" id="ref-for-sizeofmember">SizeOfMember</a>(<var>S</var>,N) 
+      <td><a data-link-type="dfn" href="#roundup" id="ref-for-roundup④">roundUp</a>(<a data-link-type="dfn" href="#alignof" id="ref-for-alignof⑤">AlignOf</a>(<var>S</var>), justPastLastMember)<br><br> where justPastLastMember = <a data-link-type="dfn" href="#offsetofmember" id="ref-for-offsetofmember①">OffsetOfMember</a>(<var>S</var>,N) + <a data-link-type="dfn" href="#sizeofmember" id="ref-for-sizeofmember">SizeOfMember</a>(<var>S</var>,N) 
      <tr>
       <td><a data-link-type="dfn" href="#array" id="ref-for-array①①">array</a>&lt;<var>E</var>, <var>N</var>><br> 
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof⑤">AlignOf</a>(<var>E</var>) 
-      <td><var>N</var> × <a data-link-type="dfn" href="#roundup" id="ref-for-roundup③">roundUp</a>(<a data-link-type="dfn" href="#alignof" id="ref-for-alignof⑥">AlignOf</a>(<var>E</var>), <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①④">SizeOf</a>(<var>E</var>)) 
+      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof⑥">AlignOf</a>(<var>E</var>) 
+      <td><var>N</var> × <a data-link-type="dfn" href="#roundup" id="ref-for-roundup⑤">roundUp</a>(<a data-link-type="dfn" href="#alignof" id="ref-for-alignof⑦">AlignOf</a>(<var>E</var>), <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof⑦">SizeOf</a>(<var>E</var>)) 
      <tr>
       <td>array&lt;<var>E</var>><br> 
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof⑦">AlignOf</a>(<var>E</var>) 
-      <td><a data-link-type="dfn" href="#nruntime" id="ref-for-nruntime⑤">NRuntime</a> × <a data-link-type="dfn" href="#roundup" id="ref-for-roundup④">roundUp</a>(<a data-link-type="dfn" href="#alignof" id="ref-for-alignof⑧">AlignOf</a>(<var>E</var>),<a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①⑤">SizeOf</a>(<var>E</var>))<br><br> where NRuntime is the runtime-determined number of elements of <var>T</var> 
+      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof⑧">AlignOf</a>(<var>E</var>) 
+      <td><a data-link-type="dfn" href="#nruntime" id="ref-for-nruntime⑥">NRuntime</a> × <a data-link-type="dfn" href="#roundup" id="ref-for-roundup⑥">roundUp</a>(<a data-link-type="dfn" href="#alignof" id="ref-for-alignof⑨">AlignOf</a>(<var>E</var>),<a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof⑧">SizeOf</a>(<var>E</var>))<br><br> where NRuntime is the runtime-determined number of elements of <var>T</var> 
    </table>
    <h4 class="heading settled" data-level="13.4.2" id="structure-member-layout"><span class="secno">13.4.2. </span><span class="content">Structure Member Layout</span><a class="self-link" href="#structure-member-layout"></a></h4>
    <p>The internal layout of a <a data-link-type="dfn" href="#structure" id="ref-for-structure②⓪">structure</a> is computed from the sizes and alignments of its members.
@@ -10683,20 +10682,20 @@ by <a data-link-type="dfn" href="#sizeofmember" id="ref-for-sizeofmember①">Siz
 The member sizes and alignments are used to calculate each member’s byte offset from the start of the structure,
 as described in <a href="#internal-value-layout">§ 13.5 Internal Layout of Values</a>.</p>
    <p class="algorithm" data-algorithm="structure member size"> <a data-link-type="dfn" href="#sizeofmember" id="ref-for-sizeofmember②">SizeOfMember</a>(<var>S</var>, <var>i</var>) is <var>k</var> if the <var>i</var>’th member of <var>S</var> has attribute <a data-link-type="dfn" href="#attribute-size" id="ref-for-attribute-size③">size</a>(<var>k</var>).
-  Otherwise, it is <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①⑥">SizeOf</a>(<var>T</var>) where <var>T</var> is the type of the member. </p>
+  Otherwise, it is <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof⑨">SizeOf</a>(<var>T</var>) where <var>T</var> is the type of the member. </p>
    <p class="algorithm" data-algorithm="structure member alignment"> <a data-link-type="dfn" href="#alignofmember" id="ref-for-alignofmember③">AlignOfMember</a>(<var>S</var>, <var>i</var>) is <var>k</var> if the <var>i</var>’th member of <var>S</var> has attribute <a data-link-type="dfn" href="#attribute-align" id="ref-for-attribute-align③">align</a>(<var>k</var>).
-  Otherwise, it is <a data-link-type="dfn" href="#alignof" id="ref-for-alignof⑨">AlignOf</a>(<var>T</var>) where <var>T</var> is the type of the member. </p>
+  Otherwise, it is <a data-link-type="dfn" href="#alignof" id="ref-for-alignof①⓪">AlignOf</a>(<var>T</var>) where <var>T</var> is the type of the member. </p>
    <p>If a structure member has the <a data-link-type="dfn" href="#attribute-size" id="ref-for-attribute-size④">size</a> attribute applied, the
 value <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑨⑨">must</a> be at least as large as the size of the
 member’s type:</p>
-   <p class="algorithm" data-algorithm="member size constraint"> <a data-link-type="dfn" href="#sizeofmember" id="ref-for-sizeofmember③">SizeOfMember</a>(<var>S</var>, <var>i</var>) ≥ <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①⑦">SizeOf</a>(T)<br> Where <var>T</var> is the type of the <var>i</var>’th member of <var>S</var>. </p>
+   <p class="algorithm" data-algorithm="member size constraint"> <a data-link-type="dfn" href="#sizeofmember" id="ref-for-sizeofmember③">SizeOfMember</a>(<var>S</var>, <var>i</var>) ≥ <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①⓪">SizeOf</a>(T)<br> Where <var>T</var> is the type of the <var>i</var>’th member of <var>S</var>. </p>
    <p>The first structure member always has a zero byte offset from the start of the
 structure:</p>
    <p class="algorithm" data-algorithm="offset of first structure member"> <a data-link-type="dfn" href="#offsetofmember" id="ref-for-offsetofmember②">OffsetOfMember</a>(<var>S</var>, 1) = 0 </p>
    <p>Each subsequent member is placed at the lowest offset that satisfies the member type alignment,
 and which avoids overlap with the previous member.
 For each member index <var>i</var> > 1:</p>
-   <p class="algorithm" data-algorithm="structure member offset"> <a data-link-type="dfn" href="#offsetofmember" id="ref-for-offsetofmember③">OffsetOfMember</a>(<var>S</var>, <var>i</var>) = <a data-link-type="dfn" href="#roundup" id="ref-for-roundup⑤">roundUp</a>(<a data-link-type="dfn" href="#alignofmember" id="ref-for-alignofmember④">AlignOfMember</a>(<var>S</var>, <var>i</var> ), <a data-link-type="dfn" href="#offsetofmember" id="ref-for-offsetofmember④">OffsetOfMember</a>(<var>S</var>, <var>i</var>-1) + <a data-link-type="dfn" href="#sizeofmember" id="ref-for-sizeofmember④">SizeOfMember</a>(<var>S</var>, <var>i</var>-1))<br> </p>
+   <p class="algorithm" data-algorithm="structure member offset"> <a data-link-type="dfn" href="#offsetofmember" id="ref-for-offsetofmember③">OffsetOfMember</a>(<var>S</var>, <var>i</var>) = <a data-link-type="dfn" href="#roundup" id="ref-for-roundup⑦">roundUp</a>(<a data-link-type="dfn" href="#alignofmember" id="ref-for-alignofmember④">AlignOfMember</a>(<var>S</var>, <var>i</var> ), <a data-link-type="dfn" href="#offsetofmember" id="ref-for-offsetofmember④">OffsetOfMember</a>(<var>S</var>, <var>i</var>-1) + <a data-link-type="dfn" href="#sizeofmember" id="ref-for-sizeofmember④">SizeOfMember</a>(<var>S</var>, <var>i</var>-1))<br> </p>
    <div class="example wgsl no-marker" id="example-fc0bb4df">
     <a class="self-link" href="#example-fc0bb4df"></a>
     <div class="marker">EXAMPLE: Layout of structures using implicit member sizes and alignments</div>
@@ -10802,7 +10801,7 @@ of a buffer, given an assumed placement of the overall value.
 These layouts depend on the value’s type,
 and the <a data-link-type="dfn" href="#attribute-align" id="ref-for-attribute-align④">align</a> and <a data-link-type="dfn" href="#attribute-size" id="ref-for-attribute-size⑤">size</a> attributes on structure members.</p>
    <p>The buffer byte offset at which a value is placed <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪⓪">must</a> satisfy the type alignment requirement: If a value of type <var>T</var> is
-placed at buffer offset <var>k</var>, then <var>k</var> = <var>c</var> × <a data-link-type="dfn" href="#alignof" id="ref-for-alignof①⓪">AlignOf</a>(<var>T</var>), for some
+placed at buffer offset <var>k</var>, then <var>k</var> = <var>c</var> × <a data-link-type="dfn" href="#alignof" id="ref-for-alignof①①">AlignOf</a>(<var>T</var>), for some
 non-negative integer <var>c</var>.</p>
    <p>The data <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements①⑦">will</a> appear identically regardless of the address space.</p>
    <p>When a value <var>V</var> of type <a data-link-type="dfn" href="#u32" id="ref-for-u32②⓪">u32</a> or <a data-link-type="dfn" href="#i32" id="ref-for-i32②⑧">i32</a> is placed at byte offset <var>k</var> of a
@@ -10819,7 +10818,7 @@ host-shared buffer, then:</p>
    </ul>
    <p class="note" role="note"><span class="marker">Note:</span> Recall that <a data-link-type="dfn" href="#i32" id="ref-for-i32②⑨">i32</a> uses twos-complement representation, so the sign bit
 is in bit position 31.</p>
-   <p>A value <var>V</var> of type <a data-link-type="dfn" href="#f32" id="ref-for-f32②⑥">f32</a> is represented in <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> binary32 format.
+   <p>A value <var>V</var> of type <a data-link-type="dfn" href="#f32" id="ref-for-f32②⓪">f32</a> is represented in <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> binary32 format.
 It has one sign bit, 8 exponent bits, and 23 fraction bits.
 When <var>V</var> is placed at byte offset <var>k</var> of host-shared buffer, then:</p>
    <ul>
@@ -10859,23 +10858,23 @@ byte offset <var>k</var> of a host-shared buffer, then:</p>
     <li data-md>
      <p><var>V</var>.x is placed at byte offset <var>k</var></p>
     <li data-md>
-     <p><var>V</var>.y is placed at byte offset <var>k</var> + <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①⑧">SizeOf</a>(<var>T</var>)</p>
+     <p><var>V</var>.y is placed at byte offset <var>k</var> + <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①①">SizeOf</a>(<var>T</var>)</p>
     <li data-md>
-     <p>If <var>N</var> ≥ 3, then <var>V</var>.z is placed at byte offset <var>k</var> + 2 × <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①⑨">SizeOf</a>(<var>T</var>)</p>
+     <p>If <var>N</var> ≥ 3, then <var>V</var>.z is placed at byte offset <var>k</var> + 2 × <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①②">SizeOf</a>(<var>T</var>)</p>
     <li data-md>
-     <p>If <var>N</var> ≥ 4, then <var>V</var>.w is placed at byte offset <var>k</var> + 3 × <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof②⓪">SizeOf</a>(<var>T</var>)</p>
+     <p>If <var>N</var> ≥ 4, then <var>V</var>.w is placed at byte offset <var>k</var> + 3 × <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①③">SizeOf</a>(<var>T</var>)</p>
    </ul>
    <p>When a value <var>V</var> of <a data-link-type="dfn" href="#matrix" id="ref-for-matrix⑨">matrix type</a> mat<var>C</var>x<var>R</var>&lt;<var>T</var>> is placed at
 byte offset <var>k</var> of a host-shared buffer, then:</p>
    <ul>
     <li data-md>
-     <p>Column vector <var>i</var> of <var>V</var> is placed at byte offset <var>k</var> + <var>i</var> × <a data-link-type="dfn" href="#alignof" id="ref-for-alignof①①">AlignOf</a>(vec<var>R</var>&lt;<var>T</var>>)</p>
+     <p>Column vector <var>i</var> of <var>V</var> is placed at byte offset <var>k</var> + <var>i</var> × <a data-link-type="dfn" href="#alignof" id="ref-for-alignof①②">AlignOf</a>(vec<var>R</var>&lt;<var>T</var>>)</p>
    </ul>
    <p>When a value of <a data-link-type="dfn" href="#array" id="ref-for-array①②">array type</a> <var>A</var> is placed at byte offset <var>k</var> of a host-shared memory buffer,
 then:</p>
    <ul>
     <li data-md>
-     <p>Element <var>i</var> of the array is placed at byte offset <var>k</var> + <var>i</var> × <a data-link-type="dfn" href="#strideof" id="ref-for-strideof②">StrideOf</a>(<var>A</var>)</p>
+     <p>Element <var>i</var> of the array is placed at byte offset <var>k</var> + <var>i</var> × <a data-link-type="dfn" href="#strideof" id="ref-for-strideof⑤">StrideOf</a>(<var>A</var>)</p>
    </ul>
    <p>When a value of <a data-link-type="dfn" href="#structure" id="ref-for-structure②①">structure type</a> <var>S</var> is placed at byte offset <var>k</var> of a host-shared memory buffer,
 then:</p>
@@ -10903,33 +10902,33 @@ used in address space <var>C</var>.</p>
       <th><a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof②">RequiredAlignOf</a>(<var>S</var>, <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform①⓪">uniform</a>) 
     <tbody>
      <tr>
-      <td><a data-link-type="dfn" href="#i32" id="ref-for-i32③⓪">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32②①">u32</a>, <a data-link-type="dfn" href="#f32" id="ref-for-f32②⑦">f32</a>, or <a data-link-type="dfn" href="#f16" id="ref-for-f16①⑥">f16</a> 
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①②">AlignOf</a>(<var>S</var>) 
+      <td><a data-link-type="dfn" href="#i32" id="ref-for-i32③⓪">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32②①">u32</a>, <a data-link-type="dfn" href="#f32" id="ref-for-f32②①">f32</a>, or <a data-link-type="dfn" href="#f16" id="ref-for-f16①⑥">f16</a> 
       <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①③">AlignOf</a>(<var>S</var>) 
+      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①④">AlignOf</a>(<var>S</var>) 
      <tr>
       <td><a data-link-type="dfn" href="#atomic-type" id="ref-for-atomic-type①②">atomic</a>&lt;T> 
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①④">AlignOf</a>(<var>S</var>) 
       <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①⑤">AlignOf</a>(<var>S</var>) 
+      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①⑥">AlignOf</a>(<var>S</var>) 
      <tr>
       <td><a data-link-type="dfn" href="#vector" id="ref-for-vector①④">vec</a>N&lt;T> 
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①⑥">AlignOf</a>(<var>S</var>) 
       <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①⑦">AlignOf</a>(<var>S</var>) 
+      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①⑧">AlignOf</a>(<var>S</var>) 
      <tr class="algorithm" data-algorithm="alignment of a matrix with C columns and R rows">
       <td><a data-link-type="dfn" href="#matrix" id="ref-for-matrix①⓪">mat</a>CxR&lt;T> 
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①⑧">AlignOf</a>(<var>S</var>) 
       <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①⑨">AlignOf</a>(<var>S</var>) 
+      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②⓪">AlignOf</a>(<var>S</var>) 
      <tr class="algorithm" data-algorithm="alignment of an array">
       <td><a data-link-type="dfn" href="#array" id="ref-for-array①③">array</a>&lt;T, N> 
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②⓪">AlignOf</a>(<var>S</var>) 
-      <td><a data-link-type="dfn" href="#roundup" id="ref-for-roundup⑥">roundUp</a>(16, <a data-link-type="dfn" href="#alignof" id="ref-for-alignof②①">AlignOf</a>(<var>S</var>)) 
+      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②①">AlignOf</a>(<var>S</var>) 
+      <td><a data-link-type="dfn" href="#roundup" id="ref-for-roundup⑧">roundUp</a>(16, <a data-link-type="dfn" href="#alignof" id="ref-for-alignof②②">AlignOf</a>(<var>S</var>)) 
      <tr class="algorithm" data-algorithm="alignment of an runtime-sized array">
       <td>array&lt;T> 
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②②">AlignOf</a>(<var>S</var>) 
-      <td><a data-link-type="dfn" href="#roundup" id="ref-for-roundup⑦">roundUp</a>(16, <a data-link-type="dfn" href="#alignof" id="ref-for-alignof②③">AlignOf</a>(<var>S</var>)) 
+      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②③">AlignOf</a>(<var>S</var>) 
+      <td><a data-link-type="dfn" href="#roundup" id="ref-for-roundup⑨">roundUp</a>(16, <a data-link-type="dfn" href="#alignof" id="ref-for-alignof②④">AlignOf</a>(<var>S</var>)) 
      <tr class="algorithm" data-algorithm="alignment of a structure">
       <td><a data-link-type="dfn" href="#structure" id="ref-for-structure②②">struct</a> <var>S</var> 
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②④">AlignOf</a>(<var>S</var>) 
-      <td><a data-link-type="dfn" href="#roundup" id="ref-for-roundup⑧">roundUp</a>(16, <a data-link-type="dfn" href="#alignof" id="ref-for-alignof②⑤">AlignOf</a>(<var>S</var>))<br> 
+      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②⑤">AlignOf</a>(<var>S</var>) 
+      <td><a data-link-type="dfn" href="#roundup" id="ref-for-roundup①⓪">roundUp</a>(16, <a data-link-type="dfn" href="#alignof" id="ref-for-alignof②⑥">AlignOf</a>(<var>S</var>))<br> 
    </table>
    <p>Structure members of type <var>T</var> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪③">must</a> have a byte offset
 from the start of the structure that is a multiple of the <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof③">RequiredAlignOf</a>(<var>T</var>, <var>C</var>)
@@ -10937,19 +10936,19 @@ for the address space <var>C</var>:</p>
    <p class="algorithm" data-algorithm="structure member minimum alignment"> <a data-link-type="dfn" href="#offsetofmember" id="ref-for-offsetofmember⑥">OffsetOfMember</a>(<var>S</var>, <var>M</var>) = <var>k</var> × <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof④">RequiredAlignOf</a>(<var>T</var>, C)<br> Where <var>k</var> is a positive integer and <var>M</var> is a member of structure <var>S</var> with type <var>T</var> </p>
    <p>Arrays of element type <var>T</var> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪④">must</a> have an <a data-link-type="dfn" href="#element-stride" id="ref-for-element-stride">element stride</a> that is a
 multiple of the <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof⑤">RequiredAlignOf</a>(<var>T</var>, <var>C</var>) for the address space <var>C</var>:</p>
-   <p class="algorithm" data-algorithm="array element minimum alignment"> <a data-link-type="dfn" href="#strideof" id="ref-for-strideof③">StrideOf</a>(array&lt;<var>T</var>, <var>N</var>>) = <var>k</var> × <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof⑥">RequiredAlignOf</a>(<var>T</var>, C)<br> <a data-link-type="dfn" href="#strideof" id="ref-for-strideof④">StrideOf</a>(array&lt;<var>T</var>>) = <var>k</var> × <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof⑦">RequiredAlignOf</a>(<var>T</var>, C)<br> Where <var>k</var> is a positive integer </p>
+   <p class="algorithm" data-algorithm="array element minimum alignment"> <a data-link-type="dfn" href="#strideof" id="ref-for-strideof⑥">StrideOf</a>(array&lt;<var>T</var>, <var>N</var>>) = <var>k</var> × <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof⑥">RequiredAlignOf</a>(<var>T</var>, C)<br> <a data-link-type="dfn" href="#strideof" id="ref-for-strideof⑦">StrideOf</a>(array&lt;<var>T</var>>) = <var>k</var> × <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof⑦">RequiredAlignOf</a>(<var>T</var>, C)<br> Where <var>k</var> is a positive integer </p>
    <p class="note" role="note"><span class="marker">Note:</span> <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof⑧">RequiredAlignOf</a>(<var>T</var>, <var>C</var>) does not impose any additional restrictions
 on the values permitted for an <a data-link-type="dfn" href="#attribute-align" id="ref-for-attribute-align⑤">align</a> attribute, nor does it affect the rules
-of <a data-link-type="dfn" href="#alignof" id="ref-for-alignof②⑥">AlignOf</a>(<var>T</var>). Data is laid out with the rules defined in previous
+of <a data-link-type="dfn" href="#alignof" id="ref-for-alignof②⑦">AlignOf</a>(<var>T</var>). Data is laid out with the rules defined in previous
 sections and then the resulting layout is validated against the <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof⑨">RequiredAlignOf</a>(<var>T</var>, <var>C</var>) rules.</p>
    <p>The <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform①①">uniform</a> address space also requires that:</p>
    <ul>
     <li data-md>
      <p>Array elements are aligned to 16 byte boundaries.
-That is, <a data-link-type="dfn" href="#strideof" id="ref-for-strideof⑤">StrideOf</a>(array&lt;<var>T</var>,<var>N</var>>) = 16 × <var>k</var>’ for some positive integer <var>k</var>’.</p>
+That is, <a data-link-type="dfn" href="#strideof" id="ref-for-strideof⑧">StrideOf</a>(array&lt;<var>T</var>,<var>N</var>>) = 16 × <var>k</var>’ for some positive integer <var>k</var>’.</p>
     <li data-md>
      <p>If a structure member itself has a structure type <code>S</code>, then the number of
-bytes between the start of that member and the start of any following member <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪⑤">must</a> be at least <a data-link-type="dfn" href="#roundup" id="ref-for-roundup⑨">roundUp</a>(16, <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof②①">SizeOf</a>(S)).</p>
+bytes between the start of that member and the start of any following member <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪⑤">must</a> be at least <a data-link-type="dfn" href="#roundup" id="ref-for-roundup①①">roundUp</a>(16, <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①④">SizeOf</a>(S)).</p>
    </ul>
    <p class="note" role="note"><span class="marker">Note:</span> The following examples show how to use <a data-link-type="dfn" href="#attribute-align" id="ref-for-attribute-align⑥">align</a> and <a data-link-type="dfn" href="#attribute-size" id="ref-for-attribute-size⑥">size</a> attributes
 on structure members to satisfy layout requirements for uniform buffers.
@@ -11338,12 +11337,20 @@ and potentially triggering a <a data-link-type="dfn" href="#uniformity-failure" 
       <th>Parameter Tag
       <th>Description 
     <tbody>
-     <tr class="algorithm" data-algorithm="ParameterRequiredToBeUniform tag">
+     <tr class="algorithm" data-algorithm="ParameterRequiredToBeUniformValue tag">
       <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="parameterrequiredtobeuniforms">ParameterRequiredToBeUniform.S</dfn>,<br> where <var>S</var> is one of the severities: <a data-link-type="dfn" href="#severity-error" id="ref-for-severity-error⑦">error</a>, <a data-link-type="dfn" href="#severity-warning" id="ref-for-severity-warning⑤">warning</a>, or <a data-link-type="dfn" href="#severity-info" id="ref-for-severity-info⑥">info</a>. 
       <td>
        The parameter must be a <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value④">uniform value</a>.
+          If the parameter type is a pointer, the memory view, but not
+          necessarily its contents, must be uniform.
           Otherwise a diagnostic with severity <var>S</var> will be triggered. 
        <p>Associated with a <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set①">potential-trigger-set</a>.</p>
+     <tr class="algorithm" data-algorithm="ParameterContentsRequiredToBeUniform tag">
+      <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="parametercontentsrequiredtobeuniforms">ParameterContentsRequiredToBeUniform.S</dfn>,<br> where <var>S</var> is one of the severities: <a data-link-type="dfn" href="#severity-error" id="ref-for-severity-error⑧">error</a>, <a data-link-type="dfn" href="#severity-warning" id="ref-for-severity-warning⑥">warning</a>, or <a data-link-type="dfn" href="#severity-info" id="ref-for-severity-info⑦">info</a>. 
+      <td>
+       The value stored in the memory pointed to by the pointer parameter must be a <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value⑤">uniform value</a>.
+          Otherwise a diagnostic with severity <var>S</var> will be triggered. 
+       <p>Associated with a <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set②">potential-trigger-set</a>.</p>
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="parameternorestriction">ParameterNoRestriction</dfn> 
       <td>The parameter value has no uniformity requirement. 
@@ -11356,8 +11363,9 @@ and potentially triggering a <a data-link-type="dfn" href="#uniformity-failure" 
       <th>Description 
     <tbody>
      <tr>
-      <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="parameterreturnrequiredtobeuniform">ParameterReturnRequiredToBeUniform</dfn> 
-      <td>The parameter <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪⑦">must</a> be a <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value⑤">uniform value</a> in order for the <a data-link-type="dfn" href="#return-value" id="ref-for-return-value⑧">return value</a> to be a uniform value. 
+      <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="parameterreturncontentsrequiredtobeuniform">ParameterReturnContentsRequiredToBeUniform</dfn> 
+      <td>The parameter <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪⑦">must</a> be a <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value⑥">uniform value</a> in order for the <a data-link-type="dfn" href="#return-value" id="ref-for-return-value⑧">return value</a> to be a uniform value.
+      If the parameter is a pointer, then the values stored in the memory pointed to by the pointer must also be <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value⑦">uniform</a>. 
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="parameterreturnnorestriction">ParameterReturnNoRestriction</dfn> 
       <td>The parameter value has no uniformity requirement. 
@@ -11371,7 +11379,7 @@ and potentially triggering a <a data-link-type="dfn" href="#uniformity-failure" 
     <tbody>
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="pointerparametermaybenonuniform">PointerParameterMayBeNonUniform</dfn> 
-      <td>The value stored in the memory pointed to by the pointer parameter may be <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value⑥">non-uniform</a> after the function call. 
+      <td>The value stored in the memory pointed to by the pointer parameter may be <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value⑧">non-uniform</a> after the function call. 
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="pointerparameternorestriction">PointerParameterNoRestriction</dfn> 
       <td>The uniformity of the value stored in the memory pointed to by the pointer parameter is unaffected by the function call. 
@@ -11386,7 +11394,7 @@ and potentially triggering a <a data-link-type="dfn" href="#uniformity-failure" 
 Collectively these are called the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="requiredtobeuniforms">RequiredToBeUniform.S</dfn> nodes.</p>
        <ul>
         <li data-md>
-         <p>Each such node is associated with a <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set②">potential-trigger-set</a>, which is initially empty.</p>
+         <p>Each such node is associated with a <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set③">potential-trigger-set</a>, which is initially empty.</p>
        </ul>
       <li data-md>
        <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="maybenonuniform">MayBeNonUniform</dfn></p>
@@ -11402,8 +11410,13 @@ Collectively these are called the <dfn class="dfn-paneled" data-dfn-type="dfn" d
      <ul>
       <li data-md>
        <p>For each formal parameter that is a pointer in the <a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function①③">function</a> address space,
-create a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="value_return_i">Value_return_i</dfn> node.
-This represents the function’s effect on the uniformity of the value pointed to by the <em>i</em><sup>th</sup> parameter.</p>
+create the following nodes:</p>
+       <ul>
+        <li data-md>
+         <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="param_i_contents">param_i_contents</dfn>: this represents the uniformity of the contents of the memory view.</p>
+        <li data-md>
+         <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="value_return_i_contents">Value_return_i_contents</dfn>: this represents the function’s effects on the uniformity of the contents of the memory view.</p>
+       </ul>
      </ul>
     <li data-md>
      <p>Walk over the syntax of the function, adding nodes and edges to the graph following the rules of the next sections (<a href="#func-var-value-analysis">§ 14.2.5 Function-scope Variable Value Analysis</a>, <a href="#uniformity-statements">§ 14.2.6 Uniformity Rules for Statements</a>, <a href="#uniformity-function-calls">§ 14.2.7 Uniformity Rules for Function Calls</a>, <a href="#uniformity-expressions">§ 14.2.8 Uniformity Rules for Expressions</a>), using <a data-link-type="dfn" href="#cf_start" id="ref-for-cf_start">CF_start</a> as the starting control-flow for the function’s body.</p>
@@ -11426,14 +11439,14 @@ This represents the function’s effect on the uniformity of the value pointed t
        <p>The <a data-link-type="dfn" href="#pointer-parameter-tag" id="ref-for-pointer-parameter-tag①">pointer parameter tag</a> for each <a data-link-type="dfn" href="#param_i" id="ref-for-param_i②">param_i</a>, if it exists, is initialized to <a data-link-type="dfn" href="#pointerparameternorestriction" id="ref-for-pointerparameternorestriction">PointerParameterNoRestriction</a>.</p>
      </ul>
     <li data-md>
-     <p>For each severity <em>S</em> in the order {<a data-link-type="dfn" href="#severity-error" id="ref-for-severity-error⑧">error</a>, <a data-link-type="dfn" href="#severity-warning" id="ref-for-severity-warning⑥">warning</a>, <a data-link-type="dfn" href="#severity-info" id="ref-for-severity-info⑦">info</a>}, perform the following:</p>
+     <p>For each severity <em>S</em> in the order {<a data-link-type="dfn" href="#severity-error" id="ref-for-severity-error⑨">error</a>, <a data-link-type="dfn" href="#severity-warning" id="ref-for-severity-warning⑦">warning</a>, <a data-link-type="dfn" href="#severity-info" id="ref-for-severity-info⑧">info</a>}, perform the following:</p>
      <ul>
       <li data-md>
        <p>Let <em>R.S</em> be the set of unvisited nodes reachable from <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms">RequiredToBeUniform.S</a>.</p>
       <li data-md>
        <p>Mark the <a data-link-type="dfn" href="#interior-nodes" id="ref-for-interior-nodes">interior nodes</a> in <em>R.S</em> as visited.</p>
       <li data-md>
-       <p>Let <em>PTS</em> be the <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set③">potential-trigger-set</a> associated with <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms①">RequiredToBeUniform.S</a>.</p>
+       <p>Let <em>PTS</em> be the <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set④">potential-trigger-set</a> associated with <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms①">RequiredToBeUniform.S</a>.</p>
       <li data-md>
        <p>If <em>R.S</em> includes the node <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform⑧">MayBeNonUniform</a>, then trigger a <a data-link-type="dfn" href="#uniformity-failure" id="ref-for-uniformity-failure④">uniformity failure</a>:</p>
        <ul>
@@ -11445,10 +11458,13 @@ This represents the function’s effect on the uniformity of the value pointed t
        <ul>
         <li data-md>
          <p>If <em>R.S</em> includes <a data-link-type="dfn" href="#cf_start" id="ref-for-cf_start①">CF_start</a>, and the <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag②">call site tag</a> has not been updated since initialization, then
- set the <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag③">call site tag</a> to <a data-link-type="dfn" href="#callsiterequiredtobeuniforms" id="ref-for-callsiterequiredtobeuniforms">CallSiteRequiredToBeUniform.S</a>, and set its <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set④">potential-trigger-set</a> to <em>PTS</em>.</p>
+ set the <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag③">call site tag</a> to <a data-link-type="dfn" href="#callsiterequiredtobeuniforms" id="ref-for-callsiterequiredtobeuniforms">CallSiteRequiredToBeUniform.S</a>, and set its <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set⑤">potential-trigger-set</a> to <em>PTS</em>.</p>
         <li data-md>
          <p>For each <a data-link-type="dfn" href="#param_i" id="ref-for-param_i③">param_i</a> in <em>R.S</em>, if its corresponding <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag②">parameter tag</a> has not been updated since initialization, then
- set that tag to <a data-link-type="dfn" href="#parameterrequiredtobeuniforms" id="ref-for-parameterrequiredtobeuniforms">ParameterRequiredToBeUniform.S</a>, and set its <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set⑤">potential-trigger-set</a> to <em>PTS</em>.</p>
+ set that tag to <a data-link-type="dfn" href="#parameterrequiredtobeuniforms" id="ref-for-parameterrequiredtobeuniforms">ParameterRequiredToBeUniform.S</a>, and set its <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set⑥">potential-trigger-set</a> to <em>PTS</em>.</p>
+        <li data-md>
+         <p>For each <a data-link-type="dfn" href="#param_i_contents" id="ref-for-param_i_contents">param_i_contents</a> in <em>R.S</em>, if its corresponding <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag③">parameter tag</a> has not been updated since initialization, then
+ set that tag to <a data-link-type="dfn" href="#parametercontentsrequiredtobeuniforms" id="ref-for-parametercontentsrequiredtobeuniforms">ParameterContentsRequiredToBeUniform.S</a>, and set its <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set⑦">potential-trigger-set</a> to <em>PTS</em>.</p>
        </ul>
      </ul>
     <li data-md>
@@ -11459,13 +11475,10 @@ This represents the function’s effect on the uniformity of the value pointed t
       <li data-md>
        <p>If <em>VR</em> includes <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform⑨">MayBeNonUniform</a>, then set the <a data-link-type="dfn" href="#function-tag" id="ref-for-function-tag②">function tag</a> to <a data-link-type="dfn" href="#returnvaluemaybenonuniform" id="ref-for-returnvaluemaybenonuniform">ReturnValueMayBeNonUniform</a>.</p>
       <li data-md>
-       <p>For each <a data-link-type="dfn" href="#param_i" id="ref-for-param_i④">param_i</a> in <em>VR</em>, set the corresponding <a data-link-type="dfn" href="#parameter-return-tag" id="ref-for-parameter-return-tag②">parameter return tag</a> to <a data-link-type="dfn" href="#parameterreturnrequiredtobeuniform" id="ref-for-parameterreturnrequiredtobeuniform">ParameterReturnRequiredToBeUniform</a>.</p>
-      <li data-md>
-       <p class="issue" id="issue-3fbfcd8b"><a class="self-link" href="#issue-3fbfcd8b"></a> <a href="https://github.com/gpuweb/gpuweb/issues/3677">#3677</a> For pointer parameters, handle the distinction between uniformity of the pointer
- value and the uniformity of the contents of the memory pointed at.</p>
+       <p>For each <a data-link-type="dfn" href="#param_i" id="ref-for-param_i④">param_i</a> in <em>VR</em>, set the corresponding <a data-link-type="dfn" href="#parameter-return-tag" id="ref-for-parameter-return-tag②">parameter return tag</a> to <a data-link-type="dfn" href="#parameterreturncontentsrequiredtobeuniform" id="ref-for-parameterreturncontentsrequiredtobeuniform">ParameterReturnContentsRequiredToBeUniform</a>.</p>
      </ul>
     <li data-md>
-     <p>For each <a data-link-type="dfn" href="#value_return_i" id="ref-for-value_return_i">Value_return_i</a> node, let <em>VRi</em> be the set of nodes reachable from <a data-link-type="dfn" href="#value_return_i" id="ref-for-value_return_i①">Value_return_i</a>.</p>
+     <p>For each <a data-link-type="dfn" href="#value_return_i_contents" id="ref-for-value_return_i_contents">Value_return_i_contents</a> node, let <em>VRi</em> be the set of nodes reachable from <a data-link-type="dfn" href="#value_return_i_contents" id="ref-for-value_return_i_contents①">Value_return_i_contents</a>.</p>
      <ul>
       <li data-md>
        <p>If <em>VRi</em> includes <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①⓪">MayBeNonUniform</a>, set the corresponding <a data-link-type="dfn" href="#pointer-parameter-tag" id="ref-for-pointer-parameter-tag②">pointer parameter tag</a> to <a data-link-type="dfn" href="#pointerparametermaybenonuniform" id="ref-for-pointerparametermaybenonuniform">PointerParameterMayBeNonUniform</a>.</p>
@@ -11473,14 +11486,15 @@ This represents the function’s effect on the uniformity of the value pointed t
    </ul>
    <p class="note" role="note"><span class="marker">Note:</span> The entire graph can be destroyed at this point. The tags described above are all that we need to remember to analyze callers of this function.
 However, the graph contains information that can be used to provide more informative diagnostics.
-For example a value in a one function may not be provably <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value⑦">uniform</a>,
+For example a value in a one function may not be provably <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value⑨">uniform</a>,
 which then contributes to triggering a uniformity failure in another function.
 An informative diagnostic would describe the non-uniform value, as well as the function call at the diagnostic’s <a data-link-type="dfn" href="#diagnostic-triggering-location" id="ref-for-diagnostic-triggering-location④">triggered location</a>.</p>
    <h4 class="heading settled" data-level="14.2.4" id="pointer-desugar"><span class="secno">14.2.4. </span><span class="content">Pointer Desugaring</span><a class="self-link" href="#pointer-desugar"></a></h4>
    <p>Each <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter①⑨">parameter</a> of <a data-link-type="dfn" href="#pointer-type" id="ref-for-pointer-type⑨">pointer type</a> in the <a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function①④">function</a> address space is desugared as a local variable declaration
 whose initial value is equivalent to dereferencing the parameter.
 That is, function address space pointers are viewed as aliases to a local
-variable declaration.</p>
+variable declaration.
+The initial value assignment produces an edge to <a data-link-type="dfn" href="#param_i_contents" id="ref-for-param_i_contents①">param_i_contents</a> for <em>i</em><sup>th</sup> parameter (i.e. <em>V(e)</em> is <a data-link-type="dfn" href="#param_i_contents" id="ref-for-param_i_contents②">param_i_contents</a>).</p>
    <p>Each <a data-link-type="dfn" href="#let-declaration" id="ref-for-let-declaration⑨">let-declaration</a>, <em>L</em>, with an <a data-link-type="dfn" href="#effective-value-type" id="ref-for-effective-value-type⑨">effective-value-type</a> that is a <a data-link-type="dfn" href="#pointer-type" id="ref-for-pointer-type①⓪">pointer type</a> is desugared as follows:</p>
    <ul>
     <li data-md>
@@ -11809,7 +11823,7 @@ Similarly, <code>(CF1, E) => (CF2, V)</code> means "run the analysis on expressi
       <td>
       <td>
       <td><em>CF</em> 
-      <td> For each <a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function①⑥">function</a> address space pointer parameter <em>i</em>, <a data-link-type="dfn" href="#value_return_i" id="ref-for-value_return_i②">Value_return_i</a> -> <em>Vin</em>(<em>prev</em>) (see <a href="#func-var-value-analysis">§ 14.2.5 Function-scope Variable Value Analysis</a>) 
+      <td> For each <a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function①⑥">function</a> address space pointer parameter <em>i</em>, <a data-link-type="dfn" href="#value_return_i_contents" id="ref-for-value_return_i_contents②">Value_return_i_contents</a> -> <em>Vin</em>(<em>prev</em>) (see <a href="#func-var-value-analysis">§ 14.2.5 Function-scope Variable Value Analysis</a>) 
      <tr>
       <td class="nowrap">return <em>e</em>; 
       <td>
@@ -11817,7 +11831,7 @@ Similarly, <code>(CF1, E) => (CF2, V)</code> means "run the analysis on expressi
       <td><em>CF'</em> 
       <td>
        <a data-link-type="dfn" href="#value_return" id="ref-for-value_return②">Value_return</a> -> <em>V</em> 
-       <p>For each <a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function①⑦">function</a> address space pointer parameter <em>i</em>, <a data-link-type="dfn" href="#value_return_i" id="ref-for-value_return_i③">Value_return_i</a> -> <em>Vin</em>(<em>prev</em>) (see <a href="#func-var-value-analysis">§ 14.2.5 Function-scope Variable Value Analysis</a>)</p>
+       <p>For each <a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function①⑦">function</a> address space pointer parameter <em>i</em>, <a data-link-type="dfn" href="#value_return_i_contents" id="ref-for-value_return_i_contents③">Value_return_i_contents</a> -> <em>Vin</em>(<em>prev</em>) (see <a href="#func-var-value-analysis">§ 14.2.5 Function-scope Variable Value Analysis</a>)</p>
      <tr>
       <td class="nowrap"><em>e2</em> = <em>e1</em>; 
       <td>
@@ -11868,7 +11882,7 @@ being the same as input control flow node.</p>
       <li data-md>
        <p>Add an edge from <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms②">RequiredToBeUniform.S</a> to the last <a data-link-type="dfn" href="#cf_i" id="ref-for-cf_i">CF_i</a>.</p>
       <li data-md>
-       <p>Add the members of the <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set⑥">potential-trigger-set</a> of the <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag⑤">call site tag</a> to the potential-trigger-set associated with <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms③">RequiredToBeUniform.S</a>.</p>
+       <p>Add the members of the <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set⑧">potential-trigger-set</a> of the <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag⑤">call site tag</a> to the potential-trigger-set associated with <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms③">RequiredToBeUniform.S</a>.</p>
      </ul>
     <li data-md>
      <p>Otherwise add an edge from <a data-link-type="dfn" href="#cf_after" id="ref-for-cf_after">CF_after</a> to the last <a data-link-type="dfn" href="#cf_i" id="ref-for-cf_i①">CF_i</a></p>
@@ -11880,19 +11894,23 @@ being the same as input control flow node.</p>
      <p>For each argument <em>i</em>:</p>
      <ul>
       <li data-md>
-       <p>If the corresponding <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag③">parameter tag</a> is <a data-link-type="dfn" href="#parameterrequiredtobeuniforms" id="ref-for-parameterrequiredtobeuniforms①">ParameterRequiredToBeUniform.S</a>, then:</p>
+       <p>If the corresponding <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag④">parameter tag</a> is <a data-link-type="dfn" href="#parameterrequiredtobeuniforms" id="ref-for-parameterrequiredtobeuniforms①">ParameterRequiredToBeUniform.S</a>, then:</p>
        <ul>
         <li data-md>
          <p>Add an edge from <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms④">RequiredToBeUniform.S</a> to <a data-link-type="dfn" href="#arg_i" id="ref-for-arg_i">arg_i</a>.</p>
         <li data-md>
-         <p>Add the members of the <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set⑦">potential-trigger-set</a> of the <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag④">parameter tag</a> to the potential-trigger-set associated with <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms⑤">RequiredToBeUniform.S</a>.</p>
+         <p>Add the members of the <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set⑨">potential-trigger-set</a> of the <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag⑤">parameter tag</a> to the potential-trigger-set associated with <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms⑤">RequiredToBeUniform.S</a>.</p>
        </ul>
       <li data-md>
-       <p>If the <a data-link-type="dfn" href="#parameter-return-tag" id="ref-for-parameter-return-tag③">parameter return tag</a> is <a data-link-type="dfn" href="#parameterreturnrequiredtobeuniform" id="ref-for-parameterreturnrequiredtobeuniform①">ParameterReturnRequiredToBeUniform</a>, then add an edge from <a data-link-type="dfn" href="#result" id="ref-for-result②">Result</a> to <a data-link-type="dfn" href="#arg_i" id="ref-for-arg_i①">arg_i</a></p>
+       <p>If the <a data-link-type="dfn" href="#parameter-return-tag" id="ref-for-parameter-return-tag③">parameter return tag</a> is <a data-link-type="dfn" href="#parameterreturncontentsrequiredtobeuniform" id="ref-for-parameterreturncontentsrequiredtobeuniform①">ParameterReturnContentsRequiredToBeUniform</a>, then add an edge from <a data-link-type="dfn" href="#result" id="ref-for-result②">Result</a> to <a data-link-type="dfn" href="#arg_i" id="ref-for-arg_i①">arg_i</a></p>
       <li data-md>
        <p>If the corresponding parameter has a <a data-link-type="dfn" href="#pointer-parameter-tag" id="ref-for-pointer-parameter-tag③">pointer parameter tag</a> of <a data-link-type="dfn" href="#pointerparametermaybenonuniform" id="ref-for-pointerparametermaybenonuniform①">PointerParameterMayBeNonUniform</a>, then add an edge from <em>Vout</em>(<em>call</em>) to <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①②">MayBeNonUniform</a></p>
       <li data-md>
        <p>If the parameter is a pointer in the <a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function①⑨">function</a> address space, add an edge from <em>Vout</em>(<em>call</em>) to each corresponding <a data-link-type="dfn" href="#arg_i" id="ref-for-arg_i②">arg_i</a> for the reachable parameters recorded previously</p>
+       <ul>
+        <li data-md>
+         <p>If the <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag⑥">parameter tag</a> is <a data-link-type="dfn" href="#parametercontentsrequiredtobeuniforms" id="ref-for-parametercontentsrequiredtobeuniforms①">ParameterContentsRequiredToBeUniform.S</a>, add an edge from <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms⑥">RequiredToBeUniform.S</a> to <em>Vout</em>(<em>call</em>)</p>
+       </ul>
      </ul>
    </ul>
    <p class="note" role="note"><span class="marker">Note:</span> Refer to <a href="#func-var-value-analysis">§ 14.2.5 Function-scope Variable Value Analysis</a> for the definition of <em>Vout</em>(<em>call</em>).</p>
@@ -11907,9 +11925,9 @@ being the same as input control flow node.</p>
      <p>For each parameter:</p>
      <ul>
       <li data-md>
-       <p>a <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag⑤">parameter tag</a> of <a data-link-type="dfn" href="#parameternorestriction" id="ref-for-parameternorestriction①">ParameterNoRestriction</a>.</p>
+       <p>a <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag⑦">parameter tag</a> of <a data-link-type="dfn" href="#parameternorestriction" id="ref-for-parameternorestriction①">ParameterNoRestriction</a>.</p>
       <li data-md>
-       <p>a <a data-link-type="dfn" href="#parameter-return-tag" id="ref-for-parameter-return-tag④">parameter return tag</a> of <a data-link-type="dfn" href="#parameterreturnrequiredtobeuniform" id="ref-for-parameterreturnrequiredtobeuniform②">ParameterReturnRequiredToBeUniform</a>.</p>
+       <p>a <a data-link-type="dfn" href="#parameter-return-tag" id="ref-for-parameter-return-tag④">parameter return tag</a> of <a data-link-type="dfn" href="#parameterreturncontentsrequiredtobeuniform" id="ref-for-parameterreturncontentsrequiredtobeuniform②">ParameterReturnContentsRequiredToBeUniform</a>.</p>
      </ul>
    </ul>
    <p>Here is the list of exceptions:</p>
@@ -11920,15 +11938,15 @@ being the same as input control flow node.</p>
       <li data-md>
        <p>Has a <a data-link-type="dfn" href="#function-tag" id="ref-for-function-tag⑤">function tag</a> of <a data-link-type="dfn" href="#norestriction" id="ref-for-norestriction②">NoRestriction</a>.</p>
       <li data-md>
-       <p>Has a <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag⑦">call site tag</a> of <a data-link-type="dfn" href="#callsiterequiredtobeuniforms" id="ref-for-callsiterequiredtobeuniforms②">CallSiteRequiredToBeUniform.error</a>, with <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set⑧">potential-trigger-set</a> consisting of an unnamed <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule①①">triggering rule</a>.</p>
+       <p>Has a <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag⑦">call site tag</a> of <a data-link-type="dfn" href="#callsiterequiredtobeuniforms" id="ref-for-callsiterequiredtobeuniforms②">CallSiteRequiredToBeUniform.error</a>, with <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set①⓪">potential-trigger-set</a> consisting of an unnamed <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule①①">triggering rule</a>.</p>
        <ul>
         <li data-md>
          <p class="note" role="note"><span class="marker">Note:</span> The triggering rule has no name, and so it cannot be filtered.</p>
        </ul>
       <li data-md>
        <p>Additionally for the case of a call to <a href="#workgroupUniformLoad-builtin">workgroupUniformLoad</a>,
-the parameter <code>p</code> has a <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag⑥">parameter tag</a> of <a data-link-type="dfn" href="#parameterrequiredtobeuniforms" id="ref-for-parameterrequiredtobeuniforms②">ParameterRequiredToBeUniform.error</a>,
-with <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set⑨">potential-trigger-set</a> consisting of an unnamed <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule①②">triggering rule</a>.</p>
+the parameter <code>p</code> has a <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag⑧">parameter tag</a> of <a data-link-type="dfn" href="#parameterrequiredtobeuniforms" id="ref-for-parameterrequiredtobeuniforms②">ParameterRequiredToBeUniform.error</a>,
+with <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set①①">potential-trigger-set</a> consisting of an unnamed <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule①②">triggering rule</a>.</p>
      </ul>
     <li data-md>
      <p>A call to a function in <a href="#derivative-builtin-functions">§ 17.6 Derivative Built-in Functions</a>, <a href="#texturesample">§ 17.7.8 textureSample</a>, <a href="#texturesamplebias">§ 17.7.9 textureSampleBias</a>, and <a href="#texturesamplecompare">§ 17.7.10 textureSampleCompare</a>:</p>
@@ -11946,11 +11964,11 @@ with <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential
           <li data-md>
            <p>If <em>S</em> is the severity <a data-link-type="dfn" href="#severity-off" id="ref-for-severity-off①">off</a>, the call site tag is <a data-link-type="dfn" href="#callsitenorestriction" id="ref-for-callsitenorestriction②">CallSiteNoRestriction</a>.</p>
           <li data-md>
-           <p>Otherwise the call site tag is <a data-link-type="dfn" href="#callsiterequiredtobeuniforms" id="ref-for-callsiterequiredtobeuniforms③">CallSiteRequiredToBeUniform.S</a>, with <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set①⓪">potential-trigger-set</a> consisting of a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity④">derivative_uniformity</a> element.</p>
+           <p>Otherwise the call site tag is <a data-link-type="dfn" href="#callsiterequiredtobeuniforms" id="ref-for-callsiterequiredtobeuniforms③">CallSiteRequiredToBeUniform.S</a>, with <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set①②">potential-trigger-set</a> consisting of a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity④">derivative_uniformity</a> element.</p>
          </ul>
         <li data-md>
          <p>If there is no such <em>DF</em>,
-the call site tag is <a data-link-type="dfn" href="#callsiterequiredtobeuniforms" id="ref-for-callsiterequiredtobeuniforms④">CallSiteRequiredToBeUniform.error</a>, with <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set①①">potential-trigger-set</a> consisting of a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity⑤">derivative_uniformity</a> element.</p>
+the call site tag is <a data-link-type="dfn" href="#callsiterequiredtobeuniforms" id="ref-for-callsiterequiredtobeuniforms④">CallSiteRequiredToBeUniform.error</a>, with <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set①③">potential-trigger-set</a> consisting of a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity⑤">derivative_uniformity</a> element.</p>
        </ul>
      </ul>
    </ul>
@@ -12002,45 +12020,53 @@ after the function call.</p>
        <p class="note" role="note"><span class="marker">Note:</span> <em>X</em> is equivalent to <em>Vout</em>(<em>prev</em>) for "x"<br> (see <a href="#func-var-value-analysis">§ 14.2.5 Function-scope Variable Value Analysis</a>)</p>
      <tr>
       <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves③④">resolving</a> to function-scope variable "x",
+      where "x" is the desugared pointer parameter <em>i</em>, and
       where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier⑦">root identifier</a> of a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view①⑨">memory view</a> expression, <em>MVE</em>, and the <a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule⑤">load rule</a> is not invoked on <em>MVE</em> during <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking⑥">type checking</a> 
+      <td>
+      <td class>
+      <td class="nowrap"><em>CF</em>, <a data-link-type="dfn" href="#param_i" id="ref-for-param_i⑤">param_i</a> 
+      <td class>
+     <tr>
+      <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves③⑤">resolving</a> to function-scope variable "x",
+      where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier⑧">root identifier</a> of a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view②⓪">memory view</a> expression, <em>MVE</em>, and the <a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule⑥">load rule</a> is not invoked on <em>MVE</em> during <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking⑦">type checking</a> 
       <td>
       <td class>
       <td class="nowrap"><em>CF</em>, <em>CF</em> 
       <td class>
      <tr>
-      <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves③⑤">resolving</a> to <a data-link-type="dfn" href="#const-declaration" id="ref-for-const-declaration⑨">const-declaration</a>, <a data-link-type="dfn" href="#override-declaration" id="ref-for-override-declaration①⑤">override-declaration</a>, <a data-link-type="dfn" href="#let-declaration" id="ref-for-let-declaration①①">let-declaration</a>, or non-built-in <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter②⓪">formal parameter</a> "x" 
+      <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves③⑥">resolving</a> to <a data-link-type="dfn" href="#const-declaration" id="ref-for-const-declaration⑨">const-declaration</a>, <a data-link-type="dfn" href="#override-declaration" id="ref-for-override-declaration①⑤">override-declaration</a>, <a data-link-type="dfn" href="#let-declaration" id="ref-for-let-declaration①①">let-declaration</a>, or non-built-in <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter②⓪">formal parameter</a> "x" 
       <td><em>Result</em> 
       <td><em>X</em> is the node corresponding to "x" 
       <td class="nowrap"><em>CF</em>, <em>Result</em> 
       <td class="nowrap"><em>Result</em> -> {<em>CF</em>, <em>X</em>} 
      <tr>
-      <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves③⑥">resolving</a> to uniform built-in value "x" 
+      <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves③⑦">resolving</a> to uniform built-in value "x" 
       <td>
       <td>
       <td class="nowrap"><em>CF</em>, <em>CF</em> 
       <td>
      <tr>
-      <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves③⑦">resolving</a> to non-uniform built-in value "x" 
+      <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves③⑧">resolving</a> to non-uniform built-in value "x" 
       <td>
       <td>
       <td class="nowrap"><em>CF</em>,<br> <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①③">MayBeNonUniform</a> 
       <td>
      <tr>
-      <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves③⑧">resolving</a> to read-only module-scope variable "x" 
+      <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves③⑨">resolving</a> to read-only module-scope variable "x" 
       <td>
       <td>
       <td class="nowrap"><em>CF</em>, <em>CF</em> 
       <td>
      <tr>
-      <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves③⑨">resolving</a> to non-read-only module-scope
-      variable "x" where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier⑧">root identifier</a> of a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view②⓪">memory view</a> expression, <em>MVE</em>, and the <a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule⑥">load rule</a> is invoked on <em>MVE</em> during <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking⑦">type checking</a> 
+      <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves④⓪">resolving</a> to non-read-only module-scope
+      variable "x" where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier⑨">root identifier</a> of a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view②①">memory view</a> expression, <em>MVE</em>, and the <a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule⑦">load rule</a> is invoked on <em>MVE</em> during <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking⑧">type checking</a> 
       <td>
       <td>
       <td class="nowrap"><em>CF</em>,<br> <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①④">MayBeNonUniform</a> 
       <td>
      <tr>
-      <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves④⓪">resolving</a> to non-read-only module-scope
-      variable "x" where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier⑨">root identifier</a> of a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view②①">memory view</a> expression, <em>MVE</em>, and the <a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule⑦">load rule</a> is not invoked on <em>MVE</em> during <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking⑧">type checking</a> 
+      <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves④①">resolving</a> to non-read-only module-scope
+      variable "x" where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier①⓪">root identifier</a> of a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view②②">memory view</a> expression, <em>MVE</em>, and the <a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule⑧">load rule</a> is not invoked on <em>MVE</em> during <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking⑨">type checking</a> 
       <td>
       <td>
       <td class="nowrap"><em>CF</em>,<em>CF</em> 
@@ -12083,7 +12109,7 @@ other non-uniform inputs because the analysis does not analyze the <a data-link-
       <th>New edges 
     <tbody>
      <tr>
-      <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves④①">resolving</a> to function-scope variable "x" 
+      <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves④②">resolving</a> to function-scope variable "x" 
       <td><em>Result</em> 
       <td><em>X</em> is the node corresponding to the value of "x" at the output of the statement containing this expression. 
       <td class="nowrap"><em>CF</em>, <em>Result</em> 
@@ -12091,13 +12117,13 @@ other non-uniform inputs because the analysis does not analyze the <a data-link-
        <em>Result</em> -> {<em>CF</em>, <em>X</em>} 
        <p class="note" role="note"><span class="marker">Note:</span> <em>X</em> is equivalent to <em>Vin</em>(<em>next</em>) for "x"<br> (see <a href="#func-var-value-analysis">§ 14.2.5 Function-scope Variable Value Analysis</a>)</p>
      <tr>
-      <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves④②">resolving</a> to <a data-link-type="dfn" href="#const-declaration" id="ref-for-const-declaration①⓪">const-declaration</a>, <a data-link-type="dfn" href="#override-declaration" id="ref-for-override-declaration①⑥">override-declaration</a>, <a data-link-type="dfn" href="#let-declaration" id="ref-for-let-declaration①②">let-declaration</a>, or <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter②①">formal parameter</a> "x" 
+      <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves④③">resolving</a> to <a data-link-type="dfn" href="#const-declaration" id="ref-for-const-declaration①⓪">const-declaration</a>, <a data-link-type="dfn" href="#override-declaration" id="ref-for-override-declaration①⑥">override-declaration</a>, <a data-link-type="dfn" href="#let-declaration" id="ref-for-let-declaration①②">let-declaration</a>, or <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter②①">formal parameter</a> "x" 
       <td>
       <td><em>X</em> is the node corresponding to "x" 
       <td class="nowrap"><em>CF</em>, <em>X</em> 
       <td>
      <tr>
-      <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves④③">resolving</a> to module-scope variable "x" 
+      <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves④④">resolving</a> to module-scope variable "x" 
       <td>
       <td>
       <td class="nowrap"><em>CF</em>,<br> <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①⑤">MayBeNonUniform</a> 
@@ -12260,7 +12286,7 @@ composite up so that values that are known to be uniform are separate from
 value that are known to be non-uniform.
 In the alternative WGSL below, splitting the two built-in values into separate
 parameters satisfies the uniformity analysis.
-This can be seen by the lack of a path from <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms⑥">RequiredToBeUniform.S</a> to <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①⑨">MayBeNonUniform</a> in the graph.</p>
+This can be seen by the lack of a path from <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms⑦">RequiredToBeUniform.S</a> to <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①⑨">MayBeNonUniform</a> in the graph.</p>
    <div class="example wgsl no-marker" id="example-e980cd5a">
     <a class="self-link" href="#example-e980cd5a"></a>
     <div class="marker">EXAMPLE: Valid alternative WGSL</div>
@@ -12316,9 +12342,9 @@ end of the loop body (CF_after_if).</p>
    <h5 class="heading settled" data-level="14.2.10.5" id="uniformity-example5"><span class="secno">14.2.10.5. </span><span class="content">User-defined Function Calls</span><a class="self-link" href="#uniformity-example5"></a></h5>
    <p>This example is modification of the <a href="#uniformity-example1">first example</a>, but
 uses a user-defined function call.
-The analysis sets the <a data-link-type="dfn" href="#parameter-return-tag" id="ref-for-parameter-return-tag⑤">parameter return tag</a> of both parameters of <code>scale</code> as <a data-link-type="dfn" href="#parameterreturnrequiredtobeuniform" id="ref-for-parameterreturnrequiredtobeuniform③">ParameterReturnRequiredToBeUniform</a>.
+The analysis sets the <a data-link-type="dfn" href="#parameter-return-tag" id="ref-for-parameter-return-tag⑤">parameter return tag</a> of both parameters of <code>scale</code> as <a data-link-type="dfn" href="#parameterreturncontentsrequiredtobeuniform" id="ref-for-parameterreturncontentsrequiredtobeuniform③">ParameterReturnContentsRequiredToBeUniform</a>.
 This leads to the path in <code>main</code> between the return value of the <code>scale</code> function call and the <code>position</code> built-in value.
-That path is a subpath of the overall invalid path from <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms⑦">RequiredToBeUniform.S</a> to <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform②⓪">MayBeNonUniform</a>.</p>
+That path is a subpath of the overall invalid path from <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms⑧">RequiredToBeUniform.S</a> to <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform②⓪">MayBeNonUniform</a>.</p>
    <div class="example wgsl no-marker" id="example-2d91fe99">
     <a class="self-link" href="#example-2d91fe99"></a>
     <div class="marker">EXAMPLE: User-defined function call uniformity WGSL</div>
@@ -12884,11 +12910,11 @@ than performing a multiply followed by an addition.</p>
    <p>In this section, a floating point type may be any of:</p>
    <ul>
     <li data-md>
-     <p>The <a data-link-type="dfn" href="#f32" id="ref-for-f32②⑧">f32</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16①⑦">f16</a>, and <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②①">AbstractFloat</a> types in WGSL.</p>
+     <p>The <a data-link-type="dfn" href="#f32" id="ref-for-f32②②">f32</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16①⑦">f16</a>, and <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②①">AbstractFloat</a> types in WGSL.</p>
     <li data-md>
      <p>A hypothetical type corresponding to a binary format defined by the <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> floating point standard.</p>
    </ul>
-   <p class="note" role="note"><span class="marker">Note:</span> Recall that the <a data-link-type="dfn" href="#f32" id="ref-for-f32②⑨">f32</a> WGSL type corresponds to the IEEE-754 binary32 format, and the <a data-link-type="dfn" href="#f16" id="ref-for-f16①⑧">f16</a> WGSL type corresponds to the IEEE-754 binary16 format.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> Recall that the <a data-link-type="dfn" href="#f32" id="ref-for-f32②③">f32</a> WGSL type corresponds to the IEEE-754 binary32 format, and the <a data-link-type="dfn" href="#f16" id="ref-for-f16①⑧">f16</a> WGSL type corresponds to the IEEE-754 binary16 format.</p>
    <p>When converting a floating point scalar value to an <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar①⑧">integer scalar</a> type:</p>
    <ul>
     <li data-md>
@@ -12910,7 +12936,7 @@ For any real number <var>x</var> with 4294967040 ≤ <var>x</var> ≤ 4294967295
 the f32 value nearest to <var>x</var> is either larger than 429467295 or rounds down to 4294967040.
 Therefore the maximum u32 value resulting from a floating point conversion is 4294967040u.</p>
    <p class="note" role="note"><span class="marker">Note:</span> There are no direct conversions from <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②②">AbstractFloat</a> to an integer scalar type.
-All conversions first convert to another floating point type (<a data-link-type="dfn" href="#f32" id="ref-for-f32③⓪">f32</a> usually).</p>
+All conversions first convert to another floating point type (<a data-link-type="dfn" href="#f32" id="ref-for-f32②④">f32</a> usually).</p>
    <p>When converting a value to a floating point type:</p>
    <ul>
     <li data-md>
@@ -12954,14 +12980,14 @@ All conversions first convert to another floating point type (<a data-link-type=
      </ul>
    </ul>
    <p class="note" role="note"><span class="marker">NOTE:</span> An integer value may lie between two adjacent representable floating point values.
-In particular, the <a data-link-type="dfn" href="#f32" id="ref-for-f32③①">f32</a> type uses 23 explicit fractional bits.
+In particular, the <a data-link-type="dfn" href="#f32" id="ref-for-f32②⑤">f32</a> type uses 23 explicit fractional bits.
 Additionally, when the floating point value is in the normal range (the exponent is neither extreme value), then the mantissa is
 the set of fractional bits together with an extra 1-bit at the most significant position at bit position 23.
 Then, for example, integers 2<sup>28</sup> and 1+2<sup>28</sup> both map to the same floating point value: the difference in the
 least significant 1 bit is not representable by the floating point format.
 This kind of collision occurs for pairs of adjacent integers with a magnitude of at least 2<sup>25</sup>.</p>
    <p class="note" role="note"><span class="marker">Note:</span> The original value is always within range of the destination type when
-the original type is one of <a data-link-type="dfn" href="#i32" id="ref-for-i32③①">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32②④">u32</a> and the destination type is <a data-link-type="dfn" href="#f32" id="ref-for-f32③②">f32</a>.</p>
+the original type is one of <a data-link-type="dfn" href="#i32" id="ref-for-i32③①">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32②④">u32</a> and the destination type is <a data-link-type="dfn" href="#f32" id="ref-for-f32②⑥">f32</a>.</p>
    <p class="note" role="note"><span class="marker">Note:</span> The original value is always within range of the destination type when
 the source type is a floating point type with fewer exponent and mantissa bits than the target floating point type.</p>
    <h2 class="heading settled" data-level="15" id="grammar"><span class="secno">15. </span><span class="content">Keyword and Token Summary</span><a class="self-link" href="#grammar"></a></h2>
@@ -13543,7 +13569,7 @@ See <a href="#function-calls">§ 9.2 Function Calls</a>.</p>
 value of a given type.</p>
    <p>WGSL provides value constructors for all <a data-link-type="dfn" href="#predeclared" id="ref-for-predeclared②⓪">predeclared</a> types and all <a data-link-type="dfn" href="#constructible" id="ref-for-constructible②⓪">constructible</a> <a data-link-type="dfn" href="#structure" id="ref-for-structure②③">structure</a> types.
 The constructor built-in functions have the same spelling as the types.
-Wherever such a built-in function is used, the <a data-link-type="dfn" href="#identifier" id="ref-for-identifier②⑨">identifier</a> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①②">must</a> be <a data-link-type="dfn" href="#in-scope" id="ref-for-in-scope①⑤">in scope</a> of the type and the <a data-link-type="dfn" href="#identifier" id="ref-for-identifier③⓪">identifier</a> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①③">must not</a> <a data-link-type="dfn" href="#resolves" id="ref-for-resolves④④">resolve</a> to another declaration.</p>
+Wherever such a built-in function is used, the <a data-link-type="dfn" href="#identifier" id="ref-for-identifier②⑨">identifier</a> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①②">must</a> be <a data-link-type="dfn" href="#in-scope" id="ref-for-in-scope①⑤">in scope</a> of the type and the <a data-link-type="dfn" href="#identifier" id="ref-for-identifier③⓪">identifier</a> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①③">must not</a> <a data-link-type="dfn" href="#resolves" id="ref-for-resolves④⑤">resolve</a> to another declaration.</p>
    <p class="note" role="note"><span class="marker">Note:</span> The structure types returned by <a href="#frexp-builtin">frexp</a>, <a href="#modf-builtin">modf</a>, and <a href="#atomic-rmw">atomicCompareExchangeWeak</a> cannot be
 written in WGSL programs.</p>
    <p class="note" role="note"><span class="marker">Note:</span> A value declaration of the type needs to be valid at that statement of
@@ -13712,7 +13738,7 @@ specify the component type; the component type is inferred from the constructor 
       <td>Description 
       <td>
        Construct an <a data-link-type="dfn" href="#f16" id="ref-for-f16①⑨">f16</a> value. 
-       <p>If <code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16②⓪">f16</a>, this is an identity operation.<br> If <code>T</code> is a <a href="#integer-types">integer type</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32③③">f32</a>, <code>e</code> is converted to <a data-link-type="dfn" href="#f16" id="ref-for-f16②①">f16</a> (including invalid conversions).<br> If <code>T</code> is <a data-link-type="dfn" href="#bool" id="ref-for-bool①⑥">bool</a>, the result is <code>1.0h</code> if <code>e</code> is <code>true</code> and <code>0.0h</code> otherwise.</p>
+       <p>If <code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16②⓪">f16</a>, this is an identity operation.<br> If <code>T</code> is a <a href="#integer-types">integer type</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32②⑦">f32</a>, <code>e</code> is converted to <a data-link-type="dfn" href="#f16" id="ref-for-f16②①">f16</a> (including invalid conversions).<br> If <code>T</code> is <a data-link-type="dfn" href="#bool" id="ref-for-bool①⑥">bool</a>, the result is <code>1.0h</code> if <code>e</code> is <code>true</code> and <code>0.0h</code> otherwise.</p>
    </table>
    <h5 class="heading settled" data-level="17.1.2.4" id="f32-builtin"><span class="secno">17.1.2.4. </span><span class="content"><code>f32</code></span><a class="self-link" href="#f32-builtin"></a></h5>
    <table class="data builtin">
@@ -13727,8 +13753,8 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Description 
       <td>
-       Construct an <a data-link-type="dfn" href="#f32" id="ref-for-f32③④">f32</a> value. 
-       <p>If <code>T</code> is <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑤">f32</a>, this is an identity operation.<br> If <code>T</code> is a <a href="#integer-types">integer type</a> or <a data-link-type="dfn" href="#f16" id="ref-for-f16②②">f16</a>, <code>e</code> is converted to <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑥">f32</a> (including invalid conversions).<br> If <code>T</code> is <a data-link-type="dfn" href="#bool" id="ref-for-bool①⑦">bool</a>, the result is <code>1.0f</code> if <code>e</code> is <code>true</code> and <code>0.0f</code> otherwise.</p>
+       Construct an <a data-link-type="dfn" href="#f32" id="ref-for-f32②⑧">f32</a> value. 
+       <p>If <code>T</code> is <a data-link-type="dfn" href="#f32" id="ref-for-f32②⑨">f32</a>, this is an identity operation.<br> If <code>T</code> is a <a href="#integer-types">integer type</a> or <a data-link-type="dfn" href="#f16" id="ref-for-f16②②">f16</a>, <code>e</code> is converted to <a data-link-type="dfn" href="#f32" id="ref-for-f32③⓪">f32</a> (including invalid conversions).<br> If <code>T</code> is <a data-link-type="dfn" href="#bool" id="ref-for-bool①⑦">bool</a>, the result is <code>1.0f</code> if <code>e</code> is <code>true</code> and <code>0.0f</code> otherwise.</p>
    </table>
    <h5 class="heading settled" data-level="17.1.2.5" id="i32-builtin"><span class="secno">17.1.2.5. </span><span class="content"><code>i32</code></span><a class="self-link" href="#i32-builtin"></a></h5>
    <table class="data builtin">
@@ -13757,7 +13783,7 @@ specify the component type; the component type is inferred from the constructor 
 </pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16②③">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑦">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②③">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16②④">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑧">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16②③">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32③①">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②③">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16②④">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③②">f32</a> 
      <tr>
       <td>Description 
       <td>
@@ -13774,7 +13800,7 @@ specify the component type; the component type is inferred from the constructor 
 </pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②④">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑤">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑨">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②④">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑤">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③③">f32</a> 
      <tr>
       <td>Description 
       <td>Construct a 2x2 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix①②">matrix</a> from column vectors. 
@@ -13789,7 +13815,7 @@ specify the component type; the component type is inferred from the constructor 
 </pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②⑤">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑥">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⓪">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②⑤">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑥">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③④">f32</a> 
      <tr>
       <td>Description 
       <td>Construct a 2x2 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix①③">matrix</a> from elements. 
@@ -13805,7 +13831,7 @@ specify the component type; the component type is inferred from the constructor 
 </pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑦">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32④①">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②⑥">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑧">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④②">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑦">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑤">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②⑥">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑧">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑥">f32</a> 
      <tr>
       <td>Description 
       <td>
@@ -13822,7 +13848,7 @@ specify the component type; the component type is inferred from the constructor 
 </pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②⑦">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑨">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④③">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②⑦">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑨">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑦">f32</a> 
      <tr>
       <td>Description 
       <td>Construct a 2x3 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix①⑤">matrix</a> from column vectors. 
@@ -13837,7 +13863,7 @@ specify the component type; the component type is inferred from the constructor 
 </pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②⑧">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③⓪">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④④">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②⑧">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③⓪">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑧">f32</a> 
      <tr>
       <td>Description 
       <td>Construct a 2x3 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix①⑥">matrix</a> from elements. 
@@ -13853,7 +13879,7 @@ specify the component type; the component type is inferred from the constructor 
 </pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16③①">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑤">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②⑨">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③②">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑥">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16③①">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑨">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②⑨">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③②">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⓪">f32</a> 
      <tr>
       <td>Description 
       <td>
@@ -13870,7 +13896,7 @@ specify the component type; the component type is inferred from the constructor 
 </pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⓪">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③③">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑦">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⓪">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③③">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④①">f32</a> 
      <tr>
       <td>Description 
       <td>Construct a 2x4 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix①⑧">matrix</a> from column vectors. 
@@ -13885,7 +13911,7 @@ specify the component type; the component type is inferred from the constructor 
 </pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③①">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③④">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑧">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③①">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③④">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④②">f32</a> 
      <tr>
       <td>Description 
       <td>Construct a 2x4 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix①⑨">matrix</a> from elements. 
@@ -13901,7 +13927,7 @@ specify the component type; the component type is inferred from the constructor 
 </pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑤">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑨">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③②">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑥">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⓪">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑤">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32④③">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③②">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑥">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④④">f32</a> 
      <tr>
       <td>Description 
       <td>
@@ -13922,7 +13948,7 @@ specify the component type; the component type is inferred from the constructor 
 </pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③③">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑦">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤①">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③③">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑦">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑤">f32</a> 
      <tr>
       <td>Description 
       <td>Construct a 3x2 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②①">matrix</a> from column vectors. 
@@ -13937,7 +13963,7 @@ specify the component type; the component type is inferred from the constructor 
 </pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③④">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑧">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤②">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③④">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑧">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑥">f32</a> 
      <tr>
       <td>Description 
       <td>Construct a 3x2 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②②">matrix</a> from elements. 
@@ -13953,7 +13979,7 @@ specify the component type; the component type is inferred from the constructor 
 </pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑨">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤③">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑤">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④⓪">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤④">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑨">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑦">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑤">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④⓪">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑧">f32</a> 
      <tr>
       <td>Description 
       <td>
@@ -13974,7 +14000,7 @@ specify the component type; the component type is inferred from the constructor 
 </pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑥">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④①">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑤">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑥">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④①">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑨">f32</a> 
      <tr>
       <td>Description 
       <td>Construct a 3x3 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②④">matrix</a> from column vectors. 
@@ -13989,7 +14015,7 @@ specify the component type; the component type is inferred from the constructor 
 </pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑦">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④②">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑥">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑦">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④②">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⓪">f32</a> 
      <tr>
       <td>Description 
       <td>Construct a 3x3 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②⑤">matrix</a> from elements. 
@@ -14005,7 +14031,7 @@ specify the component type; the component type is inferred from the constructor 
 </pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16④③">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑦">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑧">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④④">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑧">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16④③">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤①">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑧">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④④">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤②">f32</a> 
      <tr>
       <td>Description 
       <td>
@@ -14026,7 +14052,7 @@ specify the component type; the component type is inferred from the constructor 
 </pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑨">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑤">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑨">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑨">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑤">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤③">f32</a> 
      <tr>
       <td>Description 
       <td>Construct a 3x4 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②⑦">matrix</a> from column vectors. 
@@ -14041,7 +14067,7 @@ specify the component type; the component type is inferred from the constructor 
 </pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⓪">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑥">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⓪">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⓪">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑥">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤④">f32</a> 
      <tr>
       <td>Description 
       <td>Construct a 3x4 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②⑧">matrix</a> from elements. 
@@ -14057,7 +14083,7 @@ specify the component type; the component type is inferred from the constructor 
 </pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑦">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥①">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④①">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑧">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥②">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑦">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑤">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④①">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑧">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑥">f32</a> 
      <tr>
       <td>Description 
       <td>
@@ -14080,7 +14106,7 @@ specify the component type; the component type is inferred from the constructor 
 </pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④②">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑨">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥③">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④②">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑨">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑦">f32</a> 
      <tr>
       <td>Description 
       <td>Construct a 4x2 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix③⓪">matrix</a> from column vectors. 
@@ -14095,7 +14121,7 @@ specify the component type; the component type is inferred from the constructor 
 </pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④③">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⓪">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥④">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④③">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⓪">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑧">f32</a> 
      <tr>
       <td>Description 
       <td>Construct a 4x2 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix③①">matrix</a> from elements. 
@@ -14111,7 +14137,7 @@ specify the component type; the component type is inferred from the constructor 
 </pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤①">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑤">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④④">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤②">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑥">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤①">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑨">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④④">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤②">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⓪">f32</a> 
      <tr>
       <td>Description 
       <td>
@@ -14134,7 +14160,7 @@ specify the component type; the component type is inferred from the constructor 
 </pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑤">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤③">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑦">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑤">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤③">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥①">f32</a> 
      <tr>
       <td>Description 
       <td>Construct a 4x3 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix③③">matrix</a> from column vectors. 
@@ -14149,7 +14175,7 @@ specify the component type; the component type is inferred from the constructor 
 </pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑥">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤④">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑧">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑥">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤④">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥②">f32</a> 
      <tr>
       <td>Description 
       <td>Construct a 4x3 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix③④">matrix</a> from elements. 
@@ -14165,7 +14191,7 @@ specify the component type; the component type is inferred from the constructor 
 </pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⑤">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑨">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑦">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⑥">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦⓪">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⑤">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥③">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑦">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⑥">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥④">f32</a> 
      <tr>
       <td>Description 
       <td>
@@ -14188,7 +14214,7 @@ specify the component type; the component type is inferred from the constructor 
 </pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑧">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⑦">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦①">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑧">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⑦">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑤">f32</a> 
      <tr>
       <td>Description 
       <td>Construct a 4x4 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix③⑥">matrix</a> from column vectors. 
@@ -14203,7 +14229,7 @@ specify the component type; the component type is inferred from the constructor 
 </pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑨">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⑧">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦②">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑨">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⑧">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑥">f32</a> 
      <tr>
       <td>Description 
       <td>Construct a 4x4 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix③⑦">matrix</a> from elements. 
@@ -14649,8 +14675,30 @@ a value in one type as a value in another type.</p>
       <td><code>E</code> is an element type for a <a data-link-type="dfn" href="#runtime-sized" id="ref-for-runtime-sized⑧">runtime-sized</a> array,<br> <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②⓪">access mode</a> <code>AM</code> is <a data-link-type="dfn" href="#access-read" id="ref-for-access-read①⓪">read</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①⑧">read_write</a> 
      <tr>
       <td>Description 
-      <td>Returns <a data-link-type="dfn" href="#nruntime" id="ref-for-nruntime⑥">NRuntime</a>, the number of elements in the <a data-link-type="dfn" href="#runtime-sized" id="ref-for-runtime-sized⑨">runtime-sized</a> array. 
+      <td>
+       Returns <a data-link-type="dfn" href="#nruntime" id="ref-for-nruntime⑦">NRuntime</a>, the number of elements in the <a data-link-type="dfn" href="#runtime-sized" id="ref-for-runtime-sized⑨">runtime-sized</a> array. 
+       <p>See <a href="#buffer-binding-determines-runtime-sized-array-element-count">§ 10.3.4 Buffer Binding Determines Runtime-Sized Array Element Count</a></p>
    </table>
+   <div class="example wgsl global-scope no-marker" id="example-c8636868">
+    <a class="self-link" href="#example-c8636868"></a>
+    <div class="marker">EXAMPLE: Getting the number of elements in a runtime-sized array</div>
+<pre class="highlight"><c- k>struct</c-> <c- nc>PointLight</c-> <c- p>{</c->
+  <c- n>position</c-> : <c- nc>vec3f</c-><c- p>,</c->
+  <c- n>color</c-> : <c- nc>vec3f</c-><c- p>,</c->
+<c- p>}</c->
+
+<c- k>struct</c-> <c- nc>LightStorage</c-> <c- p>{</c->
+  <c- n>pointCount</c-> : <c- b>u32</c-><c- p>,</c->
+  <c- n>point</c-> : <c- nc>array</c-><c- o>&lt;</c-><c- n>PointLight</c-><c- o>></c-><c- p>,</c->
+<c- p>}</c->
+
+<c- o>@</c-><c- n>group</c-><c- p>(</c-><c- mi>0</c-><c- p>)</c-> <c- o>@</c-><c- n>binding</c-><c- p>(</c-><c- mi>1</c-><c- p>)</c-> <c- n>var</c-><c- o>&lt;</c-><c- n>storage</c-><c- o>></c-> <c- n>lights</c-> : <c- nc>LightStorage</c-><c- p>;</c->
+
+<c- k>fn</c-> <c- nf>num_point_lights</c-><c- p>()</c-> -> <c- b>u32</c-> <c- p>{</c->
+  <c- k>return</c-> <c- n>arrayLength</c-><c- p>(</c-> <c- o>&amp;</c-><c- n>lights</c-><c- p>.</c-><c- n>point</c-> <c- p>);</c->
+<c- p>}</c->
+</pre>
+   </div>
    <h3 class="heading settled" data-level="17.5" id="numeric-builtin-functions"><span class="secno">17.5. </span><span class="content">Numeric Built-in Functions</span><a class="self-link" href="#numeric-builtin-functions"></a></h3>
    <h4 class="heading settled" data-level="17.5.1" id="abs-float-builtin"><span class="secno">17.5.1. </span><span class="content"><code>abs</code></span><a class="self-link" href="#abs-float-builtin"></a></h4>
    <table class="data builtin">
@@ -16412,37 +16460,37 @@ but a value may infer the type.</p>
       <th>Overload 
     <tbody>
      <tr class="algorithm" data-algorithm="textureDimensions 1d">
-      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32③⑦">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③①">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦③">f32</a><br> <var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format②">texel format</a><br> <var>A</var> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②①">access mode</a><br><br> <var>T</var> is <code>texture_1d&lt;ST></code> or <code>texture_storage_1d&lt;F,A></code> 
+      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32③⑦">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③①">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑦">f32</a><br> <var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format②">texel format</a><br> <var>A</var> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②①">access mode</a><br><br> <var>T</var> is <code>texture_1d&lt;ST></code> or <code>texture_storage_1d&lt;F,A></code> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureDimensions</c-><c- p>(</c-><c- n>t</c->: <c- nc>T</c-><c- p>)</c-> -> <c- b>u32</c-></pre>
      <tr class="algorithm" data-algorithm="textureDimensions 1d level">
       <td>
-       <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32③⑧">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③②">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦④">f32</a><br><br> <var>T</var> is <code>texture_1d&lt;ST></code> 
+       <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32③⑧">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③②">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑧">f32</a><br><br> <var>T</var> is <code>texture_1d&lt;ST></code> 
        <p><var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32③⑨">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32③③">u32</a></p>
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureDimensions</c-><c- p>(</c-><c- n>t</c->: <c- nc>T</c-><c- p>,</c->
                                <c- n>level</c->: <c- nc>L</c-><c- p>)</c-> -> <c- b>u32</c->
 </pre>
      <tr class="algorithm" data-algorithm="textureDimensions 2d">
-      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⓪">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③④">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦⑤">f32</a><br> <var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format③">texel format</a><br> <var>A</var> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②②">access mode</a><br><br> <var>T</var> is <code>texture_2d&lt;ST></code>, <code>texture_2d_array&lt;ST></code>, <code>texture_cube&lt;ST></code>, <code>texture_cube_array&lt;ST></code>, <code>texture_multisampled_2d&lt;ST></code>, <code>texture_depth_2d</code>, <code>texture_depth_2d_array</code>, <code>texture_depth_cube</code>, <code>texture_depth_cube_array</code>, <code>texture_depth_multisampled_2d</code>, <code>texture_storage_2d&lt;F,A></code>, <code>texture_storage_2d_array&lt;F,A></code>,
+      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⓪">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③④">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑨">f32</a><br> <var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format③">texel format</a><br> <var>A</var> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②②">access mode</a><br><br> <var>T</var> is <code>texture_2d&lt;ST></code>, <code>texture_2d_array&lt;ST></code>, <code>texture_cube&lt;ST></code>, <code>texture_cube_array&lt;ST></code>, <code>texture_multisampled_2d&lt;ST></code>, <code>texture_depth_2d</code>, <code>texture_depth_2d_array</code>, <code>texture_depth_cube</code>, <code>texture_depth_cube_array</code>, <code>texture_depth_multisampled_2d</code>, <code>texture_storage_2d&lt;F,A></code>, <code>texture_storage_2d_array&lt;F,A></code>,
                or <code>texture_external</code> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureDimensions</c-><c- p>(</c-><c- n>t</c->: <c- nc>T</c-><c- p>)</c-> -> <c- nc>vec2</c-><c- o>&lt;</c-><c- b>u32</c-><c- o>></c-></pre>
      <tr class="algorithm" data-algorithm="textureDimensions 2d level">
       <td>
-       <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④①">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③⑤">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦⑥">f32</a><br><br> <var>T</var> is <code>texture_2d&lt;ST></code>, <code>texture_2d_array&lt;ST></code>, <code>texture_cube&lt;ST></code>, <code>texture_cube_array&lt;ST></code>, <code>texture_depth_2d</code>, <code>texture_depth_2d_array</code>, <code>texture_depth_cube</code>, or <code>texture_depth_cube_array</code> 
+       <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④①">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③⑤">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦⓪">f32</a><br><br> <var>T</var> is <code>texture_2d&lt;ST></code>, <code>texture_2d_array&lt;ST></code>, <code>texture_cube&lt;ST></code>, <code>texture_cube_array&lt;ST></code>, <code>texture_depth_2d</code>, <code>texture_depth_2d_array</code>, <code>texture_depth_cube</code>, or <code>texture_depth_cube_array</code> 
        <p><var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④②">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32③⑥">u32</a></p>
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureDimensions</c-><c- p>(</c-><c- n>t</c->: <c- nc>T</c-><c- p>,</c->
                                <c- n>level</c->: <c- nc>L</c-><c- p>)</c-> -> <c- nc>vec2</c-><c- o>&lt;</c-><c- b>u32</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureDimensions 3d">
-      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④③">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③⑦">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦⑦">f32</a><br> <var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format④">texel format</a><br> <var>A</var> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②③">access mode</a><br><br> <var>T</var> is <code>texture_3d&lt;ST></code> or <code>texture_storage_3d&lt;F,A></code> 
+      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④③">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③⑦">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦①">f32</a><br> <var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format④">texel format</a><br> <var>A</var> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②③">access mode</a><br><br> <var>T</var> is <code>texture_3d&lt;ST></code> or <code>texture_storage_3d&lt;F,A></code> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureDimensions</c-><c- p>(</c-><c- n>t</c->: <c- nc>T</c-><c- p>)</c-> -> <c- nc>vec3</c-><c- o>&lt;</c-><c- b>u32</c-><c- o>></c-></pre>
      <tr class="algorithm" data-algorithm="textureDimensions 3d level">
       <td>
-       <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④④">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③⑧">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦⑧">f32</a><br><br> <var>T</var> is <code>texture_3d&lt;ST></code> 
+       <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④④">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③⑧">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦②">f32</a><br><br> <var>T</var> is <code>texture_3d&lt;ST></code> 
        <p><var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑤">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32③⑨">u32</a></p>
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureDimensions</c-><c- p>(</c-><c- n>t</c->: <c- nc>T</c-><c- p>,</c->
@@ -16539,7 +16587,7 @@ https://github.com/gpuweb/gpuweb/issues/2343</p>
       <th>Overload 
     <tbody>
      <tr class="algorithm" data-algorithm="textureGather 2d">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑥">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④⓪">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑦">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32④①">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦⑨">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑥">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④⓪">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑦">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32④①">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦③">f32</a> 
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureGather</c-><c- p>(</c-><c- n>component</c->: <c- nc>C</c-><c- p>,</c->
                            <c- n>t</c->: <c- nc>texture_2d</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
@@ -16547,7 +16595,7 @@ https://github.com/gpuweb/gpuweb/issues/2343</p>
                            <c- n>coords</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureGather 2d offset">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑧">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④②">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑨">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32④③">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧⓪">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑧">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④②">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑨">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32④③">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦④">f32</a> 
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureGather</c-><c- p>(</c-><c- n>component</c->: <c- nc>C</c-><c- p>,</c->
                            <c- n>t</c->: <c- nc>texture_2d</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
@@ -16556,7 +16604,7 @@ https://github.com/gpuweb/gpuweb/issues/2343</p>
                            <c- n>offset</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- b>i32</c-><c- o>></c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureGather 2d array">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⓪">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④④">u32</a><br> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤①">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑤">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤②">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑥">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧①">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⓪">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④④">u32</a><br> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤①">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑤">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤②">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑥">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦⑤">f32</a> 
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureGather</c-><c- p>(</c-><c- n>component</c->: <c- nc>C</c-><c- p>,</c->
                            <c- n>t</c->: <c- nc>texture_2d_array</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
@@ -16565,7 +16613,7 @@ https://github.com/gpuweb/gpuweb/issues/2343</p>
                            <c- n>array_index</c->: <c- nc>A</c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureGather 2d array offset">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤③">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑦">u32</a><br> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤④">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑧">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑤">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑨">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧②">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤③">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑦">u32</a><br> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤④">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑧">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑤">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑨">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦⑥">f32</a> 
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureGather</c-><c- p>(</c-><c- n>component</c->: <c- nc>C</c-><c- p>,</c->
                            <c- n>t</c->: <c- nc>texture_2d_array</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
@@ -16575,7 +16623,7 @@ https://github.com/gpuweb/gpuweb/issues/2343</p>
                            <c- n>offset</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- b>i32</c-><c- o>></c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureGather cube">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑥">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤⓪">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑦">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤①">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧③">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑥">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤⓪">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑦">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤①">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦⑦">f32</a> 
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureGather</c-><c- p>(</c-><c- n>component</c->: <c- nc>C</c-><c- p>,</c->
                            <c- n>t</c->: <c- nc>texture_cube</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
@@ -16583,7 +16631,7 @@ https://github.com/gpuweb/gpuweb/issues/2343</p>
                            <c- n>coords</c->: <c- nc>vec3</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureGather cube array">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑧">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤②">u32</a><br> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑨">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤③">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥⓪">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤④">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧④">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑧">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤②">u32</a><br> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑨">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤③">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥⓪">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤④">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦⑧">f32</a> 
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureGather</c-><c- p>(</c-><c- n>component</c->: <c- nc>C</c-><c- p>,</c->
                            <c- n>t</c->: <c- nc>texture_cube_array</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
@@ -16840,21 +16888,21 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
       <th>Overload 
     <tbody>
      <tr class="algorithm" data-algorithm="textureLoad 1d">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥⑦">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥①">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥⑧">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥②">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥⑨">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥③">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧⑤">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥⑦">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥①">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥⑧">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥②">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥⑨">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥③">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦⑨">f32</a> 
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureLoad</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_1d</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
                          <c- n>coords</c->: <c- nc>C</c-><c- p>,</c->
                          <c- n>level</c->: <c- nc>L</c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureLoad 2d">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⓪">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥④">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦①">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑤">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦②">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑥">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧⑥">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⓪">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥④">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦①">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑤">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦②">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑥">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧⓪">f32</a> 
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureLoad</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_2d</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
                          <c- n>coords</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- n>C</c-><c- o>></c-><c- p>,</c->
                          <c- n>level</c->: <c- nc>L</c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureLoad 2d array">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦③">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑦">u32</a><br> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦④">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑧">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑤">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑨">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑥">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦⓪">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧⑦">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦③">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑦">u32</a><br> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦④">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑧">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑤">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑨">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑥">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦⓪">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧①">f32</a> 
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureLoad</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_2d_array</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
                         <c- n>coords</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- n>C</c-><c- o>></c-><c- p>,</c->
@@ -16862,14 +16910,14 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
                         <c- n>level</c->: <c- nc>L</c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureLoad 3d">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑦">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦①">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑧">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦②">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑨">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦③">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧⑧">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑦">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦①">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑧">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦②">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑨">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦③">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧②">f32</a> 
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureLoad</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_3d</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
                          <c- n>coords</c->: <c- nc>vec3</c-><c- o>&lt;</c-><c- n>C</c-><c- o>></c-><c- p>,</c->
                          <c- n>level</c->: <c- nc>L</c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c->
 </pre>
      <tr class="algorithm" data-algorithm="textureLoad 2d multisampled">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧⓪">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦④">u32</a><br> <var>S</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧①">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦⑤">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧②">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦⑥">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧⑨">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧⓪">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦④">u32</a><br> <var>S</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧①">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦⑤">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧②">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦⑥">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧③">f32</a> 
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureLoad</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_multisampled_2d</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
                          <c- n>coords</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- n>C</c-><c- o>></c-><c- p>,</c->
@@ -16955,7 +17003,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
       <th>Overload 
     <tbody>
      <tr class="algorithm" data-algorithm="texturenumlayers">
-      <td><var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format⑤">texel format</a><br> <var>A</var> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②④">access mode</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨①">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧⑤">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑨⓪">f32</a><br><br> <var>T</var> is <code>texture_2d_array&lt;ST></code>, <code>texture_cube_array&lt;ST></code>, <code>texture_depth_2d_array</code>, <code>texture_depth_cube_array</code>,
+      <td><var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format⑤">texel format</a><br> <var>A</var> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②④">access mode</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨①">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧⑤">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧④">f32</a><br><br> <var>T</var> is <code>texture_2d_array&lt;ST></code>, <code>texture_cube_array&lt;ST></code>, <code>texture_depth_2d_array</code>, <code>texture_depth_cube_array</code>,
                                or <code>texture_storage_2d_array&lt;F,A></code> 
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureNumLayers</c-><c- p>(</c-><c- n>t</c->: <c- nc>T</c-><c- p>)</c-> -> <c- b>u32</c->
@@ -16979,7 +17027,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
       <th>Overload 
     <tbody>
      <tr class="algorithm" data-algorithm="texturenumlevels">
-      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨②">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧⑥">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑨①">f32</a><br><br> <var>T</var> is <code>texture_1d&lt;ST></code>, <code>texture_2d&lt;ST></code>, <code>texture_2d_array&lt;ST></code>, <code>texture_3d&lt;ST></code>, <code>texture_cube&lt;ST></code>, <code>texture_cube_array&lt;ST></code>, <code>texture_depth_2d</code>, <code>texture_depth_2d_array</code>, <code>texture_depth_cube</code>, or <code>texture_depth_cube_array</code> 
+      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨②">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧⑥">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧⑤">f32</a><br><br> <var>T</var> is <code>texture_1d&lt;ST></code>, <code>texture_2d&lt;ST></code>, <code>texture_2d_array&lt;ST></code>, <code>texture_3d&lt;ST></code>, <code>texture_cube&lt;ST></code>, <code>texture_cube_array&lt;ST></code>, <code>texture_depth_2d</code>, <code>texture_depth_2d_array</code>, <code>texture_depth_cube</code>, or <code>texture_depth_cube_array</code> 
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureNumLevels</c-><c- p>(</c-><c- n>t</c->: <c- nc>T</c-><c- p>)</c-> -> <c- b>u32</c->
 </pre>
@@ -17002,7 +17050,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
       <th>Overload 
     <tbody>
      <tr class="algorithm" data-algorithm="texturenumsamples">
-      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨③">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧⑦">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑨②">f32</a><br><br> <var>T</var> is <code>texture_multisampled_2d&lt;ST></code> or <code>texture_depth_multisampled_2d</code> 
+      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨③">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧⑦">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧⑥">f32</a><br><br> <var>T</var> is <code>texture_multisampled_2d&lt;ST></code> or <code>texture_depth_multisampled_2d</code> 
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureNumSamples</c-><c- p>(</c-><c- n>t</c->: <c- nc>T</c-><c- p>)</c-> -> <c- b>u32</c->
 </pre>
@@ -18150,7 +18198,7 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
       <td>Description 
       <td>
        Returns the value pointed to by <code>p</code> to all invocations in the workgroup.
-    The return value is <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value⑧">uniform</a>. <code>p</code> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑤⑨">must</a> be a <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value⑨">uniform value</a>. 
+    The return value is <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value①⓪">uniform</a>. <code>p</code> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑤⑨">must</a> be a <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value①①">uniform value</a>. 
        <p>Executes a <a data-link-type="dfn" href="#control-barrier" id="ref-for-control-barrier③">control barrier</a> synchronization function that affects
     memory and atomic operations in the <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup②⓪">workgroup</a> address
     space.</p>
@@ -19149,14 +19197,16 @@ registrations, it matches widespread industry conventions.</p>
      <li><a href="#recursive-descent-syntax-param">dfn for recursive descent syntax</a><span>, in § 18</span>
      <li><a href="#syntax-param">dfn for syntax</a><span>, in § 9.1</span>
     </ul>
+   <li><a href="#parametercontentsrequiredtobeuniforms">ParameterContentsRequiredToBeUniform.S</a><span>, in § 14.2.3</span>
    <li><a href="#parameterized">parameterized</a><span>, in § 5.1</span>
    <li><a href="#parameternorestriction">ParameterNoRestriction</a><span>, in § 14.2.3</span>
    <li><a href="#parameterrequiredtobeuniforms">ParameterRequiredToBeUniform.S</a><span>, in § 14.2.3</span>
+   <li><a href="#parameterreturncontentsrequiredtobeuniform">ParameterReturnContentsRequiredToBeUniform</a><span>, in § 14.2.3</span>
    <li><a href="#parameterreturnnorestriction">ParameterReturnNoRestriction</a><span>, in § 14.2.3</span>
-   <li><a href="#parameterreturnrequiredtobeuniform">ParameterReturnRequiredToBeUniform</a><span>, in § 14.2.3</span>
    <li><a href="#parameter-return-tag">parameter return tag</a><span>, in § 14.2.3</span>
    <li><a href="#parameter-tag">parameter tag</a><span>, in § 14.2.3</span>
    <li><a href="#param_i">param_i</a><span>, in § 14.2.3</span>
+   <li><a href="#param_i_contents">param_i_contents</a><span>, in § 14.2.3</span>
    <li><a href="#syntax-param_list">param_list</a><span>, in § 9.1</span>
    <li><a href="#syntax-paren_expression">paren_expression</a><span>, in § 7.18</span>
    <li><a href="#syntax_sym-paren_left">paren_left</a><span>, in § 15.3</span>
@@ -19429,7 +19479,7 @@ registrations, it matches widespread industry conventions.</p>
    <li><a href="#value-constructor">value constructor</a><span>, in § 17.1</span>
    <li><a href="#value-declaration">value declaration</a><span>, in § 6</span>
    <li><a href="#value_return">Value_return</a><span>, in § 14.2.3</span>
-   <li><a href="#value_return_i">Value_return_i</a><span>, in § 14.2.3</span>
+   <li><a href="#value_return_i_contents">Value_return_i_contents</a><span>, in § 14.2.3</span>
    <li><a href="#syntax_kw-var">var</a><span>, in § 15.1</span>
    <li><a href="#variable">variable</a><span>, in § 6.3</span>
    <li>
@@ -20026,11 +20076,6 @@ registrations, it matches widespread industry conventions.</p>
    <dt id="biblio-jeannerod2013">[Jeannerod2013]
    <dd>Claude-Pierre Jeannerod; Nicolas Louvet; Jean-Michel Muller. <a href="https://www.ams.org/journals/mcom/2013-82-284/S0025-5718-2013-02679-8/S0025-5718-2013-02679-8.pdf"><cite>Further Analysis of Kahan's Algorithm for the Accurate Computation of 2x2 Determinants</cite></a>. URL: <a href="https://www.ams.org/journals/mcom/2013-82-284/S0025-5718-2013-02679-8/S0025-5718-2013-02679-8.pdf">https://www.ams.org/journals/mcom/2013-82-284/S0025-5718-2013-02679-8/S0025-5718-2013-02679-8.pdf</a>
   </dl>
-  <h2 class="no-num no-ref heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
-  <div style="counter-reset:issue">
-   <div class="issue"> <a href="https://github.com/gpuweb/gpuweb/issues/3677">#3677</a> For pointer parameters, handle the distinction between uniformity of the pointer
- value and the uniformity of the contents of the memory pointed at. <a class="issue-return" href="#issue-3fbfcd8b" title="Jump to section">↵</a></div>
-  </div>
   <aside class="dfn-panel" data-for="draw-command">
    <b><a href="#draw-command">#draw-command</a></b><b>Referenced in:</b>
    <ul>
@@ -20121,10 +20166,11 @@ registrations, it matches widespread industry conventions.</p>
   <aside class="dfn-panel" data-for="roundup">
    <b><a href="#roundup">#roundup</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-roundup">13.4. Memory Layout</a> <a href="#ref-for-roundup①">(2)</a>
-    <li><a href="#ref-for-roundup②">13.4.1. Alignment and Size</a> <a href="#ref-for-roundup③">(2)</a> <a href="#ref-for-roundup④">(3)</a>
-    <li><a href="#ref-for-roundup⑤">13.4.2. Structure Member Layout</a>
-    <li><a href="#ref-for-roundup⑥">13.5.1. Address Space Layout Constraints</a> <a href="#ref-for-roundup⑦">(2)</a> <a href="#ref-for-roundup⑧">(3)</a> <a href="#ref-for-roundup⑨">(4)</a>
+    <li><a href="#ref-for-roundup">10.3.4. Buffer Binding Determines Runtime-Sized Array Element Count</a> <a href="#ref-for-roundup①">(2)</a>
+    <li><a href="#ref-for-roundup②">13.4. Memory Layout</a> <a href="#ref-for-roundup③">(2)</a>
+    <li><a href="#ref-for-roundup④">13.4.1. Alignment and Size</a> <a href="#ref-for-roundup⑤">(2)</a> <a href="#ref-for-roundup⑥">(3)</a>
+    <li><a href="#ref-for-roundup⑦">13.4.2. Structure Member Layout</a>
+    <li><a href="#ref-for-roundup⑧">13.5.1. Address Space Layout Constraints</a> <a href="#ref-for-roundup⑨">(2)</a> <a href="#ref-for-roundup①⓪">(3)</a> <a href="#ref-for-roundup①①">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="transpose">
@@ -20384,21 +20430,21 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-severity-error">2.2. Diagnostics</a> <a href="#ref-for-severity-error①">(2)</a> <a href="#ref-for-severity-error②">(3)</a>
     <li><a href="#ref-for-severity-error③">2.2.1. Filterable Triggering Rules</a>
     <li><a href="#ref-for-severity-error④">14.2. Uniformity</a> <a href="#ref-for-severity-error⑤">(2)</a>
-    <li><a href="#ref-for-severity-error⑥">14.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-severity-error⑦">(2)</a> <a href="#ref-for-severity-error⑧">(3)</a>
+    <li><a href="#ref-for-severity-error⑥">14.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-severity-error⑦">(2)</a> <a href="#ref-for-severity-error⑧">(3)</a> <a href="#ref-for-severity-error⑨">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="severity-warning">
    <b><a href="#severity-warning">#severity-warning</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-severity-warning">2.2. Diagnostics</a> <a href="#ref-for-severity-warning①">(2)</a>
-    <li><a href="#ref-for-severity-warning②">14.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-severity-warning③">(2)</a> <a href="#ref-for-severity-warning④">(3)</a> <a href="#ref-for-severity-warning⑤">(4)</a> <a href="#ref-for-severity-warning⑥">(5)</a>
+    <li><a href="#ref-for-severity-warning②">14.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-severity-warning③">(2)</a> <a href="#ref-for-severity-warning④">(3)</a> <a href="#ref-for-severity-warning⑤">(4)</a> <a href="#ref-for-severity-warning⑥">(5)</a> <a href="#ref-for-severity-warning⑦">(6)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="severity-info">
    <b><a href="#severity-info">#severity-info</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-severity-info">2.2. Diagnostics</a> <a href="#ref-for-severity-info①">(2)</a> <a href="#ref-for-severity-info②">(3)</a>
-    <li><a href="#ref-for-severity-info③">14.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-severity-info④">(2)</a> <a href="#ref-for-severity-info⑤">(3)</a> <a href="#ref-for-severity-info⑥">(4)</a> <a href="#ref-for-severity-info⑦">(5)</a>
+    <li><a href="#ref-for-severity-info③">14.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-severity-info④">(2)</a> <a href="#ref-for-severity-info⑤">(3)</a> <a href="#ref-for-severity-info⑥">(4)</a> <a href="#ref-for-severity-info⑦">(5)</a> <a href="#ref-for-severity-info⑧">(6)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="severity-off">
@@ -21050,8 +21096,8 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-resolves②⑨">11.2. Software Extensions</a>
     <li><a href="#ref-for-resolves③⓪">14.2.4. Pointer Desugaring</a>
     <li><a href="#ref-for-resolves③①">14.2.5. Function-scope Variable Value Analysis</a> <a href="#ref-for-resolves③②">(2)</a>
-    <li><a href="#ref-for-resolves③③">14.2.8. Uniformity Rules for Expressions</a> <a href="#ref-for-resolves③④">(2)</a> <a href="#ref-for-resolves③⑤">(3)</a> <a href="#ref-for-resolves③⑥">(4)</a> <a href="#ref-for-resolves③⑦">(5)</a> <a href="#ref-for-resolves③⑧">(6)</a> <a href="#ref-for-resolves③⑨">(7)</a> <a href="#ref-for-resolves④⓪">(8)</a> <a href="#ref-for-resolves④①">(9)</a> <a href="#ref-for-resolves④②">(10)</a> <a href="#ref-for-resolves④③">(11)</a>
-    <li><a href="#ref-for-resolves④④">17.1. Constructor Built-in Functions</a>
+    <li><a href="#ref-for-resolves③③">14.2.8. Uniformity Rules for Expressions</a> <a href="#ref-for-resolves③④">(2)</a> <a href="#ref-for-resolves③⑤">(3)</a> <a href="#ref-for-resolves③⑥">(4)</a> <a href="#ref-for-resolves③⑦">(5)</a> <a href="#ref-for-resolves③⑧">(6)</a> <a href="#ref-for-resolves③⑨">(7)</a> <a href="#ref-for-resolves④⓪">(8)</a> <a href="#ref-for-resolves④①">(9)</a> <a href="#ref-for-resolves④②">(10)</a> <a href="#ref-for-resolves④③">(11)</a> <a href="#ref-for-resolves④④">(12)</a>
+    <li><a href="#ref-for-resolves④⑤">17.1. Constructor Built-in Functions</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="type">
@@ -21139,7 +21185,7 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-type-checking①">5.6. AllTypes Type</a>
     <li><a href="#ref-for-type-checking②">7.18. Expression Grammar Summary</a>
     <li><a href="#ref-for-type-checking③">14.2.4. Pointer Desugaring</a> <a href="#ref-for-type-checking④">(2)</a>
-    <li><a href="#ref-for-type-checking⑤">14.2.8. Uniformity Rules for Expressions</a> <a href="#ref-for-type-checking⑥">(2)</a> <a href="#ref-for-type-checking⑦">(3)</a> <a href="#ref-for-type-checking⑧">(4)</a>
+    <li><a href="#ref-for-type-checking⑤">14.2.8. Uniformity Rules for Expressions</a> <a href="#ref-for-type-checking⑥">(2)</a> <a href="#ref-for-type-checking⑦">(3)</a> <a href="#ref-for-type-checking⑧">(4)</a> <a href="#ref-for-type-checking⑨">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="type-error">
@@ -21492,28 +21538,27 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-f32①③">5.9. Predeclared Types and Type-Generators Summary</a>
     <li><a href="#ref-for-f32①④">7.1.1. const Expressions</a>
     <li><a href="#ref-for-f32①⑤">7.17. Type Expressions</a>
-    <li><a href="#ref-for-f32①⑥">10.3.4. Buffer Binding Determines Runtime-Sized Array Element Count</a> <a href="#ref-for-f32①⑦">(2)</a> <a href="#ref-for-f32①⑧">(3)</a> <a href="#ref-for-f32①⑨">(4)</a> <a href="#ref-for-f32②⓪">(5)</a> <a href="#ref-for-f32②①">(6)</a>
-    <li><a href="#ref-for-f32②②">13.4.1. Alignment and Size</a> <a href="#ref-for-f32②③">(2)</a> <a href="#ref-for-f32②④">(3)</a> <a href="#ref-for-f32②⑤">(4)</a>
-    <li><a href="#ref-for-f32②⑥">13.5. Internal Layout of Values</a>
-    <li><a href="#ref-for-f32②⑦">13.5.1. Address Space Layout Constraints</a>
-    <li><a href="#ref-for-f32②⑧">14.6.2. Floating Point Conversion</a> <a href="#ref-for-f32②⑨">(2)</a> <a href="#ref-for-f32③⓪">(3)</a> <a href="#ref-for-f32③①">(4)</a> <a href="#ref-for-f32③②">(5)</a>
-    <li><a href="#ref-for-f32③③">17.1.2.3. f16</a>
-    <li><a href="#ref-for-f32③④">17.1.2.4. f32</a> <a href="#ref-for-f32③⑤">(2)</a> <a href="#ref-for-f32③⑥">(3)</a>
-    <li><a href="#ref-for-f32③⑦">17.1.2.6. mat2x2</a> <a href="#ref-for-f32③⑧">(2)</a> <a href="#ref-for-f32③⑨">(3)</a> <a href="#ref-for-f32④⓪">(4)</a>
-    <li><a href="#ref-for-f32④①">17.1.2.7. mat2x3</a> <a href="#ref-for-f32④②">(2)</a> <a href="#ref-for-f32④③">(3)</a> <a href="#ref-for-f32④④">(4)</a>
-    <li><a href="#ref-for-f32④⑤">17.1.2.8. mat2x4</a> <a href="#ref-for-f32④⑥">(2)</a> <a href="#ref-for-f32④⑦">(3)</a> <a href="#ref-for-f32④⑧">(4)</a>
-    <li><a href="#ref-for-f32④⑨">17.1.2.9. mat3x2</a> <a href="#ref-for-f32⑤⓪">(2)</a> <a href="#ref-for-f32⑤①">(3)</a> <a href="#ref-for-f32⑤②">(4)</a>
-    <li><a href="#ref-for-f32⑤③">17.1.2.10. mat3x3</a> <a href="#ref-for-f32⑤④">(2)</a> <a href="#ref-for-f32⑤⑤">(3)</a> <a href="#ref-for-f32⑤⑥">(4)</a>
-    <li><a href="#ref-for-f32⑤⑦">17.1.2.11. mat3x4</a> <a href="#ref-for-f32⑤⑧">(2)</a> <a href="#ref-for-f32⑤⑨">(3)</a> <a href="#ref-for-f32⑥⓪">(4)</a>
-    <li><a href="#ref-for-f32⑥①">17.1.2.12. mat4x2</a> <a href="#ref-for-f32⑥②">(2)</a> <a href="#ref-for-f32⑥③">(3)</a> <a href="#ref-for-f32⑥④">(4)</a>
-    <li><a href="#ref-for-f32⑥⑤">17.1.2.13. mat4x3</a> <a href="#ref-for-f32⑥⑥">(2)</a> <a href="#ref-for-f32⑥⑦">(3)</a> <a href="#ref-for-f32⑥⑧">(4)</a>
-    <li><a href="#ref-for-f32⑥⑨">17.1.2.14. mat4x4</a> <a href="#ref-for-f32⑦⓪">(2)</a> <a href="#ref-for-f32⑦①">(3)</a> <a href="#ref-for-f32⑦②">(4)</a>
-    <li><a href="#ref-for-f32⑦③">17.7.1. textureDimensions</a> <a href="#ref-for-f32⑦④">(2)</a> <a href="#ref-for-f32⑦⑤">(3)</a> <a href="#ref-for-f32⑦⑥">(4)</a> <a href="#ref-for-f32⑦⑦">(5)</a> <a href="#ref-for-f32⑦⑧">(6)</a>
-    <li><a href="#ref-for-f32⑦⑨">17.7.2. textureGather</a> <a href="#ref-for-f32⑧⓪">(2)</a> <a href="#ref-for-f32⑧①">(3)</a> <a href="#ref-for-f32⑧②">(4)</a> <a href="#ref-for-f32⑧③">(5)</a> <a href="#ref-for-f32⑧④">(6)</a>
-    <li><a href="#ref-for-f32⑧⑤">17.7.4. textureLoad</a> <a href="#ref-for-f32⑧⑥">(2)</a> <a href="#ref-for-f32⑧⑦">(3)</a> <a href="#ref-for-f32⑧⑧">(4)</a> <a href="#ref-for-f32⑧⑨">(5)</a>
-    <li><a href="#ref-for-f32⑨⓪">17.7.5. textureNumLayers</a>
-    <li><a href="#ref-for-f32⑨①">17.7.6. textureNumLevels</a>
-    <li><a href="#ref-for-f32⑨②">17.7.7. textureNumSamples</a>
+    <li><a href="#ref-for-f32①⑥">13.4.1. Alignment and Size</a> <a href="#ref-for-f32①⑦">(2)</a> <a href="#ref-for-f32①⑧">(3)</a> <a href="#ref-for-f32①⑨">(4)</a>
+    <li><a href="#ref-for-f32②⓪">13.5. Internal Layout of Values</a>
+    <li><a href="#ref-for-f32②①">13.5.1. Address Space Layout Constraints</a>
+    <li><a href="#ref-for-f32②②">14.6.2. Floating Point Conversion</a> <a href="#ref-for-f32②③">(2)</a> <a href="#ref-for-f32②④">(3)</a> <a href="#ref-for-f32②⑤">(4)</a> <a href="#ref-for-f32②⑥">(5)</a>
+    <li><a href="#ref-for-f32②⑦">17.1.2.3. f16</a>
+    <li><a href="#ref-for-f32②⑧">17.1.2.4. f32</a> <a href="#ref-for-f32②⑨">(2)</a> <a href="#ref-for-f32③⓪">(3)</a>
+    <li><a href="#ref-for-f32③①">17.1.2.6. mat2x2</a> <a href="#ref-for-f32③②">(2)</a> <a href="#ref-for-f32③③">(3)</a> <a href="#ref-for-f32③④">(4)</a>
+    <li><a href="#ref-for-f32③⑤">17.1.2.7. mat2x3</a> <a href="#ref-for-f32③⑥">(2)</a> <a href="#ref-for-f32③⑦">(3)</a> <a href="#ref-for-f32③⑧">(4)</a>
+    <li><a href="#ref-for-f32③⑨">17.1.2.8. mat2x4</a> <a href="#ref-for-f32④⓪">(2)</a> <a href="#ref-for-f32④①">(3)</a> <a href="#ref-for-f32④②">(4)</a>
+    <li><a href="#ref-for-f32④③">17.1.2.9. mat3x2</a> <a href="#ref-for-f32④④">(2)</a> <a href="#ref-for-f32④⑤">(3)</a> <a href="#ref-for-f32④⑥">(4)</a>
+    <li><a href="#ref-for-f32④⑦">17.1.2.10. mat3x3</a> <a href="#ref-for-f32④⑧">(2)</a> <a href="#ref-for-f32④⑨">(3)</a> <a href="#ref-for-f32⑤⓪">(4)</a>
+    <li><a href="#ref-for-f32⑤①">17.1.2.11. mat3x4</a> <a href="#ref-for-f32⑤②">(2)</a> <a href="#ref-for-f32⑤③">(3)</a> <a href="#ref-for-f32⑤④">(4)</a>
+    <li><a href="#ref-for-f32⑤⑤">17.1.2.12. mat4x2</a> <a href="#ref-for-f32⑤⑥">(2)</a> <a href="#ref-for-f32⑤⑦">(3)</a> <a href="#ref-for-f32⑤⑧">(4)</a>
+    <li><a href="#ref-for-f32⑤⑨">17.1.2.13. mat4x3</a> <a href="#ref-for-f32⑥⓪">(2)</a> <a href="#ref-for-f32⑥①">(3)</a> <a href="#ref-for-f32⑥②">(4)</a>
+    <li><a href="#ref-for-f32⑥③">17.1.2.14. mat4x4</a> <a href="#ref-for-f32⑥④">(2)</a> <a href="#ref-for-f32⑥⑤">(3)</a> <a href="#ref-for-f32⑥⑥">(4)</a>
+    <li><a href="#ref-for-f32⑥⑦">17.7.1. textureDimensions</a> <a href="#ref-for-f32⑥⑧">(2)</a> <a href="#ref-for-f32⑥⑨">(3)</a> <a href="#ref-for-f32⑦⓪">(4)</a> <a href="#ref-for-f32⑦①">(5)</a> <a href="#ref-for-f32⑦②">(6)</a>
+    <li><a href="#ref-for-f32⑦③">17.7.2. textureGather</a> <a href="#ref-for-f32⑦④">(2)</a> <a href="#ref-for-f32⑦⑤">(3)</a> <a href="#ref-for-f32⑦⑥">(4)</a> <a href="#ref-for-f32⑦⑦">(5)</a> <a href="#ref-for-f32⑦⑧">(6)</a>
+    <li><a href="#ref-for-f32⑦⑨">17.7.4. textureLoad</a> <a href="#ref-for-f32⑧⓪">(2)</a> <a href="#ref-for-f32⑧①">(3)</a> <a href="#ref-for-f32⑧②">(4)</a> <a href="#ref-for-f32⑧③">(5)</a>
+    <li><a href="#ref-for-f32⑧④">17.7.5. textureNumLayers</a>
+    <li><a href="#ref-for-f32⑧⑤">17.7.6. textureNumLevels</a>
+    <li><a href="#ref-for-f32⑧⑥">17.7.7. textureNumSamples</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="f16">
@@ -21962,7 +22007,7 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-memory-view①⑤">13.3. Address Spaces</a>
     <li><a href="#ref-for-memory-view①⑥">13.6.1. Memory Operation</a>
     <li><a href="#ref-for-memory-view①⑦">14.2.5. Function-scope Variable Value Analysis</a>
-    <li><a href="#ref-for-memory-view①⑧">14.2.8. Uniformity Rules for Expressions</a> <a href="#ref-for-memory-view①⑨">(2)</a> <a href="#ref-for-memory-view②⓪">(3)</a> <a href="#ref-for-memory-view②①">(4)</a>
+    <li><a href="#ref-for-memory-view①⑧">14.2.8. Uniformity Rules for Expressions</a> <a href="#ref-for-memory-view①⑨">(2)</a> <a href="#ref-for-memory-view②⓪">(3)</a> <a href="#ref-for-memory-view②①">(4)</a> <a href="#ref-for-memory-view②②">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="store-type">
@@ -22070,7 +22115,7 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-load-rule①">5.4.5. Invalid Memory Reference</a>
     <li><a href="#ref-for-load-rule②">13.6.1. Memory Operation</a>
     <li><a href="#ref-for-load-rule③">14.2.4. Pointer Desugaring</a>
-    <li><a href="#ref-for-load-rule④">14.2.8. Uniformity Rules for Expressions</a> <a href="#ref-for-load-rule⑤">(2)</a> <a href="#ref-for-load-rule⑥">(3)</a> <a href="#ref-for-load-rule⑦">(4)</a>
+    <li><a href="#ref-for-load-rule④">14.2.8. Uniformity Rules for Expressions</a> <a href="#ref-for-load-rule⑤">(2)</a> <a href="#ref-for-load-rule⑥">(3)</a> <a href="#ref-for-load-rule⑦">(4)</a> <a href="#ref-for-load-rule⑧">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="texel">
@@ -23455,7 +23500,7 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-root-identifier①">9.4.1.1. Root Identifier</a>
     <li><a href="#ref-for-root-identifier②">9.4.1.2. Aliasing</a> <a href="#ref-for-root-identifier③">(2)</a>
     <li><a href="#ref-for-root-identifier④">14.2.4. Pointer Desugaring</a> <a href="#ref-for-root-identifier⑤">(2)</a>
-    <li><a href="#ref-for-root-identifier⑥">14.2.8. Uniformity Rules for Expressions</a> <a href="#ref-for-root-identifier⑦">(2)</a> <a href="#ref-for-root-identifier⑧">(3)</a> <a href="#ref-for-root-identifier⑨">(4)</a>
+    <li><a href="#ref-for-root-identifier⑥">14.2.8. Uniformity Rules for Expressions</a> <a href="#ref-for-root-identifier⑦">(2)</a> <a href="#ref-for-root-identifier⑧">(3)</a> <a href="#ref-for-root-identifier⑨">(4)</a> <a href="#ref-for-root-identifier①⓪">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="entry-point">
@@ -23733,9 +23778,9 @@ registrations, it matches widespread industry conventions.</p>
   <aside class="dfn-panel" data-for="nruntime">
    <b><a href="#nruntime">#nruntime</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-nruntime">10.3.4. Buffer Binding Determines Runtime-Sized Array Element Count</a> <a href="#ref-for-nruntime①">(2)</a> <a href="#ref-for-nruntime②">(3)</a> <a href="#ref-for-nruntime③">(4)</a> <a href="#ref-for-nruntime④">(5)</a>
-    <li><a href="#ref-for-nruntime⑤">13.4.1. Alignment and Size</a>
-    <li><a href="#ref-for-nruntime⑥">17.4.1. arrayLength</a>
+    <li><a href="#ref-for-nruntime">10.3.4. Buffer Binding Determines Runtime-Sized Array Element Count</a> <a href="#ref-for-nruntime①">(2)</a> <a href="#ref-for-nruntime②">(3)</a> <a href="#ref-for-nruntime③">(4)</a> <a href="#ref-for-nruntime④">(5)</a> <a href="#ref-for-nruntime⑤">(6)</a>
+    <li><a href="#ref-for-nruntime⑥">13.4.1. Alignment and Size</a>
+    <li><a href="#ref-for-nruntime⑦">17.4.1. arrayLength</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="extension">
@@ -24044,11 +24089,12 @@ registrations, it matches widespread industry conventions.</p>
   <aside class="dfn-panel" data-for="alignof">
    <b><a href="#alignof">#alignof</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-alignof">13.4. Memory Layout</a> <a href="#ref-for-alignof①">(2)</a>
-    <li><a href="#ref-for-alignof②">13.4.1. Alignment and Size</a> <a href="#ref-for-alignof③">(2)</a> <a href="#ref-for-alignof④">(3)</a> <a href="#ref-for-alignof⑤">(4)</a> <a href="#ref-for-alignof⑥">(5)</a> <a href="#ref-for-alignof⑦">(6)</a> <a href="#ref-for-alignof⑧">(7)</a>
-    <li><a href="#ref-for-alignof⑨">13.4.2. Structure Member Layout</a>
-    <li><a href="#ref-for-alignof①⓪">13.5. Internal Layout of Values</a> <a href="#ref-for-alignof①①">(2)</a>
-    <li><a href="#ref-for-alignof①②">13.5.1. Address Space Layout Constraints</a> <a href="#ref-for-alignof①③">(2)</a> <a href="#ref-for-alignof①④">(3)</a> <a href="#ref-for-alignof①⑤">(4)</a> <a href="#ref-for-alignof①⑥">(5)</a> <a href="#ref-for-alignof①⑦">(6)</a> <a href="#ref-for-alignof①⑧">(7)</a> <a href="#ref-for-alignof①⑨">(8)</a> <a href="#ref-for-alignof②⓪">(9)</a> <a href="#ref-for-alignof②①">(10)</a> <a href="#ref-for-alignof②②">(11)</a> <a href="#ref-for-alignof②③">(12)</a> <a href="#ref-for-alignof②④">(13)</a> <a href="#ref-for-alignof②⑤">(14)</a> <a href="#ref-for-alignof②⑥">(15)</a>
+    <li><a href="#ref-for-alignof">10.3.4. Buffer Binding Determines Runtime-Sized Array Element Count</a>
+    <li><a href="#ref-for-alignof①">13.4. Memory Layout</a> <a href="#ref-for-alignof②">(2)</a>
+    <li><a href="#ref-for-alignof③">13.4.1. Alignment and Size</a> <a href="#ref-for-alignof④">(2)</a> <a href="#ref-for-alignof⑤">(3)</a> <a href="#ref-for-alignof⑥">(4)</a> <a href="#ref-for-alignof⑦">(5)</a> <a href="#ref-for-alignof⑧">(6)</a> <a href="#ref-for-alignof⑨">(7)</a>
+    <li><a href="#ref-for-alignof①⓪">13.4.2. Structure Member Layout</a>
+    <li><a href="#ref-for-alignof①①">13.5. Internal Layout of Values</a> <a href="#ref-for-alignof①②">(2)</a>
+    <li><a href="#ref-for-alignof①③">13.5.1. Address Space Layout Constraints</a> <a href="#ref-for-alignof①④">(2)</a> <a href="#ref-for-alignof①⑤">(3)</a> <a href="#ref-for-alignof①⑥">(4)</a> <a href="#ref-for-alignof①⑦">(5)</a> <a href="#ref-for-alignof①⑧">(6)</a> <a href="#ref-for-alignof①⑨">(7)</a> <a href="#ref-for-alignof②⓪">(8)</a> <a href="#ref-for-alignof②①">(9)</a> <a href="#ref-for-alignof②②">(10)</a> <a href="#ref-for-alignof②③">(11)</a> <a href="#ref-for-alignof②④">(12)</a> <a href="#ref-for-alignof②⑤">(13)</a> <a href="#ref-for-alignof②⑥">(14)</a> <a href="#ref-for-alignof②⑦">(15)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="alignofmember">
@@ -24062,12 +24108,12 @@ registrations, it matches widespread industry conventions.</p>
    <b><a href="#sizeof">#sizeof</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-sizeof">3.11. Attributes</a>
-    <li><a href="#ref-for-sizeof①">10.3.4. Buffer Binding Determines Runtime-Sized Array Element Count</a> <a href="#ref-for-sizeof②">(2)</a> <a href="#ref-for-sizeof③">(3)</a> <a href="#ref-for-sizeof④">(4)</a> <a href="#ref-for-sizeof⑤">(5)</a> <a href="#ref-for-sizeof⑥">(6)</a> <a href="#ref-for-sizeof⑦">(7)</a> <a href="#ref-for-sizeof⑧">(8)</a> <a href="#ref-for-sizeof⑨">(9)</a>
-    <li><a href="#ref-for-sizeof①⓪">13.4. Memory Layout</a> <a href="#ref-for-sizeof①①">(2)</a>
-    <li><a href="#ref-for-sizeof①②">13.4.1. Alignment and Size</a> <a href="#ref-for-sizeof①③">(2)</a> <a href="#ref-for-sizeof①④">(3)</a> <a href="#ref-for-sizeof①⑤">(4)</a>
-    <li><a href="#ref-for-sizeof①⑥">13.4.2. Structure Member Layout</a> <a href="#ref-for-sizeof①⑦">(2)</a>
-    <li><a href="#ref-for-sizeof①⑧">13.5. Internal Layout of Values</a> <a href="#ref-for-sizeof①⑨">(2)</a> <a href="#ref-for-sizeof②⓪">(3)</a>
-    <li><a href="#ref-for-sizeof②①">13.5.1. Address Space Layout Constraints</a>
+    <li><a href="#ref-for-sizeof①">10.3.4. Buffer Binding Determines Runtime-Sized Array Element Count</a> <a href="#ref-for-sizeof②">(2)</a>
+    <li><a href="#ref-for-sizeof③">13.4. Memory Layout</a> <a href="#ref-for-sizeof④">(2)</a>
+    <li><a href="#ref-for-sizeof⑤">13.4.1. Alignment and Size</a> <a href="#ref-for-sizeof⑥">(2)</a> <a href="#ref-for-sizeof⑦">(3)</a> <a href="#ref-for-sizeof⑧">(4)</a>
+    <li><a href="#ref-for-sizeof⑨">13.4.2. Structure Member Layout</a> <a href="#ref-for-sizeof①⓪">(2)</a>
+    <li><a href="#ref-for-sizeof①①">13.5. Internal Layout of Values</a> <a href="#ref-for-sizeof①②">(2)</a> <a href="#ref-for-sizeof①③">(3)</a>
+    <li><a href="#ref-for-sizeof①④">13.5.1. Address Space Layout Constraints</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="sizeofmember">
@@ -24090,9 +24136,10 @@ registrations, it matches widespread industry conventions.</p>
   <aside class="dfn-panel" data-for="strideof">
    <b><a href="#strideof">#strideof</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-strideof">13.4. Memory Layout</a> <a href="#ref-for-strideof①">(2)</a>
-    <li><a href="#ref-for-strideof②">13.5. Internal Layout of Values</a>
-    <li><a href="#ref-for-strideof③">13.5.1. Address Space Layout Constraints</a> <a href="#ref-for-strideof④">(2)</a> <a href="#ref-for-strideof⑤">(3)</a>
+    <li><a href="#ref-for-strideof">10.3.4. Buffer Binding Determines Runtime-Sized Array Element Count</a> <a href="#ref-for-strideof①">(2)</a> <a href="#ref-for-strideof②">(3)</a>
+    <li><a href="#ref-for-strideof③">13.4. Memory Layout</a> <a href="#ref-for-strideof④">(2)</a>
+    <li><a href="#ref-for-strideof⑤">13.5. Internal Layout of Values</a>
+    <li><a href="#ref-for-strideof⑥">13.5.1. Address Space Layout Constraints</a> <a href="#ref-for-strideof⑦">(2)</a> <a href="#ref-for-strideof⑧">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="element-stride">
@@ -24195,8 +24242,8 @@ registrations, it matches widespread industry conventions.</p>
    <b><a href="#uniform-value">#uniform-value</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-uniform-value">14.2. Uniformity</a>
-    <li><a href="#ref-for-uniform-value①">14.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-uniform-value②">(2)</a> <a href="#ref-for-uniform-value③">(3)</a> <a href="#ref-for-uniform-value④">(4)</a> <a href="#ref-for-uniform-value⑤">(5)</a> <a href="#ref-for-uniform-value⑥">(6)</a> <a href="#ref-for-uniform-value⑦">(7)</a>
-    <li><a href="#ref-for-uniform-value⑧">17.11.3. workgroupUniformLoad</a> <a href="#ref-for-uniform-value⑨">(2)</a>
+    <li><a href="#ref-for-uniform-value①">14.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-uniform-value②">(2)</a> <a href="#ref-for-uniform-value③">(3)</a> <a href="#ref-for-uniform-value④">(4)</a> <a href="#ref-for-uniform-value⑤">(5)</a> <a href="#ref-for-uniform-value⑥">(6)</a> <a href="#ref-for-uniform-value⑦">(7)</a> <a href="#ref-for-uniform-value⑧">(8)</a> <a href="#ref-for-uniform-value⑨">(9)</a>
+    <li><a href="#ref-for-uniform-value①⓪">17.11.3. workgroupUniformLoad</a> <a href="#ref-for-uniform-value①①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="uniform-variable">
@@ -24208,8 +24255,8 @@ registrations, it matches widespread industry conventions.</p>
   <aside class="dfn-panel" data-for="potential-trigger-set">
    <b><a href="#potential-trigger-set">#potential-trigger-set</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-potential-trigger-set">14.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-potential-trigger-set①">(2)</a> <a href="#ref-for-potential-trigger-set②">(3)</a> <a href="#ref-for-potential-trigger-set③">(4)</a> <a href="#ref-for-potential-trigger-set④">(5)</a> <a href="#ref-for-potential-trigger-set⑤">(6)</a>
-    <li><a href="#ref-for-potential-trigger-set⑥">14.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-potential-trigger-set⑦">(2)</a> <a href="#ref-for-potential-trigger-set⑧">(3)</a> <a href="#ref-for-potential-trigger-set⑨">(4)</a> <a href="#ref-for-potential-trigger-set①⓪">(5)</a> <a href="#ref-for-potential-trigger-set①①">(6)</a>
+    <li><a href="#ref-for-potential-trigger-set">14.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-potential-trigger-set①">(2)</a> <a href="#ref-for-potential-trigger-set②">(3)</a> <a href="#ref-for-potential-trigger-set③">(4)</a> <a href="#ref-for-potential-trigger-set④">(5)</a> <a href="#ref-for-potential-trigger-set⑤">(6)</a> <a href="#ref-for-potential-trigger-set⑥">(7)</a> <a href="#ref-for-potential-trigger-set⑦">(8)</a>
+    <li><a href="#ref-for-potential-trigger-set⑧">14.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-potential-trigger-set⑨">(2)</a> <a href="#ref-for-potential-trigger-set①⓪">(3)</a> <a href="#ref-for-potential-trigger-set①①">(4)</a> <a href="#ref-for-potential-trigger-set①②">(5)</a> <a href="#ref-for-potential-trigger-set①③">(6)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="call-site-tag">
@@ -24229,8 +24276,8 @@ registrations, it matches widespread industry conventions.</p>
   <aside class="dfn-panel" data-for="parameter-tag">
    <b><a href="#parameter-tag">#parameter-tag</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-parameter-tag">14.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-parameter-tag①">(2)</a> <a href="#ref-for-parameter-tag②">(3)</a>
-    <li><a href="#ref-for-parameter-tag③">14.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-parameter-tag④">(2)</a> <a href="#ref-for-parameter-tag⑤">(3)</a> <a href="#ref-for-parameter-tag⑥">(4)</a>
+    <li><a href="#ref-for-parameter-tag">14.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-parameter-tag①">(2)</a> <a href="#ref-for-parameter-tag②">(3)</a> <a href="#ref-for-parameter-tag③">(4)</a>
+    <li><a href="#ref-for-parameter-tag④">14.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-parameter-tag⑤">(2)</a> <a href="#ref-for-parameter-tag⑥">(3)</a> <a href="#ref-for-parameter-tag⑦">(4)</a> <a href="#ref-for-parameter-tag⑧">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="parameter-return-tag">
@@ -24283,6 +24330,13 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-parameterrequiredtobeuniforms①">14.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-parameterrequiredtobeuniforms②">(2)</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="parametercontentsrequiredtobeuniforms">
+   <b><a href="#parametercontentsrequiredtobeuniforms">#parametercontentsrequiredtobeuniforms</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-parametercontentsrequiredtobeuniforms">14.2.3. Analyzing the Uniformity Requirements of a Function</a>
+    <li><a href="#ref-for-parametercontentsrequiredtobeuniforms①">14.2.7. Uniformity Rules for Function Calls</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="parameternorestriction">
    <b><a href="#parameternorestriction">#parameternorestriction</a></b><b>Referenced in:</b>
    <ul>
@@ -24290,12 +24344,12 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-parameternorestriction①">14.2.7. Uniformity Rules for Function Calls</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="parameterreturnrequiredtobeuniform">
-   <b><a href="#parameterreturnrequiredtobeuniform">#parameterreturnrequiredtobeuniform</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="parameterreturncontentsrequiredtobeuniform">
+   <b><a href="#parameterreturncontentsrequiredtobeuniform">#parameterreturncontentsrequiredtobeuniform</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-parameterreturnrequiredtobeuniform">14.2.3. Analyzing the Uniformity Requirements of a Function</a>
-    <li><a href="#ref-for-parameterreturnrequiredtobeuniform①">14.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-parameterreturnrequiredtobeuniform②">(2)</a>
-    <li><a href="#ref-for-parameterreturnrequiredtobeuniform③">14.2.10.5. User-defined Function Calls</a>
+    <li><a href="#ref-for-parameterreturncontentsrequiredtobeuniform">14.2.3. Analyzing the Uniformity Requirements of a Function</a>
+    <li><a href="#ref-for-parameterreturncontentsrequiredtobeuniform①">14.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-parameterreturncontentsrequiredtobeuniform②">(2)</a>
+    <li><a href="#ref-for-parameterreturncontentsrequiredtobeuniform③">14.2.10.5. User-defined Function Calls</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="parameterreturnnorestriction">
@@ -24339,9 +24393,9 @@ registrations, it matches widespread industry conventions.</p>
    <b><a href="#requiredtobeuniforms">#requiredtobeuniforms</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-requiredtobeuniforms">14.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-requiredtobeuniforms①">(2)</a>
-    <li><a href="#ref-for-requiredtobeuniforms②">14.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-requiredtobeuniforms③">(2)</a> <a href="#ref-for-requiredtobeuniforms④">(3)</a> <a href="#ref-for-requiredtobeuniforms⑤">(4)</a>
-    <li><a href="#ref-for-requiredtobeuniforms⑥">14.2.10.3. Composite Value Analysis Limitations</a>
-    <li><a href="#ref-for-requiredtobeuniforms⑦">14.2.10.5. User-defined Function Calls</a>
+    <li><a href="#ref-for-requiredtobeuniforms②">14.2.7. Uniformity Rules for Function Calls</a> <a href="#ref-for-requiredtobeuniforms③">(2)</a> <a href="#ref-for-requiredtobeuniforms④">(3)</a> <a href="#ref-for-requiredtobeuniforms⑤">(4)</a> <a href="#ref-for-requiredtobeuniforms⑥">(5)</a>
+    <li><a href="#ref-for-requiredtobeuniforms⑦">14.2.10.3. Composite Value Analysis Limitations</a>
+    <li><a href="#ref-for-requiredtobeuniforms⑧">14.2.10.5. User-defined Function Calls</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="maybenonuniform">
@@ -24367,6 +24421,7 @@ registrations, it matches widespread industry conventions.</p>
    <b><a href="#param_i">#param_i</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-param_i">14.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-param_i①">(2)</a> <a href="#ref-for-param_i②">(3)</a> <a href="#ref-for-param_i③">(4)</a> <a href="#ref-for-param_i④">(5)</a>
+    <li><a href="#ref-for-param_i⑤">14.2.8. Uniformity Rules for Expressions</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="value_return">
@@ -24376,11 +24431,18 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-value_return②">14.2.6. Uniformity Rules for Statements</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="value_return_i">
-   <b><a href="#value_return_i">#value_return_i</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="param_i_contents">
+   <b><a href="#param_i_contents">#param_i_contents</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-value_return_i">14.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-value_return_i①">(2)</a>
-    <li><a href="#ref-for-value_return_i②">14.2.6. Uniformity Rules for Statements</a> <a href="#ref-for-value_return_i③">(2)</a>
+    <li><a href="#ref-for-param_i_contents">14.2.3. Analyzing the Uniformity Requirements of a Function</a>
+    <li><a href="#ref-for-param_i_contents①">14.2.4. Pointer Desugaring</a> <a href="#ref-for-param_i_contents②">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="value_return_i_contents">
+   <b><a href="#value_return_i_contents">#value_return_i_contents</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-value_return_i_contents">14.2.3. Analyzing the Uniformity Requirements of a Function</a> <a href="#ref-for-value_return_i_contents①">(2)</a>
+    <li><a href="#ref-for-value_return_i_contents②">14.2.6. Uniformity Rules for Statements</a> <a href="#ref-for-value_return_i_contents③">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="interior-nodes">
