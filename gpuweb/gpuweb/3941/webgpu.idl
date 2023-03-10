@@ -34,6 +34,7 @@ interface GPUSupportedLimits {
     readonly attribute unsigned long maxStorageBuffersPerShaderStage;
     readonly attribute unsigned long maxStorageTexturesPerShaderStage;
     readonly attribute unsigned long maxUniformBuffersPerShaderStage;
+    readonly attribute unsigned long maxFragmentCombinedOutputResources;
     readonly attribute unsigned long long maxUniformBufferBindingSize;
     readonly attribute unsigned long long maxStorageBufferBindingSize;
     readonly attribute unsigned long minUniformBufferOffsetAlignment;
@@ -67,11 +68,6 @@ interface GPUAdapterInfo {
     readonly attribute DOMString description;
 };
 
-[Exposed=(Window, DedicatedWorker), SecureContext]
-interface GPUSupportedBehaviors {
-    readonly setlike<DOMString>;
-};
-
 interface mixin NavigatorGPU {
     [SameObject, SecureContext] readonly attribute GPU gpu;
 };
@@ -82,6 +78,7 @@ WorkerNavigator includes NavigatorGPU;
 interface GPU {
     Promise<GPUAdapter?> requestAdapter(optional GPURequestAdapterOptions options = {});
     GPUTextureFormat getPreferredCanvasFormat();
+    readonly attribute FrozenArray<DOMString> shadingSoftwareExtensions;
 };
 
 dictionary GPURequestAdapterOptions {
@@ -99,7 +96,6 @@ interface GPUAdapter {
     [SameObject] readonly attribute GPUSupportedFeatures features;
     [SameObject] readonly attribute GPUSupportedLimits limits;
     readonly attribute boolean isFallbackAdapter;
-    [SameObject] readonly attribute GPUSupportedBehaviors behaviors;
 
     Promise<GPUDevice> requestDevice(optional GPUDeviceDescriptor descriptor = {});
     Promise<GPUAdapterInfo> requestAdapterInfo(optional sequence<DOMString> unmaskHints = []);
@@ -123,10 +119,6 @@ enum GPUFeatureName {
     "rg11b10ufloat-renderable",
     "bgra8unorm-storage",
     "float32-filterable"
-};
-
-enum GPUBehaviorName {
-  "wgsl"
 };
 
 [Exposed=(Window, DedicatedWorker), SecureContext]
