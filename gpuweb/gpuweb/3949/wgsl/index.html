@@ -695,7 +695,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/6aeaf3e084d753e3a130cb5fd136f7a2573a15c4/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/6aeaf3e084d753e3a130cb5fd136f7a2573a15c4/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/ae309e65df114dc551412ce89d2ef5ad87fe28de/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/ae309e65df114dc551412ce89d2ef5ad87fe28de/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -8123,7 +8123,7 @@ For example, if <var>ev</var> is a reference to a vector, the statement </p>
     <blockquote> <var>ev</var><code>[</code><var>c</var><code>] +=</code> <var>e2</var>; </blockquote>
      can be rewritten as 
     <blockquote> <code>{ let p = &amp;(</code><var>ev</var><code>); let c0 =</code> <var>c</var><code>; (*p)[c0] = (*p)[c0] + (</code><var>e2</var><code>); }</code> </blockquote>
-    c0 and <code>p</code> are chosen to be different from all other identifiers in the program. 
+     where identifiers <code>c0</code> and <code>p</code> are chosen to be different from all other identifiers in the program. 
    </div>
    <h3 class="heading settled" data-level="8.3" id="increment-decrement"><span class="secno">8.3. </span><span class="content">Increment and Decrement Statements</span><a class="self-link" href="#increment-decrement"></a></h3>
    <p>An <dfn data-dfn-type="dfn" data-noexport id="increment-statement">increment statement<a class="self-link" href="#increment-statement"></a></dfn> adds 1 to the contents of a variable.
