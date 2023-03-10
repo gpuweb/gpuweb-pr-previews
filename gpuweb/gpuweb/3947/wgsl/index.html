@@ -695,7 +695,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/1ef1bec2937405dc4c3e1e6181637ee655a3fb51/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/1ef1bec2937405dc4c3e1e6181637ee655a3fb51/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/3a58fde3c8af94912ccf8e5251da032194b3b8c2/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/3a58fde3c8af94912ccf8e5251da032194b3b8c2/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -6027,7 +6027,7 @@ converted</a> to the <a data-link-type="dfn" href="#effective-value-type" id="re
 bound resources.</p>
     <li data-md>
      <p><a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer①①">Storage buffers</a> and <a data-link-type="dfn" href="#storage-texture" id="ref-for-storage-texture">storage textures</a> cannot be <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed①">statically accessed</a> in a <a data-link-type="dfn" href="#vertex-shader-stage" id="ref-for-vertex-shader-stage①">vertex shader stage</a>.
-See <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/#bind-group-layout-creation" id="ref-for-bind-group-layout-creation">bindGroupLayout creation</a>.</p>
+See WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpudevice-createbindgrouplayout" id="ref-for-dom-gpudevice-createbindgrouplayout">createBindGroupLayout()</a></code>.</p>
     <li data-md>
      <p><a data-link-type="dfn" href="#atomic-type" id="ref-for-atomic-type⑦">Atomic types</a> can only appear in mutable storage buffers or workgroup
 variables.</p>
@@ -10474,7 +10474,7 @@ table.</p>
 shader stage</a>.</p>
    <p><a data-link-type="dfn" href="#variable" id="ref-for-variable①④">Variables</a> in the <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage①⓪">storage</a> address space (<a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer②②">storage
 buffers</a>) and variables whose <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②④">store type</a> is a <a data-link-type="dfn" href="#storage-texture" id="ref-for-storage-texture②">storage texture</a> cannot be <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed①②">statically accessed</a> by a <a data-link-type="dfn" href="#vertex-shader-stage" id="ref-for-vertex-shader-stage②">vertex shader stage</a>.
-See <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/#bind-group-layout-creation" id="ref-for-bind-group-layout-creation①">bindGroupLayout creation</a>.</p>
+See WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpudevice-createbindgrouplayout" id="ref-for-dom-gpudevice-createbindgrouplayout①">createBindGroupLayout()</a></code>.</p>
    <p class="note" role="note"><span class="marker">Note:</span> Each address space may have different performance characteristics.</p>
    <p>When writing a <a data-link-type="dfn" href="#variable-declaration" id="ref-for-variable-declaration⑧">variable declaration</a> or a <a data-link-type="dfn" href="#pointer-type" id="ref-for-pointer-type⑧">pointer type</a> in WGSL source:</p>
    <ul>
@@ -19836,13 +19836,6 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-dom-gputextureusage-storage_binding">5.5.1. Texel Formats</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-bind-group-layout-creation">
-   <a href="https://gpuweb.github.io/gpuweb/#bind-group-layout-creation">https://gpuweb.github.io/gpuweb/#bind-group-layout-creation</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-bind-group-layout-creation">6. Variable and Value Declarations</a>
-    <li><a href="#ref-for-bind-group-layout-creation①">13.3. Address Spaces</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="term-for-binding-member">
    <a href="https://gpuweb.github.io/gpuweb/#binding-member">https://gpuweb.github.io/gpuweb/#binding-member</a><b>Referenced in:</b>
    <ul>
@@ -19871,6 +19864,13 @@ registrations, it matches widespread industry conventions.</p>
    <a href="https://gpuweb.github.io/gpuweb/#dom-gpumultisamplestate-count">https://gpuweb.github.io/gpuweb/#dom-gpumultisamplestate-count</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-gpumultisamplestate-count">16. Built-in Values</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-gpudevice-createbindgrouplayout">
+   <a href="https://gpuweb.github.io/gpuweb/#dom-gpudevice-createbindgrouplayout">https://gpuweb.github.io/gpuweb/#dom-gpudevice-createbindgrouplayout</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gpudevice-createbindgrouplayout">6. Variable and Value Declarations</a>
+    <li><a href="#ref-for-dom-gpudevice-createbindgrouplayout①">13.3. Address Spaces</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dom-gpudevice-createcomputepipeline">
@@ -20047,12 +20047,12 @@ registrations, it matches widespread industry conventions.</p>
      <li><span class="dfn-paneled" id="term-for-enumdef-gputextureformat">GPUTextureFormat</span>
      <li><span class="dfn-paneled" id="term-for-gputextureview">GPUTextureView</span>
      <li><span class="dfn-paneled" id="term-for-dom-gputextureusage-storage_binding">STORAGE_BINDING</span>
-     <li><span class="dfn-paneled" id="term-for-bind-group-layout-creation">bindgrouplayout creation</span>
      <li><span class="dfn-paneled" id="term-for-binding-member">binding member</span>
      <li><span class="dfn-paneled" id="term-for-binding-resource-type">binding resource type</span>
      <li><span class="dfn-paneled" id="term-for-binding-type">binding type</span>
      <li><span class="dfn-paneled" id="term-for-dom-gpubindgrouplayoutentry-buffer">buffer</span>
      <li><span class="dfn-paneled" id="term-for-dom-gpumultisamplestate-count">count</span>
+     <li><span class="dfn-paneled" id="term-for-dom-gpudevice-createbindgrouplayout">createBindGroupLayout(descriptor)</span>
      <li><span class="dfn-paneled" id="term-for-dom-gpudevice-createcomputepipeline">createComputePipeline(descriptor)</span>
      <li><span class="dfn-paneled" id="term-for-dom-gpudevice-createrenderpipeline">createRenderPipeline(descriptor)</span>
      <li><span class="dfn-paneled" id="term-for-dom-gpudevice-createshadermodule">createShaderModule(descriptor)</span>
