@@ -901,13 +901,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-03-10">10 March 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-03-14">14 March 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/91192bbf5005c45b006bd4f84ea073398c406cb7/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/91192bbf5005c45b006bd4f84ea073398c406cb7/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/73882ac34a25e11755563fb56db9f27d51c18ca2/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/73882ac34a25e11755563fb56db9f27d51c18ca2/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -14779,7 +14779,9 @@ submitted work (e.g. queue submissions) have completed writing to it via <code c
     <dd data-md>
      <p>The <code class="idl"><a data-link-type="idl" href="#gputexture" id="ref-for-gputexture③⑨">GPUTexture</a></code> to draw into for the current frame.
 It exposes a writable view onto the underlying <code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-drawingbuffer-slot" id="ref-for-dom-gpucanvascontext-drawingbuffer-slot">[[drawingBuffer]]</a></code>. <code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-getcurrenttexture" id="ref-for-dom-gpucanvascontext-getcurrenttexture③">getCurrentTexture()</a></code> populates this slot if <code>null</code>, then returns it.</p>
-     <p>Any changes to the drawing buffer made through the currentTexture get presented when <a data-link-type="abstract-op" href="#abstract-opdef-updating-the-rendering-of-a-webgpu-canvas" id="ref-for-abstract-opdef-updating-the-rendering-of-a-webgpu-canvas">updating the rendering of a WebGPU canvas</a>. At this time, the texture is also destroyed
+     <p>In the steady-state of a visible canvas, any changes to the drawing buffer made through the
+currentTexture get presented when <a data-link-type="abstract-op" href="#abstract-opdef-updating-the-rendering-of-a-webgpu-canvas" id="ref-for-abstract-opdef-updating-the-rendering-of-a-webgpu-canvas">updating the rendering of a WebGPU canvas</a>.
+At or before that point, the texture is also destroyed
 and <code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-currenttexture-slot" id="ref-for-dom-gpucanvascontext-currenttexture-slot③">[[currentTexture]]</a></code> is set to to <code>null</code>, signalling that
 a new one is to be created by the next call to <code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-getcurrenttexture" id="ref-for-dom-gpucanvascontext-getcurrenttexture④">getCurrentTexture()</a></code>.</p>
      <p><code class="idl"><a data-link-type="idl" href="#dom-gputexture-destroy" id="ref-for-dom-gputexture-destroy②">Destroying</a></code> the currentTexture has no effect on the drawing buffer
@@ -14787,7 +14789,8 @@ contents; it only terminates write-access to the drawing buffer early.
 During the same frame, <code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-getcurrenttexture" id="ref-for-dom-gpucanvascontext-getcurrenttexture⑤">getCurrentTexture()</a></code> continues returning the
 same destroyed texture.</p>
      <p><a data-link-type="abstract-op" href="#abstract-opdef-expire-the-current-texture" id="ref-for-abstract-opdef-expire-the-current-texture">Expire the current texture</a> sets the currentTexture to <code>null</code>.
-It is called by <code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-configure" id="ref-for-dom-gpucanvascontext-configure②">configure()</a></code>, resizing the canvas, and others.</p>
+It is called by <code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-configure" id="ref-for-dom-gpucanvascontext-configure②">configure()</a></code>, resizing the canvas,
+presentation, <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#dom-offscreencanvas-transfertoimagebitmap" id="ref-for-dom-offscreencanvas-transfertoimagebitmap">transferToImageBitmap()</a></code>, and others.</p>
    </dl>
    <p><code class="idl"><a data-link-type="idl" href="#gpucanvascontext" id="ref-for-gpucanvascontext⑥">GPUCanvasContext</a></code> has the following methods:</p>
    <dl>
@@ -15017,7 +15020,7 @@ specified points.</p>
       <li data-md>
        <p>When an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#offscreencanvas" id="ref-for-offscreencanvas④">OffscreenCanvas</a></code> with a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/canvas.html#offscreencanvas-placeholder" id="ref-for-offscreencanvas-placeholder">placeholder canvas element</a> has its rendering updated.</p>
       <li data-md>
-       <p>When <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#dom-offscreencanvas-transfertoimagebitmap" id="ref-for-dom-offscreencanvas-transfertoimagebitmap">transferToImageBitmap()</a></code> creates an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmap" id="ref-for-imagebitmap②">ImageBitmap</a></code> from the bitmap.</p>
+       <p>When <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#dom-offscreencanvas-transfertoimagebitmap" id="ref-for-dom-offscreencanvas-transfertoimagebitmap①">transferToImageBitmap()</a></code> creates an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmap" id="ref-for-imagebitmap②">ImageBitmap</a></code> from the bitmap.</p>
       <li data-md>
        <p>When WebGPU canvas contents are read using other Web APIs, like <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-drawimage" id="ref-for-dom-context-2d-drawimage">drawImage()</a></code>, <code>texImage2D()</code>, <code>texSubImage2D()</code>, <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#dom-canvas-todataurl" id="ref-for-dom-canvas-todataurl">toDataURL()</a></code>, <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#dom-canvas-toblob" id="ref-for-dom-canvas-toblob">toBlob()</a></code>, and so on.</p>
      </ul>
@@ -15045,7 +15048,7 @@ specified points.</p>
     <p class="note" role="note"><span class="marker">Note:</span> This does not happen for standalone <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#offscreencanvas" id="ref-for-offscreencanvas⑥">OffscreenCanvas</a></code>es (created by <code>new OffscreenCanvas()</code>).</p>
    </div>
    <div class="algorithm" data-algorithm="transferToImageBitmap from WebGPU">
-     When <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#dom-offscreencanvas-transfertoimagebitmap" id="ref-for-dom-offscreencanvas-transfertoimagebitmap①">transferToImageBitmap()</a></code> is called on a canvas with <code class="idl"><a data-link-type="idl" href="#gpucanvascontext" id="ref-for-gpucanvascontext①⑥">GPUCanvasContext</a></code> <var>context</var>, after creating an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmap" id="ref-for-imagebitmap③">ImageBitmap</a></code> from the canvas’s bitmap: 
+     When <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#dom-offscreencanvas-transfertoimagebitmap" id="ref-for-dom-offscreencanvas-transfertoimagebitmap②">transferToImageBitmap()</a></code> is called on a canvas with <code class="idl"><a data-link-type="idl" href="#gpucanvascontext" id="ref-for-gpucanvascontext①⑥">GPUCanvasContext</a></code> <var>context</var>, after creating an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmap" id="ref-for-imagebitmap③">ImageBitmap</a></code> from the canvas’s bitmap: 
     <ol>
      <li data-md>
       <p><a data-link-type="abstract-op" href="#abstract-opdef-replace-the-drawing-buffer" id="ref-for-abstract-opdef-replace-the-drawing-buffer⑦">Replace the drawing buffer</a> of <var>context</var>.</p>
@@ -19421,7 +19424,8 @@ for (const dataLink of dataLinks) {
   <aside class="dfn-panel" data-for="term-for-dom-offscreencanvas-transfertoimagebitmap">
    <a href="https://html.spec.whatwg.org/multipage/canvas.html#dom-offscreencanvas-transfertoimagebitmap">https://html.spec.whatwg.org/multipage/canvas.html#dom-offscreencanvas-transfertoimagebitmap</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-offscreencanvas-transfertoimagebitmap">21.3. HTML Specification Hooks</a> <a href="#ref-for-dom-offscreencanvas-transfertoimagebitmap①">(2)</a>
+    <li><a href="#ref-for-dom-offscreencanvas-transfertoimagebitmap">21.2. GPUCanvasContext</a>
+    <li><a href="#ref-for-dom-offscreencanvas-transfertoimagebitmap①">21.3. HTML Specification Hooks</a> <a href="#ref-for-dom-offscreencanvas-transfertoimagebitmap②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-transient-activation">
@@ -20683,7 +20687,7 @@ for (const dataLink of dataLinks) {
    <dt id="biblio-sourcemap">[SourceMap]
    <dd>John Lenz; Nick Fitzgerald. <a href="https://sourcemaps.info/spec.html"><cite>Source Map Revision 3 Proposal</cite></a>. URL: <a href="https://sourcemaps.info/spec.html">https://sourcemaps.info/spec.html</a>
    <dt id="biblio-webgpu">[WEBGPU]
-   <dd>Kai Ninomiya; Brandon Jones; Myles Maxfield. <a href="https://gpuweb.github.io/gpuweb/"><cite>WebGPU</cite></a>. URL: <a href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/91192bbf5005c45b006bd4f84ea073398c406cb7/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/91192bbf5005c45b006bd4f84ea073398c406cb7/spec/index.bs</a>
+   <dd>Kai Ninomiya; Brandon Jones; Myles Maxfield. <a href="https://gpuweb.github.io/gpuweb/"><cite>WebGPU</cite></a>. URL: <a href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/73882ac34a25e11755563fb56db9f27d51c18ca2/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/73882ac34a25e11755563fb56db9f27d51c18ca2/spec/index.bs</a>
   </dl>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
 <pre class="idl highlight def"><c- b>interface</c-> <c- b>mixin</c-> <a class="idl-code" data-link-type="interface" href="#gpuobjectbase"><c- g>GPUObjectBase</c-></a> {
