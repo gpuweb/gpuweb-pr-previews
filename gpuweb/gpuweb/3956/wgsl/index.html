@@ -695,7 +695,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/74b1f809cc006eb76a5ab2c95a500fbab6683ff5/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/74b1f809cc006eb76a5ab2c95a500fbab6683ff5/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/80a74a74eb5d7e5f4d642d99653bc3deb55887f5/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/80a74a74eb5d7e5f4d642d99653bc3deb55887f5/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -4882,7 +4882,7 @@ the memory locations for <code>the_particle.color_index</code>.</p>
    </div>
    <h4 class="heading settled" data-level="5.4.6" id="out-of-bounds-access-sec"><span class="secno">5.4.6. </span><span class="content">Out of Bounds Access</span><a class="self-link" href="#out-of-bounds-access-sec"></a></h4>
    <p>An operation that <a data-link-type="dfn" href="#memory-access" id="ref-for-memory-access①">accesses</a> an <a data-link-type="dfn" href="#invalid-memory-reference" id="ref-for-invalid-memory-reference③">invalid memory reference</a> is an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="out-of-bounds-access">out of bounds access</dfn>.
-It is a <a data-link-type="dfn" href="#dynamic-error" id="ref-for-dynamic-error">dynamic error</a> to perform an <a data-link-type="dfn" href="#out-of-bounds-access" id="ref-for-out-of-bounds-access">out of bounds access</a>.</p>
+It is a <a data-link-type="dfn" href="#dynamic-error" id="ref-for-dynamic-error">dynamic error</a> to perform an out of bounds access.</p>
    <p>An out of bounds access, if performed as written, would typically:</p>
    <ul>
     <li data-md>
@@ -17109,7 +17109,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
    </table>
    <p><strong>Returns:</strong></p>
    <p>The unfiltered texel data.</p>
-   <p>An <a data-link-type="dfn" href="#out-of-bounds-access" id="ref-for-out-of-bounds-access①">out of bounds access</a> occurs if:</p>
+   <p>An <a data-link-type="dfn" href="#out-of-bounds-access" id="ref-for-out-of-bounds-access">out of bounds access</a> occurs if:</p>
    <ul>
     <li data-md>
      <p>any element of <code>coords</code> is outside the range <code>[0, textureDimensions(t, level))</code> for the corresponding element, or</p>
@@ -17120,7 +17120,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
     <li data-md>
      <p><code>sample_index</code> is outside the range <code>[0, textureNumSamples(s))</code></p>
    </ul>
-   <p>If an <a data-link-type="dfn" href="#out-of-bounds-access" id="ref-for-out-of-bounds-access②">out of bounds access</a> occurs, the built-in function returns one of:</p>
+   <p>If an <a data-link-type="dfn" href="#out-of-bounds-access" id="ref-for-out-of-bounds-access①">out of bounds access</a> occurs, the built-in function returns one of:</p>
    <ul>
     <li data-md>
      <p>The data for some texel within bounds of the texture</p>
@@ -22289,8 +22289,7 @@ registrations, it matches widespread industry conventions.</p>
   <aside class="dfn-panel" data-for="out-of-bounds-access">
    <b><a href="#out-of-bounds-access">#out-of-bounds-access</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-out-of-bounds-access">5.4.6. Out of Bounds Access</a>
-    <li><a href="#ref-for-out-of-bounds-access①">17.7.4. textureLoad</a> <a href="#ref-for-out-of-bounds-access②">(2)</a>
+    <li><a href="#ref-for-out-of-bounds-access">17.7.4. textureLoad</a> <a href="#ref-for-out-of-bounds-access①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="load-rule">
