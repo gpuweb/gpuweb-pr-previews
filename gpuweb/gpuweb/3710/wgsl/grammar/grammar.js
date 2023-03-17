@@ -1,50 +1,67 @@
-// Copyright (C) [2022] World Wide Web Consortium,
-// (Massachusetts Institute of Technology, European Research Consortium for
-// Informatics and Mathematics, Keio University, Beihang).
-// All Rights Reserved.
-//
-// This work is distributed under the W3C (R) Software License [1] in the hope
-// that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
-// warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-//
-// [1] http://www.w3.org/Consortium/Legal/copyright-software
+// Copyright (C) [2023] World Wide Web Consortium,
+        // (Massachusetts Institute of Technology, European Research Consortium for
+        // Informatics and Mathematics, Keio University, Beihang).
+        // All Rights Reserved.
+        //
+        // This work is distributed under the W3C (R) Software License [1] in the hope
+        // that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+        // warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+        //
+        // [1] http://www.w3.org/Consortium/Legal/copyright-software
 
-// **** This file is auto-generated. Do not edit. ****
+        // **** This file is auto-generated. Do not edit. ****
 
-module.exports = grammar({
-    name: 'wgsl',
+                module.exports = grammar({
+            name: 'wgsl',
 
-    externals: $ => [
-        $._block_comment,
-    ],
+            externals: $ => [
+                $._block_comment,
+                $._disambiguate_template,
+                $._template_args_start,
+                $._template_args_end,
+                $._less_than,
+                $._less_than_equal,
+                $._shift_left,
+                $._shift_left_assign,
+                $._greater_than,
+                $._greater_than_equal,
+                $._shift_right,
+                $._shift_right_assign,
+                $._error_sentinel,
+            ],
 
-    extras: $ => [
-        $._comment,
-        $._block_comment,
-        $._blankspace,
-    ],
+            extras: $ => [
+                $._comment,
+                $._block_comment,
+                $._blankspace,
+            ],
 
-    inline: $ => [
-        $.global_decl,
-        $._reserved,
-    ],
+            inline: $ => [
+                $.global_decl,
+                $._reserved,
+            ],
 
-    // WGSL has no parsing conflicts.
-    conflicts: $ => [],
+            // WGSL has no parsing conflicts.
+            conflicts: $ => [],
 
-    word: $ => $.ident_pattern_token,
+            word: $ => $.ident_pattern_token,
 
-    rules: {
+            rules: {
+       
         translation_unit: $ => seq(optional(repeat1($.global_directive)), optional(repeat1($.global_decl))),
-        global_directive: $ => $.enable_directive,
+        global_directive: $ => choice(
+            $.diagnostic_directive,
+            $.enable_directive,
+            $.requires_directive
+        ),
         global_decl: $ => choice(
             token(';'),
             seq($.global_variable_decl, token(';')),
-            seq($.global_constant_decl, token(';')),
+            seq($.global_value_decl, token(';')),
             seq($.type_alias_decl, token(';')),
             $.struct_decl,
             $.function_decl,
-            seq($.static_assert_statement, token(';'))
+            seq($.const_assert_statement, token(';'))
         ),
         bool_literal: $ => choice(
             token('true'),
@@ -75,23 +92,31 @@ module.exports = grammar({
             token(/0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/),
             token(/0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/)
         ),
+        diagnostic_directive: $ => seq(token('diagnostic'), $.diagnostic_control, token(';')),
         literal: $ => choice(
             $.int_literal,
             $.float_literal,
             $.bool_literal
         ),
+        ident: $ => seq($.ident_pattern_token, $._disambiguate_template),
         member_ident: $ => $.ident_pattern_token,
+        diagnostic_rule_name: $ => $.ident_pattern_token,
+        template_list: $ => seq($._template_args_start, $.template_arg_comma_list, $._template_args_end),
+        template_arg_comma_list: $ => seq($.template_arg_expression, optional(repeat1(seq(token(','), $.template_arg_expression))), optional(token(','))),
+        template_arg_expression: $ => $.expression,
         attribute: $ => choice(
             seq(token('@'), token('align'), token('('), $.expression, $.attrib_end),
             seq(token('@'), token('binding'), token('('), $.expression, $.attrib_end),
-            seq(token('@'), token('builtin'), token('('), $.builtin_value_name, $.attrib_end),
+            seq(token('@'), token('builtin'), token('('), $.expression, $.attrib_end),
             seq(token('@'), token('const')),
+            seq(token('@'), token('diagnostic'), $.diagnostic_control),
             seq(token('@'), token('group'), token('('), $.expression, $.attrib_end),
             seq(token('@'), token('id'), token('('), $.expression, $.attrib_end),
-            seq(token('@'), token('interpolate'), token('('), $.interpolation_type_name, $.attrib_end),
-            seq(token('@'), token('interpolate'), token('('), $.interpolation_type_name, token(','), $.interpolation_sample_name, $.attrib_end),
+            seq(token('@'), token('interpolate'), token('('), $.expression, $.attrib_end),
+            seq(token('@'), token('interpolate'), token('('), $.expression, token(','), $.expression, $.attrib_end),
             seq(token('@'), token('invariant')),
             seq(token('@'), token('location'), token('('), $.expression, $.attrib_end),
+            seq(token('@'), token('must_use')),
             seq(token('@'), token('size'), token('('), $.expression, $.attrib_end),
             seq(token('@'), token('workgroup_size'), token('('), $.expression, $.attrib_end),
             seq(token('@'), token('workgroup_size'), token('('), $.expression, token(','), $.expression, $.attrib_end),
@@ -101,109 +126,34 @@ module.exports = grammar({
             seq(token('@'), token('compute'))
         ),
         attrib_end: $ => seq(optional(token(',')), token(')')),
-        array_type_specifier: $ => seq(token('array'), token('<'), $.type_specifier, optional(seq(token(','), $.element_count_expression)), token('>')),
-        element_count_expression: $ => choice(
-            $.additive_expression,
-            $.bitwise_expression
-        ),
+        diagnostic_control: $ => seq(token('('), $.severity_control_name, token(','), $.diagnostic_rule_name, $.attrib_end),
         struct_decl: $ => seq(token('struct'), $.ident, $.struct_body_decl),
         struct_body_decl: $ => seq(token('{'), $.struct_member, optional(repeat1(seq(token(','), $.struct_member))), optional(token(',')), token('}')),
         struct_member: $ => seq(optional(repeat1($.attribute)), $.member_ident, token(':'), $.type_specifier),
-        texture_and_sampler_types: $ => choice(
-            $.sampler_type,
-            $.depth_texture_type,
-            seq($.sampled_texture_type, token('<'), $.type_specifier, token('>')),
-            seq($.multisampled_texture_type, token('<'), $.type_specifier, token('>')),
-            seq($.storage_texture_type, token('<'), $.texel_format, token(','), $.access_mode, token('>'))
-        ),
-        sampler_type: $ => choice(
-            token('sampler'),
-            token('sampler_comparison')
-        ),
-        sampled_texture_type: $ => choice(
-            token('texture_1d'),
-            token('texture_2d'),
-            token('texture_2d_array'),
-            token('texture_3d'),
-            token('texture_cube'),
-            token('texture_cube_array')
-        ),
-        multisampled_texture_type: $ => token('texture_multisampled_2d'),
-        storage_texture_type: $ => choice(
-            token('texture_storage_1d'),
-            token('texture_storage_2d'),
-            token('texture_storage_2d_array'),
-            token('texture_storage_3d')
-        ),
-        depth_texture_type: $ => choice(
-            token('texture_depth_2d'),
-            token('texture_depth_2d_array'),
-            token('texture_depth_cube'),
-            token('texture_depth_cube_array'),
-            token('texture_depth_multisampled_2d')
-        ),
-        type_alias_decl: $ => seq(token('type'), $.ident, token('='), $.type_specifier),
-        type_specifier: $ => choice(
-            $.ident,
-            $.type_specifier_without_ident
-        ),
-        type_specifier_without_ident: $ => choice(
-            token('bool'),
-            token('f32'),
-            token('f16'),
-            token('i32'),
-            token('u32'),
-            seq($.vec_prefix, token('<'), $.type_specifier, token('>')),
-            seq($.mat_prefix, token('<'), $.type_specifier, token('>')),
-            seq(token('ptr'), token('<'), $.address_space, token(','), $.type_specifier, optional(seq(token(','), $.access_mode)), token('>')),
-            $.array_type_specifier,
-            seq(token('atomic'), token('<'), $.type_specifier, token('>')),
-            $.texture_and_sampler_types
-        ),
-        vec_prefix: $ => choice(
-            token('vec2'),
-            token('vec3'),
-            token('vec4')
-        ),
-        mat_prefix: $ => choice(
-            token('mat2x2'),
-            token('mat2x3'),
-            token('mat2x4'),
-            token('mat3x2'),
-            token('mat3x3'),
-            token('mat3x4'),
-            token('mat4x2'),
-            token('mat4x3'),
-            token('mat4x4')
-        ),
-        variable_statement: $ => choice(
+        type_alias_decl: $ => seq(token('alias'), $.ident, token('='), $.type_specifier),
+        type_specifier: $ => $.template_elaborated_ident,
+        template_elaborated_ident: $ => seq($.ident, $._disambiguate_template, optional($.template_list)),
+        variable_or_value_statement: $ => choice(
             $.variable_decl,
             seq($.variable_decl, token('='), $.expression),
             seq(token('let'), $.optionally_typed_ident, token('='), $.expression),
             seq(token('const'), $.optionally_typed_ident, token('='), $.expression)
         ),
-        variable_decl: $ => seq(token('var'), optional($.variable_qualifier), $.optionally_typed_ident),
+        variable_decl: $ => seq(token('var'), $._disambiguate_template, optional($.template_list), $.optionally_typed_ident),
         optionally_typed_ident: $ => seq($.ident, optional(seq(token(':'), $.type_specifier))),
-        variable_qualifier: $ => seq(token('<'), $.address_space, optional(seq(token(','), $.access_mode)), token('>')),
         global_variable_decl: $ => seq(optional(repeat1($.attribute)), $.variable_decl, optional(seq(token('='), $.expression))),
-        global_constant_decl: $ => choice(
+        global_value_decl: $ => choice(
             seq(token('const'), $.optionally_typed_ident, token('='), $.expression),
             seq(optional(repeat1($.attribute)), token('override'), $.optionally_typed_ident, optional(seq(token('='), $.expression)))
         ),
         primary_expression: $ => choice(
-            $.ident,
-            seq($.callable, $.argument_expression_list),
+            $.template_elaborated_ident,
+            $.call_expression,
             $.literal,
-            $.paren_expression,
-            seq(token('bitcast'), token('<'), $.type_specifier, token('>'), $.paren_expression)
+            $.paren_expression
         ),
-        callable: $ => choice(
-            $.ident,
-            $.type_specifier_without_ident,
-            $.vec_prefix,
-            $.mat_prefix,
-            token('array')
-        ),
+        call_expression: $ => $.call_phrase,
+        call_phrase: $ => seq($.template_elaborated_ident, $.argument_expression_list),
         paren_expression: $ => seq(token('('), $.expression, token(')')),
         argument_expression_list: $ => seq(token('('), optional($.expression_comma_list), token(')')),
         expression_comma_list: $ => seq($.expression, optional(repeat1(seq(token(','), $.expression))), optional(token(','))),
@@ -227,7 +177,7 @@ module.exports = grammar({
             seq(token('&'), $.lhs_expression)
         ),
         core_lhs_expression: $ => choice(
-            $.ident,
+            seq($.ident, $._disambiguate_template),
             seq(token('('), $.lhs_expression, token(')'))
         ),
         multiplicative_expression: $ => choice(
@@ -249,15 +199,15 @@ module.exports = grammar({
         ),
         shift_expression: $ => choice(
             $.additive_expression,
-            seq($.unary_expression, token('<<'), $.unary_expression),
-            seq($.unary_expression, token('>>'), $.unary_expression)
+            seq($.unary_expression, $._shift_left, $.unary_expression),
+            seq($.unary_expression, $._shift_right, $.unary_expression)
         ),
         relational_expression: $ => choice(
             $.shift_expression,
-            seq($.shift_expression, token('<'), $.shift_expression),
-            seq($.shift_expression, token('>'), $.shift_expression),
-            seq($.shift_expression, token('<='), $.shift_expression),
-            seq($.shift_expression, token('>='), $.shift_expression),
+            seq($.shift_expression, $._less_than, $.shift_expression),
+            seq($.shift_expression, $._greater_than, $.shift_expression),
+            seq($.shift_expression, $._less_than_equal, $.shift_expression),
+            seq($.shift_expression, $._greater_than_equal, $.shift_expression),
             seq($.shift_expression, token('=='), $.shift_expression),
             seq($.shift_expression, token('!='), $.shift_expression)
         ),
@@ -292,7 +242,7 @@ module.exports = grammar({
             seq($.short_circuit_and_expression, token('&&'), $.relational_expression),
             $.bitwise_expression
         ),
-        compound_statement: $ => seq(token('{'), optional(repeat1($.statement)), token('}')),
+        compound_statement: $ => seq(optional(repeat1($.attribute)), token('{'), optional(repeat1($.statement)), token('}')),
         assignment_statement: $ => choice(
             seq($.lhs_expression, choice(token('='), $.compound_assignment_operator), $.expression),
             seq(token('_'), token('='), $.expression)
@@ -306,17 +256,18 @@ module.exports = grammar({
             token('&='),
             token('|='),
             token('^='),
-            token('>>='),
-            token('<<=')
+            $._shift_right_assign,
+            $._shift_left_assign
         ),
         increment_statement: $ => seq($.lhs_expression, token('++')),
         decrement_statement: $ => seq($.lhs_expression, token('--')),
-        if_statement: $ => seq($.if_clause, optional(repeat1($.else_if_clause)), optional($.else_clause)),
+        if_statement: $ => seq(optional(repeat1($.attribute)), $.if_clause, optional(repeat1($.else_if_clause)), optional($.else_clause)),
         if_clause: $ => seq(token('if'), $.expression, $.compound_statement),
         else_if_clause: $ => seq(token('else'), token('if'), $.expression, $.compound_statement),
         else_clause: $ => seq(token('else'), $.compound_statement),
-        switch_statement: $ => seq(token('switch'), $.expression, token('{'), repeat1($.switch_body), token('}')),
-        switch_body: $ => choice(
+        switch_statement: $ => seq(optional(repeat1($.attribute)), token('switch'), $.expression, $.switch_body),
+        switch_body: $ => seq(optional(repeat1($.attribute)), token('{'), repeat1($.switch_clause), token('}')),
+        switch_clause: $ => choice(
             $.case_clause,
             $.default_alone_clause
         ),
@@ -327,11 +278,11 @@ module.exports = grammar({
             token('default'),
             $.expression
         ),
-        loop_statement: $ => seq(token('loop'), token('{'), optional(repeat1($.statement)), optional($.continuing_statement), token('}')),
-        for_statement: $ => seq(token('for'), token('('), $.for_header, token(')'), $.compound_statement),
+        loop_statement: $ => seq(optional(repeat1($.attribute)), token('loop'), optional(repeat1($.attribute)), token('{'), optional(repeat1($.statement)), optional($.continuing_statement), token('}')),
+        for_statement: $ => seq(optional(repeat1($.attribute)), token('for'), token('('), $.for_header, token(')'), $.compound_statement),
         for_header: $ => seq(optional($.for_init), token(';'), optional($.expression), token(';'), optional($.for_update)),
         for_init: $ => choice(
-            $.variable_statement,
+            $.variable_or_value_statement,
             $.variable_updating_statement,
             $.func_call_statement
         ),
@@ -339,15 +290,15 @@ module.exports = grammar({
             $.variable_updating_statement,
             $.func_call_statement
         ),
-        while_statement: $ => seq(token('while'), $.expression, $.compound_statement),
+        while_statement: $ => seq(optional(repeat1($.attribute)), token('while'), $.expression, $.compound_statement),
         break_statement: $ => token('break'),
         break_if_statement: $ => seq(token('break'), token('if'), $.expression, token(';')),
         continue_statement: $ => token('continue'),
         continuing_statement: $ => seq(token('continuing'), $.continuing_compound_statement),
-        continuing_compound_statement: $ => seq(token('{'), optional(repeat1($.statement)), optional($.break_if_statement), token('}')),
+        continuing_compound_statement: $ => seq(optional(repeat1($.attribute)), token('{'), optional(repeat1($.statement)), optional($.break_if_statement), token('}')),
         return_statement: $ => seq(token('return'), optional($.expression)),
-        func_call_statement: $ => seq($.ident, $.argument_expression_list),
-        static_assert_statement: $ => seq(token('static_assert'), $.expression),
+        func_call_statement: $ => $.call_phrase,
+        const_assert_statement: $ => seq(token('const_assert'), $.expression),
         statement: $ => choice(
             token(';'),
             seq($.return_statement, token(';')),
@@ -357,13 +308,13 @@ module.exports = grammar({
             $.for_statement,
             $.while_statement,
             seq($.func_call_statement, token(';')),
-            seq($.variable_statement, token(';')),
+            seq($.variable_or_value_statement, token(';')),
             seq($.break_statement, token(';')),
             seq($.continue_statement, token(';')),
             seq(token('discard'), token(';')),
             seq($.variable_updating_statement, token(';')),
             $.compound_statement,
-            seq($.static_assert_statement, token(';'))
+            seq($.const_assert_statement, token(';'))
         ),
         variable_updating_statement: $ => choice(
             $.assignment_statement,
@@ -371,66 +322,22 @@ module.exports = grammar({
             $.decrement_statement
         ),
         function_decl: $ => seq(optional(repeat1($.attribute)), $.function_header, $.compound_statement),
-        function_header: $ => seq(token('fn'), $.ident, token('('), optional($.param_list), token(')'), optional(seq(token('->'), optional(repeat1($.attribute)), $.type_specifier))),
+        function_header: $ => seq(token('fn'), $.ident, token('('), optional($.param_list), token(')'), optional(seq(token('->'), optional(repeat1($.attribute)), $.template_elaborated_ident))),
         param_list: $ => seq($.param, optional(repeat1(seq(token(','), $.param))), optional(token(','))),
         param: $ => seq(optional(repeat1($.attribute)), $.ident, token(':'), $.type_specifier),
-        enable_directive: $ => seq(token('enable'), $.extension_name, token(';')),
+        enable_directive: $ => seq(token('enable'), $.enable_extension_list, token(';')),
+        enable_extension_list: $ => seq($.enable_extension_name, optional(repeat1(seq(token(','), $.enable_extension_name))), optional(token(','))),
+        requires_directive: $ => seq(token('requires'), $.software_extension_list, token(';')),
+        software_extension_list: $ => seq($.software_extension_name, optional(repeat1(seq(token(','), $.software_extension_name))), optional(token(','))),
+        enable_extension_name: $ => $.ident_pattern_token,
+        software_extension_name: $ => $.ident_pattern_token,
         ident_pattern_token: $ => token(/([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/uy),
-        interpolation_type_name: $ => choice(
-            token('perspective'),
-            token('linear'),
-            token('flat')
+        severity_control_name: $ => choice(
+            token('error'),
+            token('warning'),
+            token('info'),
+            token('off')
         ),
-        interpolation_sample_name: $ => choice(
-            token('center'),
-            token('centroid'),
-            token('sample')
-        ),
-        builtin_value_name: $ => choice(
-            token('vertex_index'),
-            token('instance_index'),
-            token('position'),
-            token('front_facing'),
-            token('frag_depth'),
-            token('local_invocation_id'),
-            token('local_invocation_index'),
-            token('global_invocation_id'),
-            token('workgroup_id'),
-            token('num_workgroups'),
-            token('sample_index'),
-            token('sample_mask')
-        ),
-        access_mode: $ => choice(
-            token('read'),
-            token('write'),
-            token('read_write')
-        ),
-        address_space: $ => choice(
-            token('function'),
-            token('private'),
-            token('workgroup'),
-            token('uniform'),
-            token('storage')
-        ),
-        texel_format: $ => choice(
-            token('rgba8unorm'),
-            token('rgba8snorm'),
-            token('rgba8uint'),
-            token('rgba8sint'),
-            token('rgba16uint'),
-            token('rgba16sint'),
-            token('rgba16float'),
-            token('r32uint'),
-            token('r32sint'),
-            token('r32float'),
-            token('rg32uint'),
-            token('rg32sint'),
-            token('rg32float'),
-            token('rgba32uint'),
-            token('rgba32sint'),
-            token('rgba32float')
-        ),
-        extension_name: $ => token('f16'),
         swizzle_name: $ => choice(
             token('/[rgba]/'),
             token('/[rgba][rgba]/'),
@@ -442,11 +349,6 @@ module.exports = grammar({
             token('/[xyzw][xyzw][xyzw][xyzw]/')
         ),
         _reserved: $ => choice(
-            token('CompileShader'),
-            token('ComputeShader'),
-            token('DomainShader'),
-            token('GeometryShader'),
-            token('Hullshader'),
             token('NULL'),
             token('Self'),
             token('abstract'),
@@ -502,13 +404,11 @@ module.exports = grammar({
             token('get'),
             token('goto'),
             token('groupshared'),
-            token('handle'),
             token('highp'),
             token('impl'),
             token('implements'),
             token('import'),
             token('inline'),
-            token('inout'),
             token('instanceof'),
             token('interface'),
             token('layout'),
@@ -552,13 +452,12 @@ module.exports = grammar({
             token('regardless'),
             token('register'),
             token('reinterpret_cast'),
-            token('requires'),
+            token('require'),
             token('resource'),
             token('restrict'),
             token('self'),
             token('set'),
             token('shared'),
-            token('signed'),
             token('sizeof'),
             token('smooth'),
             token('snorm'),
@@ -575,6 +474,7 @@ module.exports = grammar({
             token('throw'),
             token('trait'),
             token('try'),
+            token('type'),
             token('typedef'),
             token('typeid'),
             token('typename'),
@@ -595,8 +495,9 @@ module.exports = grammar({
             token('writeonly'),
             token('yield')
         ),
-        ident: $ => $.ident_pattern_token,
-        _comment: $ => seq(token('//'), token(/.*/)),
+        ident: $ => seq($.ident_pattern_token, $._disambiguate_template),
+        _comment: $ => token(/\/\/.*/),
         _blankspace: $ => token(/[\u0020\u0009\u000a\u000b\u000c\u000d\u0085\u200e\u200f\u2028\u2029]/uy)
-    },
-});
+            },
+        });
+       
