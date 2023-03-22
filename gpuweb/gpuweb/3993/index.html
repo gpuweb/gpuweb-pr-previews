@@ -907,7 +907,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/015f2c220a980dec3e08efb7f947cf51919fdcae/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/015f2c220a980dec3e08efb7f947cf51919fdcae/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/dc4a89e0c1c0a31c413ab6ec03091092d3a38bf6/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/dc4a89e0c1c0a31c413ab6ec03091092d3a38bf6/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -3636,7 +3636,7 @@ Buffers may be <code class="idl"><a data-link-type="idl" href="#dom-gpubufferdes
 };
 <a data-link-type="idl-name" href="#gpubuffer" id="ref-for-gpubuffer①⑤"><c- n>GPUBuffer</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpuobjectbase" id="ref-for-gpuobjectbase①②"><c- n>GPUObjectBase</c-></a>;
 
-<c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-gpubuffermapstate"><code><c- g>GPUBufferMapState</c-></code></dfn> {
+<c- b>enum</c-> <a class="idl-code" data-link-type="enum" href="#enumdef-gpubuffermapstate" id="ref-for-enumdef-gpubuffermapstate①"><c- g>GPUBufferMapState</c-></a> {
     <a class="idl-code" data-link-type="enum-value" href="#dom-gpubuffermapstate-unmapped" id="ref-for-dom-gpubuffermapstate-unmapped"><c- s>"unmapped"</c-></a>,
     <a class="idl-code" data-link-type="enum-value" href="#dom-gpubuffermapstate-pending" id="ref-for-dom-gpubuffermapstate-pending"><c- s>"pending"</c-></a>,
     <a class="idl-code" data-link-type="enum-value" href="#dom-gpubuffermapstate-mapped" id="ref-for-dom-gpubuffermapstate-mapped"><c- s>"mapped"</c-></a>
@@ -3655,9 +3655,9 @@ Buffers may be <code class="idl"><a data-link-type="idl" href="#dom-gpubufferdes
    </dl>
    <p><code class="idl"><a data-link-type="idl" href="#gpubuffer" id="ref-for-gpubuffer①⑨">GPUBuffer</a></code> has the following <a data-link-type="dfn" href="#content-timeline-property" id="ref-for-content-timeline-property①">content timeline properties</a>:</p>
    <dl data-timeline="content">
-    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUBuffer" data-dfn-type="attribute" data-export id="dom-gpubuffer-mapstate"><code>mapState</code></dfn>, <span> of type <a data-link-type="idl-name" href="#enumdef-gpubuffermapstate" id="ref-for-enumdef-gpubuffermapstate①">GPUBufferMapState</a>, readonly</span>
+    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUBuffer" data-dfn-type="attribute" data-export id="dom-gpubuffer-mapstate"><code>mapState</code></dfn>, <span> of type <a data-link-type="idl-name" href="#enumdef-gpubuffermapstate" id="ref-for-enumdef-gpubuffermapstate②">GPUBufferMapState</a>, readonly</span>
     <dd data-md>
-     <p>The current <code class="idl"><a data-link-type="idl" href="#enumdef-gpubuffermapstate" id="ref-for-enumdef-gpubuffermapstate②">GPUBufferMapState</a></code> of the buffer:</p>
+     <p>The current <dfn class="dfn-paneled idl-code" data-dfn-for data-dfn-type="enum" data-export id="enumdef-gpubuffermapstate"><code>GPUBufferMapState</code></dfn> of the buffer:</p>
      <dl>
       <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUBufferMapState" data-dfn-type="enum-value" data-export id="dom-gpubuffermapstate-unmapped"><code>"unmapped"</code></dfn>
       <dd data-md>
@@ -7291,7 +7291,7 @@ completed.</p>
     <c- b>required</c-> <a data-link-type="idl-name" href="#enumdef-gpupipelineerrorreason" id="ref-for-enumdef-gpupipelineerrorreason①"><c- n>GPUPipelineErrorReason</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="GPUPipelineErrorInit" data-dfn-type="dict-member" data-export data-type="GPUPipelineErrorReason " id="dom-gpupipelineerrorinit-reason"><code><c- g>reason</c-></code></dfn>;
 };
 
-<c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-gpupipelineerrorreason"><code><c- g>GPUPipelineErrorReason</c-></code></dfn> {
+<c- b>enum</c-> <a class="idl-code" data-link-type="enum" href="#enumdef-gpupipelineerrorreason" id="ref-for-enumdef-gpupipelineerrorreason②"><c- g>GPUPipelineErrorReason</c-></a> {
     <a class="idl-code" data-link-type="enum-value" href="#dom-gpupipelineerrorreason-validation" id="ref-for-dom-gpupipelineerrorreason-validation"><c- s>"validation"</c-></a>,
     <a class="idl-code" data-link-type="enum-value" href="#dom-gpupipelineerrorreason-internal" id="ref-for-dom-gpupipelineerrorreason-internal"><c- s>"internal"</c-></a>
 };
@@ -7336,10 +7336,10 @@ completed.</p>
    </dl>
    <p><code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror④">GPUPipelineError</a></code> has the following attributes:</p>
    <dl>
-    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUPipelineError" data-dfn-type="attribute" data-export id="dom-gpupipelineerror-reason"><code>reason</code></dfn>, <span> of type <a data-link-type="idl-name" href="#enumdef-gpupipelineerrorreason" id="ref-for-enumdef-gpupipelineerrorreason②">GPUPipelineErrorReason</a>, readonly</span>
+    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUPipelineError" data-dfn-type="attribute" data-export id="dom-gpupipelineerror-reason"><code>reason</code></dfn>, <span> of type <a data-link-type="idl-name" href="#enumdef-gpupipelineerrorreason" id="ref-for-enumdef-gpupipelineerrorreason③">GPUPipelineErrorReason</a>, readonly</span>
     <dd data-md>
      <p>A read-only <a data-link-type="dfn" href="#slot-backed-attribute" id="ref-for-slot-backed-attribute②">slot-backed attribute</a> exposing the type of error encountered in pipeline creation
-as a <code class="idl"><a data-link-type="idl" href="#enumdef-gpupipelineerrorreason" id="ref-for-enumdef-gpupipelineerrorreason③">GPUPipelineErrorReason</a></code>:</p>
+as a <dfn class="dfn-paneled idl-code" data-dfn-for data-dfn-type="enum" data-export id="enumdef-gpupipelineerrorreason"><code>GPUPipelineErrorReason</code></dfn>:</p>
      <ul>
       <li data-md>
        <p><dfn class="dfn-paneled idl-code" data-dfn-for="GPUPipelineErrorReason" data-dfn-type="enum-value" data-export id="dom-gpupipelineerrorreason-validation"><code>"validation"</code></dfn>: A <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑤">validation error</a>.</p>
@@ -7643,7 +7643,7 @@ Entry point names follow the rules defined in <a data-link-type="dfn" href="http
     <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-record" id="ref-for-idl-record②"><c- b>record</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString①⓪"><c- b>USVString</c-></a>, <a data-link-type="idl-name" href="#typedefdef-gpupipelineconstantvalue" id="ref-for-typedefdef-gpupipelineconstantvalue"><c- n>GPUPipelineConstantValue</c-></a>> <a class="idl-code" data-link-type="dict-member" data-type="record<USVString, GPUPipelineConstantValue> " href="#dom-gpuprogrammablestage-constants" id="ref-for-dom-gpuprogrammablestage-constants①"><c- g>constants</c-></a>;
 };
 
-<c- b>typedef</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double③"><c- b>double</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-type="typedef" data-export id="typedefdef-gpupipelineconstantvalue"><code><c- g>GPUPipelineConstantValue</c-></code></dfn>; // May represent WGSL’s bool, f32, i32, u32, and f16 if enabled.
+<c- b>typedef</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double③"><c- b>double</c-></a> <a class="idl-code" data-link-type="typedef" href="#typedefdef-gpupipelineconstantvalue" id="ref-for-typedefdef-gpupipelineconstantvalue①"><c- g>GPUPipelineConstantValue</c-></a>; // May represent WGSL’s bool, f32, i32, u32, and f16 if enabled.
 </pre>
    <p><code class="idl"><a data-link-type="idl" href="#gpuprogrammablestage" id="ref-for-gpuprogrammablestage③">GPUProgrammableStage</a></code> has the following members:</p>
    <dl>
@@ -7654,7 +7654,7 @@ Entry point names follow the rules defined in <a data-link-type="dfn" href="http
     <dd data-md>
      <p>The name of the function in <code class="idl"><a data-link-type="idl" href="#dom-gpuprogrammablestage-module" id="ref-for-dom-gpuprogrammablestage-module②">module</a></code> that this stage will use to
 perform its work.</p>
-    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUProgrammableStage" data-dfn-type="dict-member" data-export id="dom-gpuprogrammablestage-constants"><code>constants</code></dfn>, <span> of type record&lt;<a data-link-type="idl-name" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString①②">USVString</a>, <a data-link-type="idl-name" href="#typedefdef-gpupipelineconstantvalue" id="ref-for-typedefdef-gpupipelineconstantvalue①">GPUPipelineConstantValue</a>></span>
+    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUProgrammableStage" data-dfn-type="dict-member" data-export id="dom-gpuprogrammablestage-constants"><code>constants</code></dfn>, <span> of type record&lt;<a data-link-type="idl-name" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString①②">USVString</a>, <a data-link-type="idl-name" href="#typedefdef-gpupipelineconstantvalue" id="ref-for-typedefdef-gpupipelineconstantvalue②">GPUPipelineConstantValue</a>></span>
     <dd data-md>
      <p>Specifies the values of <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#pipeline-overridable" id="ref-for-pipeline-overridable①">pipeline-overridable</a> constants in the shader module <code class="idl"><a data-link-type="idl" href="#dom-gpuprogrammablestage-module" id="ref-for-dom-gpuprogrammablestage-module③">module</a></code>.</p>
      <p>Each such <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#pipeline-overridable" id="ref-for-pipeline-overridable②">pipeline-overridable</a> constant is uniquely identified by a single <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#pipeline-overridable-constant-identifier-string" id="ref-for-pipeline-overridable-constant-identifier-string">pipeline-overridable constant identifier string</a> (representing the numeric ID of the
@@ -7662,7 +7662,7 @@ constant, if one is specified, and otherwise the constant’s identifier name).
 WGSL names (identifiers) in source maps follow the rules defined in <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#identifier-comparison" id="ref-for-identifier-comparison③">WGSL identifier comparison</a>.</p>
      <p>The key of each key-value pair must equal the identifier string of one such constant.
 When the pipeline is executed, that constant will have the specified value.</p>
-     <p>Values are specified as <code class="idl"><a data-link-type="idl" href="#typedefdef-gpupipelineconstantvalue" id="ref-for-typedefdef-gpupipelineconstantvalue②">GPUPipelineConstantValue</a></code>, which is a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double④">double</a></code>.
+     <p>Values are specified as <dfn class="dfn-paneled idl-code" data-dfn-for data-dfn-type="typedef" data-export id="typedefdef-gpupipelineconstantvalue"><code>GPUPipelineConstantValue</code></dfn>, which is a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double④">double</a></code>.
 They are converted <a data-link-type="abstract-op" href="#abstract-opdef-to-wgsl-type" id="ref-for-abstract-opdef-to-wgsl-type①">to WGSL type</a> of the pipeline-overridable constant (<code>bool</code>/<code>i32</code>/<code>u32</code>/<code>f32</code>/<code>f16</code>).
 If conversion fails, a validation error is generated.</p>
      <div class="example" id="example-fd463ccc">
@@ -20919,7 +20919,7 @@ for (const dataLink of dataLinks) {
 };
 <a data-link-type="idl-name" href="#gpubuffer"><c- n>GPUBuffer</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpuobjectbase"><c- n>GPUObjectBase</c-></a>;
 
-<c- b>enum</c-> <a href="#enumdef-gpubuffermapstate"><code><c- g>GPUBufferMapState</c-></code></a> {
+<c- b>enum</c-> <a class="idl-code" data-link-type="enum" href="#enumdef-gpubuffermapstate"><c- g>GPUBufferMapState</c-></a> {
     <a class="idl-code" data-link-type="enum-value" href="#dom-gpubuffermapstate-unmapped"><c- s>"unmapped"</c-></a>,
     <a class="idl-code" data-link-type="enum-value" href="#dom-gpubuffermapstate-pending"><c- s>"pending"</c-></a>,
     <a class="idl-code" data-link-type="enum-value" href="#dom-gpubuffermapstate-mapped"><c- s>"mapped"</c-></a>
@@ -21357,7 +21357,7 @@ for (const dataLink of dataLinks) {
     <c- b>required</c-> <a data-link-type="idl-name" href="#enumdef-gpupipelineerrorreason"><c- n>GPUPipelineErrorReason</c-></a> <a data-type="GPUPipelineErrorReason " href="#dom-gpupipelineerrorinit-reason"><code><c- g>reason</c-></code></a>;
 };
 
-<c- b>enum</c-> <a href="#enumdef-gpupipelineerrorreason"><code><c- g>GPUPipelineErrorReason</c-></code></a> {
+<c- b>enum</c-> <a class="idl-code" data-link-type="enum" href="#enumdef-gpupipelineerrorreason"><c- g>GPUPipelineErrorReason</c-></a> {
     <a class="idl-code" data-link-type="enum-value" href="#dom-gpupipelineerrorreason-validation"><c- s>"validation"</c-></a>,
     <a class="idl-code" data-link-type="enum-value" href="#dom-gpupipelineerrorreason-internal"><c- s>"internal"</c-></a>
 };
@@ -21380,7 +21380,7 @@ for (const dataLink of dataLinks) {
     <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-record"><c- b>record</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString"><c- b>USVString</c-></a>, <a data-link-type="idl-name" href="#typedefdef-gpupipelineconstantvalue"><c- n>GPUPipelineConstantValue</c-></a>> <a class="idl-code" data-link-type="dict-member" data-type="record<USVString, GPUPipelineConstantValue> " href="#dom-gpuprogrammablestage-constants"><c- g>constants</c-></a>;
 };
 
-<c- b>typedef</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a> <a href="#typedefdef-gpupipelineconstantvalue"><code><c- g>GPUPipelineConstantValue</c-></code></a>; // May represent WGSL’s bool, f32, i32, u32, and f16 if enabled.
+<c- b>typedef</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a> <a class="idl-code" data-link-type="typedef" href="#typedefdef-gpupipelineconstantvalue"><c- g>GPUPipelineConstantValue</c-></a>; // May represent WGSL’s bool, f32, i32, u32, and f16 if enabled.
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed"><c- g>Exposed</c-></a>=(<c- n>Window</c->, <c- n>DedicatedWorker</c->), <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext"><c- g>SecureContext</c-></a>]
 <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="#gpucomputepipeline"><c- g>GPUComputePipeline</c-></a> {
@@ -23496,12 +23496,6 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-gpubuffer①⓪①">20.4. Timestamp Query</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="enumdef-gpubuffermapstate">
-   <b><a href="#enumdef-gpubuffermapstate">#enumdef-gpubuffermapstate</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-enumdef-gpubuffermapstate">5.1. GPUBuffer </a> <a href="#ref-for-enumdef-gpubuffermapstate①">(2)</a> <a href="#ref-for-enumdef-gpubuffermapstate②">(3)</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="dom-gpubuffer-size">
    <b><a href="#dom-gpubuffer-size">#dom-gpubuffer-size</a></b><b>Referenced in:</b>
    <ul>
@@ -23545,6 +23539,12 @@ restriction entirely and allow writable bindings to alias with undefined results
    <ul>
     <li><a href="#ref-for-dom-gpubuffer-mapstate">5.1. GPUBuffer </a>
     <li><a href="#ref-for-dom-gpubuffer-mapstate①">5.4. Buffer Mapping</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="enumdef-gpubuffermapstate">
+   <b><a href="#enumdef-gpubuffermapstate">#enumdef-gpubuffermapstate</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-enumdef-gpubuffermapstate">5.1. GPUBuffer </a> <a href="#ref-for-enumdef-gpubuffermapstate①">(2)</a> <a href="#ref-for-enumdef-gpubuffermapstate②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpubuffermapstate-unmapped">
@@ -26615,12 +26615,6 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-dom-gpupipelineerrorinit-reason③">10.3.1. Render Pipeline Creation</a> <a href="#ref-for-dom-gpupipelineerrorinit-reason④">(2)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="enumdef-gpupipelineerrorreason">
-   <b><a href="#enumdef-gpupipelineerrorreason">#enumdef-gpupipelineerrorreason</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-enumdef-gpupipelineerrorreason">10. Pipelines</a> <a href="#ref-for-enumdef-gpupipelineerrorreason①">(2)</a> <a href="#ref-for-enumdef-gpupipelineerrorreason②">(3)</a> <a href="#ref-for-enumdef-gpupipelineerrorreason③">(4)</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="dom-gpupipelineerror-constructor">
    <b><a href="#dom-gpupipelineerror-constructor">#dom-gpupipelineerror-constructor</a></b><b>Referenced in:</b>
    <ul>
@@ -26631,6 +26625,12 @@ restriction entirely and allow writable bindings to alias with undefined results
    <b><a href="#dom-gpupipelineerror-reason">#dom-gpupipelineerror-reason</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-gpupipelineerror-reason">10. Pipelines</a> <a href="#ref-for-dom-gpupipelineerror-reason①">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="enumdef-gpupipelineerrorreason">
+   <b><a href="#enumdef-gpupipelineerrorreason">#enumdef-gpupipelineerrorreason</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-enumdef-gpupipelineerrorreason">10. Pipelines</a> <a href="#ref-for-enumdef-gpupipelineerrorreason①">(2)</a> <a href="#ref-for-enumdef-gpupipelineerrorreason②">(3)</a> <a href="#ref-for-enumdef-gpupipelineerrorreason③">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-gpupipelineerrorreason-validation">
@@ -26732,12 +26732,6 @@ restriction entirely and allow writable bindings to alias with undefined results
     <li><a href="#ref-for-gpuprogrammablestage⑨">10.3.7.1. Vertex Formats</a> <a href="#ref-for-gpuprogrammablestage①⓪">(2)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="typedefdef-gpupipelineconstantvalue">
-   <b><a href="#typedefdef-gpupipelineconstantvalue">#typedefdef-gpupipelineconstantvalue</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-typedefdef-gpupipelineconstantvalue">10.1.2. GPUProgrammableStage </a> <a href="#ref-for-typedefdef-gpupipelineconstantvalue①">(2)</a> <a href="#ref-for-typedefdef-gpupipelineconstantvalue②">(3)</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="dom-gpuprogrammablestage-module">
    <b><a href="#dom-gpuprogrammablestage-module">#dom-gpuprogrammablestage-module</a></b><b>Referenced in:</b>
    <ul>
@@ -26759,6 +26753,12 @@ restriction entirely and allow writable bindings to alias with undefined results
    <ul>
     <li><a href="#ref-for-dom-gpuprogrammablestage-constants">3.11. Numeric conversions from JavaScript to WGSL</a>
     <li><a href="#ref-for-dom-gpuprogrammablestage-constants①">10.1.2. GPUProgrammableStage </a> <a href="#ref-for-dom-gpuprogrammablestage-constants②">(2)</a> <a href="#ref-for-dom-gpuprogrammablestage-constants③">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="typedefdef-gpupipelineconstantvalue">
+   <b><a href="#typedefdef-gpupipelineconstantvalue">#typedefdef-gpupipelineconstantvalue</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-typedefdef-gpupipelineconstantvalue">10.1.2. GPUProgrammableStage </a> <a href="#ref-for-typedefdef-gpupipelineconstantvalue①">(2)</a> <a href="#ref-for-typedefdef-gpupipelineconstantvalue②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="abstract-opdef-validating-gpuprogrammablestage">
