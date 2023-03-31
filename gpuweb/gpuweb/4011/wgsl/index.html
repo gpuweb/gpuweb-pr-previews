@@ -691,13 +691,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-03-30">30 March 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-03-31">31 March 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/7e9d18610396b6c1b2c5afff77881ebf8a90c6ba/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/7e9d18610396b6c1b2c5afff77881ebf8a90c6ba/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/ce03dda94e1dd89c3a925f4cd5cc7d0f57595434/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/ce03dda94e1dd89c3a925f4cd5cc7d0f57595434/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -1680,7 +1680,7 @@ into a <a data-link-type="dfn" href="#pipeline" id="ref-for-pipeline">pipeline</
      <p>If a <a data-link-type="dfn" href="#dynamic-error" id="ref-for-dynamic-error">dynamic error</a> occurs:</p>
      <ul>
       <li data-md>
-       <p>Data access <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②">will</a> be restricted to:</p>
+       <p><a data-link-type="dfn" href="#memory-access" id="ref-for-memory-access">Memory accesses</a> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②">will</a> be restricted to:</p>
        <ul>
         <li data-md>
          <p><a data-link-type="dfn" href="#shader-stage-input" id="ref-for-shader-stage-input②">shader stage inputs</a>,</p>
@@ -4679,7 +4679,7 @@ The enumeration types exist, but cannot be spelled in WGSL source.</p>
    </table>
    <h3 class="heading settled" data-level="5.4" id="memory-views"><span class="secno">5.4. </span><span class="content">Memory Views</span><a class="self-link" href="#memory-views"></a></h3>
    <p>In addition to calculating with <a data-link-type="dfn" href="#plain-type" id="ref-for-plain-type④">plain</a> values, a WGSL program will
-also often read values from <a href="#memory">memory</a> or write values to memory, via <a data-link-type="dfn" href="#memory-access" id="ref-for-memory-access">memory access</a> operations.
+also often read values from <a href="#memory">memory</a> or write values to memory, via <a data-link-type="dfn" href="#memory-access" id="ref-for-memory-access①">memory access</a> operations.
 Each memory access is performed via a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view②">memory view</a>.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="memory-view">memory view</dfn> comprises:</p>
    <ul>
@@ -4906,7 +4906,7 @@ the memory locations for <code>the_particle.color_index</code>.</p>
     </div>
    </div>
    <h4 class="heading settled" data-level="5.4.6" id="out-of-bounds-access-sec"><span class="secno">5.4.6. </span><span class="content">Out-of-Bounds Access</span><a class="self-link" href="#out-of-bounds-access-sec"></a></h4>
-   <p>An operation that <a data-link-type="dfn" href="#memory-access" id="ref-for-memory-access①">accesses</a> an <a data-link-type="dfn" href="#invalid-memory-reference" id="ref-for-invalid-memory-reference③">invalid memory reference</a> is an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="out-of-bounds-access">out-of-bounds access</dfn>.</p>
+   <p>An operation that <a data-link-type="dfn" href="#memory-access" id="ref-for-memory-access②">accesses</a> an <a data-link-type="dfn" href="#invalid-memory-reference" id="ref-for-invalid-memory-reference③">invalid memory reference</a> is an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="out-of-bounds-access">out-of-bounds access</dfn>.</p>
    <p>An out-of-bounds access is a program defect, because if it <em>were</em> performed as written, it would typically:</p>
    <ul>
     <li data-md>
@@ -24025,8 +24025,9 @@ initial value' definition.</span><b><a href="#default-initial-value">#default-in
   <aside aria-labelledby="infopaneltitle-for-memory-access" class="dfn-panel" data-for="memory-access" id="infopanel-for-memory-access">
    <span id="infopaneltitle-for-memory-access" style="display:none">Info about the 'memory access' definition.</span><b><a href="#memory-access">#memory-access</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-memory-access">5.4. Memory Views</a>
-    <li><a href="#ref-for-memory-access①">5.4.6. Out-of-Bounds Access</a>
+    <li><a href="#ref-for-memory-access">2.1. Processing Errors</a>
+    <li><a href="#ref-for-memory-access①">5.4. Memory Views</a>
+    <li><a href="#ref-for-memory-access②">5.4.6. Out-of-Bounds Access</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-read-access" class="dfn-panel" data-for="read-access" id="infopanel-for-read-access">
