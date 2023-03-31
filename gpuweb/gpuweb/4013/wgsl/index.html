@@ -697,7 +697,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/b5fb8b8f6532f6d5b87dcd23ba48f774ac7ff551/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/b5fb8b8f6532f6d5b87dcd23ba48f774ac7ff551/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/f1fdba4706c36ee8a955ef9b098a4412b59cd5f2/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/f1fdba4706c36ee8a955ef9b098a4412b59cd5f2/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -5362,6 +5362,7 @@ Most textures use cartesian coordinates.
 Cube textures have six square faces, and are sampled with
 a three dimensional coordinate interpreted as a direction vector from the origin toward
 the cube centered on the origin.</p>
+     <p>See <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#enumdef-gputextureviewdimension" id="ref-for-enumdef-gputextureviewdimension">GPUTextureViewDimension</a></code>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="texture" data-dfn-type="dfn" data-noexport id="texture-size">size</dfn>
     <dd data-md>
      <p>The extent of grid coordinates along each dimension. This is a function of <a data-link-type="dfn" href="#mip-level" id="ref-for-mip-level">mip level</a>.</p>
@@ -5691,7 +5692,11 @@ in <a href="#texture-storage">§ 5.5.5 Storage Texture Types</a>.</p>
 of being <a data-link-type="dfn" href="#memory-access" id="ref-for-memory-access②">accessed</a> in conjunction with a <a data-link-type="dfn" href="#type-sampler" id="ref-for-type-sampler">sampler</a>.
 It can also be accessed without the use of a sampler.
 Sampled textures only allow <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①">read accesses</a>.</p>
-   <p>The <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format③">texel format</a> of the texture is defined in the <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dictdef-gputexturebindinglayout" id="ref-for-dictdef-gputexturebindinglayout">GPUTextureBindingLayout</a></code>.</p>
+   <p>The <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format③">texel format</a> is the <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gputexture-format" id="ref-for-dom-gputexture-format">format</a></code> attribute of the <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#gputexture" id="ref-for-gputexture①">GPUTexture</a></code> bound to the texture variable.
+WebGPU <a data-link-type="abstract-op" href="https://gpuweb.github.io/gpuweb/#abstract-opdef-validating-shader-binding" id="ref-for-abstract-opdef-validating-shader-binding">validates</a> compatibility between the
+texture, the <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gputexturebindinglayout-sampletype" id="ref-for-dom-gputexturebindinglayout-sampletype">sampleType</a></code> of the bind group layout,
+and the <a data-link-type="dfn" href="#sampled-type" id="ref-for-sampled-type">sampled type</a> of the texture variable.</p>
+   <p>The texture is parameterized by a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="sampled-type">sampled type</dfn> and <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error⑧⑧">must</a> be <code>f32</code>, <code>i32</code>, or <code>u32</code>.</p>
    <table class="data">
     <thead>
      <tr>
@@ -5701,32 +5706,32 @@ Sampled textures only allow <a data-link-type="dfn" href="#read-access" id="ref-
     <tbody>
      <tr>
       <td><dfn data-dfn-for="type" data-dfn-type="dfn" data-noexport id="type-texture_1d">texture_1d<a class="self-link" href="#type-texture_1d"></a></dfn>&lt;<em>T</em>> 
-      <td>1D 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-1d" id="ref-for-dom-gputextureviewdimension-1d">1D</a></code> 
       <td>No 
      <tr>
       <td><dfn data-dfn-for="type" data-dfn-type="dfn" data-noexport id="type-texture_2d">texture_2d<a class="self-link" href="#type-texture_2d"></a></dfn>&lt;<em>T</em>> 
-      <td>2D 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-2d" id="ref-for-dom-gputextureviewdimension-2d">2D</a></code> 
       <td>No 
      <tr>
       <td><dfn data-dfn-for="type" data-dfn-type="dfn" data-noexport id="type-texture_2d_array">texture_2d_array<a class="self-link" href="#type-texture_2d_array"></a></dfn>&lt;<em>T</em>> 
-      <td>2D 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-2d-array" id="ref-for-dom-gputextureviewdimension-2d-array">2D</a></code> 
       <td>Yes 
      <tr>
       <td><dfn data-dfn-for="type" data-dfn-type="dfn" data-noexport id="type-texture_3d">texture_3d<a class="self-link" href="#type-texture_3d"></a></dfn>&lt;<em>T</em>> 
-      <td>3D 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-3d" id="ref-for-dom-gputextureviewdimension-3d">3D</a></code> 
       <td>No 
      <tr>
       <td><dfn data-dfn-for="type" data-dfn-type="dfn" data-noexport id="type-texture_cube">texture_cube<a class="self-link" href="#type-texture_cube"></a></dfn>&lt;<em>T</em>> 
-      <td>Cube 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-cube" id="ref-for-dom-gputextureviewdimension-cube">Cube</a></code> 
       <td>No 
      <tr>
       <td><dfn data-dfn-for="type" data-dfn-type="dfn" data-noexport id="type-texture_cube_array">texture_cube_array<a class="self-link" href="#type-texture_cube_array"></a></dfn>&lt;<em>T</em>> 
-      <td>Cube 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-cube-array" id="ref-for-dom-gputextureviewdimension-cube-array">Cube</a></code> 
       <td>Yes 
    </table>
    <ul>
     <li data-md>
-     <p><em>T</em> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error⑧⑧">must</a> be <code>f32</code>, <code>i32</code>, or <code>u32</code></p>
+     <p><em>T</em> is the <a data-link-type="dfn" href="#sampled-type" id="ref-for-sampled-type①">sampled type</a>.</p>
     <li data-md>
      <p>The parameterized type for the images is the type after conversion from sampling.
 E.g. you can have an image with texels with 8bit unorm components, but when you sample
@@ -5736,7 +5741,11 @@ them you get a 32-bit float result (or vec-of-f32).</p>
    <p>A <dfn class="dfn-paneled" data-dfn-for="type" data-dfn-type="dfn" data-noexport id="type-multisampled-texture">multisampled texture</dfn> has a <a data-link-type="dfn" href="#texture-sample-count" id="ref-for-texture-sample-count①">sample count</a> of 1 or more.
 Despite the name, it cannot be used with a <a data-link-type="dfn" href="#sampler" id="ref-for-sampler②">sampler</a>.
 It effectively stores multiple <a data-link-type="dfn" href="#texel" id="ref-for-texel①">texels</a> worth of data per <a data-link-type="dfn" href="#logical-texel-address" id="ref-for-logical-texel-address">logical texel address</a> if the sample index is ignored.</p>
-   <p>The <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format④">texel format</a> of the texture is defined in the <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dictdef-gputexturebindinglayout" id="ref-for-dictdef-gputexturebindinglayout①">GPUTextureBindingLayout</a></code>.</p>
+   <p>The <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format④">texel format</a> is the <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gputexture-format" id="ref-for-dom-gputexture-format①">format</a></code> attribute of the <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#gputexture" id="ref-for-gputexture②">GPUTexture</a></code> bound to the texture variable.
+WebGPU <a data-link-type="abstract-op" href="https://gpuweb.github.io/gpuweb/#abstract-opdef-validating-shader-binding" id="ref-for-abstract-opdef-validating-shader-binding①">validates</a> compatibility between the
+texture, the <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gputexturebindinglayout-sampletype" id="ref-for-dom-gputexturebindinglayout-sampletype①">sampleType</a></code> of the bind group layout,
+and the <a data-link-type="dfn" href="#sampled-type" id="ref-for-sampled-type②">sampled type</a> of the texture variable.</p>
+   <p>The texture is parameterized by a <a data-link-type="dfn" href="#sampled-type" id="ref-for-sampled-type③">sampled type</a> and <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error⑧⑨">must</a> be <code>f32</code>, <code>i32</code>, or <code>u32</code>.</p>
    <table class="data">
     <thead>
      <tr>
@@ -5746,23 +5755,23 @@ It effectively stores multiple <a data-link-type="dfn" href="#texel" id="ref-for
     <tbody>
      <tr>
       <td><dfn data-dfn-for="type" data-dfn-type="dfn" data-noexport id="type-texture_multisampled_2d">texture_multisampled_2d<a class="self-link" href="#type-texture_multisampled_2d"></a></dfn>&lt;<em>T</em>> 
-      <td>2D 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-2d" id="ref-for-dom-gputextureviewdimension-2d①">2D</a></code> 
       <td>No 
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-for="type" data-dfn-type="dfn" data-noexport id="type-texture_depth_multisampled_2d">texture_depth_multisampled_2d</dfn> 
-      <td>2D 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-2d" id="ref-for-dom-gputextureviewdimension-2d②">2D</a></code> 
       <td>No 
    </table>
    <ul>
     <li data-md>
-     <p><em>T</em> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error⑧⑨">must</a> be <code>f32</code>, <code>i32</code>, or <code>u32</code></p>
+     <p><em>T</em> is the <a data-link-type="dfn" href="#sampled-type" id="ref-for-sampled-type④">sampled type</a>.</p>
    </ul>
    <h4 class="heading settled" data-level="5.5.4" id="external-texture-type"><span class="secno">5.5.4. </span><span class="content">External Sampled Texture Types</span><a class="self-link" href="#external-texture-type"></a></h4>
    <p>An <dfn class="dfn-paneled" data-dfn-for="type" data-dfn-type="dfn" data-noexport id="type-external-texture">External texture</dfn> is an opaque
 two-dimensional float-<a data-link-type="dfn" href="#type-sampled-texture" id="ref-for-type-sampled-texture②">sampled texture</a> type similar to <code>texture_2d&lt;f32></code> but
 potentially with a different representation.
 It can be read using <a href="#textureload">textureLoad</a> or <a href="#textureSampleBaseClampToEdge">textureSampleBaseClampToEdge</a> built-in
-functions, which handle these different representations opaquely.</p>
+functions, which handle these different representations.</p>
    <p>See <a href="https://gpuweb.github.io/gpuweb/#gpuexternaltexture" id="ref-for-197f23f508a4efb4e3687d4cf3f063ba"><cite>WebGPU</cite> § 6.4 GPUExternalTexture</a>.</p>
    <table class="data">
     <thead>
@@ -5773,7 +5782,7 @@ functions, which handle these different representations opaquely.</p>
     <tbody>
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-for="type" data-dfn-type="dfn" data-noexport id="type-texture_external">texture_external</dfn> 
-      <td>2D 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-2d" id="ref-for-dom-gputextureviewdimension-2d③">2D</a></code> 
       <td>No 
    </table>
    <h4 class="heading settled" data-level="5.5.5" id="texture-storage"><span class="secno">5.5.5. </span><span class="content">Storage Texture Types</span><a class="self-link" href="#texture-storage"></a></h4>
@@ -5797,19 +5806,19 @@ used to convert the shader value to the stored texel.</p>
     <tbody>
      <tr>
       <td><dfn data-dfn-for="type" data-dfn-type="dfn" data-noexport id="type-texture_storage_1d">texture_storage_1d<a class="self-link" href="#type-texture_storage_1d"></a></dfn>&lt;<em>Format</em>, <em>Access</em>> 
-      <td>1D 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-1d" id="ref-for-dom-gputextureviewdimension-1d①">1D</a></code> 
       <td>No 
      <tr>
       <td><dfn data-dfn-for="type" data-dfn-type="dfn" data-noexport id="type-texture_storage_2d">texture_storage_2d<a class="self-link" href="#type-texture_storage_2d"></a></dfn>&lt;<em>Format</em>, <em>Access</em>> 
-      <td>2D 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-2d" id="ref-for-dom-gputextureviewdimension-2d④">2D</a></code> 
       <td>No 
      <tr>
       <td><dfn data-dfn-for="type" data-dfn-type="dfn" data-noexport id="type-texture_storage_2d_array">texture_storage_2d_array<a class="self-link" href="#type-texture_storage_2d_array"></a></dfn>&lt;<em>Format</em>, <em>Access</em>> 
-      <td>2D 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-2d-array" id="ref-for-dom-gputextureviewdimension-2d-array①">2D</a></code> 
       <td>Yes 
      <tr>
       <td><dfn data-dfn-for="type" data-dfn-type="dfn" data-noexport id="type-texture_storage_3d">texture_storage_3d<a class="self-link" href="#type-texture_storage_3d"></a></dfn>&lt;<em>Format</em>, <em>Access</em>> 
-      <td>3D 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-3d" id="ref-for-dom-gputextureviewdimension-3d①">3D</a></code> 
       <td>No 
    </table>
    <ul>
@@ -5823,7 +5832,7 @@ used to convert the shader value to the stored texel.</p>
 of being <a data-link-type="dfn" href="#memory-access" id="ref-for-memory-access④">accessed</a> in conjunction with a <a data-link-type="dfn" href="#type-sampler_comparison" id="ref-for-type-sampler_comparison①">sampler_comparison</a>.
 It can also be accessed without the use of a sampler.
 Depth textures only allow <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②">read accesses</a>.</p>
-   <p>The <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format⑤">texel format</a> of the texture is defined in the <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dictdef-gputexturebindinglayout" id="ref-for-dictdef-gputexturebindinglayout②">GPUTextureBindingLayout</a></code>.</p>
+   <p>The <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format⑤">texel format</a> of the texture is defined in the <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dictdef-gputexturebindinglayout" id="ref-for-dictdef-gputexturebindinglayout">GPUTextureBindingLayout</a></code>.</p>
    <table class="data">
     <thead>
      <tr>
@@ -5833,19 +5842,19 @@ Depth textures only allow <a data-link-type="dfn" href="#read-access" id="ref-fo
     <tbody>
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-for="type" data-dfn-type="dfn" data-noexport id="type-texture_depth_2d">texture_depth_2d</dfn> 
-      <td>2D 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-2d" id="ref-for-dom-gputextureviewdimension-2d⑤">2D</a></code> 
       <td>No 
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-for="type" data-dfn-type="dfn" data-noexport id="type-texture_depth_2d_array">texture_depth_2d_array</dfn> 
-      <td>2D 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-2d-array" id="ref-for-dom-gputextureviewdimension-2d-array②">2D</a></code> 
       <td>Yes 
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-for="type" data-dfn-type="dfn" data-noexport id="type-texture_depth_cube">texture_depth_cube</dfn> 
-      <td>Cube 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-cube" id="ref-for-dom-gputextureviewdimension-cube①">Cube</a></code> 
       <td>No 
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-for="type" data-dfn-type="dfn" data-noexport id="type-texture_depth_cube_array">texture_depth_cube_array</dfn> 
-      <td>Cube 
+      <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-cube-array" id="ref-for-dom-gputextureviewdimension-cube-array①">Cube</a></code> 
       <td>Yes 
    </table>
    <h4 class="heading settled" data-level="5.5.7" id="sampler-type"><span class="secno">5.5.7. </span><span class="content">Sampler Type</span><a class="self-link" href="#sampler-type"></a></h4>
@@ -19343,6 +19352,7 @@ registrations, it matches widespread industry conventions.</p>
    <li><a href="#interpolation-sampling-sample">sample</a><span>, in § 10.3.1.4</span>
    <li><a href="#texture-sample-count">sample count</a><span>, in § 5.5</span>
    <li><a href="#type-sampled-texture">sampled texture</a><span>, in § 5.5.2</span>
+   <li><a href="#sampled-type">sampled type</a><span>, in § 5.5.2</span>
    <li><a href="#built-in-values-sample_index">sample_index</a><span>, in § 16</span>
    <li><a href="#built-in-values-sample_mask">sample_mask</a><span>, in § 16</span>
    <li>
@@ -19708,10 +19718,56 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-memory-model-scope">13.6.3. Scoped Operations</a> <a href="#ref-for-memory-model-scope①">(2)</a>
    </ul>
   </aside>
+  <aside aria-labelledby="infopaneltitle-for-236f7ab6ac7acfc34980302e1486fe17" class="dfn-panel" data-for="236f7ab6ac7acfc34980302e1486fe17" id="infopanel-for-236f7ab6ac7acfc34980302e1486fe17">
+   <span id="infopaneltitle-for-236f7ab6ac7acfc34980302e1486fe17" style="display:none">Info about the '"1d"' external reference.</span><a href="https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-1d">https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-1d</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gputextureviewdimension-1d">5.5.2. Sampled Texture Types</a>
+    <li><a href="#ref-for-dom-gputextureviewdimension-1d①">5.5.5. Storage Texture Types</a>
+   </ul>
+  </aside>
+  <aside aria-labelledby="infopaneltitle-for-89d0157df3b2064dd9ee5ddbfe036b96" class="dfn-panel" data-for="89d0157df3b2064dd9ee5ddbfe036b96" id="infopanel-for-89d0157df3b2064dd9ee5ddbfe036b96">
+   <span id="infopaneltitle-for-89d0157df3b2064dd9ee5ddbfe036b96" style="display:none">Info about the '"2d"' external reference.</span><a href="https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-2d">https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-2d</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gputextureviewdimension-2d">5.5.2. Sampled Texture Types</a>
+    <li><a href="#ref-for-dom-gputextureviewdimension-2d①">5.5.3. Multisampled Texture Types</a> <a href="#ref-for-dom-gputextureviewdimension-2d②">(2)</a>
+    <li><a href="#ref-for-dom-gputextureviewdimension-2d③">5.5.4. External Sampled Texture Types</a>
+    <li><a href="#ref-for-dom-gputextureviewdimension-2d④">5.5.5. Storage Texture Types</a>
+    <li><a href="#ref-for-dom-gputextureviewdimension-2d⑤">5.5.6. Depth Texture Types</a>
+   </ul>
+  </aside>
+  <aside aria-labelledby="infopaneltitle-for-bdaaf29360025ce6c93060a32640c69c" class="dfn-panel" data-for="bdaaf29360025ce6c93060a32640c69c" id="infopanel-for-bdaaf29360025ce6c93060a32640c69c">
+   <span id="infopaneltitle-for-bdaaf29360025ce6c93060a32640c69c" style="display:none">Info about the '"2d-array"' external reference.</span><a href="https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-2d-array">https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-2d-array</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gputextureviewdimension-2d-array">5.5.2. Sampled Texture Types</a>
+    <li><a href="#ref-for-dom-gputextureviewdimension-2d-array①">5.5.5. Storage Texture Types</a>
+    <li><a href="#ref-for-dom-gputextureviewdimension-2d-array②">5.5.6. Depth Texture Types</a>
+   </ul>
+  </aside>
+  <aside aria-labelledby="infopaneltitle-for-b52d4c87ab7da51154230348d1c380fd" class="dfn-panel" data-for="b52d4c87ab7da51154230348d1c380fd" id="infopanel-for-b52d4c87ab7da51154230348d1c380fd">
+   <span id="infopaneltitle-for-b52d4c87ab7da51154230348d1c380fd" style="display:none">Info about the '"3d"' external reference.</span><a href="https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-3d">https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-3d</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gputextureviewdimension-3d">5.5.2. Sampled Texture Types</a>
+    <li><a href="#ref-for-dom-gputextureviewdimension-3d①">5.5.5. Storage Texture Types</a>
+   </ul>
+  </aside>
   <aside aria-labelledby="infopaneltitle-for-dfec5ac9762af2f9889b53ccad3c3581" class="dfn-panel" data-for="dfec5ac9762af2f9889b53ccad3c3581" id="infopanel-for-dfec5ac9762af2f9889b53ccad3c3581">
    <span id="infopaneltitle-for-dfec5ac9762af2f9889b53ccad3c3581" style="display:none">Info about the '"comparison"' external reference.</span><a href="https://gpuweb.github.io/gpuweb/#dom-gpusamplerbindingtype-comparison">https://gpuweb.github.io/gpuweb/#dom-gpusamplerbindingtype-comparison</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-gpusamplerbindingtype-comparison">10.3.3. Resource Layout Compatibility</a>
+   </ul>
+  </aside>
+  <aside aria-labelledby="infopaneltitle-for-272a1debeb1cd298068fe859e9df0deb" class="dfn-panel" data-for="272a1debeb1cd298068fe859e9df0deb" id="infopanel-for-272a1debeb1cd298068fe859e9df0deb">
+   <span id="infopaneltitle-for-272a1debeb1cd298068fe859e9df0deb" style="display:none">Info about the '"cube"' external reference.</span><a href="https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-cube">https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-cube</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gputextureviewdimension-cube">5.5.2. Sampled Texture Types</a>
+    <li><a href="#ref-for-dom-gputextureviewdimension-cube①">5.5.6. Depth Texture Types</a>
+   </ul>
+  </aside>
+  <aside aria-labelledby="infopaneltitle-for-2ea9d146665b3dbd1988604010d251be" class="dfn-panel" data-for="2ea9d146665b3dbd1988604010d251be" id="infopanel-for-2ea9d146665b3dbd1988604010d251be">
+   <span id="infopaneltitle-for-2ea9d146665b3dbd1988604010d251be" style="display:none">Info about the '"cube-array"' external reference.</span><a href="https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-cube-array">https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-cube-array</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gputextureviewdimension-cube-array">5.5.2. Sampled Texture Types</a>
+    <li><a href="#ref-for-dom-gputextureviewdimension-cube-array①">5.5.6. Depth Texture Types</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-ff665efdb313a67e405ddc7f404a2c7e" class="dfn-panel" data-for="ff665efdb313a67e405ddc7f404a2c7e" id="infopanel-for-ff665efdb313a67e405ddc7f404a2c7e">
@@ -19862,14 +19918,14 @@ registrations, it matches widespread industry conventions.</p>
    <span id="infopaneltitle-for-fccc839f804a80716716d47f5a325bf1" style="display:none">Info about the 'GPUTexture' external reference.</span><a href="https://gpuweb.github.io/gpuweb/#gputexture">https://gpuweb.github.io/gpuweb/#gputexture</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-gputexture">5.5. Texture and Sampler Types</a>
+    <li><a href="#ref-for-gputexture①">5.5.2. Sampled Texture Types</a>
+    <li><a href="#ref-for-gputexture②">5.5.3. Multisampled Texture Types</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-617223c063a50396d3d002ae459c07fb" class="dfn-panel" data-for="617223c063a50396d3d002ae459c07fb" id="infopanel-for-617223c063a50396d3d002ae459c07fb">
    <span id="infopaneltitle-for-617223c063a50396d3d002ae459c07fb" style="display:none">Info about the 'GPUTextureBindingLayout' external reference.</span><a href="https://gpuweb.github.io/gpuweb/#dictdef-gputexturebindinglayout">https://gpuweb.github.io/gpuweb/#dictdef-gputexturebindinglayout</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dictdef-gputexturebindinglayout">5.5.2. Sampled Texture Types</a>
-    <li><a href="#ref-for-dictdef-gputexturebindinglayout①">5.5.3. Multisampled Texture Types</a>
-    <li><a href="#ref-for-dictdef-gputexturebindinglayout②">5.5.6. Depth Texture Types</a>
+    <li><a href="#ref-for-dictdef-gputexturebindinglayout">5.5.6. Depth Texture Types</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-7c3b4e1b52c9fc5892783c75106a094b" class="dfn-panel" data-for="7c3b4e1b52c9fc5892783c75106a094b" id="infopanel-for-7c3b4e1b52c9fc5892783c75106a094b">
@@ -19882,6 +19938,12 @@ registrations, it matches widespread industry conventions.</p>
    <span id="infopaneltitle-for-c470efa8c1ef27349834af87893dcc14" style="display:none">Info about the 'GPUTextureView' external reference.</span><a href="https://gpuweb.github.io/gpuweb/#gputextureview">https://gpuweb.github.io/gpuweb/#gputextureview</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-gputextureview">10.3.3. Resource Layout Compatibility</a> <a href="#ref-for-gputextureview①">(2)</a>
+   </ul>
+  </aside>
+  <aside aria-labelledby="infopaneltitle-for-8d6b85785660b33f83127d09a8f06a0a" class="dfn-panel" data-for="8d6b85785660b33f83127d09a8f06a0a" id="infopanel-for-8d6b85785660b33f83127d09a8f06a0a">
+   <span id="infopaneltitle-for-8d6b85785660b33f83127d09a8f06a0a" style="display:none">Info about the 'GPUTextureViewDimension' external reference.</span><a href="https://gpuweb.github.io/gpuweb/#enumdef-gputextureviewdimension">https://gpuweb.github.io/gpuweb/#enumdef-gputextureviewdimension</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-enumdef-gputextureviewdimension">5.5. Texture and Sampler Types</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-e1fa6e0f090ec557bfbc46fde30f43fa" class="dfn-panel" data-for="e1fa6e0f090ec557bfbc46fde30f43fa" id="infopanel-for-e1fa6e0f090ec557bfbc46fde30f43fa">
@@ -19957,6 +20019,13 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-dom-gpubindgrouplayoutentry-externaltexture">10.3.3. Resource Layout Compatibility</a>
    </ul>
   </aside>
+  <aside aria-labelledby="infopaneltitle-for-036def7247fffa789f3ae21d85afb607" class="dfn-panel" data-for="036def7247fffa789f3ae21d85afb607" id="infopanel-for-036def7247fffa789f3ae21d85afb607">
+   <span id="infopaneltitle-for-036def7247fffa789f3ae21d85afb607" style="display:none">Info about the 'format' external reference.</span><a href="https://gpuweb.github.io/gpuweb/#dom-gputexture-format">https://gpuweb.github.io/gpuweb/#dom-gputexture-format</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gputexture-format">5.5.2. Sampled Texture Types</a>
+    <li><a href="#ref-for-dom-gputexture-format①">5.5.3. Multisampled Texture Types</a>
+   </ul>
+  </aside>
   <aside aria-labelledby="infopaneltitle-for-b6e043ca2c87425036f7a604724aaea2" class="dfn-panel" data-for="b6e043ca2c87425036f7a604724aaea2" id="infopanel-for-b6e043ca2c87425036f7a604724aaea2">
    <span id="infopaneltitle-for-b6e043ca2c87425036f7a604724aaea2" style="display:none">Info about the 'framebuffer' external reference.</span><a href="https://gpuweb.github.io/gpuweb/#framebuffer">https://gpuweb.github.io/gpuweb/#framebuffer</a><b>Referenced in:</b>
    <ul>
@@ -19999,6 +20068,13 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-rasterizationpoint">14.4. Fragment Shaders and Helper Invocations</a>
    </ul>
   </aside>
+  <aside aria-labelledby="infopaneltitle-for-b86f568df7650775e38a5c00bc71f13f" class="dfn-panel" data-for="b86f568df7650775e38a5c00bc71f13f" id="infopanel-for-b86f568df7650775e38a5c00bc71f13f">
+   <span id="infopaneltitle-for-b86f568df7650775e38a5c00bc71f13f" style="display:none">Info about the 'sampleType' external reference.</span><a href="https://gpuweb.github.io/gpuweb/#dom-gputexturebindinglayout-sampletype">https://gpuweb.github.io/gpuweb/#dom-gputexturebindinglayout-sampletype</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-gputexturebindinglayout-sampletype">5.5.2. Sampled Texture Types</a>
+    <li><a href="#ref-for-dom-gputexturebindinglayout-sampletype①">5.5.3. Multisampled Texture Types</a>
+   </ul>
+  </aside>
   <aside aria-labelledby="infopaneltitle-for-05d5aab02477a4339c19f4be7bbbf926" class="dfn-panel" data-for="05d5aab02477a4339c19f4be7bbbf926" id="infopanel-for-05d5aab02477a4339c19f4be7bbbf926">
    <span id="infopaneltitle-for-05d5aab02477a4339c19f4be7bbbf926" style="display:none">Info about the 'sampler' external reference.</span><a href="https://gpuweb.github.io/gpuweb/#dom-gpubindgrouplayoutentry-sampler">https://gpuweb.github.io/gpuweb/#dom-gpubindgrouplayoutentry-sampler</a><b>Referenced in:</b>
    <ul>
@@ -20027,6 +20103,13 @@ registrations, it matches widespread industry conventions.</p>
    <span id="infopaneltitle-for-6a0dfd2a733b1771ffc5996437322871" style="display:none">Info about the 'validating GPUProgrammableStage' external reference.</span><a href="https://gpuweb.github.io/gpuweb/#abstract-opdef-validating-gpuprogrammablestage">https://gpuweb.github.io/gpuweb/#abstract-opdef-validating-gpuprogrammablestage</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-abstract-opdef-validating-gpuprogrammablestage">10.3.3. Resource Layout Compatibility</a>
+   </ul>
+  </aside>
+  <aside aria-labelledby="infopaneltitle-for-1e142ab3d9051cf6938bd00d94bcc2d3" class="dfn-panel" data-for="1e142ab3d9051cf6938bd00d94bcc2d3" id="infopanel-for-1e142ab3d9051cf6938bd00d94bcc2d3">
+   <span id="infopaneltitle-for-1e142ab3d9051cf6938bd00d94bcc2d3" style="display:none">Info about the 'validating shader binding' external reference.</span><a href="https://gpuweb.github.io/gpuweb/#abstract-opdef-validating-shader-binding">https://gpuweb.github.io/gpuweb/#abstract-opdef-validating-shader-binding</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-abstract-opdef-validating-shader-binding">5.5.2. Sampled Texture Types</a>
+    <li><a href="#ref-for-abstract-opdef-validating-shader-binding①">5.5.3. Multisampled Texture Types</a>
    </ul>
   </aside>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
@@ -20073,7 +20156,13 @@ registrations, it matches widespread industry conventions.</p>
    <li>
     <a data-link-type="biblio">[WebGPU]</a> defines the following terms:
     <ul>
+     <li><span class="dfn-paneled" id="236f7ab6ac7acfc34980302e1486fe17">"1d"</span>
+     <li><span class="dfn-paneled" id="89d0157df3b2064dd9ee5ddbfe036b96">"2d"</span>
+     <li><span class="dfn-paneled" id="bdaaf29360025ce6c93060a32640c69c">"2d-array"</span>
+     <li><span class="dfn-paneled" id="b52d4c87ab7da51154230348d1c380fd">"3d"</span>
      <li><span class="dfn-paneled" id="dfec5ac9762af2f9889b53ccad3c3581">"comparison"</span>
+     <li><span class="dfn-paneled" id="272a1debeb1cd298068fe859e9df0deb">"cube"</span>
+     <li><span class="dfn-paneled" id="2ea9d146665b3dbd1988604010d251be">"cube-array"</span>
      <li><span class="dfn-paneled" id="ff665efdb313a67e405ddc7f404a2c7e">"depth"</span>
      <li><span class="dfn-paneled" id="628b898cf54ae8d6c405787aa3674210">"filtering"</span>
      <li><span class="dfn-paneled" id="b8715900916cbba7d4be3d41e66a1958">"float"</span>
@@ -20101,6 +20190,7 @@ registrations, it matches widespread industry conventions.</p>
      <li><span class="dfn-paneled" id="617223c063a50396d3d002ae459c07fb">GPUTextureBindingLayout</span>
      <li><span class="dfn-paneled" id="7c3b4e1b52c9fc5892783c75106a094b">GPUTextureFormat</span>
      <li><span class="dfn-paneled" id="c470efa8c1ef27349834af87893dcc14">GPUTextureView</span>
+     <li><span class="dfn-paneled" id="8d6b85785660b33f83127d09a8f06a0a">GPUTextureViewDimension</span>
      <li><span class="dfn-paneled" id="e1fa6e0f090ec557bfbc46fde30f43fa">STORAGE_BINDING</span>
      <li><span class="dfn-paneled" id="3ce032fdd637e5087c95e767070719a8">binding member</span>
      <li><span class="dfn-paneled" id="bf6fd907369b6f17dbcb3cde51902e6b">binding resource type</span>
@@ -20113,6 +20203,7 @@ registrations, it matches widespread industry conventions.</p>
      <li><span class="dfn-paneled" id="f584fd156a6e4c922cb1c8b2ab31de4a">createShaderModule(descriptor)</span>
      <li><span class="dfn-paneled" id="b92a7bde5b62b15524d12f2a0eeb906e">effective buffer binding size</span>
      <li><span class="dfn-paneled" id="70565246693674eaeb6c062d8ff23ef2">externalTexture</span>
+     <li><span class="dfn-paneled" id="036def7247fffa789f3ae21d85afb607">format</span>
      <li><span class="dfn-paneled" id="b6e043ca2c87425036f7a604724aaea2">framebuffer</span>
      <li><span class="dfn-paneled" id="c2cce6b9946f55ffd87ad1f7d5d8ec2b">front-facing</span>
      <li><span class="dfn-paneled" id="5e5c6c49dd15b1303316790e4ce89008">gpu command</span>
@@ -20120,11 +20211,13 @@ registrations, it matches widespread industry conventions.</p>
      <li><span class="dfn-paneled" id="cf21fe56a0d95b14f8770b3d0d1885f4">maxcomputeworkgroupstoragesize</span>
      <li><span class="dfn-paneled" id="0e4cfc0324ac529f023830f81f841a8d">messages</span>
      <li><span class="dfn-paneled" id="f1cc794b150d07558383911cac7d33b8">rasterizationpoint</span>
+     <li><span class="dfn-paneled" id="b86f568df7650775e38a5c00bc71f13f">sampleType</span>
      <li><span class="dfn-paneled" id="05d5aab02477a4339c19f4be7bbbf926">sampler</span>
      <li><span class="dfn-paneled" id="ed9008719c845394b733e94513f876cd">shader-output mask</span>
      <li><span class="dfn-paneled" id="9b563f9f8144c38d86641dd0a79b0917">storageTexture</span>
      <li><span class="dfn-paneled" id="17494d237e33c6d0f21701661662dc08">texture</span>
      <li><span class="dfn-paneled" id="6a0dfd2a733b1771ffc5996437322871">validating GPUProgrammableStage</span>
+     <li><span class="dfn-paneled" id="1e142ab3d9051cf6938bd00d94bcc2d3">validating shader binding</span>
     </ul>
   </ul>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
@@ -22504,6 +22597,13 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-type-sampled-texture①②">17.7.12. textureSampleGrad</a>
     <li><a href="#ref-for-type-sampled-texture①③">17.7.13. textureSampleLevel</a>
     <li><a href="#ref-for-type-sampled-texture①④">17.7.14. textureSampleBaseClampToEdge</a>
+   </ul>
+  </aside>
+  <aside aria-labelledby="infopaneltitle-for-sampled-type" class="dfn-panel" data-for="sampled-type" id="infopanel-for-sampled-type">
+   <span id="infopaneltitle-for-sampled-type" style="display:none">Info about the 'sampled type' definition.</span><b><a href="#sampled-type">#sampled-type</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-sampled-type">5.5.2. Sampled Texture Types</a> <a href="#ref-for-sampled-type①">(2)</a>
+    <li><a href="#ref-for-sampled-type②">5.5.3. Multisampled Texture Types</a> <a href="#ref-for-sampled-type③">(2)</a> <a href="#ref-for-sampled-type④">(3)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-type-multisampled-texture" class="dfn-panel" data-for="type-multisampled-texture" id="infopanel-for-type-multisampled-texture">
