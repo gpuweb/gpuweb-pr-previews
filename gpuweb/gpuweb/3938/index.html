@@ -903,13 +903,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-03-28">28 March 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-04-04">4 April 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/5e778d97c09d7d8ebea01f37ac328a75dc4ac3b8/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/5e778d97c09d7d8ebea01f37ac328a75dc4ac3b8/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/e4a516ef007408fb053a9cad4cdd4eb7394083fc/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/e4a516ef007408fb053a9cad4cdd4eb7394083fc/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -11205,18 +11205,6 @@ It must only be included by interfaces which also include those mixins.</p>
              <li data-md>
               <p><var>bindGroup</var> must be <a data-link-type="abstract-op" href="#abstract-opdef-valid-to-use-with" id="ref-for-abstract-opdef-valid-to-use-with①⑥">valid to use with</a> <var>this</var>.</p>
              <li data-md>
-              <p>If <var>this</var> is a <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①">GPURenderCommandsMixin</a></code>:</p>
-              <ol>
-               <li data-md>
-                <p>Let <var>bindGroupSpaceUsed</var> be
-max(<var>index</var>, the maximum key in <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot②">[[bind_groups]]</a></code>) + 1.</p>
-               <li data-md>
-                <p>Let <var>vertexBufferSpaceUsed</var> be
-(the maximum key in <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-vertex_buffers-slot" id="ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot">[[vertex_buffers]]</a></code>) + 1.</p>
-               <li data-md>
-                <p><var>bindGroupSpaceUsed</var> + <var>vertexBufferSpaceUsed</var> must be ≤ <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④③">[[device]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-device-limits-slot" id="ref-for-dom-device-limits-slot①⑦">[[limits]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxbindgroupsplusvertexbuffers" id="ref-for-dom-supported-limits-maxbindgroupsplusvertexbuffers④">maxBindGroupsPlusVertexBuffers</a></code>.</p>
-              </ol>
-             <li data-md>
               <p><a data-link-type="abstract-op" href="#abstract-opdef-iterate-over-each-dynamic-binding-offset" id="ref-for-abstract-opdef-iterate-over-each-dynamic-binding-offset">For each dynamic binding</a> (<var>bufferBinding</var>, <var>bufferLayout</var>, <var>dynamicOffsetIndex</var>) in <var>bindGroup</var>:</p>
               <ul>
                <li data-md>
@@ -11237,7 +11225,7 @@ max(<var>index</var>, the maximum key in <var>this</var>.<code class="idl"><a da
             </ul>
            </div>
           <li data-md>
-           <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot③">[[bind_groups]]</a></code>[<var>index</var>] to be <var>bindGroup</var>.</p>
+           <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot②">[[bind_groups]]</a></code>[<var>index</var>] to be <var>bindGroup</var>.</p>
           <li data-md>
            <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-dynamic_offsets-slot" id="ref-for-dom-gpubindingcommandsmixin-dynamic_offsets-slot①">[[dynamic_offsets]]</a></code>[<var>index</var>] to be a copy of <var>dynamicOffsets</var>.</p>
          </ol>
@@ -11365,7 +11353,7 @@ of a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.
 For each pair of (<code class="idl"><a data-link-type="idl" href="#typedefdef-gpuindex32" id="ref-for-typedefdef-gpuindex32①②">GPUIndex32</a></code> <var>index</var>, <code class="idl"><a data-link-type="idl" href="#gpubindgrouplayout" id="ref-for-gpubindgrouplayout④⑤">GPUBindGroupLayout</a></code> <var>bindGroupLayout</var>) in <var>pipeline</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelinebase-layout-slot" id="ref-for-dom-gpupipelinebase-layout-slot⑤">[[layout]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelinelayout-bindgrouplayouts-slot" id="ref-for-dom-gpupipelinelayout-bindgrouplayouts-slot①⓪">[[bindGroupLayouts]]</a></code>:</p>
          <ul>
           <li data-md>
-           <p>Let <var>bindGroup</var> be <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot④">[[bind_groups]]</a></code>[<var>index</var>].</p>
+           <p>Let <var>bindGroup</var> be <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot③">[[bind_groups]]</a></code>[<var>index</var>].</p>
           <li data-md>
            <p><var>bindGroup</var> must not be <code>null</code>.</p>
           <li data-md>
@@ -11410,7 +11398,7 @@ where the latter indicates whether the resource was used as writable.</p>
         <p>For each pair of (<code class="idl"><a data-link-type="idl" href="#typedefdef-gpuindex32" id="ref-for-typedefdef-gpuindex32①③">GPUIndex32</a></code> <var>index</var>, <code class="idl"><a data-link-type="idl" href="#gpubindgrouplayout" id="ref-for-gpubindgrouplayout④⑥">GPUBindGroupLayout</a></code> <var>bindGroupLayout</var>) in <var>pipeline</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelinebase-layout-slot" id="ref-for-dom-gpupipelinebase-layout-slot⑥">[[layout]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelinelayout-bindgrouplayouts-slot" id="ref-for-dom-gpupipelinelayout-bindgrouplayouts-slot①①">[[bindGroupLayouts]]</a></code>:</p>
         <ol>
          <li data-md>
-          <p>Let <var>bindGroupEntries</var> be <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑤">[[bind_groups]]</a></code>[<var>index</var>].<code class="idl"><a data-link-type="idl" href="#dom-gpubindgroupdescriptor-entries" id="ref-for-dom-gpubindgroupdescriptor-entries⑤">entries</a></code>.</p>
+          <p>Let <var>bindGroupEntries</var> be <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot④">[[bind_groups]]</a></code>[<var>index</var>].<code class="idl"><a data-link-type="idl" href="#dom-gpubindgroupdescriptor-entries" id="ref-for-dom-gpubindgroupdescriptor-entries⑤">entries</a></code>.</p>
          <li data-md>
           <p>Let <var>bindGroupLayoutEntries</var> be <var>bindGroupLayout</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindgrouplayout-descriptor-slot" id="ref-for-dom-gpubindgrouplayout-descriptor-slot②">[[descriptor]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindgrouplayoutdescriptor-entries" id="ref-for-dom-gpubindgrouplayoutdescriptor-entries⑧">entries</a></code>.</p>
          <li data-md>
@@ -11510,7 +11498,7 @@ It must only be included by interfaces which also include those mixins.</p>
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑥⑦">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑧④">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④④">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑧④">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④③">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
@@ -11533,7 +11521,7 @@ It must only be included by interfaces which also include those mixins.</p>
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑥⑧">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑧⑥">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④⑤">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑧⑥">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④④">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
@@ -11582,7 +11570,7 @@ It must only be included by interfaces which also include those mixins.</p>
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑥⑨">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑧⑧">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④⑥">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑧⑧">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④⑤">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
@@ -11674,7 +11662,7 @@ It must only be included by interfaces which also include those mixins.</p>
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦⓪">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨⓪">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④⑦">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨⓪">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④⑥">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
@@ -11745,7 +11733,7 @@ See <a href="#computing-operations">§ 23.2 Computing</a> for the detailed spe
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦①">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨②">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④⑧">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨②">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④⑦">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
@@ -11774,7 +11762,7 @@ is <code>true</code>.</p>
         <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⓪">Queue timeline</a> steps: 
        <ol>
         <li data-md>
-         <p>Execute a grid of workgroups with dimensions [<var>workgroupCountX</var>, <var>workgroupCountY</var>, <var>workgroupCountZ</var>] with <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepassencoder-pipeline-slot" id="ref-for-dom-gpucomputepassencoder-pipeline-slot②">[[pipeline]]</a></code> using <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑥">[[bind_groups]]</a></code>.</p>
+         <p>Execute a grid of workgroups with dimensions [<var>workgroupCountX</var>, <var>workgroupCountY</var>, <var>workgroupCountZ</var>] with <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepassencoder-pipeline-slot" id="ref-for-dom-gpucomputepassencoder-pipeline-slot②">[[pipeline]]</a></code> using <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑤">[[bind_groups]]</a></code>.</p>
        </ol>
       </div>
      </div>
@@ -11822,7 +11810,7 @@ dispatchIndirectParameters<c- p>[</c-><c- mf>2</c-><c- p>]</c-> <c- o>=</c-> wor
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦②">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨④">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④⑨">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨④">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④⑧">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
@@ -11870,7 +11858,7 @@ is <code>true</code>.</p>
          <p>If <var>workgroupCountX</var>, <var>workgroupCountY</var>, or <var>workgroupCountZ</var> is greater than <var>this</var>.device.limits.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxcomputeworkgroupsperdimension" id="ref-for-dom-supported-limits-maxcomputeworkgroupsperdimension①">maxComputeWorkgroupsPerDimension</a></code>,
 stop.</p>
         <li data-md>
-         <p>Execute a grid of workgroups with dimensions [<var>workgroupCountX</var>, <var>workgroupCountY</var>, <var>workgroupCountZ</var>] with <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepassencoder-pipeline-slot" id="ref-for-dom-gpucomputepassencoder-pipeline-slot④">[[pipeline]]</a></code> using <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑦">[[bind_groups]]</a></code>.</p>
+         <p>Execute a grid of workgroups with dimensions [<var>workgroupCountX</var>, <var>workgroupCountY</var>, <var>workgroupCountZ</var>] with <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepassencoder-pipeline-slot" id="ref-for-dom-gpucomputepassencoder-pipeline-slot④">[[pipeline]]</a></code> using <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑥">[[bind_groups]]</a></code>.</p>
        </ol>
       </div>
      </div>
@@ -11890,7 +11878,7 @@ called the compute pass encoder can no longer be used.</p>
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦③">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨⑥">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤⓪">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨⑥">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④⑨">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
@@ -11961,7 +11949,7 @@ index in <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" hre
 <a data-link-type="idl-name" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder①⓪"><c- n>GPURenderPassEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpucommandsmixin" id="ref-for-gpucommandsmixin⑨"><c- n>GPUCommandsMixin</c-></a>;
 <a data-link-type="idl-name" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder①①"><c- n>GPURenderPassEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpudebugcommandsmixin" id="ref-for-gpudebugcommandsmixin⑨"><c- n>GPUDebugCommandsMixin</c-></a>;
 <a data-link-type="idl-name" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder①②"><c- n>GPURenderPassEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpubindingcommandsmixin" id="ref-for-gpubindingcommandsmixin⑦"><c- n>GPUBindingCommandsMixin</c-></a>;
-<a data-link-type="idl-name" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder①③"><c- n>GPURenderPassEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin②"><c- n>GPURenderCommandsMixin</c-></a>;
+<a data-link-type="idl-name" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder①③"><c- n>GPURenderPassEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①"><c- n>GPURenderCommandsMixin</c-></a>;
 </pre>
    <p><code class="idl"><a data-link-type="idl" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder①④">GPURenderPassEncoder</a></code> has the following internal slots used for validation while encoding:</p>
    <dl>
@@ -12074,7 +12062,7 @@ is a good default, unless it is known that more draw calls will be done.</p>
     <p>Given a <code class="idl"><a data-link-type="idl" href="#gpudevice" id="ref-for-gpudevice⑤⑨">GPUDevice</a></code> <var>device</var> and <code class="idl"><a data-link-type="idl" href="#dictdef-gpurenderpassdescriptor" id="ref-for-dictdef-gpurenderpassdescriptor⑤">GPURenderPassDescriptor</a></code> <var>this</var>, the following validation rules apply:</p>
     <ol>
      <li data-md>
-      <p><var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassdescriptor-colorattachments" id="ref-for-dom-gpurenderpassdescriptor-colorattachments⑤">colorAttachments</a></code>.length must be ≤ <var>device</var>.<code class="idl"><a data-link-type="idl" href="#dom-device-limits-slot" id="ref-for-dom-device-limits-slot①⑧">[[limits]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxcolorattachments" id="ref-for-dom-supported-limits-maxcolorattachments②">maxColorAttachments</a></code>.</p>
+      <p><var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassdescriptor-colorattachments" id="ref-for-dom-gpurenderpassdescriptor-colorattachments⑤">colorAttachments</a></code>.length must be ≤ <var>device</var>.<code class="idl"><a data-link-type="idl" href="#dom-device-limits-slot" id="ref-for-dom-device-limits-slot①⑦">[[limits]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxcolorattachments" id="ref-for-dom-supported-limits-maxcolorattachments②">maxColorAttachments</a></code>.</p>
      <li data-md>
       <p>For each non-<code>null</code> <var>colorAttachment</var> in <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassdescriptor-colorattachments" id="ref-for-dom-gpurenderpassdescriptor-colorattachments⑥">colorAttachments</a></code>:</p>
       <ol>
@@ -12131,7 +12119,7 @@ must return true.</p>
         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①①">Append</a> <var>colorAttachment</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasscolorattachment-view" id="ref-for-dom-gpurenderpasscolorattachment-view⑤">view</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gputextureview-descriptor-slot" id="ref-for-dom-gputextureview-descriptor-slot④">[[descriptor]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gputextureviewdescriptor-format" id="ref-for-dom-gputextureviewdescriptor-format①④">format</a></code> to <var>formats</var>.</p>
       </ol>
      <li data-md>
-      <p><a data-link-type="abstract-op" href="#abstract-opdef-calculating-color-attachment-bytes-per-sample" id="ref-for-abstract-opdef-calculating-color-attachment-bytes-per-sample①">Calculating color attachment bytes per sample</a>(<var>formats</var>) must be ≤ <var>device</var>.<code class="idl"><a data-link-type="idl" href="#dom-device-limits-slot" id="ref-for-dom-device-limits-slot①⑨">[[limits]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxcolorattachmentbytespersample" id="ref-for-dom-supported-limits-maxcolorattachmentbytespersample①">maxColorAttachmentBytesPerSample</a></code>.</p>
+      <p><a data-link-type="abstract-op" href="#abstract-opdef-calculating-color-attachment-bytes-per-sample" id="ref-for-abstract-opdef-calculating-color-attachment-bytes-per-sample①">Calculating color attachment bytes per sample</a>(<var>formats</var>) must be ≤ <var>device</var>.<code class="idl"><a data-link-type="idl" href="#dom-device-limits-slot" id="ref-for-dom-device-limits-slot①⑧">[[limits]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxcolorattachmentbytespersample" id="ref-for-dom-supported-limits-maxcolorattachmentbytespersample①">maxColorAttachmentBytesPerSample</a></code>.</p>
     </ol>
    </div>
    <h5 class="heading settled" data-level="17.1.1.1" id="color-attachments"><span class="secno">17.1.1.1. </span><span class="content">Color Attachments</span><a class="self-link" href="#color-attachments"></a></h5>
@@ -12514,7 +12502,7 @@ called the render pass encoder can no longer be used.</p>
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦④">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨⑧">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤①">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨⑧">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤⓪">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
@@ -12576,9 +12564,9 @@ index in <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" hre
       </div>
      </div>
    </dl>
-   <h3 class="heading settled dfn-paneled idl-code" data-dfn-type="interface" data-export data-level="17.2" data-lt="GPURenderCommandsMixin" id="gpurendercommandsmixin"><span class="secno">17.2. </span><span class="content"><code>GPURenderCommandsMixin</code> <span id="render-commands"></span> </span><a class="self-link" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin②②"></a></h3>
-   <p><code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin③">GPURenderCommandsMixin</a></code> defines rendering commands common to <code class="idl"><a data-link-type="idl" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder①⑥">GPURenderPassEncoder</a></code> and <code class="idl"><a data-link-type="idl" href="#gpurenderbundleencoder" id="ref-for-gpurenderbundleencoder③">GPURenderBundleEncoder</a></code>.</p>
-<pre class="idl highlight def"><c- b>interface</c-> <c- b>mixin</c-> <a class="idl-code" data-link-type="interface" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin④"><c- g>GPURenderCommandsMixin</c-></a> {
+   <h3 class="heading settled dfn-paneled idl-code" data-dfn-type="interface" data-export data-level="17.2" data-lt="GPURenderCommandsMixin" id="gpurendercommandsmixin"><span class="secno">17.2. </span><span class="content"><code>GPURenderCommandsMixin</code> <span id="render-commands"></span> </span><a class="self-link" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin②①"></a></h3>
+   <p><code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin②">GPURenderCommandsMixin</a></code> defines rendering commands common to <code class="idl"><a data-link-type="idl" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder①⑥">GPURenderPassEncoder</a></code> and <code class="idl"><a data-link-type="idl" href="#gpurenderbundleencoder" id="ref-for-gpurenderbundleencoder③">GPURenderBundleEncoder</a></code>.</p>
+<pre class="idl highlight def"><c- b>interface</c-> <c- b>mixin</c-> <a class="idl-code" data-link-type="interface" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin③"><c- g>GPURenderCommandsMixin</c-></a> {
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑤②"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpurendercommandsmixin-setpipeline" id="ref-for-dom-gpurendercommandsmixin-setpipeline②"><c- g>setPipeline</c-></a>(<a data-link-type="idl-name" href="#gpurenderpipeline" id="ref-for-gpurenderpipeline③④"><c- n>GPURenderPipeline</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-setpipeline-pipeline-pipeline" id="ref-for-dom-gpurendercommandsmixin-setpipeline-pipeline-pipeline"><c- g>pipeline</c-></a>);
 
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑤③"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpurendercommandsmixin-setindexbuffer" id="ref-for-dom-gpurendercommandsmixin-setindexbuffer④"><c- g>setIndexBuffer</c-></a>(<a data-link-type="idl-name" href="#gpubuffer" id="ref-for-gpubuffer⑧②"><c- n>GPUBuffer</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-setindexbuffer-buffer-indexformat-offset-size-buffer" id="ref-for-dom-gpurendercommandsmixin-setindexbuffer-buffer-indexformat-offset-size-buffer"><c- g>buffer</c-></a>, <a data-link-type="idl-name" href="#enumdef-gpuindexformat" id="ref-for-enumdef-gpuindexformat②"><c- n>GPUIndexFormat</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-setindexbuffer-buffer-indexformat-offset-size-indexformat" id="ref-for-dom-gpurendercommandsmixin-setindexbuffer-buffer-indexformat-offset-size-indexformat"><c- g>indexFormat</c-></a>, <c- b>optional</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize64" id="ref-for-typedefdef-gpusize64④⑨"><c- n>GPUSize64</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-setindexbuffer-buffer-indexformat-offset-size-offset" id="ref-for-dom-gpurendercommandsmixin-setindexbuffer-buffer-indexformat-offset-size-offset"><c- g>offset</c-></a> = 0, <c- b>optional</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize64" id="ref-for-typedefdef-gpusize64⑤⓪"><c- n>GPUSize64</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-setindexbuffer-buffer-indexformat-offset-size-size" id="ref-for-dom-gpurendercommandsmixin-setindexbuffer-buffer-indexformat-offset-size-size"><c- g>size</c-></a>);
@@ -12595,9 +12583,9 @@ index in <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" hre
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑤⑧"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpurendercommandsmixin-drawindexedindirect" id="ref-for-dom-gpurendercommandsmixin-drawindexedindirect①"><c- g>drawIndexedIndirect</c-></a>(<a data-link-type="idl-name" href="#gpubuffer" id="ref-for-gpubuffer⑧⑤"><c- n>GPUBuffer</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-drawindexedindirect-indirectbuffer-indirectoffset-indirectbuffer" id="ref-for-dom-gpurendercommandsmixin-drawindexedindirect-indirectbuffer-indirectoffset-indirectbuffer"><c- g>indirectBuffer</c-></a>, <a data-link-type="idl-name" href="#typedefdef-gpusize64" id="ref-for-typedefdef-gpusize64⑤④"><c- n>GPUSize64</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurendercommandsmixin-drawindexedindirect-indirectbuffer-indirectoffset-indirectoffset" id="ref-for-dom-gpurendercommandsmixin-drawindexedindirect-indirectbuffer-indirectoffset-indirectoffset"><c- g>indirectOffset</c-></a>);
 };
 </pre>
-   <p><code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin⑤">GPURenderCommandsMixin</a></code> assumes the presence of <code class="idl"><a data-link-type="idl" href="#gpuobjectbase" id="ref-for-gpuobjectbase②⑨">GPUObjectBase</a></code>, <code class="idl"><a data-link-type="idl" href="#gpucommandsmixin" id="ref-for-gpucommandsmixin①⓪">GPUCommandsMixin</a></code>, and <code class="idl"><a data-link-type="idl" href="#gpubindingcommandsmixin" id="ref-for-gpubindingcommandsmixin⑧">GPUBindingCommandsMixin</a></code> members on the same object.
+   <p><code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin④">GPURenderCommandsMixin</a></code> assumes the presence of <code class="idl"><a data-link-type="idl" href="#gpuobjectbase" id="ref-for-gpuobjectbase②⑨">GPUObjectBase</a></code>, <code class="idl"><a data-link-type="idl" href="#gpucommandsmixin" id="ref-for-gpucommandsmixin①⓪">GPUCommandsMixin</a></code>, and <code class="idl"><a data-link-type="idl" href="#gpubindingcommandsmixin" id="ref-for-gpubindingcommandsmixin⑧">GPUBindingCommandsMixin</a></code> members on the same object.
 It must only be included by interfaces which also include those mixins.</p>
-   <p><code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin⑥">GPURenderCommandsMixin</a></code> has the following internal slots:</p>
+   <p><code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin⑤">GPURenderCommandsMixin</a></code> has the following internal slots:</p>
    <dl>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderCommandsMixin" data-dfn-type="attribute" data-export id="dom-gpurendercommandsmixin-layout-slot"><code>[[layout]]</code></dfn>, of type <code class="idl"><a data-link-type="idl" href="#dictdef-gpurenderpasslayout" id="ref-for-dictdef-gpurenderpasslayout⑦">GPURenderPassLayout</a></code>, readonly
     <dd data-md>
@@ -12636,7 +12624,7 @@ empty.</p>
      <p>The number of draw commands recorded in this encoder.</p>
    </dl>
    <div class="algorithm" data-algorithm="Enqueue a render command">
-     To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-enqueue-a-render-command">Enqueue a render command</dfn> on <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin⑦">GPURenderCommandsMixin</a></code> <var>encoder</var> which
+     To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-enqueue-a-render-command">Enqueue a render command</dfn> on <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin⑥">GPURenderCommandsMixin</a></code> <var>encoder</var> which
     issues the steps of a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command①①">GPU Command</a> <var>command</var> with <a data-link-type="dfn" href="#renderstate" id="ref-for-renderstate③">RenderState</a> <var>renderState</var>: 
     <ol>
      <li data-md>
@@ -12656,7 +12644,7 @@ empty.</p>
      <p>Sets the current <code class="idl"><a data-link-type="idl" href="#gpurenderpipeline" id="ref-for-gpurenderpipeline③⑦">GPURenderPipeline</a></code>.</p>
      <div class="algorithm" data-algorithm="GPURenderCommandsMixin.setPipeline">
       <div data-timeline="content">
-        <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin⑧">GPURenderCommandsMixin</a></code> this. 
+        <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin⑦">GPURenderCommandsMixin</a></code> this. 
        <p><strong>Arguments:</strong></p>
        <table class="argumentdef data def">
         <caption>Arguments for the <a data-link-type="idl" href="#dom-gpurendercommandsmixin-setpipeline" id="ref-for-dom-gpurendercommandsmixin-setpipeline③">GPURenderCommandsMixin.setPipeline(pipeline)</a> method.</caption>
@@ -12679,7 +12667,7 @@ empty.</p>
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦⑤">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪⓪">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤②">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪⓪">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤①">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
@@ -12712,7 +12700,7 @@ empty.</p>
     <dd data-md>
      <p>Sets the current index buffer.</p>
      <div class="algorithm" data-algorithm="GPURenderCommandsMixin.setIndexBuffer">
-       <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin⑨">GPURenderCommandsMixin</a></code> this. 
+       <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin⑧">GPURenderCommandsMixin</a></code> this. 
       <p><strong>Arguments:</strong></p>
       <table class="argumentdef data def">
        <caption>Arguments for the <a data-link-type="idl" href="#dom-gpurendercommandsmixin-setindexbuffer" id="ref-for-dom-gpurendercommandsmixin-setindexbuffer⑤">GPURenderCommandsMixin.setIndexBuffer(buffer, indexFormat, offset, size)</a> method.</caption>
@@ -12751,7 +12739,7 @@ empty.</p>
     Defaults to the size of the buffer minus the offset. 
       </table>
       <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑥⓪">undefined</a></code></p>
-      <p>Issue the following steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪②">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤③">[[device]]</a></code>:</p>
+      <p>Issue the following steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪②">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤②">[[device]]</a></code>:</p>
       <div class="device-timeline">
        <ol>
         <li data-md>
@@ -12789,7 +12777,7 @@ empty.</p>
     <dd data-md>
      <p>Sets the current vertex buffer for the given slot.</p>
      <div class="algorithm" data-algorithm="GPURenderCommandsMixin.setVertexBuffer">
-       <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①⓪">GPURenderCommandsMixin</a></code> this. 
+       <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin⑨">GPURenderCommandsMixin</a></code> this. 
       <p><strong>Arguments:</strong></p>
       <table class="argumentdef data def">
        <caption>Arguments for the <a data-link-type="idl" href="#dom-gpurendercommandsmixin-setvertexbuffer" id="ref-for-dom-gpurendercommandsmixin-setvertexbuffer③">GPURenderCommandsMixin.setVertexBuffer(slot, buffer, offset, size)</a> method.</caption>
@@ -12828,7 +12816,7 @@ empty.</p>
     Defaults to the size of the buffer minus the offset. 
       </table>
       <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑥①">undefined</a></code></p>
-      <p>Issue the following steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪③">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤④">[[device]]</a></code>:</p>
+      <p>Issue the following steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪③">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤③">[[device]]</a></code>:</p>
       <div class="device-timeline">
        <ol>
         <li data-md>
@@ -12842,7 +12830,7 @@ empty.</p>
          <div class="validusage">
           <ul>
            <li data-md>
-            <p><var>slot</var> must be &lt; <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤⑤">[[device]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-device-limits-slot" id="ref-for-dom-device-limits-slot②⓪">[[limits]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxvertexbuffers" id="ref-for-dom-supported-limits-maxvertexbuffers③">maxVertexBuffers</a></code>.</p>
+            <p><var>slot</var> must be &lt; <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤④">[[device]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-device-limits-slot" id="ref-for-dom-device-limits-slot①⑨">[[limits]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxvertexbuffers" id="ref-for-dom-supported-limits-maxvertexbuffers③">maxVertexBuffers</a></code>.</p>
            <li data-md>
             <p><var>offset</var> must be a multiple of 4.</p>
            <li data-md>
@@ -12853,7 +12841,7 @@ empty.</p>
          <p>If <var>buffer</var> is <code>null</code>:</p>
          <ol>
           <li data-md>
-           <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-remove" id="ref-for-map-remove②">Remove</a> <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-vertex_buffers-slot" id="ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot①">[[vertex_buffers]]</a></code>[<var>slot</var>].</p>
+           <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-remove" id="ref-for-map-remove②">Remove</a> <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-vertex_buffers-slot" id="ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot">[[vertex_buffers]]</a></code>[<var>slot</var>].</p>
           <li data-md>
            <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-remove" id="ref-for-map-remove③">Remove</a> <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-vertex_buffer_sizes-slot" id="ref-for-dom-gpurendercommandsmixin-vertex_buffer_sizes-slot">[[vertex_buffer_sizes]]</a></code>[<var>slot</var>].</p>
          </ol>
@@ -12867,23 +12855,12 @@ empty.</p>
               <p><var>buffer</var> must be <a data-link-type="abstract-op" href="#abstract-opdef-valid-to-use-with" id="ref-for-abstract-opdef-valid-to-use-with②①">valid to use with</a> <var>this</var>.</p>
              <li data-md>
               <p><var>buffer</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-usage" id="ref-for-dom-gpubuffer-usage①②">usage</a></code> must contain <code class="idl"><a data-link-type="idl" href="#dom-gpubufferusage-vertex" id="ref-for-dom-gpubufferusage-vertex③">VERTEX</a></code>.</p>
-             <li data-md>
-              <ol>
-               <li data-md>
-                <p>Let <var>bindGroupSpaceUsed</var> be
-(the maximum key in <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑧">[[bind_groups]]</a></code>) + 1.</p>
-               <li data-md>
-                <p>Let <var>vertexBufferSpaceUsed</var> be
-max(<var>slot</var>, the maximum key in <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-vertex_buffers-slot" id="ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot②">[[vertex_buffers]]</a></code>) + 1.</p>
-               <li data-md>
-                <p><var>bindGroupSpaceUsed</var> + <var>vertexBufferSpaceUsed</var> must be ≤ <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤⑥">[[device]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-device-limits-slot" id="ref-for-dom-device-limits-slot②①">[[limits]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxbindgroupsplusvertexbuffers" id="ref-for-dom-supported-limits-maxbindgroupsplusvertexbuffers⑤">maxBindGroupsPlusVertexBuffers</a></code>.</p>
-              </ol>
             </ul>
            </div>
           <li data-md>
            <p>Add <var>buffer</var> to the <a data-link-type="dfn" href="#usage-scopes" id="ref-for-usage-scopes①③">usage scope</a> as <a data-link-type="dfn" href="#internal-usage-input" id="ref-for-internal-usage-input③">input</a>.</p>
           <li data-md>
-           <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-vertex_buffers-slot" id="ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot③">[[vertex_buffers]]</a></code>[<var>slot</var>] to be <var>buffer</var>.</p>
+           <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-vertex_buffers-slot" id="ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot①">[[vertex_buffers]]</a></code>[<var>slot</var>] to be <var>buffer</var>.</p>
           <li data-md>
            <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-vertex_buffer_sizes-slot" id="ref-for-dom-gpurendercommandsmixin-vertex_buffer_sizes-slot①">[[vertex_buffer_sizes]]</a></code>[<var>slot</var>] to be <var>size</var>.</p>
          </ol>
@@ -12895,7 +12872,7 @@ max(<var>slot</var>, the maximum key in <var>this</var>.<code class="idl"><a dat
      <p>Draws primitives.
 See <a href="#rendering-operations">§ 23.3 Rendering</a> for the detailed specification.</p>
      <div class="algorithm" data-algorithm="GPURenderCommandsMixin.draw">
-       <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①①">GPURenderCommandsMixin</a></code> this. 
+       <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①⓪">GPURenderCommandsMixin</a></code> this. 
       <p><strong>Arguments:</strong></p>
       <table class="argumentdef data def">
        <caption>Arguments for the <a data-link-type="idl" href="#dom-gpurendercommandsmixin-draw" id="ref-for-dom-gpurendercommandsmixin-draw①">GPURenderCommandsMixin.draw(vertexCount, instanceCount, firstVertex, firstInstance)</a> method.</caption>
@@ -12933,7 +12910,7 @@ See <a href="#rendering-operations">§ 23.3 Rendering</a> for the detailed spe
          <td>First instance to draw. 
       </table>
       <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑥②">undefined</a></code></p>
-      <p>Issue the following steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪④">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤⑦">[[device]]</a></code>:</p>
+      <p>Issue the following steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪④">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤⑤">[[device]]</a></code>:</p>
       <div class="device-timeline">
        <ol>
         <li data-md>
@@ -13000,7 +12977,7 @@ with the states from <var>passState</var> and <var>renderState</var>.</p>
      <p>Draws indexed primitives.
 See <a href="#rendering-operations">§ 23.3 Rendering</a> for the detailed specification.</p>
      <div class="algorithm" data-algorithm="GPURenderCommandsMixin.drawIndexed">
-       <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①②">GPURenderCommandsMixin</a></code> this. 
+       <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①①">GPURenderCommandsMixin</a></code> this. 
       <p><strong>Arguments:</strong></p>
       <table class="argumentdef data def">
        <caption>Arguments for the <a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawindexed" id="ref-for-dom-gpurendercommandsmixin-drawindexed②">GPURenderCommandsMixin.drawIndexed(indexCount, instanceCount, firstIndex, baseVertex, firstInstance)</a> method.</caption>
@@ -13044,7 +13021,7 @@ See <a href="#rendering-operations">§ 23.3 Rendering</a> for the detailed spe
          <td>First instance to draw. 
       </table>
       <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑥③">undefined</a></code></p>
-      <p>Issue the following steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪⑤">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤⑧">[[device]]</a></code>:</p>
+      <p>Issue the following steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪⑤">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤⑥">[[device]]</a></code>:</p>
       <div class="device-timeline">
        <ol>
         <li data-md>
@@ -13119,7 +13096,7 @@ drawIndirectParameters<c- p>[</c-><c- mf>2</c-><c- p>]</c-> <c- o>=</c-> firstVe
 drawIndirectParameters<c- p>[</c-><c- mf>3</c-><c- p>]</c-> <c- o>=</c-> firstInstance<c- p>;</c-></pre>
      <p>The value corresponding to <code>firstInstance</code> must be 0, unless the <code class="idl"><a data-link-type="idl" href="#indirect-first-instance" id="ref-for-indirect-first-instance①">"indirect-first-instance"</a></code> <a data-link-type="dfn" href="#feature" id="ref-for-feature⑧">feature</a> is enabled.  If the <code class="idl"><a data-link-type="idl" href="#indirect-first-instance" id="ref-for-indirect-first-instance②">"indirect-first-instance"</a></code> <a data-link-type="dfn" href="#feature" id="ref-for-feature⑨">feature</a> is not enabled and <code>firstInstance</code> is not zero the <code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawindirect" id="ref-for-dom-gpurendercommandsmixin-drawindirect②">drawIndirect()</a></code> call will be treated as a no-op.</p>
      <div class="algorithm" data-algorithm="GPURenderCommandsMixin.drawIndirect">
-       <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①③">GPURenderCommandsMixin</a></code> this. 
+       <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①②">GPURenderCommandsMixin</a></code> this. 
       <p><strong>Arguments:</strong></p>
       <table class="argumentdef data def">
        <caption>Arguments for the <a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawindirect" id="ref-for-dom-gpurendercommandsmixin-drawindirect③">GPURenderCommandsMixin.drawIndirect(indirectBuffer, indirectOffset)</a> method.</caption>
@@ -13145,7 +13122,7 @@ drawIndirectParameters<c- p>[</c-><c- mf>3</c-><c- p>]</c-> <c- o>=</c-> firstIn
          <td>Offset in bytes into <var>indirectBuffer</var> where the drawing data begins. 
       </table>
       <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑥④">undefined</a></code></p>
-      <p>Issue the following steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪⑥">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤⑨">[[device]]</a></code>:</p>
+      <p>Issue the following steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪⑥">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤⑦">[[device]]</a></code>:</p>
       <div class="device-timeline">
        <ol>
         <li data-md>
@@ -13212,7 +13189,7 @@ drawIndexedIndirectParameters<c- p>[</c-><c- mf>3</c-><c- p>]</c-> <c- o>=</c-> 
 drawIndexedIndirectParameters<c- p>[</c-><c- mf>4</c-><c- p>]</c-> <c- o>=</c-> firstInstance<c- p>;</c-></pre>
      <p>The value corresponding to <code>firstInstance</code> must be 0, unless the <code class="idl"><a data-link-type="idl" href="#indirect-first-instance" id="ref-for-indirect-first-instance③">"indirect-first-instance"</a></code> <a data-link-type="dfn" href="#feature" id="ref-for-feature①⓪">feature</a> is enabled.  If the <code class="idl"><a data-link-type="idl" href="#indirect-first-instance" id="ref-for-indirect-first-instance④">"indirect-first-instance"</a></code> <a data-link-type="dfn" href="#feature" id="ref-for-feature①①">feature</a> is not enabled and <code>firstInstance</code> is not zero the <code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawindexedindirect" id="ref-for-dom-gpurendercommandsmixin-drawindexedindirect②">drawIndexedIndirect()</a></code> call will be treated as a no-op.</p>
      <div class="algorithm" data-algorithm="GPURenderCommandsMixin.drawIndexedIndirect">
-       <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①④">GPURenderCommandsMixin</a></code> this. 
+       <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①③">GPURenderCommandsMixin</a></code> this. 
       <p><strong>Arguments:</strong></p>
       <table class="argumentdef data def">
        <caption>Arguments for the <a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawindexedindirect" id="ref-for-dom-gpurendercommandsmixin-drawindexedindirect③">GPURenderCommandsMixin.drawIndexedIndirect(indirectBuffer, indirectOffset)</a> method.</caption>
@@ -13238,7 +13215,7 @@ drawIndexedIndirectParameters<c- p>[</c-><c- mf>4</c-><c- p>]</c-> <c- o>=</c-> 
          <td>Offset in bytes into <var>indirectBuffer</var> where the drawing data begins. 
       </table>
       <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑥⑤">undefined</a></code></p>
-      <p>Issue the following steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪⑦">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥⓪">[[device]]</a></code>:</p>
+      <p>Issue the following steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪⑦">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤⑧">[[device]]</a></code>:</p>
       <div class="device-timeline">
        <ol>
         <li data-md>
@@ -13295,7 +13272,7 @@ with the states from <var>passState</var> and <var>renderState</var>.</p>
      </div>
    </dl>
    <div class="algorithm" data-algorithm="valid to draw">
-     To determine if it’s <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-valid-to-draw">valid to draw</dfn> with <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①⑤">GPURenderCommandsMixin</a></code> <var>encoder</var> run the following steps: 
+     To determine if it’s <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-valid-to-draw">valid to draw</dfn> with <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①④">GPURenderCommandsMixin</a></code> <var>encoder</var> run the following steps: 
     <ol>
      <li data-md>
       <p>If any of the following conditions are unsatisfied, return <code>false</code>:</p>
@@ -13310,8 +13287,20 @@ must be <code>true</code>.</p>
          <p>For each <code class="idl"><a data-link-type="idl" href="#typedefdef-gpuindex32" id="ref-for-typedefdef-gpuindex32①⑧">GPUIndex32</a></code> <var>slot</var> <code>0</code> to <var>pipelineDescriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex①①">vertex</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuvertexstate-buffers" id="ref-for-dom-gpuvertexstate-buffers①①">buffers</a></code>.length:</p>
          <ul>
           <li data-md>
-           <p>If <var>pipelineDescriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex①②">vertex</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuvertexstate-buffers" id="ref-for-dom-gpuvertexstate-buffers①②">buffers</a></code>[<var>slot</var>] is not <code>null</code>, <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-vertex_buffers-slot" id="ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot④">[[vertex_buffers]]</a></code> must <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑤⓪">contain</a> <var>slot</var>.</p>
+           <p>If <var>pipelineDescriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex①②">vertex</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuvertexstate-buffers" id="ref-for-dom-gpuvertexstate-buffers①②">buffers</a></code>[<var>slot</var>] is not <code>null</code>, <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-vertex_buffers-slot" id="ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot②">[[vertex_buffers]]</a></code> must <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑤⓪">contain</a> <var>slot</var>.</p>
          </ul>
+        <li data-md>
+         <p>Validate <code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxbindgroupsplusvertexbuffers" id="ref-for-dom-supported-limits-maxbindgroupsplusvertexbuffers④">maxBindGroupsPlusVertexBuffers</a></code>:</p>
+         <ol>
+          <li data-md>
+           <p>Let <var>bindGroupSpaceUsed</var> be
+(the maximum key in <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑦">[[bind_groups]]</a></code>) + 1.</p>
+          <li data-md>
+           <p>Let <var>vertexBufferSpaceUsed</var> be
+(the maximum key in <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-vertex_buffers-slot" id="ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot③">[[vertex_buffers]]</a></code>) + 1.</p>
+          <li data-md>
+           <p><var>bindGroupSpaceUsed</var> + <var>vertexBufferSpaceUsed</var> must be ≤ <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤⑨">[[device]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-device-limits-slot" id="ref-for-dom-device-limits-slot②⓪">[[limits]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxbindgroupsplusvertexbuffers" id="ref-for-dom-supported-limits-maxbindgroupsplusvertexbuffers⑤">maxBindGroupsPlusVertexBuffers</a></code>.</p>
+         </ol>
        </ul>
       </div>
      <li data-md>
@@ -13319,7 +13308,7 @@ must be <code>true</code>.</p>
     </ol>
    </div>
    <div class="algorithm" data-algorithm="valid to draw indexed">
-     To determine if it’s <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-valid-to-draw-indexed">valid to draw indexed</dfn> with <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①⑥">GPURenderCommandsMixin</a></code> <var>encoder</var> run the following steps: 
+     To determine if it’s <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-valid-to-draw-indexed">valid to draw indexed</dfn> with <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①⑤">GPURenderCommandsMixin</a></code> <var>encoder</var> run the following steps: 
     <ol>
      <li data-md>
       <p>If any of the following conditions are unsatisfied, return <code>false</code>:</p>
@@ -13406,7 +13395,7 @@ coordinates to viewport coordinates.</p>
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦⑥">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪⑧">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥①">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪⑧">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥⓪">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
@@ -13500,7 +13489,7 @@ rectangle will be discarded.</p>
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦⑦">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①⓪">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥②">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①⓪">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥①">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
@@ -13560,7 +13549,7 @@ rectangle will be discarded.</p>
         <li data-md>
          <p><a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands②⑧">?</a> <a data-link-type="abstract-op" href="#abstract-opdef-validate-gpucolor-shape" id="ref-for-abstract-opdef-validate-gpucolor-shape①">validate GPUColor shape</a>(<var>color</var>).</p>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①②">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥③">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①②">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥②">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
@@ -13609,7 +13598,7 @@ the <code class="idl"><a data-link-type="idl" href="#dom-gpustenciloperation-rep
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦⑨">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①④">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥④">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①④">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥③">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
@@ -13659,7 +13648,7 @@ the <code class="idl"><a data-link-type="idl" href="#dom-gpustenciloperation-rep
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧⓪">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①⑥">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥⑤">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①⑥">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥④">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
@@ -13704,7 +13693,7 @@ the <code class="idl"><a data-link-type="idl" href="#dom-gpustenciloperation-rep
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧①">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①⑧">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥⑥">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①⑧">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥⑤">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
@@ -13775,7 +13764,7 @@ This occurs even if zero <code class="idl"><a data-link-type="idl" href="#gpuren
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧②">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②⓪">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥⑦">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②⓪">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥⑥">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
@@ -13808,13 +13797,13 @@ This occurs even if zero <code class="idl"><a data-link-type="idl" href="#gpuren
            <p>Increment <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawcount-slot" id="ref-for-dom-gpurendercommandsmixin-drawcount-slot⑥">[[drawCount]]</a></code> by <var>bundle</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderbundle-drawcount-slot" id="ref-for-dom-gpurenderbundle-drawcount-slot">[[drawCount]]</a></code>.</p>
          </ol>
         <li data-md>
-         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-clear" id="ref-for-map-clear">Clear</a> <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑨">[[bind_groups]]</a></code>.</p>
+         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-clear" id="ref-for-map-clear">Clear</a> <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑧">[[bind_groups]]</a></code>.</p>
         <li data-md>
          <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-pipeline-slot" id="ref-for-dom-gpurendercommandsmixin-pipeline-slot⑦">[[pipeline]]</a></code> to <code>null</code>.</p>
         <li data-md>
          <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-index_buffer-slot" id="ref-for-dom-gpurendercommandsmixin-index_buffer-slot⑤">[[index_buffer]]</a></code> to <code>null</code>.</p>
         <li data-md>
-         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-clear" id="ref-for-map-clear①">Clear</a> <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-vertex_buffers-slot" id="ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot⑤">[[vertex_buffers]]</a></code>.</p>
+         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-clear" id="ref-for-map-clear①">Clear</a> <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-vertex_buffers-slot" id="ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot④">[[vertex_buffers]]</a></code>.</p>
         <li data-md>
          <p>Let <var>passState</var> be a snapshot of <var>this</var>’s current state.</p>
         <li data-md>
@@ -13872,7 +13861,7 @@ Also note, no mutable <var>passState</var> state is visible to render bundles.</
 <a data-link-type="idl-name" href="#gpurenderbundleencoder" id="ref-for-gpurenderbundleencoder⑤"><c- n>GPURenderBundleEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpucommandsmixin" id="ref-for-gpucommandsmixin①①"><c- n>GPUCommandsMixin</c-></a>;
 <a data-link-type="idl-name" href="#gpurenderbundleencoder" id="ref-for-gpurenderbundleencoder⑥"><c- n>GPURenderBundleEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpudebugcommandsmixin" id="ref-for-gpudebugcommandsmixin①⓪"><c- n>GPUDebugCommandsMixin</c-></a>;
 <a data-link-type="idl-name" href="#gpurenderbundleencoder" id="ref-for-gpurenderbundleencoder⑦"><c- n>GPURenderBundleEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpubindingcommandsmixin" id="ref-for-gpubindingcommandsmixin⑨"><c- n>GPUBindingCommandsMixin</c-></a>;
-<a data-link-type="idl-name" href="#gpurenderbundleencoder" id="ref-for-gpurenderbundleencoder⑧"><c- n>GPURenderBundleEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①⑦"><c- n>GPURenderCommandsMixin</c-></a>;
+<a data-link-type="idl-name" href="#gpurenderbundleencoder" id="ref-for-gpurenderbundleencoder⑧"><c- n>GPURenderBundleEncoder</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①⑥"><c- n>GPURenderCommandsMixin</c-></a>;
 </pre>
    <dl>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUDevice" data-dfn-type="method" data-export id="dom-gpudevice-createrenderbundleencoder"><code>createRenderBundleEncoder(descriptor)</code></dfn>
@@ -13903,9 +13892,9 @@ Also note, no mutable <var>passState</var> state is visible to render bundles.</
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧③">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p><a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands②⑨">?</a> <a data-link-type="abstract-op" href="#abstract-opdef-validate-texture-format-required-features" id="ref-for-abstract-opdef-validate-texture-format-required-features⑥">Validate texture format required features</a> of each non-<code>null</code> element of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasslayout-colorformats" id="ref-for-dom-gpurenderpasslayout-colorformats⑤">colorFormats</a></code> with <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥⑧">[[device]]</a></code>.</p>
+         <p><a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands②⑨">?</a> <a data-link-type="abstract-op" href="#abstract-opdef-validate-texture-format-required-features" id="ref-for-abstract-opdef-validate-texture-format-required-features⑥">Validate texture format required features</a> of each non-<code>null</code> element of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasslayout-colorformats" id="ref-for-dom-gpurenderpasslayout-colorformats⑤">colorFormats</a></code> with <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥⑦">[[device]]</a></code>.</p>
         <li data-md>
-         <p><a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands③⓪">?</a> <a data-link-type="abstract-op" href="#abstract-opdef-validate-texture-format-required-features" id="ref-for-abstract-opdef-validate-texture-format-required-features⑦">Validate texture format required features</a> of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasslayout-depthstencilformat" id="ref-for-dom-gpurenderpasslayout-depthstencilformat③">depthStencilFormat</a></code> with <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥⑨">[[device]]</a></code>.</p>
+         <p><a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands③⓪">?</a> <a data-link-type="abstract-op" href="#abstract-opdef-validate-texture-format-required-features" id="ref-for-abstract-opdef-validate-texture-format-required-features⑦">Validate texture format required features</a> of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasslayout-depthstencilformat" id="ref-for-dom-gpurenderpasslayout-depthstencilformat③">depthStencilFormat</a></code> with <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥⑧">[[device]]</a></code>.</p>
         <li data-md>
          <p>Let <var>e</var> be a new <code class="idl"><a data-link-type="idl" href="#gpurenderbundleencoder" id="ref-for-gpurenderbundleencoder①②">GPURenderBundleEncoder</a></code> object.</p>
         <li data-md>
@@ -13924,7 +13913,7 @@ Also note, no mutable <var>passState</var> state is visible to render bundles.</
            <li data-md>
             <p><var>this</var> is <a data-link-type="dfn" href="#valid" id="ref-for-valid②④">valid</a>.</p>
            <li data-md>
-            <p><var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasslayout-colorformats" id="ref-for-dom-gpurenderpasslayout-colorformats⑥">colorFormats</a></code>.length must be ≤ <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-device-limits-slot" id="ref-for-dom-device-limits-slot②②">[[limits]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxcolorattachments" id="ref-for-dom-supported-limits-maxcolorattachments③">maxColorAttachments</a></code>.</p>
+            <p><var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasslayout-colorformats" id="ref-for-dom-gpurenderpasslayout-colorformats⑥">colorFormats</a></code>.length must be ≤ <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-device-limits-slot" id="ref-for-dom-device-limits-slot②①">[[limits]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxcolorattachments" id="ref-for-dom-supported-limits-maxcolorattachments③">maxColorAttachments</a></code>.</p>
            <li data-md>
             <p>For each non-<code>null</code> <var>colorFormat</var> in <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasslayout-colorformats" id="ref-for-dom-gpurenderpasslayout-colorformats⑦">colorFormats</a></code>:</p>
             <ul>
@@ -13933,7 +13922,7 @@ Also note, no mutable <var>passState</var> state is visible to render bundles.</
             </ul>
            <li data-md>
             <p><a data-link-type="abstract-op" href="#abstract-opdef-calculating-color-attachment-bytes-per-sample" id="ref-for-abstract-opdef-calculating-color-attachment-bytes-per-sample②">Calculating color attachment bytes per sample</a>(<var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasslayout-colorformats" id="ref-for-dom-gpurenderpasslayout-colorformats⑧">colorFormats</a></code>)
-must be ≤ <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-device-limits-slot" id="ref-for-dom-device-limits-slot②③">[[limits]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxcolorattachmentbytespersample" id="ref-for-dom-supported-limits-maxcolorattachmentbytespersample②">maxColorAttachmentBytesPerSample</a></code>.</p>
+must be ≤ <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-device-limits-slot" id="ref-for-dom-device-limits-slot②②">[[limits]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxcolorattachmentbytespersample" id="ref-for-dom-supported-limits-maxcolorattachmentbytespersample②">maxColorAttachmentBytesPerSample</a></code>.</p>
            <li data-md>
             <p>If <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasslayout-depthstencilformat" id="ref-for-dom-gpurenderpasslayout-depthstencilformat④">depthStencilFormat</a></code> is <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑤①">provided</a>:</p>
             <ul>
@@ -14009,7 +13998,7 @@ must be ≤ <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom
         <li data-md>
          <p>Let <var>renderBundle</var> be a new <code class="idl"><a data-link-type="idl" href="#gpurenderbundle" id="ref-for-gpurenderbundle①⑤">GPURenderBundle</a></code>.</p>
         <li data-md>
-         <p>Issue the <var>finish steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②④">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑦⓪">[[device]]</a></code>.</p>
+         <p>Issue the <var>finish steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②④">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥⑨">[[device]]</a></code>.</p>
         <li data-md>
          <p>Return <var>renderBundle</var>.</p>
        </ol>
@@ -14868,9 +14857,9 @@ This clears the drawing buffer to transparent black (in <a data-link-type="abstr
         <li data-md>
          <p>Let <var>device</var> be <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucanvasconfiguration-device" id="ref-for-dom-gpucanvasconfiguration-device">device</a></code>.</p>
         <li data-md>
-         <p><a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands③⑦">?</a> <a data-link-type="abstract-op" href="#abstract-opdef-validate-texture-format-required-features" id="ref-for-abstract-opdef-validate-texture-format-required-features⑧">Validate texture format required features</a> of <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucanvasconfiguration-format" id="ref-for-dom-gpucanvasconfiguration-format①">format</a></code> with <var>device</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑦①">[[device]]</a></code>.</p>
+         <p><a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands③⑦">?</a> <a data-link-type="abstract-op" href="#abstract-opdef-validate-texture-format-required-features" id="ref-for-abstract-opdef-validate-texture-format-required-features⑧">Validate texture format required features</a> of <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucanvasconfiguration-format" id="ref-for-dom-gpucanvasconfiguration-format①">format</a></code> with <var>device</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑦⓪">[[device]]</a></code>.</p>
         <li data-md>
-         <p><a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands③⑧">?</a> <a data-link-type="abstract-op" href="#abstract-opdef-validate-texture-format-required-features" id="ref-for-abstract-opdef-validate-texture-format-required-features⑨">Validate texture format required features</a> of each element of <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-gputexturedescriptor-viewformats" id="ref-for-dom-gputexturedescriptor-viewformats⑥">viewFormats</a></code> with <var>device</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑦②">[[device]]</a></code>.</p>
+         <p><a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands③⑧">?</a> <a data-link-type="abstract-op" href="#abstract-opdef-validate-texture-format-required-features" id="ref-for-abstract-opdef-validate-texture-format-required-features⑨">Validate texture format required features</a> of each element of <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-gputexturedescriptor-viewformats" id="ref-for-dom-gputexturedescriptor-viewformats⑥">viewFormats</a></code> with <var>device</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑦①">[[device]]</a></code>.</p>
         <li data-md>
          <p>Let <var>descriptor</var> be the <a data-link-type="abstract-op" href="#abstract-opdef-gputexturedescriptor-for-the-canvas-and-configuration" id="ref-for-abstract-opdef-gputexturedescriptor-for-the-canvas-and-configuration">GPUTextureDescriptor for the canvas and configuration</a>(<var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-canvas" id="ref-for-dom-gpucanvascontext-canvas②">canvas</a></code>, <var>configuration</var>).</p>
         <li data-md>
@@ -15316,7 +15305,7 @@ compatibility and consistency with legacy APIs, but when there is, adopt it form
 </pre>
    <p><code class="idl"><a data-link-type="idl" href="#gpuvalidationerror" id="ref-for-gpuvalidationerror">GPUValidationError</a></code> is a subtype of <code class="idl"><a data-link-type="idl" href="#gpuerror" id="ref-for-gpuerror⑦">GPUError</a></code> which indicates that an operation did not
 satisfy all validation requirements. Validation errors are always indicative of an application
-error, and is expected to fail the same way across all devices assuming the same <code class="idl"><a data-link-type="idl" href="#dom-device-features-slot" id="ref-for-dom-device-features-slot③">[[features]]</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-device-limits-slot" id="ref-for-dom-device-limits-slot②④">[[limits]]</a></code> are in use.</p>
+error, and is expected to fail the same way across all devices assuming the same <code class="idl"><a data-link-type="idl" href="#dom-device-features-slot" id="ref-for-dom-device-features-slot③">[[features]]</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-device-limits-slot" id="ref-for-dom-device-limits-slot②③">[[limits]]</a></code> are in use.</p>
    <div class="algorithm" data-algorithm="Generate a validation error">
      To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export data-lt="Generate a validation error|generate a validation error|validation error" id="abstract-opdef-generate-a-validation-error">generate a
     validation error</dfn> for <code class="idl"><a data-link-type="idl" href="#gpudevice" id="ref-for-gpudevice⑦⓪">GPUDevice</a></code> <var>device</var>, run the following steps: 
@@ -15729,7 +15718,7 @@ blocks in hardware.</p>
      <li data-md>
       <p><var>drawCall</var>: The draw call parameters.</p>
      <li data-md>
-      <p><var>state</var>: <a data-link-type="dfn" href="#renderstate" id="ref-for-renderstate④">RenderState</a> of the <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①⑧">GPURenderCommandsMixin</a></code> where the draw call is issued.</p>
+      <p><var>state</var>: <a data-link-type="dfn" href="#renderstate" id="ref-for-renderstate④">RenderState</a> of the <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①⑦">GPURenderCommandsMixin</a></code> where the draw call is issued.</p>
     </ul>
     <ol>
      <li data-md>
@@ -15769,7 +15758,7 @@ a list of vertices to process for each instance.</p>
      <li data-md>
       <p><var>drawCall</var>: The draw call parameters.</p>
      <li data-md>
-      <p><var>state</var>: The snapshot of the <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①⑨">GPURenderCommandsMixin</a></code> state at the time of the draw call.</p>
+      <p><var>state</var>: The snapshot of the <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①⑧">GPURenderCommandsMixin</a></code> state at the time of the draw call.</p>
     </ul>
     <p><strong>Returns:</strong> list of integer indices.</p>
     <ol>
@@ -15817,7 +15806,7 @@ especially when it is easy to detect (like in non-indirect indexed draw calls).<
      <li data-md>
       <p><var>i</var>: Index of a vertex index to fetch.</p>
      <li data-md>
-      <p><var>state</var>: The snapshot of the <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin②⓪">GPURenderCommandsMixin</a></code> state at the time of the draw call.</p>
+      <p><var>state</var>: The snapshot of the <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①⑨">GPURenderCommandsMixin</a></code> state at the time of the draw call.</p>
     </ul>
     <p><strong>Returns:</strong> unsigned integer or <code>"out of bounds"</code></p>
     <ol>
@@ -15855,7 +15844,7 @@ clip space positions for <a href="#primitive-clipping">§ 23.3.4 Primitive Cli
      <li data-md>
       <p><var>desc</var>: The descriptor of type <code class="idl"><a data-link-type="idl" href="#dictdef-gpuvertexstate" id="ref-for-dictdef-gpuvertexstate⑥">GPUVertexState</a></code>.</p>
      <li data-md>
-      <p><var>state</var>: The snapshot of the <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin②①">GPURenderCommandsMixin</a></code> state at the time of the draw call.</p>
+      <p><var>state</var>: The snapshot of the <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin②⓪">GPURenderCommandsMixin</a></code> state at the time of the draw call.</p>
     </ul>
     <p>Each vertex <var>vertexIndex</var> in the <var>vertexIndexList</var>,
     in each instance of index <var>rawInstanceIndex</var>, is processed independently.
@@ -15873,7 +15862,7 @@ clip space positions for <a href="#primitive-clipping">§ 23.3.4 Primitive Cli
         <p>Let <var>i</var> be the index of the buffer layout in this list.</p>
        <li data-md>
         <p>Let <var>vertexBuffer</var>, <var>vertexBufferOffset</var>, and <var>vertexBufferBindingSize</var> be the
-buffer, offset, and size at slot <var>i</var> of <var>state</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-vertex_buffers-slot" id="ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot⑥">[[vertex_buffers]]</a></code>.</p>
+buffer, offset, and size at slot <var>i</var> of <var>state</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-vertex_buffers-slot" id="ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot⑤">[[vertex_buffers]]</a></code>.</p>
        <li data-md>
         <p>Let <var>vertexElementIndex</var> be dependent on <var>vertexBufferLayout</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuvertexbufferlayout-stepmode" id="ref-for-dom-gpuvertexbufferlayout-stepmode③">stepMode</a></code>:</p>
         <dl class="switch">
@@ -15923,7 +15912,7 @@ location <var>attributeDesc</var>.<code class="idl"><a data-link-type="idl" href
         </ol>
       </ol>
      <li data-md>
-      <p>For each <code class="idl"><a data-link-type="idl" href="#gpubindgroup" id="ref-for-gpubindgroup③③">GPUBindGroup</a></code> group at <var>index</var> in <var>state</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot①⓪">[[bind_groups]]</a></code>:</p>
+      <p>For each <code class="idl"><a data-link-type="idl" href="#gpubindgroup" id="ref-for-gpubindgroup③③">GPUBindGroup</a></code> group at <var>index</var> in <var>state</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑨">[[bind_groups]]</a></code>:</p>
       <ol>
        <li data-md>
         <p>For each resource <code class="idl"><a data-link-type="idl" href="#typedefdef-gpubindingresource" id="ref-for-typedefdef-gpubindingresource③">GPUBindingResource</a></code> in the bind group:</p>
@@ -22230,18 +22219,18 @@ reference specific GPU commands (like dispatch) yet. <a class="issue-return" hre
     <li><a href="#ref-for-dom-gpuobjectbase-device-slot③⑤">13.5. Image Copy Commands</a> <a href="#ref-for-dom-gpuobjectbase-device-slot③⑥">(2)</a> <a href="#ref-for-dom-gpuobjectbase-device-slot③⑦">(3)</a>
     <li><a href="#ref-for-dom-gpuobjectbase-device-slot③⑧">13.6. Queries</a> <a href="#ref-for-dom-gpuobjectbase-device-slot③⑨">(2)</a>
     <li><a href="#ref-for-dom-gpuobjectbase-device-slot④⓪">13.7. Finalization</a>
-    <li><a href="#ref-for-dom-gpuobjectbase-device-slot④①">14.1. Bind Groups</a> <a href="#ref-for-dom-gpuobjectbase-device-slot④②">(2)</a> <a href="#ref-for-dom-gpuobjectbase-device-slot④③">(3)</a>
-    <li><a href="#ref-for-dom-gpuobjectbase-device-slot④④">15. Debug Markers</a> <a href="#ref-for-dom-gpuobjectbase-device-slot④⑤">(2)</a> <a href="#ref-for-dom-gpuobjectbase-device-slot④⑥">(3)</a>
-    <li><a href="#ref-for-dom-gpuobjectbase-device-slot④⑦">16.1.2. Dispatch</a> <a href="#ref-for-dom-gpuobjectbase-device-slot④⑧">(2)</a> <a href="#ref-for-dom-gpuobjectbase-device-slot④⑨">(3)</a>
-    <li><a href="#ref-for-dom-gpuobjectbase-device-slot⑤⓪">16.1.3. Finalization</a>
-    <li><a href="#ref-for-dom-gpuobjectbase-device-slot⑤①">17.1.2. Finalization</a>
-    <li><a href="#ref-for-dom-gpuobjectbase-device-slot⑤②">17.2.1. Drawing</a> <a href="#ref-for-dom-gpuobjectbase-device-slot⑤③">(2)</a> <a href="#ref-for-dom-gpuobjectbase-device-slot⑤④">(3)</a> <a href="#ref-for-dom-gpuobjectbase-device-slot⑤⑤">(4)</a> <a href="#ref-for-dom-gpuobjectbase-device-slot⑤⑥">(5)</a> <a href="#ref-for-dom-gpuobjectbase-device-slot⑤⑦">(6)</a> <a href="#ref-for-dom-gpuobjectbase-device-slot⑤⑧">(7)</a> <a href="#ref-for-dom-gpuobjectbase-device-slot⑤⑨">(8)</a> <a href="#ref-for-dom-gpuobjectbase-device-slot⑥⓪">(9)</a>
-    <li><a href="#ref-for-dom-gpuobjectbase-device-slot⑥①">17.2.2. Rasterization state</a> <a href="#ref-for-dom-gpuobjectbase-device-slot⑥②">(2)</a> <a href="#ref-for-dom-gpuobjectbase-device-slot⑥③">(3)</a> <a href="#ref-for-dom-gpuobjectbase-device-slot⑥④">(4)</a>
-    <li><a href="#ref-for-dom-gpuobjectbase-device-slot⑥⑤">17.2.3. Queries</a> <a href="#ref-for-dom-gpuobjectbase-device-slot⑥⑥">(2)</a>
-    <li><a href="#ref-for-dom-gpuobjectbase-device-slot⑥⑦">17.2.4. Bundles</a>
-    <li><a href="#ref-for-dom-gpuobjectbase-device-slot⑥⑧">18.1.1. Render Bundle Creation</a> <a href="#ref-for-dom-gpuobjectbase-device-slot⑥⑨">(2)</a>
-    <li><a href="#ref-for-dom-gpuobjectbase-device-slot⑦⓪">18.1.3. Finalization</a>
-    <li><a href="#ref-for-dom-gpuobjectbase-device-slot⑦①">21.2. GPUCanvasContext</a> <a href="#ref-for-dom-gpuobjectbase-device-slot⑦②">(2)</a>
+    <li><a href="#ref-for-dom-gpuobjectbase-device-slot④①">14.1. Bind Groups</a> <a href="#ref-for-dom-gpuobjectbase-device-slot④②">(2)</a>
+    <li><a href="#ref-for-dom-gpuobjectbase-device-slot④③">15. Debug Markers</a> <a href="#ref-for-dom-gpuobjectbase-device-slot④④">(2)</a> <a href="#ref-for-dom-gpuobjectbase-device-slot④⑤">(3)</a>
+    <li><a href="#ref-for-dom-gpuobjectbase-device-slot④⑥">16.1.2. Dispatch</a> <a href="#ref-for-dom-gpuobjectbase-device-slot④⑦">(2)</a> <a href="#ref-for-dom-gpuobjectbase-device-slot④⑧">(3)</a>
+    <li><a href="#ref-for-dom-gpuobjectbase-device-slot④⑨">16.1.3. Finalization</a>
+    <li><a href="#ref-for-dom-gpuobjectbase-device-slot⑤⓪">17.1.2. Finalization</a>
+    <li><a href="#ref-for-dom-gpuobjectbase-device-slot⑤①">17.2.1. Drawing</a> <a href="#ref-for-dom-gpuobjectbase-device-slot⑤②">(2)</a> <a href="#ref-for-dom-gpuobjectbase-device-slot⑤③">(3)</a> <a href="#ref-for-dom-gpuobjectbase-device-slot⑤④">(4)</a> <a href="#ref-for-dom-gpuobjectbase-device-slot⑤⑤">(5)</a> <a href="#ref-for-dom-gpuobjectbase-device-slot⑤⑥">(6)</a> <a href="#ref-for-dom-gpuobjectbase-device-slot⑤⑦">(7)</a> <a href="#ref-for-dom-gpuobjectbase-device-slot⑤⑧">(8)</a> <a href="#ref-for-dom-gpuobjectbase-device-slot⑤⑨">(9)</a>
+    <li><a href="#ref-for-dom-gpuobjectbase-device-slot⑥⓪">17.2.2. Rasterization state</a> <a href="#ref-for-dom-gpuobjectbase-device-slot⑥①">(2)</a> <a href="#ref-for-dom-gpuobjectbase-device-slot⑥②">(3)</a> <a href="#ref-for-dom-gpuobjectbase-device-slot⑥③">(4)</a>
+    <li><a href="#ref-for-dom-gpuobjectbase-device-slot⑥④">17.2.3. Queries</a> <a href="#ref-for-dom-gpuobjectbase-device-slot⑥⑤">(2)</a>
+    <li><a href="#ref-for-dom-gpuobjectbase-device-slot⑥⑥">17.2.4. Bundles</a>
+    <li><a href="#ref-for-dom-gpuobjectbase-device-slot⑥⑦">18.1.1. Render Bundle Creation</a> <a href="#ref-for-dom-gpuobjectbase-device-slot⑥⑧">(2)</a>
+    <li><a href="#ref-for-dom-gpuobjectbase-device-slot⑥⑨">18.1.3. Finalization</a>
+    <li><a href="#ref-for-dom-gpuobjectbase-device-slot⑦⓪">21.2. GPUCanvasContext</a> <a href="#ref-for-dom-gpuobjectbase-device-slot⑦①">(2)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-dom-gpuobjectbase-label" class="dfn-panel" data-for="dom-gpuobjectbase-label" id="infopanel-for-dom-gpuobjectbase-label">
@@ -22745,11 +22734,11 @@ reference specific GPU commands (like dispatch) yet. <a class="issue-return" hre
     <li><a href="#ref-for-dom-device-limits-slot⑦">10.3.1. Render Pipeline Creation</a>
     <li><a href="#ref-for-dom-device-limits-slot⑧">10.3.4. Fragment State</a> <a href="#ref-for-dom-device-limits-slot⑨">(2)</a> <a href="#ref-for-dom-device-limits-slot①⓪">(3)</a>
     <li><a href="#ref-for-dom-device-limits-slot①①">10.3.7.1. Vertex Formats</a> <a href="#ref-for-dom-device-limits-slot①②">(2)</a> <a href="#ref-for-dom-device-limits-slot①③">(3)</a> <a href="#ref-for-dom-device-limits-slot①④">(4)</a> <a href="#ref-for-dom-device-limits-slot①⑤">(5)</a>
-    <li><a href="#ref-for-dom-device-limits-slot①⑥">14.1. Bind Groups</a> <a href="#ref-for-dom-device-limits-slot①⑦">(2)</a>
-    <li><a href="#ref-for-dom-device-limits-slot①⑧">17.1.1. Render Pass Encoder Creation</a> <a href="#ref-for-dom-device-limits-slot①⑨">(2)</a>
-    <li><a href="#ref-for-dom-device-limits-slot②⓪">17.2.1. Drawing</a> <a href="#ref-for-dom-device-limits-slot②①">(2)</a>
-    <li><a href="#ref-for-dom-device-limits-slot②②">18.1.1. Render Bundle Creation</a> <a href="#ref-for-dom-device-limits-slot②③">(2)</a>
-    <li><a href="#ref-for-dom-device-limits-slot②④">22.2. GPUError </a>
+    <li><a href="#ref-for-dom-device-limits-slot①⑥">14.1. Bind Groups</a>
+    <li><a href="#ref-for-dom-device-limits-slot①⑦">17.1.1. Render Pass Encoder Creation</a> <a href="#ref-for-dom-device-limits-slot①⑧">(2)</a>
+    <li><a href="#ref-for-dom-device-limits-slot①⑨">17.2.1. Drawing</a> <a href="#ref-for-dom-device-limits-slot②⓪">(2)</a>
+    <li><a href="#ref-for-dom-device-limits-slot②①">18.1.1. Render Bundle Creation</a> <a href="#ref-for-dom-device-limits-slot②②">(2)</a>
+    <li><a href="#ref-for-dom-device-limits-slot②③">22.2. GPUError </a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-a-new-device" class="dfn-panel" data-for="a-new-device" id="infopanel-for-a-new-device">
@@ -22898,8 +22887,7 @@ reference specific GPU commands (like dispatch) yet. <a class="issue-return" hre
    <ul>
     <li><a href="#ref-for-dom-supported-limits-maxbindgroupsplusvertexbuffers">4.2.1. Adapter Capability Guarantees</a> <a href="#ref-for-dom-supported-limits-maxbindgroupsplusvertexbuffers①">(2)</a> <a href="#ref-for-dom-supported-limits-maxbindgroupsplusvertexbuffers②">(3)</a>
     <li><a href="#ref-for-dom-supported-limits-maxbindgroupsplusvertexbuffers③">10.3.1. Render Pipeline Creation</a>
-    <li><a href="#ref-for-dom-supported-limits-maxbindgroupsplusvertexbuffers④">14.1. Bind Groups</a>
-    <li><a href="#ref-for-dom-supported-limits-maxbindgroupsplusvertexbuffers⑤">17.2.1. Drawing</a>
+    <li><a href="#ref-for-dom-supported-limits-maxbindgroupsplusvertexbuffers④">17.2.1. Drawing</a> <a href="#ref-for-dom-supported-limits-maxbindgroupsplusvertexbuffers⑤">(2)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-dom-supported-limits-maxbindingsperbindgroup" class="dfn-panel" data-for="dom-supported-limits-maxbindingsperbindgroup" id="infopanel-for-dom-supported-limits-maxbindingsperbindgroup">
@@ -28747,11 +28735,11 @@ reference specific GPU commands (like dispatch) yet. <a class="issue-return" hre
    <span id="infopaneltitle-for-dom-gpubindingcommandsmixin-bind_groups-slot" style="display:none">Info about the '[[bind_groups]]' definition.</span><b><a href="#dom-gpubindingcommandsmixin-bind_groups-slot">#dom-gpubindingcommandsmixin-bind_groups-slot</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot">14. Programmable Passes</a>
-    <li><a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot①">14.1. Bind Groups</a> <a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot②">(2)</a> <a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot③">(3)</a> <a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot④">(4)</a> <a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑤">(5)</a>
-    <li><a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑥">16.1.2. Dispatch</a> <a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑦">(2)</a>
-    <li><a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑧">17.2.1. Drawing</a>
-    <li><a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑨">17.2.4. Bundles</a>
-    <li><a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot①⓪">23.3.2. Vertex Processing</a>
+    <li><a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot①">14.1. Bind Groups</a> <a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot②">(2)</a> <a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot③">(3)</a> <a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot④">(4)</a>
+    <li><a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑤">16.1.2. Dispatch</a> <a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑥">(2)</a>
+    <li><a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑦">17.2.1. Drawing</a>
+    <li><a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑧">17.2.4. Bundles</a>
+    <li><a href="#ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑨">23.3.2. Vertex Processing</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-dom-gpubindingcommandsmixin-dynamic_offsets-slot" class="dfn-panel" data-for="dom-gpubindingcommandsmixin-dynamic_offsets-slot" id="infopanel-for-dom-gpubindingcommandsmixin-dynamic_offsets-slot">
@@ -29569,14 +29557,13 @@ reference specific GPU commands (like dispatch) yet. <a class="issue-return" hre
 ' definition.</span><b><a href="#gpurendercommandsmixin">#gpurendercommandsmixin</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-gpurendercommandsmixin">10. Pipelines</a>
-    <li><a href="#ref-for-gpurendercommandsmixin①">14.1. Bind Groups</a>
-    <li><a href="#ref-for-gpurendercommandsmixin②">17.1. GPURenderPassEncoder </a>
-    <li><a href="#ref-for-gpurendercommandsmixin">17.2. GPURenderCommandsMixin </a> <a href="#ref-for-gpurendercommandsmixin③">(2)</a> <a href="#ref-for-gpurendercommandsmixin④">(3)</a> <a href="#ref-for-gpurendercommandsmixin⑤">(4)</a> <a href="#ref-for-gpurendercommandsmixin⑥">(5)</a> <a href="#ref-for-gpurendercommandsmixin⑦">(6)</a>
-    <li><a href="#ref-for-gpurendercommandsmixin⑧">17.2.1. Drawing</a> <a href="#ref-for-gpurendercommandsmixin⑨">(2)</a> <a href="#ref-for-gpurendercommandsmixin①⓪">(3)</a> <a href="#ref-for-gpurendercommandsmixin①①">(4)</a> <a href="#ref-for-gpurendercommandsmixin①②">(5)</a> <a href="#ref-for-gpurendercommandsmixin①③">(6)</a> <a href="#ref-for-gpurendercommandsmixin①④">(7)</a> <a href="#ref-for-gpurendercommandsmixin①⑤">(8)</a> <a href="#ref-for-gpurendercommandsmixin①⑥">(9)</a>
-    <li><a href="#ref-for-gpurendercommandsmixin①⑦">18.1.1. Render Bundle Creation</a>
-    <li><a href="#ref-for-gpurendercommandsmixin①⑧">23.3. Rendering</a>
-    <li><a href="#ref-for-gpurendercommandsmixin①⑨">23.3.1. Index Resolution</a> <a href="#ref-for-gpurendercommandsmixin②⓪">(2)</a>
-    <li><a href="#ref-for-gpurendercommandsmixin②①">23.3.2. Vertex Processing</a>
+    <li><a href="#ref-for-gpurendercommandsmixin①">17.1. GPURenderPassEncoder </a>
+    <li><a href="#ref-for-gpurendercommandsmixin">17.2. GPURenderCommandsMixin </a> <a href="#ref-for-gpurendercommandsmixin②">(2)</a> <a href="#ref-for-gpurendercommandsmixin③">(3)</a> <a href="#ref-for-gpurendercommandsmixin④">(4)</a> <a href="#ref-for-gpurendercommandsmixin⑤">(5)</a> <a href="#ref-for-gpurendercommandsmixin⑥">(6)</a>
+    <li><a href="#ref-for-gpurendercommandsmixin⑦">17.2.1. Drawing</a> <a href="#ref-for-gpurendercommandsmixin⑧">(2)</a> <a href="#ref-for-gpurendercommandsmixin⑨">(3)</a> <a href="#ref-for-gpurendercommandsmixin①⓪">(4)</a> <a href="#ref-for-gpurendercommandsmixin①①">(5)</a> <a href="#ref-for-gpurendercommandsmixin①②">(6)</a> <a href="#ref-for-gpurendercommandsmixin①③">(7)</a> <a href="#ref-for-gpurendercommandsmixin①④">(8)</a> <a href="#ref-for-gpurendercommandsmixin①⑤">(9)</a>
+    <li><a href="#ref-for-gpurendercommandsmixin①⑥">18.1.1. Render Bundle Creation</a>
+    <li><a href="#ref-for-gpurendercommandsmixin①⑦">23.3. Rendering</a>
+    <li><a href="#ref-for-gpurendercommandsmixin①⑧">23.3.1. Index Resolution</a> <a href="#ref-for-gpurendercommandsmixin①⑨">(2)</a>
+    <li><a href="#ref-for-gpurendercommandsmixin②⓪">23.3.2. Vertex Processing</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-dom-gpurendercommandsmixin-layout-slot" class="dfn-panel" data-for="dom-gpurendercommandsmixin-layout-slot" id="infopanel-for-dom-gpurendercommandsmixin-layout-slot">
@@ -29646,10 +29633,9 @@ reference specific GPU commands (like dispatch) yet. <a class="issue-return" hre
   <aside aria-labelledby="infopaneltitle-for-dom-gpurendercommandsmixin-vertex_buffers-slot" class="dfn-panel" data-for="dom-gpurendercommandsmixin-vertex_buffers-slot" id="infopanel-for-dom-gpurendercommandsmixin-vertex_buffers-slot">
    <span id="infopaneltitle-for-dom-gpurendercommandsmixin-vertex_buffers-slot" style="display:none">Info about the '[[vertex_buffers]]' definition.</span><b><a href="#dom-gpurendercommandsmixin-vertex_buffers-slot">#dom-gpurendercommandsmixin-vertex_buffers-slot</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot">14.1. Bind Groups</a>
-    <li><a href="#ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot①">17.2.1. Drawing</a> <a href="#ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot②">(2)</a> <a href="#ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot③">(3)</a> <a href="#ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot④">(4)</a>
-    <li><a href="#ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot⑤">17.2.4. Bundles</a>
-    <li><a href="#ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot⑥">23.3.2. Vertex Processing</a>
+    <li><a href="#ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot">17.2.1. Drawing</a> <a href="#ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot①">(2)</a> <a href="#ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot②">(3)</a> <a href="#ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot③">(4)</a>
+    <li><a href="#ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot④">17.2.4. Bundles</a>
+    <li><a href="#ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot⑤">23.3.2. Vertex Processing</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-dom-gpurendercommandsmixin-vertex_buffer_sizes-slot" class="dfn-panel" data-for="dom-gpurendercommandsmixin-vertex_buffer_sizes-slot" id="infopanel-for-dom-gpurendercommandsmixin-vertex_buffer_sizes-slot">
