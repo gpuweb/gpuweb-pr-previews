@@ -697,7 +697,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/c4be04e10bab12f33f1f255b9d1d744b75697287/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/c4be04e10bab12f33f1f255b9d1d744b75697287/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/5c5f55f8063aa386a7deb12ffa9c3c888102c256/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/5c5f55f8063aa386a7deb12ffa9c3c888102c256/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -14042,29 +14042,15 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td style="width:10%">Overload 
       <td>
-<pre class="highlight"><c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat2x2</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>(</c-><c- n>e</c-> : <c- nc>T</c-><c- p>)</c-> -> <c- nc>mat2x2</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c->
-<c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat2x2</c-><c- p>(</c-><c- n>e</c-> : <c- nc>S</c-><c- p>)</c-> -> <c- nc>mat2x2</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-></pre>
+<pre class="highlight"><c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat2x2</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>(</c-><c- n>e</c-> : <c- nc>mat2x2</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-><c- p>)</c-> -> <c- nc>mat2x2</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c->
+<c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat2x2</c-><c- p>(</c-><c- n>e</c-> : <c- nc>mat2x2</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-><c- p>)</c-> -> <c- nc>mat2x2</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-></pre>
      <tr>
       <td>Parameterization 
       <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16②③">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32③②">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②③">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16②④">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③③">f32</a> 
      <tr>
       <td>Description 
-      <td>Constructor for a 2x2 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix①③">matrix</a> with <code>e</code> as all components. 
-   </table>
-   <table class="data builtin">
-    <tbody>
-     <tr>
-      <td style="width:10%">Overload 
       <td>
-<pre class="highlight"><c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat2x2</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>(</c-><c- n>e</c-> : <c- nc>mat2x2</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-><c- p>)</c-> -> <c- nc>mat2x2</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c->
-<c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat2x2</c-><c- p>(</c-><c- n>e</c-> : <c- nc>mat2x2</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-><c- p>)</c-> -> <c- nc>mat2x2</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-></pre>
-     <tr>
-      <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑤">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32③④">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②④">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑥">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑤">f32</a> 
-     <tr>
-      <td>Description 
-      <td>
-       Constructor for a 2x2 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix①④">matrix</a>. 
+       Constructor for a 2x2 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix①③">matrix</a>. 
        <p>If <code>T</code> does not match <code>S</code>, a <a href="#floating-point-conversion">conversion</a> occurs.</p>
    </table>
    <table class="data builtin">
@@ -14076,10 +14062,10 @@ specify the component type; the component type is inferred from the constructor 
 <c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat2x2</c-><c- p>(</c-><c- n>v1</c-> : <c- nc>vec2</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> <c- n>v2</c-> : <c- nc>vec2</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>)</c-> -> <c- nc>mat2x2</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-></pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②⑤">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑦">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑥">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②④">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑤">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③④">f32</a> 
      <tr>
       <td>Description 
-      <td>Construct a 2x2 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix①⑤">matrix</a> from column vectors. 
+      <td>Construct a 2x2 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix①④">matrix</a> from column vectors. 
    </table>
    <table class="data builtin">
     <tbody>
@@ -14090,26 +14076,12 @@ specify the component type; the component type is inferred from the constructor 
 <c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat2x2</c-><c- p>(</c-><c- n>e1</c-> : <c- nc>T</c-><c- p>,</c-> <c- n>e2</c-> : <c- nc>T</c-><c- p>,</c-> <c- n>e3</c-> : <c- nc>T</c-><c- p>,</c-> <c- n>e4</c-> : <c- nc>T</c-><c- p>)</c-> -> <c- nc>mat2x2</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-></pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②⑥">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑧">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑦">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②⑤">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑥">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑤">f32</a> 
      <tr>
       <td>Description 
-      <td>Construct a 2x2 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix①⑥">matrix</a> from elements. 
+      <td>Construct a 2x2 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix①⑤">matrix</a> from elements. 
    </table>
    <h5 class="heading settled" data-level="17.1.2.7" id="mat2x3-builtin"><span class="secno">17.1.2.7. </span><span class="content"><code>mat2x3</code></span><a class="self-link" href="#mat2x3-builtin"></a></h5>
-   <table class="data builtin">
-    <tbody>
-     <tr>
-      <td style="width:10%">Overload 
-      <td>
-<pre class="highlight"><c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat2x3</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>(</c-><c- n>e</c-> : <c- nc>T</c-><c- p>)</c-> -> <c- nc>mat2x3</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c->
-<c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat2x3</c-><c- p>(</c-><c- n>e</c-> : <c- nc>S</c-><c- p>)</c-> -> <c- nc>mat2x3</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-></pre>
-     <tr>
-      <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑨">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑧">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②⑦">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③⓪">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑨">f32</a> 
-     <tr>
-      <td>Description 
-      <td>Constructor for a 2x3 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix①⑦">matrix</a> with <code>e</code> as all components. 
-   </table>
    <table class="data builtin">
     <tbody>
      <tr>
@@ -14119,11 +14091,11 @@ specify the component type; the component type is inferred from the constructor 
 <c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat2x3</c-><c- p>(</c-><c- n>e</c-> : <c- nc>mat2x3</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-><c- p>)</c-> -> <c- nc>mat2x3</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-></pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16③①">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⓪">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②⑧">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③②">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④①">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑦">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑥">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②⑥">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑧">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑦">f32</a> 
      <tr>
       <td>Description 
       <td>
-       Constructor for a 2x3 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix①⑧">matrix</a>. 
+       Constructor for a 2x3 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix①⑥">matrix</a>. 
        <p>If <code>T</code> does not match <code>S</code>, a <a href="#floating-point-conversion">conversion</a> occurs.</p>
    </table>
    <table class="data builtin">
@@ -14135,10 +14107,10 @@ specify the component type; the component type is inferred from the constructor 
 <c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat2x3</c-><c- p>(</c-><c- n>v1</c-> : <c- nc>vec3</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> <c- n>v2</c-> : <c- nc>vec3</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>)</c-> -> <c- nc>mat2x3</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-></pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②⑨">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③③">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④②">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②⑦">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑨">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑧">f32</a> 
      <tr>
       <td>Description 
-      <td>Construct a 2x3 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix①⑨">matrix</a> from column vectors. 
+      <td>Construct a 2x3 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix①⑦">matrix</a> from column vectors. 
    </table>
    <table class="data builtin">
     <tbody>
@@ -14149,26 +14121,12 @@ specify the component type; the component type is inferred from the constructor 
 <c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat2x3</c-><c- p>(</c-><c- n>e1</c-> : <c- nc>T</c-><c- p>,</c-> <c- o>..</c-><c- p>.,</c-> <c- n>e6</c-> : <c- nc>T</c-><c- p>)</c-> -> <c- nc>mat2x3</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-></pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⓪">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③④">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④③">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②⑧">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③⓪">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑨">f32</a> 
      <tr>
       <td>Description 
-      <td>Construct a 2x3 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②⓪">matrix</a> from elements. 
+      <td>Construct a 2x3 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix①⑧">matrix</a> from elements. 
    </table>
    <h5 class="heading settled" data-level="17.1.2.8" id="mat2x4-builtin"><span class="secno">17.1.2.8. </span><span class="content"><code>mat2x4</code></span><a class="self-link" href="#mat2x4-builtin"></a></h5>
-   <table class="data builtin">
-    <tbody>
-     <tr>
-      <td style="width:10%">Overload 
-      <td>
-<pre class="highlight"><c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat2x4</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>(</c-><c- n>e</c-> : <c- nc>T</c-><c- p>)</c-> -> <c- nc>mat2x4</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c->
-<c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat2x4</c-><c- p>(</c-><c- n>e</c-> : <c- nc>S</c-><c- p>)</c-> -> <c- nc>mat2x4</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-></pre>
-     <tr>
-      <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑤">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32④④">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③①">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑥">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑤">f32</a> 
-     <tr>
-      <td>Description 
-      <td>Constructor for a 2x4 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②①">matrix</a> with <code>e</code> as all components. 
-   </table>
    <table class="data builtin">
     <tbody>
      <tr>
@@ -14178,11 +14136,11 @@ specify the component type; the component type is inferred from the constructor 
 <c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat2x4</c-><c- p>(</c-><c- n>e</c-> : <c- nc>mat2x4</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-><c- p>)</c-> -> <c- nc>mat2x4</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-></pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑦">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑥">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③②">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑧">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑦">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16③①">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⓪">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②⑨">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③②">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④①">f32</a> 
      <tr>
       <td>Description 
       <td>
-       Constructor for a 2x4 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②②">matrix</a>. 
+       Constructor for a 2x4 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix①⑨">matrix</a>. 
        <p>If <code>T</code> does not match <code>S</code>, a <a href="#floating-point-conversion">conversion</a> occurs.</p>
    </table>
    <table class="data builtin">
@@ -14194,10 +14152,10 @@ specify the component type; the component type is inferred from the constructor 
 <c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat2x4</c-><c- p>(</c-><c- n>v1</c-> : <c- nc>vec4</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> <c- n>v2</c-> : <c- nc>vec4</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>)</c-> -> <c- nc>mat2x4</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-></pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③③">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑨">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑧">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⓪">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③③">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④②">f32</a> 
      <tr>
       <td>Description 
-      <td>Construct a 2x4 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②③">matrix</a> from column vectors. 
+      <td>Construct a 2x4 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②⓪">matrix</a> from column vectors. 
    </table>
    <table class="data builtin">
     <tbody>
@@ -14208,26 +14166,12 @@ specify the component type; the component type is inferred from the constructor 
 <c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat2x4</c-><c- p>(</c-><c- n>e1</c-> : <c- nc>T</c-><c- p>,</c-> <c- o>..</c-><c- p>.,</c-> <c- n>e8</c-> : <c- nc>T</c-><c- p>)</c-> -> <c- nc>mat2x4</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-></pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③④">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④⓪">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑨">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③①">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③④">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④③">f32</a> 
      <tr>
       <td>Description 
-      <td>Construct a 2x4 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②④">matrix</a> from elements. 
+      <td>Construct a 2x4 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②①">matrix</a> from elements. 
    </table>
    <h5 class="heading settled" data-level="17.1.2.9" id="mat3x2-builtin"><span class="secno">17.1.2.9. </span><span class="content"><code>mat3x2</code></span><a class="self-link" href="#mat3x2-builtin"></a></h5>
-   <table class="data builtin">
-    <tbody>
-     <tr>
-      <td style="width:10%">Overload 
-      <td>
-<pre class="highlight"><c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat3x2</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>(</c-><c- n>e</c-> : <c- nc>T</c-><c- p>)</c-> -> <c- nc>mat3x2</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c->
-<c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat3x2</c-><c- p>(</c-><c- n>e</c-> : <c- nc>S</c-><c- p>)</c-> -> <c- nc>mat3x2</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-></pre>
-     <tr>
-      <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16④①">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⓪">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑤">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④②">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤①">f32</a> 
-     <tr>
-      <td>Description 
-      <td>Constructor for a 3x2 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②⑤">matrix</a> with <code>e</code> as all components. 
-   </table>
    <table class="data builtin">
     <tbody>
      <tr>
@@ -14237,11 +14181,11 @@ specify the component type; the component type is inferred from the constructor 
 <c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat3x2</c-><c- p>(</c-><c- n>e</c-> : <c- nc>mat3x2</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-><c- p>)</c-> -> <c- nc>mat3x2</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-></pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16④③">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤②">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑥">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④④">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤③">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑤">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32④④">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③②">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑥">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑤">f32</a> 
      <tr>
       <td>Description 
       <td>
-       Constructor for a 3x2 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②⑥">matrix</a>. 
+       Constructor for a 3x2 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②②">matrix</a>. 
        <p>If <code>T</code> does not match <code>S</code>, a <a href="#floating-point-conversion">conversion</a> occurs.</p>
    </table>
    <table class="data builtin">
@@ -14257,10 +14201,10 @@ specify the component type; the component type is inferred from the constructor 
                            <c- n>v3</c-> : <c- nc>vec2</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>)</c-> -> <c- nc>mat3x2</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-></pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑦">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑤">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤④">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③③">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑦">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑥">f32</a> 
      <tr>
       <td>Description 
-      <td>Construct a 3x2 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②⑦">matrix</a> from column vectors. 
+      <td>Construct a 3x2 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②③">matrix</a> from column vectors. 
    </table>
    <table class="data builtin">
     <tbody>
@@ -14271,26 +14215,12 @@ specify the component type; the component type is inferred from the constructor 
 <c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat3x2</c-><c- p>(</c-><c- n>e1</c-> : <c- nc>T</c-><c- p>,</c-> <c- o>..</c-><c- p>.,</c-> <c- n>e6</c-> : <c- nc>T</c-><c- p>)</c-> -> <c- nc>mat3x2</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-></pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑧">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑥">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑤">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③④">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑧">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑦">f32</a> 
      <tr>
       <td>Description 
-      <td>Construct a 3x2 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②⑧">matrix</a> from elements. 
+      <td>Construct a 3x2 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②④">matrix</a> from elements. 
    </table>
    <h5 class="heading settled" data-level="17.1.2.10" id="mat3x3-builtin"><span class="secno">17.1.2.10. </span><span class="content"><code>mat3x3</code></span><a class="self-link" href="#mat3x3-builtin"></a></h5>
-   <table class="data builtin">
-    <tbody>
-     <tr>
-      <td style="width:10%">Overload 
-      <td>
-<pre class="highlight"><c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat3x3</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>(</c-><c- n>e</c-> : <c- nc>T</c-><c- p>)</c-> -> <c- nc>mat3x3</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c->
-<c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat3x3</c-><c- p>(</c-><c- n>e</c-> : <c- nc>S</c-><c- p>)</c-> -> <c- nc>mat3x3</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-></pre>
-     <tr>
-      <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑦">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑥">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑨">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑧">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑦">f32</a> 
-     <tr>
-      <td>Description 
-      <td>Constructor for a 3x3 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②⑨">matrix</a> with <code>e</code> as all components. 
-   </table>
    <table class="data builtin">
     <tbody>
      <tr>
@@ -14300,11 +14230,11 @@ specify the component type; the component type is inferred from the constructor 
 <c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat3x3</c-><c- p>(</c-><c- n>e</c-> : <c- nc>mat3x3</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-><c- p>)</c-> -> <c- nc>mat3x3</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-></pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑨">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑧">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⓪">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⓪">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑨">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑨">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑧">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑤">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④⓪">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑨">f32</a> 
      <tr>
       <td>Description 
       <td>
-       Constructor for a 3x3 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix③⓪">matrix</a>. 
+       Constructor for a 3x3 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②⑤">matrix</a>. 
        <p>If <code>T</code> does not match <code>S</code>, a <a href="#floating-point-conversion">conversion</a> occurs.</p>
    </table>
    <table class="data builtin">
@@ -14320,10 +14250,10 @@ specify the component type; the component type is inferred from the constructor 
                            <c- n>v3</c-> : <c- nc>vec3</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>)</c-> -> <c- nc>mat3x3</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-></pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④①">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤①">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⓪">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑥">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④①">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⓪">f32</a> 
      <tr>
       <td>Description 
-      <td>Construct a 3x3 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix③①">matrix</a> from column vectors. 
+      <td>Construct a 3x3 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②⑥">matrix</a> from column vectors. 
    </table>
    <table class="data builtin">
     <tbody>
@@ -14334,26 +14264,12 @@ specify the component type; the component type is inferred from the constructor 
 <c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat3x3</c-><c- p>(</c-><c- n>e1</c-> : <c- nc>T</c-><c- p>,</c-> <c- o>..</c-><c- p>.,</c-> <c- n>e9</c-> : <c- nc>T</c-><c- p>)</c-> -> <c- nc>mat3x3</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-></pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④②">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤②">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥①">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑦">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④②">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤①">f32</a> 
      <tr>
       <td>Description 
-      <td>Construct a 3x3 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix③②">matrix</a> from elements. 
+      <td>Construct a 3x3 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②⑦">matrix</a> from elements. 
    </table>
    <h5 class="heading settled" data-level="17.1.2.11" id="mat3x4-builtin"><span class="secno">17.1.2.11. </span><span class="content"><code>mat3x4</code></span><a class="self-link" href="#mat3x4-builtin"></a></h5>
-   <table class="data builtin">
-    <tbody>
-     <tr>
-      <td style="width:10%">Overload 
-      <td>
-<pre class="highlight"><c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat3x4</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>(</c-><c- n>e</c-> : <c- nc>T</c-><c- p>)</c-> -> <c- nc>mat3x4</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c->
-<c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat3x4</c-><c- p>(</c-><c- n>e</c-> : <c- nc>S</c-><c- p>)</c-> -> <c- nc>mat3x4</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-></pre>
-     <tr>
-      <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤③">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥②">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④③">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤④">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥③">f32</a> 
-     <tr>
-      <td>Description 
-      <td>Constructor for a 3x4 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix③③">matrix</a> with <code>e</code> as all components. 
-   </table>
    <table class="data builtin">
     <tbody>
      <tr>
@@ -14363,11 +14279,11 @@ specify the component type; the component type is inferred from the constructor 
 <c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat3x4</c-><c- p>(</c-><c- n>e</c-> : <c- nc>mat3x4</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-><c- p>)</c-> -> <c- nc>mat3x4</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-></pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⑤">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥④">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④④">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⑥">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑤">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16④③">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤②">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑧">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④④">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤③">f32</a> 
      <tr>
       <td>Description 
       <td>
-       Constructor for a 3x4 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix③④">matrix</a>. 
+       Constructor for a 3x4 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②⑧">matrix</a>. 
        <p>If <code>T</code> does not match <code>S</code>, a <a href="#floating-point-conversion">conversion</a> occurs.</p>
    </table>
    <table class="data builtin">
@@ -14383,10 +14299,10 @@ specify the component type; the component type is inferred from the constructor 
                            <c- n>v3</c-> : <c- nc>vec4</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>)</c-> -> <c- nc>mat3x4</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-></pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑤">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⑦">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑥">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑨">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑤">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤④">f32</a> 
      <tr>
       <td>Description 
-      <td>Construct a 3x4 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix③⑤">matrix</a> from column vectors. 
+      <td>Construct a 3x4 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②⑨">matrix</a> from column vectors. 
    </table>
    <table class="data builtin">
     <tbody>
@@ -14397,26 +14313,12 @@ specify the component type; the component type is inferred from the constructor 
 <c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat3x4</c-><c- p>(</c-><c- n>e1</c-> : <c- nc>T</c-><c- p>,</c-> <c- o>..</c-><c- p>.,</c-> <c- n>e12</c-> : <c- nc>T</c-><c- p>)</c-> -> <c- nc>mat3x4</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-></pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑥">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⑧">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑦">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⓪">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑥">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑤">f32</a> 
      <tr>
       <td>Description 
-      <td>Construct a 3x4 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix③⑥">matrix</a> from elements. 
+      <td>Construct a 3x4 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix③⓪">matrix</a> from elements. 
    </table>
    <h5 class="heading settled" data-level="17.1.2.12" id="mat4x2-builtin"><span class="secno">17.1.2.12. </span><span class="content"><code>mat4x2</code></span><a class="self-link" href="#mat4x2-builtin"></a></h5>
-   <table class="data builtin">
-    <tbody>
-     <tr>
-      <td style="width:10%">Overload 
-      <td>
-<pre class="highlight"><c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat4x2</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>(</c-><c- n>e</c-> : <c- nc>T</c-><c- p>)</c-> -> <c- nc>mat4x2</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c->
-<c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat4x2</c-><c- p>(</c-><c- n>e</c-> : <c- nc>S</c-><c- p>)</c-> -> <c- nc>mat4x2</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-></pre>
-     <tr>
-      <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⑨">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑧">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑦">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑥⓪">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑨">f32</a> 
-     <tr>
-      <td>Description 
-      <td>Constructor for a 4x2 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix③⑦">matrix</a> with <code>e</code> as all components. 
-   </table>
    <table class="data builtin">
     <tbody>
      <tr>
@@ -14426,11 +14328,11 @@ specify the component type; the component type is inferred from the constructor 
 <c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat4x2</c-><c- p>(</c-><c- n>e</c-> : <c- nc>mat4x2</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-><c- p>)</c-> -> <c- nc>mat4x2</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-></pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16⑥①">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦⓪">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑧">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑥②">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦①">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑦">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑥">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④①">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑧">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑦">f32</a> 
      <tr>
       <td>Description 
       <td>
-       Constructor for a 4x2 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix③⑧">matrix</a>. 
+       Constructor for a 4x2 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix③①">matrix</a>. 
        <p>If <code>T</code> does not match <code>S</code>, a <a href="#floating-point-conversion">conversion</a> occurs.</p>
    </table>
    <table class="data builtin">
@@ -14448,10 +14350,10 @@ specify the component type; the component type is inferred from the constructor 
                            <c- n>v4</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>)</c-> -> <c- nc>mat4x2</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-></pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑨">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑥③">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦②">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④②">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑨">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑧">f32</a> 
      <tr>
       <td>Description 
-      <td>Construct a 4x2 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix③⑨">matrix</a> from column vectors. 
+      <td>Construct a 4x2 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix③②">matrix</a> from column vectors. 
    </table>
    <table class="data builtin">
     <tbody>
@@ -14462,26 +14364,12 @@ specify the component type; the component type is inferred from the constructor 
 <c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat4x2</c-><c- p>(</c-><c- n>e1</c-> : <c- nc>T</c-><c- p>,</c-> <c- o>..</c-><c- p>.,</c-> <c- n>e8</c-> : <c- nc>T</c-><c- p>)</c-> -> <c- nc>mat4x2</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-></pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat⑤⓪">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑥④">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦③">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④③">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⓪">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑨">f32</a> 
      <tr>
       <td>Description 
-      <td>Construct a 4x2 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix④⓪">matrix</a> from elements. 
+      <td>Construct a 4x2 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix③③">matrix</a> from elements. 
    </table>
    <h5 class="heading settled" data-level="17.1.2.13" id="mat4x3-builtin"><span class="secno">17.1.2.13. </span><span class="content"><code>mat4x3</code></span><a class="self-link" href="#mat4x3-builtin"></a></h5>
-   <table class="data builtin">
-    <tbody>
-     <tr>
-      <td style="width:10%">Overload 
-      <td>
-<pre class="highlight"><c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat4x3</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>(</c-><c- n>e</c-> : <c- nc>T</c-><c- p>)</c-> -> <c- nc>mat4x3</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c->
-<c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat4x3</c-><c- p>(</c-><c- n>e</c-> : <c- nc>S</c-><c- p>)</c-> -> <c- nc>mat4x3</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-></pre>
-     <tr>
-      <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16⑥⑤">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦④">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat⑤①">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑥⑥">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦⑤">f32</a> 
-     <tr>
-      <td>Description 
-      <td>Constructor for a 4x3 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix④①">matrix</a> with <code>e</code> as all components. 
-   </table>
    <table class="data builtin">
     <tbody>
      <tr>
@@ -14491,11 +14379,11 @@ specify the component type; the component type is inferred from the constructor 
 <c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat4x3</c-><c- p>(</c-><c- n>e</c-> : <c- nc>mat4x3</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-><c- p>)</c-> -> <c- nc>mat4x3</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-></pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16⑥⑦">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦⑥">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat⑤②">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑥⑧">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦⑦">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤①">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⓪">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④④">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤②">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥①">f32</a> 
      <tr>
       <td>Description 
       <td>
-       Constructor for a 4x3 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix④②">matrix</a>. 
+       Constructor for a 4x3 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix③④">matrix</a>. 
        <p>If <code>T</code> does not match <code>S</code>, a <a href="#floating-point-conversion">conversion</a> occurs.</p>
    </table>
    <table class="data builtin">
@@ -14513,10 +14401,10 @@ specify the component type; the component type is inferred from the constructor 
                            <c- n>v4</c-> : <c- nc>vec4</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>)</c-> -> <c- nc>mat4x3</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-></pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat⑤③">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑥⑨">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦⑧">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑤">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤③">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥②">f32</a> 
      <tr>
       <td>Description 
-      <td>Construct a 4x3 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix④③">matrix</a> from column vectors. 
+      <td>Construct a 4x3 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix③⑤">matrix</a> from column vectors. 
    </table>
    <table class="data builtin">
     <tbody>
@@ -14527,26 +14415,12 @@ specify the component type; the component type is inferred from the constructor 
 <c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat4x3</c-><c- p>(</c-><c- n>e1</c-> : <c- nc>T</c-><c- p>,</c-> <c- o>..</c-><c- p>.,</c-> <c- n>e12</c-> : <c- nc>T</c-><c- p>)</c-> -> <c- nc>mat4x3</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-></pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat⑤④">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑦⓪">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦⑨">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑥">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤④">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥③">f32</a> 
      <tr>
       <td>Description 
-      <td>Construct a 4x3 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix④④">matrix</a> from elements. 
+      <td>Construct a 4x3 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix③⑥">matrix</a> from elements. 
    </table>
    <h5 class="heading settled" data-level="17.1.2.14" id="mat4x4-builtin"><span class="secno">17.1.2.14. </span><span class="content"><code>mat4x4</code></span><a class="self-link" href="#mat4x4-builtin"></a></h5>
-   <table class="data builtin">
-    <tbody>
-     <tr>
-      <td style="width:10%">Overload 
-      <td>
-<pre class="highlight"><c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat4x4</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>(</c-><c- n>e</c-> : <c- nc>T</c-><c- p>)</c-> -> <c- nc>mat4x4</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c->
-<c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat4x4</c-><c- p>(</c-><c- n>e</c-> : <c- nc>S</c-><c- p>)</c-> -> <c- nc>mat4x4</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-></pre>
-     <tr>
-      <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16⑦①">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧⓪">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat⑤⑤">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑦②">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧①">f32</a> 
-     <tr>
-      <td>Description 
-      <td>Constructor for a 4x4 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix④⑤">matrix</a> with <code>e</code> as all components. 
-   </table>
    <table class="data builtin">
     <tbody>
      <tr>
@@ -14556,11 +14430,11 @@ specify the component type; the component type is inferred from the constructor 
 <c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat4x4</c-><c- p>(</c-><c- n>e</c-> : <c- nc>mat4x4</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-><c- p>)</c-> -> <c- nc>mat4x4</c-><c- o>&lt;</c-><c- n>S</c-><c- o>></c-></pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16⑦③">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧②">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat⑤⑥">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑦④">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧③">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⑤">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥④">f32</a><br> <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑦">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⑥">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑤">f32</a> 
      <tr>
       <td>Description 
       <td>
-       Constructor for a 4x4 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix④⑥">matrix</a>. 
+       Constructor for a 4x4 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix③⑦">matrix</a>. 
        <p>If <code>T</code> does not match <code>S</code>, a <a href="#floating-point-conversion">conversion</a> occurs.</p>
    </table>
    <table class="data builtin">
@@ -14578,10 +14452,10 @@ specify the component type; the component type is inferred from the constructor 
                            <c- n>v4</c-> : <c- nc>vec4</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>)</c-> -> <c- nc>mat4x4</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-></pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat⑤⑦">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑦⑤">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧④">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑧">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⑦">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑥">f32</a> 
      <tr>
       <td>Description 
-      <td>Construct a 4x4 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix④⑦">matrix</a> from column vectors. 
+      <td>Construct a 4x4 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix③⑧">matrix</a> from column vectors. 
    </table>
    <table class="data builtin">
     <tbody>
@@ -14592,10 +14466,10 @@ specify the component type; the component type is inferred from the constructor 
 <c- o>@</c-><c- k>const</c-> <c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>mat4x4</c-><c- p>(</c-><c- n>e1</c-> : <c- nc>T</c-><c- p>,</c-> <c- o>..</c-><c- p>.,</c-> <c- n>e16</c-> : <c- nc>T</c-><c- p>)</c-> -> <c- nc>mat4x4</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-></pre>
      <tr>
       <td>Parameterization 
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat⑤⑧">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑦⑥">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧⑤">f32</a> 
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑨">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⑧">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑦">f32</a> 
      <tr>
       <td>Description 
-      <td>Construct a 4x4 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix④⑧">matrix</a> from elements. 
+      <td>Construct a 4x4 column-major <a data-link-type="dfn" href="#matrix" id="ref-for-matrix③⑨">matrix</a> from elements. 
    </table>
    <h5 class="heading settled" data-level="17.1.2.15" id="structures-builtin"><span class="secno">17.1.2.15. </span><span class="content">Structures</span><a class="self-link" href="#structures-builtin"></a></h5>
    <table class="data builtin">
@@ -16800,35 +16674,35 @@ but a value may infer the type.</p>
       <th>Overload 
     <tbody>
      <tr class="algorithm" data-algorithm="textureDimensions 1d">
-      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④①">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③③">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧⑥">f32</a><br> <var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format⑥">texel format</a><br> <var>A</var> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②③">access mode</a><br><br> <var>T</var> is <code>texture_1d&lt;ST></code> or <code>texture_storage_1d&lt;F,A></code> 
+      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④①">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③③">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑧">f32</a><br> <var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format⑥">texel format</a><br> <var>A</var> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②③">access mode</a><br><br> <var>T</var> is <code>texture_1d&lt;ST></code> or <code>texture_storage_1d&lt;F,A></code> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureDimensions</c-><c- p>(</c-><c- n>t</c->: <c- nc>T</c-><c- p>)</c-> -> <c- b>u32</c-></pre>
      <tr class="algorithm" data-algorithm="textureDimensions 1d level">
       <td>
-       <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④②">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③④">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧⑦">f32</a><br><br> <var>T</var> is <code>texture_1d&lt;ST></code> 
+       <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④②">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③④">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑨">f32</a><br><br> <var>T</var> is <code>texture_1d&lt;ST></code> 
        <p><var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④③">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32③⑤">u32</a></p>
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureDimensions</c-><c- p>(</c-><c- n>t</c->: <c- nc>T</c-><c- p>,</c->
                                <c- n>level</c->: <c- nc>L</c-><c- p>)</c-> -> <c- b>u32</c-></pre>
      <tr class="algorithm" data-algorithm="textureDimensions 2d">
-      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④④">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③⑥">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧⑧">f32</a><br> <var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format⑦">texel format</a><br> <var>A</var> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②④">access mode</a><br><br> <var>T</var> is <code>texture_2d&lt;ST></code>, <code>texture_2d_array&lt;ST></code>, <code>texture_cube&lt;ST></code>, <code>texture_cube_array&lt;ST></code>, <code>texture_multisampled_2d&lt;ST></code>, <code>texture_depth_2d</code>, <code>texture_depth_2d_array</code>, <code>texture_depth_cube</code>, <code>texture_depth_cube_array</code>, <code>texture_depth_multisampled_2d</code>, <code>texture_storage_2d&lt;F,A></code>, <code>texture_storage_2d_array&lt;F,A></code>,
+      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④④">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③⑥">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦⓪">f32</a><br> <var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format⑦">texel format</a><br> <var>A</var> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②④">access mode</a><br><br> <var>T</var> is <code>texture_2d&lt;ST></code>, <code>texture_2d_array&lt;ST></code>, <code>texture_cube&lt;ST></code>, <code>texture_cube_array&lt;ST></code>, <code>texture_multisampled_2d&lt;ST></code>, <code>texture_depth_2d</code>, <code>texture_depth_2d_array</code>, <code>texture_depth_cube</code>, <code>texture_depth_cube_array</code>, <code>texture_depth_multisampled_2d</code>, <code>texture_storage_2d&lt;F,A></code>, <code>texture_storage_2d_array&lt;F,A></code>,
                or <code>texture_external</code> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureDimensions</c-><c- p>(</c-><c- n>t</c->: <c- nc>T</c-><c- p>)</c-> -> <c- nc>vec2</c-><c- o>&lt;</c-><c- b>u32</c-><c- o>></c-></pre>
      <tr class="algorithm" data-algorithm="textureDimensions 2d level">
       <td>
-       <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑤">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③⑦">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧⑨">f32</a><br><br> <var>T</var> is <code>texture_2d&lt;ST></code>, <code>texture_2d_array&lt;ST></code>, <code>texture_cube&lt;ST></code>, <code>texture_cube_array&lt;ST></code>, <code>texture_depth_2d</code>, <code>texture_depth_2d_array</code>, <code>texture_depth_cube</code>, or <code>texture_depth_cube_array</code> 
+       <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑤">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③⑦">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦①">f32</a><br><br> <var>T</var> is <code>texture_2d&lt;ST></code>, <code>texture_2d_array&lt;ST></code>, <code>texture_cube&lt;ST></code>, <code>texture_cube_array&lt;ST></code>, <code>texture_depth_2d</code>, <code>texture_depth_2d_array</code>, <code>texture_depth_cube</code>, or <code>texture_depth_cube_array</code> 
        <p><var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑥">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32③⑧">u32</a></p>
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureDimensions</c-><c- p>(</c-><c- n>t</c->: <c- nc>T</c-><c- p>,</c->
                                <c- n>level</c->: <c- nc>L</c-><c- p>)</c-> -> <c- nc>vec2</c-><c- o>&lt;</c-><c- b>u32</c-><c- o>></c-></pre>
      <tr class="algorithm" data-algorithm="textureDimensions 3d">
-      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑦">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③⑨">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑨⓪">f32</a><br> <var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format⑧">texel format</a><br> <var>A</var> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②⑤">access mode</a><br><br> <var>T</var> is <code>texture_3d&lt;ST></code> or <code>texture_storage_3d&lt;F,A></code> 
+      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑦">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32③⑨">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦②">f32</a><br> <var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format⑧">texel format</a><br> <var>A</var> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②⑤">access mode</a><br><br> <var>T</var> is <code>texture_3d&lt;ST></code> or <code>texture_storage_3d&lt;F,A></code> 
       <td>
 <pre class="highlight"><c- k>fn</c-> <c- nf>textureDimensions</c-><c- p>(</c-><c- n>t</c->: <c- nc>T</c-><c- p>)</c-> -> <c- nc>vec3</c-><c- o>&lt;</c-><c- b>u32</c-><c- o>></c-></pre>
      <tr class="algorithm" data-algorithm="textureDimensions 3d level">
       <td>
-       <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑧">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32④⓪">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑨①">f32</a><br><br> <var>T</var> is <code>texture_3d&lt;ST></code> 
+       <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑧">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32④⓪">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦③">f32</a><br><br> <var>T</var> is <code>texture_3d&lt;ST></code> 
        <p><var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑨">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④①">u32</a></p>
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureDimensions</c-><c- p>(</c-><c- n>t</c->: <c- nc>T</c-><c- p>,</c->
@@ -16926,14 +16800,14 @@ https://github.com/gpuweb/gpuweb/issues/2343</p>
       <th>Overload 
     <tbody>
      <tr class="algorithm" data-algorithm="textureGather 2d">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⓪">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④②">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤①">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32④③">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑨②">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⓪">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④②">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤①">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32④③">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦④">f32</a> 
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureGather</c-><c- p>(</c-><c- n>component</c->: <c- nc>C</c-><c- p>,</c->
                            <c- n>t</c->: <c- nc>texture_2d</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
                            <c- n>s</c->: <c- nc>sampler</c-><c- p>,</c->
                            <c- n>coords</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-></pre>
      <tr class="algorithm" data-algorithm="textureGather 2d offset">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤②">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④④">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤③">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑤">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑨③">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤②">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④④">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤③">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑤">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦⑤">f32</a> 
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureGather</c-><c- p>(</c-><c- n>component</c->: <c- nc>C</c-><c- p>,</c->
                            <c- n>t</c->: <c- nc>texture_2d</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
@@ -16941,7 +16815,7 @@ https://github.com/gpuweb/gpuweb/issues/2343</p>
                            <c- n>coords</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-><c- p>,</c->
                            <c- n>offset</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- b>i32</c-><c- o>></c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-></pre>
      <tr class="algorithm" data-algorithm="textureGather 2d array">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤④">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑥">u32</a><br> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑤">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑦">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑥">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑧">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑨④">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤④">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑥">u32</a><br> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑤">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑦">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑥">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑧">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦⑥">f32</a> 
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureGather</c-><c- p>(</c-><c- n>component</c->: <c- nc>C</c-><c- p>,</c->
                            <c- n>t</c->: <c- nc>texture_2d_array</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
@@ -16949,7 +16823,7 @@ https://github.com/gpuweb/gpuweb/issues/2343</p>
                            <c- n>coords</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-><c- p>,</c->
                            <c- n>array_index</c->: <c- nc>A</c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-></pre>
      <tr class="algorithm" data-algorithm="textureGather 2d array offset">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑦">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑨">u32</a><br> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑧">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤⓪">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑨">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤①">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑨⑤">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑦">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32④⑨">u32</a><br> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑧">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤⓪">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑤⑨">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤①">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦⑦">f32</a> 
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureGather</c-><c- p>(</c-><c- n>component</c->: <c- nc>C</c-><c- p>,</c->
                            <c- n>t</c->: <c- nc>texture_2d_array</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
@@ -16958,14 +16832,14 @@ https://github.com/gpuweb/gpuweb/issues/2343</p>
                            <c- n>array_index</c->: <c- nc>A</c-><c- p>,</c->
                            <c- n>offset</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- b>i32</c-><c- o>></c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-></pre>
      <tr class="algorithm" data-algorithm="textureGather cube">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥⓪">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤②">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥①">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤③">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑨⑥">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥⓪">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤②">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥①">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤③">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦⑧">f32</a> 
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureGather</c-><c- p>(</c-><c- n>component</c->: <c- nc>C</c-><c- p>,</c->
                            <c- n>t</c->: <c- nc>texture_cube</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
                            <c- n>s</c->: <c- nc>sampler</c-><c- p>,</c->
                            <c- n>coords</c->: <c- nc>vec3</c-><c- o>&lt;</c-><c- b>f32</c-><c- o>></c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-></pre>
      <tr class="algorithm" data-algorithm="textureGather cube array">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥②">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤④">u32</a><br> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥③">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤⑤">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥④">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤⑥">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑨⑦">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥②">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤④">u32</a><br> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥③">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤⑤">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑥④">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑤⑥">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦⑨">f32</a> 
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureGather</c-><c- p>(</c-><c- n>component</c->: <c- nc>C</c-><c- p>,</c->
                            <c- n>t</c->: <c- nc>texture_cube_array</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
@@ -17207,32 +17081,32 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
       <th>Overload 
     <tbody>
      <tr class="algorithm" data-algorithm="textureLoad 1d">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦①">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥③">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦②">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥④">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦③">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑤">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑨⑧">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦①">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥③">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦②">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥④">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦③">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑤">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧⓪">f32</a> 
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureLoad</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_1d</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
                          <c- n>coords</c->: <c- nc>C</c-><c- p>,</c->
                          <c- n>level</c->: <c- nc>L</c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-></pre>
      <tr class="algorithm" data-algorithm="textureLoad 2d">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦④">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑥">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑤">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑦">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑥">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑧">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑨⑨">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦④">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑥">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑤">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑦">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑥">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑧">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧①">f32</a> 
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureLoad</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_2d</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
                          <c- n>coords</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- n>C</c-><c- o>></c-><c- p>,</c->
                          <c- n>level</c->: <c- nc>L</c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-></pre>
      <tr class="algorithm" data-algorithm="textureLoad 2d array">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑦">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑨">u32</a><br> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑧">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦⓪">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑨">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦①">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧⓪">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦②">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32①⓪⓪">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑦">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥⑨">u32</a><br> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑧">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦⓪">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑦⑨">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦①">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧⓪">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦②">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧②">f32</a> 
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureLoad</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_2d_array</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
                         <c- n>coords</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- n>C</c-><c- o>></c-><c- p>,</c->
                         <c- n>array_index</c->: <c- nc>A</c-><c- p>,</c->
                         <c- n>level</c->: <c- nc>L</c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-></pre>
      <tr class="algorithm" data-algorithm="textureLoad 3d">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧①">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦③">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧②">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦④">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧③">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦⑤">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32①⓪①">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧①">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦③">u32</a><br> <var>L</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧②">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦④">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧③">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦⑤">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧③">f32</a> 
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureLoad</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_3d</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
                          <c- n>coords</c->: <c- nc>vec3</c-><c- o>&lt;</c-><c- n>C</c-><c- o>></c-><c- p>,</c->
                          <c- n>level</c->: <c- nc>L</c-><c- p>)</c-> -> <c- nc>vec4</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-></pre>
      <tr class="algorithm" data-algorithm="textureLoad 2d multisampled">
-      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧④">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦⑥">u32</a><br> <var>S</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧⑤">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦⑦">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧⑥">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦⑧">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32①⓪②">f32</a> 
+      <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧④">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦⑥">u32</a><br> <var>S</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧⑤">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦⑦">u32</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑧⑥">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑦⑧">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧④">f32</a> 
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureLoad</c-><c- p>(</c-><c- n>t</c->: <c- nc>texture_multisampled_2d</c-><c- o>&lt;</c-><c- n>ST</c-><c- o>></c-><c- p>,</c->
                          <c- n>coords</c->: <c- nc>vec2</c-><c- o>&lt;</c-><c- n>C</c-><c- o>></c-><c- p>,</c->
@@ -17312,7 +17186,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
       <th>Overload 
     <tbody>
      <tr class="algorithm" data-algorithm="texturenumlayers">
-      <td><var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format⑨">texel format</a><br> <var>A</var> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②⑥">access mode</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨⑤">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧⑦">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32①⓪③">f32</a><br><br> <var>T</var> is <code>texture_2d_array&lt;ST></code>, <code>texture_cube_array&lt;ST></code>, <code>texture_depth_2d_array</code>, <code>texture_depth_cube_array</code>,
+      <td><var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format⑨">texel format</a><br> <var>A</var> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②⑥">access mode</a><br> <var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨⑤">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧⑦">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧⑤">f32</a><br><br> <var>T</var> is <code>texture_2d_array&lt;ST></code>, <code>texture_cube_array&lt;ST></code>, <code>texture_depth_2d_array</code>, <code>texture_depth_cube_array</code>,
                                or <code>texture_storage_2d_array&lt;F,A></code> 
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureNumLayers</c-><c- p>(</c-><c- n>t</c->: <c- nc>T</c-><c- p>)</c-> -> <c- b>u32</c-></pre>
@@ -17336,7 +17210,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
       <th>Overload 
     <tbody>
      <tr class="algorithm" data-algorithm="texturenumlevels">
-      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨⑥">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧⑧">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32①⓪④">f32</a><br><br> <var>T</var> is <code>texture_1d&lt;ST></code>, <code>texture_2d&lt;ST></code>, <code>texture_2d_array&lt;ST></code>, <code>texture_3d&lt;ST></code>, <code>texture_cube&lt;ST></code>, <code>texture_cube_array&lt;ST></code>, <code>texture_depth_2d</code>, <code>texture_depth_2d_array</code>, <code>texture_depth_cube</code>, or <code>texture_depth_cube_array</code> 
+      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨⑥">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧⑧">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧⑥">f32</a><br><br> <var>T</var> is <code>texture_1d&lt;ST></code>, <code>texture_2d&lt;ST></code>, <code>texture_2d_array&lt;ST></code>, <code>texture_3d&lt;ST></code>, <code>texture_cube&lt;ST></code>, <code>texture_cube_array&lt;ST></code>, <code>texture_depth_2d</code>, <code>texture_depth_2d_array</code>, <code>texture_depth_cube</code>, or <code>texture_depth_cube_array</code> 
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureNumLevels</c-><c- p>(</c-><c- n>t</c->: <c- nc>T</c-><c- p>)</c-> -> <c- b>u32</c-></pre>
    </table>
@@ -17358,7 +17232,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
       <th>Overload 
     <tbody>
      <tr class="algorithm" data-algorithm="texturenumsamples">
-      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨⑦">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧⑨">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32①⓪⑤">f32</a><br><br> <var>T</var> is <code>texture_multisampled_2d&lt;ST></code> or <code>texture_depth_multisampled_2d</code> 
+      <td><var>ST</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨⑦">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧⑨">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑧⑦">f32</a><br><br> <var>T</var> is <code>texture_multisampled_2d&lt;ST></code> or <code>texture_depth_multisampled_2d</code> 
       <td>
 <pre class="highlight"><c- o>@</c-><c- n>must_use</c-> <c- k>fn</c-> <c- nf>textureNumSamples</c-><c- p>(</c-><c- n>t</c->: <c- nc>T</c-><c- p>)</c-> -> <c- b>u32</c-></pre>
    </table>
@@ -21757,15 +21631,15 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-abstractfloat①⑧">5.2.5. Scalar Types</a> <a href="#ref-for-abstractfloat①⑨">(2)</a>
     <li><a href="#ref-for-abstractfloat②⓪">5.2.7. Matrix Types</a>
     <li><a href="#ref-for-abstractfloat②①">14.6.2. Floating Point Conversion</a> <a href="#ref-for-abstractfloat②②">(2)</a>
-    <li><a href="#ref-for-abstractfloat②③">17.1.2.6. mat2x2</a> <a href="#ref-for-abstractfloat②④">(2)</a> <a href="#ref-for-abstractfloat②⑤">(3)</a> <a href="#ref-for-abstractfloat②⑥">(4)</a>
-    <li><a href="#ref-for-abstractfloat②⑦">17.1.2.7. mat2x3</a> <a href="#ref-for-abstractfloat②⑧">(2)</a> <a href="#ref-for-abstractfloat②⑨">(3)</a> <a href="#ref-for-abstractfloat③⓪">(4)</a>
-    <li><a href="#ref-for-abstractfloat③①">17.1.2.8. mat2x4</a> <a href="#ref-for-abstractfloat③②">(2)</a> <a href="#ref-for-abstractfloat③③">(3)</a> <a href="#ref-for-abstractfloat③④">(4)</a>
-    <li><a href="#ref-for-abstractfloat③⑤">17.1.2.9. mat3x2</a> <a href="#ref-for-abstractfloat③⑥">(2)</a> <a href="#ref-for-abstractfloat③⑦">(3)</a> <a href="#ref-for-abstractfloat③⑧">(4)</a>
-    <li><a href="#ref-for-abstractfloat③⑨">17.1.2.10. mat3x3</a> <a href="#ref-for-abstractfloat④⓪">(2)</a> <a href="#ref-for-abstractfloat④①">(3)</a> <a href="#ref-for-abstractfloat④②">(4)</a>
-    <li><a href="#ref-for-abstractfloat④③">17.1.2.11. mat3x4</a> <a href="#ref-for-abstractfloat④④">(2)</a> <a href="#ref-for-abstractfloat④⑤">(3)</a> <a href="#ref-for-abstractfloat④⑥">(4)</a>
-    <li><a href="#ref-for-abstractfloat④⑦">17.1.2.12. mat4x2</a> <a href="#ref-for-abstractfloat④⑧">(2)</a> <a href="#ref-for-abstractfloat④⑨">(3)</a> <a href="#ref-for-abstractfloat⑤⓪">(4)</a>
-    <li><a href="#ref-for-abstractfloat⑤①">17.1.2.13. mat4x3</a> <a href="#ref-for-abstractfloat⑤②">(2)</a> <a href="#ref-for-abstractfloat⑤③">(3)</a> <a href="#ref-for-abstractfloat⑤④">(4)</a>
-    <li><a href="#ref-for-abstractfloat⑤⑤">17.1.2.14. mat4x4</a> <a href="#ref-for-abstractfloat⑤⑥">(2)</a> <a href="#ref-for-abstractfloat⑤⑦">(3)</a> <a href="#ref-for-abstractfloat⑤⑧">(4)</a>
+    <li><a href="#ref-for-abstractfloat②③">17.1.2.6. mat2x2</a> <a href="#ref-for-abstractfloat②④">(2)</a> <a href="#ref-for-abstractfloat②⑤">(3)</a>
+    <li><a href="#ref-for-abstractfloat②⑥">17.1.2.7. mat2x3</a> <a href="#ref-for-abstractfloat②⑦">(2)</a> <a href="#ref-for-abstractfloat②⑧">(3)</a>
+    <li><a href="#ref-for-abstractfloat②⑨">17.1.2.8. mat2x4</a> <a href="#ref-for-abstractfloat③⓪">(2)</a> <a href="#ref-for-abstractfloat③①">(3)</a>
+    <li><a href="#ref-for-abstractfloat③②">17.1.2.9. mat3x2</a> <a href="#ref-for-abstractfloat③③">(2)</a> <a href="#ref-for-abstractfloat③④">(3)</a>
+    <li><a href="#ref-for-abstractfloat③⑤">17.1.2.10. mat3x3</a> <a href="#ref-for-abstractfloat③⑥">(2)</a> <a href="#ref-for-abstractfloat③⑦">(3)</a>
+    <li><a href="#ref-for-abstractfloat③⑧">17.1.2.11. mat3x4</a> <a href="#ref-for-abstractfloat③⑨">(2)</a> <a href="#ref-for-abstractfloat④⓪">(3)</a>
+    <li><a href="#ref-for-abstractfloat④①">17.1.2.12. mat4x2</a> <a href="#ref-for-abstractfloat④②">(2)</a> <a href="#ref-for-abstractfloat④③">(3)</a>
+    <li><a href="#ref-for-abstractfloat④④">17.1.2.13. mat4x3</a> <a href="#ref-for-abstractfloat④⑤">(2)</a> <a href="#ref-for-abstractfloat④⑥">(3)</a>
+    <li><a href="#ref-for-abstractfloat④⑦">17.1.2.14. mat4x4</a> <a href="#ref-for-abstractfloat④⑧">(2)</a> <a href="#ref-for-abstractfloat④⑨">(3)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-type-abstract" class="dfn-panel" data-for="type-abstract" id="infopanel-for-type-abstract">
@@ -21934,21 +21808,21 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-f32②③">14.6.2. Floating Point Conversion</a> <a href="#ref-for-f32②④">(2)</a> <a href="#ref-for-f32②⑤">(3)</a> <a href="#ref-for-f32②⑥">(4)</a> <a href="#ref-for-f32②⑦">(5)</a>
     <li><a href="#ref-for-f32②⑧">17.1.2.3. f16</a>
     <li><a href="#ref-for-f32②⑨">17.1.2.4. f32</a> <a href="#ref-for-f32③⓪">(2)</a> <a href="#ref-for-f32③①">(3)</a>
-    <li><a href="#ref-for-f32③②">17.1.2.6. mat2x2</a> <a href="#ref-for-f32③③">(2)</a> <a href="#ref-for-f32③④">(3)</a> <a href="#ref-for-f32③⑤">(4)</a> <a href="#ref-for-f32③⑥">(5)</a> <a href="#ref-for-f32③⑦">(6)</a>
-    <li><a href="#ref-for-f32③⑧">17.1.2.7. mat2x3</a> <a href="#ref-for-f32③⑨">(2)</a> <a href="#ref-for-f32④⓪">(3)</a> <a href="#ref-for-f32④①">(4)</a> <a href="#ref-for-f32④②">(5)</a> <a href="#ref-for-f32④③">(6)</a>
-    <li><a href="#ref-for-f32④④">17.1.2.8. mat2x4</a> <a href="#ref-for-f32④⑤">(2)</a> <a href="#ref-for-f32④⑥">(3)</a> <a href="#ref-for-f32④⑦">(4)</a> <a href="#ref-for-f32④⑧">(5)</a> <a href="#ref-for-f32④⑨">(6)</a>
-    <li><a href="#ref-for-f32⑤⓪">17.1.2.9. mat3x2</a> <a href="#ref-for-f32⑤①">(2)</a> <a href="#ref-for-f32⑤②">(3)</a> <a href="#ref-for-f32⑤③">(4)</a> <a href="#ref-for-f32⑤④">(5)</a> <a href="#ref-for-f32⑤⑤">(6)</a>
-    <li><a href="#ref-for-f32⑤⑥">17.1.2.10. mat3x3</a> <a href="#ref-for-f32⑤⑦">(2)</a> <a href="#ref-for-f32⑤⑧">(3)</a> <a href="#ref-for-f32⑤⑨">(4)</a> <a href="#ref-for-f32⑥⓪">(5)</a> <a href="#ref-for-f32⑥①">(6)</a>
-    <li><a href="#ref-for-f32⑥②">17.1.2.11. mat3x4</a> <a href="#ref-for-f32⑥③">(2)</a> <a href="#ref-for-f32⑥④">(3)</a> <a href="#ref-for-f32⑥⑤">(4)</a> <a href="#ref-for-f32⑥⑥">(5)</a> <a href="#ref-for-f32⑥⑦">(6)</a>
-    <li><a href="#ref-for-f32⑥⑧">17.1.2.12. mat4x2</a> <a href="#ref-for-f32⑥⑨">(2)</a> <a href="#ref-for-f32⑦⓪">(3)</a> <a href="#ref-for-f32⑦①">(4)</a> <a href="#ref-for-f32⑦②">(5)</a> <a href="#ref-for-f32⑦③">(6)</a>
-    <li><a href="#ref-for-f32⑦④">17.1.2.13. mat4x3</a> <a href="#ref-for-f32⑦⑤">(2)</a> <a href="#ref-for-f32⑦⑥">(3)</a> <a href="#ref-for-f32⑦⑦">(4)</a> <a href="#ref-for-f32⑦⑧">(5)</a> <a href="#ref-for-f32⑦⑨">(6)</a>
-    <li><a href="#ref-for-f32⑧⓪">17.1.2.14. mat4x4</a> <a href="#ref-for-f32⑧①">(2)</a> <a href="#ref-for-f32⑧②">(3)</a> <a href="#ref-for-f32⑧③">(4)</a> <a href="#ref-for-f32⑧④">(5)</a> <a href="#ref-for-f32⑧⑤">(6)</a>
-    <li><a href="#ref-for-f32⑧⑥">17.7.1. textureDimensions</a> <a href="#ref-for-f32⑧⑦">(2)</a> <a href="#ref-for-f32⑧⑧">(3)</a> <a href="#ref-for-f32⑧⑨">(4)</a> <a href="#ref-for-f32⑨⓪">(5)</a> <a href="#ref-for-f32⑨①">(6)</a>
-    <li><a href="#ref-for-f32⑨②">17.7.2. textureGather</a> <a href="#ref-for-f32⑨③">(2)</a> <a href="#ref-for-f32⑨④">(3)</a> <a href="#ref-for-f32⑨⑤">(4)</a> <a href="#ref-for-f32⑨⑥">(5)</a> <a href="#ref-for-f32⑨⑦">(6)</a>
-    <li><a href="#ref-for-f32⑨⑧">17.7.4. textureLoad</a> <a href="#ref-for-f32⑨⑨">(2)</a> <a href="#ref-for-f32①⓪⓪">(3)</a> <a href="#ref-for-f32①⓪①">(4)</a> <a href="#ref-for-f32①⓪②">(5)</a>
-    <li><a href="#ref-for-f32①⓪③">17.7.5. textureNumLayers</a>
-    <li><a href="#ref-for-f32①⓪④">17.7.6. textureNumLevels</a>
-    <li><a href="#ref-for-f32①⓪⑤">17.7.7. textureNumSamples</a>
+    <li><a href="#ref-for-f32③②">17.1.2.6. mat2x2</a> <a href="#ref-for-f32③③">(2)</a> <a href="#ref-for-f32③④">(3)</a> <a href="#ref-for-f32③⑤">(4)</a>
+    <li><a href="#ref-for-f32③⑥">17.1.2.7. mat2x3</a> <a href="#ref-for-f32③⑦">(2)</a> <a href="#ref-for-f32③⑧">(3)</a> <a href="#ref-for-f32③⑨">(4)</a>
+    <li><a href="#ref-for-f32④⓪">17.1.2.8. mat2x4</a> <a href="#ref-for-f32④①">(2)</a> <a href="#ref-for-f32④②">(3)</a> <a href="#ref-for-f32④③">(4)</a>
+    <li><a href="#ref-for-f32④④">17.1.2.9. mat3x2</a> <a href="#ref-for-f32④⑤">(2)</a> <a href="#ref-for-f32④⑥">(3)</a> <a href="#ref-for-f32④⑦">(4)</a>
+    <li><a href="#ref-for-f32④⑧">17.1.2.10. mat3x3</a> <a href="#ref-for-f32④⑨">(2)</a> <a href="#ref-for-f32⑤⓪">(3)</a> <a href="#ref-for-f32⑤①">(4)</a>
+    <li><a href="#ref-for-f32⑤②">17.1.2.11. mat3x4</a> <a href="#ref-for-f32⑤③">(2)</a> <a href="#ref-for-f32⑤④">(3)</a> <a href="#ref-for-f32⑤⑤">(4)</a>
+    <li><a href="#ref-for-f32⑤⑥">17.1.2.12. mat4x2</a> <a href="#ref-for-f32⑤⑦">(2)</a> <a href="#ref-for-f32⑤⑧">(3)</a> <a href="#ref-for-f32⑤⑨">(4)</a>
+    <li><a href="#ref-for-f32⑥⓪">17.1.2.13. mat4x3</a> <a href="#ref-for-f32⑥①">(2)</a> <a href="#ref-for-f32⑥②">(3)</a> <a href="#ref-for-f32⑥③">(4)</a>
+    <li><a href="#ref-for-f32⑥④">17.1.2.14. mat4x4</a> <a href="#ref-for-f32⑥⑤">(2)</a> <a href="#ref-for-f32⑥⑥">(3)</a> <a href="#ref-for-f32⑥⑦">(4)</a>
+    <li><a href="#ref-for-f32⑥⑧">17.7.1. textureDimensions</a> <a href="#ref-for-f32⑥⑨">(2)</a> <a href="#ref-for-f32⑦⓪">(3)</a> <a href="#ref-for-f32⑦①">(4)</a> <a href="#ref-for-f32⑦②">(5)</a> <a href="#ref-for-f32⑦③">(6)</a>
+    <li><a href="#ref-for-f32⑦④">17.7.2. textureGather</a> <a href="#ref-for-f32⑦⑤">(2)</a> <a href="#ref-for-f32⑦⑥">(3)</a> <a href="#ref-for-f32⑦⑦">(4)</a> <a href="#ref-for-f32⑦⑧">(5)</a> <a href="#ref-for-f32⑦⑨">(6)</a>
+    <li><a href="#ref-for-f32⑧⓪">17.7.4. textureLoad</a> <a href="#ref-for-f32⑧①">(2)</a> <a href="#ref-for-f32⑧②">(3)</a> <a href="#ref-for-f32⑧③">(4)</a> <a href="#ref-for-f32⑧④">(5)</a>
+    <li><a href="#ref-for-f32⑧⑤">17.7.5. textureNumLayers</a>
+    <li><a href="#ref-for-f32⑧⑥">17.7.6. textureNumLevels</a>
+    <li><a href="#ref-for-f32⑧⑦">17.7.7. textureNumSamples</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-f16" class="dfn-panel" data-for="f16" id="infopanel-for-f16">
@@ -21968,15 +21842,15 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-f16①⑦">14.6.2. Floating Point Conversion</a> <a href="#ref-for-f16①⑧">(2)</a>
     <li><a href="#ref-for-f16①⑨">17.1.2.3. f16</a> <a href="#ref-for-f16②⓪">(2)</a> <a href="#ref-for-f16②①">(3)</a>
     <li><a href="#ref-for-f16②②">17.1.2.4. f32</a>
-    <li><a href="#ref-for-f16②③">17.1.2.6. mat2x2</a> <a href="#ref-for-f16②④">(2)</a> <a href="#ref-for-f16②⑤">(3)</a> <a href="#ref-for-f16②⑥">(4)</a> <a href="#ref-for-f16②⑦">(5)</a> <a href="#ref-for-f16②⑧">(6)</a>
-    <li><a href="#ref-for-f16②⑨">17.1.2.7. mat2x3</a> <a href="#ref-for-f16③⓪">(2)</a> <a href="#ref-for-f16③①">(3)</a> <a href="#ref-for-f16③②">(4)</a> <a href="#ref-for-f16③③">(5)</a> <a href="#ref-for-f16③④">(6)</a>
-    <li><a href="#ref-for-f16③⑤">17.1.2.8. mat2x4</a> <a href="#ref-for-f16③⑥">(2)</a> <a href="#ref-for-f16③⑦">(3)</a> <a href="#ref-for-f16③⑧">(4)</a> <a href="#ref-for-f16③⑨">(5)</a> <a href="#ref-for-f16④⓪">(6)</a>
-    <li><a href="#ref-for-f16④①">17.1.2.9. mat3x2</a> <a href="#ref-for-f16④②">(2)</a> <a href="#ref-for-f16④③">(3)</a> <a href="#ref-for-f16④④">(4)</a> <a href="#ref-for-f16④⑤">(5)</a> <a href="#ref-for-f16④⑥">(6)</a>
-    <li><a href="#ref-for-f16④⑦">17.1.2.10. mat3x3</a> <a href="#ref-for-f16④⑧">(2)</a> <a href="#ref-for-f16④⑨">(3)</a> <a href="#ref-for-f16⑤⓪">(4)</a> <a href="#ref-for-f16⑤①">(5)</a> <a href="#ref-for-f16⑤②">(6)</a>
-    <li><a href="#ref-for-f16⑤③">17.1.2.11. mat3x4</a> <a href="#ref-for-f16⑤④">(2)</a> <a href="#ref-for-f16⑤⑤">(3)</a> <a href="#ref-for-f16⑤⑥">(4)</a> <a href="#ref-for-f16⑤⑦">(5)</a> <a href="#ref-for-f16⑤⑧">(6)</a>
-    <li><a href="#ref-for-f16⑤⑨">17.1.2.12. mat4x2</a> <a href="#ref-for-f16⑥⓪">(2)</a> <a href="#ref-for-f16⑥①">(3)</a> <a href="#ref-for-f16⑥②">(4)</a> <a href="#ref-for-f16⑥③">(5)</a> <a href="#ref-for-f16⑥④">(6)</a>
-    <li><a href="#ref-for-f16⑥⑤">17.1.2.13. mat4x3</a> <a href="#ref-for-f16⑥⑥">(2)</a> <a href="#ref-for-f16⑥⑦">(3)</a> <a href="#ref-for-f16⑥⑧">(4)</a> <a href="#ref-for-f16⑥⑨">(5)</a> <a href="#ref-for-f16⑦⓪">(6)</a>
-    <li><a href="#ref-for-f16⑦①">17.1.2.14. mat4x4</a> <a href="#ref-for-f16⑦②">(2)</a> <a href="#ref-for-f16⑦③">(3)</a> <a href="#ref-for-f16⑦④">(4)</a> <a href="#ref-for-f16⑦⑤">(5)</a> <a href="#ref-for-f16⑦⑥">(6)</a>
+    <li><a href="#ref-for-f16②③">17.1.2.6. mat2x2</a> <a href="#ref-for-f16②④">(2)</a> <a href="#ref-for-f16②⑤">(3)</a> <a href="#ref-for-f16②⑥">(4)</a>
+    <li><a href="#ref-for-f16②⑦">17.1.2.7. mat2x3</a> <a href="#ref-for-f16②⑧">(2)</a> <a href="#ref-for-f16②⑨">(3)</a> <a href="#ref-for-f16③⓪">(4)</a>
+    <li><a href="#ref-for-f16③①">17.1.2.8. mat2x4</a> <a href="#ref-for-f16③②">(2)</a> <a href="#ref-for-f16③③">(3)</a> <a href="#ref-for-f16③④">(4)</a>
+    <li><a href="#ref-for-f16③⑤">17.1.2.9. mat3x2</a> <a href="#ref-for-f16③⑥">(2)</a> <a href="#ref-for-f16③⑦">(3)</a> <a href="#ref-for-f16③⑧">(4)</a>
+    <li><a href="#ref-for-f16③⑨">17.1.2.10. mat3x3</a> <a href="#ref-for-f16④⓪">(2)</a> <a href="#ref-for-f16④①">(3)</a> <a href="#ref-for-f16④②">(4)</a>
+    <li><a href="#ref-for-f16④③">17.1.2.11. mat3x4</a> <a href="#ref-for-f16④④">(2)</a> <a href="#ref-for-f16④⑤">(3)</a> <a href="#ref-for-f16④⑥">(4)</a>
+    <li><a href="#ref-for-f16④⑦">17.1.2.12. mat4x2</a> <a href="#ref-for-f16④⑧">(2)</a> <a href="#ref-for-f16④⑨">(3)</a> <a href="#ref-for-f16⑤⓪">(4)</a>
+    <li><a href="#ref-for-f16⑤①">17.1.2.13. mat4x3</a> <a href="#ref-for-f16⑤②">(2)</a> <a href="#ref-for-f16⑤③">(3)</a> <a href="#ref-for-f16⑤④">(4)</a>
+    <li><a href="#ref-for-f16⑤⑤">17.1.2.14. mat4x4</a> <a href="#ref-for-f16⑤⑥">(2)</a> <a href="#ref-for-f16⑤⑦">(3)</a> <a href="#ref-for-f16⑤⑧">(4)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-scalar" class="dfn-panel" data-for="scalar" id="infopanel-for-scalar">
@@ -22148,15 +22022,15 @@ registrations, it matches widespread industry conventions.</p>
     <li><a href="#ref-for-matrix①⓪">13.4.1. Alignment and Size</a>
     <li><a href="#ref-for-matrix①①">13.4.4. Internal Layout of Values</a>
     <li><a href="#ref-for-matrix①②">13.4.5. Address Space Layout Constraints</a>
-    <li><a href="#ref-for-matrix①③">17.1.2.6. mat2x2</a> <a href="#ref-for-matrix①④">(2)</a> <a href="#ref-for-matrix①⑤">(3)</a> <a href="#ref-for-matrix①⑥">(4)</a>
-    <li><a href="#ref-for-matrix①⑦">17.1.2.7. mat2x3</a> <a href="#ref-for-matrix①⑧">(2)</a> <a href="#ref-for-matrix①⑨">(3)</a> <a href="#ref-for-matrix②⓪">(4)</a>
-    <li><a href="#ref-for-matrix②①">17.1.2.8. mat2x4</a> <a href="#ref-for-matrix②②">(2)</a> <a href="#ref-for-matrix②③">(3)</a> <a href="#ref-for-matrix②④">(4)</a>
-    <li><a href="#ref-for-matrix②⑤">17.1.2.9. mat3x2</a> <a href="#ref-for-matrix②⑥">(2)</a> <a href="#ref-for-matrix②⑦">(3)</a> <a href="#ref-for-matrix②⑧">(4)</a>
-    <li><a href="#ref-for-matrix②⑨">17.1.2.10. mat3x3</a> <a href="#ref-for-matrix③⓪">(2)</a> <a href="#ref-for-matrix③①">(3)</a> <a href="#ref-for-matrix③②">(4)</a>
-    <li><a href="#ref-for-matrix③③">17.1.2.11. mat3x4</a> <a href="#ref-for-matrix③④">(2)</a> <a href="#ref-for-matrix③⑤">(3)</a> <a href="#ref-for-matrix③⑥">(4)</a>
-    <li><a href="#ref-for-matrix③⑦">17.1.2.12. mat4x2</a> <a href="#ref-for-matrix③⑧">(2)</a> <a href="#ref-for-matrix③⑨">(3)</a> <a href="#ref-for-matrix④⓪">(4)</a>
-    <li><a href="#ref-for-matrix④①">17.1.2.13. mat4x3</a> <a href="#ref-for-matrix④②">(2)</a> <a href="#ref-for-matrix④③">(3)</a> <a href="#ref-for-matrix④④">(4)</a>
-    <li><a href="#ref-for-matrix④⑤">17.1.2.14. mat4x4</a> <a href="#ref-for-matrix④⑥">(2)</a> <a href="#ref-for-matrix④⑦">(3)</a> <a href="#ref-for-matrix④⑧">(4)</a>
+    <li><a href="#ref-for-matrix①③">17.1.2.6. mat2x2</a> <a href="#ref-for-matrix①④">(2)</a> <a href="#ref-for-matrix①⑤">(3)</a>
+    <li><a href="#ref-for-matrix①⑥">17.1.2.7. mat2x3</a> <a href="#ref-for-matrix①⑦">(2)</a> <a href="#ref-for-matrix①⑧">(3)</a>
+    <li><a href="#ref-for-matrix①⑨">17.1.2.8. mat2x4</a> <a href="#ref-for-matrix②⓪">(2)</a> <a href="#ref-for-matrix②①">(3)</a>
+    <li><a href="#ref-for-matrix②②">17.1.2.9. mat3x2</a> <a href="#ref-for-matrix②③">(2)</a> <a href="#ref-for-matrix②④">(3)</a>
+    <li><a href="#ref-for-matrix②⑤">17.1.2.10. mat3x3</a> <a href="#ref-for-matrix②⑥">(2)</a> <a href="#ref-for-matrix②⑦">(3)</a>
+    <li><a href="#ref-for-matrix②⑧">17.1.2.11. mat3x4</a> <a href="#ref-for-matrix②⑨">(2)</a> <a href="#ref-for-matrix③⓪">(3)</a>
+    <li><a href="#ref-for-matrix③①">17.1.2.12. mat4x2</a> <a href="#ref-for-matrix③②">(2)</a> <a href="#ref-for-matrix③③">(3)</a>
+    <li><a href="#ref-for-matrix③④">17.1.2.13. mat4x3</a> <a href="#ref-for-matrix③⑤">(2)</a> <a href="#ref-for-matrix③⑥">(3)</a>
+    <li><a href="#ref-for-matrix③⑦">17.1.2.14. mat4x4</a> <a href="#ref-for-matrix③⑧">(2)</a> <a href="#ref-for-matrix③⑨">(3)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-atomic-type" class="dfn-panel" data-for="atomic-type" id="infopanel-for-atomic-type">
