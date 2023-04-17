@@ -691,13 +691,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-04-14">14 April 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-04-17">17 April 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/cbe0b5c91c07bbce6aa0205c53c70340e71d3ae3/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/cbe0b5c91c07bbce6aa0205c53c70340e71d3ae3/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/22a2ba31bc384e818011a6079615112e6fce33be/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/22a2ba31bc384e818011a6079615112e6fce33be/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -4258,7 +4258,7 @@ See <a href="#array-access-expr">§ 7.5.3 Array Access Expression</a>.</p>
      <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error④">pipeline-creation error</a> if <var>N</var> is not greater than zero.</p>
    </ul>
    <p class="note" role="note"><span class="marker">Note:</span> The element count value is fully determined at <a data-link-type="dfn" href="#pipeline-creation" id="ref-for-pipeline-creation④">pipeline creation</a> time.</p>
-   <p class="note" role="note"><span class="marker">Note:</span> To qualify for type-equivalency, the override expression must be an <strong>identifier</strong>.
+   <p class="note" role="note"><span class="marker">Note:</span> To qualify for type-equivalency, any override expression that is not a const expression must be an <strong>identifier</strong>.
 See <a href="#example-workgroup-variables-sized-by-override">Workgroup variables sized by overridable constants</a></p>
    <p>The number of elements in a runtime-sized array
 is determined by the size of buffer binding associated with the corresponding <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer①">storage buffer</a> variable.
