@@ -903,13 +903,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-04-19">19 April 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-04-20">20 April 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/ff1635dcbafde1c28f90b7d7cb83180efa5256bc/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/ff1635dcbafde1c28f90b7d7cb83180efa5256bc/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/a17388855879d052cfd8a9195a28ed2b10eca7cb/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/a17388855879d052cfd8a9195a28ed2b10eca7cb/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -7060,11 +7060,10 @@ the multiple calls to <code class="idl"><a data-link-type="idl" href="#dom-gpude
             <p><var>result</var> must not be a <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#shader-creation-error" id="ref-for-shader-creation-error">shader-creation</a> <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#program-error" id="ref-for-program-error">program error</a>.</p>
           </ul>
          </div>
-        <li data-md>
-         <p>If <var>result</var> is a <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#shader-creation-error" id="ref-for-shader-creation-error①">shader-creation</a> <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#uncategorized-error" id="ref-for-uncategorized-error">uncategorized error</a>,
-make <var>sm</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid②⑥">invalid</a> without generating an error, and return.</p>
-         <p class="note" role="note"><span class="marker">Note:</span> Reporting of <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#uncategorized-error" id="ref-for-uncategorized-error①">uncategorized errors</a> is always deferred until
-pipeline creation.</p>
+         <p class="note" role="note"><span class="marker">Note:</span> <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#uncategorized-error" id="ref-for-uncategorized-error">Uncategorized errors</a> cannot arise from shader module creation.
+Implementations which detect such errors during shader module creation
+must behave as if the shader module is valid, and defer surfacing the
+error until pipeline creation.</p>
        </ol>
        <p class="issue" id="issue-f8aca447"><a class="self-link" href="#issue-f8aca447"></a> Describe remaining <code class="idl"><a data-link-type="idl" href="#dom-gpudevice-createshadermodule" id="ref-for-dom-gpudevice-createshadermodule⑥">createShaderModule()</a></code> validation and
         algorithm steps.</p>
@@ -7170,7 +7169,7 @@ compatibility and consistency with legacy APIs, but when there is, adopt it form
     <dd data-md>
      <p>The severity level of the message.</p>
      <p>If the <code class="idl"><a data-link-type="idl" href="#dom-gpucompilationmessage-type" id="ref-for-dom-gpucompilationmessage-type①">type</a></code> is <code class="idl"><a data-link-type="idl" href="#dom-gpucompilationmessagetype-error" id="ref-for-dom-gpucompilationmessagetype-error">"error"</a></code>, it
-corresponds to a <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#shader-creation-error" id="ref-for-shader-creation-error②">shader-creation error</a>.</p>
+corresponds to a <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#shader-creation-error" id="ref-for-shader-creation-error①">shader-creation error</a>.</p>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUCompilationMessage" data-dfn-type="attribute" data-export id="dom-gpucompilationmessage-linenum"><code>lineNum</code></dfn>, <span> of type <a data-link-type="idl-name" href="https://webidl.spec.whatwg.org/#idl-unsigned-long-long" id="ref-for-idl-unsigned-long-long⑨">unsigned long long</a>, readonly</span>
     <dd data-md>
      <p>The line number in the shader <code class="idl"><a data-link-type="idl" href="#dom-gpushadermoduledescriptor-code" id="ref-for-dom-gpushadermoduledescriptor-code③">code</a></code> the <code class="idl"><a data-link-type="idl" href="#dom-gpucompilationmessage-message" id="ref-for-dom-gpucompilationmessage-message②">message</a></code> corresponds to. Value is one-based, such that a lineNum of <code>1</code> indicates the first line of the shader <code class="idl"><a data-link-type="idl" href="#dom-gpushadermoduledescriptor-code" id="ref-for-dom-gpushadermoduledescriptor-code④">code</a></code>. Lines are
@@ -7246,7 +7245,7 @@ generated during <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/w
            <p>Set <var>m</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucompilationmessage-message" id="ref-for-dom-gpucompilationmessage-message①②">message</a></code> to be the text of <var>message</var>.</p>
           <li data-md>
            <dl class="switch">
-            <dt data-md>If <var>message</var> is a <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#shader-creation-error" id="ref-for-shader-creation-error③">shader-creation error</a>:
+            <dt data-md>If <var>message</var> is a <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#shader-creation-error" id="ref-for-shader-creation-error②">shader-creation error</a>:
             <dd data-md>
              <p>Set <var>m</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucompilationmessage-type" id="ref-for-dom-gpucompilationmessage-type②">type</a></code> to <code class="idl"><a data-link-type="idl" href="#dom-gpucompilationmessagetype-error" id="ref-for-dom-gpucompilationmessagetype-error①">"error"</a></code></p>
             <dt data-md>If <var>message</var> is a warning:
@@ -7474,7 +7473,7 @@ as a <dfn class="dfn-paneled idl-code" data-dfn-for data-dfn-type="enum" data-ex
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑤⓪">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑥">generate a validation error</a>, make <var>layout</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid②⑦">invalid</a>, and stop.</p>
+         <p>If any of the following conditions are unsatisfied <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑥">generate a validation error</a>, make <var>layout</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid②⑥">invalid</a>, and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -8069,31 +8068,30 @@ The outputs correspond to <code class="idl"><a data-link-type="idl" href="#dom-g
          <p>Let <var>layout</var> be a new <a data-link-type="abstract-op" href="#abstract-opdef-default-pipeline-layout" id="ref-for-abstract-opdef-default-pipeline-layout①">default pipeline layout</a> for <var>pipeline</var> if <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelinedescriptorbase-layout" id="ref-for-dom-gpupipelinedescriptorbase-layout①">layout</a></code> is <code class="idl"><a data-link-type="idl" href="#dom-gpuautolayoutmode-auto" id="ref-for-dom-gpuautolayoutmode-auto②">"auto"</a></code>,
 and <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelinedescriptorbase-layout" id="ref-for-dom-gpupipelinedescriptorbase-layout②">layout</a></code> otherwise.</p>
         <li data-md>
-         <p>If <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepipelinedescriptor-compute" id="ref-for-dom-gpucomputepipelinedescriptor-compute①">compute</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuprogrammablestage-module" id="ref-for-dom-gpuprogrammablestage-module⑧">module</a></code> is <a data-link-type="dfn" href="#invalid" id="ref-for-invalid②⑧">invalid</a> due to a <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#shader-creation-error" id="ref-for-shader-creation-error④">shader-creation</a> <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#uncategorized-error" id="ref-for-uncategorized-error②">uncategorized error</a>, <a data-link-type="abstract-op" href="#abstract-opdef-generate-an-internal-error" id="ref-for-abstract-opdef-generate-an-internal-error②">generate an internal error</a>,
-make <var>pipeline</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid②⑨">invalid</a>, and stop.</p>
-        <li data-md>
-         <p>If any of the following conditions are unsatisfied <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑦">generate a validation error</a>, make <var>pipeline</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③⓪">invalid</a>, and stop.</p>
+         <p>If any of the following conditions are unsatisfied <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑦">generate a validation error</a>, make <var>pipeline</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid②⑦">invalid</a>, and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
             <p><var>layout</var> must be <a data-link-type="abstract-op" href="#abstract-opdef-valid-to-use-with" id="ref-for-abstract-opdef-valid-to-use-with⑧">valid to use with</a> <var>this</var>.</p>
            <li data-md>
-            <p><a data-link-type="abstract-op" href="#abstract-opdef-validating-gpuprogrammablestage" id="ref-for-abstract-opdef-validating-gpuprogrammablestage">validating GPUProgrammableStage</a>(<code class="idl"><a data-link-type="idl" href="#dom-gpushaderstage-compute" id="ref-for-dom-gpushaderstage-compute②">COMPUTE</a></code>, <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepipelinedescriptor-compute" id="ref-for-dom-gpucomputepipelinedescriptor-compute②">compute</a></code>, <var>layout</var>) must succeed.</p>
+            <p><a data-link-type="abstract-op" href="#abstract-opdef-validating-gpuprogrammablestage" id="ref-for-abstract-opdef-validating-gpuprogrammablestage">validating GPUProgrammableStage</a>(<code class="idl"><a data-link-type="idl" href="#dom-gpushaderstage-compute" id="ref-for-dom-gpushaderstage-compute②">COMPUTE</a></code>, <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepipelinedescriptor-compute" id="ref-for-dom-gpucomputepipelinedescriptor-compute①">compute</a></code>, <var>layout</var>) must succeed.</p>
            <li data-md>
             <p>Let <var>workgroupStorageUsed</var> be the sum of <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#roundup" id="ref-for-roundup">roundUp</a>(16, <a data-link-type="abstract-op" href="https://gpuweb.github.io/gpuweb/wgsl/#sizeof" id="ref-for-sizeof①">SizeOf</a>(<var>T</var>)) over each
-type <var>T</var> of all variables with address space "<a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#address-spaces-workgroup" id="ref-for-address-spaces-workgroup①">workgroup</a>" <a data-link-type="dfn" href="#statically-used" id="ref-for-statically-used⑤">statically used</a> by <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepipelinedescriptor-compute" id="ref-for-dom-gpucomputepipelinedescriptor-compute③">compute</a></code>.</p>
+type <var>T</var> of all variables with address space "<a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#address-spaces-workgroup" id="ref-for-address-spaces-workgroup①">workgroup</a>" <a data-link-type="dfn" href="#statically-used" id="ref-for-statically-used⑤">statically used</a> by <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepipelinedescriptor-compute" id="ref-for-dom-gpucomputepipelinedescriptor-compute②">compute</a></code>.</p>
             <p><var>workgroupStorageUsed</var> must be ≤ <var>device</var>.limits.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxcomputeworkgroupstoragesize" id="ref-for-dom-supported-limits-maxcomputeworkgroupstoragesize">maxComputeWorkgroupStorageSize</a></code>.</p>
             <p class="issue" id="issue-db34a936"><a class="self-link" href="#issue-db34a936"></a> Does this need to account for padding? <a href="https://github.com/gpuweb/gpuweb/issues/3485">[Issue #gpuweb/gpuweb#3485]</a></p>
            <li data-md>
-            <p><var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepipelinedescriptor-compute" id="ref-for-dom-gpucomputepipelinedescriptor-compute④">compute</a></code> must use ≤ <var>device</var>.limits.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxcomputeinvocationsperworkgroup" id="ref-for-dom-supported-limits-maxcomputeinvocationsperworkgroup④">maxComputeInvocationsPerWorkgroup</a></code> per
+            <p><var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepipelinedescriptor-compute" id="ref-for-dom-gpucomputepipelinedescriptor-compute③">compute</a></code> must use ≤ <var>device</var>.limits.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxcomputeinvocationsperworkgroup" id="ref-for-dom-supported-limits-maxcomputeinvocationsperworkgroup④">maxComputeInvocationsPerWorkgroup</a></code> per
 workgroup.</p>
            <li data-md>
-            <p>Each component of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepipelinedescriptor-compute" id="ref-for-dom-gpucomputepipelinedescriptor-compute⑤">compute</a></code>'s <code>workgroup_size</code> attribute must be ≤ the corresponding component in
+            <p>Each component of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepipelinedescriptor-compute" id="ref-for-dom-gpucomputepipelinedescriptor-compute④">compute</a></code>'s <code>workgroup_size</code> attribute must be ≤ the corresponding component in
 [<var>device</var>.limits.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxcomputeworkgroupsizex" id="ref-for-dom-supported-limits-maxcomputeworkgroupsizex②">maxComputeWorkgroupSizeX</a></code>, <var>device</var>.limits.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxcomputeworkgroupsizey" id="ref-for-dom-supported-limits-maxcomputeworkgroupsizey②">maxComputeWorkgroupSizeY</a></code>, <var>device</var>.limits.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxcomputeworkgroupsizez" id="ref-for-dom-supported-limits-maxcomputeworkgroupsizez②">maxComputeWorkgroupSizeZ</a></code>].</p>
           </ul>
          </div>
         <li data-md>
-         <p>If any <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#pipeline-creation-error" id="ref-for-pipeline-creation-error①">pipeline-creation</a> <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#uncategorized-error" id="ref-for-uncategorized-error③">uncategorized errors</a> result from the rules of the <a data-link-type="biblio" href="#biblio-wgsl" title="WebGPU Shading Language">[WGSL]</a> specification, <a data-link-type="abstract-op" href="#abstract-opdef-generate-an-internal-error" id="ref-for-abstract-opdef-generate-an-internal-error③">generate an internal error</a>, make <var>pipeline</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③①">invalid</a>, and stop.</p>
+         <p>If any <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#pipeline-creation-error" id="ref-for-pipeline-creation-error①">pipeline-creation</a> <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#uncategorized-error" id="ref-for-uncategorized-error①">uncategorized errors</a> result from the implementation of pipeline creation, <a data-link-type="abstract-op" href="#abstract-opdef-generate-an-internal-error" id="ref-for-abstract-opdef-generate-an-internal-error②">generate an internal error</a>, make <var>pipeline</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid②⑧">invalid</a>, and stop.</p>
+         <p class="note" role="note"><span class="marker">Note:</span> Even if the implementation detected <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#uncategorized-error" id="ref-for-uncategorized-error②">uncategorized errors</a> in shader module
+creation, the error is surfaced here.</p>
         <li data-md>
          <p>Set <var>pipeline</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelinebase-layout-slot" id="ref-for-dom-gpupipelinebase-layout-slot③">[[layout]]</a></code> to <var>layout</var>.</p>
        </ol>
@@ -8146,7 +8144,7 @@ is ready to be used without additional delay.</p>
         <li data-md>
          <p>Let <var>pipeline</var> be a new <code class="idl"><a data-link-type="idl" href="#gpucomputepipeline" id="ref-for-gpucomputepipeline②①">GPUComputePipeline</a></code> created as if <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpudevice-createcomputepipeline" id="ref-for-dom-gpudevice-createcomputepipeline⑧">createComputePipeline()</a></code> was called with <var>descriptor</var>;</p>
         <li data-md>
-         <p>When <var>pipeline</var> is ready to be used or has been made <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③②">invalid</a>, issue the
+         <p>When <var>pipeline</var> is ready to be used or has been made <a data-link-type="dfn" href="#invalid" id="ref-for-invalid②⑨">invalid</a>, issue the
 subsequent steps on <var data-timeline="content">contentTimeline</var>.</p>
        </ol>
       </div>
@@ -8159,10 +8157,10 @@ subsequent steps on <var data-timeline="content">contentTimeline</var>.</p>
           <dt data-md><a data-link-type="dfn" href="#valid" id="ref-for-valid①⑥">valid</a>
           <dd data-md>
            <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#resolve" id="ref-for-resolve⑦">Resolve</a> <var>promise</var> with <var>pipeline</var>.</p>
-          <dt data-md><a data-link-type="dfn" href="#invalid" id="ref-for-invalid③③">invalid</a> due to an <a data-link-type="abstract-op" href="#abstract-opdef-generate-an-internal-error" id="ref-for-abstract-opdef-generate-an-internal-error④">internal error</a>
+          <dt data-md><a data-link-type="dfn" href="#invalid" id="ref-for-invalid③⓪">invalid</a> due to an <a data-link-type="abstract-op" href="#abstract-opdef-generate-an-internal-error" id="ref-for-abstract-opdef-generate-an-internal-error③">internal error</a>
           <dd data-md>
            <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑥">Reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror⑦">GPUPipelineError</a></code> with <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorinit-reason" id="ref-for-dom-gpupipelineerrorinit-reason①">reason</a></code> <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorreason-internal" id="ref-for-dom-gpupipelineerrorreason-internal①">"internal"</a></code>.</p>
-          <dt data-md><a data-link-type="dfn" href="#invalid" id="ref-for-invalid③④">invalid</a> due to an <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑧">validation error</a>
+          <dt data-md><a data-link-type="dfn" href="#invalid" id="ref-for-invalid③①">invalid</a> due to an <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑧">validation error</a>
           <dd data-md>
            <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑦">Reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror⑧">GPUPipelineError</a></code> with <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorinit-reason" id="ref-for-dom-gpupipelineerrorinit-reason②">reason</a></code> <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorreason-validation" id="ref-for-dom-gpupipelineerrorreason-validation①">"validation"</a></code>.</p>
          </dl>
@@ -8331,13 +8329,10 @@ not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id=
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑤⑦">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
-         <p>If <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex①">vertex</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuprogrammablestage-module" id="ref-for-dom-gpuprogrammablestage-module⑨">module</a></code> or <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment④">fragment</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuprogrammablestage-module" id="ref-for-dom-gpuprogrammablestage-module①⓪">module</a></code> is <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③⑤">invalid</a> due to a <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#shader-creation-error" id="ref-for-shader-creation-error⑤">shader-creation</a> <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#uncategorized-error" id="ref-for-uncategorized-error④">uncategorized error</a>, <a data-link-type="abstract-op" href="#abstract-opdef-generate-an-internal-error" id="ref-for-abstract-opdef-generate-an-internal-error⑤">generate an internal error</a>,
-make <var>pipeline</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③⑥">invalid</a>, and stop.</p>
-        <li data-md>
          <p>Let <var>layout</var> be a new <a data-link-type="abstract-op" href="#abstract-opdef-default-pipeline-layout" id="ref-for-abstract-opdef-default-pipeline-layout②">default pipeline layout</a> for <var>pipeline</var> if <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelinedescriptorbase-layout" id="ref-for-dom-gpupipelinedescriptorbase-layout③">layout</a></code> is <code class="idl"><a data-link-type="idl" href="#dom-gpuautolayoutmode-auto" id="ref-for-dom-gpuautolayoutmode-auto③">"auto"</a></code>,
 and <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelinedescriptorbase-layout" id="ref-for-dom-gpupipelinedescriptorbase-layout④">layout</a></code> otherwise.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied: <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑨">generate a validation error</a>, make <var>pipeline</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③⑦">invalid</a>, and stop.</p>
+         <p>If any of the following conditions are unsatisfied: <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑨">generate a validation error</a>, make <var>pipeline</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③②">invalid</a>, and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -8346,11 +8341,13 @@ and <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-g
             <p><a data-link-type="abstract-op" href="#abstract-opdef-validating-gpurenderpipelinedescriptor" id="ref-for-abstract-opdef-validating-gpurenderpipelinedescriptor">validating GPURenderPipelineDescriptor</a>(<var>descriptor</var>, <var>layout</var>, <var>this</var>) succeeds.</p>
            <li data-md>
             <p><var>layout</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelinelayout-bindgrouplayouts-slot" id="ref-for-dom-gpupipelinelayout-bindgrouplayouts-slot⑨">[[bindGroupLayouts]]</a></code>.length + <var>vertexBufferCount</var> is ≤ <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot②⑤">[[device]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-device-limits-slot" id="ref-for-dom-device-limits-slot⑦">[[limits]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxbindgroupsplusvertexbuffers" id="ref-for-dom-supported-limits-maxbindgroupsplusvertexbuffers②">maxBindGroupsPlusVertexBuffers</a></code>,
-where <var>vertexBufferCount</var> is the maximum index in <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex②">vertex</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuvertexstate-buffers" id="ref-for-dom-gpuvertexstate-buffers③">buffers</a></code> that is not <code>undefined</code>.</p>
+where <var>vertexBufferCount</var> is the maximum index in <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex①">vertex</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuvertexstate-buffers" id="ref-for-dom-gpuvertexstate-buffers③">buffers</a></code> that is not <code>undefined</code>.</p>
           </ul>
          </div>
         <li data-md>
-         <p>If any <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#pipeline-creation-error" id="ref-for-pipeline-creation-error②">pipeline-creation</a> <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#uncategorized-error" id="ref-for-uncategorized-error⑤">uncategorized errors</a> result from the rules of the <a data-link-type="biblio" href="#biblio-wgsl" title="WebGPU Shading Language">[WGSL]</a> specification, <a data-link-type="abstract-op" href="#abstract-opdef-generate-an-internal-error" id="ref-for-abstract-opdef-generate-an-internal-error⑥">generate an internal error</a>, make <var>pipeline</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③⑧">invalid</a>, and stop.</p>
+         <p>If any <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#pipeline-creation-error" id="ref-for-pipeline-creation-error②">pipeline-creation</a> <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#uncategorized-error" id="ref-for-uncategorized-error③">uncategorized errors</a> result from the implementation of pipeline creation, <a data-link-type="abstract-op" href="#abstract-opdef-generate-an-internal-error" id="ref-for-abstract-opdef-generate-an-internal-error④">generate an internal error</a>, make <var>pipeline</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③③">invalid</a>, and stop.</p>
+         <p class="note" role="note"><span class="marker">Note:</span> Even if the implementation detected <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#uncategorized-error" id="ref-for-uncategorized-error④">uncategorized errors</a> in shader module
+creation, the error is surfaced here.</p>
         <li data-md>
          <p>Set <var>pipeline</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipeline-descriptor-slot" id="ref-for-dom-gpurenderpipeline-descriptor-slot">[[descriptor]]</a></code> to <var>descriptor</var>.</p>
         <li data-md>
@@ -8440,7 +8437,7 @@ is ready to be used without additional delay.</p>
         <li data-md>
          <p>Let <var>pipeline</var> be a new <code class="idl"><a data-link-type="idl" href="#gpurenderpipeline" id="ref-for-gpurenderpipeline②③">GPURenderPipeline</a></code> created as if <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpudevice-createrenderpipeline" id="ref-for-dom-gpudevice-createrenderpipeline⑨">createRenderPipeline()</a></code> was called with <var>descriptor</var>;</p>
         <li data-md>
-         <p>When <var>pipeline</var> is ready to be used or has been made <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③⑨">invalid</a>, issue the
+         <p>When <var>pipeline</var> is ready to be used or has been made <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③④">invalid</a>, issue the
 subsequent steps on <var data-timeline="content">contentTimeline</var>.</p>
        </ol>
       </div>
@@ -8453,10 +8450,10 @@ subsequent steps on <var data-timeline="content">contentTimeline</var>.</p>
           <dt data-md><a data-link-type="dfn" href="#valid" id="ref-for-valid①⑦">valid</a>
           <dd data-md>
            <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#resolve" id="ref-for-resolve⑧">Resolve</a> <var>promise</var> with <var>pipeline</var>.</p>
-          <dt data-md><a data-link-type="dfn" href="#invalid" id="ref-for-invalid④⓪">invalid</a> due to an <a data-link-type="abstract-op" href="#abstract-opdef-generate-an-internal-error" id="ref-for-abstract-opdef-generate-an-internal-error⑦">internal error</a>
+          <dt data-md><a data-link-type="dfn" href="#invalid" id="ref-for-invalid③⑤">invalid</a> due to an <a data-link-type="abstract-op" href="#abstract-opdef-generate-an-internal-error" id="ref-for-abstract-opdef-generate-an-internal-error⑤">internal error</a>
           <dd data-md>
            <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑧">Reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror①⓪">GPUPipelineError</a></code> with <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorinit-reason" id="ref-for-dom-gpupipelineerrorinit-reason③">reason</a></code> <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorreason-internal" id="ref-for-dom-gpupipelineerrorreason-internal②">"internal"</a></code>.</p>
-          <dt data-md><a data-link-type="dfn" href="#invalid" id="ref-for-invalid④①">invalid</a> due to an <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⓪">validation error</a>
+          <dt data-md><a data-link-type="dfn" href="#invalid" id="ref-for-invalid③⑥">invalid</a> due to an <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⓪">validation error</a>
           <dd data-md>
            <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑨">Reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror①①">GPUPipelineError</a></code> with <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorinit-reason" id="ref-for-dom-gpupipelineerrorinit-reason④">reason</a></code> <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorreason-validation" id="ref-for-dom-gpupipelineerrorreason-validation②">"validation"</a></code>.</p>
          </dl>
@@ -8478,24 +8475,24 @@ subsequent steps on <var data-timeline="content">contentTimeline</var>.</p>
     <p>Return <code>true</code> if all of the following conditions are satisfied:</p>
     <ul>
      <li data-md>
-      <p><a data-link-type="abstract-op" href="#abstract-opdef-validating-gpuprogrammablestage" id="ref-for-abstract-opdef-validating-gpuprogrammablestage①">validating GPUProgrammableStage</a>(<code class="idl"><a data-link-type="idl" href="#dom-gpushaderstage-vertex" id="ref-for-dom-gpushaderstage-vertex③">VERTEX</a></code>, <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex③">vertex</a></code>, <var>layout</var>) succeeds.</p>
+      <p><a data-link-type="abstract-op" href="#abstract-opdef-validating-gpuprogrammablestage" id="ref-for-abstract-opdef-validating-gpuprogrammablestage①">validating GPUProgrammableStage</a>(<code class="idl"><a data-link-type="idl" href="#dom-gpushaderstage-vertex" id="ref-for-dom-gpushaderstage-vertex③">VERTEX</a></code>, <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex②">vertex</a></code>, <var>layout</var>) succeeds.</p>
      <li data-md>
-      <p><a data-link-type="abstract-op" href="#abstract-opdef-validating-gpuvertexstate" id="ref-for-abstract-opdef-validating-gpuvertexstate">validating GPUVertexState</a>(<var>device</var>, <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex④">vertex</a></code>, <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex⑤">vertex</a></code>) succeeds.</p>
+      <p><a data-link-type="abstract-op" href="#abstract-opdef-validating-gpuvertexstate" id="ref-for-abstract-opdef-validating-gpuvertexstate">validating GPUVertexState</a>(<var>device</var>, <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex③">vertex</a></code>, <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex④">vertex</a></code>) succeeds.</p>
      <li data-md>
-      <p>If <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment⑤">fragment</a></code> is <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists②⑥">provided</a>:</p>
+      <p>If <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment④">fragment</a></code> is <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists②⑥">provided</a>:</p>
       <ul>
        <li data-md>
-        <p><a data-link-type="abstract-op" href="#abstract-opdef-validating-gpuprogrammablestage" id="ref-for-abstract-opdef-validating-gpuprogrammablestage②">validating GPUProgrammableStage</a>(<code class="idl"><a data-link-type="idl" href="#dom-gpushaderstage-fragment" id="ref-for-dom-gpushaderstage-fragment②">FRAGMENT</a></code>, <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment⑥">fragment</a></code>, <var>layout</var>) succeeds.</p>
+        <p><a data-link-type="abstract-op" href="#abstract-opdef-validating-gpuprogrammablestage" id="ref-for-abstract-opdef-validating-gpuprogrammablestage②">validating GPUProgrammableStage</a>(<code class="idl"><a data-link-type="idl" href="#dom-gpushaderstage-fragment" id="ref-for-dom-gpushaderstage-fragment②">FRAGMENT</a></code>, <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment⑤">fragment</a></code>, <var>layout</var>) succeeds.</p>
        <li data-md>
-        <p><a data-link-type="abstract-op" href="#abstract-opdef-validating-gpufragmentstate" id="ref-for-abstract-opdef-validating-gpufragmentstate">validating GPUFragmentState</a>(<var>device</var>, <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment⑦">fragment</a></code>) succeeds.</p>
+        <p><a data-link-type="abstract-op" href="#abstract-opdef-validating-gpufragmentstate" id="ref-for-abstract-opdef-validating-gpufragmentstate">validating GPUFragmentState</a>(<var>device</var>, <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment⑥">fragment</a></code>) succeeds.</p>
        <li data-md>
-        <p>If the <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#built-in-values-sample_mask" id="ref-for-built-in-values-sample_mask">sample_mask</a> builtin is a <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#shader-stage-outputs" id="ref-for-shader-stage-outputs">shader stage output</a> of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment⑧">fragment</a></code>:</p>
+        <p>If the <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#built-in-values-sample_mask" id="ref-for-built-in-values-sample_mask">sample_mask</a> builtin is a <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#shader-stage-outputs" id="ref-for-shader-stage-outputs">shader stage output</a> of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment⑦">fragment</a></code>:</p>
         <ul>
          <li data-md>
           <p><var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-multisample" id="ref-for-dom-gpurenderpipelinedescriptor-multisample①">multisample</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpumultisamplestate-alphatocoverageenabled" id="ref-for-dom-gpumultisamplestate-alphatocoverageenabled">alphaToCoverageEnabled</a></code> is <code>false</code>.</p>
         </ul>
        <li data-md>
-        <p>If the <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#built-in-values-frag_depth" id="ref-for-built-in-values-frag_depth">frag_depth</a> builtin is a <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#shader-stage-outputs" id="ref-for-shader-stage-outputs①">shader stage output</a> of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment⑨">fragment</a></code>:</p>
+        <p>If the <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#built-in-values-frag_depth" id="ref-for-built-in-values-frag_depth">frag_depth</a> builtin is a <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#shader-stage-outputs" id="ref-for-shader-stage-outputs①">shader stage output</a> of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment⑧">fragment</a></code>:</p>
         <ul>
          <li data-md>
           <p><var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-depthstencil" id="ref-for-dom-gpurenderpipelinedescriptor-depthstencil④">depthStencil</a></code> must be <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists②⑦">provided</a>, and <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-depthstencil" id="ref-for-dom-gpurenderpipelinedescriptor-depthstencil⑤">depthStencil</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpudepthstencilstate-format" id="ref-for-dom-gpudepthstencilstate-format①">format</a></code> must have a <a data-link-type="dfn" href="#aspect-depth" id="ref-for-aspect-depth②">depth</a> aspect.</p>
@@ -8515,18 +8512,18 @@ subsequent steps on <var data-timeline="content">contentTimeline</var>.</p>
       <p>If <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-multisample" id="ref-for-dom-gpurenderpipelinedescriptor-multisample③">multisample</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpumultisamplestate-alphatocoverageenabled" id="ref-for-dom-gpumultisamplestate-alphatocoverageenabled①">alphaToCoverageEnabled</a></code> is true:</p>
       <ol>
        <li data-md>
-        <p><var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment①⓪">fragment</a></code> must be <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists②⑨">provided</a>.</p>
+        <p><var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment⑨">fragment</a></code> must be <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists②⑨">provided</a>.</p>
        <li data-md>
-        <p><var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment①①">fragment</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpufragmentstate-targets" id="ref-for-dom-gpufragmentstate-targets③">targets</a></code>[0]
+        <p><var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment①⓪">fragment</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpufragmentstate-targets" id="ref-for-dom-gpufragmentstate-targets③">targets</a></code>[0]
 must <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain⑥">exist</a> and be non-null.</p>
        <li data-md>
-        <p><var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment①②">fragment</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpufragmentstate-targets" id="ref-for-dom-gpufragmentstate-targets④">targets</a></code>[0].<code class="idl"><a data-link-type="idl" href="#dom-gpucolortargetstate-format" id="ref-for-dom-gpucolortargetstate-format①">format</a></code> must be a <code class="idl"><a data-link-type="idl" href="#enumdef-gputextureformat" id="ref-for-enumdef-gputextureformat②⑥">GPUTextureFormat</a></code> with an alpha channel.</p>
+        <p><var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment①①">fragment</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpufragmentstate-targets" id="ref-for-dom-gpufragmentstate-targets④">targets</a></code>[0].<code class="idl"><a data-link-type="idl" href="#dom-gpucolortargetstate-format" id="ref-for-dom-gpucolortargetstate-format①">format</a></code> must be a <code class="idl"><a data-link-type="idl" href="#enumdef-gputextureformat" id="ref-for-enumdef-gputextureformat②⑥">GPUTextureFormat</a></code> with an alpha channel.</p>
       </ol>
      <li data-md>
       <p>There must exist at least one attachment, either:</p>
       <ul>
        <li data-md>
-        <p>A non-<code>null</code> value in <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment①③">fragment</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpufragmentstate-targets" id="ref-for-dom-gpufragmentstate-targets⑤">targets</a></code>, or</p>
+        <p>A non-<code>null</code> value in <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment①②">fragment</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpufragmentstate-targets" id="ref-for-dom-gpufragmentstate-targets⑤">targets</a></code>, or</p>
        <li data-md>
         <p>A <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-depthstencil" id="ref-for-dom-gpurenderpipelinedescriptor-depthstencil⑧">depthStencil</a></code>.</p>
       </ul>
@@ -8560,32 +8557,32 @@ must <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" 
       <ul>
        <li data-md>
         <p>There must be no more than <var>maxVertexShaderOutputComponents</var> scalar
-components across all user-defined outputs for <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex⑥">vertex</a></code>.
+components across all user-defined outputs for <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex⑤">vertex</a></code>.
 (For example, a <code>f32</code> output uses 1 component, and a <code>vec3&lt;f32></code> output uses 3 components.)</p>
        <li data-md>
-        <p>The <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#input-output-locations" id="ref-for-input-output-locations">location</a> of each user-defined output of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex⑦">vertex</a></code> must be
+        <p>The <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#input-output-locations" id="ref-for-input-output-locations">location</a> of each user-defined output of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex⑥">vertex</a></code> must be
 &lt; <var>device</var>.limits.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxinterstageshadervariables" id="ref-for-dom-supported-limits-maxinterstageshadervariables">maxInterStageShaderVariables</a></code>.</p>
       </ul>
      <li data-md>
-      <p>If <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment①④">fragment</a></code> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists③⓪">is provided</a>:</p>
+      <p>If <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment①③">fragment</a></code> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists③⓪">is provided</a>:</p>
       <ol>
        <li data-md>
         <p>Let <var>maxFragmentShaderInputComponents</var> be <var>device</var>.limits.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxinterstageshadercomponents" id="ref-for-dom-supported-limits-maxinterstageshadercomponents①">maxInterStageShaderComponents</a></code>.</p>
         <ol>
          <li data-md>
-          <p>If the <code>front_facing</code> <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#built-in-values" id="ref-for-built-in-values">builtin</a> is an input of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment①⑤">fragment</a></code>:</p>
+          <p>If the <code>front_facing</code> <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#built-in-values" id="ref-for-built-in-values">builtin</a> is an input of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment①④">fragment</a></code>:</p>
           <ol>
            <li data-md>
             <p>Decrement <var>maxFragmentShaderInputComponents</var> by 1.</p>
           </ol>
          <li data-md>
-          <p>If the <code>sample_index</code> <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#built-in-values" id="ref-for-built-in-values①">builtin</a> is an input of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment①⑥">fragment</a></code>:</p>
+          <p>If the <code>sample_index</code> <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#built-in-values" id="ref-for-built-in-values①">builtin</a> is an input of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment①⑤">fragment</a></code>:</p>
           <ol>
            <li data-md>
             <p>Decrement <var>maxFragmentShaderInputComponents</var> by 1.</p>
           </ol>
          <li data-md>
-          <p>If the <code>sample_mask</code> <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#built-in-values" id="ref-for-built-in-values②">builtin</a> is an input of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment①⑦">fragment</a></code>:</p>
+          <p>If the <code>sample_mask</code> <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#built-in-values" id="ref-for-built-in-values②">builtin</a> is an input of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment①⑥">fragment</a></code>:</p>
           <ol>
            <li data-md>
             <p>Decrement <var>maxFragmentShaderInputComponents</var> by 1.</p>
@@ -8596,15 +8593,15 @@ components across all user-defined outputs for <var>descriptor</var>.<code class
         <ul>
          <li data-md>
           <p>There must be no more than <var>maxFragmentShaderInputComponents</var> scalar
-components across all user-defined inputs for <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment①⑧">fragment</a></code>.</p>
+components across all user-defined inputs for <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment①⑦">fragment</a></code>.</p>
          <li data-md>
-          <p>For each user-defined input of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment①⑨">fragment</a></code> there
-must be a user-defined output of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex⑧">vertex</a></code> that <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#input-output-locations" id="ref-for-input-output-locations①">location</a>, type, and <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#interpolation" id="ref-for-interpolation">interpolation</a> of the input.</p>
+          <p>For each user-defined input of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment①⑧">fragment</a></code> there
+must be a user-defined output of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex⑦">vertex</a></code> that <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#input-output-locations" id="ref-for-input-output-locations①">location</a>, type, and <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#interpolation" id="ref-for-interpolation">interpolation</a> of the input.</p>
           <p class="note" role="note"><span class="marker">Note:</span> Vertex-only pipelines <strong>can</strong> have user-defined outputs in the vertex stage;
 their values will be discarded.</p>
         </ul>
        <li data-md>
-        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#assert" id="ref-for-assert⑨">Assert</a> that the <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#input-output-locations" id="ref-for-input-output-locations②">location</a> of each user-defined input of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment②⓪">fragment</a></code> is less
+        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#assert" id="ref-for-assert⑨">Assert</a> that the <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#input-output-locations" id="ref-for-input-output-locations②">location</a> of each user-defined input of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment①⑨">fragment</a></code> is less
 than <var>device</var>.limits.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxinterstageshadervariables" id="ref-for-dom-supported-limits-maxinterstageshadervariables①">maxInterStageShaderVariables</a></code> (resulting from the above rules).</p>
       </ol>
      <li data-md>
@@ -9607,7 +9604,7 @@ Every location must be unique within the <code class="idl"><a data-link-type="id
      <p>The offset, in bytes, from the beginning of the element to the data for the attribute.</p>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUVertexAttribute" data-dfn-type="dict-member" data-export id="dom-gpuvertexattribute-shaderlocation"><code>shaderLocation</code></dfn>, <span> of type <a data-link-type="idl-name" href="#typedefdef-gpuindex32" id="ref-for-typedefdef-gpuindex32⑤">GPUIndex32</a></span>
     <dd data-md>
-     <p>The numeric location associated with this attribute, which will correspond with a <a href="https://gpuweb.github.io/gpuweb/wgsl/#input-output-locations" id="ref-for-074d9654984418c00b82a64062e6ab49">"@location" attribute</a> declared in the <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex⑨">vertex</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuprogrammablestage-module" id="ref-for-dom-gpuprogrammablestage-module①①">module</a></code>.</p>
+     <p>The numeric location associated with this attribute, which will correspond with a <a href="https://gpuweb.github.io/gpuweb/wgsl/#input-output-locations" id="ref-for-074d9654984418c00b82a64062e6ab49">"@location" attribute</a> declared in the <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex⑧">vertex</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuprogrammablestage-module" id="ref-for-dom-gpuprogrammablestage-module⑧">module</a></code>.</p>
    </dl>
    <div class="algorithm" data-algorithm="validating GPUVertexBufferLayout">
      <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-validating-gpuvertexbufferlayout">validating GPUVertexBufferLayout</dfn>(device, descriptor, vertexStage) 
@@ -10097,7 +10094,7 @@ of the source image, increasing downward.</p>
    <h2 class="heading settled" data-level="12" id="command-buffers"><span class="secno">12. </span><span class="content">Command Buffers</span><a class="self-link" href="#command-buffers"></a></h2>
    <p>Command buffers are pre-recorded lists of <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command①">GPU commands</a> that can be submitted to a <code class="idl"><a data-link-type="idl" href="#gpuqueue" id="ref-for-gpuqueue①⓪">GPUQueue</a></code> for execution. Each <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="gpu-command">GPU command</dfn> represents a task to be performed on the GPU, such as
 setting state, drawing, copying resources, etc.</p>
-   <p>A <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer⑤">GPUCommandBuffer</a></code> can only be submitted once, at which point it becomes <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④②">invalid</a>.
+   <p>A <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer⑤">GPUCommandBuffer</a></code> can only be submitted once, at which point it becomes <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③⑦">invalid</a>.
 To reuse rendering commands across multiple submissions, use <code class="idl"><a data-link-type="idl" href="#gpurenderbundle" id="ref-for-gpurenderbundle②">GPURenderBundle</a></code>.</p>
    <h3 class="heading settled dfn-paneled idl-code" data-dfn-type="interface" data-export data-level="12.1" data-lt="GPUCommandBuffer" id="gpucommandbuffer"><span class="secno">12.1. </span><span class="content"><code>GPUCommandBuffer</code> <span id="command-buffer"></span> </span><a class="self-link" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer②④"></a></h3>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed②⑥"><c- g>Exposed</c-></a>=(<c- n>Window</c->, <c- n>DedicatedWorker</c->), <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext②⑦"><c- g>SecureContext</c-></a>]
@@ -10145,7 +10142,7 @@ It has no methods.</p>
     <dd data-md>
      <p>The encoder cannot be used, because it is locked by a child encoder: it is a <code class="idl"><a data-link-type="idl" href="#gpucommandencoder" id="ref-for-gpucommandencoder⑦">GPUCommandEncoder</a></code>, and a <code class="idl"><a data-link-type="idl" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder③">GPURenderPassEncoder</a></code> or <code class="idl"><a data-link-type="idl" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder③">GPUComputePassEncoder</a></code> is active.
 The encoder becomes "<a data-link-type="dfn" href="#encoder-state-open" id="ref-for-encoder-state-open①">open</a>" again when the pass is ended.</p>
-     <p>Any command issued in this state makes the encoder <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④③">invalid</a>.</p>
+     <p>Any command issued in this state makes the encoder <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③⑧">invalid</a>.</p>
     <dt data-md>"<dfn class="dfn-paneled" data-dfn-for="encoder state" data-dfn-type="dfn" data-noexport id="encoder-state-ended">ended</dfn>"
     <dd data-md>
      <p>The encoder has been ended and new commands can no longer be encoded.</p>
@@ -10160,7 +10157,7 @@ The encoder becomes "<a data-link-type="dfn" href="#encoder-state-open" id="ref-
       <p>Return <code>true</code>.</p>
      <dt data-md>"<a data-link-type="dfn" href="#encoder-state-locked" id="ref-for-encoder-state-locked">locked</a>"
      <dd data-md>
-      <p>Make <var>encoder</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④④">invalid</a>, and return <code>false</code>.</p>
+      <p>Make <var>encoder</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid③⑨">invalid</a>, and return <code>false</code>.</p>
      <dt data-md>"<a data-link-type="dfn" href="#encoder-state-ended" id="ref-for-encoder-state-ended">ended</a>"
      <dd data-md>
       <p><a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②②">Generate a validation error</a>, and return <code>false</code>.</p>
@@ -10272,7 +10269,7 @@ The encoder becomes "<a data-link-type="dfn" href="#encoder-state-open" id="ref-
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑥①">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②③">generate a validation error</a>, make <var>e</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④⑤">invalid</a>, and stop.</p>
+         <p>If any of the following conditions are unsatisfied <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②③">generate a validation error</a>, make <var>e</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④⓪">invalid</a>, and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -10346,11 +10343,11 @@ gpuDevice<c- p>.</c->queue<c- p>.</c->submit<c- p>([</c->commandBuffer<c- p>]);<
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state">Validate the encoder state</a> of <var>this</var>.
-If it returns false, make <var>pass</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④⑥">invalid</a> and return.</p>
+If it returns false, make <var>pass</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④①">invalid</a> and return.</p>
         <li data-md>
          <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-state-slot" id="ref-for-dom-gpucommandsmixin-state-slot①">[[state]]</a></code> to "<a data-link-type="dfn" href="#encoder-state-locked" id="ref-for-encoder-state-locked①">locked</a>".</p>
         <li data-md>
-         <p>If any of the following requirements are unmet, make <var>pass</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④⑦">invalid</a> and return.</p>
+         <p>If any of the following requirements are unmet, make <var>pass</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④②">invalid</a> and return.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -10456,11 +10453,11 @@ index in <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" hre
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state①">Validate the encoder state</a> of <var>this</var>.
-If it returns false, make <var>pass</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④⑧">invalid</a> and return.</p>
+If it returns false, make <var>pass</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④③">invalid</a> and return.</p>
         <li data-md>
          <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-state-slot" id="ref-for-dom-gpucommandsmixin-state-slot②">[[state]]</a></code> to "<a data-link-type="dfn" href="#encoder-state-locked" id="ref-for-encoder-state-locked②">locked</a>".</p>
         <li data-md>
-         <p>If any of the following requirements are unmet, make <var>pass</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④⑨">invalid</a> and return.</p>
+         <p>If any of the following requirements are unmet, make <var>pass</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④④">invalid</a> and return.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -10544,7 +10541,7 @@ index in <var>timestampWrite</var>.<code class="idl"><a data-link-type="idl" hre
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state②">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤⓪">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④⑤">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -10633,7 +10630,7 @@ beginning at <var>destinationOffset</var>.</p>
         <li data-md>
          <p>If <var>size</var> is missing, set <var>size</var> to <code>max(0, |buffer|.{{GPUBuffer/size}} - |offset|)</code>.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤①">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④⑥">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -10716,7 +10713,7 @@ beginning at <var>destinationOffset</var>.</p>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state④">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤②">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④⑦">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -10824,7 +10821,7 @@ multiple continuous <a data-link-type="dfn" href="#texture-subresources" id="ref
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state⑤">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤③">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④⑧">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -10935,7 +10932,7 @@ multiple continuous <a data-link-type="dfn" href="#texture-subresources" id="ref
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state⑥">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤④">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid④⑨">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -11030,7 +11027,7 @@ the <a data-link-type="abstract-op" href="#abstract-opdef-set-of-subresources-fo
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state⑦">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤⑤">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤⓪">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -11114,7 +11111,7 @@ the <a data-link-type="abstract-op" href="#abstract-opdef-set-of-subresources-fo
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state⑧">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤⑥">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤①">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -11223,7 +11220,7 @@ command encoder can no longer be used.</p>
           <li data-md>
            <p><a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②④">Generate a validation error</a>.</p>
           <li data-md>
-           <p>Return a new <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤⑦">invalid</a> <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer①⑧">GPUCommandBuffer</a></code>.</p>
+           <p>Return a new <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤②">invalid</a> <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer①⑧">GPUCommandBuffer</a></code>.</p>
          </ol>
         <li data-md>
          <p>Set <var>commandBuffer</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandbuffer-command_list-slot" id="ref-for-dom-gpucommandbuffer-command_list-slot">[[command_list]]</a></code> to <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot③">[[commands]]</a></code>.</p>
@@ -11292,7 +11289,7 @@ It must only be included by interfaces which also include those mixins.</p>
         <li data-md>
          <p>Let <var>dynamicOffsetCount</var> be 0 if <code>bindGroup</code> is <code>null</code>, or <var>bindGroup</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindgroup-layout-slot" id="ref-for-dom-gpubindgroup-layout-slot①">[[layout]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindgrouplayout-dynamicoffsetcount-slot" id="ref-for-dom-gpubindgrouplayout-dynamicoffsetcount-slot①">[[dynamicOffsetCount]]</a></code> if not.</p>
         <li data-md>
-         <p>If any of the following requirements are unmet, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤⑧">invalid</a> and stop.</p>
+         <p>If any of the following requirements are unmet, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤③">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -11312,7 +11309,7 @@ It must only be included by interfaces which also include those mixins.</p>
          <p>Otherwise:</p>
          <ol>
           <li data-md>
-           <p>If any of the following requirements are unmet, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤⑨">invalid</a> and stop.</p>
+           <p>If any of the following requirements are unmet, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤④">invalid</a> and stop.</p>
            <div class="validusage">
             <ul>
              <li data-md>
@@ -11642,7 +11639,7 @@ It must only be included by interfaces which also include those mixins.</p>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state①①">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following requirements are unmet, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⓪">invalid</a>, and stop.</p>
+         <p>If any of the following requirements are unmet, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤⑤">invalid</a>, and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -11784,7 +11781,7 @@ It must only be included by interfaces which also include those mixins.</p>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state①③">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥①">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤⑥">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -11855,7 +11852,7 @@ See <a href="#computing-operations">§ 23.2 Computing</a> for the detailed spe
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state①④">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥②">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤⑦">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -11933,7 +11930,7 @@ dispatchIndirectParameters<c- p>[</c-><c- mf>2</c-><c- p>]</c-> <c- o>=</c-> wor
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state①⑤">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥③">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤⑧">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -12015,7 +12012,7 @@ called the compute pass encoder can no longer be used.</p>
         <li data-md>
          <p>Set <var>parentEncoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-state-slot" id="ref-for-dom-gpucommandsmixin-state-slot⑧">[[state]]</a></code> to "<a data-link-type="dfn" href="#encoder-state-open" id="ref-for-encoder-state-open⑤">open</a>".</p>
         <li data-md>
-         <p>If any of the following requirements are unmet, make <var>parentEncoder</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥④">invalid</a> and stop.</p>
+         <p>If any of the following requirements are unmet, make <var>parentEncoder</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑤⑨">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -12590,10 +12587,10 @@ or <code>null</code> if not <a data-link-type="dfn" href="https://infra.spec.wha
         <p>Set <var>layout</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasslayout-depthstencilformat" id="ref-for-dom-gpurenderpasslayout-depthstencilformat②">depthStencilFormat</a></code> to <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-depthstencil" id="ref-for-dom-gpurenderpipelinedescriptor-depthstencil①⓪">depthStencil</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpudepthstencilstate-format" id="ref-for-dom-gpudepthstencilstate-format⑥">format</a></code>.</p>
       </ol>
      <li data-md>
-      <p>If <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment②①">fragment</a></code> is <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑤⓪">provided</a>:</p>
+      <p>If <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment②⓪">fragment</a></code> is <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑤⓪">provided</a>:</p>
       <ol>
        <li data-md>
-        <p>For each <var>colorTarget</var> in <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment②②">fragment</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpufragmentstate-targets" id="ref-for-dom-gpufragmentstate-targets⑨">targets</a></code>:</p>
+        <p>For each <var>colorTarget</var> in <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment②①">fragment</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpufragmentstate-targets" id="ref-for-dom-gpufragmentstate-targets⑨">targets</a></code>:</p>
         <ol>
          <li data-md>
           <p>Append <var>colorTarget</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucolortargetstate-format" id="ref-for-dom-gpucolortargetstate-format⑥">format</a></code> to <var>layout</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasslayout-colorformats" id="ref-for-dom-gpurenderpasslayout-colorformats④">colorFormats</a></code> if <var>colorTarget</var> is not <code>null</code>, or append <code>null</code> otherwise.</p>
@@ -12641,7 +12638,7 @@ called the render pass encoder can no longer be used.</p>
         <li data-md>
          <p>Set <var>parentEncoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-state-slot" id="ref-for-dom-gpucommandsmixin-state-slot①②">[[state]]</a></code> to "<a data-link-type="dfn" href="#encoder-state-open" id="ref-for-encoder-state-open⑦">open</a>".</p>
         <li data-md>
-         <p>If any of the following requirements are unmet, make <var>parentEncoder</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑤">invalid</a> and stop.</p>
+         <p>If any of the following requirements are unmet, make <var>parentEncoder</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⓪">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -12794,7 +12791,7 @@ empty.</p>
         <li data-md>
          <p>Let <var>pipelineTargetsLayout</var> be <a data-link-type="abstract-op" href="#abstract-opdef-derive-render-targets-layout-from-pipeline" id="ref-for-abstract-opdef-derive-render-targets-layout-from-pipeline">derive render targets layout from pipeline</a>(<var>pipeline</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipeline-descriptor-slot" id="ref-for-dom-gpurenderpipeline-descriptor-slot①">[[descriptor]]</a></code>).</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑥">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥①">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -12862,7 +12859,7 @@ empty.</p>
         <li data-md>
          <p>If <var>size</var> is missing, set <var>size</var> to max(0, <var>buffer</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-size" id="ref-for-dom-gpubuffer-size①④">size</a></code> - <var>offset</var>).</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑦">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥②">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -12940,7 +12937,7 @@ empty.</p>
         <li data-md>
          <p>If <var>size</var> is missing, set <var>size</var> to max(0, <var>bufferSize</var> - <var>offset</var>).</p>
         <li data-md>
-         <p>If any of the following requirements are unmet, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑧">invalid</a> and stop.</p>
+         <p>If any of the following requirements are unmet, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥③">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -12962,7 +12959,7 @@ empty.</p>
          <p>Otherwise:</p>
          <ol>
           <li data-md>
-           <p>If any of the following requirements are unmet, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑨">invalid</a> and stop.</p>
+           <p>If any of the following requirements are unmet, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥④">invalid</a> and stop.</p>
            <div class="validusage">
             <ul>
              <li data-md>
@@ -13030,13 +13027,13 @@ See <a href="#rendering-operations">§ 23.3 Rendering</a> for the detailed spe
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state①⑨">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑦⓪">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑤">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
             <p>It is <a data-link-type="abstract-op" href="#abstract-opdef-valid-to-draw" id="ref-for-abstract-opdef-valid-to-draw①">valid to draw</a> with <var>this</var>.</p>
            <li data-md>
-            <p>Let <var>buffers</var> be <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-pipeline-slot" id="ref-for-dom-gpurendercommandsmixin-pipeline-slot①">[[pipeline]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipeline-descriptor-slot" id="ref-for-dom-gpurenderpipeline-descriptor-slot②">[[descriptor]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex①⓪">vertex</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuvertexstate-buffers" id="ref-for-dom-gpuvertexstate-buffers⑧">buffers</a></code>.</p>
+            <p>Let <var>buffers</var> be <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-pipeline-slot" id="ref-for-dom-gpurendercommandsmixin-pipeline-slot①">[[pipeline]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipeline-descriptor-slot" id="ref-for-dom-gpurenderpipeline-descriptor-slot②">[[descriptor]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex⑨">vertex</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuvertexstate-buffers" id="ref-for-dom-gpuvertexstate-buffers⑧">buffers</a></code>.</p>
            <li data-md>
             <p>For each <code class="idl"><a data-link-type="idl" href="#typedefdef-gpuindex32" id="ref-for-typedefdef-gpuindex32①⑥">GPUIndex32</a></code> <var>slot</var> from <code>0</code> to <var>buffers</var>.length (non-inclusive):</p>
             <ul>
@@ -13141,7 +13138,7 @@ See <a href="#rendering-operations">§ 23.3 Rendering</a> for the detailed spe
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state②⓪">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑦①">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑥">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -13149,7 +13146,7 @@ See <a href="#rendering-operations">§ 23.3 Rendering</a> for the detailed spe
            <li data-md>
             <p><var>firstIndex</var> + <var>indexCount</var> ≤ <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-index_buffer_size-slot" id="ref-for-dom-gpurendercommandsmixin-index_buffer_size-slot①">[[index_buffer_size]]</a></code> ÷ <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-index_format-slot" id="ref-for-dom-gpurendercommandsmixin-index_format-slot①">[[index_format]]</a></code>'s byte size;</p>
            <li data-md>
-            <p>Let <var>buffers</var> be <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-pipeline-slot" id="ref-for-dom-gpurendercommandsmixin-pipeline-slot②">[[pipeline]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipeline-descriptor-slot" id="ref-for-dom-gpurenderpipeline-descriptor-slot③">[[descriptor]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex①①">vertex</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuvertexstate-buffers" id="ref-for-dom-gpuvertexstate-buffers⑨">buffers</a></code>.</p>
+            <p>Let <var>buffers</var> be <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-pipeline-slot" id="ref-for-dom-gpurendercommandsmixin-pipeline-slot②">[[pipeline]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipeline-descriptor-slot" id="ref-for-dom-gpurenderpipeline-descriptor-slot③">[[descriptor]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex①⓪">vertex</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuvertexstate-buffers" id="ref-for-dom-gpuvertexstate-buffers⑨">buffers</a></code>.</p>
            <li data-md>
             <p>For each <code class="idl"><a data-link-type="idl" href="#typedefdef-gpuindex32" id="ref-for-typedefdef-gpuindex32①⑦">GPUIndex32</a></code> <var>slot</var> from <code>0</code> to <var>buffers</var>.length (non-inclusive):</p>
             <ul>
@@ -13243,7 +13240,7 @@ drawIndirectParameters<c- p>[</c-><c- mf>3</c-><c- p>]</c-> <c- o>=</c-> firstIn
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state②①">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑦②">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑦">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -13337,7 +13334,7 @@ drawIndexedIndirectParameters<c- p>[</c-><c- mf>4</c-><c- p>]</c-> <c- o>=</c-> 
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state②②">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑦③">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑧">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -13400,10 +13397,10 @@ must be <code>true</code>.</p>
         <li data-md>
          <p>Let <var>pipelineDescriptor</var> be <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-pipeline-slot" id="ref-for-dom-gpurendercommandsmixin-pipeline-slot④">[[pipeline]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipeline-descriptor-slot" id="ref-for-dom-gpurenderpipeline-descriptor-slot④">[[descriptor]]</a></code>.</p>
         <li data-md>
-         <p>For each <code class="idl"><a data-link-type="idl" href="#typedefdef-gpuindex32" id="ref-for-typedefdef-gpuindex32①⑧">GPUIndex32</a></code> <var>slot</var> <code>0</code> to <var>pipelineDescriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex①②">vertex</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuvertexstate-buffers" id="ref-for-dom-gpuvertexstate-buffers①⓪">buffers</a></code>.length:</p>
+         <p>For each <code class="idl"><a data-link-type="idl" href="#typedefdef-gpuindex32" id="ref-for-typedefdef-gpuindex32①⑧">GPUIndex32</a></code> <var>slot</var> <code>0</code> to <var>pipelineDescriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex①①">vertex</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuvertexstate-buffers" id="ref-for-dom-gpuvertexstate-buffers①⓪">buffers</a></code>.length:</p>
          <ul>
           <li data-md>
-           <p>If <var>pipelineDescriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex①③">vertex</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuvertexstate-buffers" id="ref-for-dom-gpuvertexstate-buffers①①">buffers</a></code>[<var>slot</var>] is not <code>null</code>, <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-vertex_buffers-slot" id="ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot②">[[vertex_buffers]]</a></code> must <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑤①">contain</a> <var>slot</var>.</p>
+           <p>If <var>pipelineDescriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex①②">vertex</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuvertexstate-buffers" id="ref-for-dom-gpuvertexstate-buffers①①">buffers</a></code>[<var>slot</var>] is not <code>null</code>, <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-vertex_buffers-slot" id="ref-for-dom-gpurendercommandsmixin-vertex_buffers-slot②">[[vertex_buffers]]</a></code> must <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑤①">contain</a> <var>slot</var>.</p>
          </ul>
         <li data-md>
          <p>Validate <code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxbindgroupsplusvertexbuffers" id="ref-for-dom-supported-limits-maxbindgroupsplusvertexbuffers③">maxBindGroupsPlusVertexBuffers</a></code>:</p>
@@ -13520,7 +13517,7 @@ coordinates to viewport coordinates.</p>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state②③">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑦④">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥⑨">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -13614,7 +13611,7 @@ rectangle will be discarded.</p>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state②④">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑦⑤">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑦⓪">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -13773,7 +13770,7 @@ the <code class="idl"><a data-link-type="idl" href="#dom-gpustenciloperation-rep
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state②⑦">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑦⑥">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑦①">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -13818,7 +13815,7 @@ the <code class="idl"><a data-link-type="idl" href="#dom-gpustenciloperation-rep
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state②⑧">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑦⑦">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑦②">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -13889,7 +13886,7 @@ This occurs even if zero <code class="idl"><a data-link-type="idl" href="#gpuren
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state②⑨">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑦⑧">invalid</a> and stop.</p>
+         <p>If any of the following conditions are unsatisfied, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑦③">invalid</a> and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -14024,7 +14021,7 @@ Also note, no mutable <var>passState</var> state is visible to render bundles.</
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②③">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⑦">generate a validation error</a>, make <var>e</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑦⑨">invalid</a>, and stop.</p>
+         <p>If any of the following conditions are unsatisfied <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⑦">generate a validation error</a>, make <var>e</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑦④">invalid</a>, and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -14146,7 +14143,7 @@ must be ≤ <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom
           <li data-md>
            <p><a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⑧">Generate a validation error</a>.</p>
           <li data-md>
-           <p>Return a new <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑧⓪">invalid</a> <code class="idl"><a data-link-type="idl" href="#gpurenderbundle" id="ref-for-gpurenderbundle①⑥">GPURenderBundle</a></code>.</p>
+           <p>Return a new <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑦⑤">invalid</a> <code class="idl"><a data-link-type="idl" href="#gpurenderbundle" id="ref-for-gpurenderbundle①⑥">GPURenderBundle</a></code>.</p>
          </ol>
         <li data-md>
          <p>Set <var>renderBundle</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderbundle-command_list-slot" id="ref-for-dom-gpurenderbundle-command_list-slot①">[[command_list]]</a></code> to <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot①①">[[commands]]</a></code>.</p>
@@ -14611,7 +14608,7 @@ it is also used by <code class="idl"><a data-link-type="idl" href="#dom-gpurende
          <p>For each <var>commandBuffer</var> in <var>commandBuffers</var>:</p>
          <ol>
           <li data-md>
-           <p>Make <var>commandBuffer</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑧①">invalid</a>.</p>
+           <p>Make <var>commandBuffer</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑦⑥">invalid</a>.</p>
          </ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline⑤⑨">Queue timeline</a> of <var>this</var>:</p>
@@ -14775,7 +14772,7 @@ but <code class="idl"><a data-link-type="idl" href="#timestamp-query" id="ref-fo
        <ol>
         <li data-md>
          <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error③③">generate a validation error</a>,
-make <var>q</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑧②">invalid</a>, and stop.</p>
+make <var>q</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑦⑦">invalid</a>, and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -15079,7 +15076,7 @@ the canvas is resized.</p>
            <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-currenttexture-slot" id="ref-for-dom-gpucanvascontext-currenttexture-slot⑤">[[currentTexture]]</a></code> to the result of calling <var>device</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpudevice-createtexture" id="ref-for-dom-gpudevice-createtexture④">createTexture()</a></code> with <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-texturedescriptor-slot" id="ref-for-dom-gpucanvascontext-texturedescriptor-slot③">[[textureDescriptor]]</a></code>,
 except with the <code class="idl"><a data-link-type="idl" href="#gputexture" id="ref-for-gputexture④②">GPUTexture</a></code>'s underlying storage pointing to <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-drawingbuffer-slot" id="ref-for-dom-gpucanvascontext-drawingbuffer-slot②">[[drawingBuffer]]</a></code>.</p>
            <p class="note" role="note"><span class="marker">Note:</span> If the texture can’t be created (e.g. due to validation failure or out-of-memory),
-this generates and error and returns an <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑧③">invalid</a> <code class="idl"><a data-link-type="idl" href="#gputexture" id="ref-for-gputexture④③">GPUTexture</a></code>.
+this generates and error and returns an <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑦⑧">invalid</a> <code class="idl"><a data-link-type="idl" href="#gputexture" id="ref-for-gputexture④③">GPUTexture</a></code>.
 Some validation here is redundant with that done in <code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-configure" id="ref-for-dom-gpucanvascontext-configure⑥">configure()</a></code>.
 Implementations <strong>must not</strong> skip this redundant validation.</p>
          </ol>
@@ -15583,7 +15580,7 @@ of WebGPU calls, typically for debugging purposes or to make an operation more f
       <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①④⑤">Device timeline</a> steps: 
      <ol>
       <li data-md>
-       <p>If <var>device</var> is <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑧④">lost</a>, return.</p>
+       <p>If <var>device</var> is <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑦⑨">lost</a>, return.</p>
        <p class="note" role="note"><span class="marker">Note:</span> No errors are generated after device loss. See <a href="#errors-and-debugging">§ 22 Errors &amp; Debugging</a>.</p>
       <li data-md>
        <p>Let <var>scope</var> be the <a data-link-type="abstract-op" href="#abstract-opdef-current-error-scope" id="ref-for-abstract-opdef-current-error-scope">current error scope</a> for <var>error</var> and <var>device</var>.</p>
@@ -15687,7 +15684,7 @@ of WebGPU calls, typically for debugging purposes or to make an operation more f
         <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①④⑨">Device timeline</a> <var>check steps</var>: 
        <ol>
         <li data-md>
-         <p>If <var>this</var> is <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑧⑤">lost</a>, issue the following steps on <var data-timeline="content">contentTimeline</var> and return:</p>
+         <p>If <var>this</var> is <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑧⓪">lost</a>, issue the following steps on <var data-timeline="content">contentTimeline</var> and return:</p>
          <div data-timeline="content">
            <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①⓪⑤">Content timeline</a> steps: 
           <ol>
@@ -15720,7 +15717,7 @@ or <code>null</code> if there are none.</p>
          <p>For any two errors E1 and E2 in the list, if E2 was caused by E1, E2 <strong>should
 not</strong> be the one selected.</p>
          <p class="note" role="note"><span class="marker">Note:</span> For example, if E1 comes from <code>t</code> = <code class="idl"><a data-link-type="idl" href="#dom-gpudevice-createtexture" id="ref-for-dom-gpudevice-createtexture⑤">createTexture()</a></code>, and
-E2 comes from <code>t</code>.<code class="idl"><a data-link-type="idl" href="#dom-gputexture-createview" id="ref-for-dom-gputexture-createview⑧">createView()</a></code> because <code>t</code> was <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑧⑥">invalid</a>,
+E2 comes from <code>t</code>.<code class="idl"><a data-link-type="idl" href="#dom-gputexture-createview" id="ref-for-dom-gputexture-createview⑧">createView()</a></code> because <code>t</code> was <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑧①">invalid</a>,
 E1 should be be preferred since it will be easier for a developer to understand
 what went wrong.
 Since both of these are <code class="idl"><a data-link-type="idl" href="#gpuvalidationerror" id="ref-for-gpuvalidationerror④">GPUValidationError</a></code>s, the only difference will be in
@@ -15879,7 +15876,7 @@ blocks in hardware.</p>
       <p>Let <var>vertexList</var> be the result of <a data-link-type="abstract-op" href="#abstract-opdef-resolve-indices" id="ref-for-abstract-opdef-resolve-indices">resolve indices</a>(<var>drawCall</var>, <var>state</var>).</p>
      <li data-md>
       <p><strong>Process vertices</strong>. See <a href="#vertex-processing">§ 23.3.2 Vertex Processing</a>.</p>
-      <p>Execute <a data-link-type="abstract-op" href="#abstract-opdef-process-vertices" id="ref-for-abstract-opdef-process-vertices">process vertices</a>(<var>vertexList</var>, <var>drawCall</var>, <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex①④">vertex</a></code>, <var>state</var>).</p>
+      <p>Execute <a data-link-type="abstract-op" href="#abstract-opdef-process-vertices" id="ref-for-abstract-opdef-process-vertices">process vertices</a>(<var>vertexList</var>, <var>drawCall</var>, <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-vertex" id="ref-for-dom-gpurenderpipelinedescriptor-vertex①③">vertex</a></code>, <var>state</var>).</p>
      <li data-md>
       <p><strong>Assemble primitives</strong>. See <a href="#primitive-assembly">§ 23.3.3 Primitive Assembly</a>.</p>
       <p>Execute <a data-link-type="abstract-op" href="#abstract-opdef-assemble-primitives" id="ref-for-abstract-opdef-assemble-primitives">assemble primitives</a>(<var>vertexList</var>, <var>drawCall</var>, <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-primitive" id="ref-for-dom-gpurenderpipelinedescriptor-primitive⑥">primitive</a></code>).</p>
@@ -15891,7 +15888,7 @@ blocks in hardware.</p>
       <p>Let <var>rasterizationList</var> be the result of <a data-link-type="abstract-op" href="#abstract-opdef-rasterize" id="ref-for-abstract-opdef-rasterize">rasterize</a>(<var>primitiveList</var>, <var>state</var>).</p>
      <li data-md>
       <p><strong>Process fragments</strong>. See <a href="#fragment-processing">§ 23.3.6 Fragment Processing</a>.</p>
-      <p>Gather a list of <var>fragments</var>, resulting from executing <a data-link-type="abstract-op" href="#abstract-opdef-process-fragment" id="ref-for-abstract-opdef-process-fragment">process fragment</a>(<var>rasterPoint</var>, <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment②③">fragment</a></code>, <var>state</var>)
+      <p>Gather a list of <var>fragments</var>, resulting from executing <a data-link-type="abstract-op" href="#abstract-opdef-process-fragment" id="ref-for-abstract-opdef-process-fragment">process fragment</a>(<var>rasterPoint</var>, <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-fragment" id="ref-for-dom-gpurenderpipelinedescriptor-fragment②②">fragment</a></code>, <var>state</var>)
 for each <var>rasterPoint</var> in <var>rasterizationList</var>.</p>
      <li data-md>
       <p><strong>Process depth/stencil</strong>.</p>
@@ -20741,10 +20738,8 @@ for (const dataLink of dataLinks) {
   <aside aria-labelledby="infopaneltitle-for-245412acdca1a2bf62521b2e65da0981" class="dfn-panel" data-for="245412acdca1a2bf62521b2e65da0981" id="infopanel-for-245412acdca1a2bf62521b2e65da0981">
    <span id="infopaneltitle-for-245412acdca1a2bf62521b2e65da0981" style="display:none">Info about the 'shader-creation error' external reference.</span><a href="https://gpuweb.github.io/gpuweb/wgsl/#shader-creation-error">https://gpuweb.github.io/gpuweb/wgsl/#shader-creation-error</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-shader-creation-error">9.1.1. Shader Module Creation</a> <a href="#ref-for-shader-creation-error①">(2)</a>
-    <li><a href="#ref-for-shader-creation-error②">9.1.2. Shader Module Compilation Information</a> <a href="#ref-for-shader-creation-error③">(2)</a>
-    <li><a href="#ref-for-shader-creation-error④">10.2.1. Compute Pipeline Creation</a>
-    <li><a href="#ref-for-shader-creation-error⑤">10.3.1. Render Pipeline Creation</a>
+    <li><a href="#ref-for-shader-creation-error">9.1.1. Shader Module Creation</a>
+    <li><a href="#ref-for-shader-creation-error①">9.1.2. Shader Module Compilation Information</a> <a href="#ref-for-shader-creation-error②">(2)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-ecb859a122693155172e5cbac7080e23" class="dfn-panel" data-for="ecb859a122693155172e5cbac7080e23" id="infopanel-for-ecb859a122693155172e5cbac7080e23">
@@ -20756,9 +20751,9 @@ for (const dataLink of dataLinks) {
   <aside aria-labelledby="infopaneltitle-for-ffe479370a0ecc10406ee44e011b2232" class="dfn-panel" data-for="ffe479370a0ecc10406ee44e011b2232" id="infopanel-for-ffe479370a0ecc10406ee44e011b2232">
    <span id="infopaneltitle-for-ffe479370a0ecc10406ee44e011b2232" style="display:none">Info about the 'uncategorized error' external reference.</span><a href="https://gpuweb.github.io/gpuweb/wgsl/#uncategorized-error">https://gpuweb.github.io/gpuweb/wgsl/#uncategorized-error</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-uncategorized-error">9.1.1. Shader Module Creation</a> <a href="#ref-for-uncategorized-error①">(2)</a>
-    <li><a href="#ref-for-uncategorized-error②">10.2.1. Compute Pipeline Creation</a> <a href="#ref-for-uncategorized-error③">(2)</a>
-    <li><a href="#ref-for-uncategorized-error④">10.3.1. Render Pipeline Creation</a> <a href="#ref-for-uncategorized-error⑤">(2)</a>
+    <li><a href="#ref-for-uncategorized-error">9.1.1. Shader Module Creation</a>
+    <li><a href="#ref-for-uncategorized-error①">10.2.1. Compute Pipeline Creation</a> <a href="#ref-for-uncategorized-error②">(2)</a>
+    <li><a href="#ref-for-uncategorized-error③">10.3.1. Render Pipeline Creation</a> <a href="#ref-for-uncategorized-error④">(2)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-474c73cf30cc2911d35066ab6ead86c8" class="dfn-panel" data-for="474c73cf30cc2911d35066ab6ead86c8" id="infopanel-for-474c73cf30cc2911d35066ab6ead86c8">
@@ -22610,33 +22605,33 @@ reference specific GPU commands (like dispatch) yet. <a class="issue-return" hre
     <li><a href="#ref-for-invalid②②">8.1.1. Bind Group Layout Creation</a>
     <li><a href="#ref-for-invalid②③">8.2.1. Bind Group Creation</a>
     <li><a href="#ref-for-invalid②④">8.3.1. Pipeline Layout Creation</a>
-    <li><a href="#ref-for-invalid②⑤">9.1.1. Shader Module Creation</a> <a href="#ref-for-invalid②⑥">(2)</a>
-    <li><a href="#ref-for-invalid②⑦">10.1. Base pipelines</a>
-    <li><a href="#ref-for-invalid②⑧">10.2.1. Compute Pipeline Creation</a> <a href="#ref-for-invalid②⑨">(2)</a> <a href="#ref-for-invalid③⓪">(3)</a> <a href="#ref-for-invalid③①">(4)</a> <a href="#ref-for-invalid③②">(5)</a> <a href="#ref-for-invalid③③">(6)</a> <a href="#ref-for-invalid③④">(7)</a>
-    <li><a href="#ref-for-invalid③⑤">10.3.1. Render Pipeline Creation</a> <a href="#ref-for-invalid③⑥">(2)</a> <a href="#ref-for-invalid③⑦">(3)</a> <a href="#ref-for-invalid③⑧">(4)</a> <a href="#ref-for-invalid③⑨">(5)</a> <a href="#ref-for-invalid④⓪">(6)</a> <a href="#ref-for-invalid④①">(7)</a>
-    <li><a href="#ref-for-invalid④②">12. Command Buffers</a>
-    <li><a href="#ref-for-invalid④③">13.1. GPUCommandsMixin </a> <a href="#ref-for-invalid④④">(2)</a>
-    <li><a href="#ref-for-invalid④⑤">13.2.1. Command Encoder Creation</a>
-    <li><a href="#ref-for-invalid④⑥">13.3. Pass Encoding</a> <a href="#ref-for-invalid④⑦">(2)</a> <a href="#ref-for-invalid④⑧">(3)</a> <a href="#ref-for-invalid④⑨">(4)</a>
-    <li><a href="#ref-for-invalid⑤⓪">13.4. Buffer Copy Commands</a> <a href="#ref-for-invalid⑤①">(2)</a>
-    <li><a href="#ref-for-invalid⑤②">13.5. Image Copy Commands</a> <a href="#ref-for-invalid⑤③">(2)</a> <a href="#ref-for-invalid⑤④">(3)</a>
-    <li><a href="#ref-for-invalid⑤⑤">13.6. Queries</a> <a href="#ref-for-invalid⑤⑥">(2)</a>
-    <li><a href="#ref-for-invalid⑤⑦">13.7. Finalization</a>
-    <li><a href="#ref-for-invalid⑤⑧">14.1. Bind Groups</a> <a href="#ref-for-invalid⑤⑨">(2)</a>
-    <li><a href="#ref-for-invalid⑥⓪">15. Debug Markers</a>
-    <li><a href="#ref-for-invalid⑥①">16.1.2. Dispatch</a> <a href="#ref-for-invalid⑥②">(2)</a> <a href="#ref-for-invalid⑥③">(3)</a>
-    <li><a href="#ref-for-invalid⑥④">16.1.3. Finalization</a>
-    <li><a href="#ref-for-invalid⑥⑤">17.1.2. Finalization</a>
-    <li><a href="#ref-for-invalid⑥⑥">17.2.1. Drawing</a> <a href="#ref-for-invalid⑥⑦">(2)</a> <a href="#ref-for-invalid⑥⑧">(3)</a> <a href="#ref-for-invalid⑥⑨">(4)</a> <a href="#ref-for-invalid⑦⓪">(5)</a> <a href="#ref-for-invalid⑦①">(6)</a> <a href="#ref-for-invalid⑦②">(7)</a> <a href="#ref-for-invalid⑦③">(8)</a>
-    <li><a href="#ref-for-invalid⑦④">17.2.2. Rasterization state</a> <a href="#ref-for-invalid⑦⑤">(2)</a>
-    <li><a href="#ref-for-invalid⑦⑥">17.2.3. Queries</a> <a href="#ref-for-invalid⑦⑦">(2)</a>
-    <li><a href="#ref-for-invalid⑦⑧">17.2.4. Bundles</a>
-    <li><a href="#ref-for-invalid⑦⑨">18.1.1. Render Bundle Creation</a>
-    <li><a href="#ref-for-invalid⑧⓪">18.1.3. Finalization</a>
-    <li><a href="#ref-for-invalid⑧①">19.2. GPUQueue </a>
-    <li><a href="#ref-for-invalid⑧②">20.1.1. QuerySet Creation</a>
-    <li><a href="#ref-for-invalid⑧③">21.2. GPUCanvasContext</a>
-    <li><a href="#ref-for-invalid⑧④">22.3. Error Scopes</a> <a href="#ref-for-invalid⑧⑤">(2)</a> <a href="#ref-for-invalid⑧⑥">(3)</a>
+    <li><a href="#ref-for-invalid②⑤">9.1.1. Shader Module Creation</a>
+    <li><a href="#ref-for-invalid②⑥">10.1. Base pipelines</a>
+    <li><a href="#ref-for-invalid②⑦">10.2.1. Compute Pipeline Creation</a> <a href="#ref-for-invalid②⑧">(2)</a> <a href="#ref-for-invalid②⑨">(3)</a> <a href="#ref-for-invalid③⓪">(4)</a> <a href="#ref-for-invalid③①">(5)</a>
+    <li><a href="#ref-for-invalid③②">10.3.1. Render Pipeline Creation</a> <a href="#ref-for-invalid③③">(2)</a> <a href="#ref-for-invalid③④">(3)</a> <a href="#ref-for-invalid③⑤">(4)</a> <a href="#ref-for-invalid③⑥">(5)</a>
+    <li><a href="#ref-for-invalid③⑦">12. Command Buffers</a>
+    <li><a href="#ref-for-invalid③⑧">13.1. GPUCommandsMixin </a> <a href="#ref-for-invalid③⑨">(2)</a>
+    <li><a href="#ref-for-invalid④⓪">13.2.1. Command Encoder Creation</a>
+    <li><a href="#ref-for-invalid④①">13.3. Pass Encoding</a> <a href="#ref-for-invalid④②">(2)</a> <a href="#ref-for-invalid④③">(3)</a> <a href="#ref-for-invalid④④">(4)</a>
+    <li><a href="#ref-for-invalid④⑤">13.4. Buffer Copy Commands</a> <a href="#ref-for-invalid④⑥">(2)</a>
+    <li><a href="#ref-for-invalid④⑦">13.5. Image Copy Commands</a> <a href="#ref-for-invalid④⑧">(2)</a> <a href="#ref-for-invalid④⑨">(3)</a>
+    <li><a href="#ref-for-invalid⑤⓪">13.6. Queries</a> <a href="#ref-for-invalid⑤①">(2)</a>
+    <li><a href="#ref-for-invalid⑤②">13.7. Finalization</a>
+    <li><a href="#ref-for-invalid⑤③">14.1. Bind Groups</a> <a href="#ref-for-invalid⑤④">(2)</a>
+    <li><a href="#ref-for-invalid⑤⑤">15. Debug Markers</a>
+    <li><a href="#ref-for-invalid⑤⑥">16.1.2. Dispatch</a> <a href="#ref-for-invalid⑤⑦">(2)</a> <a href="#ref-for-invalid⑤⑧">(3)</a>
+    <li><a href="#ref-for-invalid⑤⑨">16.1.3. Finalization</a>
+    <li><a href="#ref-for-invalid⑥⓪">17.1.2. Finalization</a>
+    <li><a href="#ref-for-invalid⑥①">17.2.1. Drawing</a> <a href="#ref-for-invalid⑥②">(2)</a> <a href="#ref-for-invalid⑥③">(3)</a> <a href="#ref-for-invalid⑥④">(4)</a> <a href="#ref-for-invalid⑥⑤">(5)</a> <a href="#ref-for-invalid⑥⑥">(6)</a> <a href="#ref-for-invalid⑥⑦">(7)</a> <a href="#ref-for-invalid⑥⑧">(8)</a>
+    <li><a href="#ref-for-invalid⑥⑨">17.2.2. Rasterization state</a> <a href="#ref-for-invalid⑦⓪">(2)</a>
+    <li><a href="#ref-for-invalid⑦①">17.2.3. Queries</a> <a href="#ref-for-invalid⑦②">(2)</a>
+    <li><a href="#ref-for-invalid⑦③">17.2.4. Bundles</a>
+    <li><a href="#ref-for-invalid⑦④">18.1.1. Render Bundle Creation</a>
+    <li><a href="#ref-for-invalid⑦⑤">18.1.3. Finalization</a>
+    <li><a href="#ref-for-invalid⑦⑥">19.2. GPUQueue </a>
+    <li><a href="#ref-for-invalid⑦⑦">20.1.1. QuerySet Creation</a>
+    <li><a href="#ref-for-invalid⑦⑧">21.2. GPUCanvasContext</a>
+    <li><a href="#ref-for-invalid⑦⑨">22.3. Error Scopes</a> <a href="#ref-for-invalid⑧⓪">(2)</a> <a href="#ref-for-invalid⑧①">(3)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-abstract-opdef-valid-to-use-with" class="dfn-panel" data-for="abstract-opdef-valid-to-use-with" id="infopanel-for-abstract-opdef-valid-to-use-with">
@@ -27083,9 +27078,7 @@ reference specific GPU commands (like dispatch) yet. <a class="issue-return" hre
    <ul>
     <li><a href="#ref-for-dom-gpuprogrammablestage-module">10.1.1. Default pipeline layout</a>
     <li><a href="#ref-for-dom-gpuprogrammablestage-module①">10.1.2. GPUProgrammableStage </a> <a href="#ref-for-dom-gpuprogrammablestage-module②">(2)</a> <a href="#ref-for-dom-gpuprogrammablestage-module③">(3)</a> <a href="#ref-for-dom-gpuprogrammablestage-module④">(4)</a> <a href="#ref-for-dom-gpuprogrammablestage-module⑤">(5)</a> <a href="#ref-for-dom-gpuprogrammablestage-module⑥">(6)</a> <a href="#ref-for-dom-gpuprogrammablestage-module⑦">(7)</a>
-    <li><a href="#ref-for-dom-gpuprogrammablestage-module⑧">10.2.1. Compute Pipeline Creation</a>
-    <li><a href="#ref-for-dom-gpuprogrammablestage-module⑨">10.3.1. Render Pipeline Creation</a> <a href="#ref-for-dom-gpuprogrammablestage-module①⓪">(2)</a>
-    <li><a href="#ref-for-dom-gpuprogrammablestage-module①①">10.3.7.1. Vertex Formats</a>
+    <li><a href="#ref-for-dom-gpuprogrammablestage-module⑧">10.3.7.1. Vertex Formats</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-dom-gpuprogrammablestage-entrypoint" class="dfn-panel" data-for="dom-gpuprogrammablestage-entrypoint" id="infopanel-for-dom-gpuprogrammablestage-entrypoint">
@@ -27169,7 +27162,7 @@ reference specific GPU commands (like dispatch) yet. <a class="issue-return" hre
   <aside aria-labelledby="infopaneltitle-for-dom-gpucomputepipelinedescriptor-compute" class="dfn-panel" data-for="dom-gpucomputepipelinedescriptor-compute" id="infopanel-for-dom-gpucomputepipelinedescriptor-compute">
    <span id="infopaneltitle-for-dom-gpucomputepipelinedescriptor-compute" style="display:none">Info about the 'compute' definition.</span><b><a href="#dom-gpucomputepipelinedescriptor-compute">#dom-gpucomputepipelinedescriptor-compute</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-gpucomputepipelinedescriptor-compute">10.2.1. Compute Pipeline Creation</a> <a href="#ref-for-dom-gpucomputepipelinedescriptor-compute①">(2)</a> <a href="#ref-for-dom-gpucomputepipelinedescriptor-compute②">(3)</a> <a href="#ref-for-dom-gpucomputepipelinedescriptor-compute③">(4)</a> <a href="#ref-for-dom-gpucomputepipelinedescriptor-compute④">(5)</a> <a href="#ref-for-dom-gpucomputepipelinedescriptor-compute⑤">(6)</a>
+    <li><a href="#ref-for-dom-gpucomputepipelinedescriptor-compute">10.2.1. Compute Pipeline Creation</a> <a href="#ref-for-dom-gpucomputepipelinedescriptor-compute①">(2)</a> <a href="#ref-for-dom-gpucomputepipelinedescriptor-compute②">(3)</a> <a href="#ref-for-dom-gpucomputepipelinedescriptor-compute③">(4)</a> <a href="#ref-for-dom-gpucomputepipelinedescriptor-compute④">(5)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-dom-gpudevice-createcomputepipeline" class="dfn-panel" data-for="dom-gpudevice-createcomputepipeline" id="infopanel-for-dom-gpudevice-createcomputepipeline">
@@ -27266,10 +27259,10 @@ reference specific GPU commands (like dispatch) yet. <a class="issue-return" hre
   <aside aria-labelledby="infopaneltitle-for-dom-gpurenderpipelinedescriptor-vertex" class="dfn-panel" data-for="dom-gpurenderpipelinedescriptor-vertex" id="infopanel-for-dom-gpurenderpipelinedescriptor-vertex">
    <span id="infopaneltitle-for-dom-gpurenderpipelinedescriptor-vertex" style="display:none">Info about the 'vertex' definition.</span><b><a href="#dom-gpurenderpipelinedescriptor-vertex">#dom-gpurenderpipelinedescriptor-vertex</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex">10.3.1. Render Pipeline Creation</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex①">(2)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex②">(3)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex③">(4)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex④">(5)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex⑤">(6)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex⑥">(7)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex⑦">(8)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex⑧">(9)</a>
-    <li><a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex⑨">10.3.7.1. Vertex Formats</a>
-    <li><a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex①⓪">17.2.1. Drawing</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex①①">(2)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex①②">(3)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex①③">(4)</a>
-    <li><a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex①④">23.3. Rendering</a>
+    <li><a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex">10.3.1. Render Pipeline Creation</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex①">(2)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex②">(3)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex③">(4)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex④">(5)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex⑤">(6)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex⑥">(7)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex⑦">(8)</a>
+    <li><a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex⑧">10.3.7.1. Vertex Formats</a>
+    <li><a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex⑨">17.2.1. Drawing</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex①⓪">(2)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex①①">(3)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex①②">(4)</a>
+    <li><a href="#ref-for-dom-gpurenderpipelinedescriptor-vertex①③">23.3. Rendering</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-dom-gpurenderpipelinedescriptor-primitive" class="dfn-panel" data-for="dom-gpurenderpipelinedescriptor-primitive" id="infopanel-for-dom-gpurenderpipelinedescriptor-primitive">
@@ -27304,9 +27297,9 @@ reference specific GPU commands (like dispatch) yet. <a class="issue-return" hre
    <span id="infopaneltitle-for-dom-gpurenderpipelinedescriptor-fragment" style="display:none">Info about the 'fragment' definition.</span><b><a href="#dom-gpurenderpipelinedescriptor-fragment">#dom-gpurenderpipelinedescriptor-fragment</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment">3.6.2. Limits</a>
-    <li><a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment①">10.3.1. Render Pipeline Creation</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment②">(2)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment③">(3)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment④">(4)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment⑤">(5)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment⑥">(6)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment⑦">(7)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment⑧">(8)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment⑨">(9)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment①⓪">(10)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment①①">(11)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment①②">(12)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment①③">(13)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment①④">(14)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment①⑤">(15)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment①⑥">(16)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment①⑦">(17)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment①⑧">(18)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment①⑨">(19)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment②⓪">(20)</a>
-    <li><a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment②①">17.1.1.4. Render Pass Layout</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment②②">(2)</a>
-    <li><a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment②③">23.3. Rendering</a>
+    <li><a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment①">10.3.1. Render Pipeline Creation</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment②">(2)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment③">(3)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment④">(4)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment⑤">(5)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment⑥">(6)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment⑦">(7)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment⑧">(8)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment⑨">(9)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment①⓪">(10)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment①①">(11)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment①②">(12)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment①③">(13)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment①④">(14)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment①⑤">(15)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment①⑥">(16)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment①⑦">(17)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment①⑧">(18)</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment①⑨">(19)</a>
+    <li><a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment②⓪">17.1.1.4. Render Pass Layout</a> <a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment②①">(2)</a>
+    <li><a href="#ref-for-dom-gpurenderpipelinedescriptor-fragment②②">23.3. Rendering</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-dom-gpudevice-createrenderpipeline" class="dfn-panel" data-for="dom-gpudevice-createrenderpipeline" id="infopanel-for-dom-gpudevice-createrenderpipeline">
@@ -31027,8 +31020,8 @@ reference specific GPU commands (like dispatch) yet. <a class="issue-return" hre
     internal error' definition.</span><b><a href="#abstract-opdef-generate-an-internal-error">#abstract-opdef-generate-an-internal-error</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-abstract-opdef-generate-an-internal-error">10. Pipelines</a> <a href="#ref-for-abstract-opdef-generate-an-internal-error①">(2)</a>
-    <li><a href="#ref-for-abstract-opdef-generate-an-internal-error②">10.2.1. Compute Pipeline Creation</a> <a href="#ref-for-abstract-opdef-generate-an-internal-error③">(2)</a> <a href="#ref-for-abstract-opdef-generate-an-internal-error④">(3)</a>
-    <li><a href="#ref-for-abstract-opdef-generate-an-internal-error⑤">10.3.1. Render Pipeline Creation</a> <a href="#ref-for-abstract-opdef-generate-an-internal-error⑥">(2)</a> <a href="#ref-for-abstract-opdef-generate-an-internal-error⑦">(3)</a>
+    <li><a href="#ref-for-abstract-opdef-generate-an-internal-error②">10.2.1. Compute Pipeline Creation</a> <a href="#ref-for-abstract-opdef-generate-an-internal-error③">(2)</a>
+    <li><a href="#ref-for-abstract-opdef-generate-an-internal-error④">10.3.1. Render Pipeline Creation</a> <a href="#ref-for-abstract-opdef-generate-an-internal-error⑤">(2)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-gpu-error-scope" class="dfn-panel" data-for="gpu-error-scope" id="infopanel-for-gpu-error-scope">
