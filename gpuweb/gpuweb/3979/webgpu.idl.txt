@@ -26,6 +26,7 @@ interface GPUSupportedLimits {
     readonly attribute unsigned long maxTextureDimension3D;
     readonly attribute unsigned long maxTextureArrayLayers;
     readonly attribute unsigned long maxBindGroups;
+    readonly attribute unsigned long maxBindGroupsPlusVertexBuffers;
     readonly attribute unsigned long maxBindingsPerBindGroup;
     readonly attribute unsigned long maxDynamicUniformBuffersPerPipelineLayout;
     readonly attribute unsigned long maxDynamicStorageBuffersPerPipelineLayout;
@@ -34,7 +35,6 @@ interface GPUSupportedLimits {
     readonly attribute unsigned long maxStorageBuffersPerShaderStage;
     readonly attribute unsigned long maxStorageTexturesPerShaderStage;
     readonly attribute unsigned long maxUniformBuffersPerShaderStage;
-    readonly attribute unsigned long maxFragmentCombinedOutputResources;
     readonly attribute unsigned long long maxUniformBufferBindingSize;
     readonly attribute unsigned long long maxStorageBufferBindingSize;
     readonly attribute unsigned long minUniformBufferOffsetAlignment;
@@ -61,6 +61,11 @@ interface GPUSupportedFeatures {
 };
 
 [Exposed=(Window, DedicatedWorker), SecureContext]
+interface WGSLLanguageFeatures {
+    readonly setlike<DOMString>;
+};
+
+[Exposed=(Window, DedicatedWorker), SecureContext]
 interface GPUAdapterInfo {
     readonly attribute DOMString vendor;
     readonly attribute DOMString architecture;
@@ -78,6 +83,7 @@ WorkerNavigator includes NavigatorGPU;
 interface GPU {
     Promise<GPUAdapter?> requestAdapter(optional GPURequestAdapterOptions options = {});
     GPUTextureFormat getPreferredCanvasFormat();
+    [SameObject] readonly attribute WGSLLanguageFeatures wgslLanguageFeatures;
 };
 
 dictionary GPURequestAdapterOptions {
@@ -87,7 +93,7 @@ dictionary GPURequestAdapterOptions {
 
 enum GPUPowerPreference {
     "low-power",
-    "high-performance"
+    "high-performance",
 };
 
 [Exposed=(Window, DedicatedWorker), SecureContext]
@@ -100,7 +106,8 @@ interface GPUAdapter {
     Promise<GPUAdapterInfo> requestAdapterInfo(optional sequence<DOMString> unmaskHints = []);
 };
 
-dictionary GPUDeviceDescriptor : GPUObjectDescriptorBase {
+dictionary GPUDeviceDescriptor
+         : GPUObjectDescriptorBase {
     sequence<GPUFeatureName> requiredFeatures = [];
     record<DOMString, GPUSize64> requiredLimits = {};
     GPUQueueDescriptor defaultQueue = {};
@@ -117,7 +124,7 @@ enum GPUFeatureName {
     "shader-f16",
     "rg11b10ufloat-renderable",
     "bgra8unorm-storage",
-    "float32-filterable"
+    "float32-filterable",
 };
 
 [Exposed=(Window, DedicatedWorker), SecureContext]
@@ -169,17 +176,18 @@ GPUBuffer includes GPUObjectBase;
 enum GPUBufferMapState {
     "unmapped",
     "pending",
-    "mapped"
+    "mapped",
 };
 
-dictionary GPUBufferDescriptor : GPUObjectDescriptorBase {
+dictionary GPUBufferDescriptor
+         : GPUObjectDescriptorBase {
     required GPUSize64 size;
     required GPUBufferUsageFlags usage;
     boolean mappedAtCreation = false;
 };
 
 typedef [EnforceRange] unsigned long GPUBufferUsageFlags;
-[Exposed=(Window, DedicatedWorker)]
+[Exposed=(Window, DedicatedWorker), SecureContext]
 namespace GPUBufferUsage {
     const GPUFlagsConstant MAP_READ      = 0x0001;
     const GPUFlagsConstant MAP_WRITE     = 0x0002;
@@ -194,7 +202,7 @@ namespace GPUBufferUsage {
 };
 
 typedef [EnforceRange] unsigned long GPUMapModeFlags;
-[Exposed=(Window, DedicatedWorker)]
+[Exposed=(Window, DedicatedWorker), SecureContext]
 namespace GPUMapMode {
     const GPUFlagsConstant READ  = 0x0001;
     const GPUFlagsConstant WRITE = 0x0002;
@@ -217,7 +225,8 @@ interface GPUTexture {
 };
 GPUTexture includes GPUObjectBase;
 
-dictionary GPUTextureDescriptor : GPUObjectDescriptorBase {
+dictionary GPUTextureDescriptor
+         : GPUObjectDescriptorBase {
     required GPUExtent3D size;
     GPUIntegerCoordinate mipLevelCount = 1;
     GPUSize32 sampleCount = 1;
@@ -230,11 +239,11 @@ dictionary GPUTextureDescriptor : GPUObjectDescriptorBase {
 enum GPUTextureDimension {
     "1d",
     "2d",
-    "3d"
+    "3d",
 };
 
 typedef [EnforceRange] unsigned long GPUTextureUsageFlags;
-[Exposed=(Window, DedicatedWorker)]
+[Exposed=(Window, DedicatedWorker), SecureContext]
 namespace GPUTextureUsage {
     const GPUFlagsConstant COPY_SRC          = 0x01;
     const GPUFlagsConstant COPY_DST          = 0x02;
@@ -248,7 +257,8 @@ interface GPUTextureView {
 };
 GPUTextureView includes GPUObjectBase;
 
-dictionary GPUTextureViewDescriptor : GPUObjectDescriptorBase {
+dictionary GPUTextureViewDescriptor
+         : GPUObjectDescriptorBase {
     GPUTextureFormat format;
     GPUTextureViewDimension dimension;
     GPUTextureAspect aspect = "all";
@@ -264,13 +274,13 @@ enum GPUTextureViewDimension {
     "2d-array",
     "cube",
     "cube-array",
-    "3d"
+    "3d",
 };
 
 enum GPUTextureAspect {
     "all",
     "stencil-only",
-    "depth-only"
+    "depth-only",
 };
 
 enum GPUTextureFormat {
@@ -390,7 +400,7 @@ enum GPUTextureFormat {
     "astc-12x10-unorm",
     "astc-12x10-unorm-srgb",
     "astc-12x12-unorm",
-    "astc-12x12-unorm-srgb"
+    "astc-12x12-unorm-srgb",
 };
 
 [Exposed=(Window, DedicatedWorker), SecureContext]
@@ -398,8 +408,9 @@ interface GPUExternalTexture {
 };
 GPUExternalTexture includes GPUObjectBase;
 
-dictionary GPUExternalTextureDescriptor : GPUObjectDescriptorBase {
-    required HTMLVideoElement source;
+dictionary GPUExternalTextureDescriptor
+         : GPUObjectDescriptorBase {
+    required (HTMLVideoElement or VideoFrame) source;
     PredefinedColorSpace colorSpace = "srgb";
 };
 
@@ -408,7 +419,8 @@ interface GPUSampler {
 };
 GPUSampler includes GPUObjectBase;
 
-dictionary GPUSamplerDescriptor : GPUObjectDescriptorBase {
+dictionary GPUSamplerDescriptor
+         : GPUObjectDescriptorBase {
     GPUAddressMode addressModeU = "clamp-to-edge";
     GPUAddressMode addressModeV = "clamp-to-edge";
     GPUAddressMode addressModeW = "clamp-to-edge";
@@ -424,17 +436,17 @@ dictionary GPUSamplerDescriptor : GPUObjectDescriptorBase {
 enum GPUAddressMode {
     "clamp-to-edge",
     "repeat",
-    "mirror-repeat"
+    "mirror-repeat",
 };
 
 enum GPUFilterMode {
     "nearest",
-    "linear"
+    "linear",
 };
 
 enum GPUMipmapFilterMode {
     "nearest",
-    "linear"
+    "linear",
 };
 
 enum GPUCompareFunction {
@@ -445,7 +457,7 @@ enum GPUCompareFunction {
     "greater",
     "not-equal",
     "greater-equal",
-    "always"
+    "always",
 };
 
 [Exposed=(Window, DedicatedWorker), SecureContext]
@@ -453,7 +465,8 @@ interface GPUBindGroupLayout {
 };
 GPUBindGroupLayout includes GPUObjectBase;
 
-dictionary GPUBindGroupLayoutDescriptor : GPUObjectDescriptorBase {
+dictionary GPUBindGroupLayoutDescriptor
+         : GPUObjectDescriptorBase {
     required sequence<GPUBindGroupLayoutEntry> entries;
 };
 
@@ -469,7 +482,7 @@ dictionary GPUBindGroupLayoutEntry {
 };
 
 typedef [EnforceRange] unsigned long GPUShaderStageFlags;
-[Exposed=(Window, DedicatedWorker)]
+[Exposed=(Window, DedicatedWorker), SecureContext]
 namespace GPUShaderStage {
     const GPUFlagsConstant VERTEX   = 0x1;
     const GPUFlagsConstant FRAGMENT = 0x2;
@@ -479,7 +492,7 @@ namespace GPUShaderStage {
 enum GPUBufferBindingType {
     "uniform",
     "storage",
-    "read-only-storage"
+    "read-only-storage",
 };
 
 dictionary GPUBufferBindingLayout {
@@ -491,7 +504,7 @@ dictionary GPUBufferBindingLayout {
 enum GPUSamplerBindingType {
     "filtering",
     "non-filtering",
-    "comparison"
+    "comparison",
 };
 
 dictionary GPUSamplerBindingLayout {
@@ -503,7 +516,7 @@ enum GPUTextureSampleType {
     "unfilterable-float",
     "depth",
     "sint",
-    "uint"
+    "uint",
 };
 
 dictionary GPUTextureBindingLayout {
@@ -513,7 +526,7 @@ dictionary GPUTextureBindingLayout {
 };
 
 enum GPUStorageTextureAccess {
-    "write-only"
+    "write-only",
 };
 
 dictionary GPUStorageTextureBindingLayout {
@@ -530,7 +543,8 @@ interface GPUBindGroup {
 };
 GPUBindGroup includes GPUObjectBase;
 
-dictionary GPUBindGroupDescriptor : GPUObjectDescriptorBase {
+dictionary GPUBindGroupDescriptor
+         : GPUObjectDescriptorBase {
     required GPUBindGroupLayout layout;
     required sequence<GPUBindGroupEntry> entries;
 };
@@ -553,7 +567,8 @@ interface GPUPipelineLayout {
 };
 GPUPipelineLayout includes GPUObjectBase;
 
-dictionary GPUPipelineLayoutDescriptor : GPUObjectDescriptorBase {
+dictionary GPUPipelineLayoutDescriptor
+         : GPUObjectDescriptorBase {
     required sequence<GPUBindGroupLayout> bindGroupLayouts;
 };
 
@@ -563,7 +578,8 @@ interface GPUShaderModule {
 };
 GPUShaderModule includes GPUObjectBase;
 
-dictionary GPUShaderModuleDescriptor : GPUObjectDescriptorBase {
+dictionary GPUShaderModuleDescriptor
+         : GPUObjectDescriptorBase {
     required USVString code;
     object sourceMap;
     record<USVString, GPUShaderModuleCompilationHint> hints;
@@ -576,7 +592,7 @@ dictionary GPUShaderModuleCompilationHint {
 enum GPUCompilationMessageType {
     "error",
     "warning",
-    "info"
+    "info",
 };
 
 [Exposed=(Window, DedicatedWorker), Serializable, SecureContext]
@@ -606,14 +622,15 @@ dictionary GPUPipelineErrorInit {
 
 enum GPUPipelineErrorReason {
     "validation",
-    "internal"
+    "internal",
 };
 
 enum GPUAutoLayoutMode {
-    "auto"
+    "auto",
 };
 
-dictionary GPUPipelineDescriptorBase : GPUObjectDescriptorBase {
+dictionary GPUPipelineDescriptorBase
+         : GPUObjectDescriptorBase {
     required (GPUPipelineLayout or GPUAutoLayoutMode) layout;
 };
 
@@ -635,7 +652,8 @@ interface GPUComputePipeline {
 GPUComputePipeline includes GPUObjectBase;
 GPUComputePipeline includes GPUPipelineBase;
 
-dictionary GPUComputePipelineDescriptor : GPUPipelineDescriptorBase {
+dictionary GPUComputePipelineDescriptor
+         : GPUPipelineDescriptorBase {
     required GPUProgrammableStage compute;
 };
 
@@ -645,7 +663,8 @@ interface GPURenderPipeline {
 GPURenderPipeline includes GPUObjectBase;
 GPURenderPipeline includes GPUPipelineBase;
 
-dictionary GPURenderPipelineDescriptor : GPUPipelineDescriptorBase {
+dictionary GPURenderPipelineDescriptor
+         : GPUPipelineDescriptorBase {
     required GPUVertexState vertex;
     GPUPrimitiveState primitive = {};
     GPUDepthStencilState depthStencil;
@@ -668,18 +687,18 @@ enum GPUPrimitiveTopology {
     "line-list",
     "line-strip",
     "triangle-list",
-    "triangle-strip"
+    "triangle-strip",
 };
 
 enum GPUFrontFace {
     "ccw",
-    "cw"
+    "cw",
 };
 
 enum GPUCullMode {
     "none",
     "front",
-    "back"
+    "back",
 };
 
 dictionary GPUMultisampleState {
@@ -688,7 +707,8 @@ dictionary GPUMultisampleState {
     boolean alphaToCoverageEnabled = false;
 };
 
-dictionary GPUFragmentState : GPUProgrammableStage {
+dictionary GPUFragmentState
+         : GPUProgrammableStage {
     required sequence<GPUColorTargetState?> targets;
 };
 
@@ -705,7 +725,7 @@ dictionary GPUBlendState {
 };
 
 typedef [EnforceRange] unsigned long GPUColorWriteFlags;
-[Exposed=(Window, DedicatedWorker)]
+[Exposed=(Window, DedicatedWorker), SecureContext]
 namespace GPUColorWrite {
     const GPUFlagsConstant RED   = 0x1;
     const GPUFlagsConstant GREEN = 0x2;
@@ -733,7 +753,7 @@ enum GPUBlendFactor {
     "one-minus-dst-alpha",
     "src-alpha-saturated",
     "constant",
-    "one-minus-constant"
+    "one-minus-constant",
 };
 
 enum GPUBlendOperation {
@@ -741,7 +761,7 @@ enum GPUBlendOperation {
     "subtract",
     "reverse-subtract",
     "min",
-    "max"
+    "max",
 };
 
 dictionary GPUDepthStencilState {
@@ -776,12 +796,12 @@ enum GPUStencilOperation {
     "increment-clamp",
     "decrement-clamp",
     "increment-wrap",
-    "decrement-wrap"
+    "decrement-wrap",
 };
 
 enum GPUIndexFormat {
     "uint16",
-    "uint32"
+    "uint32",
 };
 
 enum GPUVertexFormat {
@@ -814,15 +834,16 @@ enum GPUVertexFormat {
     "sint32",
     "sint32x2",
     "sint32x3",
-    "sint32x4"
+    "sint32x4",
 };
 
 enum GPUVertexStepMode {
     "vertex",
-    "instance"
+    "instance",
 };
 
-dictionary GPUVertexState : GPUProgrammableStage {
+dictionary GPUVertexState
+         : GPUProgrammableStage {
     sequence<GPUVertexBufferLayout?> buffers = [];
 };
 
@@ -845,7 +866,8 @@ dictionary GPUImageDataLayout {
     GPUSize32 rowsPerImage;
 };
 
-dictionary GPUImageCopyBuffer : GPUImageDataLayout {
+dictionary GPUImageCopyBuffer
+         : GPUImageDataLayout {
     required GPUBuffer buffer;
 };
 
@@ -856,7 +878,8 @@ dictionary GPUImageCopyTexture {
     GPUTextureAspect aspect = "all";
 };
 
-dictionary GPUImageCopyTextureTagged : GPUImageCopyTexture {
+dictionary GPUImageCopyTextureTagged
+         : GPUImageCopyTexture {
     PredefinedColorSpace colorSpace = "srgb";
     boolean premultipliedAlpha = false;
 };
@@ -872,7 +895,8 @@ interface GPUCommandBuffer {
 };
 GPUCommandBuffer includes GPUObjectBase;
 
-dictionary GPUCommandBufferDescriptor : GPUObjectDescriptorBase {
+dictionary GPUCommandBufferDescriptor
+         : GPUObjectDescriptorBase {
 };
 
 interface mixin GPUCommandsMixin {
@@ -925,14 +949,15 @@ GPUCommandEncoder includes GPUObjectBase;
 GPUCommandEncoder includes GPUCommandsMixin;
 GPUCommandEncoder includes GPUDebugCommandsMixin;
 
-dictionary GPUCommandEncoderDescriptor : GPUObjectDescriptorBase {
+dictionary GPUCommandEncoderDescriptor
+         : GPUObjectDescriptorBase {
 };
 
 interface mixin GPUBindingCommandsMixin {
-    undefined setBindGroup(GPUIndex32 index, GPUBindGroup bindGroup,
+    undefined setBindGroup(GPUIndex32 index, GPUBindGroup? bindGroup,
         optional sequence<GPUBufferDynamicOffset> dynamicOffsets = []);
 
-    undefined setBindGroup(GPUIndex32 index, GPUBindGroup bindGroup,
+    undefined setBindGroup(GPUIndex32 index, GPUBindGroup? bindGroup,
         Uint32Array dynamicOffsetsData,
         GPUSize64 dynamicOffsetsDataStart,
         GPUSize32 dynamicOffsetsDataLength);
@@ -963,7 +988,8 @@ dictionary GPUComputePassTimestampWrites {
     GPUSize32 endOfPassWriteIndex;
 };
 
-dictionary GPUComputePassDescriptor : GPUObjectDescriptorBase {
+dictionary GPUComputePassDescriptor
+         : GPUObjectDescriptorBase {
     GPUComputePassTimestampWrites timestampWrites;
 };
 
@@ -997,7 +1023,8 @@ dictionary GPURenderPassTimestampWrites {
     GPUSize32 endOfPassWriteIndex;
 };
 
-dictionary GPURenderPassDescriptor : GPUObjectDescriptorBase {
+dictionary GPURenderPassDescriptor
+         : GPUObjectDescriptorBase {
     required sequence<GPURenderPassColorAttachment?> colorAttachments;
     GPURenderPassDepthStencilAttachment depthStencilAttachment;
     GPUQuerySet occlusionQuerySet;
@@ -1030,15 +1057,16 @@ dictionary GPURenderPassDepthStencilAttachment {
 
 enum GPULoadOp {
     "load",
-    "clear"
+    "clear",
 };
 
 enum GPUStoreOp {
     "store",
-    "discard"
+    "discard",
 };
 
-dictionary GPURenderPassLayout : GPUObjectDescriptorBase {
+dictionary GPURenderPassLayout
+         : GPUObjectDescriptorBase {
     required sequence<GPUTextureFormat?> colorFormats;
     GPUTextureFormat depthStencilFormat;
     GPUSize32 sampleCount = 1;
@@ -1048,7 +1076,7 @@ interface mixin GPURenderCommandsMixin {
     undefined setPipeline(GPURenderPipeline pipeline);
 
     undefined setIndexBuffer(GPUBuffer buffer, GPUIndexFormat indexFormat, optional GPUSize64 offset = 0, optional GPUSize64 size);
-    undefined setVertexBuffer(GPUIndex32 slot, GPUBuffer buffer, optional GPUSize64 offset = 0, optional GPUSize64 size);
+    undefined setVertexBuffer(GPUIndex32 slot, GPUBuffer? buffer, optional GPUSize64 offset = 0, optional GPUSize64 size);
 
     undefined draw(GPUSize32 vertexCount, optional GPUSize32 instanceCount = 1,
         optional GPUSize32 firstVertex = 0, optional GPUSize32 firstInstance = 0);
@@ -1066,7 +1094,8 @@ interface GPURenderBundle {
 };
 GPURenderBundle includes GPUObjectBase;
 
-dictionary GPURenderBundleDescriptor : GPUObjectDescriptorBase {
+dictionary GPURenderBundleDescriptor
+         : GPUObjectDescriptorBase {
 };
 
 [Exposed=(Window, DedicatedWorker), SecureContext]
@@ -1079,12 +1108,14 @@ GPURenderBundleEncoder includes GPUDebugCommandsMixin;
 GPURenderBundleEncoder includes GPUBindingCommandsMixin;
 GPURenderBundleEncoder includes GPURenderCommandsMixin;
 
-dictionary GPURenderBundleEncoderDescriptor : GPURenderPassLayout {
+dictionary GPURenderBundleEncoderDescriptor
+         : GPURenderPassLayout {
     boolean depthReadOnly = false;
     boolean stencilReadOnly = false;
 };
 
-dictionary GPUQueueDescriptor : GPUObjectDescriptorBase {
+dictionary GPUQueueDescriptor
+         : GPUObjectDescriptorBase {
 };
 
 [Exposed=(Window, DedicatedWorker), SecureContext]
@@ -1122,14 +1153,15 @@ interface GPUQuerySet {
 };
 GPUQuerySet includes GPUObjectBase;
 
-dictionary GPUQuerySetDescriptor : GPUObjectDescriptorBase {
+dictionary GPUQuerySetDescriptor
+         : GPUObjectDescriptorBase {
     required GPUQueryType type;
     required GPUSize32 count;
 };
 
 enum GPUQueryType {
     "occlusion",
-    "timestamp"
+    "timestamp",
 };
 
 [Exposed=(Window, DedicatedWorker), SecureContext]
@@ -1144,7 +1176,7 @@ interface GPUCanvasContext {
 
 enum GPUCanvasAlphaMode {
     "opaque",
-    "premultiplied"
+    "premultiplied",
 };
 
 dictionary GPUCanvasConfiguration {
@@ -1158,7 +1190,7 @@ dictionary GPUCanvasConfiguration {
 
 enum GPUDeviceLostReason {
     "unknown",
-    "destroyed"
+    "destroyed",
 };
 
 [Exposed=(Window, DedicatedWorker), SecureContext]
@@ -1177,24 +1209,27 @@ interface GPUError {
 };
 
 [Exposed=(Window, DedicatedWorker), SecureContext]
-interface GPUValidationError : GPUError {
+interface GPUValidationError
+        : GPUError {
     constructor(DOMString message);
 };
 
 [Exposed=(Window, DedicatedWorker), SecureContext]
-interface GPUOutOfMemoryError : GPUError {
+interface GPUOutOfMemoryError
+        : GPUError {
     constructor(DOMString message);
 };
 
 [Exposed=(Window, DedicatedWorker), SecureContext]
-interface GPUInternalError : GPUError {
+interface GPUInternalError
+        : GPUError {
     constructor(DOMString message);
 };
 
 enum GPUErrorFilter {
     "validation",
     "out-of-memory",
-    "internal"
+    "internal",
 };
 
 partial interface GPUDevice {
