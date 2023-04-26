@@ -909,7 +909,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/c617538b4a772a6e31ee2b70d858077877ced0ac/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/c617538b4a772a6e31ee2b70d858077877ced0ac/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/f1ae17961e5117b09a4a6217eae7bf4a65ccc2ff/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/f1ae17961e5117b09a4a6217eae7bf4a65ccc2ff/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -14918,16 +14918,18 @@ a <code class="idl"><a data-link-type="idl" href="#gpubuffer" id="ref-for-gpubuf
      <li data-md>
       <p><var>timestampWrites</var>.<code>querySet</code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuqueryset-type" id="ref-for-dom-gpuqueryset-type④">type</a></code> must be <code class="idl"><a data-link-type="idl" href="#dom-gpuquerytype-timestamp" id="ref-for-dom-gpuquerytype-timestamp②">"timestamp"</a></code>.</p>
      <li data-md>
-      <p><var>timestampWrites</var>.<code>beginningOfPassWriteIndex</code> must be &lt; <var>timestampWrite</var>.<code>querySet</code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuqueryset-count" id="ref-for-dom-gpuqueryset-count④">count</a></code>.</p>
-     <li data-md>
-      <p><var>timestampWrites</var>.<code>endOfPassWriteIndex</code> must be &lt; <var>timestampWrite</var>.<code>querySet</code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuqueryset-count" id="ref-for-dom-gpuqueryset-count⑤">count</a></code>.</p>
-     <li data-md>
       <p>Of the write index members in <var>timestampWrites</var> (<code>beginningOfPassWriteIndex</code>, <code>endOfPassWriteIndex</code>):</p>
       <ul>
        <li data-md>
         <p>At least one must be <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑥③">provided</a>.</p>
        <li data-md>
-        <p>Of those which are <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑥④">provided</a>, no two may be equal.</p>
+        <p>Of those which are <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑥④">provided</a>:</p>
+        <ul>
+         <li data-md>
+          <p>No two may be equal.</p>
+         <li data-md>
+          <p>Each must be &lt; <var>timestampWrites</var>.<code>querySet</code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuqueryset-count" id="ref-for-dom-gpuqueryset-count④">count</a></code>.</p>
+        </ul>
       </ul>
     </ul>
    </div>
@@ -30656,7 +30658,7 @@ reference specific GPU commands (like dispatch) yet. <a class="issue-return" hre
     <li><a href="#ref-for-dom-gpuqueryset-count①">17.2.3. Queries</a>
     <li><a href="#ref-for-dom-gpuqueryset-count②">20.1. GPUQuerySet </a>
     <li><a href="#ref-for-dom-gpuqueryset-count③">20.1.1. QuerySet Creation</a>
-    <li><a href="#ref-for-dom-gpuqueryset-count④">20.4. Timestamp Query</a> <a href="#ref-for-dom-gpuqueryset-count⑤">(2)</a>
+    <li><a href="#ref-for-dom-gpuqueryset-count④">20.4. Timestamp Query</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-dom-gpuqueryset-state-slot" class="dfn-panel" data-for="dom-gpuqueryset-state-slot" id="infopanel-for-dom-gpuqueryset-state-slot">
