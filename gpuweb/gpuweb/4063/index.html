@@ -903,13 +903,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-04-22">22 April 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-04-26">26 April 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/eb7b00e897225bc986d659f0c967978a682d1741/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/eb7b00e897225bc986d659f0c967978a682d1741/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/387828fa5ee570664d7560cb7870d805fb1a4df4/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/387828fa5ee570664d7560cb7870d805fb1a4df4/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -5685,8 +5685,7 @@ using <code class="idl"><a data-link-type="idl" href="#dom-gpudevice-importexter
 task after it is imported, instead of manually or upon garbage collection like other resources.
 When an external texture expires, its <code class="idl"><a data-link-type="idl" href="#dom-gpuexternaltexture-expired-slot" id="ref-for-dom-gpuexternaltexture-expired-slot">[[expired]]</a></code> slot changes to <code>true</code>.</p>
    <p>An external texture created from a <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/webcodecs/#videoframe" id="ref-for-videoframe">VideoFrame</a></code> expires (is destroyed) when, and only when,
-the source <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/webcodecs/#videoframe" id="ref-for-videoframe①">VideoFrame</a></code> is closed, which occurs when the <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/webcodecs/#dom-videoframe-close" id="ref-for-dom-videoframe-close">close()</a></code> method is
-called or when it is <a href="https://w3c.github.io/webcodecs/#videoframe-transfer-serialization">transferred</a>.</p>
+the source <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/webcodecs/#videoframe" id="ref-for-videoframe①">VideoFrame</a></code> is closed, either explicitly by <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/webcodecs/#dom-videoframe-close" id="ref-for-dom-videoframe-close">close()</a></code>, or by other means.</p>
    <p class="note" role="note"><span class="marker">Note:</span> As noted in <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/webcodecs/#dom-videodecoder-decode" id="ref-for-dom-videodecoder-decode">decode()</a></code>, authors <strong>should</strong> call <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/webcodecs/#dom-videoframe-close" id="ref-for-dom-videoframe-close①">close()</a></code> on output <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/webcodecs/#videoframe" id="ref-for-videoframe②">VideoFrame</a></code>s to avoid decoder stalls.
 If an imported <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/webcodecs/#videoframe" id="ref-for-videoframe③">VideoFrame</a></code> is dropped without being closed, the imported <code class="idl"><a data-link-type="idl" href="#gpuexternaltexture" id="ref-for-gpuexternaltexture⑦">GPUExternalTexture</a></code> object will keep it alive until it is also dropped.
 The <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/webcodecs/#videoframe" id="ref-for-videoframe④">VideoFrame</a></code> cannot be garbage collected until both objects are dropped.
