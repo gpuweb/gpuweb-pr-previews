@@ -909,7 +909,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/3cfcb244e79eaf54e2029b2648e3f8c099c7d196/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/3cfcb244e79eaf54e2029b2648e3f8c099c7d196/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/6cd2815ca8d4ee48b8580a570d28a3bffb490d54/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/6cd2815ca8d4ee48b8580a570d28a3bffb490d54/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -14860,7 +14860,7 @@ if <var>this</var> is lost, or when <var>this</var> <a data-link-type="dfn" href
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑧③"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpuqueryset-destroy" id="ref-for-dom-gpuqueryset-destroy"><c- g>destroy</c-></a>();
 
     <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#enumdef-gpuquerytype" id="ref-for-enumdef-gpuquerytype"><c- n>GPUQueryType</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="GPUQueryType" href="#dom-gpuqueryset-type" id="ref-for-dom-gpuqueryset-type②"><c- g>type</c-></a>;
-    <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑧⑥"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="GPUSize32" href="#dom-gpuqueryset-count" id="ref-for-dom-gpuqueryset-count②"><c- g>count</c-></a>;
+    <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32out" id="ref-for-typedefdef-gpusize32out②"><c- n>GPUSize32Out</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="GPUSize32Out" href="#dom-gpuqueryset-count" id="ref-for-dom-gpuqueryset-count②"><c- g>count</c-></a>;
 };
 <a data-link-type="idl-name" href="#gpuqueryset" id="ref-for-gpuqueryset①⑨"><c- n>GPUQuerySet</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpuobjectbase" id="ref-for-gpuobjectbase③③"><c- n>GPUObjectBase</c-></a>;
 </pre>
@@ -14869,7 +14869,7 @@ if <var>this</var> is lost, or when <var>this</var> <a data-link-type="dfn" href
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUQuerySet" data-dfn-type="attribute" data-export id="dom-gpuqueryset-type"><code>type</code></dfn>, <span> of type <a data-link-type="idl-name" href="#enumdef-gpuquerytype" id="ref-for-enumdef-gpuquerytype①">GPUQueryType</a>, readonly</span>
     <dd data-md>
      <p>The type of the queries managed by this <code class="idl"><a data-link-type="idl" href="#gpuqueryset" id="ref-for-gpuqueryset②①">GPUQuerySet</a></code>.</p>
-    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUQuerySet" data-dfn-type="attribute" data-export id="dom-gpuqueryset-count"><code>count</code></dfn>, <span> of type <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑧⑦">GPUSize32</a>, readonly</span>
+    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUQuerySet" data-dfn-type="attribute" data-export id="dom-gpuqueryset-count"><code>count</code></dfn>, <span> of type <a data-link-type="idl-name" href="#typedefdef-gpusize32out" id="ref-for-typedefdef-gpusize32out③">GPUSize32Out</a>, readonly</span>
     <dd data-md>
      <p>The number of queries managed by this <code class="idl"><a data-link-type="idl" href="#gpuqueryset" id="ref-for-gpuqueryset②②">GPUQuerySet</a></code>.</p>
    </dl>
@@ -14893,14 +14893,14 @@ if <var>this</var> is lost, or when <var>this</var> <a data-link-type="dfn" href
 <pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpuquerysetdescriptor"><code><c- g>GPUQuerySetDescriptor</c-></code></dfn>
          : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase②⓪"><c- n>GPUObjectDescriptorBase</c-></a> {
     <c- b>required</c-> <a data-link-type="idl-name" href="#enumdef-gpuquerytype" id="ref-for-enumdef-gpuquerytype②"><c- n>GPUQueryType</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUQueryType " href="#dom-gpuquerysetdescriptor-type" id="ref-for-dom-gpuquerysetdescriptor-type"><c- g>type</c-></a>;
-    <c- b>required</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑧⑧"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUSize32 " href="#dom-gpuquerysetdescriptor-count" id="ref-for-dom-gpuquerysetdescriptor-count"><c- g>count</c-></a>;
+    <c- b>required</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑧⑥"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUSize32 " href="#dom-gpuquerysetdescriptor-count" id="ref-for-dom-gpuquerysetdescriptor-count"><c- g>count</c-></a>;
 };
 </pre>
    <dl>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUQuerySetDescriptor" data-dfn-type="dict-member" data-export id="dom-gpuquerysetdescriptor-type"><code>type</code></dfn>, <span> of type <a data-link-type="idl-name" href="#enumdef-gpuquerytype" id="ref-for-enumdef-gpuquerytype③">GPUQueryType</a></span>
     <dd data-md>
      <p>The type of queries managed by <code class="idl"><a data-link-type="idl" href="#gpuqueryset" id="ref-for-gpuqueryset②⑨">GPUQuerySet</a></code>.</p>
-    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUQuerySetDescriptor" data-dfn-type="dict-member" data-export id="dom-gpuquerysetdescriptor-count"><code>count</code></dfn>, <span> of type <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑧⑨">GPUSize32</a></span>
+    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUQuerySetDescriptor" data-dfn-type="dict-member" data-export id="dom-gpuquerysetdescriptor-count"><code>count</code></dfn>, <span> of type <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑧⑦">GPUSize32</a></span>
     <dd data-md>
      <p>The number of queries managed by <code class="idl"><a data-link-type="idl" href="#gpuqueryset" id="ref-for-gpuqueryset③⓪">GPUQuerySet</a></code>.</p>
    </dl>
@@ -22404,7 +22404,7 @@ for (const dataLink of dataLinks) {
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpuqueryset-destroy"><c- g>destroy</c-></a>();
 
     <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#enumdef-gpuquerytype"><c- n>GPUQueryType</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="GPUQueryType" href="#dom-gpuqueryset-type"><c- g>type</c-></a>;
-    <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="GPUSize32" href="#dom-gpuqueryset-count"><c- g>count</c-></a>;
+    <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32out"><c- n>GPUSize32Out</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="GPUSize32Out" href="#dom-gpuqueryset-count"><c- g>count</c-></a>;
 };
 <a data-link-type="idl-name" href="#gpuqueryset"><c- n>GPUQuerySet</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpuobjectbase"><c- n>GPUObjectBase</c-></a>;
 
@@ -31739,8 +31739,7 @@ reference specific GPU commands (like dispatch) yet. <a class="issue-return" hre
     <li><a href="#ref-for-typedefdef-gpusize32⑥⑨">17.2. GPURenderCommandsMixin </a> <a href="#ref-for-typedefdef-gpusize32⑦⓪">(2)</a> <a href="#ref-for-typedefdef-gpusize32⑦①">(3)</a> <a href="#ref-for-typedefdef-gpusize32⑦②">(4)</a> <a href="#ref-for-typedefdef-gpusize32⑦③">(5)</a> <a href="#ref-for-typedefdef-gpusize32⑦④">(6)</a> <a href="#ref-for-typedefdef-gpusize32⑦⑤">(7)</a> <a href="#ref-for-typedefdef-gpusize32⑦⑥">(8)</a>
     <li><a href="#ref-for-typedefdef-gpusize32⑦⑦">17.2.1. Drawing</a> <a href="#ref-for-typedefdef-gpusize32⑦⑧">(2)</a> <a href="#ref-for-typedefdef-gpusize32⑦⑨">(3)</a> <a href="#ref-for-typedefdef-gpusize32⑧⓪">(4)</a> <a href="#ref-for-typedefdef-gpusize32⑧①">(5)</a> <a href="#ref-for-typedefdef-gpusize32⑧②">(6)</a> <a href="#ref-for-typedefdef-gpusize32⑧③">(7)</a> <a href="#ref-for-typedefdef-gpusize32⑧④">(8)</a>
     <li><a href="#ref-for-typedefdef-gpusize32⑧⑤">17.2.3. Queries</a>
-    <li><a href="#ref-for-typedefdef-gpusize32⑧⑥">20.1. GPUQuerySet </a> <a href="#ref-for-typedefdef-gpusize32⑧⑦">(2)</a>
-    <li><a href="#ref-for-typedefdef-gpusize32⑧⑧">20.1.1. QuerySet Creation</a> <a href="#ref-for-typedefdef-gpusize32⑧⑨">(2)</a>
+    <li><a href="#ref-for-typedefdef-gpusize32⑧⑥">20.1.1. QuerySet Creation</a> <a href="#ref-for-typedefdef-gpusize32⑧⑦">(2)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-typedefdef-gpusignedoffset32" class="dfn-panel" data-for="typedefdef-gpusignedoffset32" id="infopanel-for-typedefdef-gpusignedoffset32">
@@ -31766,6 +31765,7 @@ reference specific GPU commands (like dispatch) yet. <a class="issue-return" hre
    <span id="infopaneltitle-for-typedefdef-gpusize32out" style="display:none">Info about the 'GPUSize32Out' definition.</span><b><a href="#typedefdef-gpusize32out">#typedefdef-gpusize32out</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-typedefdef-gpusize32out">6.1. GPUTexture </a> <a href="#ref-for-typedefdef-gpusize32out①">(2)</a>
+    <li><a href="#ref-for-typedefdef-gpusize32out②">20.1. GPUQuerySet </a> <a href="#ref-for-typedefdef-gpusize32out③">(2)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-typedefdef-gpuflagsconstant" class="dfn-panel" data-for="typedefdef-gpuflagsconstant" id="infopanel-for-typedefdef-gpuflagsconstant">
