@@ -5,6 +5,7 @@
   <title>WebGPU</title>
   <meta content="w3c/ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
+  <link href="https://www.w3.org/StyleSheets/TR/2016/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
   <meta content="Bikeshed version d9bd89757, updated Thu Mar 23 10:06:53 2023 -0700" name="generator">
   <link href="https://www.w3.org/TR/webgpu/" rel="canonical">
@@ -903,13 +904,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-05-16">16 May 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-05-24">24 May 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/a565f0655e20206bf9fb110f91b48b5c76deb4e9/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/a565f0655e20206bf9fb110f91b48b5c76deb4e9/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/0bafafc1fb31b0e1fafbf88bfb4fcd036425bed3/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/0bafafc1fb31b0e1fafbf88bfb4fcd036425bed3/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -1889,18 +1890,61 @@ like buffer state "<a data-link-type="dfn" href="#buffer-internals-state-destroy
    </ul>
    <p>Applications must not rely on any other promise settlement ordering.</p>
    <h3 class="heading settled" data-level="3.3" id="coordinate-systems"><span class="secno">3.3. </span><span class="content">Coordinate Systems</span><a class="self-link" href="#coordinate-systems"></a></h3>
+   <p>Rendering operations use the following coordinate systems:</p>
    <ul>
     <li data-md>
-     <p>Y-axis is up in normalized device coordinate (NDC): point(-1.0, -1.0) in NDC is located at the bottom-left corner of NDC.
-In addition, x and y in NDC should be between -1.0 and 1.0 inclusive, while z in NDC should be between 0.0 and 1.0 inclusive.
-Vertices out of this range in NDC will not introduce any errors, but they will be clipped.</p>
+     <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="NDC" data-noexport id="ndc">Normalized device coordinates</dfn> (or NDC) have three dimensions, where:</p>
+     <ul>
+      <li data-md>
+       <p>-1.0 ≤ x ≤ 1.0</p>
+      <li data-md>
+       <p>-1.0 ≤ y ≤ 1.0</p>
+      <li data-md>
+       <p>0.0 ≤ z ≤ 1.0</p>
+      <li data-md>
+       <p>The bottom-left corner is at (-1.0, -1.0, z).</p>
+     </ul>
     <li data-md>
-     <p>Y-axis is down in <a data-link-type="dfn" href="#framebuffer" id="ref-for-framebuffer">framebuffer</a> coordinate, viewport coordinate and fragment/pixel coordinate:
-origin(0, 0) is located at the top-left corner in these coordinate systems.</p>
+     <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="framebuffer-coordinates">Framebuffer coordinates</dfn> address the pixels in the <a data-link-type="dfn" href="#framebuffer" id="ref-for-framebuffer">framebuffer</a></p>
+     <ul>
+      <li data-md>
+       <p>They have two dimensions.</p>
+      <li data-md>
+       <p>Each pixel extends 1 unit in x and y dimensions.</p>
+      <li data-md>
+       <p>The top-left corner is at (0.0, 0.0).</p>
+      <li data-md>
+       <p>x increases to the right.</p>
+      <li data-md>
+       <p>y increases down.</p>
+      <li data-md>
+       <p>See <a href="#render-passes">§ 17 Render Passes</a> and <a href="#rasterization">§ 23.3.5 Rasterization</a>.</p>
+     </ul>
     <li data-md>
-     <p>Window/present coordinate matches <a data-link-type="dfn" href="#framebuffer" id="ref-for-framebuffer①">framebuffer</a> coordinate.</p>
+     <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="viewport-coordinates">Viewport coordinates</dfn> combine <a data-link-type="dfn" href="#framebuffer-coordinates" id="ref-for-framebuffer-coordinates">framebuffer coordinates</a> in x and y dimensions,
+with depth in z.</p>
+     <ul>
+      <li data-md>
+       <p>Normally 0.0 ≤ z ≤ 1.0, but this can be modified by setting <code class="idl"><a data-link-type="idl" href="#dom-renderstate-viewport-slot" id="ref-for-dom-renderstate-viewport-slot">[[viewport]]</a></code>.<code>minDepth</code> and <code>maxDepth</code> via <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-setviewport" id="ref-for-dom-gpurenderpassencoder-setviewport">setViewport()</a></code></p>
+     </ul>
     <li data-md>
-     <p>UV of origin(0, 0) in texture coordinate represents the first texel (the lowest byte) in texture memory.</p>
+     <p><dfn data-dfn-type="dfn" data-noexport id="fragment-coordinates">Fragment coordinates<a class="self-link" href="#fragment-coordinates"></a></dfn> match <a data-link-type="dfn" href="#viewport-coordinates" id="ref-for-viewport-coordinates">viewport coordinates</a>.</p>
+    <li data-md>
+     <p><dfn data-dfn-type="dfn" data-noexport id="uv-coordinates">UV coordinates<a class="self-link" href="#uv-coordinates"></a></dfn> are used to sample textures, and have two dimensions:</p>
+     <ul>
+      <li data-md>
+       <p>0 ≤ u ≤ 1.0</p>
+      <li data-md>
+       <p>0 ≤ v ≤ 1.0</p>
+      <li data-md>
+       <p>(0.0, 0.0) is in the first texel in texture memory address order.</p>
+      <li data-md>
+       <p>(1.0, 1.0) is in the last texel texture memory address order.</p>
+     </ul>
+    <li data-md>
+     <p><dfn data-dfn-type="dfn" data-noexport id="window-coordinates">Window coordinates<a class="self-link" href="#window-coordinates"></a></dfn>, or <dfn data-dfn-type="dfn" data-noexport id="present-coordinates">present coordinates<a class="self-link" href="#present-coordinates"></a></dfn>,
+match <a data-link-type="dfn" href="#framebuffer-coordinates" id="ref-for-framebuffer-coordinates①">framebuffer coordinates</a>, and are used when interacting with
+an external display or conceptually similar interface.</p>
    </ul>
    <p class="note" role="note"><span class="marker">Note:</span> WebGPU’s coordinate systems match DirectX’s coordinate systems in a graphics pipeline.</p>
    <h3 class="heading settled" data-level="3.4" id="programming-model"><span class="secno">3.4. </span><span class="content">Programming Model</span><a class="self-link" href="#programming-model"></a></h3>
@@ -4495,7 +4539,7 @@ Slices are not separate subresources.</p>
     <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32out" id="ref-for-typedefdef-gpusize32out"><c- n>GPUSize32Out</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="GPUSize32Out" href="#dom-gputexture-samplecount" id="ref-for-dom-gputexture-samplecount"><c- g>sampleCount</c-></a>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#enumdef-gputexturedimension" id="ref-for-enumdef-gputexturedimension"><c- n>GPUTextureDimension</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="GPUTextureDimension" href="#dom-gputexture-dimension" id="ref-for-dom-gputexture-dimension"><c- g>dimension</c-></a>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#enumdef-gputextureformat" id="ref-for-enumdef-gputextureformat③"><c- n>GPUTextureFormat</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="GPUTextureFormat" href="#dom-gputexture-format" id="ref-for-dom-gputexture-format"><c- g>format</c-></a>;
-    <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#typedefdef-gputextureusageflags" id="ref-for-typedefdef-gputextureusageflags"><c- n>GPUTextureUsageFlags</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="GPUTextureUsageFlags" href="#dom-gputexture-usage" id="ref-for-dom-gputexture-usage"><c- g>usage</c-></a>;
+    <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant①④"><c- n>GPUFlagsConstant</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="GPUFlagsConstant" href="#dom-gputexture-usage" id="ref-for-dom-gputexture-usage"><c- g>usage</c-></a>;
 };
 <a data-link-type="idl-name" href="#gputexture" id="ref-for-gputexture⑤"><c- n>GPUTexture</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpuobjectbase" id="ref-for-gpuobjectbase①③"><c- n>GPUObjectBase</c-></a>;
 </pre>
@@ -4522,7 +4566,7 @@ Slices are not separate subresources.</p>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUTexture" data-dfn-type="attribute" data-export id="dom-gputexture-format"><code>format</code></dfn>, <span> of type <a data-link-type="idl-name" href="#enumdef-gputextureformat" id="ref-for-enumdef-gputextureformat④">GPUTextureFormat</a>, readonly</span>
     <dd data-md>
      <p>The format of this <code class="idl"><a data-link-type="idl" href="#gputexture" id="ref-for-gputexture①③">GPUTexture</a></code>.</p>
-    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUTexture" data-dfn-type="attribute" data-export id="dom-gputexture-usage"><code>usage</code></dfn>, <span> of type <a data-link-type="idl-name" href="#typedefdef-gputextureusageflags" id="ref-for-typedefdef-gputextureusageflags①">GPUTextureUsageFlags</a>, readonly</span>
+    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUTexture" data-dfn-type="attribute" data-export id="dom-gputexture-usage"><code>usage</code></dfn>, <span> of type <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant①⑤">GPUFlagsConstant</a>, readonly</span>
     <dd data-md>
      <p>The allowed usages for this <code class="idl"><a data-link-type="idl" href="#gputexture" id="ref-for-gputexture①④">GPUTexture</a></code>.</p>
    </dl>
@@ -4677,7 +4721,7 @@ to form complete <a data-link-type="dfn" href="#texel-block" id="ref-for-texel-b
     <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32③②"><c- n>GPUSize32</c-></a> <a class="idl-code" data-default="1" data-link-type="dict-member" data-type="GPUSize32 " href="#dom-gputexturedescriptor-samplecount" id="ref-for-dom-gputexturedescriptor-samplecount"><c- g>sampleCount</c-></a> = 1;
     <a data-link-type="idl-name" href="#enumdef-gputexturedimension" id="ref-for-enumdef-gputexturedimension②"><c- n>GPUTextureDimension</c-></a> <a class="idl-code" data-default="&quot;2d&quot;" data-link-type="dict-member" data-type="GPUTextureDimension " href="#dom-gputexturedescriptor-dimension" id="ref-for-dom-gputexturedescriptor-dimension⑥"><c- g>dimension</c-></a> = "2d";
     <c- b>required</c-> <a data-link-type="idl-name" href="#enumdef-gputextureformat" id="ref-for-enumdef-gputextureformat⑦"><c- n>GPUTextureFormat</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUTextureFormat " href="#dom-gputexturedescriptor-format" id="ref-for-dom-gputexturedescriptor-format"><c- g>format</c-></a>;
-    <c- b>required</c-> <a data-link-type="idl-name" href="#typedefdef-gputextureusageflags" id="ref-for-typedefdef-gputextureusageflags②"><c- n>GPUTextureUsageFlags</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUTextureUsageFlags " href="#dom-gputexturedescriptor-usage" id="ref-for-dom-gputexturedescriptor-usage"><c- g>usage</c-></a>;
+    <c- b>required</c-> <a data-link-type="idl-name" href="#typedefdef-gputextureusageflags" id="ref-for-typedefdef-gputextureusageflags"><c- n>GPUTextureUsageFlags</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUTextureUsageFlags " href="#dom-gputexturedescriptor-usage" id="ref-for-dom-gputexturedescriptor-usage"><c- g>usage</c-></a>;
     <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence④"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="#enumdef-gputextureformat" id="ref-for-enumdef-gputextureformat⑧"><c- n>GPUTextureFormat</c-></a>> <a class="idl-code" data-default="[]" data-link-type="dict-member" data-type="sequence<GPUTextureFormat> " href="#dom-gputexturedescriptor-viewformats" id="ref-for-dom-gputexturedescriptor-viewformats"><c- g>viewFormats</c-></a> = [];
 };
 </pre>
@@ -4699,7 +4743,7 @@ a multisampled texture.</p>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUTextureDescriptor" data-dfn-type="dict-member" data-export id="dom-gputexturedescriptor-format"><code>format</code></dfn>, <span> of type <a data-link-type="idl-name" href="#enumdef-gputextureformat" id="ref-for-enumdef-gputextureformat⑨">GPUTextureFormat</a></span>
     <dd data-md>
      <p>The format of the texture.</p>
-    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUTextureDescriptor" data-dfn-type="dict-member" data-export id="dom-gputexturedescriptor-usage"><code>usage</code></dfn>, <span> of type <a data-link-type="idl-name" href="#typedefdef-gputextureusageflags" id="ref-for-typedefdef-gputextureusageflags③">GPUTextureUsageFlags</a></span>
+    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUTextureDescriptor" data-dfn-type="dict-member" data-export id="dom-gputexturedescriptor-usage"><code>usage</code></dfn>, <span> of type <a data-link-type="idl-name" href="#typedefdef-gputextureusageflags" id="ref-for-typedefdef-gputextureusageflags①">GPUTextureUsageFlags</a></span>
     <dd data-md>
      <p>The allowed usages for the texture.</p>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUTextureDescriptor" data-dfn-type="dict-member" data-export id="dom-gputexturedescriptor-viewformats"><code>viewFormats</code></dfn>, <span> of type sequence&lt;<a data-link-type="idl-name" href="#enumdef-gputextureformat" id="ref-for-enumdef-gputextureformat①⓪">GPUTextureFormat</a>>, defaulting to <code>[]</code></span>
@@ -4747,11 +4791,11 @@ depth/stencil format, and be used as a render attachment.</p>
 <pre class="idl highlight def"><c- b>typedef</c-> [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#EnforceRange" id="ref-for-EnforceRange④"><c- g>EnforceRange</c-></a>] <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-long" id="ref-for-idl-unsigned-long③②"><c- b>unsigned</c-> <c- b>long</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-type="typedef" data-export id="typedefdef-gputextureusageflags"><code><c- g>GPUTextureUsageFlags</c-></code></dfn>;
 [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed①①"><c- g>Exposed</c-></a>=(<c- n>Window</c->, <c- n>DedicatedWorker</c->), <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext①②"><c- g>SecureContext</c-></a>]
 <c- b>namespace</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="namespace" data-export id="namespacedef-gputextureusage"><code><c- g>GPUTextureUsage</c-></code></dfn> {
-    <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant①④"><c- n>GPUFlagsConstant</c-></a> <a class="idl-code" data-link-type="const" href="#dom-gputextureusage-copy_src" id="ref-for-dom-gputextureusage-copy_src①"><c- g>COPY_SRC</c-></a>          = 0x01;
-    <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant①⑤"><c- n>GPUFlagsConstant</c-></a> <a class="idl-code" data-link-type="const" href="#dom-gputextureusage-copy_dst" id="ref-for-dom-gputextureusage-copy_dst①"><c- g>COPY_DST</c-></a>          = 0x02;
-    <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant①⑥"><c- n>GPUFlagsConstant</c-></a> <a class="idl-code" data-link-type="const" href="#dom-gputextureusage-texture_binding" id="ref-for-dom-gputextureusage-texture_binding②"><c- g>TEXTURE_BINDING</c-></a>   = 0x04;
-    <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant①⑦"><c- n>GPUFlagsConstant</c-></a> <a class="idl-code" data-link-type="const" href="#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding②"><c- g>STORAGE_BINDING</c-></a>   = 0x08;
-    <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant①⑧"><c- n>GPUFlagsConstant</c-></a> <a class="idl-code" data-link-type="const" href="#dom-gputextureusage-render_attachment" id="ref-for-dom-gputextureusage-render_attachment③"><c- g>RENDER_ATTACHMENT</c-></a> = 0x10;
+    <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant①⑥"><c- n>GPUFlagsConstant</c-></a> <a class="idl-code" data-link-type="const" href="#dom-gputextureusage-copy_src" id="ref-for-dom-gputextureusage-copy_src①"><c- g>COPY_SRC</c-></a>          = 0x01;
+    <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant①⑦"><c- n>GPUFlagsConstant</c-></a> <a class="idl-code" data-link-type="const" href="#dom-gputextureusage-copy_dst" id="ref-for-dom-gputextureusage-copy_dst①"><c- g>COPY_DST</c-></a>          = 0x02;
+    <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant①⑧"><c- n>GPUFlagsConstant</c-></a> <a class="idl-code" data-link-type="const" href="#dom-gputextureusage-texture_binding" id="ref-for-dom-gputextureusage-texture_binding②"><c- g>TEXTURE_BINDING</c-></a>   = 0x04;
+    <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant①⑨"><c- n>GPUFlagsConstant</c-></a> <a class="idl-code" data-link-type="const" href="#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding②"><c- g>STORAGE_BINDING</c-></a>   = 0x08;
+    <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant②⓪"><c- n>GPUFlagsConstant</c-></a> <a class="idl-code" data-link-type="const" href="#dom-gputextureusage-render_attachment" id="ref-for-dom-gputextureusage-render_attachment③"><c- g>RENDER_ATTACHMENT</c-></a> = 0x10;
 };
 </pre>
    <p>The <code class="idl"><a data-link-type="idl" href="#namespacedef-gputextureusage" id="ref-for-namespacedef-gputextureusage">GPUTextureUsage</a></code> flags determine how a <code class="idl"><a data-link-type="idl" href="#gputexture" id="ref-for-gputexture①⑦">GPUTexture</a></code> may be used after its creation:</p>
@@ -6188,9 +6232,9 @@ will be accessible from the associated shader stage.</p>
 <pre class="idl highlight def"><c- b>typedef</c-> [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#EnforceRange" id="ref-for-EnforceRange⑤"><c- g>EnforceRange</c-></a>] <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-long" id="ref-for-idl-unsigned-long③③"><c- b>unsigned</c-> <c- b>long</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-type="typedef" data-export id="typedefdef-gpushaderstageflags"><code><c- g>GPUShaderStageFlags</c-></code></dfn>;
 [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed①⑥"><c- g>Exposed</c-></a>=(<c- n>Window</c->, <c- n>DedicatedWorker</c->), <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext①⑦"><c- g>SecureContext</c-></a>]
 <c- b>namespace</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="namespace" data-export id="namespacedef-gpushaderstage"><code><c- g>GPUShaderStage</c-></code></dfn> {
-    <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant①⑨"><c- n>GPUFlagsConstant</c-></a> <a class="idl-code" data-link-type="const" href="#dom-gpushaderstage-vertex" id="ref-for-dom-gpushaderstage-vertex"><c- g>VERTEX</c-></a>   = 0x1;
-    <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant②⓪"><c- n>GPUFlagsConstant</c-></a> <a class="idl-code" data-link-type="const" href="#dom-gpushaderstage-fragment" id="ref-for-dom-gpushaderstage-fragment"><c- g>FRAGMENT</c-></a> = 0x2;
-    <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant②①"><c- n>GPUFlagsConstant</c-></a> <a class="idl-code" data-link-type="const" href="#dom-gpushaderstage-compute" id="ref-for-dom-gpushaderstage-compute"><c- g>COMPUTE</c-></a>  = 0x4;
+    <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant②①"><c- n>GPUFlagsConstant</c-></a> <a class="idl-code" data-link-type="const" href="#dom-gpushaderstage-vertex" id="ref-for-dom-gpushaderstage-vertex"><c- g>VERTEX</c-></a>   = 0x1;
+    <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant②②"><c- n>GPUFlagsConstant</c-></a> <a class="idl-code" data-link-type="const" href="#dom-gpushaderstage-fragment" id="ref-for-dom-gpushaderstage-fragment"><c- g>FRAGMENT</c-></a> = 0x2;
+    <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant②③"><c- n>GPUFlagsConstant</c-></a> <a class="idl-code" data-link-type="const" href="#dom-gpushaderstage-compute" id="ref-for-dom-gpushaderstage-compute"><c- g>COMPUTE</c-></a>  = 0x4;
 };
 </pre>
    <p><code class="idl"><a data-link-type="idl" href="#namespacedef-gpushaderstage" id="ref-for-namespacedef-gpushaderstage⑥">GPUShaderStage</a></code> contains the following flags, which describe which shader stages a
@@ -9014,11 +9058,11 @@ color target.</p>
 <pre class="idl highlight def"><c- b>typedef</c-> [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#EnforceRange" id="ref-for-EnforceRange⑥"><c- g>EnforceRange</c-></a>] <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-long" id="ref-for-idl-unsigned-long③⑥"><c- b>unsigned</c-> <c- b>long</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-type="typedef" data-export id="typedefdef-gpucolorwriteflags"><code><c- g>GPUColorWriteFlags</c-></code></dfn>;
 [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed②⑤"><c- g>Exposed</c-></a>=(<c- n>Window</c->, <c- n>DedicatedWorker</c->), <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext②⑥"><c- g>SecureContext</c-></a>]
 <c- b>namespace</c-> <dfn class="idl-code" data-dfn-type="namespace" data-export id="namespacedef-gpucolorwrite"><code><c- g>GPUColorWrite</c-></code><a class="self-link" href="#namespacedef-gpucolorwrite"></a></dfn> {
-    <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant②②"><c- n>GPUFlagsConstant</c-></a> <dfn class="idl-code" data-dfn-for="GPUColorWrite" data-dfn-type="const" data-export id="dom-gpucolorwrite-red"><code><c- g>RED</c-></code><a class="self-link" href="#dom-gpucolorwrite-red"></a></dfn>   = 0x1;
-    <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant②③"><c- n>GPUFlagsConstant</c-></a> <dfn class="idl-code" data-dfn-for="GPUColorWrite" data-dfn-type="const" data-export id="dom-gpucolorwrite-green"><code><c- g>GREEN</c-></code><a class="self-link" href="#dom-gpucolorwrite-green"></a></dfn> = 0x2;
-    <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant②④"><c- n>GPUFlagsConstant</c-></a> <dfn class="idl-code" data-dfn-for="GPUColorWrite" data-dfn-type="const" data-export id="dom-gpucolorwrite-blue"><code><c- g>BLUE</c-></code><a class="self-link" href="#dom-gpucolorwrite-blue"></a></dfn>  = 0x4;
-    <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant②⑤"><c- n>GPUFlagsConstant</c-></a> <dfn class="idl-code" data-dfn-for="GPUColorWrite" data-dfn-type="const" data-export id="dom-gpucolorwrite-alpha"><code><c- g>ALPHA</c-></code><a class="self-link" href="#dom-gpucolorwrite-alpha"></a></dfn> = 0x8;
-    <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant②⑥"><c- n>GPUFlagsConstant</c-></a> <dfn class="idl-code" data-dfn-for="GPUColorWrite" data-dfn-type="const" data-export id="dom-gpucolorwrite-all"><code><c- g>ALL</c-></code><a class="self-link" href="#dom-gpucolorwrite-all"></a></dfn>   = 0xF;
+    <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant②④"><c- n>GPUFlagsConstant</c-></a> <dfn class="idl-code" data-dfn-for="GPUColorWrite" data-dfn-type="const" data-export id="dom-gpucolorwrite-red"><code><c- g>RED</c-></code><a class="self-link" href="#dom-gpucolorwrite-red"></a></dfn>   = 0x1;
+    <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant②⑤"><c- n>GPUFlagsConstant</c-></a> <dfn class="idl-code" data-dfn-for="GPUColorWrite" data-dfn-type="const" data-export id="dom-gpucolorwrite-green"><code><c- g>GREEN</c-></code><a class="self-link" href="#dom-gpucolorwrite-green"></a></dfn> = 0x2;
+    <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant②⑥"><c- n>GPUFlagsConstant</c-></a> <dfn class="idl-code" data-dfn-for="GPUColorWrite" data-dfn-type="const" data-export id="dom-gpucolorwrite-blue"><code><c- g>BLUE</c-></code><a class="self-link" href="#dom-gpucolorwrite-blue"></a></dfn>  = 0x4;
+    <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant②⑦"><c- n>GPUFlagsConstant</c-></a> <dfn class="idl-code" data-dfn-for="GPUColorWrite" data-dfn-type="const" data-export id="dom-gpucolorwrite-alpha"><code><c- g>ALPHA</c-></code><a class="self-link" href="#dom-gpucolorwrite-alpha"></a></dfn> = 0x8;
+    <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant②⑧"><c- n>GPUFlagsConstant</c-></a> <dfn class="idl-code" data-dfn-for="GPUColorWrite" data-dfn-type="const" data-export id="dom-gpucolorwrite-all"><code><c- g>ALL</c-></code><a class="self-link" href="#dom-gpucolorwrite-all"></a></dfn>   = 0xF;
 };
 </pre>
    <h5 class="heading settled" data-level="10.3.5.1" id="blend-state"><span class="secno">10.3.5.1. </span><span class="content">Blend State</span><a class="self-link" href="#blend-state"></a></h5>
@@ -12197,7 +12241,7 @@ called the compute pass encoder can no longer be used.</p>
    <h3 class="heading settled dfn-paneled idl-code" data-dfn-type="interface" data-export data-level="17.1" data-lt="GPURenderPassEncoder" id="gpurenderpassencoder"><span class="secno">17.1. </span><span class="content"><code>GPURenderPassEncoder</code> <span id="render-pass-encoder"></span> </span><a class="self-link" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder③①"></a></h3>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed②⑨"><c- g>Exposed</c-></a>=(<c- n>Window</c->, <c- n>DedicatedWorker</c->), <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext③⓪"><c- g>SecureContext</c-></a>]
 <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder①⓪"><c- g>GPURenderPassEncoder</c-></a> {
-    <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined④③"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpurenderpassencoder-setviewport" id="ref-for-dom-gpurenderpassencoder-setviewport"><c- g>setViewport</c-></a>(<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-float" id="ref-for-idl-float①③"><c- b>float</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurenderpassencoder-setviewport-x-y-width-height-mindepth-maxdepth-x" id="ref-for-dom-gpurenderpassencoder-setviewport-x-y-width-height-mindepth-maxdepth-x"><c- g>x</c-></a>, <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-float" id="ref-for-idl-float①④"><c- b>float</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurenderpassencoder-setviewport-x-y-width-height-mindepth-maxdepth-y" id="ref-for-dom-gpurenderpassencoder-setviewport-x-y-width-height-mindepth-maxdepth-y"><c- g>y</c-></a>,
+    <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined④③"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpurenderpassencoder-setviewport" id="ref-for-dom-gpurenderpassencoder-setviewport①"><c- g>setViewport</c-></a>(<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-float" id="ref-for-idl-float①③"><c- b>float</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurenderpassencoder-setviewport-x-y-width-height-mindepth-maxdepth-x" id="ref-for-dom-gpurenderpassencoder-setviewport-x-y-width-height-mindepth-maxdepth-x"><c- g>x</c-></a>, <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-float" id="ref-for-idl-float①④"><c- b>float</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurenderpassencoder-setviewport-x-y-width-height-mindepth-maxdepth-y" id="ref-for-dom-gpurenderpassencoder-setviewport-x-y-width-height-mindepth-maxdepth-y"><c- g>y</c-></a>,
         <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-float" id="ref-for-idl-float①⑤"><c- b>float</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurenderpassencoder-setviewport-x-y-width-height-mindepth-maxdepth-width" id="ref-for-dom-gpurenderpassencoder-setviewport-x-y-width-height-mindepth-maxdepth-width"><c- g>width</c-></a>, <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-float" id="ref-for-idl-float①⑥"><c- b>float</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurenderpassencoder-setviewport-x-y-width-height-mindepth-maxdepth-height" id="ref-for-dom-gpurenderpassencoder-setviewport-x-y-width-height-mindepth-maxdepth-height"><c- g>height</c-></a>,
         <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-float" id="ref-for-idl-float①⑦"><c- b>float</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurenderpassencoder-setviewport-x-y-width-height-mindepth-maxdepth-mindepth" id="ref-for-dom-gpurenderpassencoder-setviewport-x-y-width-height-mindepth-maxdepth-mindepth"><c- g>minDepth</c-></a>, <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-float" id="ref-for-idl-float①⑧"><c- b>float</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpurenderpassencoder-setviewport-x-y-width-height-mindepth-maxdepth-maxdepth" id="ref-for-dom-gpurenderpassencoder-setviewport-x-y-width-height-mindepth-maxdepth-maxdepth"><c- g>maxDepth</c-></a>);
 
@@ -13625,14 +13669,13 @@ attachments used by this encoder.</p>
    <dl>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderPassEncoder" data-dfn-type="method" data-export id="dom-gpurenderpassencoder-setviewport"><code>setViewport(x, y, width, height, minDepth, maxDepth)</code></dfn>
     <dd data-md>
-     <p>Sets the viewport used during the rasterization stage to linearly map from normalized device
-coordinates to viewport coordinates.</p>
+     <p>Sets the viewport used during the rasterization stage to linearly map from <a data-link-type="dfn" href="#ndc" id="ref-for-ndc">normalized device coordinates</a> to <a data-link-type="dfn" href="#viewport-coordinates" id="ref-for-viewport-coordinates①">viewport coordinates</a>.</p>
      <div class="algorithm" data-algorithm="GPURenderPassEncoder.setViewport">
       <div data-timeline="content">
         <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder②①">GPURenderPassEncoder</a></code> <var>this</var>. 
        <p><strong>Arguments:</strong></p>
        <table class="argumentdef data">
-        <caption>Arguments for the <a data-link-type="idl" href="#dom-gpurenderpassencoder-setviewport" id="ref-for-dom-gpurenderpassencoder-setviewport①">GPURenderPassEncoder.setViewport(x, y, width, height, minDepth, maxDepth)</a> method.</caption>
+        <caption>Arguments for the <a data-link-type="idl" href="#dom-gpurenderpassencoder-setviewport" id="ref-for-dom-gpurenderpassencoder-setviewport②">GPURenderPassEncoder.setViewport(x, y, width, height, minDepth, maxDepth)</a> method.</caption>
         <thead>
          <tr>
           <th>Parameter 
@@ -13724,14 +13767,14 @@ coordinates to viewport coordinates.</p>
         <li data-md>
          <p>Round <var>x</var>, <var>y</var>, <var>width</var>, and <var>height</var> to some uniform precision, no less precise than integer rounding.</p>
         <li data-md>
-         <p>Set <var>renderState</var>.<code class="idl"><a data-link-type="idl" href="#dom-renderstate-viewport-slot" id="ref-for-dom-renderstate-viewport-slot">[[viewport]]</a></code> to the extents <var>x</var>, <var>y</var>, <var>width</var>, <var>height</var>, <var>minDepth</var>, and <var>maxDepth</var>.</p>
+         <p>Set <var>renderState</var>.<code class="idl"><a data-link-type="idl" href="#dom-renderstate-viewport-slot" id="ref-for-dom-renderstate-viewport-slot①">[[viewport]]</a></code> to the extents <var>x</var>, <var>y</var>, <var>width</var>, <var>height</var>, <var>minDepth</var>, and <var>maxDepth</var>.</p>
        </ol>
       </div>
      </div>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPURenderPassEncoder" data-dfn-type="method" data-export id="dom-gpurenderpassencoder-setscissorrect"><code>setScissorRect(x, y, width, height)</code></dfn>
     <dd data-md>
      <p>Sets the scissor rectangle used during the rasterization stage.
-After transformation into viewport coordinates any fragments which fall outside the scissor
+After transformation into <a data-link-type="dfn" href="#viewport-coordinates" id="ref-for-viewport-coordinates②">viewport coordinates</a> any fragments which fall outside the scissor
 rectangle will be discarded.</p>
      <div class="algorithm" data-algorithm="GPURenderPassEncoder.setScissorRect">
       <div data-timeline="content">
@@ -14865,7 +14908,7 @@ if <var>this</var> is lost, or when <var>this</var> <a data-link-type="dfn" href
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑧③"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpuqueryset-destroy" id="ref-for-dom-gpuqueryset-destroy"><c- g>destroy</c-></a>();
 
     <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#enumdef-gpuquerytype" id="ref-for-enumdef-gpuquerytype"><c- n>GPUQueryType</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="GPUQueryType" href="#dom-gpuqueryset-type" id="ref-for-dom-gpuqueryset-type②"><c- g>type</c-></a>;
-    <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑧⑥"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="GPUSize32" href="#dom-gpuqueryset-count" id="ref-for-dom-gpuqueryset-count②"><c- g>count</c-></a>;
+    <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32out" id="ref-for-typedefdef-gpusize32out②"><c- n>GPUSize32Out</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="GPUSize32Out" href="#dom-gpuqueryset-count" id="ref-for-dom-gpuqueryset-count②"><c- g>count</c-></a>;
 };
 <a data-link-type="idl-name" href="#gpuqueryset" id="ref-for-gpuqueryset①⑨"><c- n>GPUQuerySet</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpuobjectbase" id="ref-for-gpuobjectbase③③"><c- n>GPUObjectBase</c-></a>;
 </pre>
@@ -14874,7 +14917,7 @@ if <var>this</var> is lost, or when <var>this</var> <a data-link-type="dfn" href
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUQuerySet" data-dfn-type="attribute" data-export id="dom-gpuqueryset-type"><code>type</code></dfn>, <span> of type <a data-link-type="idl-name" href="#enumdef-gpuquerytype" id="ref-for-enumdef-gpuquerytype①">GPUQueryType</a>, readonly</span>
     <dd data-md>
      <p>The type of the queries managed by this <code class="idl"><a data-link-type="idl" href="#gpuqueryset" id="ref-for-gpuqueryset②①">GPUQuerySet</a></code>.</p>
-    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUQuerySet" data-dfn-type="attribute" data-export id="dom-gpuqueryset-count"><code>count</code></dfn>, <span> of type <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑧⑦">GPUSize32</a>, readonly</span>
+    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUQuerySet" data-dfn-type="attribute" data-export id="dom-gpuqueryset-count"><code>count</code></dfn>, <span> of type <a data-link-type="idl-name" href="#typedefdef-gpusize32out" id="ref-for-typedefdef-gpusize32out③">GPUSize32Out</a>, readonly</span>
     <dd data-md>
      <p>The number of queries managed by this <code class="idl"><a data-link-type="idl" href="#gpuqueryset" id="ref-for-gpuqueryset②②">GPUQuerySet</a></code>.</p>
    </dl>
@@ -14898,14 +14941,14 @@ if <var>this</var> is lost, or when <var>this</var> <a data-link-type="dfn" href
 <pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpuquerysetdescriptor"><code><c- g>GPUQuerySetDescriptor</c-></code></dfn>
          : <a data-link-type="idl-name" href="#dictdef-gpuobjectdescriptorbase" id="ref-for-dictdef-gpuobjectdescriptorbase②⓪"><c- n>GPUObjectDescriptorBase</c-></a> {
     <c- b>required</c-> <a data-link-type="idl-name" href="#enumdef-gpuquerytype" id="ref-for-enumdef-gpuquerytype②"><c- n>GPUQueryType</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUQueryType " href="#dom-gpuquerysetdescriptor-type" id="ref-for-dom-gpuquerysetdescriptor-type"><c- g>type</c-></a>;
-    <c- b>required</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑧⑧"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUSize32 " href="#dom-gpuquerysetdescriptor-count" id="ref-for-dom-gpuquerysetdescriptor-count"><c- g>count</c-></a>;
+    <c- b>required</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑧⑥"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUSize32 " href="#dom-gpuquerysetdescriptor-count" id="ref-for-dom-gpuquerysetdescriptor-count"><c- g>count</c-></a>;
 };
 </pre>
    <dl>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUQuerySetDescriptor" data-dfn-type="dict-member" data-export id="dom-gpuquerysetdescriptor-type"><code>type</code></dfn>, <span> of type <a data-link-type="idl-name" href="#enumdef-gpuquerytype" id="ref-for-enumdef-gpuquerytype③">GPUQueryType</a></span>
     <dd data-md>
      <p>The type of queries managed by <code class="idl"><a data-link-type="idl" href="#gpuqueryset" id="ref-for-gpuqueryset②⑨">GPUQuerySet</a></code>.</p>
-    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUQuerySetDescriptor" data-dfn-type="dict-member" data-export id="dom-gpuquerysetdescriptor-count"><code>count</code></dfn>, <span> of type <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑧⑨">GPUSize32</a></span>
+    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUQuerySetDescriptor" data-dfn-type="dict-member" data-export id="dom-gpuquerysetdescriptor-count"><code>count</code></dfn>, <span> of type <a data-link-type="idl-name" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32⑧⑦">GPUSize32</a></span>
     <dd data-md>
      <p>The number of queries managed by <code class="idl"><a data-link-type="idl" href="#gpuqueryset" id="ref-for-gpuqueryset③⓪">GPUQuerySet</a></code>.</p>
    </dl>
@@ -15437,7 +15480,7 @@ a view with an <code>srgb</code> format.</p>
 <c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpucanvasconfiguration"><code><c- g>GPUCanvasConfiguration</c-></code></dfn> {
     <c- b>required</c-> <a data-link-type="idl-name" href="#gpudevice" id="ref-for-gpudevice⑥⑤"><c- n>GPUDevice</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUDevice " href="#dom-gpucanvasconfiguration-device" id="ref-for-dom-gpucanvasconfiguration-device③"><c- g>device</c-></a>;
     <c- b>required</c-> <a data-link-type="idl-name" href="#enumdef-gputextureformat" id="ref-for-enumdef-gputextureformat④③"><c- n>GPUTextureFormat</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUTextureFormat " href="#dom-gpucanvasconfiguration-format" id="ref-for-dom-gpucanvasconfiguration-format⑤"><c- g>format</c-></a>;
-    <a data-link-type="idl-name" href="#typedefdef-gputextureusageflags" id="ref-for-typedefdef-gputextureusageflags④"><c- n>GPUTextureUsageFlags</c-></a> <a class="idl-code" data-default="0x10" data-link-type="dict-member" data-type="GPUTextureUsageFlags " href="#dom-gpucanvasconfiguration-usage" id="ref-for-dom-gpucanvasconfiguration-usage"><c- g>usage</c-></a> = 0x10;  // GPUTextureUsage.RENDER_ATTACHMENT
+    <a data-link-type="idl-name" href="#typedefdef-gputextureusageflags" id="ref-for-typedefdef-gputextureusageflags②"><c- n>GPUTextureUsageFlags</c-></a> <a class="idl-code" data-default="0x10" data-link-type="dict-member" data-type="GPUTextureUsageFlags " href="#dom-gpucanvasconfiguration-usage" id="ref-for-dom-gpucanvasconfiguration-usage"><c- g>usage</c-></a> = 0x10;  // GPUTextureUsage.RENDER_ATTACHMENT
     <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence②④"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="#enumdef-gputextureformat" id="ref-for-enumdef-gputextureformat④④"><c- n>GPUTextureFormat</c-></a>> <a class="idl-code" data-default="[]" data-link-type="dict-member" data-type="sequence<GPUTextureFormat> " href="#dom-gpucanvasconfiguration-viewformats" id="ref-for-dom-gpucanvasconfiguration-viewformats①"><c- g>viewFormats</c-></a> = [];
     <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/canvas.html#predefinedcolorspace" id="ref-for-predefinedcolorspace④"><c- n>PredefinedColorSpace</c-></a> <a class="idl-code" data-default="&quot;srgb&quot;" data-link-type="dict-member" data-type="PredefinedColorSpace " href="#dom-gpucanvasconfiguration-colorspace" id="ref-for-dom-gpucanvasconfiguration-colorspace①"><c- g>colorSpace</c-></a> = "srgb";
     <a data-link-type="idl-name" href="#gpucanvasalphamode" id="ref-for-gpucanvasalphamode②"><c- n>GPUCanvasAlphaMode</c-></a> <a class="idl-code" data-default="&quot;opaque&quot;" data-link-type="dict-member" data-type="GPUCanvasAlphaMode " href="#dom-gpucanvasconfiguration-alphamode" id="ref-for-dom-gpucanvasconfiguration-alphamode⑤"><c- g>alphaMode</c-></a> = "opaque";
@@ -15453,7 +15496,7 @@ compatible with.</p>
     <dd data-md>
      <p>The format that textures returned by <code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-getcurrenttexture" id="ref-for-dom-gpucanvascontext-getcurrenttexture①⓪">getCurrentTexture()</a></code> will have.
 Must be one of the <a data-link-type="dfn" href="#supported-context-formats" id="ref-for-supported-context-formats①">Supported context formats</a>.</p>
-    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUCanvasConfiguration" data-dfn-type="dict-member" data-export id="dom-gpucanvasconfiguration-usage"><code>usage</code></dfn>, <span> of type <a data-link-type="idl-name" href="#typedefdef-gputextureusageflags" id="ref-for-typedefdef-gputextureusageflags⑤">GPUTextureUsageFlags</a>, defaulting to <code>0x10</code></span>
+    <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUCanvasConfiguration" data-dfn-type="dict-member" data-export id="dom-gpucanvasconfiguration-usage"><code>usage</code></dfn>, <span> of type <a data-link-type="idl-name" href="#typedefdef-gputextureusageflags" id="ref-for-typedefdef-gputextureusageflags③">GPUTextureUsageFlags</a>, defaulting to <code>0x10</code></span>
     <dd data-md>
      <p>The usage that textures returned by <code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-getcurrenttexture" id="ref-for-dom-gpucanvascontext-getcurrenttexture①①">getCurrentTexture()</a></code> will have. <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-render_attachment" id="ref-for-dom-gputextureusage-render_attachment①②">RENDER_ATTACHMENT</a></code> is the default, but is not automatically included
 if the usage is explicitly set. Be sure to include <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-render_attachment" id="ref-for-dom-gputextureusage-render_attachment①③">RENDER_ATTACHMENT</a></code> when setting a custom usage if you wish to use textures returned by <code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-getcurrenttexture" id="ref-for-dom-gpucanvascontext-getcurrenttexture①②">getCurrentTexture()</a></code> as color targets for a render pass.</p>
@@ -16393,8 +16436,8 @@ within the <a data-link-type="dfn" href="#clip-volume" id="ref-for-clip-volume�
 to the 2-dimensional rendering area of the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="framebuffer">framebuffer</dfn> -
 the set of render attachments in the current <code class="idl"><a data-link-type="idl" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder③⓪">GPURenderPassEncoder</a></code>.
 This rendering area is split into an even grid of pixels.</p>
-   <p>The <a data-link-type="dfn" href="#framebuffer" id="ref-for-framebuffer②">framebuffer</a> coordinates start from the top-left corner of the render targets.
-Each unit corresponds exactly to a pixel. See <a href="#coordinate-systems">§ 3.3 Coordinate Systems</a> for more information.</p>
+   <p>The <a data-link-type="dfn" href="#framebuffer" id="ref-for-framebuffer①">framebuffer</a> coordinates start from the top-left corner of the render targets.
+Each unit corresponds exactly to one pixel. See <a href="#coordinate-systems">§ 3.3 Coordinate Systems</a> for more information.</p>
    <p>Rasterization determines the set of pixels affected by a primitive. In case of multi-sampling,
 each pixel is further split into <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-multisample" id="ref-for-dom-gpurenderpipelinedescriptor-multisample⑤">multisample</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpumultisamplestate-count" id="ref-for-dom-gpumultisamplestate-count③">count</a></code> samples.
 The <dfn data-dfn-type="dfn" data-noexport id="standard-sample-patterns">standard sample patterns<a class="self-link" href="#standard-sample-patterns"></a></dfn> are as follows,
@@ -16417,13 +16460,13 @@ such that the pixel ranges from (0, 0) to (1, 1):</p>
    <dl>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="FragmentDestination" data-dfn-type="dfn" data-noexport id="fragmentdestination-position">position</dfn>
     <dd data-md>
-     <p>the 2D pixel position in <a data-link-type="dfn" href="#framebuffer" id="ref-for-framebuffer③">framebuffer</a> space</p>
+     <p>the 2D pixel position using <a data-link-type="dfn" href="#framebuffer-coordinates" id="ref-for-framebuffer-coordinates②">framebuffer coordinates</a></p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="FragmentDestination" data-dfn-type="dfn" data-noexport id="fragmentdestination-sampleindex">sampleIndex</dfn>
     <dd data-md>
      <p>an integer in case <a href="#sample-frequency-shading">§ 23.3.10 Sample frequency shading</a> is active,
 or <code>null</code> otherwise</p>
    </dl>
-   <p>We’ll also use a notion of <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="ndc">NDC</dfn> - normalized device coordinates.
+   <p>We’ll also use a notion of <a data-link-type="dfn" href="#ndc" id="ref-for-ndc①">normalized device coordinates</a>, or NDC.
 In this coordinate system, the viewport bounds range in X and Y from -1 to 1, and in Z from 0 to 1.</p>
    <p>Rasterization produces a list of <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="rasterizationpoint">RasterizationPoint</dfn>s, each containing the following data:</p>
    <dl>
@@ -16441,8 +16484,8 @@ In this coordinate system, the viewport bounds range in X and Y from -1 to 1, an
      <p>refers to interpolated 1.0 ÷ W across the primitive</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="RasterizationPoint" data-dfn-type="dfn" data-noexport id="rasterizationpoint-depth">depth</dfn>
     <dd data-md>
-     <p>refers to the depth in viewport coordinates,
-i.e. between the <code class="idl"><a data-link-type="idl" href="#dom-renderstate-viewport-slot" id="ref-for-dom-renderstate-viewport-slot①">[[viewport]]</a></code> <code>minDepth</code> and <code>maxDepth</code>.</p>
+     <p>refers to the depth in <a data-link-type="dfn" href="#viewport-coordinates" id="ref-for-viewport-coordinates③">viewport coordinates</a>,
+i.e. between the <code class="idl"><a data-link-type="idl" href="#dom-renderstate-viewport-slot" id="ref-for-dom-renderstate-viewport-slot②">[[viewport]]</a></code> <code>minDepth</code> and <code>maxDepth</code>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="RasterizationPoint" data-dfn-type="dfn" data-noexport id="rasterizationpoint-primitivevertices">primitiveVertices</dfn>
     <dd data-md>
      <p>refers to the list of vertex outputs forming the primitive</p>
@@ -16465,16 +16508,16 @@ i.e. between the <code class="idl"><a data-link-type="idl" href="#dom-renderstat
     However, the order of primitives affects later stages, such as depth/stencil operations and pixel writes.</p>
     <ol>
      <li data-md>
-      <p>First, the clipped vertices are transformed into <a data-link-type="dfn" href="#ndc" id="ref-for-ndc">NDC</a> - normalized device coordinates.
-Given the output position <var>p</var>, the <a data-link-type="dfn" href="#ndc" id="ref-for-ndc①">NDC</a> coordinates are computed as:</p>
-      <p>divisor(<var>p</var>) = 1.0 ÷ <var>p</var>.w</p>
+      <p>First, the clipped vertices are transformed into <a data-link-type="dfn" href="#ndc" id="ref-for-ndc②">NDC</a> - normalized device coordinates.
+Given the output position <var>p</var>, the <a data-link-type="dfn" href="#ndc" id="ref-for-ndc③">NDC</a> position and perspective divisor are:</p>
       <p>ndc(<var>p</var>) = vector(<var>p</var>.x ÷ <var>p</var>.w, <var>p</var>.y ÷ <var>p</var>.w, <var>p</var>.z ÷ <var>p</var>.w)</p>
+      <p>divisor(<var>p</var>) = 1.0 ÷ <var>p</var>.w</p>
      <li data-md>
-      <p>Let <var>vp</var> be <var>state</var>.<code class="idl"><a data-link-type="idl" href="#dom-renderstate-viewport-slot" id="ref-for-dom-renderstate-viewport-slot②">[[viewport]]</a></code>.
-Map the <a data-link-type="dfn" href="#ndc" id="ref-for-ndc②">NDC</a> coordinates <var>n</var> into viewport space:</p>
+      <p>Let <var>vp</var> be <var>state</var>.<code class="idl"><a data-link-type="idl" href="#dom-renderstate-viewport-slot" id="ref-for-dom-renderstate-viewport-slot③">[[viewport]]</a></code>.
+Map the <a data-link-type="dfn" href="#ndc" id="ref-for-ndc④">NDC</a> position <var>n</var> into <a data-link-type="dfn" href="#viewport-coordinates" id="ref-for-viewport-coordinates④">viewport coordinates</a>:</p>
       <ul>
        <li data-md>
-        <p>Compute <a data-link-type="dfn" href="#framebuffer" id="ref-for-framebuffer④">framebuffer</a> coordinates from the render target offset and size:</p>
+        <p>Compute <a data-link-type="dfn" href="#framebuffer" id="ref-for-framebuffer②">framebuffer</a> coordinates from the render target offset and size:</p>
         <p>framebufferCoords(<var>n</var>) = vector(<var>vp</var>.<code>x</code> + 0.5 × (<var>n</var>.x + 1) × <var>vp</var>.<code>width</code>, <var>vp</var>.<code>y</code> + .5 × (<var>n</var>.y + 1) × <var>vp</var>.<code>height</code>)</p>
        <li data-md>
         <p>Compute depth by linearly mapping [0,1] to the viewport depth range:</p>
@@ -16504,7 +16547,7 @@ depending on <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipel
     </ol>
    </div>
    <h5 class="heading settled" data-level="23.3.5.1" id="point-rasterization"><span class="secno">23.3.5.1. </span><span class="content">Point Rasterization</span><a class="self-link" href="#point-rasterization"></a></h5>
-   <p>A single <a data-link-type="dfn" href="#fragmentdestination" id="ref-for-fragmentdestination①">FragmentDestination</a> is selected within the pixel containing the <a data-link-type="dfn" href="#framebuffer" id="ref-for-framebuffer⑤">framebuffer</a> coordinates of the point.</p>
+   <p>A single <a data-link-type="dfn" href="#fragmentdestination" id="ref-for-fragmentdestination①">FragmentDestination</a> is selected within the pixel containing the <a data-link-type="dfn" href="#framebuffer" id="ref-for-framebuffer③">framebuffer</a> coordinates of the point.</p>
    <p>The coverage mask depends on multi-sampling mode:</p>
    <dl class="switch">
     <dt data-md>sample-frequency
@@ -16521,7 +16564,7 @@ depending on <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipel
    <p class="note editorial" role="note">Editorial: fill out this section </p>
    <h5 class="heading settled" data-level="23.3.5.3" id="barycentric-coordinates"><span class="secno">23.3.5.3. </span><span class="content">Barycentric coordinates</span><a class="self-link" href="#barycentric-coordinates"></a></h5>
    <p>Barycentric coordinates is a list of <var>n</var> numbers <var>b</var><sub><var>i</var></sub>,
-defined for a point <var>p</var> inside a convex polygon with <var>n</var> vertices <var>v</var><sub><var>i</var></sub> in <a data-link-type="dfn" href="#framebuffer" id="ref-for-framebuffer⑥">framebuffer</a> space.
+defined for a point <var>p</var> inside a convex polygon with <var>n</var> vertices <var>v</var><sub><var>i</var></sub> in <a data-link-type="dfn" href="#framebuffer" id="ref-for-framebuffer④">framebuffer</a> space.
 Each <var>b</var><sub><var>i</var></sub> is in range 0 to 1, inclusive, and represents the proximity to vertex <var>v</var><sub><var>i</var></sub>.
 Their sum is always constant:</p>
    <p>∑ (<var>b</var><sub><var>i</var></sub>) = 1</p>
@@ -16545,14 +16588,14 @@ Otherwise, the polygon is <dfn class="dfn-paneled" data-dfn-type="dfn" data-noex
      <li data-md>
       <p>Let <var>rasterizationPoints</var> be an empty list.</p>
      <li data-md>
-      <p>Let <var>v</var>(<var>i</var>) be the <a data-link-type="dfn" href="#framebuffer" id="ref-for-framebuffer⑦">framebuffer</a> coordinates for the clipped vertex number <var>i</var> (starting with 1)
+      <p>Let <var>v</var>(<var>i</var>) be the <a data-link-type="dfn" href="#framebuffer" id="ref-for-framebuffer⑤">framebuffer</a> coordinates for the clipped vertex number <var>i</var> (starting with 1)
 in a rasterized polygon of <var>n</var> vertices.</p>
       <p class="note" role="note"><span class="marker">Note:</span> this section uses the term "polygon" instead of a "triangle",
 since <a href="#primitive-clipping">§ 23.3.4 Primitive Clipping</a> stage may have introduced additional vertices.
 This is non-observable by the application.</p>
      <li data-md>
       <p>Determine if the polygon is front-facing,
-which depends on the sign of the <var>area</var> occupied by the polygon in <a data-link-type="dfn" href="#framebuffer" id="ref-for-framebuffer⑧">framebuffer</a> coordinates:</p>
+which depends on the sign of the <var>area</var> occupied by the polygon in <a data-link-type="dfn" href="#framebuffer" id="ref-for-framebuffer⑥">framebuffer</a> coordinates:</p>
       <p><var>area</var> = 0.5 × ((<var>v</var><sub>1</sub>.x × <var>v</var><sub><var>n</var></sub>.y − <var>v</var><sub><var>n</var></sub>.x × <var>v</var><sub>1</sub>.y) + ∑ (<var>v</var><sub><var>i</var>+1</sub>.x × <var>v</var><sub><var>i</var></sub>.y − <var>v</var><sub><var>i</var></sub>.x × <var>v</var><sub><var>i</var>+1</sub>.y))</p>
       <p>The sign of <var>area</var> is interpreted based on the <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-primitive" id="ref-for-dom-gpurenderpipelinedescriptor-primitive①⓪">primitive</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpuprimitivestate-frontface" id="ref-for-dom-gpuprimitivestate-frontface①">frontFace</a></code>:</p>
       <dl class="switch">
@@ -16578,7 +16621,7 @@ and do not process in later stages of the render pipeline.</p>
         <p>The <a data-link-type="dfn" href="#back-facing" id="ref-for-back-facing③">back-facing</a> polygons are discarded.</p>
       </dl>
      <li data-md>
-      <p>Determine a set of <a data-link-type="dfn" href="#fragment" id="ref-for-fragment">fragments</a> inside the polygon in <a data-link-type="dfn" href="#framebuffer" id="ref-for-framebuffer⑨">framebuffer</a> space -
+      <p>Determine a set of <a data-link-type="dfn" href="#fragment" id="ref-for-fragment">fragments</a> inside the polygon in <a data-link-type="dfn" href="#framebuffer" id="ref-for-framebuffer⑦">framebuffer</a> space -
 these are locations scheduled for the per-fragment operations.
 This operation is known as "point sampling".
 The logic is based on <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-multisample" id="ref-for-dom-gpurenderpipelinedescriptor-multisample⑧">multisample</a></code>:</p>
@@ -16586,14 +16629,14 @@ The logic is based on <var>descriptor</var>.<code class="idl"><a data-link-type=
        <dt data-md>disabled
        <dd data-md>
         <p><a data-link-type="dfn" href="#fragment" id="ref-for-fragment①">Fragment</a>s are associated with pixel centers. That is, all the points with coordinates <var>C</var>, where
-fract(<var>C</var>) = vector2(0.5, 0.5) in the <a data-link-type="dfn" href="#framebuffer" id="ref-for-framebuffer①⓪">framebuffer</a> space, enclosed into the polygon, are included.
+fract(<var>C</var>) = vector2(0.5, 0.5) in the <a data-link-type="dfn" href="#framebuffer" id="ref-for-framebuffer⑧">framebuffer</a> space, enclosed into the polygon, are included.
 If a pixel center is on the edge of the polygon, whether or not it’s included is not defined.</p>
         <p class="note" role="note"><span class="marker">Note:</span> this becomes a subject of precision for the rasterizer.</p>
        <dt data-md>enabled
        <dd data-md>
         <p>Each pixel is associated with <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipelinedescriptor-multisample" id="ref-for-dom-gpurenderpipelinedescriptor-multisample⑨">multisample</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpumultisamplestate-count" id="ref-for-dom-gpumultisamplestate-count⑥">count</a></code> locations, which are implementation-defined.
-The locations are ordered, and the list is the same for each pixel of the <a data-link-type="dfn" href="#framebuffer" id="ref-for-framebuffer①①">framebuffer</a>.
-Each location corresponds to one fragment in the multisampled <a data-link-type="dfn" href="#framebuffer" id="ref-for-framebuffer①②">framebuffer</a>.</p>
+The locations are ordered, and the list is the same for each pixel of the <a data-link-type="dfn" href="#framebuffer" id="ref-for-framebuffer⑨">framebuffer</a>.
+Each location corresponds to one fragment in the multisampled <a data-link-type="dfn" href="#framebuffer" id="ref-for-framebuffer①⓪">framebuffer</a>.</p>
         <p>The rasterizer builds a mask of locations being hit inside each pixel and provides is as "sample-mask"
 built-in to the fragment shader.</p>
       </dl>
@@ -16628,8 +16671,8 @@ computes the fragment data (often a color) to be written into render targets.</p
      <li data-md>
       <p><dfn class="dfn-paneled" data-dfn-for="Fragment" data-dfn-type="dfn" data-noexport id="fragment-coveragemask">coverageMask</dfn> refers to multisample coverage mask (see <a href="#sample-masking">§ 23.3.11 Sample Masking</a>).</p>
      <li data-md>
-      <p><dfn class="dfn-paneled" data-dfn-for="Fragment" data-dfn-type="dfn" data-noexport id="fragment-depth">depth</dfn> refers to the depth in viewport coordinates,
-i.e. between the <code class="idl"><a data-link-type="idl" href="#dom-renderstate-viewport-slot" id="ref-for-dom-renderstate-viewport-slot③">[[viewport]]</a></code> <code>minDepth</code> and <code>maxDepth</code>.</p>
+      <p><dfn class="dfn-paneled" data-dfn-for="Fragment" data-dfn-type="dfn" data-noexport id="fragment-depth">depth</dfn> refers to the depth in <a data-link-type="dfn" href="#viewport-coordinates" id="ref-for-viewport-coordinates⑤">viewport coordinates</a>,
+i.e. between the <code class="idl"><a data-link-type="idl" href="#dom-renderstate-viewport-slot" id="ref-for-dom-renderstate-viewport-slot④">[[viewport]]</a></code> <code>minDepth</code> and <code>maxDepth</code>.</p>
      <li data-md>
       <p><dfn class="dfn-paneled" data-dfn-for="Fragment" data-dfn-type="dfn" data-noexport id="fragment-colors">colors</dfn> refers to the list of color values,
 one for each target in <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassdescriptor-colorattachments" id="ref-for-dom-gpurenderpassdescriptor-colorattachments①②">colorAttachments</a></code>.</p>
@@ -16701,7 +16744,7 @@ and the <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#inte
           <p>If <code>frag_depth</code> <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#built-in-values" id="ref-for-built-in-values⑦">builtin</a> is produced by the shader as <var>value</var>:</p>
           <ol>
            <li data-md>
-            <p>Let <var>vp</var> be <var>state</var>.<code class="idl"><a data-link-type="idl" href="#dom-renderstate-viewport-slot" id="ref-for-dom-renderstate-viewport-slot④">[[viewport]]</a></code>.</p>
+            <p>Let <var>vp</var> be <var>state</var>.<code class="idl"><a data-link-type="idl" href="#dom-renderstate-viewport-slot" id="ref-for-dom-renderstate-viewport-slot⑤">[[viewport]]</a></code>.</p>
            <li data-md>
             <p>Set <var>fragment</var>.<a data-link-type="dfn" href="#fragment-depth" id="ref-for-fragment-depth①">depth</a> to clamp(<var>value</var>, <var>vp</var>.<code>minDepth</code>, <var>vp</var>.<code>maxDepth</code>).</p>
           </ol>
@@ -16723,7 +16766,7 @@ such as writes into <code class="idl"><a data-link-type="idl" href="#dom-gpubuff
 may happen in any order.</p>
    <h4 class="heading settled" data-level="23.3.7" id="output-merging"><span class="secno">23.3.7. </span><span class="content">Output Merging</span><a class="self-link" href="#output-merging"></a></h4>
    <p class="note editorial" role="note">Editorial: fill out this section </p>
-   <p>The depth input to this stage, if any, is clamped to the current <code class="idl"><a data-link-type="idl" href="#dom-renderstate-viewport-slot" id="ref-for-dom-renderstate-viewport-slot⑤">[[viewport]]</a></code> depth range
+   <p>The depth input to this stage, if any, is clamped to the current <code class="idl"><a data-link-type="idl" href="#dom-renderstate-viewport-slot" id="ref-for-dom-renderstate-viewport-slot⑥">[[viewport]]</a></code> depth range
 (regardless of whether the fragment shader stage writes the <code>frag_depth</code> builtin).</p>
    <h4 class="heading settled" data-level="23.3.8" id="no-color-output"><span class="secno">23.3.8. </span><span class="content">No Color Output</span><a class="self-link" href="#no-color-output"></a></h4>
    <p>In no-color-output mode, <a data-link-type="dfn" href="#pipeline" id="ref-for-pipeline②⓪">pipeline</a> does not produce any color attachment outputs.</p>
@@ -18469,8 +18512,10 @@ for (const dataLink of dataLinks) {
    <li><a href="#dom-gpushaderstage-fragment">FRAGMENT</a><span>, in § 8.1.1</span>
    <li><a href="#fragment">Fragment</a><span>, in § 23.3.6</span>
    <li><a href="#dom-gpurenderpipelinedescriptor-fragment">fragment</a><span>, in § 10.3.1</span>
+   <li><a href="#fragment-coordinates">Fragment coordinates</a><span>, in § 3.3</span>
    <li><a href="#fragmentdestination">FragmentDestination</a><span>, in § 23.3.5</span>
    <li><a href="#framebuffer">framebuffer</a><span>, in § 23.3.5</span>
+   <li><a href="#framebuffer-coordinates">Framebuffer coordinates</a><span>, in § 3.3</span>
    <li><a href="#dom-gpucullmode-front">"front"</a><span>, in § 10.3.2</span>
    <li><a href="#dom-gpuprimitivestate-frontface">frontFace</a><span>, in § 10.3.2</span>
    <li><a href="#front-facing">front-facing</a><span>, in § 23.3.5.4</span>
@@ -19027,7 +19072,7 @@ for (const dataLink of dataLinks) {
    <li><a href="#dom-gpurenderpipelinedescriptor-multisample">multisample</a><span>, in § 10.3.1</span>
    <li><a href="#dom-gputexturebindinglayout-multisampled">multisampled</a><span>, in § 8.1.1</span>
    <li><a href="#navigatorgpu">NavigatorGPU</a><span>, in § 4.1</span>
-   <li><a href="#ndc">NDC</a><span>, in § 23.3.5</span>
+   <li><a href="#ndc">NDC</a><span>, in § 3.3</span>
    <li>
     "nearest"
     <ul>
@@ -19096,6 +19141,7 @@ for (const dataLink of dataLinks) {
    <li><a href="#dom-gpurequestadapteroptions-powerpreference">powerPreference</a><span>, in § 4.2.2</span>
    <li><a href="#dom-gpucanvasalphamode-premultiplied">"premultiplied"</a><span>, in § 21.5</span>
    <li><a href="#dom-gpuimagecopytexturetagged-premultipliedalpha">premultipliedAlpha</a><span>, in § 11.2.4</span>
+   <li><a href="#present-coordinates">present coordinates</a><span>, in § 3.3</span>
    <li><a href="#dom-gpurenderpipelinedescriptor-primitive">primitive</a><span>, in § 10.3.1</span>
    <li><a href="#primitive-restart-value">primitive restart value</a><span>, in § 10.3.7</span>
    <li><a href="#rasterizationpoint-primitivevertices">primitiveVertices</a><span>, in § 23.3.5</span>
@@ -19413,6 +19459,7 @@ for (const dataLink of dataLinks) {
    <li><a href="#usage-scopes">usage scopes</a><span>, in § 3.4.3</span>
    <li><a href="#usage-scope-validation">usage scope validation</a><span>, in § 3.4.4</span>
    <li><a href="#dom-gpubindgroup-usedresources-slot">[[usedResources]]</a><span>, in § 8.2</span>
+   <li><a href="#uv-coordinates">UV coordinates</a><span>, in § 3.3</span>
    <li><a href="#valid">valid</a><span>, in § 3.2.1</span>
    <li><a href="#abstract-opdef-validate-encoder-bind-groups">Validate encoder bind groups</a><span>, in § 14.1</span>
    <li><a href="#abstract-opdef-validate-gpucolor-shape">validate GPUColor shape</a><span>, in § 24.1</span>
@@ -19484,6 +19531,7 @@ for (const dataLink of dataLinks) {
      <li><a href="#dom-gputexturedescriptor-viewformats">dict-member for GPUTextureDescriptor</a><span>, in § 6.1.1</span>
     </ul>
    <li><a href="#dom-renderstate-viewport-slot">[[viewport]]</a><span>, in § 17.1</span>
+   <li><a href="#viewport-coordinates">Viewport coordinates</a><span>, in § 3.3</span>
    <li><a href="#active-buffer-mapping-views">views</a><span>, in § 5.1</span>
    <li><a href="#dom-gpubindgrouplayoutentry-visibility">visibility</a><span>, in § 8.1.1</span>
    <li><a href="#dom-gpucompilationmessagetype-warning">"warning"</a><span>, in § 9.1.2</span>
@@ -19499,6 +19547,7 @@ for (const dataLink of dataLinks) {
      <li><a href="#gpuextent3d-width">dfn for GPUExtent3D</a><span>, in § 24.1</span>
      <li><a href="#dom-gpuextent3ddict-width">dict-member for GPUExtent3DDict</a><span>, in § 24.1</span>
     </ul>
+   <li><a href="#window-coordinates">Window coordinates</a><span>, in § 3.3</span>
    <li><a href="#dom-gpumapmode-write">WRITE</a><span>, in § 5.2</span>
    <li><a href="#dom-gpuqueue-writebuffer">writeBuffer(buffer, bufferOffset, data)</a><span>, in § 19.2</span>
    <li><a href="#dom-gpuqueue-writebuffer">writeBuffer(buffer, bufferOffset, data, dataOffset)</a><span>, in § 19.2</span>
@@ -21481,7 +21530,7 @@ for (const dataLink of dataLinks) {
     <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32out"><c- n>GPUSize32Out</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="GPUSize32Out" href="#dom-gputexture-samplecount"><c- g>sampleCount</c-></a>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#enumdef-gputexturedimension"><c- n>GPUTextureDimension</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="GPUTextureDimension" href="#dom-gputexture-dimension"><c- g>dimension</c-></a>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#enumdef-gputextureformat"><c- n>GPUTextureFormat</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="GPUTextureFormat" href="#dom-gputexture-format"><c- g>format</c-></a>;
-    <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#typedefdef-gputextureusageflags"><c- n>GPUTextureUsageFlags</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="GPUTextureUsageFlags" href="#dom-gputexture-usage"><c- g>usage</c-></a>;
+    <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant"><c- n>GPUFlagsConstant</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="GPUFlagsConstant" href="#dom-gputexture-usage"><c- g>usage</c-></a>;
 };
 <a data-link-type="idl-name" href="#gputexture"><c- n>GPUTexture</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpuobjectbase"><c- n>GPUObjectBase</c-></a>;
 
@@ -22409,7 +22458,7 @@ for (const dataLink of dataLinks) {
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpuqueryset-destroy"><c- g>destroy</c-></a>();
 
     <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#enumdef-gpuquerytype"><c- n>GPUQueryType</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="GPUQueryType" href="#dom-gpuqueryset-type"><c- g>type</c-></a>;
-    <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32"><c- n>GPUSize32</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="GPUSize32" href="#dom-gpuqueryset-count"><c- g>count</c-></a>;
+    <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#typedefdef-gpusize32out"><c- n>GPUSize32Out</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="GPUSize32Out" href="#dom-gpuqueryset-count"><c- g>count</c-></a>;
 };
 <a data-link-type="idl-name" href="#gpuqueryset"><c- n>GPUQuerySet</c-></a> <c- b>includes</c-> <a data-link-type="idl-name" href="#gpuobjectbase"><c- n>GPUObjectBase</c-></a>;
 
@@ -22884,6 +22933,29 @@ reference specific GPU commands (like dispatch) yet. <a class="issue-return" hre
     <li><a href="#ref-for-abstract-opdef-valid-to-use-with②④">17.2.4. Bundles</a>
     <li><a href="#ref-for-abstract-opdef-valid-to-use-with②⑤">19.2. GPUQueue </a> <a href="#ref-for-abstract-opdef-valid-to-use-with②⑥">(2)</a> <a href="#ref-for-abstract-opdef-valid-to-use-with②⑦">(3)</a>
     <li><a href="#ref-for-abstract-opdef-valid-to-use-with②⑧">20.4. Timestamp Query</a>
+   </ul>
+  </aside>
+  <aside aria-labelledby="infopaneltitle-for-ndc" class="dfn-panel" data-for="ndc" id="infopanel-for-ndc">
+   <span id="infopaneltitle-for-ndc" style="display:none">Info about the 'Normalized device coordinates' definition.</span><b><a href="#ndc">#ndc</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-ndc">17.2.2. Rasterization state</a>
+    <li><a href="#ref-for-ndc①">23.3.5. Rasterization</a> <a href="#ref-for-ndc②">(2)</a> <a href="#ref-for-ndc③">(3)</a> <a href="#ref-for-ndc④">(4)</a>
+   </ul>
+  </aside>
+  <aside aria-labelledby="infopaneltitle-for-framebuffer-coordinates" class="dfn-panel" data-for="framebuffer-coordinates" id="infopanel-for-framebuffer-coordinates">
+   <span id="infopaneltitle-for-framebuffer-coordinates" style="display:none">Info about the 'Framebuffer coordinates' definition.</span><b><a href="#framebuffer-coordinates">#framebuffer-coordinates</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-framebuffer-coordinates">3.3. Coordinate Systems</a> <a href="#ref-for-framebuffer-coordinates①">(2)</a>
+    <li><a href="#ref-for-framebuffer-coordinates②">23.3.5. Rasterization</a>
+   </ul>
+  </aside>
+  <aside aria-labelledby="infopaneltitle-for-viewport-coordinates" class="dfn-panel" data-for="viewport-coordinates" id="infopanel-for-viewport-coordinates">
+   <span id="infopaneltitle-for-viewport-coordinates" style="display:none">Info about the 'Viewport coordinates' definition.</span><b><a href="#viewport-coordinates">#viewport-coordinates</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-viewport-coordinates">3.3. Coordinate Systems</a>
+    <li><a href="#ref-for-viewport-coordinates①">17.2.2. Rasterization state</a> <a href="#ref-for-viewport-coordinates②">(2)</a>
+    <li><a href="#ref-for-viewport-coordinates③">23.3.5. Rasterization</a> <a href="#ref-for-viewport-coordinates④">(2)</a>
+    <li><a href="#ref-for-viewport-coordinates⑤">23.3.6. Fragment Processing</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-content-timeline" class="dfn-panel" data-for="content-timeline" id="infopanel-for-content-timeline">
@@ -24839,9 +24911,8 @@ reference specific GPU commands (like dispatch) yet. <a class="issue-return" hre
   <aside aria-labelledby="infopaneltitle-for-typedefdef-gputextureusageflags" class="dfn-panel" data-for="typedefdef-gputextureusageflags" id="infopanel-for-typedefdef-gputextureusageflags">
    <span id="infopaneltitle-for-typedefdef-gputextureusageflags" style="display:none">Info about the 'GPUTextureUsageFlags' definition.</span><b><a href="#typedefdef-gputextureusageflags">#typedefdef-gputextureusageflags</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-typedefdef-gputextureusageflags">6.1. GPUTexture </a> <a href="#ref-for-typedefdef-gputextureusageflags①">(2)</a>
-    <li><a href="#ref-for-typedefdef-gputextureusageflags②">6.1.1. GPUTextureDescriptor </a> <a href="#ref-for-typedefdef-gputextureusageflags③">(2)</a>
-    <li><a href="#ref-for-typedefdef-gputextureusageflags④">21.4. GPUCanvasConfiguration</a> <a href="#ref-for-typedefdef-gputextureusageflags⑤">(2)</a>
+    <li><a href="#ref-for-typedefdef-gputextureusageflags">6.1.1. GPUTextureDescriptor </a> <a href="#ref-for-typedefdef-gputextureusageflags①">(2)</a>
+    <li><a href="#ref-for-typedefdef-gputextureusageflags②">21.4. GPUCanvasConfiguration</a> <a href="#ref-for-typedefdef-gputextureusageflags③">(2)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-namespacedef-gputextureusage" class="dfn-panel" data-for="namespacedef-gputextureusage" id="infopanel-for-namespacedef-gputextureusage">
@@ -29713,10 +29784,11 @@ reference specific GPU commands (like dispatch) yet. <a class="issue-return" hre
   <aside aria-labelledby="infopaneltitle-for-dom-renderstate-viewport-slot" class="dfn-panel" data-for="dom-renderstate-viewport-slot" id="infopanel-for-dom-renderstate-viewport-slot">
    <span id="infopaneltitle-for-dom-renderstate-viewport-slot" style="display:none">Info about the '[[viewport]]' definition.</span><b><a href="#dom-renderstate-viewport-slot">#dom-renderstate-viewport-slot</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-renderstate-viewport-slot">17.2.2. Rasterization state</a>
-    <li><a href="#ref-for-dom-renderstate-viewport-slot①">23.3.5. Rasterization</a> <a href="#ref-for-dom-renderstate-viewport-slot②">(2)</a>
-    <li><a href="#ref-for-dom-renderstate-viewport-slot③">23.3.6. Fragment Processing</a> <a href="#ref-for-dom-renderstate-viewport-slot④">(2)</a>
-    <li><a href="#ref-for-dom-renderstate-viewport-slot⑤">23.3.7. Output Merging</a>
+    <li><a href="#ref-for-dom-renderstate-viewport-slot">3.3. Coordinate Systems</a>
+    <li><a href="#ref-for-dom-renderstate-viewport-slot①">17.2.2. Rasterization state</a>
+    <li><a href="#ref-for-dom-renderstate-viewport-slot②">23.3.5. Rasterization</a> <a href="#ref-for-dom-renderstate-viewport-slot③">(2)</a>
+    <li><a href="#ref-for-dom-renderstate-viewport-slot④">23.3.6. Fragment Processing</a> <a href="#ref-for-dom-renderstate-viewport-slot⑤">(2)</a>
+    <li><a href="#ref-for-dom-renderstate-viewport-slot⑥">23.3.7. Output Merging</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-dom-renderstate-scissorrect-slot" class="dfn-panel" data-for="dom-renderstate-scissorrect-slot" id="infopanel-for-dom-renderstate-scissorrect-slot">
@@ -30427,8 +30499,9 @@ reference specific GPU commands (like dispatch) yet. <a class="issue-return" hre
   <aside aria-labelledby="infopaneltitle-for-dom-gpurenderpassencoder-setviewport" class="dfn-panel" data-for="dom-gpurenderpassencoder-setviewport" id="infopanel-for-dom-gpurenderpassencoder-setviewport">
    <span id="infopaneltitle-for-dom-gpurenderpassencoder-setviewport" style="display:none">Info about the 'setViewport(x, y, width, height, minDepth, maxDepth)' definition.</span><b><a href="#dom-gpurenderpassencoder-setviewport">#dom-gpurenderpassencoder-setviewport</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-gpurenderpassencoder-setviewport">17.1. GPURenderPassEncoder </a>
-    <li><a href="#ref-for-dom-gpurenderpassencoder-setviewport①">17.2.2. Rasterization state</a>
+    <li><a href="#ref-for-dom-gpurenderpassencoder-setviewport">3.3. Coordinate Systems</a>
+    <li><a href="#ref-for-dom-gpurenderpassencoder-setviewport①">17.1. GPURenderPassEncoder </a>
+    <li><a href="#ref-for-dom-gpurenderpassencoder-setviewport②">17.2.2. Rasterization state</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-dom-gpurenderpassencoder-setviewport-x-y-width-height-mindepth-maxdepth-x" class="dfn-panel" data-for="dom-gpurenderpassencoder-setviewport-x-y-width-height-mindepth-maxdepth-x" id="infopanel-for-dom-gpurenderpassencoder-setviewport-x-y-width-height-mindepth-maxdepth-x">
@@ -31474,11 +31547,11 @@ reference specific GPU commands (like dispatch) yet. <a class="issue-return" hre
   <aside aria-labelledby="infopaneltitle-for-framebuffer" class="dfn-panel" data-for="framebuffer" id="infopanel-for-framebuffer">
    <span id="infopaneltitle-for-framebuffer" style="display:none">Info about the 'framebuffer' definition.</span><b><a href="#framebuffer">#framebuffer</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-framebuffer">3.3. Coordinate Systems</a> <a href="#ref-for-framebuffer①">(2)</a>
-    <li><a href="#ref-for-framebuffer②">23.3.5. Rasterization</a> <a href="#ref-for-framebuffer③">(2)</a> <a href="#ref-for-framebuffer④">(3)</a>
-    <li><a href="#ref-for-framebuffer⑤">23.3.5.1. Point Rasterization</a>
-    <li><a href="#ref-for-framebuffer⑥">23.3.5.3. Barycentric coordinates</a>
-    <li><a href="#ref-for-framebuffer⑦">23.3.5.4. Polygon Rasterization</a> <a href="#ref-for-framebuffer⑧">(2)</a> <a href="#ref-for-framebuffer⑨">(3)</a> <a href="#ref-for-framebuffer①⓪">(4)</a> <a href="#ref-for-framebuffer①①">(5)</a> <a href="#ref-for-framebuffer①②">(6)</a>
+    <li><a href="#ref-for-framebuffer">3.3. Coordinate Systems</a>
+    <li><a href="#ref-for-framebuffer①">23.3.5. Rasterization</a> <a href="#ref-for-framebuffer②">(2)</a>
+    <li><a href="#ref-for-framebuffer③">23.3.5.1. Point Rasterization</a>
+    <li><a href="#ref-for-framebuffer④">23.3.5.3. Barycentric coordinates</a>
+    <li><a href="#ref-for-framebuffer⑤">23.3.5.4. Polygon Rasterization</a> <a href="#ref-for-framebuffer⑥">(2)</a> <a href="#ref-for-framebuffer⑦">(3)</a> <a href="#ref-for-framebuffer⑧">(4)</a> <a href="#ref-for-framebuffer⑨">(5)</a> <a href="#ref-for-framebuffer①⓪">(6)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-fragmentdestination" class="dfn-panel" data-for="fragmentdestination" id="infopanel-for-fragmentdestination">
@@ -31501,12 +31574,6 @@ reference specific GPU commands (like dispatch) yet. <a class="issue-return" hre
    <span id="infopaneltitle-for-fragmentdestination-sampleindex" style="display:none">Info about the 'sampleIndex' definition.</span><b><a href="#fragmentdestination-sampleindex">#fragmentdestination-sampleindex</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-fragmentdestination-sampleindex">23.3.6. Fragment Processing</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-ndc" class="dfn-panel" data-for="ndc" id="infopanel-for-ndc">
-   <span id="infopaneltitle-for-ndc" style="display:none">Info about the 'NDC' definition.</span><b><a href="#ndc">#ndc</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-ndc">23.3.5. Rasterization</a> <a href="#ref-for-ndc①">(2)</a> <a href="#ref-for-ndc②">(3)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-rasterizationpoint" class="dfn-panel" data-for="rasterizationpoint" id="infopanel-for-rasterizationpoint">
@@ -31745,8 +31812,7 @@ reference specific GPU commands (like dispatch) yet. <a class="issue-return" hre
     <li><a href="#ref-for-typedefdef-gpusize32⑥⑨">17.2. GPURenderCommandsMixin </a> <a href="#ref-for-typedefdef-gpusize32⑦⓪">(2)</a> <a href="#ref-for-typedefdef-gpusize32⑦①">(3)</a> <a href="#ref-for-typedefdef-gpusize32⑦②">(4)</a> <a href="#ref-for-typedefdef-gpusize32⑦③">(5)</a> <a href="#ref-for-typedefdef-gpusize32⑦④">(6)</a> <a href="#ref-for-typedefdef-gpusize32⑦⑤">(7)</a> <a href="#ref-for-typedefdef-gpusize32⑦⑥">(8)</a>
     <li><a href="#ref-for-typedefdef-gpusize32⑦⑦">17.2.1. Drawing</a> <a href="#ref-for-typedefdef-gpusize32⑦⑧">(2)</a> <a href="#ref-for-typedefdef-gpusize32⑦⑨">(3)</a> <a href="#ref-for-typedefdef-gpusize32⑧⓪">(4)</a> <a href="#ref-for-typedefdef-gpusize32⑧①">(5)</a> <a href="#ref-for-typedefdef-gpusize32⑧②">(6)</a> <a href="#ref-for-typedefdef-gpusize32⑧③">(7)</a> <a href="#ref-for-typedefdef-gpusize32⑧④">(8)</a>
     <li><a href="#ref-for-typedefdef-gpusize32⑧⑤">17.2.3. Queries</a>
-    <li><a href="#ref-for-typedefdef-gpusize32⑧⑥">20.1. GPUQuerySet </a> <a href="#ref-for-typedefdef-gpusize32⑧⑦">(2)</a>
-    <li><a href="#ref-for-typedefdef-gpusize32⑧⑧">20.1.1. QuerySet Creation</a> <a href="#ref-for-typedefdef-gpusize32⑧⑨">(2)</a>
+    <li><a href="#ref-for-typedefdef-gpusize32⑧⑥">20.1.1. QuerySet Creation</a> <a href="#ref-for-typedefdef-gpusize32⑧⑦">(2)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-typedefdef-gpusignedoffset32" class="dfn-panel" data-for="typedefdef-gpusignedoffset32" id="infopanel-for-typedefdef-gpusignedoffset32">
@@ -31772,6 +31838,7 @@ reference specific GPU commands (like dispatch) yet. <a class="issue-return" hre
    <span id="infopaneltitle-for-typedefdef-gpusize32out" style="display:none">Info about the 'GPUSize32Out' definition.</span><b><a href="#typedefdef-gpusize32out">#typedefdef-gpusize32out</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-typedefdef-gpusize32out">6.1. GPUTexture </a> <a href="#ref-for-typedefdef-gpusize32out①">(2)</a>
+    <li><a href="#ref-for-typedefdef-gpusize32out②">20.1. GPUQuerySet </a> <a href="#ref-for-typedefdef-gpusize32out③">(2)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-typedefdef-gpuflagsconstant" class="dfn-panel" data-for="typedefdef-gpuflagsconstant" id="infopanel-for-typedefdef-gpuflagsconstant">
@@ -31780,9 +31847,10 @@ reference specific GPU commands (like dispatch) yet. <a class="issue-return" hre
     <li><a href="#ref-for-typedefdef-gpuflagsconstant">5.1. GPUBuffer </a> <a href="#ref-for-typedefdef-gpuflagsconstant①">(2)</a>
     <li><a href="#ref-for-typedefdef-gpuflagsconstant②">5.1.2. Buffer Usages</a> <a href="#ref-for-typedefdef-gpuflagsconstant③">(2)</a> <a href="#ref-for-typedefdef-gpuflagsconstant④">(3)</a> <a href="#ref-for-typedefdef-gpuflagsconstant⑤">(4)</a> <a href="#ref-for-typedefdef-gpuflagsconstant⑥">(5)</a> <a href="#ref-for-typedefdef-gpuflagsconstant⑦">(6)</a> <a href="#ref-for-typedefdef-gpuflagsconstant⑧">(7)</a> <a href="#ref-for-typedefdef-gpuflagsconstant⑨">(8)</a> <a href="#ref-for-typedefdef-gpuflagsconstant①⓪">(9)</a> <a href="#ref-for-typedefdef-gpuflagsconstant①①">(10)</a>
     <li><a href="#ref-for-typedefdef-gpuflagsconstant①②">5.2. Buffer Mapping</a> <a href="#ref-for-typedefdef-gpuflagsconstant①③">(2)</a>
-    <li><a href="#ref-for-typedefdef-gpuflagsconstant①④">6.1.2. Texture Usages</a> <a href="#ref-for-typedefdef-gpuflagsconstant①⑤">(2)</a> <a href="#ref-for-typedefdef-gpuflagsconstant①⑥">(3)</a> <a href="#ref-for-typedefdef-gpuflagsconstant①⑦">(4)</a> <a href="#ref-for-typedefdef-gpuflagsconstant①⑧">(5)</a>
-    <li><a href="#ref-for-typedefdef-gpuflagsconstant①⑨">8.1.1. Bind Group Layout Creation</a> <a href="#ref-for-typedefdef-gpuflagsconstant②⓪">(2)</a> <a href="#ref-for-typedefdef-gpuflagsconstant②①">(3)</a>
-    <li><a href="#ref-for-typedefdef-gpuflagsconstant②②">10.3.5. Color Target State</a> <a href="#ref-for-typedefdef-gpuflagsconstant②③">(2)</a> <a href="#ref-for-typedefdef-gpuflagsconstant②④">(3)</a> <a href="#ref-for-typedefdef-gpuflagsconstant②⑤">(4)</a> <a href="#ref-for-typedefdef-gpuflagsconstant②⑥">(5)</a>
+    <li><a href="#ref-for-typedefdef-gpuflagsconstant①④">6.1. GPUTexture </a> <a href="#ref-for-typedefdef-gpuflagsconstant①⑤">(2)</a>
+    <li><a href="#ref-for-typedefdef-gpuflagsconstant①⑥">6.1.2. Texture Usages</a> <a href="#ref-for-typedefdef-gpuflagsconstant①⑦">(2)</a> <a href="#ref-for-typedefdef-gpuflagsconstant①⑧">(3)</a> <a href="#ref-for-typedefdef-gpuflagsconstant①⑨">(4)</a> <a href="#ref-for-typedefdef-gpuflagsconstant②⓪">(5)</a>
+    <li><a href="#ref-for-typedefdef-gpuflagsconstant②①">8.1.1. Bind Group Layout Creation</a> <a href="#ref-for-typedefdef-gpuflagsconstant②②">(2)</a> <a href="#ref-for-typedefdef-gpuflagsconstant②③">(3)</a>
+    <li><a href="#ref-for-typedefdef-gpuflagsconstant②④">10.3.5. Color Target State</a> <a href="#ref-for-typedefdef-gpuflagsconstant②⑤">(2)</a> <a href="#ref-for-typedefdef-gpuflagsconstant②⑥">(3)</a> <a href="#ref-for-typedefdef-gpuflagsconstant②⑦">(4)</a> <a href="#ref-for-typedefdef-gpuflagsconstant②⑧">(5)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-dictdef-gpucolordict" class="dfn-panel" data-for="dictdef-gpucolordict" id="infopanel-for-dictdef-gpucolordict">
