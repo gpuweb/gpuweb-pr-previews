@@ -910,7 +910,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/22670d942f630c9146d34651f0f98f45cc8749c0/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/22670d942f630c9146d34651f0f98f45cc8749c0/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/1d9b0e82a020760cf601349b85835d5377a2a87c/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/1d9b0e82a020760cf601349b85835d5377a2a87c/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -15025,12 +15025,12 @@ and ended by calling <code class="idl"><a data-link-type="idl" href="#dom-gpuren
    </ul>
    <p>and then resolve timestamp values (in nanoseconds as a 64-bit unsigned integer) into
 a <code class="idl"><a data-link-type="idl" href="#gpubuffer" id="ref-for-gpubuffer①⓪①">GPUBuffer</a></code>, using <code class="idl"><a data-link-type="idl" href="#gpucommandencoder" id="ref-for-gpucommandencoder④①">GPUCommandEncoder</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandencoder-resolvequeryset" id="ref-for-dom-gpucommandencoder-resolvequeryset③">resolveQuerySet()</a></code>.</p>
+   <p>While the timestamp is given in nanoseconds it’s value is implementation defined and may not
+increase monotonically. The physical device may reset the timestamp counter occasionally, which can
+result in unexpected values such as negative deltas between timestamps that logically should be
+monotonically increasing. These instances should be rare and can safely be ignored. Applications
+should not be written in such a way that unexpected timestamps cause an application failure.</p>
    <p>Timestamp query requires <code class="idl"><a data-link-type="idl" href="#timestamp-query" id="ref-for-timestamp-query④">"timestamp-query"</a></code> to be <a data-link-type="dfn" href="#enabled-for" id="ref-for-enabled-for③">enabled for</a> the device.</p>
-   <p class="note" role="note"><span class="marker">Note:</span> The physical device may reset the timestamp counter occasionally, which can result in
-unexpected values such as negative deltas between timestamps that logically should be monotonically
-increasing. These instances should be rare and can safely be ignored. Applications should not be
-written in such a way that unexpected timestamps cause an application failure.</p>
-   <p class="issue" id="issue-d34a40b7"><a class="self-link" href="#issue-d34a40b7"></a> Write normative text about timestamp value resets. <a href="https://github.com/gpuweb/gpuweb/issues/4069">[Issue #gpuweb/gpuweb#4069]</a></p>
    <p><a class="tracking-vector" href="https://infra.spec.whatwg.org/#tracking-vector"><svg aria-label="(This is a tracking vector.)" height="64" role="img" width="46"><title>There is a tracking vector here.</title><use href="#b732b3fe"></use></svg></a> Timestamp queries can provide high-resolution GPU timing.
 See <a href="#security-timing">§ 2.1.7 Timing attacks</a> for security considerations. </p>
    <div class="validusage algorithm" data-algorithm="Validate timestampWrites">
@@ -22589,7 +22589,6 @@ reference specific GPU commands (like dispatch) yet. <a class="issue-return" hre
    <div class="issue"> Specify more formally. <a class="issue-return" href="#issue-ddacf7c9" title="Jump to section">↵</a></div>
    <div class="issue"> Define copy, including provision for snorm. <a class="issue-return" href="#issue-79778272③" title="Jump to section">↵</a></div>
    <div class="issue"> Do the actual copy. <a class="issue-return" href="#issue-9abc07f0" title="Jump to section">↵</a></div>
-   <div class="issue"> Write normative text about timestamp value resets. <a href="https://github.com/gpuweb/gpuweb/issues/4069">[Issue #gpuweb/gpuweb#4069]</a> <a class="issue-return" href="#issue-d34a40b7" title="Jump to section">↵</a></div>
    <div class="issue"> This section is incomplete. <a class="issue-return" href="#issue-96bfad03" title="Jump to section">↵</a></div>
   </div>
   <aside aria-labelledby="infopaneltitle-for-physical-resources" class="dfn-panel" data-for="physical-resources" id="infopanel-for-physical-resources">
