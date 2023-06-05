@@ -1487,7 +1487,7 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version d6f2d6445, updated Tue Jan 17 11:25:25 2023 -0800" name="generator">
+  <meta content="Bikeshed version 5fcd28d6d, updated Tue May 30 13:12:11 2023 -0700" name="generator">
   <link href="https://gpuweb.github.io/gpuweb/correspondence/" rel="canonical">
 <style>
 code {
@@ -1500,8 +1500,7 @@ code {
     overflow-x: unset;
 }
 </style>
-<style>/* style-autolinks */
-
+<style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
     font-size: inherit;
@@ -1561,8 +1560,17 @@ pre .property::before, pre .property::after {
 
 [data-link-type=biblio] {
     white-space: pre;
-}</style>
-<style>/* style-colors */
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --selflink-text: black;
+        --selflink-bg: silver;
+        --selflink-hover-text: white;
+    }
+}
+</style>
+<style>/* Boilerplate: style-colors */
 
 /* Any --*-text not paired with a --*-bg is assumed to have a transparent bg */
 :root {
@@ -1670,117 +1678,7 @@ pre .property::before, pre .property::after {
     --outdated-shadow: red;
 
     --editedrec-bg: darkorange;
-}</style>
-<style>/* style-counters */
-
-body {
-    counter-reset: example figure issue;
 }
-.issue {
-    counter-increment: issue;
-}
-.issue:not(.no-marker)::before {
-    content: "Issue " counter(issue);
-}
-
-.example {
-    counter-increment: example;
-}
-.example:not(.no-marker)::before {
-    content: "Example " counter(example);
-}
-.invalid.example:not(.no-marker)::before,
-.illegal.example:not(.no-marker)::before {
-    content: "Invalid Example" counter(example);
-}
-
-figcaption {
-    counter-increment: figure;
-}
-figcaption:not(.no-marker)::before {
-    content: "Figure " counter(figure) " ";
-}</style>
-<style>/* style-issues */
-
-a[href].issue-return {
-    float: right;
-    float: inline-end;
-    color: var(--issueheading-text);
-    font-weight: bold;
-    text-decoration: none;
-}
-</style>
-<style>/* style-md-lists */
-
-/* This is a weird hack for me not yet following the commonmark spec
-   regarding paragraph and lists. */
-[data-md] > :first-child {
-    margin-top: 0;
-}
-[data-md] > :last-child {
-    margin-bottom: 0;
-}</style>
-<style>/* style-selflinks */
-
-:root {
-    --selflink-text: white;
-    --selflink-bg: gray;
-    --selflink-hover-text: black;
-}
-.heading, .issue, .note, .example, li, dt {
-    position: relative;
-}
-a.self-link {
-    position: absolute;
-    top: 0;
-    left: calc(-1 * (3.5rem - 26px));
-    width: calc(3.5rem - 26px);
-    height: 2em;
-    text-align: center;
-    border: none;
-    transition: opacity .2s;
-    opacity: .5;
-}
-a.self-link:hover {
-    opacity: 1;
-}
-.heading > a.self-link {
-    font-size: 83%;
-}
-.example > a.self-link,
-.note > a.self-link,
-.issue > a.self-link {
-    /* These blocks are overflow:auto, so positioning outside
-       doesn't work. */
-    left: auto;
-    right: 0;
-}
-li > a.self-link {
-    left: calc(-1 * (3.5rem - 26px) - 2em);
-}
-dfn > a.self-link {
-    top: auto;
-    left: auto;
-    opacity: 0;
-    width: 1.5em;
-    height: 1.5em;
-    background: var(--selflink-bg);
-    color: var(--selflink-text);
-    font-style: normal;
-    transition: opacity .2s, background-color .2s, color .2s;
-}
-dfn:hover > a.self-link {
-    opacity: 1;
-}
-dfn > a.self-link:hover {
-    color: var(--selflink-hover-text);
-}
-
-a.self-link::before            { content: "¶"; }
-.heading > a.self-link::before { content: "§"; }
-dfn > a.self-link::before      { content: "#"; }
-</style>
-<style>/* style-darkmode */
 
 @media (prefers-color-scheme: dark) {
     :root {
@@ -1893,19 +1791,120 @@ dfn > a.self-link::before      { content: "#"; }
        which is quite common in practice... */
     img { background: white; }
 }
-@media (prefers-color-scheme: dark) {
-    :root {
-        --selflink-text: black;
-        --selflink-bg: silver;
-        --selflink-hover-text: white;
-    }
+</style>
+<style>/* Boilerplate: style-counters */
+body {
+    counter-reset: example figure issue;
 }
+.issue {
+    counter-increment: issue;
+}
+.issue:not(.no-marker)::before {
+    content: "Issue " counter(issue);
+}
+
+.example {
+    counter-increment: example;
+}
+.example:not(.no-marker)::before {
+    content: "Example " counter(example);
+}
+.invalid.example:not(.no-marker)::before,
+.illegal.example:not(.no-marker)::before {
+    content: "Invalid Example" counter(example);
+}
+
+figcaption {
+    counter-increment: figure;
+}
+figcaption:not(.no-marker)::before {
+    content: "Figure " counter(figure) " ";
+}
+</style>
+<style>/* Boilerplate: style-issues */
+a[href].issue-return {
+    float: right;
+    float: inline-end;
+    color: var(--issueheading-text);
+    font-weight: bold;
+    text-decoration: none;
+}
+</style>
+<style>/* Boilerplate: style-md-lists */
+/* This is a weird hack for me not yet following the commonmark spec
+   regarding paragraph and lists. */
+[data-md] > :first-child {
+    margin-top: 0;
+}
+[data-md] > :last-child {
+    margin-bottom: 0;
+}
+</style>
+<style>/* Boilerplate: style-selflinks */
+
+:root {
+    --selflink-text: white;
+    --selflink-bg: gray;
+    --selflink-hover-text: black;
+}
+.heading, .issue, .note, .example, li, dt {
+    position: relative;
+}
+a.self-link {
+    position: absolute;
+    top: 0;
+    left: calc(-1 * (3.5rem - 26px));
+    width: calc(3.5rem - 26px);
+    height: 2em;
+    text-align: center;
+    border: none;
+    transition: opacity .2s;
+    opacity: .5;
+}
+a.self-link:hover {
+    opacity: 1;
+}
+.heading > a.self-link {
+    font-size: 83%;
+}
+.example > a.self-link,
+.note > a.self-link,
+.issue > a.self-link {
+    /* These blocks are overflow:auto, so positioning outside
+       doesn't work. */
+    left: auto;
+    right: 0;
+}
+li > a.self-link {
+    left: calc(-1 * (3.5rem - 26px) - 2em);
+}
+dfn > a.self-link {
+    top: auto;
+    left: auto;
+    opacity: 0;
+    width: 1.5em;
+    height: 1.5em;
+    background: var(--selflink-bg);
+    color: var(--selflink-text);
+    font-style: normal;
+    transition: opacity .2s, background-color .2s, color .2s;
+}
+dfn:hover > a.self-link {
+    opacity: 1;
+}
+dfn > a.self-link:hover {
+    color: var(--selflink-hover-text);
+}
+
+a.self-link::before            { content: "¶"; }
+.heading > a.self-link::before { content: "§"; }
+dfn > a.self-link::before      { content: "#"; }
 </style>
  <body class="h-entry">
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">WebGPU Correspondence Reference</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Living Document, <time class="dt-updated" datetime="2023-02-16">16 February 2023</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Living Document, <time class="dt-updated" datetime="2023-06-05">5 June 2023</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2006,13 +2005,11 @@ User agents are not required to use these formulas and may expose whatever they 
       <td><a href="https://docs.microsoft.com/en-us/windows/win32/direct3d12/constants">Constants</a>, <a href="https://docs.microsoft.com/en-us/windows/win32/direct3d12/hardware-support">Hardware Tiers</a>, <a href="https://docs.microsoft.com/en-us/windows/win32/direct3d12/root-signature-limits">Root Signature Limits</a> 
     <tbody>
      <tr>
-      <th>
-       <p class="issue" id="issue-3d73d141"><a class="self-link" href="#issue-3d73d141"></a>need a max buffer size limit </p>
+      <th><code>maxBufferSize</code> 
       <td><a href="https://github.com/gpuweb/gpuweb/issues/1371">#1371</a> 
       <td><code>maxMemoryAllocationSize</code> 
       <td><code>MTLDevice.maxBufferLength</code> 
-      <td>
-       <p class="issue" id="issue-81390f61"><a class="self-link" href="#issue-81390f61"></a><em>No documented limit?</em> </p>
+      <td><em>No documented limit.</em> Implementations could use a constant, or determine this based on the amount of VRAM on the system as D3D11 FL11’s <a href="https://learn.microsoft.com/en-us/windows/win32/direct3d11/overviews-direct3d-11-resources-limits">soft resource size limit</a> does. 
      <tr>
       <th><code>maxTextureDimension1D</code> 
       <td><a href="https://github.com/gpuweb/gpuweb/issues/1327">#1327</a> 
@@ -2022,7 +2019,7 @@ User agents are not required to use these formulas and may expose whatever they 
      <tr>
       <th><code>maxTextureDimension2D</code> 
       <td><a href="https://github.com/gpuweb/gpuweb/issues/1327">#1327</a> 
-      <td><code>min(maxImageDimension2D, maxImageDimensionCube)</code> 
+      <td><code>min(maxImageDimension2D, maxImageDimensionCube, maxFramebufferWidth, maxFramebufferHeight, maxViewportDimensions[0], maxViewportDimensions[1], viewportBoundsRange[0], -viewportBoundsRange[1])</code> 
       <td>min(<code>Maximum 2D texture width and height</code>, <code>Maximum cube map texture width and height</code>) 
       <td>16384 = <code>min(D3D12_REQ_TEXTURE2D_U_OR_V_DIMENSION, D3D12_REQ_TEXTURECUBE_DIMENSION)</code> 
      <tr>
@@ -2074,7 +2071,7 @@ User agents are not required to use these formulas and may expose whatever they 
       <th><code>maxStorageTexturesPerShaderStage</code> 
       <td><a href="https://github.com/gpuweb/gpuweb/issues/409">#409</a> 
       <td><code>maxPerStageDescriptorStorageImages</code> 
-      <td rowspan="2"><em>Strategy-dependent.</em> Allocate <code>Maximum number of Unordered Access Views in all descriptor tables across all stages</code> across these two limits. 
+      <td rowspan="2"><em>Strategy-dependent.</em> Allocate <code>Maximum number of Unordered Access Views in all descriptor tables across all stages</code> (guaranteed to be 64) across stages across these two limits. For example, 32 for each shader stage, split as 16 textures and 16 buffers per shader stage. 
      <tr>
       <th><code>maxStorageBuffersPerShaderStage</code> 
       <td><a href="https://github.com/gpuweb/gpuweb/issues/409">#409</a> 
@@ -2091,18 +2088,21 @@ User agents are not required to use these formulas and may expose whatever they 
       <td><code>maxVertexInputBindings</code> 
       <td><a href="https://docs.microsoft.com/en-ca/windows/win32/api/d3d12/ns-d3d12-d3d12_input_element_desc">16</a> 
      <tr>
+      <th><code>maxFragmentCombinedOutputResources</code> 
+      <td><a href="https://github.com/gpuweb/gpuweb/pull/3829">#3829</a>, <a href="https://github.com/gpuweb/gpuweb/issues/1343">#1343</a> 
+      <td><code>maxFragmentCombinedOutputResources</code> 
+      <td colspan="2"><em>No separate limit.</em> Use <code>maxColorAttachments + maxStorageBuffersPerShaderStage + maxStorageTexturesPerShaderStage</code>. 
+     <tr>
       <th><code>maxUniformBufferBindingSize</code> 
       <td><a href="https://github.com/gpuweb/gpuweb/issues/803">#803</a> 
       <td><code>maxUniformBufferRange</code> 
-      <td><em>No documented limit.</em> Use <code>maxBufferSize</code>. 
+      <td><em>No documented limit.</em> Use <code>maxBufferSize</code> or choose a constant. 
       <td>65536 = <code>D3D12_REQ_CONSTANT_BUFFER_ELEMENT_COUNT * sizeof(float4)</code> 
      <tr>
       <th><code>maxStorageBufferBindingSize</code> 
       <td><a href="https://github.com/gpuweb/gpuweb/issues/1163">#1163</a> 
       <td><code>maxStorageBufferRange</code> 
-      <td><em>No documented limit.</em> Use <code>maxBufferSize</code>. 
-      <td>
-       <p class="issue" id="issue-b020f938"><a class="self-link" href="#issue-b020f938"></a><em>No documented limit.</em> Use 4 GiB, or 2 GiB if that’s problematic? </p>
+      <td colspan="2"><em>No documented limit.</em> Use <code>maxBufferSize</code> or choose a constant. 
      <tr>
       <th><code>minUniformBufferOffsetAlignment</code> 
       <td><a href="https://github.com/gpuweb/gpuweb/issues/1863">#1863</a> 
@@ -2142,7 +2142,7 @@ User agents are not required to use these formulas and may expose whatever they 
      <tr>
       <th><code>maxColorAttachments</code> 
       <td><a href="https://github.com/gpuweb/gpuweb/issues/2820">#2820</a> 
-      <td><code>min(maxColorAttachments, maxFragmentOutputAttachments)</code> 
+      <td><code>min(maxColorAttachments, maxFragmentOutputAttachments, maxFragmentCombinedOutputResources)</code> 
       <td><code>Maximum number of color render targets per render pass descriptor</code> 
       <td>8 = <code>D3D12_SIMULTANEOUS_RENDER_TARGET_COUNT</code> 
      <tr>
@@ -2177,7 +2177,7 @@ User agents are not required to use these formulas and may expose whatever they 
       <td><a href="https://github.com/gpuweb/gpuweb/issues/1863">#1863</a> 
       <td><code>min(maxComputeWorkGroupCount[0..2])</code> 
       <td>
-       <p class="issue" id="issue-81390f61①"><a class="self-link" href="#issue-81390f61①"></a><em>No documented limit?</em> </p>
+       <p class="issue" id="issue-81390f61"><a class="self-link" href="#issue-81390f61"></a><em>No documented limit?</em> </p>
       <td>65535 = <code>D3D12_CS_DISPATCH_MAX_THREAD_GROUPS_PER_DIMENSION</code> 
    </table>
   </main>
@@ -2335,11 +2335,8 @@ User agents are not required to use these formulas and may expose whatever they 
   </dl>
   <h2 class="no-num no-ref heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
   <div style="counter-reset:issue">
-   <div class="issue">need a max buffer size limit <a class="issue-return" href="#issue-3d73d141" title="Jump to section">↵</a></div>
-   <div class="issue"><em>No documented limit?</em> <a class="issue-return" href="#issue-81390f61" title="Jump to section">↵</a></div>
    <div class="issue">It’s complicated. <a class="issue-return" href="#issue-e10d2e76" title="Jump to section">↵</a></div>
    <div class="issue"> When using argument buffers: ? <a class="issue-return" href="#issue-24db5686" title="Jump to section">↵</a></div>
    <div class="issue"> When using argument buffers: ? <a class="issue-return" href="#issue-24db5686①" title="Jump to section">↵</a></div>
-   <div class="issue"><em>No documented limit.</em> Use 4 GiB, or 2 GiB if that’s problematic? <a class="issue-return" href="#issue-b020f938" title="Jump to section">↵</a></div>
-   <div class="issue"><em>No documented limit?</em> <a class="issue-return" href="#issue-81390f61①" title="Jump to section">↵</a></div>
+   <div class="issue"><em>No documented limit?</em> <a class="issue-return" href="#issue-81390f61" title="Jump to section">↵</a></div>
   </div>
