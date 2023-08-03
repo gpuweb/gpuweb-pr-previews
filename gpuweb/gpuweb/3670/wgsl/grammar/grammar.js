@@ -1,4 +1,4 @@
-// Copyright (C) [2022] World Wide Web Consortium,
+// Copyright (C) [2023] World Wide Web Consortium,
 // (Massachusetts Institute of Technology, European Research Consortium for
 // Informatics and Mathematics, Keio University, Beihang).
 // All Rights Reserved.
@@ -14,8 +14,20 @@
 module.exports = grammar({
     name: 'wgsl',
 
-    externals: $ => [
+    externals: $ => [
         $._block_comment,
+        $._disambiguate_template,
+        $._template_args_start,
+        $._template_args_end,
+        $._less_than,
+        $._less_than_equal,
+        $._shift_left,
+        $._shift_left_assign,
+        $._greater_than,
+        $._greater_than_equal,
+        $._shift_right,
+        $._shift_right_assign,
+        $._error_sentinel,
     ],
 
     extras: $ => [
@@ -35,677 +47,214 @@ module.exports = grammar({
     word: $ => $.ident_pattern_token,
 
     rules: {
-        translation_unit: $ => seq(optional(repeat1($.global_directive)), optional(repeat1($.global_decl))),
-        global_directive: $ => $.enable_directive,
-        global_decl: $ => choice(
-            $.semicolon,
-            seq($.global_variable_decl, $.semicolon),
-            seq($.global_constant_decl, $.semicolon),
-            seq($.type_alias_decl, $.semicolon),
-            $.struct_decl,
-            $.function_decl,
-            seq($.static_assert_statement, $.semicolon)
-        ),
-        bool_literal: $ => choice(
-            $.true,
-            $.false
-        ),
-        int_literal: $ => choice(
-            $.decimal_int_literal,
-            $.hex_int_literal
-        ),
-        decimal_int_literal: $ => choice(
-            token(/0[iu]?/),
-            token(/[1-9][0-9]*[iu]?/)
-        ),
-        hex_int_literal: $ => token(/0[xX][0-9a-fA-F]+[iu]?/),
-        float_literal: $ => choice(
-            $.decimal_float_literal,
-            $.hex_float_literal
-        ),
-        decimal_float_literal: $ => choice(
-            token(/0[fh]/),
-            token(/[1-9][0-9]*[fh]/),
-            token(/[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/),
-            token(/[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/),
-            token(/[0-9]+[eE][+-]?[0-9]+[fh]?/)
-        ),
-        hex_float_literal: $ => choice(
-            token(/0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/),
-            token(/0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/),
-            token(/0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/)
-        ),
-        literal: $ => choice(
-            $.int_literal,
-            $.float_literal,
-            $.bool_literal
-        ),
+        translation_unit: $ => seq(repeat($.global_directive), repeat($.global_decl)),
+
+        global_directive: $ => choice($.diagnostic_directive, $.enable_directive, $.requires_directive),
+
+        global_decl: $ => choice(';', seq($.global_variable_decl, ';'), seq($.global_value_decl, ';'), seq($.type_alias_decl, ';'), $.struct_decl, $.function_decl, seq($.const_assert_statement, ';')),
+
+        bool_literal: $ => choice('true', 'false'),
+
+        int_literal: $ => choice($.decimal_int_literal, $.hex_int_literal),
+
+        decimal_int_literal: $ => choice(/0[iu]?/, /[1-9][0-9]*[iu]?/),
+
+        hex_int_literal: $ => /0[xX][0-9a-fA-F]+[iu]?/,
+
+        float_literal: $ => choice($.decimal_float_literal, $.hex_float_literal),
+
+        decimal_float_literal: $ => choice(/0[fh]/, /[1-9][0-9]*[fh]/, /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/, /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/, /[0-9]+[eE][+-]?[0-9]+[fh]?/),
+
+        hex_float_literal: $ => choice(/0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/, /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/, /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/),
+
+        diagnostic_directive: $ => seq('diagnostic', $.diagnostic_control, ';'),
+
+        literal: $ => choice($.int_literal, $.float_literal, $.bool_literal),
+
+        ident: $ => seq($.ident_pattern_token, $._disambiguate_template),
+
         member_ident: $ => $.ident_pattern_token,
-        attribute: $ => choice(
-            seq($.attr, token('align'), $.paren_left, $.expression, $.attrib_end),
-            seq($.attr, token('binding'), $.paren_left, $.expression, $.attrib_end),
-            seq($.attr, token('builtin'), $.paren_left, $.builtin_value_name, $.attrib_end),
-            seq($.attr, token('const')),
-            seq($.attr, token('group'), $.paren_left, $.expression, $.attrib_end),
-            seq($.attr, token('id'), $.paren_left, $.expression, $.attrib_end),
-            seq($.attr, token('interpolate'), $.paren_left, $.interpolation_type_name, $.attrib_end),
-            seq($.attr, token('interpolate'), $.paren_left, $.interpolation_type_name, $.comma, $.interpolation_sample_name, $.attrib_end),
-            seq($.attr, token('invariant')),
-            seq($.attr, token('location'), $.paren_left, $.expression, $.attrib_end),
-            seq($.attr, token('size'), $.paren_left, $.expression, $.attrib_end),
-            seq($.attr, token('workgroup_size'), $.paren_left, $.expression, $.attrib_end),
-            seq($.attr, token('workgroup_size'), $.paren_left, $.expression, $.comma, $.expression, $.attrib_end),
-            seq($.attr, token('workgroup_size'), $.paren_left, $.expression, $.comma, $.expression, $.comma, $.expression, $.attrib_end),
-            seq($.attr, token('vertex')),
-            seq($.attr, token('fragment')),
-            seq($.attr, token('compute'))
-        ),
-        attrib_end: $ => seq(optional($.comma), $.paren_right),
-        array_type_specifier: $ => seq($.array, $.less_than, $.type_specifier, optional(seq($.comma, $.element_count_expression)), $.greater_than),
-        element_count_expression: $ => choice(
-            $.additive_expression,
-            $.bitwise_expression
-        ),
-        struct_decl: $ => seq($.struct, $.ident, $.struct_body_decl),
-        struct_body_decl: $ => seq($.brace_left, $.struct_member, optional(repeat1(seq($.comma, $.struct_member))), optional($.comma), $.brace_right),
-        struct_member: $ => seq(optional(repeat1($.attribute)), $.member_ident, $.colon, $.type_specifier),
-        texture_and_sampler_types: $ => choice(
-            $.sampler_type,
-            $.depth_texture_type,
-            seq($.sampled_texture_type, $.less_than, $.type_specifier, $.greater_than),
-            seq($.multisampled_texture_type, $.less_than, $.type_specifier, $.greater_than),
-            seq($.storage_texture_type, $.less_than, $.texel_format, $.comma, $.access_mode, $.greater_than)
-        ),
-        sampler_type: $ => choice(
-            $.sampler,
-            $.sampler_comparison
-        ),
-        sampled_texture_type: $ => choice(
-            $.texture_1d,
-            $.texture_2d,
-            $.texture_2d_array,
-            $.texture_3d,
-            $.texture_cube,
-            $.texture_cube_array
-        ),
-        multisampled_texture_type: $ => $.texture_multisampled_2d,
-        storage_texture_type: $ => choice(
-            $.texture_storage_1d,
-            $.texture_storage_2d,
-            $.texture_storage_2d_array,
-            $.texture_storage_3d
-        ),
-        depth_texture_type: $ => choice(
-            $.texture_depth_2d,
-            $.texture_depth_2d_array,
-            $.texture_depth_cube,
-            $.texture_depth_cube_array,
-            $.texture_depth_multisampled_2d
-        ),
-        type_alias_decl: $ => seq($.type, $.ident, $.equal, $.type_specifier),
-        type_specifier: $ => choice(
-            $.ident,
-            $.type_specifier_without_ident
-        ),
-        type_specifier_without_ident: $ => choice(
-            $.bool,
-            $.float32,
-            $.float16,
-            $.int32,
-            $.uint32,
-            seq($.vec_prefix, $.less_than, $.type_specifier, $.greater_than),
-            seq($.mat_prefix, $.less_than, $.type_specifier, $.greater_than),
-            seq($.pointer, $.less_than, $.address_space, $.comma, $.type_specifier, optional(seq($.comma, $.access_mode)), $.greater_than),
-            $.array_type_specifier,
-            seq($.atomic, $.less_than, $.type_specifier, $.greater_than),
-            $.texture_and_sampler_types
-        ),
-        vec_prefix: $ => choice(
-            $.vec2,
-            $.vec3,
-            $.vec4
-        ),
-        mat_prefix: $ => choice(
-            $.mat2x2,
-            $.mat2x3,
-            $.mat2x4,
-            $.mat3x2,
-            $.mat3x3,
-            $.mat3x4,
-            $.mat4x2,
-            $.mat4x3,
-            $.mat4x4
-        ),
-        variable_statement: $ => choice(
-            $.variable_decl,
-            seq($.variable_decl, $.equal, $.expression),
-            seq($.let, $.optionally_typed_ident, $.equal, $.expression),
-            seq($.const, $.optionally_typed_ident, $.equal, $.expression)
-        ),
-        variable_decl: $ => seq($.var, optional($.variable_qualifier), $.optionally_typed_ident),
-        optionally_typed_ident: $ => seq($.ident, optional(seq($.colon, $.type_specifier))),
-        variable_qualifier: $ => seq($.less_than, $.address_space, optional(seq($.comma, $.access_mode)), $.greater_than),
-        global_variable_decl: $ => seq(optional(repeat1($.attribute)), $.variable_decl, optional(seq($.equal, $.expression))),
-        global_constant_decl: $ => choice(
-            seq($.const, $.optionally_typed_ident, $.equal, $.expression),
-            seq(optional(repeat1($.attribute)), $.override, $.optionally_typed_ident, optional(seq($.equal, $.expression)))
-        ),
-        primary_expression: $ => choice(
-            $.ident,
-            seq($.callable, $.argument_expression_list),
-            $.literal,
-            $.paren_expression,
-            seq($.bitcast, $.less_than, $.type_specifier, $.greater_than, $.paren_expression)
-        ),
-        callable: $ => choice(
-            $.ident,
-            $.type_specifier_without_ident,
-            $.vec_prefix,
-            $.mat_prefix,
-            $.array
-        ),
-        paren_expression: $ => seq($.paren_left, $.expression, $.paren_right),
-        argument_expression_list: $ => seq($.paren_left, optional($.expression_comma_list), $.paren_right),
-        expression_comma_list: $ => seq($.expression, optional(repeat1(seq($.comma, $.expression))), optional($.comma)),
-        component_or_swizzle_specifier: $ => choice(
-            seq($.bracket_left, $.expression, $.bracket_right, optional($.component_or_swizzle_specifier)),
-            seq($.period, $.member_ident, optional($.component_or_swizzle_specifier)),
-            seq($.period, $.swizzle_name, optional($.component_or_swizzle_specifier))
-        ),
-        unary_expression: $ => choice(
-            $.singular_expression,
-            seq($.minus, $.unary_expression),
-            seq($.bang, $.unary_expression),
-            seq($.tilde, $.unary_expression),
-            seq($.star, $.unary_expression),
-            seq($.and, $.unary_expression)
-        ),
+
+        diagnostic_name_token: $ => $.ident_pattern_token,
+
+        diagnostic_rule_name: $ => choice($.diagnostic_name_token, seq($.diagnostic_name_token, '.', $.diagnostic_name_token)),
+
+        template_list: $ => seq($._template_args_start, $.template_arg_comma_list, $._template_args_end),
+
+        template_arg_comma_list: $ => seq($.template_arg_expression, repeat(seq(',', $.template_arg_expression)), optional(',')),
+
+        template_arg_expression: $ => $.expression,
+
+        attribute: $ => choice(seq('@', 'align', '(', $.expression, $.attrib_end), seq('@', 'binding', '(', $.expression, $.attrib_end), seq('@', 'builtin', '(', $.expression, $.attrib_end), seq('@', 'const'), seq('@', 'diagnostic', $.diagnostic_control), seq('@', 'group', '(', $.expression, $.attrib_end), seq('@', 'id', '(', $.expression, $.attrib_end), seq('@', 'interpolate', '(', $.expression, $.attrib_end), seq('@', 'interpolate', '(', $.expression, ',', $.expression, $.attrib_end), seq('@', 'invariant'), seq('@', 'location', '(', $.expression, $.attrib_end), seq('@', 'must_use'), seq('@', 'size', '(', $.expression, $.attrib_end), seq('@', 'workgroup_size', '(', $.expression, $.attrib_end), seq('@', 'workgroup_size', '(', $.expression, ',', $.expression, $.attrib_end), seq('@', 'workgroup_size', '(', $.expression, ',', $.expression, ',', $.expression, $.attrib_end), seq('@', 'vertex'), seq('@', 'fragment'), seq('@', 'compute')),
+
+        attrib_end: $ => seq(optional(','), ')'),
+
+        diagnostic_control: $ => seq('(', $.severity_control_name, ',', $.diagnostic_rule_name, $.attrib_end),
+
+        struct_decl: $ => seq('struct', $.ident, $.struct_body_decl),
+
+        struct_body_decl: $ => seq('{', $.struct_member, repeat(seq(',', $.struct_member)), optional(','), '}'),
+
+        struct_member: $ => seq(repeat($.attribute), $.member_ident, ':', $.type_specifier),
+
+        type_alias_decl: $ => seq('alias', $.ident, '=', $.type_specifier),
+
+        type_specifier: $ => $.template_elaborated_ident,
+
+        template_elaborated_ident: $ => seq($.ident, $._disambiguate_template, optional($.template_list)),
+
+        variable_or_value_statement: $ => choice($.variable_decl, seq($.variable_decl, '=', $.expression), seq('let', $.optionally_typed_ident, '=', $.expression), seq('const', $.optionally_typed_ident, '=', $.expression)),
+
+        variable_decl: $ => seq('var', $._disambiguate_template, optional($.template_list), $.optionally_typed_ident),
+
+        optionally_typed_ident: $ => seq($.ident, optional(seq(':', $.type_specifier))),
+
+        global_variable_decl: $ => seq(repeat($.attribute), $.variable_decl, optional(seq('=', $.expression))),
+
+        global_value_decl: $ => choice(seq('const', $.optionally_typed_ident, '=', $.expression), seq(repeat($.attribute), 'override', $.optionally_typed_ident, optional(seq('=', $.expression)))),
+
+        primary_expression: $ => choice($.template_elaborated_ident, $.call_expression, $.literal, $.paren_expression),
+
+        call_expression: $ => $.call_phrase,
+
+        call_phrase: $ => seq($.template_elaborated_ident, $.argument_expression_list),
+
+        paren_expression: $ => seq('(', $.expression, ')'),
+
+        argument_expression_list: $ => seq('(', optional($.expression_comma_list), ')'),
+
+        expression_comma_list: $ => seq($.expression, repeat(seq(',', $.expression)), optional(',')),
+
+        component_or_swizzle_specifier: $ => choice(seq('[', $.expression, ']', optional($.component_or_swizzle_specifier)), seq('.', $.member_ident, optional($.component_or_swizzle_specifier)), seq('.', $.swizzle_name, optional($.component_or_swizzle_specifier))),
+
+        unary_expression: $ => choice($.singular_expression, seq('-', $.unary_expression), seq('!', $.unary_expression), seq('~', $.unary_expression), seq('*', $.unary_expression), seq('&', $.unary_expression)),
+
         singular_expression: $ => seq($.primary_expression, optional($.component_or_swizzle_specifier)),
-        lhs_expression: $ => choice(
-            seq($.core_lhs_expression, optional($.component_or_swizzle_specifier)),
-            seq($.star, $.lhs_expression),
-            seq($.and, $.lhs_expression)
-        ),
-        core_lhs_expression: $ => choice(
-            $.ident,
-            seq($.paren_left, $.lhs_expression, $.paren_right)
-        ),
-        multiplicative_expression: $ => choice(
-            $.unary_expression,
-            seq($.multiplicative_expression, $.multiplicative_operator, $.unary_expression)
-        ),
-        multiplicative_operator: $ => choice(
-            $.star,
-            $.forward_slash,
-            $.modulo
-        ),
-        additive_expression: $ => choice(
-            $.multiplicative_expression,
-            seq($.additive_expression, $.additive_operator, $.multiplicative_expression)
-        ),
-        additive_operator: $ => choice(
-            $.plus,
-            $.minus
-        ),
-        shift_expression: $ => choice(
-            $.additive_expression,
-            seq($.unary_expression, $.shift_left, $.unary_expression),
-            seq($.unary_expression, $.shift_right, $.unary_expression)
-        ),
-        relational_expression: $ => choice(
-            $.shift_expression,
-            seq($.shift_expression, $.less_than, $.shift_expression),
-            seq($.shift_expression, $.greater_than, $.shift_expression),
-            seq($.shift_expression, $.less_than_equal, $.shift_expression),
-            seq($.shift_expression, $.greater_than_equal, $.shift_expression),
-            seq($.shift_expression, $.equal_equal, $.shift_expression),
-            seq($.shift_expression, $.not_equal, $.shift_expression)
-        ),
-        short_circuit_and_expression: $ => choice(
-            $.relational_expression,
-            seq($.short_circuit_and_expression, $.and_and, $.relational_expression)
-        ),
-        short_circuit_or_expression: $ => choice(
-            $.relational_expression,
-            seq($.short_circuit_or_expression, $.or_or, $.relational_expression)
-        ),
-        binary_or_expression: $ => choice(
-            $.unary_expression,
-            seq($.binary_or_expression, $.or, $.unary_expression)
-        ),
-        binary_and_expression: $ => choice(
-            $.unary_expression,
-            seq($.binary_and_expression, $.and, $.unary_expression)
-        ),
-        binary_xor_expression: $ => choice(
-            $.unary_expression,
-            seq($.binary_xor_expression, $.xor, $.unary_expression)
-        ),
-        bitwise_expression: $ => choice(
-            seq($.binary_and_expression, $.and, $.unary_expression),
-            seq($.binary_or_expression, $.or, $.unary_expression),
-            seq($.binary_xor_expression, $.xor, $.unary_expression)
-        ),
-        expression: $ => choice(
-            $.relational_expression,
-            seq($.short_circuit_or_expression, $.or_or, $.relational_expression),
-            seq($.short_circuit_and_expression, $.and_and, $.relational_expression),
-            $.bitwise_expression
-        ),
-        compound_statement: $ => seq($.brace_left, optional(repeat1($.statement)), $.brace_right),
-        assignment_statement: $ => choice(
-            seq($.lhs_expression, choice($.equal, $.compound_assignment_operator), $.expression),
-            seq($.underscore, $.equal, $.expression)
-        ),
-        compound_assignment_operator: $ => choice(
-            $.plus_equal,
-            $.minus_equal,
-            $.times_equal,
-            $.division_equal,
-            $.modulo_equal,
-            $.and_equal,
-            $.or_equal,
-            $.xor_equal,
-            $.shift_right_equal,
-            $.shift_left_equal
-        ),
-        increment_statement: $ => seq($.lhs_expression, $.plus_plus),
-        decrement_statement: $ => seq($.lhs_expression, $.minus_minus),
-        if_statement: $ => seq($.if_clause, optional(repeat1($.else_if_clause)), optional($.else_clause)),
-        if_clause: $ => seq($.if, $.expression, $.compound_statement),
-        else_if_clause: $ => seq($.else, $.if, $.expression, $.compound_statement),
-        else_clause: $ => seq($.else, $.compound_statement),
-        switch_statement: $ => seq($.switch, $.expression, $.brace_left, repeat1($.switch_body), $.brace_right),
-        switch_body: $ => choice(
-            $.case_clause,
-            $.default_alone_clause
-        ),
-        case_clause: $ => seq($.case, $.case_selectors, optional($.colon), $.compound_statement),
-        default_alone_clause: $ => seq($.default, optional($.colon), $.compound_statement),
-        case_selectors: $ => seq($.case_selector, optional(repeat1(seq($.comma, $.case_selector))), optional($.comma)),
-        case_selector: $ => choice(
-            $.default,
-            $.expression
-        ),
-        loop_statement: $ => seq($.loop, $.brace_left, optional(repeat1($.statement)), optional($.continuing_statement), $.brace_right),
-        for_statement: $ => seq($.for, $.paren_left, $.for_header, $.paren_right, $.compound_statement),
-        for_header: $ => seq(optional($.for_init), $.semicolon, optional($.expression), $.semicolon, optional($.for_update)),
-        for_init: $ => choice(
-            $.variable_statement,
-            $.variable_updating_statement,
-            $.func_call_statement
-        ),
-        for_update: $ => choice(
-            $.variable_updating_statement,
-            $.func_call_statement
-        ),
-        while_statement: $ => seq($.while, $.expression, $.compound_statement),
-        break_statement: $ => $.break,
-        break_if_statement: $ => seq($.break, $.if, $.expression, $.semicolon),
-        continue_statement: $ => $.continue,
-        continuing_statement: $ => seq($.continuing, $.continuing_compound_statement),
-        continuing_compound_statement: $ => seq($.brace_left, optional(repeat1($.statement)), optional($.break_if_statement), $.brace_right),
-        return_statement: $ => seq($.return, optional($.expression)),
-        func_call_statement: $ => seq($.ident, $.argument_expression_list),
-        static_assert_statement: $ => seq($.static_assert, $.expression),
-        statement: $ => choice(
-            $.semicolon,
-            seq($.return_statement, $.semicolon),
-            $.if_statement,
-            $.switch_statement,
-            $.loop_statement,
-            $.for_statement,
-            $.while_statement,
-            seq($.func_call_statement, $.semicolon),
-            seq($.variable_statement, $.semicolon),
-            seq($.break_statement, $.semicolon),
-            seq($.continue_statement, $.semicolon),
-            seq($.discard, $.semicolon),
-            seq($.variable_updating_statement, $.semicolon),
-            $.compound_statement,
-            seq($.static_assert_statement, $.semicolon)
-        ),
-        variable_updating_statement: $ => choice(
-            $.assignment_statement,
-            $.increment_statement,
-            $.decrement_statement
-        ),
-        function_decl: $ => seq(optional(repeat1($.attribute)), $.function_header, $.compound_statement),
-        function_header: $ => seq($.fn, $.ident, $.paren_left, optional($.param_list), $.paren_right, optional(seq($.arrow, optional(repeat1($.attribute)), $.type_specifier))),
-        param_list: $ => seq($.param, optional(repeat1(seq($.comma, $.param))), optional($.comma)),
-        param: $ => seq(optional(repeat1($.attribute)), $.ident, $.colon, $.type_specifier),
-        enable_directive: $ => seq($.enable, $.extension_name, $.semicolon),
-        ident_pattern_token: $ => token(/([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/uy),
-        array: $ => token('array'),
-        atomic: $ => token('atomic'),
-        bool: $ => token('bool'),
-        float32: $ => token('f32'),
-        float16: $ => token('f16'),
-        int32: $ => token('i32'),
-        mat2x2: $ => token('mat2x2'),
-        mat2x3: $ => token('mat2x3'),
-        mat2x4: $ => token('mat2x4'),
-        mat3x2: $ => token('mat3x2'),
-        mat3x3: $ => token('mat3x3'),
-        mat3x4: $ => token('mat3x4'),
-        mat4x2: $ => token('mat4x2'),
-        mat4x3: $ => token('mat4x3'),
-        mat4x4: $ => token('mat4x4'),
-        pointer: $ => token('ptr'),
-        sampler: $ => token('sampler'),
-        sampler_comparison: $ => token('sampler_comparison'),
-        texture_1d: $ => token('texture_1d'),
-        texture_2d: $ => token('texture_2d'),
-        texture_2d_array: $ => token('texture_2d_array'),
-        texture_3d: $ => token('texture_3d'),
-        texture_cube: $ => token('texture_cube'),
-        texture_cube_array: $ => token('texture_cube_array'),
-        texture_multisampled_2d: $ => token('texture_multisampled_2d'),
-        texture_storage_1d: $ => token('texture_storage_1d'),
-        texture_storage_2d: $ => token('texture_storage_2d'),
-        texture_storage_2d_array: $ => token('texture_storage_2d_array'),
-        texture_storage_3d: $ => token('texture_storage_3d'),
-        texture_depth_2d: $ => token('texture_depth_2d'),
-        texture_depth_2d_array: $ => token('texture_depth_2d_array'),
-        texture_depth_cube: $ => token('texture_depth_cube'),
-        texture_depth_cube_array: $ => token('texture_depth_cube_array'),
-        texture_depth_multisampled_2d: $ => token('texture_depth_multisampled_2d'),
-        uint32: $ => token('u32'),
-        vec2: $ => token('vec2'),
-        vec3: $ => token('vec3'),
-        vec4: $ => token('vec4'),
-        bitcast: $ => token('bitcast'),
-        break: $ => token('break'),
-        case: $ => token('case'),
-        const: $ => token('const'),
-        continue: $ => token('continue'),
-        continuing: $ => token('continuing'),
-        default: $ => token('default'),
-        discard: $ => token('discard'),
-        else: $ => token('else'),
-        enable: $ => token('enable'),
-        false: $ => token('false'),
-        fn: $ => token('fn'),
-        for: $ => token('for'),
-        if: $ => token('if'),
-        let: $ => token('let'),
-        loop: $ => token('loop'),
-        override: $ => token('override'),
-        return: $ => token('return'),
-        static_assert: $ => token('static_assert'),
-        struct: $ => token('struct'),
-        switch: $ => token('switch'),
-        true: $ => token('true'),
-        type: $ => token('type'),
-        var: $ => token('var'),
-        while: $ => token('while'),
-        and: $ => token('&'),
-        and_and: $ => token('&&'),
-        arrow: $ => token('->'),
-        attr: $ => token('@'),
-        forward_slash: $ => token('/'),
-        bang: $ => token('!'),
-        bracket_left: $ => token('['),
-        bracket_right: $ => token(']'),
-        brace_left: $ => token('{'),
-        brace_right: $ => token('}'),
-        colon: $ => token(':'),
-        comma: $ => token(','),
-        equal: $ => token('='),
-        equal_equal: $ => token('=='),
-        not_equal: $ => token('!='),
-        greater_than: $ => token('>'),
-        greater_than_equal: $ => token('>='),
-        shift_right: $ => token('>>'),
-        less_than: $ => token('<'),
-        less_than_equal: $ => token('<='),
-        shift_left: $ => token('<<'),
-        modulo: $ => token('%'),
-        minus: $ => token('-'),
-        minus_minus: $ => token('--'),
-        period: $ => token('.'),
-        plus: $ => token('+'),
-        plus_plus: $ => token('++'),
-        or: $ => token('|'),
-        or_or: $ => token('||'),
-        paren_left: $ => token('('),
-        paren_right: $ => token(')'),
-        semicolon: $ => token(';'),
-        star: $ => token('*'),
-        tilde: $ => token('~'),
-        underscore: $ => token('_'),
-        xor: $ => token('^'),
-        plus_equal: $ => token('+='),
-        minus_equal: $ => token('-='),
-        times_equal: $ => token('*='),
-        division_equal: $ => token('/='),
-        modulo_equal: $ => token('%='),
-        and_equal: $ => token('&='),
-        or_equal: $ => token('|='),
-        xor_equal: $ => token('^='),
-        shift_right_equal: $ => token('>>='),
-        shift_left_equal: $ => token('<<='),
-        interpolation_type_name: $ => choice(
-            token('perspective'),
-            token('linear'),
-            token('flat')
-        ),
-        interpolation_sample_name: $ => choice(
-            token('center'),
-            token('centroid'),
-            token('sample')
-        ),
-        builtin_value_name: $ => choice(
-            token('vertex_index'),
-            token('instance_index'),
-            token('position'),
-            token('front_facing'),
-            token('frag_depth'),
-            token('local_invocation_id'),
-            token('local_invocation_index'),
-            token('global_invocation_id'),
-            token('workgroup_id'),
-            token('num_workgroups'),
-            token('sample_index'),
-            token('sample_mask')
-        ),
-        access_mode: $ => choice(
-            token('read'),
-            token('write'),
-            token('read_write')
-        ),
-        address_space: $ => choice(
-            token('function'),
-            token('private'),
-            token('workgroup'),
-            token('uniform'),
-            token('storage')
-        ),
-        texel_format: $ => choice(
-            token('rgba8unorm'),
-            token('rgba8snorm'),
-            token('rgba8uint'),
-            token('rgba8sint'),
-            token('rgba16uint'),
-            token('rgba16sint'),
-            token('rgba16float'),
-            token('r32uint'),
-            token('r32sint'),
-            token('r32float'),
-            token('rg32uint'),
-            token('rg32sint'),
-            token('rg32float'),
-            token('rgba32uint'),
-            token('rgba32sint'),
-            token('rgba32float')
-        ),
-        extension_name: $ => token('f16'),
-        swizzle_name: $ => choice(
-            token('/[rgba]/'),
-            token('/[rgba][rgba]/'),
-            token('/[rgba][rgba][rgba]/'),
-            token('/[rgba][rgba][rgba][rgba]/'),
-            token('/[xyzw]/'),
-            token('/[xyzw][xyzw]/'),
-            token('/[xyzw][xyzw][xyzw]/'),
-            token('/[xyzw][xyzw][xyzw][xyzw]/')
-        ),
-        _reserved: $ => choice(
-            token('CompileShader'),
-            token('ComputeShader'),
-            token('DomainShader'),
-            token('GeometryShader'),
-            token('Hullshader'),
-            token('NULL'),
-            token('Self'),
-            token('abstract'),
-            token('active'),
-            token('alignas'),
-            token('alignof'),
-            token('as'),
-            token('asm'),
-            token('asm_fragment'),
-            token('async'),
-            token('attribute'),
-            token('auto'),
-            token('await'),
-            token('become'),
-            token('binding_array'),
-            token('cast'),
-            token('catch'),
-            token('class'),
-            token('co_await'),
-            token('co_return'),
-            token('co_yield'),
-            token('coherent'),
-            token('column_major'),
-            token('common'),
-            token('compile'),
-            token('compile_fragment'),
-            token('concept'),
-            token('const_cast'),
-            token('consteval'),
-            token('constexpr'),
-            token('constinit'),
-            token('crate'),
-            token('debugger'),
-            token('decltype'),
-            token('delete'),
-            token('demote'),
-            token('demote_to_helper'),
-            token('do'),
-            token('dynamic_cast'),
-            token('enum'),
-            token('explicit'),
-            token('export'),
-            token('extends'),
-            token('extern'),
-            token('external'),
-            token('fallthrough'),
-            token('filter'),
-            token('final'),
-            token('finally'),
-            token('friend'),
-            token('from'),
-            token('fxgroup'),
-            token('get'),
-            token('goto'),
-            token('groupshared'),
-            token('handle'),
-            token('highp'),
-            token('impl'),
-            token('implements'),
-            token('import'),
-            token('inline'),
-            token('inout'),
-            token('instanceof'),
-            token('interface'),
-            token('layout'),
-            token('lowp'),
-            token('macro'),
-            token('macro_rules'),
-            token('match'),
-            token('mediump'),
-            token('meta'),
-            token('mod'),
-            token('module'),
-            token('move'),
-            token('mut'),
-            token('mutable'),
-            token('namespace'),
-            token('new'),
-            token('nil'),
-            token('noexcept'),
-            token('noinline'),
-            token('nointerpolation'),
-            token('noperspective'),
-            token('null'),
-            token('nullptr'),
-            token('of'),
-            token('operator'),
-            token('package'),
-            token('packoffset'),
-            token('partition'),
-            token('pass'),
-            token('patch'),
-            token('pixelfragment'),
-            token('precise'),
-            token('precision'),
-            token('premerge'),
-            token('priv'),
-            token('protected'),
-            token('pub'),
-            token('public'),
-            token('readonly'),
-            token('ref'),
-            token('regardless'),
-            token('register'),
-            token('reinterpret_cast'),
-            token('requires'),
-            token('resource'),
-            token('restrict'),
-            token('self'),
-            token('set'),
-            token('shared'),
-            token('signed'),
-            token('sizeof'),
-            token('smooth'),
-            token('snorm'),
-            token('static'),
-            token('static_assert'),
-            token('static_cast'),
-            token('std'),
-            token('subroutine'),
-            token('super'),
-            token('target'),
-            token('template'),
-            token('this'),
-            token('thread_local'),
-            token('throw'),
-            token('trait'),
-            token('try'),
-            token('typedef'),
-            token('typeid'),
-            token('typename'),
-            token('typeof'),
-            token('union'),
-            token('unless'),
-            token('unorm'),
-            token('unsafe'),
-            token('unsized'),
-            token('use'),
-            token('using'),
-            token('varying'),
-            token('virtual'),
-            token('volatile'),
-            token('wgsl'),
-            token('where'),
-            token('with'),
-            token('writeonly'),
-            token('yield')
-        ),
-        ident: $ => $.ident_pattern_token,
-        _comment: $ => seq(token('//'), token(/.*/)),
-        _blankspace: $ => token(/[\u0020\u0009\u000a\u000b\u000c\u000d\u0085\u200e\u200f\u2028\u2029]/uy)
-    },
-});
+
+        lhs_expression: $ => choice(seq($.core_lhs_expression, optional($.component_or_swizzle_specifier)), seq('*', $.lhs_expression), seq('&', $.lhs_expression)),
+
+        core_lhs_expression: $ => choice(seq($.ident, $._disambiguate_template), seq('(', $.lhs_expression, ')')),
+
+        multiplicative_expression: $ => choice($.unary_expression, seq($.multiplicative_expression, $.multiplicative_operator, $.unary_expression)),
+
+        multiplicative_operator: $ => choice('*', '/', '%'),
+
+        additive_expression: $ => choice($.multiplicative_expression, seq($.additive_expression, $.additive_operator, $.multiplicative_expression)),
+
+        additive_operator: $ => choice('+', '-'),
+
+        shift_expression: $ => choice($.additive_expression, seq($.unary_expression, $._shift_left, $.unary_expression), seq($.unary_expression, $._shift_right, $.unary_expression)),
+
+        relational_expression: $ => choice($.shift_expression, seq($.shift_expression, $._less_than, $.shift_expression), seq($.shift_expression, $._greater_than, $.shift_expression), seq($.shift_expression, $._less_than_equal, $.shift_expression), seq($.shift_expression, $._greater_than_equal, $.shift_expression), seq($.shift_expression, '==', $.shift_expression), seq($.shift_expression, '!=', $.shift_expression)),
+
+        short_circuit_and_expression: $ => choice($.relational_expression, seq($.short_circuit_and_expression, '&&', $.relational_expression)),
+
+        short_circuit_or_expression: $ => choice($.relational_expression, seq($.short_circuit_or_expression, '||', $.relational_expression)),
+
+        binary_or_expression: $ => choice($.unary_expression, seq($.binary_or_expression, '|', $.unary_expression)),
+
+        binary_and_expression: $ => choice($.unary_expression, seq($.binary_and_expression, '&', $.unary_expression)),
+
+        binary_xor_expression: $ => choice($.unary_expression, seq($.binary_xor_expression, '^', $.unary_expression)),
+
+        bitwise_expression: $ => choice(seq($.binary_and_expression, '&', $.unary_expression), seq($.binary_or_expression, '|', $.unary_expression), seq($.binary_xor_expression, '^', $.unary_expression)),
+
+        expression: $ => choice($.relational_expression, seq($.short_circuit_or_expression, '||', $.relational_expression), seq($.short_circuit_and_expression, '&&', $.relational_expression), $.bitwise_expression),
+
+        compound_statement: $ => seq(repeat($.attribute), '{', repeat($.statement), '}'),
+
+        assignment_statement: $ => choice(seq($.lhs_expression, choice('=', $.compound_assignment_operator), $.expression), seq('_', '=', $.expression)),
+
+        compound_assignment_operator: $ => choice('+=', '-=', '*=', '/=', '%=', '&=', '|=', '^=', $._shift_right_assign, $._shift_left_assign),
+
+        increment_statement: $ => seq($.lhs_expression, '++'),
+
+        decrement_statement: $ => seq($.lhs_expression, '--'),
+
+        if_statement: $ => seq(repeat($.attribute), $.if_clause, repeat($.else_if_clause), optional($.else_clause)),
+
+        if_clause: $ => seq('if', $.expression, $.compound_statement),
+
+        else_if_clause: $ => seq('else', 'if', $.expression, $.compound_statement),
+
+        else_clause: $ => seq('else', $.compound_statement),
+
+        switch_statement: $ => seq(repeat($.attribute), 'switch', $.expression, $.switch_body),
+
+        switch_body: $ => seq(repeat($.attribute), '{', repeat1($.switch_clause), '}'),
+
+        switch_clause: $ => choice($.case_clause, $.default_alone_clause),
+
+        case_clause: $ => seq('case', $.case_selectors, optional(':'), $.compound_statement),
+
+        default_alone_clause: $ => seq('default', optional(':'), $.compound_statement),
+
+        case_selectors: $ => seq($.case_selector, repeat(seq(',', $.case_selector)), optional(',')),
+
+        case_selector: $ => choice('default', $.expression),
+
+        loop_statement: $ => seq(repeat($.attribute), 'loop', repeat($.attribute), '{', repeat($.statement), optional($.continuing_statement), '}'),
+
+        for_statement: $ => seq(repeat($.attribute), 'for', '(', $.for_header, ')', $.compound_statement),
+
+        for_header: $ => seq(optional($.for_init), ';', optional($.expression), ';', optional($.for_update)),
+
+        for_init: $ => choice($.variable_or_value_statement, $.variable_updating_statement, $.func_call_statement),
+
+        for_update: $ => choice($.variable_updating_statement, $.func_call_statement),
+
+        while_statement: $ => seq(repeat($.attribute), 'while', $.expression, $.compound_statement),
+
+        break_statement: $ => 'break',
+
+        break_if_statement: $ => seq('break', 'if', $.expression, ';'),
+
+        continue_statement: $ => 'continue',
+
+        continuing_statement: $ => seq('continuing', $.continuing_compound_statement),
+
+        continuing_compound_statement: $ => seq(repeat($.attribute), '{', repeat($.statement), optional($.break_if_statement), '}'),
+
+        return_statement: $ => seq('return', optional($.expression)),
+
+        func_call_statement: $ => $.call_phrase,
+
+        const_assert_statement: $ => seq('const_assert', $.expression),
+
+        statement: $ => choice(';', seq($.return_statement, ';'), $.if_statement, $.switch_statement, $.loop_statement, $.for_statement, $.while_statement, seq($.func_call_statement, ';'), seq($.variable_or_value_statement, ';'), seq($.break_statement, ';'), seq($.continue_statement, ';'), seq('discard', ';'), seq($.variable_updating_statement, ';'), $.compound_statement, seq($.const_assert_statement, ';')),
+
+        variable_updating_statement: $ => choice($.assignment_statement, $.increment_statement, $.decrement_statement),
+
+        function_decl: $ => seq(repeat($.attribute), $.function_header, $.compound_statement),
+
+        function_header: $ => seq('fn', $.ident, '(', optional($.param_list), ')', optional(seq('->', repeat($.attribute), $.template_elaborated_ident))),
+
+        param_list: $ => seq($.param, repeat(seq(',', $.param)), optional(',')),
+
+        param: $ => seq(repeat($.attribute), $.ident, ':', $.type_specifier),
+
+        enable_directive: $ => seq('enable', $.enable_extension_list, ';'),
+
+        enable_extension_list: $ => seq($.enable_extension_name, repeat(seq(',', $.enable_extension_name)), optional(',')),
+
+        requires_directive: $ => seq('requires', $.software_extension_list, ';'),
+
+        software_extension_list: $ => seq($.software_extension_name, repeat(seq(',', $.software_extension_name)), optional(',')),
+
+        enable_extension_name: $ => $.ident_pattern_token,
+
+        software_extension_name: $ => $.ident_pattern_token,
+
+        ident_pattern_token: $ => /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/u,
+
+        severity_control_name: $ => choice('error', 'warning', 'info', 'off'),
+
+        swizzle_name: $ => choice(/[rgba]/, /[rgba][rgba]/, /[rgba][rgba][rgba]/, /[rgba][rgba][rgba][rgba]/, /[xyzw]/, /[xyzw][xyzw]/, /[xyzw][xyzw][xyzw]/, /[xyzw][xyzw][xyzw][xyzw]/),
+
+        ident: $ => seq($.ident_pattern_token, $._disambiguate_template),
+
+        _comment: $ => /\/\/.*/,
+
+        _blankspace: $ => /[\u0020\u0009\u000a\u000b\u000c\u000d\u0085\u200e\u200f\u2028\u2029]/u
+    }
+})
