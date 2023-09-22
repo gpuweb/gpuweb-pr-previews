@@ -763,7 +763,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/munrocket/gpuweb/blob/58e76b759f40386a0eea06c38bf03abae91b8c1f/wgsl/index.bs">https://github.com/munrocket/gpuweb/blob/58e76b759f40386a0eea06c38bf03abae91b8c1f/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/munrocket/gpuweb/blob/dd06f338f3481f35b22bfbf3d8c11d0205343273/wgsl/index.bs">https://github.com/munrocket/gpuweb/blob/dd06f338f3481f35b22bfbf3d8c11d0205343273/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -10601,7 +10601,7 @@ Each is described in detail in subsequent sections.</p>
      <tr>
       <td style="width:10%">Description 
       <td> The current invocation’s <a data-link-type="dfn" href="#global-invocation-id" id="ref-for-global-invocation-id">global invocation ID</a>, i.e. its position in
-      the <a data-link-type="dfn" href="#compute-shader-grid" id="ref-for-compute-shader-grid">compute shader grid</a>. The value of <a data-link-type="dfn" href="#built-in-values-global_invocation_id" id="ref-for-built-in-values-global_invocation_id②">global_invocation_id</a> is equal to <a data-link-type="dfn" href="#built-in-values-workgroup_id" id="ref-for-built-in-values-workgroup_id②">workgroup_id</a> * workgroup_size + <a data-link-type="dfn" href="#built-in-values-local_invocation_id" id="ref-for-built-in-values-local_invocation_id②">local_invocation_id</a>. 
+      the <a data-link-type="dfn" href="#compute-shader-grid" id="ref-for-compute-shader-grid">compute shader grid</a>. The value of <a data-link-type="dfn" href="#built-in-values-global_invocation_id" id="ref-for-built-in-values-global_invocation_id②">global_invocation_id</a> is equal to <a data-link-type="dfn" href="#built-in-values-workgroup_id" id="ref-for-built-in-values-workgroup_id②">workgroup_id</a> * <a data-link-type="dfn" href="#built-in-values-num_workgroups" id="ref-for-built-in-values-num_workgroups②">num_workgroups</a> + <a data-link-type="dfn" href="#built-in-values-local_invocation_id" id="ref-for-built-in-values-local_invocation_id②">local_invocation_id</a>. 
    </table>
    <h6 class="heading settled" data-level="12.3.1.1.4" id="instance-index-builtin-value"><span class="secno">12.3.1.1.4. </span><span class="content"><code>instance_index</code></span><a class="self-link" href="#instance-index-builtin-value"></a></h6>
    <table class="data">
@@ -12075,7 +12075,7 @@ These sources include, but are not limited to:</p>
     <li data-md>
      <p>Mutable <a data-link-type="dfn" href="#module-scope" id="ref-for-module-scope②⑧">module-scope</a> <a data-link-type="dfn" href="#variable" id="ref-for-variable①⑤">variables</a></p>
     <li data-md>
-     <p>Most <a data-link-type="dfn" href="#built-in-values" id="ref-for-built-in-values③">built-in values</a>, except <a data-link-type="dfn" href="#built-in-values-num_workgroups" id="ref-for-built-in-values-num_workgroups②">num_workgroups</a> and <a data-link-type="dfn" href="#built-in-values-workgroup_id" id="ref-for-built-in-values-workgroup_id③">workgroup_id</a></p>
+     <p>Most <a data-link-type="dfn" href="#built-in-values" id="ref-for-built-in-values③">built-in values</a>, except <a data-link-type="dfn" href="#built-in-values-num_workgroups" id="ref-for-built-in-values-num_workgroups③">num_workgroups</a> and <a data-link-type="dfn" href="#built-in-values-workgroup_id" id="ref-for-built-in-values-workgroup_id③">workgroup_id</a></p>
     <li data-md>
      <p><a data-link-type="dfn" href="#user-defined-input-datum" id="ref-for-user-defined-input-datum③">User-defined inputs</a></p>
     <li data-md>
@@ -13031,7 +13031,7 @@ after the function call.</p>
     <li data-md>
      <p><a data-link-type="dfn" href="#built-in-values-workgroup_id" id="ref-for-built-in-values-workgroup_id④">workgroup_id</a></p>
     <li data-md>
-     <p><a data-link-type="dfn" href="#built-in-values-num_workgroups" id="ref-for-built-in-values-num_workgroups③">num_workgroups</a></p>
+     <p><a data-link-type="dfn" href="#built-in-values-num_workgroups" id="ref-for-built-in-values-num_workgroups④">num_workgroups</a></p>
    </ul>
    <p>All other ones (see <a data-link-type="dfn" href="#built-in-values" id="ref-for-built-in-values④">built-in values</a>) are considered non-uniform.</p>
    <p class="note" role="note"><span class="marker">Note:</span> An author should avoid grouping the uniform built-in values together with
@@ -13333,8 +13333,8 @@ the value specified for the <a data-link-type="dfn" href="#attribute-workgroup_s
 entry point.</p>
    <p>There is exactly one invocation in a workgroup for each point in the workgroup grid.</p>
    <p>An invocation’s <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="local-invocation-id">local invocation ID</dfn> is the coordinate
-triple for the invocation’s corresponding workgroup grid point.</p>
-   <p>When an invocation has <a data-link-type="dfn" href="#local-invocation-id" id="ref-for-local-invocation-id①">local invocation ID</a> (i,j,k), then its <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="local-invocation-index">local invocation index</dfn> is</p>
+triple (i,j,k) for the invocation’s corresponding workgroup grid point.</p>
+   <p>When an invocation has <a data-link-type="dfn" href="#local-invocation-id" id="ref-for-local-invocation-id①">local invocation ID</a>, then its <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="local-invocation-index">local invocation index</dfn> is</p>
    <p>i +
   (j * workgroup_size_x) +
   (k * workgroup_size_x * workgroup_size_y)</p>
@@ -21704,7 +21704,7 @@ window.dfnpanelData['built-in-values-global_invocation_id'] = {"dfnID": "built-i
 window.dfnpanelData['built-in-values-instance_index'] = {"dfnID": "built-in-values-instance_index", "url": "#built-in-values-instance_index", "dfnText": "instance_index", "refSections": [{"refs": [{"id": "ref-for-built-in-values-instance_index"}], "title": "6.3.1. Predeclared enumerants"}, {"refs": [{"id": "ref-for-built-in-values-instance_index\u2460"}], "title": "12.3.1.1. Built-in Inputs and Outputs"}], "external": false};
 window.dfnpanelData['built-in-values-local_invocation_id'] = {"dfnID": "built-in-values-local_invocation_id", "url": "#built-in-values-local_invocation_id", "dfnText": "local_invocation_id", "refSections": [{"refs": [{"id": "ref-for-built-in-values-local_invocation_id"}], "title": "6.3.1. Predeclared enumerants"}, {"refs": [{"id": "ref-for-built-in-values-local_invocation_id\u2460"}], "title": "12.3.1.1. Built-in Inputs and Outputs"}, {"refs": [{"id": "ref-for-built-in-values-local_invocation_id\u2461"}], "title": "12.3.1.1.3. global_invocation_id"}], "external": false};
 window.dfnpanelData['built-in-values-local_invocation_index'] = {"dfnID": "built-in-values-local_invocation_index", "url": "#built-in-values-local_invocation_index", "dfnText": "local_invocation_index", "refSections": [{"refs": [{"id": "ref-for-built-in-values-local_invocation_index"}], "title": "6.3.1. Predeclared enumerants"}, {"refs": [{"id": "ref-for-built-in-values-local_invocation_index\u2460"}], "title": "12.3.1.1. Built-in Inputs and Outputs"}], "external": false};
-window.dfnpanelData['built-in-values-num_workgroups'] = {"dfnID": "built-in-values-num_workgroups", "url": "#built-in-values-num_workgroups", "dfnText": "num_workgroups", "refSections": [{"refs": [{"id": "ref-for-built-in-values-num_workgroups"}], "title": "6.3.1. Predeclared enumerants"}, {"refs": [{"id": "ref-for-built-in-values-num_workgroups\u2460"}], "title": "12.3.1.1. Built-in Inputs and Outputs"}, {"refs": [{"id": "ref-for-built-in-values-num_workgroups\u2461"}], "title": "14.2. Uniformity"}, {"refs": [{"id": "ref-for-built-in-values-num_workgroups\u2462"}], "title": "14.2.8. Uniformity Rules for Expressions"}], "external": false};
+window.dfnpanelData['built-in-values-num_workgroups'] = {"dfnID": "built-in-values-num_workgroups", "url": "#built-in-values-num_workgroups", "dfnText": "num_workgroups", "refSections": [{"refs": [{"id": "ref-for-built-in-values-num_workgroups"}], "title": "6.3.1. Predeclared enumerants"}, {"refs": [{"id": "ref-for-built-in-values-num_workgroups\u2460"}], "title": "12.3.1.1. Built-in Inputs and Outputs"}, {"refs": [{"id": "ref-for-built-in-values-num_workgroups\u2461"}], "title": "12.3.1.1.3. global_invocation_id"}, {"refs": [{"id": "ref-for-built-in-values-num_workgroups\u2462"}], "title": "14.2. Uniformity"}, {"refs": [{"id": "ref-for-built-in-values-num_workgroups\u2463"}], "title": "14.2.8. Uniformity Rules for Expressions"}], "external": false};
 window.dfnpanelData['built-in-values-position'] = {"dfnID": "built-in-values-position", "url": "#built-in-values-position", "dfnText": "position", "refSections": [{"refs": [{"id": "ref-for-built-in-values-position"}], "title": "6.3.1. Predeclared enumerants"}, {"refs": [{"id": "ref-for-built-in-values-position\u2460"}], "title": "10.4. Restrictions on Functions"}, {"refs": [{"id": "ref-for-built-in-values-position\u2461"}, {"id": "ref-for-built-in-values-position\u2462"}], "title": "11. Attributes"}, {"refs": [{"id": "ref-for-built-in-values-position\u2463"}, {"id": "ref-for-built-in-values-position\u2464"}], "title": "12.3.1.1. Built-in Inputs and Outputs"}, {"refs": [{"id": "ref-for-built-in-values-position\u2465"}], "title": "12.3.1.1.8. position"}, {"refs": [{"id": "ref-for-built-in-values-position\u2466"}], "title": "14.4. Fragment Shaders and Helper Invocations"}], "external": false};
 window.dfnpanelData['built-in-values-sample_index'] = {"dfnID": "built-in-values-sample_index", "url": "#built-in-values-sample_index", "dfnText": "sample_index", "refSections": [{"refs": [{"id": "ref-for-built-in-values-sample_index"}], "title": "6.3.1. Predeclared enumerants"}, {"refs": [{"id": "ref-for-built-in-values-sample_index\u2460"}], "title": "12.3.1.1. Built-in Inputs and Outputs"}], "external": false};
 window.dfnpanelData['built-in-values-sample_mask'] = {"dfnID": "built-in-values-sample_mask", "url": "#built-in-values-sample_mask", "dfnText": "sample_mask", "refSections": [{"refs": [{"id": "ref-for-built-in-values-sample_mask"}], "title": "6.3.1. Predeclared enumerants"}, {"refs": [{"id": "ref-for-built-in-values-sample_mask\u2460"}], "title": "12.3.1.1. Built-in Inputs and Outputs"}], "external": false};
