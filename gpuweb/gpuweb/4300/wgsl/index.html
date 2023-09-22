@@ -763,7 +763,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/munrocket/gpuweb/blob/c02978a28044b08b22a80b0e9e2ebd350b639c23/wgsl/index.bs">https://github.com/munrocket/gpuweb/blob/c02978a28044b08b22a80b0e9e2ebd350b639c23/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/munrocket/gpuweb/blob/58e76b759f40386a0eea06c38bf03abae91b8c1f/wgsl/index.bs">https://github.com/munrocket/gpuweb/blob/58e76b759f40386a0eea06c38bf03abae91b8c1f/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -10601,7 +10601,7 @@ Each is described in detail in subsequent sections.</p>
      <tr>
       <td style="width:10%">Description 
       <td> The current invocation’s <a data-link-type="dfn" href="#global-invocation-id" id="ref-for-global-invocation-id">global invocation ID</a>, i.e. its position in
-      the <a data-link-type="dfn" href="#compute-shader-grid" id="ref-for-compute-shader-grid">compute shader grid</a>. The value of <a data-link-type="dfn" href="#built-in-values-global_invocation_id" id="ref-for-built-in-values-global_invocation_id②">global_invocation_id</a> is equal to workgroup_size * <a data-link-type="dfn" href="#built-in-values-workgroup_id" id="ref-for-built-in-values-workgroup_id②">workgroup_id</a> + <a data-link-type="dfn" href="#built-in-values-local_invocation_id" id="ref-for-built-in-values-local_invocation_id②">local_invocation_id</a>. 
+      the <a data-link-type="dfn" href="#compute-shader-grid" id="ref-for-compute-shader-grid">compute shader grid</a>. The value of <a data-link-type="dfn" href="#built-in-values-global_invocation_id" id="ref-for-built-in-values-global_invocation_id②">global_invocation_id</a> is equal to <a data-link-type="dfn" href="#built-in-values-workgroup_id" id="ref-for-built-in-values-workgroup_id②">workgroup_id</a> * workgroup_size + <a data-link-type="dfn" href="#built-in-values-local_invocation_id" id="ref-for-built-in-values-local_invocation_id②">local_invocation_id</a>. 
    </table>
    <h6 class="heading settled" data-level="12.3.1.1.4" id="instance-index-builtin-value"><span class="secno">12.3.1.1.4. </span><span class="content"><code>instance_index</code></span><a class="self-link" href="#instance-index-builtin-value"></a></h6>
    <table class="data">
