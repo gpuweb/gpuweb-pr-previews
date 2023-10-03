@@ -5,9 +5,9 @@
   <title>WebGPU Explainer</title>
   <meta content="w3c/CG-DRAFT" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/cg-draft" rel="stylesheet">
-  <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="Bikeshed version 5fcd28d6d, updated Tue May 30 13:12:11 2023 -0700" name="generator">
+  <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://gpuweb.github.io/gpuweb/explainer/" rel="canonical">
+  <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
 <style>
 /* Our SVGs aren’t responsive to light/dark mode, so they’re opaque with a
  * white or black background. Rounded corners make them a bit less jarring. */
@@ -595,7 +595,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Explainer</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2023-06-05">5 June 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2023-10-03">3 October 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -1306,12 +1306,12 @@ buffer<c- p>.</c->unmap<c- p>();</c->
    </div>
    <p>When transferring ownership to the CPU, a copy may be necessary from the underlying mapped buffer to shared memory visible to the content process.
 To avoid copying more than necessary, the application can specify which range it is interested in when calling <code>GPUBuffer.mapAsync</code>.</p>
-   <p><code>GPUBuffer.mapAsync</code>'s <code>mode</code> argument controls which type of mapping operation is performed.
+   <p><code>GPUBuffer.mapAsync</code>’s <code>mode</code> argument controls which type of mapping operation is performed.
 At the moment its values are redundant with the buffer creation’s usage flags, but it is present for explicitness and future extensibility.</p>
    <p>While a <code>GPUBuffer</code> is owned by the CPU, it is not possible to submit any operations on the device timeline that use it; otherwise, a validation error is produced.
 However it is valid (and encouraged!) to record <code>GPUCommandBuffer</code>s using the <code>GPUBuffer</code>.</p>
    <h4 class="heading settled" data-level="3.5.2" id="buffer-mapping-creation"><span class="secno">3.5.2. </span><span class="content">Creation of Mappable Buffers</span><a class="self-link" href="#buffer-mapping-creation"></a></h4>
-   <p>The physical memory location for a <code>GPUBuffer</code>'s underlying buffer depends on whether it should be mappable and whether it is mappable for reading or writing (native APIs give some control on the CPU cache behavior for example).
+   <p>The physical memory location for a <code>GPUBuffer</code>’s underlying buffer depends on whether it should be mappable and whether it is mappable for reading or writing (native APIs give some control on the CPU cache behavior for example).
 At the moment mappable buffers can only be used to transfer data (so they can only have the correct <code>COPY_SRC</code> or <code>COPY_DST</code> usage in addition to a <code>MAP_*</code> usage),
 That’s why applications must specify that buffers are mappable when they are created using the (currently) mutually exclusive <code>GPUBufferUsage.MAP_READ</code> and <code>GPUBufferUsage.MAP_WRITE</code> flags:</p>
    <div class="example" id="example-136b06ef">
@@ -1581,11 +1581,10 @@ There are many use-cases that require these, including:</p>
 image/video/canvas object into an equally-sized sub-rectangle of a <code>GPUTexture</code>.
 The input data is captured at the moment of the call.</p>
     <li data-md>
-     <p><code>importTexture()</code> takes a video or canvas and creates a <code>GPUExternalTexture</code> object which <em>can</em> provide direct read access to an underlying resource if it exists on the (same) GPU already,
+     <p><code>importExternalTexture()</code> takes a video or canvas and creates a <code>GPUExternalTexture</code> object which <em>can</em> provide direct read access to an underlying resource if it exists on the (same) GPU already,
 avoiding unnecessary copies or CPU-GPU bandwidth.
 This is typically true of hardware-decoded videos and most canvas elements.</p>
    </ul>
-   <p class="issue" id="issue-eb515afc"><a class="self-link" href="#issue-eb515afc"></a> Update both names to whatever we settle on.</p>
    <h4 class="heading settled" data-level="3.9.1" id="image-input-external-texture"><span class="secno">3.9.1. </span><span class="content">GPUExternalTexture</span><a class="self-link" href="#image-input-external-texture"></a></h4>
    <p>A <code>GPUExternalTexture</code> is a sampleable texture object which can be used in similar ways to normal
 sampleable <code>GPUTexture</code> objects.
@@ -1818,7 +1817,6 @@ However investigation in WebGL show that GPU timings can be used to leak from su
    <div class="issue"> Finish this explainer (see <a href="https://github.com/gpuweb/gpuweb/blob/main/design/ErrorHandling.md#fatal-errors-requestadapter-requestdevice-and-devicelost">ErrorHandling.md</a>). <a class="issue-return" href="#issue-a7ca2e8b" title="Jump to section">↵</a></div>
    <div class="issue"> Briefly explain passes? <a class="issue-return" href="#issue-872b53a1" title="Jump to section">↵</a></div>
    <div class="issue"> Exact API still in flux as of this writing. <a class="issue-return" href="#issue-829f95ec" title="Jump to section">↵</a></div>
-   <div class="issue"> Update both names to whatever we settle on. <a class="issue-return" href="#issue-eb515afc" title="Jump to section">↵</a></div>
    <div class="issue"> Describe how this is achieved for video element, VideoFrame, canvas element, and OffscreenCanvas. <a class="issue-return" href="#issue-effdb8e6" title="Jump to section">↵</a></div>
   </div>
 <script>/* Boilerplate: script-dfn-panel */
