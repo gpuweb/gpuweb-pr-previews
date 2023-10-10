@@ -979,7 +979,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/676fe01676724421f99b2338c87824e6ed0c9a68/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/676fe01676724421f99b2338c87824e6ed0c9a68/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/3ea61c2841624c7996aeed3980f0304f1818d2ac/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/3ea61c2841624c7996aeed3980f0304f1818d2ac/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -3562,9 +3562,15 @@ will be allowed in validation of API calls on the resulting device.</p>
 <c- p>});</c->
 </pre>
    </div>
-   <div class="example" id="example-fbeaa76e">
-    <a class="self-link" href="#example-fbeaa76e"></a> Requesting a <code class="idl"><a data-link-type="idl" href="#gpudevice" id="ref-for-gpudevice②③">GPUDevice</a></code> with a higher <code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxcolorattachmentbytespersample" id="ref-for-dom-supported-limits-maxcolorattachmentbytespersample">maxColorAttachmentBytesPerSample</a></code> limit: 
+   <div class="example" id="example-0147eb80">
+    <a class="self-link" href="#example-0147eb80"></a> Requesting a <code class="idl"><a data-link-type="idl" href="#gpudevice" id="ref-for-gpudevice②③">GPUDevice</a></code> with a higher <code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxcolorattachmentbytespersample" id="ref-for-dom-supported-limits-maxcolorattachmentbytespersample">maxColorAttachmentBytesPerSample</a></code> limit: 
 <pre class="highlight"><c- a>const</c-> gpuAdapter <c- o>=</c-> <c- k>await</c-> navigator<c- p>.</c->gpu<c- p>.</c->requestAdapter<c- p>();</c->
+
+<c- k>if</c-> <c- p>(</c->gpuAdapter<c- p>.</c->limits<c- p>.</c->maxColorAttachmentBytesPerSample <c- o>&lt;</c-> <c- mf>64</c-><c- p>)</c-> <c- p>{</c->
+    <c- c1>// When the desired limit isn’t supported, take action to either fall back to a code</c->
+    <c- c1>// path that does not require the higher limit or notify the user that their device</c->
+    <c- c1>// does not meet minimum requirements.</c->
+<c- p>}</c->
 
 <c- c1>// Request higher limit of max color attachments bytes per sample.</c->
 <c- a>const</c-> gpuDevice <c- o>=</c-> <c- k>await</c-> gpuAdapter<c- p>.</c->requestDevice<c- p>({</c->
