@@ -763,7 +763,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/5de46c43e567fdbec5f9f33b49e78997c2c25830/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/5de46c43e567fdbec5f9f33b49e78997c2c25830/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/446a7ae1a8cacb7749d45ac96169a5713339fb74/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/446a7ae1a8cacb7749d45ac96169a5713339fb74/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -6634,7 +6634,7 @@ It is declared at <a data-link-type="dfn" href="#module-scope" id="ref-for-modul
 It holds an opaque handle which is used to access the underlying grid of <a data-link-type="dfn" href="#texel" id="ref-for-texel②">texels</a> in a <a data-link-type="dfn" href="#texture" id="ref-for-texture②">texture</a>.
 The handle itself is in the <a data-link-type="dfn" href="#address-spaces-handle" id="ref-for-address-spaces-handle②">handle</a> address space and is always read-only.
 In many cases the underlying texels are read-only, and we say the texture variable immutable.
-For a <a data-link-type="dfn" href="#type-write-only-storage-texture" id="ref-for-type-write-only-storage-texture">write-only storage texture</a>, the underlying texels are write-only, and by convention
+For <a data-link-type="dfn" href="#type-write-only-storage-texture" id="ref-for-type-write-only-storage-texture">write-only storage textures</a> and <a data-link-type="dfn" href="#type-read-write-storage-texture" id="ref-for-type-read-write-storage-texture">read-write storage textures</a>, the underlying texels are mutable, and by convention
 we say the texture variable is mutable.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="sampler-resource">sampler resource</dfn> is a variable whose <a data-link-type="dfn" href="#effective-value-type" id="ref-for-effective-value-type⑧">effective-value-type</a> is a <a data-link-type="dfn" href="#sampler-types" id="ref-for-sampler-types①">sampler type</a>.
 It is declared at <a data-link-type="dfn" href="#module-scope" id="ref-for-module-scope②②">module scope</a>, exists in the <a data-link-type="dfn" href="#address-spaces-handle" id="ref-for-address-spaces-handle③">handle</a> address space,
@@ -11138,7 +11138,7 @@ where compatibility is defined by the following table.</p>
       <td rowspan="3"><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#enumdef-gpustoragetextureaccess" id="ref-for-enumdef-gpustoragetextureaccess">GPUStorageTextureAccess</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpustoragetextureaccess-write-only" id="ref-for-dom-gpustoragetextureaccess-write-only">"write-only"</a></code> 
      <tr>
-      <td><a data-link-type="dfn" href="#type-read-write-storage-texture" id="ref-for-type-read-write-storage-texture">read-write storage texture</a> 
+      <td><a data-link-type="dfn" href="#type-read-write-storage-texture" id="ref-for-type-read-write-storage-texture①">read-write storage texture</a> 
       <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpustoragetextureaccess-write-only" id="ref-for-dom-gpustoragetextureaccess-write-only①">"read-write"</a></code> 
      <tr>
       <td><a data-link-type="dfn" href="#type-read-only-storage-texture" id="ref-for-type-read-only-storage-texture">read-only storage texture</a> 
@@ -18102,21 +18102,21 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
 <pre class="highlight"><c- nd>@must_use</c-> <c- k>fn</c-> <c- n>textureLoad</c-><c- p>(</c-><c- n>t</c-><c- p>:</c-> texture_external<c- p>,</c->
                          <c- n>coords</c-><c- p>:</c-> vec2<c- o>&lt;</c-><c- n>C</c-><c- o>></c-><c- p>)</c-> <c- p>-></c-> vec4<c- o>&lt;</c->f32<c- o>></c->
 </pre>
-     <tr algorith="textureLoad 1d storage">
+     <tr class="algorithm" data-algorithm="textureLoad 1d storage">
       <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨⑤">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧⑦">u32</a><br> <var>AM</var> is <a data-link-type="dfn" href="#access-read" id="ref-for-access-read①④">read</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②②">read_write</a><br> <var>CF</var> depends on the storage texel format <var>F</var>. <a href="#storage-texel-formats" id="ref-for-storage-texel-formats②">See the texel format table</a> for the mapping of texel
         format to channel format. 
       <td>
 <pre class="highlight"><c- nd>@must_use</c-> <c- k>fn</c-> <c- n>textureLoad</c-><c- p>(</c-><c- n>t</c-> <c- p>:</c-> texture_storage_1d<c- o>&lt;</c-><c- n>F</c-><c- p>,</c-> <c- n>AM</c-><c- o>></c-><c- p>,</c->
                          <c- n>coords</c-> <c- p>:</c-> <c- n>C</c-><c- p>)</c-> <c- p>-></c-> vec4<c- o>&lt;</c-><c- n>CF</c-><c- o>></c->
 </pre>
-     <tr algorith="textureLoad 2d storage">
+     <tr class="algorithm" data-algorithm="textureLoad 2d storage">
       <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨⑥">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧⑧">u32</a><br> <var>AM</var> is <a data-link-type="dfn" href="#access-read" id="ref-for-access-read①⑤">read</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②③">read_write</a><br> <var>CF</var> depends on the storage texel format <var>F</var>. <a href="#storage-texel-formats" id="ref-for-storage-texel-formats③">See the texel format table</a> for the mapping of texel
         format to channel format. 
       <td>
 <pre class="highlight"><c- nd>@must_use</c-> <c- k>fn</c-> <c- n>textureLoad</c-><c- p>(</c-><c- n>t</c-> <c- p>:</c-> texture_storage_2d<c- o>&lt;</c-><c- n>F</c-><c- p>,</c-> <c- n>AM</c-><c- o>></c-><c- p>,</c->
                          <c- n>coords</c-> <c- p>:</c-> vec2<c- o>&lt;</c-><c- n>C</c-><c- o>></c-><c- p>)</c-> <c- p>-></c-> vec4<c- o>&lt;</c-><c- n>CF</c-><c- o>></c->
 </pre>
-     <tr algorith="textureLoad 2d array storage">
+     <tr class="algorithm" data-algorithm="textureLoad 2d array storage">
       <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨⑦">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧⑨">u32</a><br> <var>AM</var> is <a data-link-type="dfn" href="#access-read" id="ref-for-access-read①⑥">read</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②④">read_write</a><br> <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨⑧">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑨⓪">u32</a><br> <var>CF</var> depends on the storage texel format <var>F</var>. <a href="#storage-texel-formats" id="ref-for-storage-texel-formats④">See the texel format table</a> for the mapping of texel
         format to channel format. 
       <td>
@@ -18124,7 +18124,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
                          <c- n>coords</c-> <c- p>:</c-> vec2<c- o>&lt;</c-><c- n>C</c-><c- o>></c-><c- p>,</c->
                          <c- n>array_index</c-> <c- p>:</c-> <c- n>A</c-><c- p>)</c-> <c- p>-></c-> vec4<c- o>&lt;</c-><c- n>CF</c-><c- o>></c->
 </pre>
-     <tr algorith="textureLoad 3d storage">
+     <tr class="algorithm" data-algorithm="textureLoad 3d storage">
       <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32⑨⑨">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑨①">u32</a><br> <var>AM</var> is <a data-link-type="dfn" href="#access-read" id="ref-for-access-read①⑦">read</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②⑤">read_write</a><br> <var>CF</var> depends on the storage texel format <var>F</var>. <a href="#storage-texel-formats" id="ref-for-storage-texel-formats⑤">See the texel format table</a> for the mapping of texel
         format to channel format. 
       <td>
@@ -19044,7 +19044,7 @@ with texture coordinates clamped to the edge as described below.</p>
     <tbody>
      <tr>
       <td><code>t</code>
-      <td> The <a data-link-type="dfn" href="#type-write-only-storage-texture" id="ref-for-type-write-only-storage-texture②">write-only storage texture</a> or <a data-link-type="dfn" href="#type-read-write-storage-texture" id="ref-for-type-read-write-storage-texture①">read-write storage texture</a> 
+      <td> The <a data-link-type="dfn" href="#type-write-only-storage-texture" id="ref-for-type-write-only-storage-texture②">write-only storage texture</a> or <a data-link-type="dfn" href="#type-read-write-storage-texture" id="ref-for-type-read-write-storage-texture②">read-write storage texture</a> 
      <tr>
       <td><code>coords</code>
       <td> The 0-based texel coordinate.<br> 
@@ -21572,7 +21572,7 @@ window.dfnpanelData['type-texture_external'] = {"dfnID": "type-texture_external"
 window.dfnpanelData['type-storage-texture'] = {"dfnID": "type-storage-texture", "url": "#type-storage-texture", "dfnText": "storage texture", "refSections": [{"refs": [{"id": "ref-for-type-storage-texture"}], "title": "4.1.2. Language Extensions"}, {"refs": [{"id": "ref-for-type-storage-texture\u2460"}, {"id": "ref-for-type-storage-texture\u2461"}], "title": "6.5. Texture and Sampler Types"}, {"refs": [{"id": "ref-for-type-storage-texture\u2462"}], "title": "6.5.1. Texel Formats"}, {"refs": [{"id": "ref-for-type-storage-texture\u2463"}], "title": "7. Variable and Value Declarations"}, {"refs": [{"id": "ref-for-type-storage-texture\u2464"}], "title": "13.3. Address Spaces"}, {"refs": [{"id": "ref-for-type-storage-texture\u2465"}], "title": "16.7.4. textureLoad"}, {"refs": [{"id": "ref-for-type-storage-texture\u2466"}], "title": "16.7.5. textureNumLayers"}], "external": false};
 window.dfnpanelData['type-write-only-storage-texture'] = {"dfnID": "type-write-only-storage-texture", "url": "#type-write-only-storage-texture", "dfnText": "write-only storage texture", "refSections": [{"refs": [{"id": "ref-for-type-write-only-storage-texture"}], "title": "7.3. var Declarations"}, {"refs": [{"id": "ref-for-type-write-only-storage-texture\u2460"}], "title": "12.3.3. Resource Layout Compatibility"}, {"refs": [{"id": "ref-for-type-write-only-storage-texture\u2461"}], "title": "16.7.15. textureStore"}], "external": false};
 window.dfnpanelData['type-read-only-storage-texture'] = {"dfnID": "type-read-only-storage-texture", "url": "#type-read-only-storage-texture", "dfnText": "read-only storage texture", "refSections": [{"refs": [{"id": "ref-for-type-read-only-storage-texture"}], "title": "12.3.3. Resource Layout Compatibility"}], "external": false};
-window.dfnpanelData['type-read-write-storage-texture'] = {"dfnID": "type-read-write-storage-texture", "url": "#type-read-write-storage-texture", "dfnText": "read-write storage texture", "refSections": [{"refs": [{"id": "ref-for-type-read-write-storage-texture"}], "title": "12.3.3. Resource Layout Compatibility"}, {"refs": [{"id": "ref-for-type-read-write-storage-texture\u2460"}], "title": "16.7.15. textureStore"}], "external": false};
+window.dfnpanelData['type-read-write-storage-texture'] = {"dfnID": "type-read-write-storage-texture", "url": "#type-read-write-storage-texture", "dfnText": "read-write storage texture", "refSections": [{"refs": [{"id": "ref-for-type-read-write-storage-texture"}], "title": "7.3. var Declarations"}, {"refs": [{"id": "ref-for-type-read-write-storage-texture\u2460"}], "title": "12.3.3. Resource Layout Compatibility"}, {"refs": [{"id": "ref-for-type-read-write-storage-texture\u2461"}], "title": "16.7.15. textureStore"}], "external": false};
 window.dfnpanelData['type-depth-texture'] = {"dfnID": "type-depth-texture", "url": "#type-depth-texture", "dfnText": "depth texture", "refSections": [{"refs": [{"id": "ref-for-type-depth-texture"}, {"id": "ref-for-type-depth-texture\u2460"}], "title": "6.5. Texture and Sampler Types"}, {"refs": [{"id": "ref-for-type-depth-texture\u2461"}, {"id": "ref-for-type-depth-texture\u2462"}, {"id": "ref-for-type-depth-texture\u2463"}], "title": "6.5.7. Sampler Type"}, {"refs": [{"id": "ref-for-type-depth-texture\u2464"}], "title": "12.3.3. Resource Layout Compatibility"}, {"refs": [{"id": "ref-for-type-depth-texture\u2465"}], "title": "16.7.2. textureGather"}, {"refs": [{"id": "ref-for-type-depth-texture\u2466"}], "title": "16.7.4. textureLoad"}, {"refs": [{"id": "ref-for-type-depth-texture\u2467"}], "title": "16.7.5. textureNumLayers"}, {"refs": [{"id": "ref-for-type-depth-texture\u2468"}], "title": "16.7.6. textureNumLevels"}, {"refs": [{"id": "ref-for-type-depth-texture\u2460\u24ea"}], "title": "16.7.8. textureSample"}, {"refs": [{"id": "ref-for-type-depth-texture\u2460\u2460"}, {"id": "ref-for-type-depth-texture\u2460\u2461"}], "title": "16.7.10. textureSampleCompare"}, {"refs": [{"id": "ref-for-type-depth-texture\u2460\u2462"}, {"id": "ref-for-type-depth-texture\u2460\u2463"}], "title": "16.7.11. textureSampleCompareLevel"}, {"refs": [{"id": "ref-for-type-depth-texture\u2460\u2464"}], "title": "16.7.13. textureSampleLevel"}], "external": false};
 window.dfnpanelData['type-texture_depth_2d'] = {"dfnID": "type-texture_depth_2d", "url": "#type-texture_depth_2d", "dfnText": "texture_depth_2d", "refSections": [{"refs": [{"id": "ref-for-type-texture_depth_2d"}], "title": "6.9. Predeclared Types and Type-Generators Summary"}], "external": false};
 window.dfnpanelData['type-texture_depth_2d_array'] = {"dfnID": "type-texture_depth_2d_array", "url": "#type-texture_depth_2d_array", "dfnText": "texture_depth_2d_array", "refSections": [{"refs": [{"id": "ref-for-type-texture_depth_2d_array"}], "title": "6.9. Predeclared Types and Type-Generators Summary"}], "external": false};
