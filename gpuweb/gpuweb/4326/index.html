@@ -979,7 +979,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/7524b90bdbc8bea765caa5d5f4b374c467c2fe8b/spec/index.bs">https://github.com/alan-baker/gpuweb/blob/7524b90bdbc8bea765caa5d5f4b374c467c2fe8b/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/dc1964ddbaf6398bf590ce26e4f6b057f17e2243/spec/index.bs">https://github.com/alan-baker/gpuweb/blob/dc1964ddbaf6398bf590ce26e4f6b057f17e2243/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -2195,7 +2195,7 @@ Allowed by buffer <code class="idl"><a data-link-type="idl" href="#dom-gpubuffer
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="internal usage" data-dfn-type="dfn" data-noexport id="internal-usage-storage-read">storage-read</dfn>
     <dd data-md>
      <p>Read-only storage resource bindings. Preserves the contents.
-Allowed by buffer <code class="idl"><a data-link-type="idl" href="#dom-gpubufferusage-storage" id="ref-for-dom-gpubufferusage-storage①">STORAGE</a></code>.</p>
+Allowed by buffer <code class="idl"><a data-link-type="idl" href="#dom-gpubufferusage-storage" id="ref-for-dom-gpubufferusage-storage①">STORAGE</a></code> or texture <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding①">STORAGE_BINDING</a></code>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="internal usage" data-dfn-type="dfn" data-noexport id="internal-usage-attachment">attachment</dfn>
     <dd data-md>
      <p>Texture used as an output attachment in a render pass.
@@ -3695,7 +3695,7 @@ mapped memory that was just unmapped.</p>
      A <code class="idl"><a data-link-type="idl" href="#gpudevice" id="ref-for-gpudevice③⑤">GPUDevice</a></code>'s <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="allowed-texture-usages">allowed texture usages</dfn> are: 
     <ul>
      <li data-md>
-      <p>Always allowed: <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-copy_src" id="ref-for-dom-gputextureusage-copy_src">COPY_SRC</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-copy_dst" id="ref-for-dom-gputextureusage-copy_dst">COPY_DST</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-texture_binding" id="ref-for-dom-gputextureusage-texture_binding①">TEXTURE_BINDING</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding①">STORAGE_BINDING</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-render_attachment" id="ref-for-dom-gputextureusage-render_attachment②">RENDER_ATTACHMENT</a></code></p>
+      <p>Always allowed: <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-copy_src" id="ref-for-dom-gputextureusage-copy_src">COPY_SRC</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-copy_dst" id="ref-for-dom-gputextureusage-copy_dst">COPY_DST</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-texture_binding" id="ref-for-dom-gputextureusage-texture_binding①">TEXTURE_BINDING</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding②">STORAGE_BINDING</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-render_attachment" id="ref-for-dom-gputextureusage-render_attachment②">RENDER_ATTACHMENT</a></code></p>
     </ul>
    </div>
    <h3 class="heading settled" data-level="4.5" id="initialization-examples"><span class="secno">4.5. </span><span class="content">Example</span><a class="self-link" href="#initialization-examples"></a></h3>
@@ -4819,7 +4819,7 @@ depth/stencil format, and be used as a render attachment.</p>
     <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant①⑥"><c- n>GPUFlagsConstant</c-></a> <a class="idl-code" data-link-type="const" href="#dom-gputextureusage-copy_src" id="ref-for-dom-gputextureusage-copy_src①"><c- g>COPY_SRC</c-></a>          = 0x01;
     <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant①⑦"><c- n>GPUFlagsConstant</c-></a> <a class="idl-code" data-link-type="const" href="#dom-gputextureusage-copy_dst" id="ref-for-dom-gputextureusage-copy_dst①"><c- g>COPY_DST</c-></a>          = 0x02;
     <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant①⑧"><c- n>GPUFlagsConstant</c-></a> <a class="idl-code" data-link-type="const" href="#dom-gputextureusage-texture_binding" id="ref-for-dom-gputextureusage-texture_binding②"><c- g>TEXTURE_BINDING</c-></a>   = 0x04;
-    <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant①⑨"><c- n>GPUFlagsConstant</c-></a> <a class="idl-code" data-link-type="const" href="#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding②"><c- g>STORAGE_BINDING</c-></a>   = 0x08;
+    <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant①⑨"><c- n>GPUFlagsConstant</c-></a> <a class="idl-code" data-link-type="const" href="#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding③"><c- g>STORAGE_BINDING</c-></a>   = 0x08;
     <c- b>const</c-> <a data-link-type="idl-name" href="#typedefdef-gpuflagsconstant" id="ref-for-typedefdef-gpuflagsconstant②⓪"><c- n>GPUFlagsConstant</c-></a> <a class="idl-code" data-link-type="const" href="#dom-gputextureusage-render_attachment" id="ref-for-dom-gputextureusage-render_attachment③"><c- g>RENDER_ATTACHMENT</c-></a> = 0x10;
 };
 </pre>
@@ -5024,7 +5024,7 @@ and <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-g
        <li data-md>
         <p><var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gputexturedescriptor-size" id="ref-for-dom-gputexturedescriptor-size③⑤">size</a></code>.<a data-link-type="dfn" href="#gpuextent3d-depthorarraylayers" id="ref-for-gpuextent3d-depthorarraylayers①②">depthOrArrayLayers</a> must be 1.</p>
        <li data-md>
-        <p><var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gputexturedescriptor-usage" id="ref-for-dom-gputexturedescriptor-usage④">usage</a></code> must not include the <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding③">STORAGE_BINDING</a></code> bit.</p>
+        <p><var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gputexturedescriptor-usage" id="ref-for-dom-gputexturedescriptor-usage④">usage</a></code> must not include the <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding④">STORAGE_BINDING</a></code> bit.</p>
        <li data-md>
         <p><var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gputexturedescriptor-usage" id="ref-for-dom-gputexturedescriptor-usage⑤">usage</a></code> must include the <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-render_attachment" id="ref-for-dom-gputextureusage-render_attachment④">RENDER_ATTACHMENT</a></code> bit.</p>
        <li data-md>
@@ -5041,11 +5041,11 @@ and <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-g
         <p><var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gputexturedescriptor-dimension" id="ref-for-dom-gputexturedescriptor-dimension①①">dimension</a></code> must be <code class="idl"><a data-link-type="idl" href="#dom-gputexturedimension-2d" id="ref-for-dom-gputexturedimension-2d①⓪">"2d"</a></code>.</p>
       </ul>
      <li data-md>
-      <p>If <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gputexturedescriptor-usage" id="ref-for-dom-gputexturedescriptor-usage⑦">usage</a></code> includes the <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding④">STORAGE_BINDING</a></code> bit:</p>
+      <p>If <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gputexturedescriptor-usage" id="ref-for-dom-gputexturedescriptor-usage⑦">usage</a></code> includes the <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding⑤">STORAGE_BINDING</a></code> bit:</p>
       <ul>
        <li data-md>
         <p><var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gputexturedescriptor-format" id="ref-for-dom-gputexturedescriptor-format⑨">format</a></code> must be listed in <a href="#plain-color-formats">§ 26.1.1 Plain color formats</a> table
-with <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding⑤">STORAGE_BINDING</a></code> capability.</p>
+with <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding⑥">STORAGE_BINDING</a></code> capability.</p>
       </ul>
      <li data-md>
       <p>For each <var>viewFormat</var> in <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gputexturedescriptor-viewformats" id="ref-for-dom-gputexturedescriptor-viewformats④">viewFormats</a></code>, <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gputexturedescriptor-format" id="ref-for-dom-gputexturedescriptor-format①⓪">format</a></code> and <var>viewFormat</var> must be <a data-link-type="dfn" href="#texture-view-format-compatible" id="ref-for-texture-view-format-compatible①">texture view format compatible</a>.</p>
@@ -6857,7 +6857,7 @@ the number of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" hr
                <li data-md>
                 <p><var>layoutBinding</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindgrouplayoutentry-storagetexture" id="ref-for-dom-gpubindgrouplayoutentry-storagetexture①③">storageTexture</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpustoragetexturebindinglayout-format" id="ref-for-dom-gpustoragetexturebindinglayout-format④">format</a></code> is equal to <var>resource</var>.<code class="idl"><a data-link-type="idl" href="#dom-gputextureview-descriptor-slot" id="ref-for-dom-gputextureview-descriptor-slot②">[[descriptor]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gputextureviewdescriptor-format" id="ref-for-dom-gputextureviewdescriptor-format①①">format</a></code>.</p>
                <li data-md>
-                <p><var>texture</var>’s <code class="idl"><a data-link-type="idl" href="#dom-gputexturedescriptor-usage" id="ref-for-dom-gputexturedescriptor-usage⑨">usage</a></code> includes <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding⑥">STORAGE_BINDING</a></code>.</p>
+                <p><var>texture</var>’s <code class="idl"><a data-link-type="idl" href="#dom-gputexturedescriptor-usage" id="ref-for-dom-gputexturedescriptor-usage⑨">usage</a></code> includes <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding⑦">STORAGE_BINDING</a></code>.</p>
                <li data-md>
                 <p><var>resource</var>.<code class="idl"><a data-link-type="idl" href="#dom-gputextureview-descriptor-slot" id="ref-for-dom-gputextureview-descriptor-slot③">[[descriptor]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gputextureviewdescriptor-miplevelcount" id="ref-for-dom-gputextureviewdescriptor-miplevelcount⑥">mipLevelCount</a></code> must be 1.</p>
               </ul>
@@ -17272,7 +17272,7 @@ either <code class="idl"><a data-link-type="idl" href="#dictdef-gpuextent3ddict"
 and also allows textures of that format to be blended and multisampled.</p>
    <p>This feature adds no <a data-link-type="dfn" href="#optional-api-surfaces" id="ref-for-optional-api-surfaces⑧">optional API surfaces</a>.</p>
    <h3 class="heading settled dfn-paneled idl-code" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.10" data-lt="&quot;bgra8unorm-storage&quot;" id="bgra8unorm-storage"><span class="secno">25.10. </span><span class="content"><code>"bgra8unorm-storage"</code> </span><a class="self-link" href="#bgra8unorm-storage" id="ref-for-bgra8unorm-storage②"></a></h3>
-   <p>Allows the <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding⑦">STORAGE_BINDING</a></code> usage on textures with format <code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-bgra8unorm" id="ref-for-dom-gputextureformat-bgra8unorm⑤">"bgra8unorm"</a></code>.</p>
+   <p>Allows the <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding⑧">STORAGE_BINDING</a></code> usage on textures with format <code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-bgra8unorm" id="ref-for-dom-gputextureformat-bgra8unorm⑤">"bgra8unorm"</a></code>.</p>
    <p>This feature adds no <a data-link-type="dfn" href="#optional-api-surfaces" id="ref-for-optional-api-surfaces⑨">optional API surfaces</a>.</p>
    <h3 class="heading settled dfn-paneled idl-code" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.11" data-lt="&quot;float32-filterable&quot;" id="float32-filterable"><span class="secno">25.11. </span><span class="content"><code>"float32-filterable"</code> </span><a class="self-link" href="#float32-filterable" id="ref-for-float32-filterable④"></a></h3>
    <p>Makes textures with formats <code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-r32float" id="ref-for-dom-gputextureformat-r32float①">"r32float"</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rg32float" id="ref-for-dom-gputextureformat-rg32float①">"rg32float"</a></code>, and <code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgba32float" id="ref-for-dom-gputextureformat-rgba32float①">"rgba32float"</a></code> <a data-link-type="dfn" href="#filterable" id="ref-for-filterable">filterable</a>.</p>
@@ -17280,8 +17280,8 @@ and also allows textures of that format to be blended and multisampled.</p>
    <h3 class="heading settled" data-level="26.1" id="texture-format-caps"><span class="secno">26.1. </span><span class="content">Texture Format Capabilities</span><a class="self-link" href="#texture-format-caps"></a></h3>
    <h4 class="heading settled" data-level="26.1.1" id="plain-color-formats"><span class="secno">26.1.1. </span><span class="content">Plain color formats</span><a class="self-link" href="#plain-color-formats"></a></h4>
    <p>All plain color formats support <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-copy_src" id="ref-for-dom-gputextureusage-copy_src④">COPY_SRC</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-copy_dst" id="ref-for-dom-gputextureusage-copy_dst⑥">COPY_DST</a></code>, and <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-texture_binding" id="ref-for-dom-gputextureusage-texture_binding④">TEXTURE_BINDING</a></code> usage.</p>
-   <p>The <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-render_attachment" id="ref-for-dom-gputextureusage-render_attachment①⑤">RENDER_ATTACHMENT</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding⑧">STORAGE_BINDING</a></code> columns
-specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-render_attachment" id="ref-for-dom-gputextureusage-render_attachment①⑥">GPUTextureUsage.RENDER_ATTACHMENT</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding⑨">GPUTextureUsage.STORAGE_BINDING</a></code> usage respectively.</p>
+   <p>The <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-render_attachment" id="ref-for-dom-gputextureusage-render_attachment①⑤">RENDER_ATTACHMENT</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding⑨">STORAGE_BINDING</a></code> columns
+specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-render_attachment" id="ref-for-dom-gputextureusage-render_attachment①⑥">GPUTextureUsage.RENDER_ATTACHMENT</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding①⓪">GPUTextureUsage.STORAGE_BINDING</a></code> usage respectively.</p>
    <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="render-target-pixel-byte-cost">render target pixel byte cost</dfn> and <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="render-target-component-alignment">render target component alignment</dfn> are used to validate the <code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxcolorattachmentbytespersample" id="ref-for-dom-supported-limits-maxcolorattachmentbytespersample④">maxColorAttachmentBytesPerSample</a></code> limit.</p>
    <p class="note" role="note"><span class="marker">Note:</span> The <a data-link-type="dfn" href="#texel-block-memory-cost" id="ref-for-texel-block-memory-cost">texel block memory cost</a> of each of these formats is the same as its <a data-link-type="dfn" href="#texel-block-copy-footprint" id="ref-for-texel-block-copy-footprint③">texel block copy footprint</a>.</p>
    <table class="data">
@@ -17293,12 +17293,13 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <th><span class="vertical"><a data-link-type="dfn" href="#blendable" id="ref-for-blendable①">blendable</a></span> 
       <th><span class="vertical">multisampling</span> 
       <th><span class="vertical">resolve</span> 
-      <th><span class="vertical"><code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding①⓪">STORAGE_BINDING</a></code></span> 
+      <th><span class="vertical"><code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding①①">STORAGE_BINDING</a></code></span> 
+      <th><span class="vertical"><code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding①②">STORAGE_BINDING</a></code><br> with <code class="idl"><a data-link-type="idl" href="#dom-gpustoragetextureaccess-read-only" id="ref-for-dom-gpustoragetextureaccess-read-only④">"read-only"</a></code><br> or <code class="idl"><a data-link-type="idl" href="#dom-gpustoragetextureaccess-read-write" id="ref-for-dom-gpustoragetextureaccess-read-write⑤">"read-write"</a></code> access</span> 
       <th><a data-link-type="dfn" href="#texel-block-copy-footprint" id="ref-for-texel-block-copy-footprint④">Texel block copy footprint</a> (Bytes) 
       <th><a data-link-type="dfn" href="#render-target-pixel-byte-cost" id="ref-for-render-target-pixel-byte-cost①">Render target pixel byte cost</a> (Bytes) 
     <tbody>
      <tr>
-      <th colspan="9">8 bits per component (1-byte <a data-link-type="dfn" href="#render-target-component-alignment" id="ref-for-render-target-component-alignment①">render target component alignment</a>) 
+      <th colspan="10">8 bits per component (1-byte <a data-link-type="dfn" href="#render-target-component-alignment" id="ref-for-render-target-component-alignment①">render target component alignment</a>) 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-r8unorm" id="ref-for-dom-gputextureformat-r8unorm①">r8unorm</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float①⓪">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float⑦">"unfilterable-float"</a></code> 
@@ -17307,10 +17308,12 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>✓ 
       <td>✓ 
       <td>
+      <td>
       <td colspan="2">1 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-r8snorm" id="ref-for-dom-gputextureformat-r8snorm">r8snorm</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float①①">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float⑧">"unfilterable-float"</a></code> 
+      <td>
       <td>
       <td>
       <td>
@@ -17326,6 +17329,8 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>✓ 
       <td>
       <td>
+      <td>
+      <td>
       <td colspan="2">1 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-r8sint" id="ref-for-dom-gputextureformat-r8sint">r8sint</a></code> 
@@ -17333,6 +17338,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>✓ 
       <td>
       <td>✓ 
+      <td>
       <td>
       <td>
       <td colspan="2">1 
@@ -17344,10 +17350,12 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>✓ 
       <td>✓ 
       <td>
+      <td>
       <td colspan="2">2 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rg8snorm" id="ref-for-dom-gputextureformat-rg8snorm">rg8snorm</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float①③">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float①⓪">"unfilterable-float"</a></code> 
+      <td>
       <td>
       <td>
       <td>
@@ -17363,6 +17371,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>✓ 
       <td>
       <td>
+      <td>
       <td colspan="2">2 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rg8sint" id="ref-for-dom-gputextureformat-rg8sint">rg8sint</a></code> 
@@ -17370,6 +17379,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>✓ 
       <td>
       <td>✓ 
+      <td>
       <td>
       <td>
       <td colspan="2">2 
@@ -17381,6 +17391,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>✓ 
       <td>✓ 
       <td>✓ 
+      <td>
       <td>4 
       <td>8 
      <tr>
@@ -17390,6 +17401,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>✓ 
       <td>✓ 
       <td>✓ 
+      <td>
       <td>
       <td>4 
       <td>8 
@@ -17401,6 +17413,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>
       <td>
       <td>✓ 
+      <td>
       <td>4 
       <td>– 
      <tr>
@@ -17411,6 +17424,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>✓ 
       <td>
       <td>✓ 
+      <td>
       <td colspan="2">4 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgba8sint" id="ref-for-dom-gputextureformat-rgba8sint">rgba8sint</a></code> 
@@ -17420,6 +17434,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>✓ 
       <td>
       <td>✓ 
+      <td>
       <td colspan="2">4 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-bgra8unorm" id="ref-for-dom-gputextureformat-bgra8unorm⑥">bgra8unorm</a></code> 
@@ -17429,6 +17444,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>✓ 
       <td>✓ 
       <td>If <code class="idl"><a data-link-type="idl" href="#bgra8unorm-storage" id="ref-for-bgra8unorm-storage①">"bgra8unorm-storage"</a></code> is enabled 
+      <td>
       <td>4 
       <td>8 
      <tr>
@@ -17439,16 +17455,18 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>✓ 
       <td>✓ 
       <td>
+      <td>
       <td>4 
       <td>8 
      <tr>
-      <th colspan="9">16 bits per component (2-byte <a data-link-type="dfn" href="#render-target-component-alignment" id="ref-for-render-target-component-alignment②">render target component alignment</a>) 
+      <th colspan="10">16 bits per component (2-byte <a data-link-type="dfn" href="#render-target-component-alignment" id="ref-for-render-target-component-alignment②">render target component alignment</a>) 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-r16uint" id="ref-for-dom-gputextureformat-r16uint">r16uint</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-uint" id="ref-for-dom-gputexturesampletype-uint⑧">"uint"</a></code> 
       <td>✓ 
       <td>
       <td>✓ 
+      <td>
       <td>
       <td>
       <td colspan="2">2 
@@ -17460,6 +17478,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>✓ 
       <td>
       <td>
+      <td>
       <td colspan="2">2 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-r16float" id="ref-for-dom-gputextureformat-r16float①">r16float</a></code> 
@@ -17469,6 +17488,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>✓ 
       <td>✓ 
       <td>
+      <td>
       <td colspan="2">2 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rg16uint" id="ref-for-dom-gputextureformat-rg16uint">rg16uint</a></code> 
@@ -17476,6 +17496,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>✓ 
       <td>
       <td>✓ 
+      <td>
       <td>
       <td>
       <td colspan="2">4 
@@ -17487,6 +17508,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>✓ 
       <td>
       <td>
+      <td>
       <td colspan="2">4 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rg16float" id="ref-for-dom-gputextureformat-rg16float①">rg16float</a></code> 
@@ -17495,6 +17517,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>✓ 
       <td>✓ 
       <td>✓ 
+      <td>
       <td>
       <td colspan="2">4 
      <tr>
@@ -17505,6 +17528,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>✓ 
       <td>
       <td>✓ 
+      <td>
       <td colspan="2">8 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgba16sint" id="ref-for-dom-gputextureformat-rgba16sint">rgba16sint</a></code> 
@@ -17514,6 +17538,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>✓ 
       <td>
       <td>✓ 
+      <td>
       <td colspan="2">8 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgba16float" id="ref-for-dom-gputextureformat-rgba16float②">rgba16float</a></code> 
@@ -17523,9 +17548,10 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>✓ 
       <td>✓ 
       <td>✓ 
+      <td>
       <td colspan="2">8 
      <tr>
-      <th colspan="9">32 bits per component (4-byte <a data-link-type="dfn" href="#render-target-component-alignment" id="ref-for-render-target-component-alignment③">render target component alignment</a>) 
+      <th colspan="10">32 bits per component (4-byte <a data-link-type="dfn" href="#render-target-component-alignment" id="ref-for-render-target-component-alignment③">render target component alignment</a>) 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-r32uint" id="ref-for-dom-gputextureformat-r32uint">r32uint</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-uint" id="ref-for-dom-gputexturesampletype-uint①①">"uint"</a></code> 
@@ -17533,6 +17559,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>
       <td>
       <td>
+      <td>✓ 
       <td>✓ 
       <td colspan="2">4 
      <tr>
@@ -17542,6 +17569,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>
       <td>
       <td>
+      <td>✓ 
       <td>✓ 
       <td colspan="2">4 
      <tr>
@@ -17557,6 +17585,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>✓ 
       <td>
       <td>✓ 
+      <td>✓ 
       <td colspan="2">4 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rg32uint" id="ref-for-dom-gputextureformat-rg32uint">rg32uint</a></code> 
@@ -17566,6 +17595,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>
       <td>
       <td>✓ 
+      <td>
       <td colspan="2">8 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rg32sint" id="ref-for-dom-gputextureformat-rg32sint">rg32sint</a></code> 
@@ -17575,6 +17605,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>
       <td>
       <td>✓ 
+      <td>
       <td colspan="2">8 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rg32float" id="ref-for-dom-gputextureformat-rg32float②">rg32float</a></code> 
@@ -17589,6 +17620,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>
       <td>
       <td>✓ 
+      <td>
       <td colspan="2">8 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgba32uint" id="ref-for-dom-gputextureformat-rgba32uint">rgba32uint</a></code> 
@@ -17598,6 +17630,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>
       <td>
       <td>✓ 
+      <td>
       <td colspan="2">16 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgba32sint" id="ref-for-dom-gputextureformat-rgba32sint">rgba32sint</a></code> 
@@ -17607,6 +17640,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>
       <td>
       <td>✓ 
+      <td>
       <td colspan="2">16 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgba32float" id="ref-for-dom-gputextureformat-rgba32float②">rgba32float</a></code> 
@@ -17621,15 +17655,17 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>
       <td>
       <td>✓ 
+      <td>
       <td colspan="2">16 
      <tr>
-      <th colspan="9">mixed component width, 32 bits per texel (4-byte <a data-link-type="dfn" href="#render-target-component-alignment" id="ref-for-render-target-component-alignment④">render target component alignment</a>) 
+      <th colspan="10">mixed component width, 32 bits per texel (4-byte <a data-link-type="dfn" href="#render-target-component-alignment" id="ref-for-render-target-component-alignment④">render target component alignment</a>) 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgb10a2uint" id="ref-for-dom-gputextureformat-rgb10a2uint">rgb10a2uint</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-uint" id="ref-for-dom-gputexturesampletype-uint①④">"uint"</a></code> 
       <td>✓ 
       <td>
       <td>✓ 
+      <td>
       <td>
       <td>
       <td>4 
@@ -17642,12 +17678,14 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>✓ 
       <td>✓ 
       <td>
+      <td>
       <td>4 
       <td>8 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rg11b10ufloat" id="ref-for-dom-gputextureformat-rg11b10ufloat①">rg11b10ufloat</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float②⑥">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float②③">"unfilterable-float"</a></code> 
       <td colspan="4">If <code class="idl"><a data-link-type="idl" href="#rg11b10ufloat-renderable" id="ref-for-rg11b10ufloat-renderable①">"rg11b10ufloat-renderable"</a></code> is enabled 
+      <td>
       <td>
       <td>4 
       <td>8 
@@ -22001,7 +22039,7 @@ window.dfnpanelData['namespacedef-gputextureusage'] = {"dfnID": "namespacedef-gp
 window.dfnpanelData['dom-gputextureusage-copy_src'] = {"dfnID": "dom-gputextureusage-copy_src", "url": "#dom-gputextureusage-copy_src", "dfnText": "COPY_SRC", "refSections": [{"refs": [{"id": "ref-for-dom-gputextureusage-copy_src"}], "title": "4.4. GPUDevice\n\n"}, {"refs": [{"id": "ref-for-dom-gputextureusage-copy_src\u2460"}], "title": "6.1.2. Texture Usages"}, {"refs": [{"id": "ref-for-dom-gputextureusage-copy_src\u2461"}, {"id": "ref-for-dom-gputextureusage-copy_src\u2462"}], "title": "13.5. Image Copy Commands"}, {"refs": [{"id": "ref-for-dom-gputextureusage-copy_src\u2463"}], "title": "26.1.1. Plain color formats"}, {"refs": [{"id": "ref-for-dom-gputextureusage-copy_src\u2464"}], "title": "26.1.2. Depth-stencil formats"}, {"refs": [{"id": "ref-for-dom-gputextureusage-copy_src\u2465"}], "title": "26.1.3. Packed formats"}], "external": false};
 window.dfnpanelData['dom-gputextureusage-copy_dst'] = {"dfnID": "dom-gputextureusage-copy_dst", "url": "#dom-gputextureusage-copy_dst", "dfnText": "COPY_DST", "refSections": [{"refs": [{"id": "ref-for-dom-gputextureusage-copy_dst"}], "title": "4.4. GPUDevice\n\n"}, {"refs": [{"id": "ref-for-dom-gputextureusage-copy_dst\u2460"}], "title": "6.1.2. Texture Usages"}, {"refs": [{"id": "ref-for-dom-gputextureusage-copy_dst\u2461"}, {"id": "ref-for-dom-gputextureusage-copy_dst\u2462"}], "title": "13.5. Image Copy Commands"}, {"refs": [{"id": "ref-for-dom-gputextureusage-copy_dst\u2463"}, {"id": "ref-for-dom-gputextureusage-copy_dst\u2464"}], "title": "19.2. GPUQueue\n\n"}, {"refs": [{"id": "ref-for-dom-gputextureusage-copy_dst\u2465"}], "title": "26.1.1. Plain color formats"}, {"refs": [{"id": "ref-for-dom-gputextureusage-copy_dst\u2466"}], "title": "26.1.2. Depth-stencil formats"}, {"refs": [{"id": "ref-for-dom-gputextureusage-copy_dst\u2467"}], "title": "26.1.3. Packed formats"}], "external": false};
 window.dfnpanelData['dom-gputextureusage-texture_binding'] = {"dfnID": "dom-gputextureusage-texture_binding", "url": "#dom-gputextureusage-texture_binding", "dfnText": "TEXTURE_BINDING", "refSections": [{"refs": [{"id": "ref-for-dom-gputextureusage-texture_binding"}], "title": "3.4.3. Resource Usages"}, {"refs": [{"id": "ref-for-dom-gputextureusage-texture_binding\u2460"}], "title": "4.4. GPUDevice\n\n"}, {"refs": [{"id": "ref-for-dom-gputextureusage-texture_binding\u2461"}], "title": "6.1.2. Texture Usages"}, {"refs": [{"id": "ref-for-dom-gputextureusage-texture_binding\u2462"}], "title": "8.2.1. Bind Group Creation"}, {"refs": [{"id": "ref-for-dom-gputextureusage-texture_binding\u2463"}], "title": "26.1.1. Plain color formats"}, {"refs": [{"id": "ref-for-dom-gputextureusage-texture_binding\u2464"}], "title": "26.1.2. Depth-stencil formats"}, {"refs": [{"id": "ref-for-dom-gputextureusage-texture_binding\u2465"}], "title": "26.1.3. Packed formats"}], "external": false};
-window.dfnpanelData['dom-gputextureusage-storage_binding'] = {"dfnID": "dom-gputextureusage-storage_binding", "url": "#dom-gputextureusage-storage_binding", "dfnText": "STORAGE_BINDING", "refSections": [{"refs": [{"id": "ref-for-dom-gputextureusage-storage_binding"}], "title": "3.4.3. Resource Usages"}, {"refs": [{"id": "ref-for-dom-gputextureusage-storage_binding\u2460"}], "title": "4.4. GPUDevice\n\n"}, {"refs": [{"id": "ref-for-dom-gputextureusage-storage_binding\u2461"}], "title": "6.1.2. Texture Usages"}, {"refs": [{"id": "ref-for-dom-gputextureusage-storage_binding\u2462"}, {"id": "ref-for-dom-gputextureusage-storage_binding\u2463"}, {"id": "ref-for-dom-gputextureusage-storage_binding\u2464"}], "title": "6.1.3. Texture Creation"}, {"refs": [{"id": "ref-for-dom-gputextureusage-storage_binding\u2465"}], "title": "8.2.1. Bind Group Creation"}, {"refs": [{"id": "ref-for-dom-gputextureusage-storage_binding\u2466"}], "title": "25.10. \"bgra8unorm-storage\"\n"}, {"refs": [{"id": "ref-for-dom-gputextureusage-storage_binding\u2467"}, {"id": "ref-for-dom-gputextureusage-storage_binding\u2468"}, {"id": "ref-for-dom-gputextureusage-storage_binding\u2460\u24ea"}], "title": "26.1.1. Plain color formats"}], "external": false};
+window.dfnpanelData['dom-gputextureusage-storage_binding'] = {"dfnID": "dom-gputextureusage-storage_binding", "url": "#dom-gputextureusage-storage_binding", "dfnText": "STORAGE_BINDING", "refSections": [{"refs": [{"id": "ref-for-dom-gputextureusage-storage_binding"}, {"id": "ref-for-dom-gputextureusage-storage_binding\u2460"}], "title": "3.4.3. Resource Usages"}, {"refs": [{"id": "ref-for-dom-gputextureusage-storage_binding\u2461"}], "title": "4.4. GPUDevice\n\n"}, {"refs": [{"id": "ref-for-dom-gputextureusage-storage_binding\u2462"}], "title": "6.1.2. Texture Usages"}, {"refs": [{"id": "ref-for-dom-gputextureusage-storage_binding\u2463"}, {"id": "ref-for-dom-gputextureusage-storage_binding\u2464"}, {"id": "ref-for-dom-gputextureusage-storage_binding\u2465"}], "title": "6.1.3. Texture Creation"}, {"refs": [{"id": "ref-for-dom-gputextureusage-storage_binding\u2466"}], "title": "8.2.1. Bind Group Creation"}, {"refs": [{"id": "ref-for-dom-gputextureusage-storage_binding\u2467"}], "title": "25.10. \"bgra8unorm-storage\"\n"}, {"refs": [{"id": "ref-for-dom-gputextureusage-storage_binding\u2468"}, {"id": "ref-for-dom-gputextureusage-storage_binding\u2460\u24ea"}, {"id": "ref-for-dom-gputextureusage-storage_binding\u2460\u2460"}, {"id": "ref-for-dom-gputextureusage-storage_binding\u2460\u2461"}], "title": "26.1.1. Plain color formats"}], "external": false};
 window.dfnpanelData['dom-gputextureusage-render_attachment'] = {"dfnID": "dom-gputextureusage-render_attachment", "url": "#dom-gputextureusage-render_attachment", "dfnText": "RENDER_ATTACHMENT", "refSections": [{"refs": [{"id": "ref-for-dom-gputextureusage-render_attachment"}, {"id": "ref-for-dom-gputextureusage-render_attachment\u2460"}], "title": "3.4.3. Resource Usages"}, {"refs": [{"id": "ref-for-dom-gputextureusage-render_attachment\u2461"}], "title": "4.4. GPUDevice\n\n"}, {"refs": [{"id": "ref-for-dom-gputextureusage-render_attachment\u2462"}], "title": "6.1.2. Texture Usages"}, {"refs": [{"id": "ref-for-dom-gputextureusage-render_attachment\u2463"}, {"id": "ref-for-dom-gputextureusage-render_attachment\u2464"}], "title": "6.1.3. Texture Creation"}, {"refs": [{"id": "ref-for-dom-gputextureusage-render_attachment\u2465"}], "title": "6.2.1. Texture View Creation"}, {"refs": [{"id": "ref-for-dom-gputextureusage-render_attachment\u2466"}], "title": "6.3. Texture Formats"}, {"refs": [{"id": "ref-for-dom-gputextureusage-render_attachment\u2467"}], "title": "10.3.4. Fragment State"}, {"refs": [{"id": "ref-for-dom-gputextureusage-render_attachment\u2468"}], "title": "17.1.1.1. Color Attachments"}, {"refs": [{"id": "ref-for-dom-gputextureusage-render_attachment\u2460\u24ea"}, {"id": "ref-for-dom-gputextureusage-render_attachment\u2460\u2460"}], "title": "19.2. GPUQueue\n\n"}, {"refs": [{"id": "ref-for-dom-gputextureusage-render_attachment\u2460\u2461"}, {"id": "ref-for-dom-gputextureusage-render_attachment\u2460\u2462"}], "title": "21.4. GPUCanvasConfiguration"}, {"refs": [{"id": "ref-for-dom-gputextureusage-render_attachment\u2460\u2463"}], "title": "25.9. \"rg11b10ufloat-renderable\"\n\n"}, {"refs": [{"id": "ref-for-dom-gputextureusage-render_attachment\u2460\u2464"}, {"id": "ref-for-dom-gputextureusage-render_attachment\u2460\u2465"}, {"id": "ref-for-dom-gputextureusage-render_attachment\u2460\u2466"}], "title": "26.1.1. Plain color formats"}, {"refs": [{"id": "ref-for-dom-gputextureusage-render_attachment\u2460\u2467"}], "title": "26.1.2. Depth-stencil formats"}], "external": false};
 window.dfnpanelData['abstract-opdef-maximum-miplevel-count'] = {"dfnID": "abstract-opdef-maximum-miplevel-count", "url": "#abstract-opdef-maximum-miplevel-count", "dfnText": "maximum mipLevel count", "refSections": [{"refs": [{"id": "ref-for-abstract-opdef-maximum-miplevel-count"}], "title": "6.1.3. Texture Creation"}], "external": false};
 window.dfnpanelData['dom-gpudevice-createtexture'] = {"dfnID": "dom-gpudevice-createtexture", "url": "#dom-gpudevice-createtexture", "dfnText": "createTexture(descriptor)", "refSections": [{"refs": [{"id": "ref-for-dom-gpudevice-createtexture"}], "title": "3.5.2. Devices"}, {"refs": [{"id": "ref-for-dom-gpudevice-createtexture\u2460"}], "title": "4.4. GPUDevice\n\n"}, {"refs": [{"id": "ref-for-dom-gpudevice-createtexture\u2461"}], "title": "6.1.3. Texture Creation"}, {"refs": [{"id": "ref-for-dom-gpudevice-createtexture\u2462"}], "title": "21.2. GPUCanvasContext"}, {"refs": [{"id": "ref-for-dom-gpudevice-createtexture\u2463"}], "title": "22.3. Error Scopes"}], "external": false};
@@ -22235,8 +22273,8 @@ window.dfnpanelData['dom-gputexturebindinglayout-viewdimension'] = {"dfnID": "do
 window.dfnpanelData['dom-gputexturebindinglayout-multisampled'] = {"dfnID": "dom-gputexturebindinglayout-multisampled", "url": "#dom-gputexturebindinglayout-multisampled", "dfnText": "multisampled", "refSections": [{"refs": [{"id": "ref-for-dom-gputexturebindinglayout-multisampled"}, {"id": "ref-for-dom-gputexturebindinglayout-multisampled\u2460"}], "title": "8.1.1. Bind Group Layout Creation"}, {"refs": [{"id": "ref-for-dom-gputexturebindinglayout-multisampled\u2461"}], "title": "8.2.1. Bind Group Creation"}, {"refs": [{"id": "ref-for-dom-gputexturebindinglayout-multisampled\u2462"}], "title": "10.1.1. Default pipeline layout"}, {"refs": [{"id": "ref-for-dom-gputexturebindinglayout-multisampled\u2463"}], "title": "10.1.2. GPUProgrammableStage\n\n"}], "external": false};
 window.dfnpanelData['enumdef-gpustoragetextureaccess'] = {"dfnID": "enumdef-gpustoragetextureaccess", "url": "#enumdef-gpustoragetextureaccess", "dfnText": "GPUStorageTextureAccess", "refSections": [{"refs": [{"id": "ref-for-enumdef-gpustoragetextureaccess"}, {"id": "ref-for-enumdef-gpustoragetextureaccess\u2460"}], "title": "8.1.1. Bind Group Layout Creation"}], "external": false};
 window.dfnpanelData['dom-gpustoragetextureaccess-write-only'] = {"dfnID": "dom-gpustoragetextureaccess-write-only", "url": "#dom-gpustoragetextureaccess-write-only", "dfnText": "\"write-only\"", "refSections": [{"refs": [{"id": "ref-for-dom-gpustoragetextureaccess-write-only"}], "title": "8.1.1. Bind Group Layout Creation"}, {"refs": [{"id": "ref-for-dom-gpustoragetextureaccess-write-only\u2460"}], "title": "10.1.1. Default pipeline layout"}, {"refs": [{"id": "ref-for-dom-gpustoragetextureaccess-write-only\u2461"}], "title": "10.1.2. GPUProgrammableStage\n\n"}, {"refs": [{"id": "ref-for-dom-gpustoragetextureaccess-write-only\u2462"}], "title": "10.2. GPUComputePipeline\n\n"}, {"refs": [{"id": "ref-for-dom-gpustoragetextureaccess-write-only\u2463"}], "title": "10.3. GPURenderPipeline\n\n"}], "external": false};
-window.dfnpanelData['dom-gpustoragetextureaccess-read-only'] = {"dfnID": "dom-gpustoragetextureaccess-read-only", "url": "#dom-gpustoragetextureaccess-read-only", "dfnText": "\"read-only\"", "refSections": [{"refs": [{"id": "ref-for-dom-gpustoragetextureaccess-read-only"}, {"id": "ref-for-dom-gpustoragetextureaccess-read-only\u2460"}], "title": "8.1.1. Bind Group Layout Creation"}, {"refs": [{"id": "ref-for-dom-gpustoragetextureaccess-read-only\u2461"}], "title": "10.1.1. Default pipeline layout"}, {"refs": [{"id": "ref-for-dom-gpustoragetextureaccess-read-only\u2462"}], "title": "10.1.2. GPUProgrammableStage\n\n"}], "external": false};
-window.dfnpanelData['dom-gpustoragetextureaccess-read-write'] = {"dfnID": "dom-gpustoragetextureaccess-read-write", "url": "#dom-gpustoragetextureaccess-read-write", "dfnText": "\"read-write\"", "refSections": [{"refs": [{"id": "ref-for-dom-gpustoragetextureaccess-read-write"}], "title": "8.1.1. Bind Group Layout Creation"}, {"refs": [{"id": "ref-for-dom-gpustoragetextureaccess-read-write\u2460"}], "title": "10.1.1. Default pipeline layout"}, {"refs": [{"id": "ref-for-dom-gpustoragetextureaccess-read-write\u2461"}], "title": "10.1.2. GPUProgrammableStage\n\n"}, {"refs": [{"id": "ref-for-dom-gpustoragetextureaccess-read-write\u2462"}], "title": "10.2. GPUComputePipeline\n\n"}, {"refs": [{"id": "ref-for-dom-gpustoragetextureaccess-read-write\u2463"}], "title": "10.3. GPURenderPipeline\n\n"}], "external": false};
+window.dfnpanelData['dom-gpustoragetextureaccess-read-only'] = {"dfnID": "dom-gpustoragetextureaccess-read-only", "url": "#dom-gpustoragetextureaccess-read-only", "dfnText": "\"read-only\"", "refSections": [{"refs": [{"id": "ref-for-dom-gpustoragetextureaccess-read-only"}, {"id": "ref-for-dom-gpustoragetextureaccess-read-only\u2460"}], "title": "8.1.1. Bind Group Layout Creation"}, {"refs": [{"id": "ref-for-dom-gpustoragetextureaccess-read-only\u2461"}], "title": "10.1.1. Default pipeline layout"}, {"refs": [{"id": "ref-for-dom-gpustoragetextureaccess-read-only\u2462"}], "title": "10.1.2. GPUProgrammableStage\n\n"}, {"refs": [{"id": "ref-for-dom-gpustoragetextureaccess-read-only\u2463"}], "title": "26.1.1. Plain color formats"}], "external": false};
+window.dfnpanelData['dom-gpustoragetextureaccess-read-write'] = {"dfnID": "dom-gpustoragetextureaccess-read-write", "url": "#dom-gpustoragetextureaccess-read-write", "dfnText": "\"read-write\"", "refSections": [{"refs": [{"id": "ref-for-dom-gpustoragetextureaccess-read-write"}], "title": "8.1.1. Bind Group Layout Creation"}, {"refs": [{"id": "ref-for-dom-gpustoragetextureaccess-read-write\u2460"}], "title": "10.1.1. Default pipeline layout"}, {"refs": [{"id": "ref-for-dom-gpustoragetextureaccess-read-write\u2461"}], "title": "10.1.2. GPUProgrammableStage\n\n"}, {"refs": [{"id": "ref-for-dom-gpustoragetextureaccess-read-write\u2462"}], "title": "10.2. GPUComputePipeline\n\n"}, {"refs": [{"id": "ref-for-dom-gpustoragetextureaccess-read-write\u2463"}], "title": "10.3. GPURenderPipeline\n\n"}, {"refs": [{"id": "ref-for-dom-gpustoragetextureaccess-read-write\u2464"}], "title": "26.1.1. Plain color formats"}], "external": false};
 window.dfnpanelData['dictdef-gpustoragetexturebindinglayout'] = {"dfnID": "dictdef-gpustoragetexturebindinglayout", "url": "#dictdef-gpustoragetexturebindinglayout", "dfnText": "GPUStorageTextureBindingLayout", "refSections": [{"refs": [{"id": "ref-for-dictdef-gpustoragetexturebindinglayout"}], "title": "6.1.2. Texture Usages"}, {"refs": [{"id": "ref-for-dictdef-gpustoragetexturebindinglayout\u2460"}, {"id": "ref-for-dictdef-gpustoragetexturebindinglayout\u2461"}, {"id": "ref-for-dictdef-gpustoragetexturebindinglayout\u2462"}], "title": "8.1.1. Bind Group Layout Creation"}, {"refs": [{"id": "ref-for-dictdef-gpustoragetexturebindinglayout\u2463"}], "title": "10.1.1. Default pipeline layout"}, {"refs": [{"id": "ref-for-dictdef-gpustoragetexturebindinglayout\u2464"}], "title": "23.2. Computing"}], "external": false};
 window.dfnpanelData['dom-gpustoragetexturebindinglayout-access'] = {"dfnID": "dom-gpustoragetexturebindinglayout-access", "url": "#dom-gpustoragetexturebindinglayout-access", "dfnText": "access", "refSections": [{"refs": [{"id": "ref-for-dom-gpustoragetexturebindinglayout-access"}, {"id": "ref-for-dom-gpustoragetexturebindinglayout-access\u2460"}], "title": "8.1.1. Bind Group Layout Creation"}, {"refs": [{"id": "ref-for-dom-gpustoragetexturebindinglayout-access\u2461"}, {"id": "ref-for-dom-gpustoragetexturebindinglayout-access\u2462"}, {"id": "ref-for-dom-gpustoragetexturebindinglayout-access\u2463"}], "title": "10.1.1. Default pipeline layout"}, {"refs": [{"id": "ref-for-dom-gpustoragetexturebindinglayout-access\u2464"}], "title": "10.1.2. GPUProgrammableStage\n\n"}, {"refs": [{"id": "ref-for-dom-gpustoragetexturebindinglayout-access\u2465"}], "title": "10.3. GPURenderPipeline\n\n"}, {"refs": [{"id": "ref-for-dom-gpustoragetexturebindinglayout-access\u2466"}], "title": "14.1. Bind Groups"}], "external": false};
 window.dfnpanelData['dom-gpustoragetexturebindinglayout-format'] = {"dfnID": "dom-gpustoragetexturebindinglayout-format", "url": "#dom-gpustoragetexturebindinglayout-format", "dfnText": "format", "refSections": [{"refs": [{"id": "ref-for-dom-gpustoragetexturebindinglayout-format"}, {"id": "ref-for-dom-gpustoragetexturebindinglayout-format\u2460"}, {"id": "ref-for-dom-gpustoragetexturebindinglayout-format\u2461"}, {"id": "ref-for-dom-gpustoragetexturebindinglayout-format\u2462"}], "title": "8.1.1. Bind Group Layout Creation"}, {"refs": [{"id": "ref-for-dom-gpustoragetexturebindinglayout-format\u2463"}], "title": "8.2.1. Bind Group Creation"}, {"refs": [{"id": "ref-for-dom-gpustoragetexturebindinglayout-format\u2464"}], "title": "10.1.1. Default pipeline layout"}, {"refs": [{"id": "ref-for-dom-gpustoragetexturebindinglayout-format\u2465"}], "title": "10.1.2. GPUProgrammableStage\n\n"}], "external": false};
