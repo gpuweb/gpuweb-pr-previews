@@ -979,7 +979,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/26f14884a34ee643eae984c02f576b856bfb653b/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/26f14884a34ee643eae984c02f576b856bfb653b/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/9e63299b86938b3d739c84c44bfa22beb87c92d9/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/9e63299b86938b3d739c84c44bfa22beb87c92d9/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -7148,9 +7148,9 @@ the entry point.
 Implementations should use any information present in the <code class="idl"><a data-link-type="idl" href="#dictdef-gpushadermodulecompilationhint" id="ref-for-dictdef-gpushadermodulecompilationhint③">GPUShaderModuleCompilationHint</a></code> to perform as much compilation as is possible within <code class="idl"><a data-link-type="idl" href="#dom-gpudevice-createshadermodule" id="ref-for-dom-gpudevice-createshadermodule③">createShaderModule()</a></code>.
 Entry point names follow the rules defined in <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#identifier-comparison" id="ref-for-identifier-comparison①">WGSL identifier comparison</a>.</p>
      <p>Aside from type-checking, these hints are not validated in any way.</p>
-     <div class="note" role="note">
-       Note:
-    Supplying information in <code class="idl"><a data-link-type="idl" href="#dom-gpushadermoduledescriptor-hints" id="ref-for-dom-gpushadermoduledescriptor-hints①">hints</a></code> does not have any
+     <div class="note no-marker" role="note">
+      <div class="marker">NOTE: </div>
+       Supplying information in <code class="idl"><a data-link-type="idl" href="#dom-gpushadermoduledescriptor-hints" id="ref-for-dom-gpushadermoduledescriptor-hints①">hints</a></code> does not have any
     observable effect, other than performance. It may be detrimental to performance to
     provide hints for pipelines that never end up being created. 
       <p>Because a single shader module can hold
