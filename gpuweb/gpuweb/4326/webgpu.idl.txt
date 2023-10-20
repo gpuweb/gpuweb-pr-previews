@@ -585,10 +585,11 @@ dictionary GPUShaderModuleDescriptor
          : GPUObjectDescriptorBase {
     required USVString code;
     object sourceMap;
-    record<USVString, GPUShaderModuleCompilationHint> hints;
+    sequence<GPUShaderModuleCompilationHint> compilationHints = [];
 };
 
 dictionary GPUShaderModuleCompilationHint {
+    required USVString entryPoint;
     (GPUPipelineLayout or GPUAutoLayoutMode) layout;
 };
 
@@ -1046,6 +1047,7 @@ dictionary GPURenderPassDescriptor
 
 dictionary GPURenderPassColorAttachment {
     required GPUTextureView view;
+    GPUIntegerCoordinate depthSlice;
     GPUTextureView resolveTarget;
 
     GPUColor clearValue;
