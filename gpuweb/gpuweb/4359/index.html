@@ -982,7 +982,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/6d39cd60b0d19eea4bef177fe46682a4a807db12/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/6d39cd60b0d19eea4bef177fe46682a4a807db12/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/52de01bca6a8dc7f419f4d08ac482d5acb966cf9/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/52de01bca6a8dc7f419f4d08ac482d5acb966cf9/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -1594,7 +1594,7 @@ serialize the <a data-link-type="dfn" href="https://tc39.es/ecma262/#agent" id="
    <p>In the end, the attack surface for races on shared state in WebGPU will be
 a small subset of the <code>SharedArrayBuffer</code> attacks.</p>
    <p>WebGPU also specifies the optional <code class="idl"><a data-link-type="idl" href="#timestamp-query" id="ref-for-timestamp-query">"timestamp-query"</a></code> feature, which
-provides high precision timing of GPU operations. To mitigate privacy concerns, the timing query
+provides high precision timing of GPU operations. To mitigate security and privacy concerns, the timing query
 values are aligned to a lower precision: see <a data-link-type="abstract-op" href="#abstract-opdef-current-queue-timestamp" id="ref-for-abstract-opdef-current-queue-timestamp">current queue timestamp</a>.</p>
    <h4 class="heading settled" data-level="2.1.8" id="security-rowhammer"><span class="secno">2.1.8. </span><span class="content">Row hammer attacks</span><a class="self-link" href="#security-rowhammer"></a></h4>
    <p><a href="https://en.wikipedia.org/wiki/Row_hammer">Row hammer</a> is a class of attacks that exploit the
@@ -15185,8 +15185,8 @@ may reset the timestamp counter occasionally, which can result in unexpected val
 deltas between timestamps that logically should be monotonically increasing. These instances should
 be rare and can safely be ignored. Applications should not be written in such a way that unexpected
 timestamps cause an application failure.</p>
-   <p><a class="tracking-vector" href="https://infra.spec.whatwg.org/#tracking-vector"><svg aria-label="(This is a tracking vector.)" height="64" role="img" width="46"><title>There is a tracking vector here.</title><use href="#b732b3fe"></use></svg></a> Timestamp queries can provide high-resolution GPU timing. To mitigate privacy concerns, they are
-aligned to a lower precision with the following algorithm: </p>
+   <p><a class="tracking-vector" href="https://infra.spec.whatwg.org/#tracking-vector"><svg aria-label="(This is a tracking vector.)" height="64" role="img" width="46"><title>There is a tracking vector here.</title><use href="#b732b3fe"></use></svg></a> Timestamp queries are implemented using high-resolution timers (see <a href="#security-timing">§ 2.1.7 Timing attacks</a>).
+To mitigate security and privacy concerns, their precision must be reduced: </p>
    <div class="algorithm" data-algorithm="current queue timestamp">
      To get the <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-current-queue-timestamp">current queue timestamp</dfn>: 
     <ul>
