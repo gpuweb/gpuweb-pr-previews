@@ -982,7 +982,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/shaoboyan/gpuweb/blob/6136f01c7d99c3f8821cfed80f74987f23ea3d22/spec/index.bs">https://github.com/shaoboyan/gpuweb/blob/6136f01c7d99c3f8821cfed80f74987f23ea3d22/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/shaoboyan/gpuweb/blob/7e21e1fa39c770a76421259aa7cbbacc0b09495f/spec/index.bs">https://github.com/shaoboyan/gpuweb/blob/7e21e1fa39c770a76421259aa7cbbacc0b09495f/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -10212,13 +10212,167 @@ region is copied into the first row of the destination region, and so on.
 The <code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopyexternalimage-origin" id="ref-for-dom-gpuimagecopyexternalimage-origin①">origin</a></code> option is still relative to the top-left corner
 of the source image, increasing downward.</p>
     </dd>
-    <p class="note" role="note"><span class="marker">Note:</span> It is possible to get blank results when <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#2.2" id="ref-for-2.2">copying from webgl/webgl2 context canvas</a>.
-    To avoid this, set <code>preserveDrawingBuffer<code> option in <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WEBGLCONTEXTATTRIBUTES" id="ref-for-WEBGLCONTEXTATTRIBUTES①">WebGLContextAttributes</a></code> to <code>true<code>, or issue <code class="idl"><a data-link-type="idl" href="#dom-gpuqueue-copyexternalimagetotexture" id="ref-for-dom-gpuqueue-copyexternalimagetotexture⑤">copyExternalImageToTexture()</a></code> in the same event loop withwebgl rendering operation(ensure copy happening before webgl canvas be presented).</code></code></code></code></p>
-    <code><code><code> </code></code></code>
+    <p class="note" role="note"><span class="marker">Note:</span> When copying from a `"webgl"`/`"webgl2"` context canvas, the <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#THE_DRAWING_BUFFER" id="ref-for-THE_DRAWING_BUFFER">WebGL Drawing Buffer</a> may be not exist during certain points in the
+    frame presentation cycle (after the image has been moved to the compositor
+    for display). To avoid this, either:</p>
+    <ul>
+     <li data-md>
+      <p>Issue <code class="idl"><a data-link-type="idl" href="#dom-gpuqueue-copyexternalimagetotexture" id="ref-for-dom-gpuqueue-copyexternalimagetotexture⑤">copyExternalImageToTexture()</a></code> in the same <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-task" id="ref-for-concept-task">task</a> with
+WebGL rendering operation, to ensure the copy occurs before the WebGL
+canvas is presented.</p>
+     <li data-md>
+      <p>If not possible, set the `preserveDrawingBuffer` option in <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WEBGLCONTEXTATTRIBUTES" id="ref-for-WEBGLCONTEXTATTRIBUTES①">WebGLContextAttributes</a></code> to `true`, so that the drawing buffer will
+still contain a copy of the frame contents after they’ve been presented.
+Note, this extra copy may have a performance cost.</p>
+    </ul>
    </dl>
-   <code><code><code> <h4 class="heading settled" data-level="11.2.6" id="image-copies-subroutines"><span class="secno">11.2.6. </span><span class="content">Subroutines</span><a class="self-link" href="#image-copies-subroutines"></a></h4> <div class="algorithm" data-algorithm="imageCopyTexture subresource size"> <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="imagecopytexture-subresource-size">imageCopyTexture subresource size</dfn> <p><strong>Arguments:</strong></p> <ul><li data-md><p><code class="idl"><a data-link-type="idl" href="#dictdef-gpuimagecopytexture" id="ref-for-dictdef-gpuimagecopytexture④">GPUImageCopyTexture</a></code> <var>imageCopyTexture</var></p> </li></ul> <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="#typedefdef-gpuextent3d" id="ref-for-typedefdef-gpuextent3d⑤">GPUExtent3D</a></code></p> <p>The <a data-link-type="dfn" href="#imagecopytexture-subresource-size" id="ref-for-imagecopytexture-subresource-size①">imageCopyTexture subresource size</a> of <var>imageCopyTexture</var> is calculated as follows:</p> <p>Its <a data-link-type="dfn" href="#gpuextent3d-width" id="ref-for-gpuextent3d-width①⑧">width</a>, <a data-link-type="dfn" href="#gpuextent3d-height" id="ref-for-gpuextent3d-height①⑤">height</a> and <a data-link-type="dfn" href="#gpuextent3d-depthorarraylayers" id="ref-for-gpuextent3d-depthorarraylayers①③">depthOrArrayLayers</a> are the width, height, and depth, respectively,
-    of the <a data-link-type="dfn" href="#physical-miplevel-specific-texture-extent" id="ref-for-physical-miplevel-specific-texture-extent">physical miplevel-specific texture extent</a> of <var>imageCopyTexture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-texture" id="ref-for-dom-gpuimagecopytexture-texture⑨">texture</a></code> <a data-link-type="dfn" href="#subresource" id="ref-for-subresource①③">subresource</a> at <a data-link-type="dfn" href="#mipmap-level" id="ref-for-mipmap-level②">mipmap level</a> <var>imageCopyTexture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-miplevel" id="ref-for-dom-gpuimagecopytexture-miplevel②">mipLevel</a></code>.</p> </div> <div class="algorithm" data-algorithm="validating linear texture data"> <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-validating-linear-texture-data">validating linear texture data</dfn>(layout, byteSize, format, copyExtent) <p><strong>Arguments:</strong></p> <dl><dt data-md><code class="idl"><a data-link-type="idl" href="#dictdef-gpuimagedatalayout" id="ref-for-dictdef-gpuimagedatalayout③">GPUImageDataLayout</a></code> <var>layout</var></dt><dd data-md><p>Layout of the linear texture data.</p> </dd><dt data-md><code class="idl"><a data-link-type="idl" href="#typedefdef-gpusize64" id="ref-for-typedefdef-gpusize64②⑦">GPUSize64</a></code> <var>byteSize</var></dt><dd data-md><p>Total size of the linear data, in bytes.</p> </dd><dt data-md><code class="idl"><a data-link-type="idl" href="#enumdef-gputextureformat" id="ref-for-enumdef-gputextureformat③③">GPUTextureFormat</a></code> <var>format</var></dt><dd data-md><p>Format of the texture.</p> </dd><dt data-md><code class="idl"><a data-link-type="idl" href="#typedefdef-gpuextent3d" id="ref-for-typedefdef-gpuextent3d⑥">GPUExtent3D</a></code> <var>copyExtent</var></dt><dd data-md><p>Extent of the texture to copy.</p> </dd></dl> <ol><li data-md><p>Let:</p> <ul><li data-md><p><var>widthInBlocks</var> be <var>copyExtent</var>.<a data-link-type="dfn" href="#gpuextent3d-width" id="ref-for-gpuextent3d-width①⑨">width</a> ÷ the <a data-link-type="dfn" href="#texel-block-width" id="ref-for-texel-block-width⑦">texel block width</a> of <var>format</var>. <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#assert" id="ref-for-assert①②">Assert</a> this is an integer.</p> </li><li data-md><p><var>heightInBlocks</var> be <var>copyExtent</var>.<a data-link-type="dfn" href="#gpuextent3d-height" id="ref-for-gpuextent3d-height①⑥">height</a> ÷ the <a data-link-type="dfn" href="#texel-block-height" id="ref-for-texel-block-height⑥">texel block height</a> of <var>format</var>. <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#assert" id="ref-for-assert①③">Assert</a> this is an integer.</p> </li><li data-md><p><var>bytesInLastRow</var> be <var>widthInBlocks</var> × the <a data-link-type="dfn" href="#texel-block-copy-footprint" id="ref-for-texel-block-copy-footprint">texel block copy footprint</a> of <var>format</var>.</p> </li></ul></li><li data-md><p>Fail if the following input validation requirements are not met:</p> <div class="validusage"> <ul><li data-md><p>If <var>heightInBlocks</var> > 1, <var>layout</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagedatalayout-bytesperrow" id="ref-for-dom-gpuimagedatalayout-bytesperrow③">bytesPerRow</a></code> must be specified.</p> </li><li data-md><p>If <var>copyExtent</var>.<a data-link-type="dfn" href="#gpuextent3d-depthorarraylayers" id="ref-for-gpuextent3d-depthorarraylayers①④">depthOrArrayLayers</a> > 1, <var>layout</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagedatalayout-bytesperrow" id="ref-for-dom-gpuimagedatalayout-bytesperrow④">bytesPerRow</a></code> and <var>layout</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagedatalayout-rowsperimage" id="ref-for-dom-gpuimagedatalayout-rowsperimage②">rowsPerImage</a></code> must be specified.</p> </li><li data-md><p>If specified, <var>layout</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagedatalayout-bytesperrow" id="ref-for-dom-gpuimagedatalayout-bytesperrow⑤">bytesPerRow</a></code> must be ≥ <var>bytesInLastRow</var>.</p> </li><li data-md><p>If specified, <var>layout</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagedatalayout-rowsperimage" id="ref-for-dom-gpuimagedatalayout-rowsperimage③">rowsPerImage</a></code> must be ≥ <var>heightInBlocks</var>.</p> </li></ul></div> </li><li data-md><p>Let:</p> <ul><li data-md><p><var>bytesPerRow</var> be <var>layout</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagedatalayout-bytesperrow" id="ref-for-dom-gpuimagedatalayout-bytesperrow⑥">bytesPerRow</a></code> ?? 0.</p> </li><li data-md><p><var>rowsPerImage</var> be <var>layout</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagedatalayout-rowsperimage" id="ref-for-dom-gpuimagedatalayout-rowsperimage④">rowsPerImage</a></code> ?? 0.</p> </li></ul> <p class="note" role="note"><span class="marker">Note:</span> These default values have no effect, as they’re always multiplied by 0.</p> </li><li data-md><p>Let <var>requiredBytesInCopy</var> be 0.</p> </li><li data-md><p>If <var>copyExtent</var>.<a data-link-type="dfn" href="#gpuextent3d-depthorarraylayers" id="ref-for-gpuextent3d-depthorarraylayers①⑤">depthOrArrayLayers</a> > 0:</p> <ol><li data-md><p>Increment <var>requiredBytesInCopy</var> by <var>bytesPerRow</var> × <var>rowsPerImage</var> × (<var>copyExtent</var>.<a data-link-type="dfn" href="#gpuextent3d-depthorarraylayers" id="ref-for-gpuextent3d-depthorarraylayers①⑥">depthOrArrayLayers</a> − 1).</p> </li><li data-md><p>If <var>heightInBlocks</var> > 0:</p> <ol><li data-md><p>Increment <var>requiredBytesInCopy</var> by <var>bytesPerRow</var> × (<var>heightInBlocks</var> − 1) + <var>bytesInLastRow</var>.</p> </li></ol></li></ol></li><li data-md><p>Fail if the following condition is not satisfied:</p> <div class="validusage"> <ul><li data-md><p>The layout fits inside the linear data: <var>layout</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagedatalayout-offset" id="ref-for-dom-gpuimagedatalayout-offset①">offset</a></code> + <var>requiredBytesInCopy</var> ≤ <var>byteSize</var>.</p> </li></ul></div> </li></ol></div> <div class="validusage algorithm" data-algorithm="validating texture copy range"> <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="validating-texture-copy-range">validating texture copy range</dfn> <p><strong>Arguments:</strong></p> <dl><dt data-md><code class="idl"><a data-link-type="idl" href="#dictdef-gpuimagecopytexture" id="ref-for-dictdef-gpuimagecopytexture⑤">GPUImageCopyTexture</a></code> <var>imageCopyTexture</var></dt><dd data-md><p>The texture subresource being copied into and copy origin.</p> </dd><dt data-md><code class="idl"><a data-link-type="idl" href="#typedefdef-gpuextent3d" id="ref-for-typedefdef-gpuextent3d⑦">GPUExtent3D</a></code> <var>copySize</var></dt><dd data-md><p>The size of the texture.</p> </dd></dl> <ol><li data-md><p>Let <var>blockWidth</var> be the <a data-link-type="dfn" href="#texel-block-width" id="ref-for-texel-block-width⑧">texel block width</a> of <var>imageCopyTexture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-texture" id="ref-for-dom-gpuimagecopytexture-texture①⓪">texture</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gputexture-format" id="ref-for-dom-gputexture-format①⓪">format</a></code>.</p> </li><li data-md><p>Let <var>blockHeight</var> be the <a data-link-type="dfn" href="#texel-block-height" id="ref-for-texel-block-height⑦">texel block height</a> of <var>imageCopyTexture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-texture" id="ref-for-dom-gpuimagecopytexture-texture①①">texture</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gputexture-format" id="ref-for-dom-gputexture-format①①">format</a></code>.</p> </li><li data-md><p>Let <var>subresourceSize</var> be the <a data-link-type="dfn" href="#imagecopytexture-subresource-size" id="ref-for-imagecopytexture-subresource-size②">imageCopyTexture subresource size</a> of <var>imageCopyTexture</var>.</p> </li><li data-md><p>Return whether all the conditions below are satisfied:</p> <ul><li data-md><p>(<var>imageCopyTexture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-origin" id="ref-for-dom-gpuimagecopytexture-origin③">origin</a></code>.<a data-link-type="dfn" href="#gpuorigin3d-x" id="ref-for-gpuorigin3d-x①">x</a> + <var>copySize</var>.<a data-link-type="dfn" href="#gpuextent3d-width" id="ref-for-gpuextent3d-width②⓪">width</a>) ≤ <var>subresourceSize</var>.<a data-link-type="dfn" href="#gpuextent3d-width" id="ref-for-gpuextent3d-width②①">width</a></p> </li><li data-md><p>(<var>imageCopyTexture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-origin" id="ref-for-dom-gpuimagecopytexture-origin④">origin</a></code>.<a data-link-type="dfn" href="#gpuorigin3d-y" id="ref-for-gpuorigin3d-y①">y</a> + <var>copySize</var>.<a data-link-type="dfn" href="#gpuextent3d-height" id="ref-for-gpuextent3d-height①⑦">height</a>) ≤ <var>subresourceSize</var>.<a data-link-type="dfn" href="#gpuextent3d-height" id="ref-for-gpuextent3d-height①⑧">height</a></p> </li><li data-md><p>(<var>imageCopyTexture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-origin" id="ref-for-dom-gpuimagecopytexture-origin⑤">origin</a></code>.<a data-link-type="dfn" href="#gpuorigin3d-z" id="ref-for-gpuorigin3d-z">z</a> + <var>copySize</var>.<a data-link-type="dfn" href="#gpuextent3d-depthorarraylayers" id="ref-for-gpuextent3d-depthorarraylayers①⑦">depthOrArrayLayers</a>) ≤ <var>subresourceSize</var>.<a data-link-type="dfn" href="#gpuextent3d-depthorarraylayers" id="ref-for-gpuextent3d-depthorarraylayers①⑧">depthOrArrayLayers</a></p> </li><li data-md><p><var>copySize</var>.<a data-link-type="dfn" href="#gpuextent3d-width" id="ref-for-gpuextent3d-width②②">width</a> must be a multiple of <var>blockWidth</var>.</p> </li><li data-md><p><var>copySize</var>.<a data-link-type="dfn" href="#gpuextent3d-height" id="ref-for-gpuextent3d-height①⑨">height</a> must be a multiple of <var>blockHeight</var>.</p> </li></ul></li></ol></div> <div class="algorithm" data-algorithm="copy-compatible"> Two <code class="idl"><a data-link-type="idl" href="#enumdef-gputextureformat" id="ref-for-enumdef-gputextureformat③④">GPUTextureFormat</a></code>s <var>format1</var> and <var>format2</var> are <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="copy-compatible">copy-compatible</dfn> if: <ul><li data-md><p><var>format1</var> equals <var>format2</var>, or</p> </li><li data-md><p><var>format1</var> and <var>format2</var> differ only in whether they are `srgb` formats (have the `-srgb` suffix).</p> </li></ul></div> <div class="algorithm" data-algorithm="set of subresources for texture copy"> The <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-set-of-subresources-for-texture-copy">set of subresources for texture copy</dfn>(<var>imageCopyTexture</var>, <var>copySize</var>)
-    is the subset of subresources of <var>texture</var> = <var>imageCopyTexture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-texture" id="ref-for-dom-gpuimagecopytexture-texture①②">texture</a></code> for which each subresource <var>s</var> satisfies the following: <ul><li data-md><p>The <a data-link-type="dfn" href="#mipmap-level" id="ref-for-mipmap-level③">mipmap level</a> of <var>s</var> equals <var>imageCopyTexture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-miplevel" id="ref-for-dom-gpuimagecopytexture-miplevel③">mipLevel</a></code>.</p> </li><li data-md><p>The <a data-link-type="dfn" href="#aspect" id="ref-for-aspect④">aspect</a> of <var>s</var> is in the <a data-link-type="dfn" href="#gputextureaspect-set-of-aspects" id="ref-for-gputextureaspect-set-of-aspects④">set of aspects</a> of <var>imageCopyTexture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-aspect" id="ref-for-dom-gpuimagecopytexture-aspect①">aspect</a></code>.</p> </li><li data-md><p>If <var>texture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gputexture-dimension" id="ref-for-dom-gputexture-dimension①⓪">dimension</a></code> is <code class="idl"><a data-link-type="idl" href="#dom-gputexturedimension-2d" id="ref-for-dom-gputexturedimension-2d①⑨">"2d"</a></code>:</p> <ul><li data-md><p>The <a data-link-type="dfn" href="#array-layer" id="ref-for-array-layer③">array layer</a> of <var>s</var> is ≥ <var>imageCopyTexture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-origin" id="ref-for-dom-gpuimagecopytexture-origin⑥">origin</a></code>.<a data-link-type="dfn" href="#gpuorigin3d-z" id="ref-for-gpuorigin3d-z①">z</a> and &lt; <var>imageCopyTexture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-origin" id="ref-for-dom-gpuimagecopytexture-origin⑦">origin</a></code>.<a data-link-type="dfn" href="#gpuorigin3d-z" id="ref-for-gpuorigin3d-z②">z</a> + <var>copySize</var>.<a data-link-type="dfn" href="#gpuextent3d-depthorarraylayers" id="ref-for-gpuextent3d-depthorarraylayers①⑨">depthOrArrayLayers</a>.</p> </li></ul></li></ul></div> </code></code></code> 
+   <h4 class="heading settled" data-level="11.2.6" id="image-copies-subroutines"><span class="secno">11.2.6. </span><span class="content">Subroutines</span><a class="self-link" href="#image-copies-subroutines"></a></h4>
+   <div class="algorithm" data-algorithm="imageCopyTexture subresource size">
+     <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="imagecopytexture-subresource-size">imageCopyTexture subresource size</dfn> 
+    <p><strong>Arguments:</strong></p>
+    <ul>
+     <li data-md>
+      <p><code class="idl"><a data-link-type="idl" href="#dictdef-gpuimagecopytexture" id="ref-for-dictdef-gpuimagecopytexture④">GPUImageCopyTexture</a></code> <var>imageCopyTexture</var></p>
+    </ul>
+    <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="#typedefdef-gpuextent3d" id="ref-for-typedefdef-gpuextent3d⑤">GPUExtent3D</a></code></p>
+    <p>The <a data-link-type="dfn" href="#imagecopytexture-subresource-size" id="ref-for-imagecopytexture-subresource-size①">imageCopyTexture subresource size</a> of <var>imageCopyTexture</var> is calculated as follows:</p>
+    <p>Its <a data-link-type="dfn" href="#gpuextent3d-width" id="ref-for-gpuextent3d-width①⑧">width</a>, <a data-link-type="dfn" href="#gpuextent3d-height" id="ref-for-gpuextent3d-height①⑤">height</a> and <a data-link-type="dfn" href="#gpuextent3d-depthorarraylayers" id="ref-for-gpuextent3d-depthorarraylayers①③">depthOrArrayLayers</a> are the width, height, and depth, respectively,
+    of the <a data-link-type="dfn" href="#physical-miplevel-specific-texture-extent" id="ref-for-physical-miplevel-specific-texture-extent">physical miplevel-specific texture extent</a> of <var>imageCopyTexture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-texture" id="ref-for-dom-gpuimagecopytexture-texture⑨">texture</a></code> <a data-link-type="dfn" href="#subresource" id="ref-for-subresource①③">subresource</a> at <a data-link-type="dfn" href="#mipmap-level" id="ref-for-mipmap-level②">mipmap level</a> <var>imageCopyTexture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-miplevel" id="ref-for-dom-gpuimagecopytexture-miplevel②">mipLevel</a></code>.</p>
+   </div>
+   <div class="algorithm" data-algorithm="validating linear texture data">
+     <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-validating-linear-texture-data">validating linear texture data</dfn>(layout, byteSize, format, copyExtent) 
+    <p><strong>Arguments:</strong></p>
+    <dl>
+     <dt data-md><code class="idl"><a data-link-type="idl" href="#dictdef-gpuimagedatalayout" id="ref-for-dictdef-gpuimagedatalayout③">GPUImageDataLayout</a></code> <var>layout</var>
+     <dd data-md>
+      <p>Layout of the linear texture data.</p>
+     <dt data-md><code class="idl"><a data-link-type="idl" href="#typedefdef-gpusize64" id="ref-for-typedefdef-gpusize64②⑦">GPUSize64</a></code> <var>byteSize</var>
+     <dd data-md>
+      <p>Total size of the linear data, in bytes.</p>
+     <dt data-md><code class="idl"><a data-link-type="idl" href="#enumdef-gputextureformat" id="ref-for-enumdef-gputextureformat③③">GPUTextureFormat</a></code> <var>format</var>
+     <dd data-md>
+      <p>Format of the texture.</p>
+     <dt data-md><code class="idl"><a data-link-type="idl" href="#typedefdef-gpuextent3d" id="ref-for-typedefdef-gpuextent3d⑥">GPUExtent3D</a></code> <var>copyExtent</var>
+     <dd data-md>
+      <p>Extent of the texture to copy.</p>
+    </dl>
+    <ol>
+     <li data-md>
+      <p>Let:</p>
+      <ul>
+       <li data-md>
+        <p><var>widthInBlocks</var> be <var>copyExtent</var>.<a data-link-type="dfn" href="#gpuextent3d-width" id="ref-for-gpuextent3d-width①⑨">width</a> ÷ the <a data-link-type="dfn" href="#texel-block-width" id="ref-for-texel-block-width⑦">texel block width</a> of <var>format</var>. <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#assert" id="ref-for-assert①②">Assert</a> this is an integer.</p>
+       <li data-md>
+        <p><var>heightInBlocks</var> be <var>copyExtent</var>.<a data-link-type="dfn" href="#gpuextent3d-height" id="ref-for-gpuextent3d-height①⑥">height</a> ÷ the <a data-link-type="dfn" href="#texel-block-height" id="ref-for-texel-block-height⑥">texel block height</a> of <var>format</var>. <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#assert" id="ref-for-assert①③">Assert</a> this is an integer.</p>
+       <li data-md>
+        <p><var>bytesInLastRow</var> be <var>widthInBlocks</var> × the <a data-link-type="dfn" href="#texel-block-copy-footprint" id="ref-for-texel-block-copy-footprint">texel block copy footprint</a> of <var>format</var>.</p>
+      </ul>
+     <li data-md>
+      <p>Fail if the following input validation requirements are not met:</p>
+      <div class="validusage">
+       <ul>
+        <li data-md>
+         <p>If <var>heightInBlocks</var> > 1, <var>layout</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagedatalayout-bytesperrow" id="ref-for-dom-gpuimagedatalayout-bytesperrow③">bytesPerRow</a></code> must be specified.</p>
+        <li data-md>
+         <p>If <var>copyExtent</var>.<a data-link-type="dfn" href="#gpuextent3d-depthorarraylayers" id="ref-for-gpuextent3d-depthorarraylayers①④">depthOrArrayLayers</a> > 1, <var>layout</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagedatalayout-bytesperrow" id="ref-for-dom-gpuimagedatalayout-bytesperrow④">bytesPerRow</a></code> and <var>layout</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagedatalayout-rowsperimage" id="ref-for-dom-gpuimagedatalayout-rowsperimage②">rowsPerImage</a></code> must be specified.</p>
+        <li data-md>
+         <p>If specified, <var>layout</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagedatalayout-bytesperrow" id="ref-for-dom-gpuimagedatalayout-bytesperrow⑤">bytesPerRow</a></code> must be ≥ <var>bytesInLastRow</var>.</p>
+        <li data-md>
+         <p>If specified, <var>layout</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagedatalayout-rowsperimage" id="ref-for-dom-gpuimagedatalayout-rowsperimage③">rowsPerImage</a></code> must be ≥ <var>heightInBlocks</var>.</p>
+       </ul>
+      </div>
+     <li data-md>
+      <p>Let:</p>
+      <ul>
+       <li data-md>
+        <p><var>bytesPerRow</var> be <var>layout</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagedatalayout-bytesperrow" id="ref-for-dom-gpuimagedatalayout-bytesperrow⑥">bytesPerRow</a></code> ?? 0.</p>
+       <li data-md>
+        <p><var>rowsPerImage</var> be <var>layout</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagedatalayout-rowsperimage" id="ref-for-dom-gpuimagedatalayout-rowsperimage④">rowsPerImage</a></code> ?? 0.</p>
+      </ul>
+      <p class="note" role="note"><span class="marker">Note:</span> These default values have no effect, as they’re always multiplied by 0.</p>
+     <li data-md>
+      <p>Let <var>requiredBytesInCopy</var> be 0.</p>
+     <li data-md>
+      <p>If <var>copyExtent</var>.<a data-link-type="dfn" href="#gpuextent3d-depthorarraylayers" id="ref-for-gpuextent3d-depthorarraylayers①⑤">depthOrArrayLayers</a> > 0:</p>
+      <ol>
+       <li data-md>
+        <p>Increment <var>requiredBytesInCopy</var> by <var>bytesPerRow</var> × <var>rowsPerImage</var> × (<var>copyExtent</var>.<a data-link-type="dfn" href="#gpuextent3d-depthorarraylayers" id="ref-for-gpuextent3d-depthorarraylayers①⑥">depthOrArrayLayers</a> − 1).</p>
+       <li data-md>
+        <p>If <var>heightInBlocks</var> > 0:</p>
+        <ol>
+         <li data-md>
+          <p>Increment <var>requiredBytesInCopy</var> by <var>bytesPerRow</var> × (<var>heightInBlocks</var> − 1) + <var>bytesInLastRow</var>.</p>
+        </ol>
+      </ol>
+     <li data-md>
+      <p>Fail if the following condition is not satisfied:</p>
+      <div class="validusage">
+       <ul>
+        <li data-md>
+         <p>The layout fits inside the linear data: <var>layout</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagedatalayout-offset" id="ref-for-dom-gpuimagedatalayout-offset①">offset</a></code> + <var>requiredBytesInCopy</var> ≤ <var>byteSize</var>.</p>
+       </ul>
+      </div>
+    </ol>
+   </div>
+   <div class="validusage algorithm" data-algorithm="validating texture copy range">
+     <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="validating-texture-copy-range">validating texture copy range</dfn> 
+    <p><strong>Arguments:</strong></p>
+    <dl>
+     <dt data-md><code class="idl"><a data-link-type="idl" href="#dictdef-gpuimagecopytexture" id="ref-for-dictdef-gpuimagecopytexture⑤">GPUImageCopyTexture</a></code> <var>imageCopyTexture</var>
+     <dd data-md>
+      <p>The texture subresource being copied into and copy origin.</p>
+     <dt data-md><code class="idl"><a data-link-type="idl" href="#typedefdef-gpuextent3d" id="ref-for-typedefdef-gpuextent3d⑦">GPUExtent3D</a></code> <var>copySize</var>
+     <dd data-md>
+      <p>The size of the texture.</p>
+    </dl>
+    <ol>
+     <li data-md>
+      <p>Let <var>blockWidth</var> be the <a data-link-type="dfn" href="#texel-block-width" id="ref-for-texel-block-width⑧">texel block width</a> of <var>imageCopyTexture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-texture" id="ref-for-dom-gpuimagecopytexture-texture①⓪">texture</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gputexture-format" id="ref-for-dom-gputexture-format①⓪">format</a></code>.</p>
+     <li data-md>
+      <p>Let <var>blockHeight</var> be the <a data-link-type="dfn" href="#texel-block-height" id="ref-for-texel-block-height⑦">texel block height</a> of <var>imageCopyTexture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-texture" id="ref-for-dom-gpuimagecopytexture-texture①①">texture</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gputexture-format" id="ref-for-dom-gputexture-format①①">format</a></code>.</p>
+     <li data-md>
+      <p>Let <var>subresourceSize</var> be the <a data-link-type="dfn" href="#imagecopytexture-subresource-size" id="ref-for-imagecopytexture-subresource-size②">imageCopyTexture subresource size</a> of <var>imageCopyTexture</var>.</p>
+     <li data-md>
+      <p>Return whether all the conditions below are satisfied:</p>
+      <ul>
+       <li data-md>
+        <p>(<var>imageCopyTexture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-origin" id="ref-for-dom-gpuimagecopytexture-origin③">origin</a></code>.<a data-link-type="dfn" href="#gpuorigin3d-x" id="ref-for-gpuorigin3d-x①">x</a> + <var>copySize</var>.<a data-link-type="dfn" href="#gpuextent3d-width" id="ref-for-gpuextent3d-width②⓪">width</a>) ≤ <var>subresourceSize</var>.<a data-link-type="dfn" href="#gpuextent3d-width" id="ref-for-gpuextent3d-width②①">width</a></p>
+       <li data-md>
+        <p>(<var>imageCopyTexture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-origin" id="ref-for-dom-gpuimagecopytexture-origin④">origin</a></code>.<a data-link-type="dfn" href="#gpuorigin3d-y" id="ref-for-gpuorigin3d-y①">y</a> + <var>copySize</var>.<a data-link-type="dfn" href="#gpuextent3d-height" id="ref-for-gpuextent3d-height①⑦">height</a>) ≤ <var>subresourceSize</var>.<a data-link-type="dfn" href="#gpuextent3d-height" id="ref-for-gpuextent3d-height①⑧">height</a></p>
+       <li data-md>
+        <p>(<var>imageCopyTexture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-origin" id="ref-for-dom-gpuimagecopytexture-origin⑤">origin</a></code>.<a data-link-type="dfn" href="#gpuorigin3d-z" id="ref-for-gpuorigin3d-z">z</a> + <var>copySize</var>.<a data-link-type="dfn" href="#gpuextent3d-depthorarraylayers" id="ref-for-gpuextent3d-depthorarraylayers①⑦">depthOrArrayLayers</a>) ≤ <var>subresourceSize</var>.<a data-link-type="dfn" href="#gpuextent3d-depthorarraylayers" id="ref-for-gpuextent3d-depthorarraylayers①⑧">depthOrArrayLayers</a></p>
+       <li data-md>
+        <p><var>copySize</var>.<a data-link-type="dfn" href="#gpuextent3d-width" id="ref-for-gpuextent3d-width②②">width</a> must be a multiple of <var>blockWidth</var>.</p>
+       <li data-md>
+        <p><var>copySize</var>.<a data-link-type="dfn" href="#gpuextent3d-height" id="ref-for-gpuextent3d-height①⑨">height</a> must be a multiple of <var>blockHeight</var>.</p>
+      </ul>
+    </ol>
+   </div>
+   <div class="algorithm" data-algorithm="copy-compatible">
+     Two <code class="idl"><a data-link-type="idl" href="#enumdef-gputextureformat" id="ref-for-enumdef-gputextureformat③④">GPUTextureFormat</a></code>s <var>format1</var> and <var>format2</var> are <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="copy-compatible">copy-compatible</dfn> if: 
+    <ul>
+     <li data-md>
+      <p><var>format1</var> equals <var>format2</var>, or</p>
+     <li data-md>
+      <p><var>format1</var> and <var>format2</var> differ only in whether they are `srgb` formats (have the `-srgb` suffix).</p>
+    </ul>
+   </div>
+   <div class="algorithm" data-algorithm="set of subresources for texture copy">
+     The <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-set-of-subresources-for-texture-copy">set of subresources for texture copy</dfn>(<var>imageCopyTexture</var>, <var>copySize</var>)
+    is the subset of subresources of <var>texture</var> = <var>imageCopyTexture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-texture" id="ref-for-dom-gpuimagecopytexture-texture①②">texture</a></code> for which each subresource <var>s</var> satisfies the following: 
+    <ul>
+     <li data-md>
+      <p>The <a data-link-type="dfn" href="#mipmap-level" id="ref-for-mipmap-level③">mipmap level</a> of <var>s</var> equals <var>imageCopyTexture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-miplevel" id="ref-for-dom-gpuimagecopytexture-miplevel③">mipLevel</a></code>.</p>
+     <li data-md>
+      <p>The <a data-link-type="dfn" href="#aspect" id="ref-for-aspect④">aspect</a> of <var>s</var> is in the <a data-link-type="dfn" href="#gputextureaspect-set-of-aspects" id="ref-for-gputextureaspect-set-of-aspects④">set of aspects</a> of <var>imageCopyTexture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-aspect" id="ref-for-dom-gpuimagecopytexture-aspect①">aspect</a></code>.</p>
+     <li data-md>
+      <p>If <var>texture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gputexture-dimension" id="ref-for-dom-gputexture-dimension①⓪">dimension</a></code> is <code class="idl"><a data-link-type="idl" href="#dom-gputexturedimension-2d" id="ref-for-dom-gputexturedimension-2d①⑨">"2d"</a></code>:</p>
+      <ul>
+       <li data-md>
+        <p>The <a data-link-type="dfn" href="#array-layer" id="ref-for-array-layer③">array layer</a> of <var>s</var> is ≥ <var>imageCopyTexture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-origin" id="ref-for-dom-gpuimagecopytexture-origin⑥">origin</a></code>.<a data-link-type="dfn" href="#gpuorigin3d-z" id="ref-for-gpuorigin3d-z①">z</a> and &lt; <var>imageCopyTexture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-origin" id="ref-for-dom-gpuimagecopytexture-origin⑦">origin</a></code>.<a data-link-type="dfn" href="#gpuorigin3d-z" id="ref-for-gpuorigin3d-z②">z</a> + <var>copySize</var>.<a data-link-type="dfn" href="#gpuextent3d-depthorarraylayers" id="ref-for-gpuextent3d-depthorarraylayers①⑨">depthOrArrayLayers</a>.</p>
+      </ul>
+    </ul>
+   </div>
    <h2 class="heading settled" data-level="12" id="command-buffers"><span class="secno">12. </span><span class="content">Command Buffers</span><a class="self-link" href="#command-buffers"></a></h2>
    <p>Command buffers are pre-recorded lists of <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command①">GPU commands</a> that can be submitted to a <code class="idl"><a data-link-type="idl" href="#gpuqueue" id="ref-for-gpuqueue①②">GPUQueue</a></code> for execution. Each <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="gpu-command">GPU command</dfn> represents a task to be performed on the GPU, such as
 setting state, drawing, copying resources, etc.</p>
@@ -19687,6 +19841,7 @@ for (const dataLink of dataLinks) {
      <li><span class="dfn-paneled" id="e57197d8">requestAnimationFrame(callback)</span>
      <li><span class="dfn-paneled" id="f32dc6c1">serialization steps</span>
      <li><span class="dfn-paneled" id="bacf18ab">srgb</span>
+     <li><span class="dfn-paneled" id="e270bd2a">task</span>
      <li><span class="dfn-paneled" id="c3b2d08c">task source</span>
      <li><span class="dfn-paneled" id="2ed4c658">toBlob(callback, type, quality)</span>
      <li><span class="dfn-paneled" id="0b915689">toDataURL(type, quality)</span>
@@ -19751,7 +19906,7 @@ for (const dataLink of dataLinks) {
      <li><span class="dfn-paneled" id="40368216">WebGLContextAttributes</span>
      <li><span class="dfn-paneled" id="a4cf44da">WebGLRenderingContext</span>
      <li><span class="dfn-paneled" id="0a01e10f">drawingBufferColorSpace</span>
-     <li><span class="dfn-paneled" id="d07c2274">webgl drawing buffer</span>
+     <li><span class="dfn-paneled" id="3a7d33f4">webgl drawing buffer</span>
     </ul>
    <li>
     <a data-link-type="biblio">[WEBIDL]</a> defines the following terms:
@@ -21567,6 +21722,7 @@ window.dfnpanelData['48438eb3'] = {"dfnID": "48438eb3", "url": "https://html.spe
 window.dfnpanelData['e57197d8'] = {"dfnID": "e57197d8", "url": "https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-animationframeprovider-requestanimationframe", "dfnText": "requestAnimationFrame(callback)", "refSections": [{"refs": [{"id": "ref-for-dom-animationframeprovider-requestanimationframe"}], "title": "6.4.1. Importing External Textures"}], "external": true};
 window.dfnpanelData['f32dc6c1'] = {"dfnID": "f32dc6c1", "url": "https://html.spec.whatwg.org/multipage/structured-data.html#serialization-steps", "dfnText": "serialization steps", "refSections": [{"refs": [{"id": "ref-for-serialization-steps"}, {"id": "ref-for-serialization-steps\u2460"}], "title": "10. Pipelines"}], "external": true};
 window.dfnpanelData['bacf18ab'] = {"dfnID": "bacf18ab", "url": "https://html.spec.whatwg.org/multipage/canvas.html#dom-predefinedcolorspace-srgb", "dfnText": "srgb", "refSections": [{"refs": [{"id": "ref-for-dom-predefinedcolorspace-srgb"}], "title": "21.2. GPUCanvasContext"}], "external": true};
+window.dfnpanelData['e270bd2a'] = {"dfnID": "e270bd2a", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#concept-task", "dfnText": "task", "refSections": [{"refs": [{"id": "ref-for-concept-task"}], "title": "11.2.5. `GPUImageCopyExternalImage`\n\n"}], "external": true};
 window.dfnpanelData['c3b2d08c'] = {"dfnID": "c3b2d08c", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#task-source", "dfnText": "task source", "refSections": [{"refs": [{"id": "ref-for-task-source"}], "title": "3.9.1. WebGPU Task Source"}, {"refs": [{"id": "ref-for-task-source\u2460"}], "title": "3.9.2. Automatic Expiry Task Source\n"}], "external": true};
 window.dfnpanelData['2ed4c658'] = {"dfnID": "2ed4c658", "url": "https://html.spec.whatwg.org/multipage/canvas.html#dom-canvas-toblob", "dfnText": "toBlob(callback, type, quality)", "refSections": [{"refs": [{"id": "ref-for-dom-canvas-toblob"}], "title": "21.3. HTML Specification Hooks"}], "external": true};
 window.dfnpanelData['0b915689'] = {"dfnID": "0b915689", "url": "https://html.spec.whatwg.org/multipage/canvas.html#dom-canvas-todataurl", "dfnText": "toDataURL(type, quality)", "refSections": [{"refs": [{"id": "ref-for-dom-canvas-todataurl"}], "title": "21.3. HTML Specification Hooks"}], "external": true};
@@ -21611,7 +21767,7 @@ window.dfnpanelData['30a917d9'] = {"dfnID": "30a917d9", "url": "https://w3c.gith
 window.dfnpanelData['40368216'] = {"dfnID": "40368216", "url": "https://www.khronos.org/registry/webgl/specs/latest/1.0/#WEBGLCONTEXTATTRIBUTES", "dfnText": "WebGLContextAttributes", "refSections": [{"refs": [{"id": "ref-for-WEBGLCONTEXTATTRIBUTES"}], "title": "3.10.2. Color Space Conversion Elision"}, {"refs": [{"id": "ref-for-WEBGLCONTEXTATTRIBUTES\u2460"}], "title": "11.2.5. `GPUImageCopyExternalImage`\n\n"}], "external": true};
 window.dfnpanelData['a4cf44da'] = {"dfnID": "a4cf44da", "url": "https://www.khronos.org/registry/webgl/specs/latest/1.0/#WEBGLRENDERINGCONTEXT", "dfnText": "WebGLRenderingContext", "refSections": [{"refs": [{"id": "ref-for-WEBGLRENDERINGCONTEXT"}], "title": "3.10.2. Color Space Conversion Elision"}], "external": true};
 window.dfnpanelData['0a01e10f'] = {"dfnID": "0a01e10f", "url": "https://www.khronos.org/registry/webgl/specs/latest/1.0/#DOM-WebGLRenderingContext-drawingBufferColorSpace", "dfnText": "drawingBufferColorSpace", "refSections": [{"refs": [{"id": "ref-for-DOM-WebGLRenderingContext-drawingBufferColorSpace"}], "title": "3.10.2. Color Space Conversion Elision"}], "external": true};
-window.dfnpanelData['d07c2274'] = {"dfnID": "d07c2274", "url": "https://www.khronos.org/registry/webgl/specs/latest/1.0/#2.2", "dfnText": "webgl drawing buffer", "refSections": [{"refs": [{"id": "ref-for-2.2"}], "title": "11.2.5. `GPUImageCopyExternalImage`\n\n"}], "external": true};
+window.dfnpanelData['3a7d33f4'] = {"dfnID": "3a7d33f4", "url": "https://www.khronos.org/registry/webgl/specs/latest/1.0/#THE_DRAWING_BUFFER", "dfnText": "webgl drawing buffer", "refSections": [{"refs": [{"id": "ref-for-THE_DRAWING_BUFFER"}], "title": "11.2.5. `GPUImageCopyExternalImage`\n\n"}], "external": true};
 window.dfnpanelData['d25dfb2c'] = {"dfnID": "d25dfb2c", "url": "https://webidl.spec.whatwg.org/#aborterror", "dfnText": "AbortError", "refSections": [{"refs": [{"id": "ref-for-aborterror"}], "title": "5.2. Buffer Mapping"}], "external": true};
 window.dfnpanelData['5e4b6157'] = {"dfnID": "5e4b6157", "url": "https://webidl.spec.whatwg.org/#AllowSharedBufferSource", "dfnText": "AllowSharedBufferSource", "refSections": [{"refs": [{"id": "ref-for-AllowSharedBufferSource"}, {"id": "ref-for-AllowSharedBufferSource\u2460"}, {"id": "ref-for-AllowSharedBufferSource\u2461"}, {"id": "ref-for-AllowSharedBufferSource\u2462"}], "title": "19.2. GPUQueue\n\n"}], "external": true};
 window.dfnpanelData['2f8afbfe'] = {"dfnID": "2f8afbfe", "url": "https://webidl.spec.whatwg.org/#idl-ArrayBuffer", "dfnText": "ArrayBuffer", "refSections": [{"refs": [{"id": "ref-for-idl-ArrayBuffer"}], "title": "3.4.2. Memory Model"}, {"refs": [{"id": "ref-for-idl-ArrayBuffer\u2460"}, {"id": "ref-for-idl-ArrayBuffer\u2461"}, {"id": "ref-for-idl-ArrayBuffer\u2462"}, {"id": "ref-for-idl-ArrayBuffer\u2463"}, {"id": "ref-for-idl-ArrayBuffer\u2464"}], "title": "5.1. GPUBuffer\n\n"}, {"refs": [{"id": "ref-for-idl-ArrayBuffer\u2465"}, {"id": "ref-for-idl-ArrayBuffer\u2466"}, {"id": "ref-for-idl-ArrayBuffer\u2467"}, {"id": "ref-for-idl-ArrayBuffer\u2468"}, {"id": "ref-for-idl-ArrayBuffer\u2460\u24ea"}, {"id": "ref-for-idl-ArrayBuffer\u2460\u2460"}, {"id": "ref-for-idl-ArrayBuffer\u2460\u2461"}, {"id": "ref-for-idl-ArrayBuffer\u2460\u2462"}, {"id": "ref-for-idl-ArrayBuffer\u2460\u2463"}, {"id": "ref-for-idl-ArrayBuffer\u2460\u2464"}, {"id": "ref-for-idl-ArrayBuffer\u2460\u2465"}, {"id": "ref-for-idl-ArrayBuffer\u2460\u2466"}], "title": "5.2. Buffer Mapping"}, {"refs": [{"id": "ref-for-idl-ArrayBuffer\u2460\u2467"}], "title": "11.1. Buffer Copies"}, {"refs": [{"id": "ref-for-idl-ArrayBuffer\u2460\u2468"}], "title": "11.2. Image Copies"}, {"refs": [{"id": "ref-for-idl-ArrayBuffer\u2461\u24ea"}], "title": "19.2. GPUQueue\n\n"}], "external": true};
