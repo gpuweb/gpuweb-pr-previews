@@ -982,7 +982,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/shaoboyan/gpuweb/blob/726d8d2e89adc9eb1d218afe1f75878b0c9779fe/spec/index.bs">https://github.com/shaoboyan/gpuweb/blob/726d8d2e89adc9eb1d218afe1f75878b0c9779fe/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/shaoboyan/gpuweb/blob/781faf008267e1482a4cb9828a906188cd9d4cb1/spec/index.bs">https://github.com/shaoboyan/gpuweb/blob/781faf008267e1482a4cb9828a906188cd9d4cb1/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -14756,12 +14756,28 @@ encoding according to the parameters of <code class="idl"><a data-link-type="idl
 values, as copying into the corresponding non-<code>-srgb</code> format.
 Thus, after a copy operation, sampling the destination texture has
 different results depending on whether its format is <code>-srgb</code>, all else unchanged.</p>
+     <div class="note no-marker" role="note">
+      <div class="marker">NOTE: </div>
+       When copying from a <code>"webgl"</code>/<code>"webgl2"</code> context canvas, the <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#THE_DRAWING_BUFFER" id="ref-for-THE_DRAWING_BUFFER">WebGL Drawing Buffer</a> may be not exist during certain points in the
+    frame presentation cycle (after the image has been moved to the compositor
+    for display). To avoid this, either: 
+      <ul>
+       <li data-md>
+        <p>Issue <code class="idl"><a data-link-type="idl" href="#dom-gpuqueue-copyexternalimagetotexture" id="ref-for-dom-gpuqueue-copyexternalimagetotexture⑥">copyExternalImageToTexture()</a></code> in the same <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-task" id="ref-for-concept-task">task</a> with
+WebGL rendering operation, to ensure the copy occurs before the WebGL
+canvas is presented.</p>
+       <li data-md>
+        <p>If not possible, set the <code>preserveDrawingBuffer</code> option in <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WEBGLCONTEXTATTRIBUTES" id="ref-for-WEBGLCONTEXTATTRIBUTES①">WebGLContextAttributes</a></code> to <code>true</code>, so that the drawing buffer will
+still contain a copy of the frame contents after they’ve been presented.
+Note, this extra copy may have a performance cost.</p>
+      </ul>
+     </div>
      <div class="algorithm" data-algorithm="GPUQueue.copyExternalImageToTexture">
       <div data-timeline="content">
         <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpuqueue" id="ref-for-gpuqueue①⑨">GPUQueue</a></code> <var>this</var>. 
        <p><strong>Arguments:</strong></p>
        <table class="argumentdef data">
-        <caption>Arguments for the <a data-link-type="idl" href="#dom-gpuqueue-copyexternalimagetotexture" id="ref-for-dom-gpuqueue-copyexternalimagetotexture⑥">GPUQueue.copyExternalImageToTexture(source, destination, copySize)</a> method.</caption>
+        <caption>Arguments for the <a data-link-type="idl" href="#dom-gpuqueue-copyexternalimagetotexture" id="ref-for-dom-gpuqueue-copyexternalimagetotexture⑦">GPUQueue.copyExternalImageToTexture(source, destination, copySize)</a> method.</caption>
         <thead>
          <tr>
           <th>Parameter 
@@ -14880,22 +14896,6 @@ formats (which all support <code class="idl"><a data-link-type="idl" href="#dom-
         <li data-md>
          <p class="issue" id="issue-9abc07f0"><a class="self-link" href="#issue-9abc07f0"></a> Do the actual copy.</p>
        </ol>
-      </div>
-      <div class="note no-marker" role="note">
-       <div class="marker">NOTE: </div>
-        When copying from a <code>"webgl"</code>/<code>"webgl2"</code> context canvas, the <a data-link-type="dfn" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#THE_DRAWING_BUFFER" id="ref-for-THE_DRAWING_BUFFER">WebGL Drawing Buffer</a> may be not exist during certain points in the
-        frame presentation cycle (after the image has been moved to the compositor
-        for display). To avoid this, either: 
-       <ul>
-        <li data-md>
-         <p>Issue <code class="idl"><a data-link-type="idl" href="#dom-gpuqueue-copyexternalimagetotexture" id="ref-for-dom-gpuqueue-copyexternalimagetotexture⑦">copyExternalImageToTexture()</a></code> in the same <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-task" id="ref-for-concept-task">task</a> with
-WebGL rendering operation, to ensure the copy occurs before the WebGL
-canvas is presented.</p>
-        <li data-md>
-         <p>If not possible, set the <code>preserveDrawingBuffer</code> option in <code class="idl"><a data-link-type="idl" href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WEBGLCONTEXTATTRIBUTES" id="ref-for-WEBGLCONTEXTATTRIBUTES①">WebGLContextAttributes</a></code> to <code>true</code>, so that the drawing buffer will
-still contain a copy of the frame contents after they’ve been presented.
-Note, this extra copy may have a performance cost.</p>
-       </ul>
       </div>
      </div>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUQueue" data-dfn-type="method" data-export id="dom-gpuqueue-submit"><code>submit(commandBuffers)</code></dfn>
