@@ -810,7 +810,7 @@ var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBC
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/d0464f5fbd4e6be4dbf8f0a71cd0043200c8be36/wgsl/index.bs">https://github.com/gpuweb/gpuweb/blob/d0464f5fbd4e6be4dbf8f0a71cd0043200c8be36/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/08f820338a1a5490d2144f883253d0959a274f3b/wgsl/index.bs">https://github.com/gpuweb/gpuweb/blob/08f820338a1a5490d2144f883253d0959a274f3b/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -3273,8 +3273,9 @@ Extension names are not <a data-link-type="dfn" href="#identifier" id="ref-for-i
      <tr>
       <td>packed_4x8_integer_dot_product 
       <td> Supports using 32-bit integer scalars packing 4-component vectors of 8-bit integers as inputs
-      to the dot product instructions, packing and unpacking instructions with packed 4-component
-      vectors of 8-bit integers 
+      to the dot product instructions with <a href="#dot4U8Packed-builtin">dot4U8Packed</a> and <a href="#dot4I8Packed-builtin">dot4I8Packed</a> built-in functions.
+      Additionally, adds packing and unpacking instructions with packed 4-component vectors of
+      8-bit integers with <a href="#pack4xI8-builtin">pack4xI8</a>, <a href="#pack4xU8-builtin">pack4xU8</a>, <a href="#pack4xI8Clamp-builtin">pack4xI8Clamp</a>, <a href="#pack4xU8Clamp-builtin">pack4xU8Clamp</a>, <a href="#unpack4xI8-builtin">unpack4xI8</a>, and <a href="#unpack4xU8-builtin">unpack4xU8</a> built-in functions. 
      <tr>
       <td>unrestricted_pointer_parameters 
       <td>
