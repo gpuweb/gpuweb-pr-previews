@@ -1021,13 +1021,13 @@ var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBC
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-01-31">31 January 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-02-02">2 February 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/jimblandy/gpuweb/blob/3611464c8dbba580febedd8d1042a5e771fb793d/spec/index.bs">https://github.com/jimblandy/gpuweb/blob/3611464c8dbba580febedd8d1042a5e771fb793d/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/jimblandy/gpuweb/blob/e073e6d264d71b04af349398180ddfbbb63a9053/spec/index.bs">https://github.com/jimblandy/gpuweb/blob/e073e6d264d71b04af349398180ddfbbb63a9053/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -7761,7 +7761,7 @@ run the following steps:</p>
         <p>Let <var>shaderStage</var> be the <code class="idl"><a data-link-type="idl" href="#typedefdef-gpushaderstageflags" id="ref-for-typedefdef-gpushaderstageflags②">GPUShaderStageFlags</a></code> for the shader stage
 at which <var>stageDesc</var> is used in <var>pipeline</var>.</p>
        <li data-md>
-        <p>Let <var>entryPoint</var> be <a data-link-type="abstract-op" href="#abstract-opdef-get-the-entry-point" id="ref-for-abstract-opdef-get-the-entry-point">get the entry point</a>(<var>shaderStage</var>, <var>stageDesc</var>). <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#assert" id="ref-for-assert①①">Assert</a> this is not <code>null</code>.</p>
+        <p>Let <var>entryPoint</var> be <a data-link-type="abstract-op" href="#abstract-opdef-get-the-entry-point" id="ref-for-abstract-opdef-get-the-entry-point">get the entry point</a>(<var>shaderStage</var>, <var>stageDesc</var>). <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#assert" id="ref-for-assert①①">Assert</a> <var>entryPoint</var> is not <code>null</code>.</p>
        <li data-md>
         <p>For each resource <var>resource</var> <a data-link-type="dfn" href="#statically-used" id="ref-for-statically-used">statically used</a> by <var>entryPoint</var>:</p>
         <ol>
@@ -8371,7 +8371,7 @@ and <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-g
            <li data-md>
             <p><a data-link-type="abstract-op" href="#abstract-opdef-validating-gpuprogrammablestage" id="ref-for-abstract-opdef-validating-gpuprogrammablestage">validating GPUProgrammableStage</a>(<code class="idl"><a data-link-type="idl" href="#dom-gpushaderstage-compute" id="ref-for-dom-gpushaderstage-compute②">COMPUTE</a></code>, <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepipelinedescriptor-compute" id="ref-for-dom-gpucomputepipelinedescriptor-compute①">compute</a></code>, <var>layout</var>) must succeed.</p>
            <li data-md>
-            <p>Let <var>entryPoint</var> be <a data-link-type="abstract-op" href="#abstract-opdef-get-the-entry-point" id="ref-for-abstract-opdef-get-the-entry-point③">get the entry point</a>(<code class="idl"><a data-link-type="idl" href="#dom-gpushaderstage-compute" id="ref-for-dom-gpushaderstage-compute③">COMPUTE</a></code>, <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepipelinedescriptor-compute" id="ref-for-dom-gpucomputepipelinedescriptor-compute②">compute</a></code>). <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#assert" id="ref-for-assert①②">Assert</a> this is not <code>null</code>.</p>
+            <p>Let <var>entryPoint</var> be <a data-link-type="abstract-op" href="#abstract-opdef-get-the-entry-point" id="ref-for-abstract-opdef-get-the-entry-point③">get the entry point</a>(<code class="idl"><a data-link-type="idl" href="#dom-gpushaderstage-compute" id="ref-for-dom-gpushaderstage-compute③">COMPUTE</a></code>, <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepipelinedescriptor-compute" id="ref-for-dom-gpucomputepipelinedescriptor-compute②">compute</a></code>). <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#assert" id="ref-for-assert①②">Assert</a> <var>entryPoint</var> is not <code>null</code>.</p>
            <li data-md>
             <p>Let <var>workgroupStorageUsed</var> be the sum of <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#roundup" id="ref-for-roundup">roundUp</a>(16, <a data-link-type="abstract-op" href="https://gpuweb.github.io/gpuweb/wgsl/#sizeof" id="ref-for-sizeof①">SizeOf</a>(<var>T</var>)) over each
 type <var>T</var> of all variables with address space "<a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#address-spaces-workgroup" id="ref-for-address-spaces-workgroup①">workgroup</a>" <a data-link-type="dfn" href="#statically-used" id="ref-for-statically-used⑤">statically used</a> by <var>entryPoint</var>.</p>
@@ -10008,7 +10008,7 @@ sizeof(<var>attrib</var>.<code class="idl"><a data-link-type="idl" href="#dom-gp
         <p><var>attrib</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuvertexattribute-shaderlocation" id="ref-for-dom-gpuvertexattribute-shaderlocation②">shaderLocation</a></code> is &lt; <var>device</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot②⑧">[[device]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-device-limits-slot" id="ref-for-dom-device-limits-slot①②">[[limits]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxvertexattributes" id="ref-for-dom-supported-limits-maxvertexattributes">maxVertexAttributes</a></code>.</p>
       </ul>
      <li data-md>
-      <p>Let <var>entryPoint</var> be <a data-link-type="abstract-op" href="#abstract-opdef-get-the-entry-point" id="ref-for-abstract-opdef-get-the-entry-point⑤">get the entry point</a>(<code class="idl"><a data-link-type="idl" href="#dom-gpushaderstage-vertex" id="ref-for-dom-gpushaderstage-vertex④">VERTEX</a></code>, <var>vertexStage</var>). <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#assert" id="ref-for-assert①④">Assert</a> this is not <code>null</code>.</p>
+      <p>Let <var>entryPoint</var> be <a data-link-type="abstract-op" href="#abstract-opdef-get-the-entry-point" id="ref-for-abstract-opdef-get-the-entry-point⑤">get the entry point</a>(<code class="idl"><a data-link-type="idl" href="#dom-gpushaderstage-vertex" id="ref-for-dom-gpushaderstage-vertex④">VERTEX</a></code>, <var>vertexStage</var>). <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#assert" id="ref-for-assert①④">Assert</a> <var>entryPoint</var> is not <code>null</code>.</p>
      <li data-md>
       <p>For every vertex attribute <var>var</var> <a data-link-type="dfn" href="#statically-used" id="ref-for-statically-used⑥">statically used</a> by <var>entryPoint</var>,
 there is a corresponding <var>attrib</var> element of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuvertexbufferlayout-attributes" id="ref-for-dom-gpuvertexbufferlayout-attributes④">attributes</a></code> for which
