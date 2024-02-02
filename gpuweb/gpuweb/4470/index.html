@@ -1027,7 +1027,7 @@ var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBC
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/jimblandy/gpuweb/blob/e073e6d264d71b04af349398180ddfbbb63a9053/spec/index.bs">https://github.com/jimblandy/gpuweb/blob/e073e6d264d71b04af349398180ddfbbb63a9053/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/jimblandy/gpuweb/blob/d9340320b256f345c689c809880cc792909cb0ee/spec/index.bs">https://github.com/jimblandy/gpuweb/blob/d9340320b256f345c689c809880cc792909cb0ee/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -8054,7 +8054,7 @@ return that entry point.</p>
      <li data-md>
       <p><code class="idl"><a data-link-type="idl" href="#gpupipelinelayout" id="ref-for-gpupipelinelayout②⑥">GPUPipelineLayout</a></code> <var>layout</var></p>
     </ul>
-    <p>Return <code>true</code> if all of the following conditions are met, and <code>false</code> otherwise:</p>
+    <p>Return <code>true</code> if all requirements in the following steps are satisfied, and <code>false</code> otherwise:</p>
     <ul>
      <li data-md>
       <p><var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuprogrammablestage-module" id="ref-for-dom-gpuprogrammablestage-module⑤">module</a></code> must be a <a data-link-type="dfn" href="#valid" id="ref-for-valid①⑤">valid</a> <code class="idl"><a data-link-type="idl" href="#gpushadermodule" id="ref-for-gpushadermodule②⑨">GPUShaderModule</a></code>.</p>
@@ -8363,7 +8363,7 @@ The outputs correspond to <code class="idl"><a data-link-type="idl" href="#dom-g
          <p>Let <var>layout</var> be a new <a data-link-type="abstract-op" href="#abstract-opdef-default-pipeline-layout" id="ref-for-abstract-opdef-default-pipeline-layout①">default pipeline layout</a> for <var>pipeline</var> if <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelinedescriptorbase-layout" id="ref-for-dom-gpupipelinedescriptorbase-layout②">layout</a></code> is <code class="idl"><a data-link-type="idl" href="#dom-gpuautolayoutmode-auto" id="ref-for-dom-gpuautolayoutmode-auto④">"auto"</a></code>,
 and <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelinedescriptorbase-layout" id="ref-for-dom-gpupipelinedescriptorbase-layout③">layout</a></code> otherwise.</p>
         <li data-md>
-         <p>If any of the following conditions are unsatisfied <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑦">generate a validation error</a>, make <var>pipeline</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid②⑦">invalid</a>, and stop.</p>
+         <p>If any of the requirements in the following steps are unsatisfied, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑦">generate a validation error</a>, make <var>pipeline</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid②⑦">invalid</a>, and stop.</p>
          <div class="validusage">
           <ul>
            <li data-md>
@@ -9981,7 +9981,7 @@ Every location must be unique within the <code class="idl"><a data-link-type="id
      <li data-md>
       <p><code class="idl"><a data-link-type="idl" href="#gpuprogrammablestage" id="ref-for-gpuprogrammablestage①①">GPUProgrammableStage</a></code> <var>vertexStage</var></p>
     </ul>
-    <p>Return <code>true</code>, if and only if, all of the following conditions are satisfied:</p>
+    <p>Return <code>true</code> if all requirements in the following steps are satisfied, and <code>false</code> otherwise:</p>
     <ul>
      <li data-md>
       <p><var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuvertexbufferlayout-arraystride" id="ref-for-dom-gpuvertexbufferlayout-arraystride⑤">arrayStride</a></code> ≤ <var>device</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot②⑥">[[device]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-device-limits-slot" id="ref-for-dom-device-limits-slot①⓪">[[limits]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxvertexbufferarraystride" id="ref-for-dom-supported-limits-maxvertexbufferarraystride①">maxVertexBufferArrayStride</a></code>.</p>
