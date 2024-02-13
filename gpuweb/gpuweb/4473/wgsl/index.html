@@ -804,13 +804,13 @@ var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBC
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-02-04">4 February 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-02-13">13 February 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/mehmetoguzderin/gpuweb/blob/e5c41c4b7258eeb6f05da41a3c94eff3373f1b98/wgsl/index.bs">https://github.com/mehmetoguzderin/gpuweb/blob/e5c41c4b7258eeb6f05da41a3c94eff3373f1b98/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/mehmetoguzderin/gpuweb/blob/bdfdc64cfd169c00fa2dce9812016b72e2a8499a/wgsl/index.bs">https://github.com/mehmetoguzderin/gpuweb/blob/bdfdc64cfd169c00fa2dce9812016b72e2a8499a/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -19746,7 +19746,8 @@ valid <a data-link-type="dfn" href="#identifier" id="ref-for-identifier③①">i
 values are subject to the same rules, including <a href="#abstract-float-accuracy">abstract float accuracy</a>. As such, where
 applicable, expressions involving them might be evaluated at <a data-link-type="dfn" href="#shader-module-creation" id="ref-for-shader-module-creation①⑥">shader-creation time</a> and
 result in better approximations than operating on target types, reducing
-the need for specialized constants such as <code>PI_2</code> for scales and offsets.</p>
+the need for specialized constants such as <code>PI_2</code> for scales and offsets.
+See the example usage for a demonstration of the accuracy improvement.</p>
    <table class="data builtin constants">
     <caption> <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="built-in-mathematical-constants">Built-in mathematical constants</dfn> </caption>
     <thead>
@@ -19766,6 +19767,20 @@ the need for specialized constants such as <code>PI_2</code> for scales and offs
       <td>Approximates the perimeter of a unit circle, known as τ, tau, 2π,
       or a turn.<br> Double precision: <code>6.28318530717958647692528676655900577</code> 
    </table>
+   <div class="example wgsl function-scope no-marker" id="example-84cb94db">
+    <a class="self-link" href="#example-84cb94db"></a>
+    <div class="marker">EXAMPLE: Using mathematical constants</div>
+<pre class="highlight"><c- c1>// Coefficient calculation for an integral approximation, where accuracy</c->
+<c- c1>// is critical for the numerical method. With WGSL constants, evaluation</c->
+<c- c1>// resolves to a more accurate value than defining these values as custom</c->
+<c- c1>// f32 variables without needing specializations such as M_PI_2.</c->
+<c- a>const</c-> <c- n>coefficient_i</c-> <c- o>=</c-> <c- p>(</c->
+  <c- mf>2.0</c-> <c- o>*</c-> <c- n>TAU</c-> <c- o>-</c-> <c- p>(</c-><c- o>-</c-><c- n>PI</c-> <c- o>/</c-> <c- mf>4.0</c-><c- p>)</c-> <c- c1>// Interval from -π/4 to 2τ</c->
+<c- p>)</c-> <c- o>/</c-> <c- mf>1024.0</c-><c- p>;</c-> <c- c1>// Number of steps</c->
+<c- c1>// Absolute error with WGSL constants: 3.59085e-19</c->
+<c- c1>// Absolute error with f32 user constants: 6.53877e-10</c->
+</pre>
+   </div>
    <h2 class="heading settled" data-level="18" id="grammar-recursive-descent"><span class="secno">18. </span><span class="content">Grammar for Recursive Descent Parsing</span><a class="self-link" href="#grammar-recursive-descent"></a></h2>
    <p>This section is non-normative.</p>
    <p>The WGSL grammar is specified in a form suitable for an LALR(1) parser.
