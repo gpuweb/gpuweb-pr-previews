@@ -1191,12 +1191,22 @@ enum GPUCanvasAlphaMode {
     "premultiplied",
 };
 
+enum GPUCanvasColorMode {
+    "default",
+    "extended",
+};
+
+dictionary GPUCanvasColorMetadata {
+  GPUCanvasColorMode mode = "default";
+};
+
 dictionary GPUCanvasConfiguration {
     required GPUDevice device;
     required GPUTextureFormat format;
     GPUTextureUsageFlags usage = 0x10;  // GPUTextureUsage.RENDER_ATTACHMENT
     sequence<GPUTextureFormat> viewFormats = [];
     PredefinedColorSpace colorSpace = "srgb";
+    GPUCanvasColorMetadata colorMetadata;
     GPUCanvasAlphaMode alphaMode = "opaque";
 };
 
