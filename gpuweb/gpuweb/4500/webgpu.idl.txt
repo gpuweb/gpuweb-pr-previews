@@ -1191,13 +1191,13 @@ enum GPUCanvasAlphaMode {
     "premultiplied",
 };
 
-enum GPUCanvasColorMode {
-    "default",
-    "extended",
+enum GPUCanvasToneMappingMode {
+    "clamp-to-standard",
+    "clamp-to-extended",
 };
 
-dictionary GPUCanvasColorMetadata {
-  GPUCanvasColorMode mode = "default";
+dictionary GPUCanvasToneMapping {
+  GPUCanvasToneMappingMode mode = "clamp-to-standard";
 };
 
 dictionary GPUCanvasConfiguration {
@@ -1206,7 +1206,7 @@ dictionary GPUCanvasConfiguration {
     GPUTextureUsageFlags usage = 0x10;  // GPUTextureUsage.RENDER_ATTACHMENT
     sequence<GPUTextureFormat> viewFormats = [];
     PredefinedColorSpace colorSpace = "srgb";
-    GPUCanvasColorMetadata colorMetadata;
+    GPUCanvasToneMapping toneMapping = {};
     GPUCanvasAlphaMode alphaMode = "opaque";
 };
 
