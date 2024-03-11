@@ -1029,7 +1029,7 @@ var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBC
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/a4d462295a8b00a97f3d32d23c70ef726c687706/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/a4d462295a8b00a97f3d32d23c70ef726c687706/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/3f7ebd799708e9c7e5f83c0a98d278c0719a79e2/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/3f7ebd799708e9c7e5f83c0a98d278c0719a79e2/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -15759,7 +15759,8 @@ canvas contents are read, the behavior depends on whether the canvas is:</p>
 compositing, because during compositing implementations may use intermediate
 representations that can’t represent out-of-gamut values. For example, on a <code class="idl"><a data-link-type="idl" href="#dom-gpucanvasalphamode-premultiplied" id="ref-for-dom-gpucanvasalphamode-premultiplied②">"premultiplied"</a></code>, <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#dom-predefinedcolorspace-srgb" id="ref-for-dom-predefinedcolorspace-srgb①">"srgb"</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgba8unorm" id="ref-for-dom-gputextureformat-rgba8unorm⑤">"rgba8unorm"</a></code> canvas, the color <code>[0.51, 0, 0, 0.5]</code> represents <code><a data-link-type="dfn" funcdef href="https://drafts.csswg.org/css-color-4/#color" id="ref-for-color">color</a>(srgb 1.02 0 0 / 0.5)</code>,
 however upon presentation it could be internally unpremultiplied before color
-conversion to the display’s native color space, resulting in <code>[1.02, 0, 0, 0.5]</code> being clamped to <code>[1, 0, 0, 0.5]</code> (<code><a data-link-type="dfn" funcdef href="https://drafts.csswg.org/css-color-4/#color" id="ref-for-color①">color</a>(srgb 1 0 0 / 0.5)</code>).</p>
+conversion to the display’s native color space, resulting in <code>[1.02, 0, 0, 0.5]</code> which might be then clamped to <code>[1, 0, 0, 0.5]</code> (<code><a data-link-type="dfn" funcdef href="https://drafts.csswg.org/css-color-4/#color" id="ref-for-color①">color</a>(srgb 1 0 0 / 0.5)</code>)
+or result in unpredictable end results in other ways.</p>
      </dl>
    </dl>
    <h2 class="heading settled" data-level="22" id="errors-and-debugging"><span class="secno">22. </span><span class="content">Errors &amp; Debugging</span><a class="self-link" href="#errors-and-debugging"></a></h2>
