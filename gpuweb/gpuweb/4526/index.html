@@ -1029,7 +1029,7 @@ var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBC
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/458efac83a6a1409810a445be2d3b19936024674/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/458efac83a6a1409810a445be2d3b19936024674/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/c5f6709b691b1eb433dbb94165ec07a1faf88fed/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/c5f6709b691b1eb433dbb94165ec07a1faf88fed/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -3021,7 +3021,7 @@ to represent color values outside of its space (in both chrominance and luminanc
    <h4 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="3.10.1" data-lt="Out-of-Gamut Premultiplied RGBA Values" data-noexport id="out-of-gamut-premultiplied-rgba-value"><span class="secno">3.10.1. </span><span class="content">Out-of-Gamut Premultiplied RGBA Values </span><a class="self-link" href="#out-of-gamut-premultiplied-rgba-value" id="ref-for-out-of-gamut-premultiplied-rgba-value"></a></h4>
    <p>An <a data-link-type="dfn" href="#out-of-gamut-premultiplied-rgba-value" id="ref-for-out-of-gamut-premultiplied-rgba-value③">out-of-gamut premultiplied RGBA value</a> is one where any of the R/G/B channel values
 exceeds the alpha channel value.</p>
-   <div class="example" id="example-e990ee5a"><a class="self-link" href="#example-e990ee5a"></a> For example, the premultiplied sRGB RGBA value <code>[0.51, 0, 0, 0.5]</code> represents the (unpremultiplied) color <code><a data-link-type="dfn" funcdef href="https://drafts.csswg.org/css-color-4/#color" id="ref-for-color">color</a>(srgb 1.02 0 0 / 0.5)</code>. </div>
+   <div class="example" id="example-553b0a29"><a class="self-link" href="#example-553b0a29"></a> For example, the premultiplied sRGB RGBA value <code>[0.52, 0, 0, 0.5]</code> represents the (unpremultiplied) color <code><a data-link-type="dfn" funcdef href="https://drafts.csswg.org/css-color-4/#color" id="ref-for-color">color</a>(srgb 1.04 0 0 / 0.5)</code>. </div>
    <p>Just like any color value outside the sRGB color gamut, any value is a well-defined point in the
 extended color space (regardless of whether the point represents a real color).
 When a canvas containing such a value is <a data-link-type="abstract-op" href="#abstract-opdef-get-a-copy-of-the-image-contents-of-a-context" id="ref-for-abstract-opdef-get-a-copy-of-the-image-contents-of-a-context">used as an image source</a>,
