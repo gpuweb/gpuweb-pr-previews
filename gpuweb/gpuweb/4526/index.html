@@ -1023,13 +1023,13 @@ var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBC
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-03-19">19 March 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-03-20">20 March 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/a461771078add94d593e7c310fa295c1a2aac882/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/a461771078add94d593e7c310fa295c1a2aac882/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/7cf11da5f515dcb017cce91b49eddef2503ba56f/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/7cf11da5f515dcb017cce91b49eddef2503ba56f/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -3025,22 +3025,24 @@ That "color" can be represented in other color spaces as well, where it may be i
    <h4 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="3.10.1" data-lt="Out-of-Range Premultiplied RGBA Values" data-noexport id="out-of-range-premultiplied-rgba-values"><span class="secno">3.10.1. </span><span class="content">Out-of-Range Premultiplied RGBA Values <span id="out-of-gamut-premultiplied-rgba-value"></span> </span><a class="self-link" href="#out-of-range-premultiplied-rgba-values" id="ref-for-out-of-range-premultiplied-rgba-values"></a></h4>
    <p>An <a data-link-type="dfn" href="#out-of-range-premultiplied-rgba-values" id="ref-for-out-of-range-premultiplied-rgba-values③">out-of-range premultiplied RGBA value</a> is one for which the unpremultiplied representation
 of the same color would be outside of the range of the format.</p>
-   <div class="example" id="example-7ea82682">
-    <a class="self-link" href="#example-7ea82682"></a> For example, the unpremultiplied sRGB RGBA value <code>[1.04, 0, 0, 0.5]</code> and the
+   <div class="example" id="example-0cd47938">
+    <a class="self-link" href="#example-0cd47938"></a> For example, on a display with a color space of exactly Display P3,
+    the unpremultiplied sRGB RGBA value <code>[1.04, 0, 0, 0.5]</code> and the
     premultiplied sRGB RGBA value <code>[0.52, 0, 0, 0.5]</code> both represent the
     CSS color <code><a data-link-type="dfn" funcdef href="https://drafts.csswg.org/css-color-4/#color" id="ref-for-color">color</a>(srgb 1.04 0 0 / 0.5)</code>, which is equivalent to the
     in-gamut Display P3 color <code><a data-link-type="dfn" funcdef href="https://drafts.csswg.org/css-color-4/#color" id="ref-for-color①">color</a>(display-p3 0.95 0.21 0.15 / 0.5)</code>. 
     <p>When represented in a <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#dom-predefinedcolorspace-srgb" id="ref-for-dom-predefinedcolorspace-srgb">"srgb"</a></code> <code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgba8unorm" id="ref-for-dom-gputextureformat-rgba8unorm">"rgba8unorm"</a></code> canvas,
     both values are out-of-range for the purposes of this definition,
     even though the premultiplied value is representable.</p>
+    <p>(The colors in this example are in the gamut of the display to avoid any gamut mapping.)</p>
    </div>
    <p>When a canvas containing such a value is <a data-link-type="abstract-op" href="#abstract-opdef-get-a-copy-of-the-image-contents-of-a-context" id="ref-for-abstract-opdef-get-a-copy-of-the-image-contents-of-a-context">used as an image source</a>,
 the returned image must represent the original color values without clamping,
 regardless of the canvas’s <code class="idl"><a data-link-type="idl" href="#dom-gpucanvasconfiguration-format" id="ref-for-dom-gpucanvasconfiguration-format">format</a></code>.</p>
    <p>However, when a (<code class="idl"><a data-link-type="idl" href="#dom-gpucanvasalphamode-premultiplied" id="ref-for-dom-gpucanvasalphamode-premultiplied">"premultiplied"</a></code>) canvas containing such a value is
 displayed <em>on screen</em>, the visible result for the entire canvas is undefined.</p>
-   <div class="example" id="example-5a00c04f">
-    <a class="self-link" href="#example-5a00c04f"></a> For example, on a display with a color space of exactly Display P3,
+   <div class="example" id="example-2cb3fdc7">
+    <a class="self-link" href="#example-2cb3fdc7"></a> For example, on a display with a color space of exactly Display P3,
     an on-screen, solid-color <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#dom-predefinedcolorspace-srgb" id="ref-for-dom-predefinedcolorspace-srgb①">"srgb"</a></code> canvas displays as follows: 
     <table class="data">
      <thead>
@@ -3078,6 +3080,7 @@ then sent to the display buffer resulting in the appearance of <code><a data-lin
      <li data-md>
       <p>Value displayed by some other process.</p>
     </ul>
+    <p>(The colors in this example are in the gamut of the display to avoid any gamut mapping.)</p>
    </div>
    <p class="note" role="note"><span class="marker">Note:</span> Implementations may defer compositing steps to operating system compositors,
 which often have undefined behavior in these cases. Implementations may not be able to avoid
