@@ -1029,7 +1029,7 @@ var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBC
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/5812a20f1f12df3eff7d3db81011244b80d4ff4f/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/5812a20f1f12df3eff7d3db81011244b80d4ff4f/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/73ec1178008f31feb6520858fe0f7b34c55b26ab/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/73ec1178008f31feb6520858fe0f7b34c55b26ab/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -8053,7 +8053,7 @@ return that entry point.</p>
       <p><code class="idl"><a data-link-type="idl" href="#gpupipelinelayout" id="ref-for-gpupipelinelayout②⑥">GPUPipelineLayout</a></code> <var>layout</var></p>
     </ul>
     <p>All of the requirements in the following steps <var>must</var> be met.
-    If they are met, return <code>true</code>; if not, return <code>false</code>.</p>
+    If any are unmet, return <code>false</code>; otherwise, return <code>true</code>.</p>
     <ol>
      <li data-md>
       <p><var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuprogrammablestage-module" id="ref-for-dom-gpuprogrammablestage-module⑤">module</a></code> <var>must</var> be a <a data-link-type="dfn" href="#valid" id="ref-for-valid①⑤">valid</a> <code class="idl"><a data-link-type="idl" href="#gpushadermodule" id="ref-for-gpushadermodule②⑨">GPUShaderModule</a></code>.</p>
@@ -13413,7 +13413,7 @@ See <a href="#rendering-operations">§ 23.3 Rendering</a> for the detailed spe
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state①⑧">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
         <li data-md>
          <p>All of the requirements in the following steps <var>must</var> be met.
-If not, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥④">invalid</a> and stop.</p>
+If any are unmet, make <var>this</var> <a data-link-type="dfn" href="#invalid" id="ref-for-invalid⑥④">invalid</a> and stop.</p>
          <div class="validusage">
           <ol>
            <li data-md>
