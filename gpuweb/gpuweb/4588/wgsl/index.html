@@ -812,7 +812,7 @@ var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBC
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/Jiawei-Shao/gpuweb/blob/47fef8b76db40e3ce884dcb3cd3c945d48037da8/wgsl/index.bs">https://github.com/Jiawei-Shao/gpuweb/blob/47fef8b76db40e3ce884dcb3cd3c945d48037da8/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/Jiawei-Shao/gpuweb/blob/01fa158f1eecb288d0ec038bfa9cc74451f7c74f/wgsl/index.bs">https://github.com/Jiawei-Shao/gpuweb/blob/01fa158f1eecb288d0ec038bfa9cc74451f7c74f/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -1103,7 +1103,7 @@ Learn more about <a href="http://www.w3.org/community/">W3C Community and Busine
           <li>
            <a href="#builtin-inputs-outputs"><span class="secno">12.3.1.1</span> <span class="content">Built-in Inputs and Outputs</span></a>
            <ol class="toc">
-            <li><a href="#clip-distance-builtin-value"><span class="secno">12.3.1.1.1</span> <span class="content"><code>clip_distance</code></span></a>
+            <li><a href="#clip-distances-builtin-value"><span class="secno">12.3.1.1.1</span> <span class="content"><code>clip_distances</code></span></a>
             <li><a href="#frag-depth-builtin-value"><span class="secno">12.3.1.1.2</span> <span class="content"><code>frag_depth</code></span></a>
             <li><a href="#front-facing-builtin-value"><span class="secno">12.3.1.1.3</span> <span class="content"><code>front_facing</code></span></a>
             <li><a href="#global-invocation-id-builtin-value"><span class="secno">12.3.1.1.4</span> <span class="content"><code>global_invocation_id</code></span></a>
@@ -3245,10 +3245,10 @@ Extension names are not <a data-link-type="dfn" href="#identifier" id="ref-for-i
       <td><code>"shader-f16"</code> 
       <td>The <a data-link-type="dfn" href="#f16" id="ref-for-f16①">f16</a> type is valid to use in the WGSL module. Otherwise, using <a data-link-type="dfn" href="#f16" id="ref-for-f16②">f16</a> (directly or indirectly) will result in a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑤">shader-creation error</a>. 
      <tr>
-      <td><dfn class="dfn-paneled" data-dfn-for="extension" data-dfn-type="dfn" data-noexport id="extension-clip_distance"><code>clip_distance</code></dfn> 
-      <td><code>"clip_distance"</code> 
-      <td>The built-in variable <a data-link-type="dfn" href="#built-in-values-clip_distance" id="ref-for-built-in-values-clip_distance">clip_distance</a> is valid to use in the WGSL
-          module. Otherwise, using <a data-link-type="dfn" href="#built-in-values-clip_distance" id="ref-for-built-in-values-clip_distance①">clip_distance</a> will result in a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑥">shader-creation error</a>. 
+      <td><dfn class="dfn-paneled" data-dfn-for="extension" data-dfn-type="dfn" data-noexport id="extension-clip_distances"><code>clip_distances</code></dfn> 
+      <td><code>"clip_distances"</code> 
+      <td>The built-in variable <a data-link-type="dfn" href="#built-in-values-clip_distances" id="ref-for-built-in-values-clip_distances">clip_distances</a> is valid to use in the WGSL
+          module. Otherwise, using <a data-link-type="dfn" href="#built-in-values-clip_distances" id="ref-for-built-in-values-clip_distances①">clip_distances</a> will result in a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑥">shader-creation error</a>. 
    </table>
    <div class="example wgsl using extensions expect-error no-marker" id="example-bbb80169">
     <a class="self-link" href="#example-bbb80169"></a>
@@ -10647,7 +10647,7 @@ Each is described in detail in subsequent sections.</p>
       <td>input 
       <td>u32 
      <tr>
-      <td><a data-link-type="dfn" href="#built-in-values-clip_distance" id="ref-for-built-in-values-clip_distance②">clip_distance</a> 
+      <td><a data-link-type="dfn" href="#built-in-values-clip_distances" id="ref-for-built-in-values-clip_distances②">clip_distances</a> 
       <td>vertex 
       <td>output 
       <td>array&lt;f32, N> 
@@ -10710,12 +10710,12 @@ Each is described in detail in subsequent sections.</p>
       <td>input 
       <td>vec3&lt;u32> 
    </table>
-   <div class="example wgsl global-scope no-marker" id="example-16ba62e3">
-    <a class="self-link" href="#example-16ba62e3"></a>
+   <div class="example wgsl global-scope no-marker" id="example-e1f7d66a">
+    <a class="self-link" href="#example-e1f7d66a"></a>
     <div class="marker">EXAMPLE: Declaring built-in values</div>
 <pre class="highlight"> <c- k>struct</c-> <c- n>VertexOutput</c-> <c- p>{</c->
    <c- nd>@builtin</c-><c- p>(</c->position<c- p>)</c-> <c- n>my_pos</c-><c- p>:</c-> vec4<c- o>&lt;</c->f32<c- o>></c-><c- p>,</c->
-   <c- nd>@builtin</c-><c- p>(</c-><c- n>clip_distance</c-><c- p>)</c-> <c- n>my_clip_distances</c-><c- p>:</c-> array<c- o>&lt;</c->f32<c- p>,</c-> <c- mi>8</c-><c- o>></c-><c- p>,</c->
+   <c- nd>@builtin</c-><c- p>(</c-><c- n>clip_distances</c-><c- p>)</c-> <c- n>my_clip_distancess</c-><c- p>:</c-> array<c- o>&lt;</c->f32<c- p>,</c-> <c- mi>8</c-><c- o>></c-><c- p>,</c->
  <c- p>}</c->
 
  <c- nd>@vertex</c->
@@ -10745,12 +10745,12 @@ Each is described in detail in subsequent sections.</p>
 <c- p>)</c-> <c- p>{}</c->
 </pre>
    </div>
-   <h6 class="heading settled" data-level="12.3.1.1.1" id="clip-distance-builtin-value"><span class="secno">12.3.1.1.1. </span><span class="content"><code>clip_distance</code></span><a class="self-link" href="#clip-distance-builtin-value"></a></h6>
+   <h6 class="heading settled" data-level="12.3.1.1.1" id="clip-distances-builtin-value"><span class="secno">12.3.1.1.1. </span><span class="content"><code>clip_distances</code></span><a class="self-link" href="#clip-distances-builtin-value"></a></h6>
    <table class="data">
     <tbody>
      <tr>
       <td style="width:10%">Name 
-      <td><dfn class="dfn-paneled" data-dfn-for="built-in values" data-dfn-type="dfn" data-noexport id="built-in-values-clip_distance">clip_distance</dfn> 
+      <td><dfn class="dfn-paneled" data-dfn-for="built-in values" data-dfn-type="dfn" data-noexport id="built-in-values-clip_distances">clip_distances</dfn> 
      <tr>
       <td style="width:10%">Stage 
       <td><a data-link-type="dfn" href="#vertex-shader-stage" id="ref-for-vertex-shader-stage②">vertex</a> 
@@ -20344,10 +20344,10 @@ registrations, it matches widespread industry conventions.</p>
    <li><a href="#channels">channels</a><span>, in § 6.5.1</span>
    <li><a href="#channel-transfer-function">channel transfer function</a><span>, in § 6.5.1</span>
    <li>
-    clip_distance
+    clip_distances
     <ul>
-     <li><a href="#built-in-values-clip_distance">dfn for built-in values</a><span>, in § 12.3.1.1.1</span>
-     <li><a href="#extension-clip_distance">dfn for extension</a><span>, in § 4.1.1</span>
+     <li><a href="#built-in-values-clip_distances">dfn for built-in values</a><span>, in § 12.3.1.1.1</span>
+     <li><a href="#extension-clip_distances">dfn for extension</a><span>, in § 4.1.1</span>
     </ul>
    <li><a href="#syntax_sym-colon">colon</a><span>, in § 15.3</span>
    <li><a href="#syntax_sym-comma">comma</a><span>, in § 15.3</span>
@@ -21685,7 +21685,7 @@ let dfnPanelData = {
 "built-in-output-value": {"dfnID":"built-in-output-value","dfnText":"built-in output value","external":false,"refSections":[{"refs":[{"id":"ref-for-built-in-output-value"}],"title":"10.4. Restrictions on Functions"},{"refs":[{"id":"ref-for-built-in-output-value\u2460"}],"title":"11. Attributes"},{"refs":[{"id":"ref-for-built-in-output-value\u2461"}],"title":"12.2. Entry Point Declaration"},{"refs":[{"id":"ref-for-built-in-output-value\u2462"}],"title":"12.3.1. Inter-stage Input and Output Interface"}],"url":"#built-in-output-value"},
 "built-in-value-name-token": {"dfnID":"built-in-value-name-token","dfnText":"built-in value name-token","external":false,"refSections":[{"refs":[{"id":"ref-for-built-in-value-name-token"}],"title":"11. Attributes"}],"url":"#built-in-value-name-token"},
 "built-in-values": {"dfnID":"built-in-values","dfnText":"built-in values","external":false,"refSections":[{"refs":[{"id":"ref-for-built-in-values"}],"title":"3.9. Built-in Value Names"},{"refs":[{"id":"ref-for-built-in-values\u2460"}],"title":"11. Attributes"},{"refs":[{"id":"ref-for-built-in-values\u2461"}],"title":"12.2. Entry Point Declaration"},{"refs":[{"id":"ref-for-built-in-values\u2462"}],"title":"14.2. Uniformity"},{"refs":[{"id":"ref-for-built-in-values\u2463"}],"title":"14.2.8. Uniformity Rules for Expressions"}],"url":"#built-in-values"},
-"built-in-values-clip_distance": {"dfnID":"built-in-values-clip_distance","dfnText":"clip_distance","external":false,"refSections":[{"refs":[{"id":"ref-for-built-in-values-clip_distance"},{"id":"ref-for-built-in-values-clip_distance\u2460"}],"title":"4.1.1. Enable Extensions"},{"refs":[{"id":"ref-for-built-in-values-clip_distance\u2461"}],"title":"12.3.1.1. Built-in Inputs and Outputs"}],"url":"#built-in-values-clip_distance"},
+"built-in-values-clip_distances": {"dfnID":"built-in-values-clip_distances","dfnText":"clip_distances","external":false,"refSections":[{"refs":[{"id":"ref-for-built-in-values-clip_distances"},{"id":"ref-for-built-in-values-clip_distances\u2460"}],"title":"4.1.1. Enable Extensions"},{"refs":[{"id":"ref-for-built-in-values-clip_distances\u2461"}],"title":"12.3.1.1. Built-in Inputs and Outputs"}],"url":"#built-in-values-clip_distances"},
 "built-in-values-frag_depth": {"dfnID":"built-in-values-frag_depth","dfnText":"frag_depth","external":false,"refSections":[{"refs":[{"id":"ref-for-built-in-values-frag_depth"}],"title":"12.3.1.1. Built-in Inputs and Outputs"}],"url":"#built-in-values-frag_depth"},
 "built-in-values-front_facing": {"dfnID":"built-in-values-front_facing","dfnText":"front_facing","external":false,"refSections":[{"refs":[{"id":"ref-for-built-in-values-front_facing"}],"title":"12.3.1.1. Built-in Inputs and Outputs"}],"url":"#built-in-values-front_facing"},
 "built-in-values-global_invocation_id": {"dfnID":"built-in-values-global_invocation_id","dfnText":"global_invocation_id","external":false,"refSections":[{"refs":[{"id":"ref-for-built-in-values-global_invocation_id"}],"title":"12.3.1.1. Built-in Inputs and Outputs"},{"refs":[{"id":"ref-for-built-in-values-global_invocation_id\u2460"}],"title":"12.3.1.1.4. global_invocation_id"}],"url":"#built-in-values-global_invocation_id"},
@@ -21793,7 +21793,7 @@ let dfnPanelData = {
 "execution-scope": {"dfnID":"execution-scope","dfnText":"execution scope","external":false,"refSections":[{"refs":[{"id":"ref-for-execution-scope"}],"title":"16.11. Synchronization Built-in Functions"}],"url":"#execution-scope"},
 "expression": {"dfnID":"expression","dfnText":"expression","external":false,"refSections":[{"refs":[{"id":"ref-for-expression"},{"id":"ref-for-expression\u2460"}],"title":"3.13. Template Lists"},{"refs":[{"id":"ref-for-expression\u2461"}],"title":"6.1. Type Checking"},{"refs":[{"id":"ref-for-expression\u2462"}],"title":"6.8. Type Specifier Grammar"},{"refs":[{"id":"ref-for-expression\u2463"}],"title":"8. Expressions"},{"refs":[{"id":"ref-for-expression\u2464"}],"title":"11. Attributes"}],"url":"#expression"},
 "extension": {"dfnID":"extension","dfnText":"extension","external":false,"refSections":[{"refs":[{"id":"ref-for-extension"}],"title":"4.1.1. Enable Extensions"},{"refs":[{"id":"ref-for-extension\u2460"}],"title":"4.1.2. Language Extensions"}],"url":"#extension"},
-"extension-clip_distance": {"dfnID":"extension-clip_distance","dfnText":"clip_distance","external":false,"refSections":[],"url":"#extension-clip_distance"},
+"extension-clip_distances": {"dfnID":"extension-clip_distances","dfnText":"clip_distances","external":false,"refSections":[],"url":"#extension-clip_distances"},
 "extension-f16": {"dfnID":"extension-f16","dfnText":"f16","external":false,"refSections":[{"refs":[{"id":"ref-for-extension-f16"}],"title":"3.5.2. Numeric Literals"},{"refs":[{"id":"ref-for-extension-f16\u2460"}],"title":"6. Types"},{"refs":[{"id":"ref-for-extension-f16\u2461"}],"title":"6.1.2. Conversion Rank"},{"refs":[{"id":"ref-for-extension-f16\u2462"}],"title":"6.2.4. Floating Point Types"},{"refs":[{"id":"ref-for-extension-f16\u2463"}],"title":"6.2.6. Vector Types"},{"refs":[{"id":"ref-for-extension-f16\u2464"}],"title":"6.2.7. Matrix Types"}],"url":"#extension-f16"},
 "f10f0d86": {"dfnID":"f10f0d86","dfnText":"sampler","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gpubindgrouplayoutentry-sampler"}],"title":"12.3.3. Resource Layout Compatibility"}],"url":"https://gpuweb.github.io/gpuweb/#dom-gpubindgrouplayoutentry-sampler"},
 "f16": {"dfnID":"f16","dfnText":"f16","external":false,"refSections":[{"refs":[{"id":"ref-for-f16"}],"title":"3.5.2. Numeric Literals"},{"refs":[{"id":"ref-for-f16\u2460"},{"id":"ref-for-f16\u2461"}],"title":"4.1.1. Enable Extensions"},{"refs":[{"id":"ref-for-f16\u2462"},{"id":"ref-for-f16\u2463"}],"title":"6.1.2. Conversion Rank"},{"refs":[{"id":"ref-for-f16\u2464"},{"id":"ref-for-f16\u2465"},{"id":"ref-for-f16\u2466"},{"id":"ref-for-f16\u2467"}],"title":"6.2.1. Abstract Numeric Types"},{"refs":[{"id":"ref-for-f16\u2468"}],"title":"6.2.4. Floating Point Types"},{"refs":[{"id":"ref-for-f16\u2460\u24ea"},{"id":"ref-for-f16\u2460\u2460"}],"title":"6.2.5. Scalar Types"},{"refs":[{"id":"ref-for-f16\u2460\u2461"}],"title":"6.2.7. Matrix Types"},{"refs":[{"id":"ref-for-f16\u2460\u2462"}],"title":"6.9. Predeclared Types and Type-Generators Summary"},{"refs":[{"id":"ref-for-f16\u2460\u2463"}],"title":"13.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-f16\u2460\u2464"}],"title":"13.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-f16\u2460\u2465"}],"title":"13.4.5. Address Space Layout Constraints"},{"refs":[{"id":"ref-for-f16\u2460\u2466"}],"title":"14.6.1. Floating Point Overflow"},{"refs":[{"id":"ref-for-f16\u2460\u2467"},{"id":"ref-for-f16\u2460\u2468"}],"title":"14.6.4. Floating Point Conversion"},{"refs":[{"id":"ref-for-f16\u2461\u24ea"},{"id":"ref-for-f16\u2461\u2460"},{"id":"ref-for-f16\u2461\u2461"},{"id":"ref-for-f16\u2461\u2462"}],"title":"16.1.2.3. f16"},{"refs":[{"id":"ref-for-f16\u2461\u2463"},{"id":"ref-for-f16\u2461\u2464"},{"id":"ref-for-f16\u2461\u2465"},{"id":"ref-for-f16\u2461\u2466"}],"title":"16.1.2.6. mat2x2"},{"refs":[{"id":"ref-for-f16\u2461\u2467"},{"id":"ref-for-f16\u2461\u2468"},{"id":"ref-for-f16\u2462\u24ea"},{"id":"ref-for-f16\u2462\u2460"}],"title":"16.1.2.7. mat2x3"},{"refs":[{"id":"ref-for-f16\u2462\u2461"},{"id":"ref-for-f16\u2462\u2462"},{"id":"ref-for-f16\u2462\u2463"},{"id":"ref-for-f16\u2462\u2464"}],"title":"16.1.2.8. mat2x4"},{"refs":[{"id":"ref-for-f16\u2462\u2465"},{"id":"ref-for-f16\u2462\u2466"},{"id":"ref-for-f16\u2462\u2467"},{"id":"ref-for-f16\u2462\u2468"}],"title":"16.1.2.9. mat3x2"},{"refs":[{"id":"ref-for-f16\u2463\u24ea"},{"id":"ref-for-f16\u2463\u2460"},{"id":"ref-for-f16\u2463\u2461"},{"id":"ref-for-f16\u2463\u2462"}],"title":"16.1.2.10. mat3x3"},{"refs":[{"id":"ref-for-f16\u2463\u2463"},{"id":"ref-for-f16\u2463\u2464"},{"id":"ref-for-f16\u2463\u2465"},{"id":"ref-for-f16\u2463\u2466"}],"title":"16.1.2.11. mat3x4"},{"refs":[{"id":"ref-for-f16\u2463\u2467"},{"id":"ref-for-f16\u2463\u2468"},{"id":"ref-for-f16\u2464\u24ea"},{"id":"ref-for-f16\u2464\u2460"}],"title":"16.1.2.12. mat4x2"},{"refs":[{"id":"ref-for-f16\u2464\u2461"},{"id":"ref-for-f16\u2464\u2462"},{"id":"ref-for-f16\u2464\u2463"},{"id":"ref-for-f16\u2464\u2464"}],"title":"16.1.2.13. mat4x3"},{"refs":[{"id":"ref-for-f16\u2464\u2465"},{"id":"ref-for-f16\u2464\u2466"},{"id":"ref-for-f16\u2464\u2467"},{"id":"ref-for-f16\u2464\u2468"}],"title":"16.1.2.14. mat4x4"}],"url":"#f16"},
@@ -22392,7 +22392,7 @@ let dfnPanelData = {
 "vec4u": {"dfnID":"vec4u","dfnText":"vec4u","external":false,"refSections":[],"url":"#vec4u"},
 "vector": {"dfnID":"vector","dfnText":"vector","external":false,"refSections":[{"refs":[{"id":"ref-for-vector"}],"title":"1.1. Overview"},{"refs":[{"id":"ref-for-vector\u2460"}],"title":"3.13. Template Lists"},{"refs":[{"id":"ref-for-vector\u2461"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-vector\u2462"}],"title":"6.2.9. Array Types"},{"refs":[{"id":"ref-for-vector\u2463"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-vector\u2464"}],"title":"6.2.11. Composite Types"},{"refs":[{"id":"ref-for-vector\u2465"}],"title":"6.2.12. Constructible Types"},{"refs":[{"id":"ref-for-vector\u2466"}],"title":"6.2.13. Fixed-Footprint Types"},{"refs":[{"id":"ref-for-vector\u2467"}],"title":"6.4.1. Storable Types"},{"refs":[{"id":"ref-for-vector\u2468"},{"id":"ref-for-vector\u2460\u24ea"}],"title":"6.4.8. Forming Reference and Pointer Values"},{"refs":[{"id":"ref-for-vector\u2460\u2460"}],"title":"8.1.2. override Expressions"},{"refs":[{"id":"ref-for-vector\u2460\u2461"},{"id":"ref-for-vector\u2460\u2462"},{"id":"ref-for-vector\u2460\u2463"}],"title":"8.5. Composite Value Decomposition Expressions"},{"refs":[{"id":"ref-for-vector\u2460\u2464"}],"title":"8.17. Type Expressions"},{"refs":[{"id":"ref-for-vector\u2460\u2465"}],"title":"13.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-vector\u2460\u2466"}],"title":"13.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-vector\u2460\u2467"}],"title":"13.4.5. Address Space Layout Constraints"},{"refs":[{"id":"ref-for-vector\u2460\u2468"},{"id":"ref-for-vector\u2461\u24ea"},{"id":"ref-for-vector\u2461\u2460"}],"title":"16.1.2.17. vec2"},{"refs":[{"id":"ref-for-vector\u2461\u2461"},{"id":"ref-for-vector\u2461\u2462"},{"id":"ref-for-vector\u2461\u2463"},{"id":"ref-for-vector\u2461\u2464"},{"id":"ref-for-vector\u2461\u2465"}],"title":"16.1.2.18. vec3"},{"refs":[{"id":"ref-for-vector\u2461\u2466"},{"id":"ref-for-vector\u2461\u2467"},{"id":"ref-for-vector\u2461\u2468"},{"id":"ref-for-vector\u2462\u24ea"},{"id":"ref-for-vector\u2462\u2460"},{"id":"ref-for-vector\u2462\u2461"},{"id":"ref-for-vector\u2462\u2462"},{"id":"ref-for-vector\u2462\u2463"},{"id":"ref-for-vector\u2462\u2464"}],"title":"16.1.2.19. vec4"},{"refs":[{"id":"ref-for-vector\u2462\u2465"}],"title":"16.2.1. bitcast"},{"refs":[{"id":"ref-for-vector\u2462\u2466"}],"title":"16.3.3. select"}],"url":"#vector"},
 "vertex": {"dfnID":"vertex","dfnText":"vertex","external":false,"refSections":[{"refs":[{"id":"ref-for-vertex"}],"title":"10.4. Restrictions on Functions"},{"refs":[{"id":"ref-for-vertex\u2460"}],"title":"11. Attributes"},{"refs":[{"id":"ref-for-vertex\u2461"},{"id":"ref-for-vertex\u2462"}],"title":"12.3.1.4. Interpolation"},{"refs":[{"id":"ref-for-vertex\u2463"}],"title":"16.8. Atomic Built-in Functions"}],"url":"#vertex"},
-"vertex-shader-stage": {"dfnID":"vertex-shader-stage","dfnText":"vertex shader stage","external":false,"refSections":[{"refs":[{"id":"ref-for-vertex-shader-stage"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-vertex-shader-stage\u2460"}],"title":"11. Attributes"},{"refs":[{"id":"ref-for-vertex-shader-stage\u2461"}],"title":"12.3.1.1.1. clip_distance"},{"refs":[{"id":"ref-for-vertex-shader-stage\u2462"}],"title":"12.3.1.1.5. instance_index"},{"refs":[{"id":"ref-for-vertex-shader-stage\u2463"}],"title":"12.3.1.1.9. position"},{"refs":[{"id":"ref-for-vertex-shader-stage\u2464"}],"title":"12.3.1.1.12. vertex_index"},{"refs":[{"id":"ref-for-vertex-shader-stage\u2465"},{"id":"ref-for-vertex-shader-stage\u2466"}],"title":"13.3. Address Spaces"}],"url":"#vertex-shader-stage"},
+"vertex-shader-stage": {"dfnID":"vertex-shader-stage","dfnText":"vertex shader stage","external":false,"refSections":[{"refs":[{"id":"ref-for-vertex-shader-stage"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-vertex-shader-stage\u2460"}],"title":"11. Attributes"},{"refs":[{"id":"ref-for-vertex-shader-stage\u2461"}],"title":"12.3.1.1.1. clip_distances"},{"refs":[{"id":"ref-for-vertex-shader-stage\u2462"}],"title":"12.3.1.1.5. instance_index"},{"refs":[{"id":"ref-for-vertex-shader-stage\u2463"}],"title":"12.3.1.1.9. position"},{"refs":[{"id":"ref-for-vertex-shader-stage\u2464"}],"title":"12.3.1.1.12. vertex_index"},{"refs":[{"id":"ref-for-vertex-shader-stage\u2465"},{"id":"ref-for-vertex-shader-stage\u2466"}],"title":"13.3. Address Spaces"}],"url":"#vertex-shader-stage"},
 "well-typed": {"dfnID":"well-typed","dfnText":"well-typed","external":false,"refSections":[],"url":"#well-typed"},
 "workgroup-grid": {"dfnID":"workgroup-grid","dfnText":"workgroup grid","external":false,"refSections":[{"refs":[{"id":"ref-for-workgroup-grid"}],"title":"11. Attributes"},{"refs":[{"id":"ref-for-workgroup-grid\u2460"}],"title":"12.3.1.1.6. local_invocation_id"},{"refs":[{"id":"ref-for-workgroup-grid\u2461"}],"title":"12.3.1.1.7. local_invocation_index"}],"url":"#workgroup-grid"},
 "workgroup-id": {"dfnID":"workgroup-id","dfnText":"workgroup ID","external":false,"refSections":[{"refs":[{"id":"ref-for-workgroup-id"}],"title":"12.3.1.1.13. workgroup_id"}],"url":"#workgroup-id"},
@@ -22838,7 +22838,7 @@ let refsData = {
 "#built-in-output-value": {"export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"built-in output value","type":"dfn","url":"#built-in-output-value"},
 "#built-in-value-name-token": {"export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"built-in value name-token","type":"dfn","url":"#built-in-value-name-token"},
 "#built-in-values": {"export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"built-in values","type":"dfn","url":"#built-in-values"},
-"#built-in-values-clip_distance": {"export":true,"for_":["built-in values"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"clip_distance","type":"dfn","url":"#built-in-values-clip_distance"},
+"#built-in-values-clip_distances": {"export":true,"for_":["built-in values"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"clip_distances","type":"dfn","url":"#built-in-values-clip_distances"},
 "#built-in-values-frag_depth": {"export":true,"for_":["built-in values"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"frag_depth","type":"dfn","url":"#built-in-values-frag_depth"},
 "#built-in-values-front_facing": {"export":true,"for_":["built-in values"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"front_facing","type":"dfn","url":"#built-in-values-front_facing"},
 "#built-in-values-global_invocation_id": {"export":true,"for_":["built-in values"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"global_invocation_id","type":"dfn","url":"#built-in-values-global_invocation_id"},
