@@ -53,7 +53,7 @@ interface GPUSupportedLimits {
     readonly attribute unsigned long maxComputeWorkgroupSizeY;
     readonly attribute unsigned long maxComputeWorkgroupSizeZ;
     readonly attribute unsigned long maxComputeWorkgroupsPerDimension;
-    readonly attribute unsigned long maxClipDistances;
+    readonly attribute unsigned long maxClipDistancesSize;
 };
 
 [Exposed=(Window, Worker), SecureContext]
