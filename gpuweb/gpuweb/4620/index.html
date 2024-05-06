@@ -1076,7 +1076,7 @@ var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBC
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/be3395cfb547487b7624c5bb3e64068d9e559a40/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/be3395cfb547487b7624c5bb3e64068d9e559a40/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/a789fb8e3d8ff45f837e99e17526e2b85499720e/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/a789fb8e3d8ff45f837e99e17526e2b85499720e/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -10721,7 +10721,7 @@ The encoder becomes "<a data-link-type="dfn" href="#encoder-state-open" id="ref-
      <p>Any command issued in this state will <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②①">generate a validation error</a>.</p>
    </dl>
    <div class="validusage algorithm" data-algorithm="Validate the encoder state" data-timeline="device">
-     To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-validate-the-encoder-state">Validate the encoder state</dfn> of <code class="idl"><a data-link-type="idl" href="#gpucommandsmixin" id="ref-for-gpucommandsmixin③">GPUCommandsMixin</a></code> <var>encoder</var> run the <br> following steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑧⓪">device timeline</a>: 
+     To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-validate-the-encoder-state">Validate the encoder state</dfn> of <code class="idl"><a data-link-type="idl" href="#gpucommandsmixin" id="ref-for-gpucommandsmixin③">GPUCommandsMixin</a></code> <var>encoder</var> run the <br> following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑧⓪">device timeline</a> steps: 
     <ol>
      <li data-md>
       <p>If <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-state-slot" id="ref-for-dom-gpucommandsmixin-state-slot">[[state]]</a></code> is:</p>
@@ -15596,8 +15596,7 @@ the context creation attribute dictionary <code>options</code>, is ignored.
 Instead, use <code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-configure" id="ref-for-dom-gpucanvascontext-configure①">GPUCanvasContext.configure()</a></code>,
 which allows changing the canvas configuration without replacing the canvas.</p>
    <div class="algorithm" data-algorithm="create a &apos;webgpu&apos; context on a canvas" data-timeline="content">
-     To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-create-a-webgpu-context-on-a-canvas">create a 'webgpu' context on a canvas</dfn> (<code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#htmlcanvaselement" id="ref-for-htmlcanvaselement⑥">HTMLCanvasElement</a></code> or <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#offscreencanvas" id="ref-for-offscreencanvas④">OffscreenCanvas</a></code>) <var>canvas</var>, run the following
-    steps on the <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①⓪⑦">content timeline</a>: 
+     To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-create-a-webgpu-context-on-a-canvas">create a 'webgpu' context on a canvas</dfn> (<code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#htmlcanvaselement" id="ref-for-htmlcanvaselement⑥">HTMLCanvasElement</a></code> or <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#offscreencanvas" id="ref-for-offscreencanvas④">OffscreenCanvas</a></code>) <var>canvas</var>, run the following <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①⓪⑦">content timeline</a> steps: 
     <ol>
      <li data-md>
       <p>Let <var>context</var> be a new <code class="idl"><a data-link-type="idl" href="#gpucanvascontext" id="ref-for-gpucanvascontext④">GPUCanvasContext</a></code>.</p>
@@ -16286,7 +16285,7 @@ of WebGPU calls, typically for debugging purposes or to make an operation more f
     </ol>
    </div>
    <div class="algorithm" data-algorithm="Dispatch error">
-     To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export data-lt="Dispatch error|dispatch error" id="abstract-opdef-dispatch-error">dispatch an error</dfn> <code class="idl"><a data-link-type="idl" href="#gpuerror" id="ref-for-gpuerror①⑧">GPUError</a></code> <var>error</var> on <code class="idl"><a data-link-type="idl" href="#gpudevice" id="ref-for-gpudevice⑧⓪">GPUDevice</a></code> <var>device</var>, run the following steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑧②">device timeline</a> of <var>device</var>: 
+     To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export data-lt="Dispatch error|dispatch error" id="abstract-opdef-dispatch-error">dispatch an error</dfn> <code class="idl"><a data-link-type="idl" href="#gpuerror" id="ref-for-gpuerror①⑧">GPUError</a></code> <var>error</var> on <code class="idl"><a data-link-type="idl" href="#gpudevice" id="ref-for-gpudevice⑧⓪">GPUDevice</a></code> <var>device</var>, run the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑧②">device timeline</a> steps: 
     <div data-timeline="device">
       <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑧③">Device timeline</a> steps: 
      <ol>
