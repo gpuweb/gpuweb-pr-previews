@@ -1070,13 +1070,13 @@ var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBC
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-05-07">7 May 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-05-08">8 May 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/baf334674223ea11f4916f3295f256d644e3d634/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/baf334674223ea11f4916f3295f256d644e3d634/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/098ea01385df55f80d7255c197bce3148dc80787/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/098ea01385df55f80d7255c197bce3148dc80787/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -1967,7 +1967,7 @@ browser developer tools, and platform debugging utilities.</p>
      </div>
    </dl>
    <p><code class="idl"><a data-link-type="idl" href="#gpuobjectbase" id="ref-for-gpuobjectbase⑦">GPUObjectBase</a></code> has the following <a data-link-type="dfn" href="#device-timeline-property" id="ref-for-device-timeline-property②">device timeline properties</a>:</p>
-   <dl data-timeline="const">
+   <dl data-timeline="device">
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUObjectBase" data-dfn-type="attribute" data-export id="dom-gpuobjectbase-valid-slot"><code>[[valid]]</code></dfn>, of type boolean, initially <code>true</code>.
     <dd data-md>
      <p>If <code>true</code>, indicates that the <a data-link-type="dfn" href="#internal-object" id="ref-for-internal-object⑤">internal object</a> is valid to use.</p>
@@ -2453,19 +2453,10 @@ in <a data-link-type="dfn" href="#supported-limits" id="ref-for-supported-limits
      <p>If set to <code>true</code> indicates that the adapter is a <a data-link-type="dfn" href="#fallback-adapter" id="ref-for-fallback-adapter①">fallback adapter</a>.</p>
    </dl>
    <p><a data-link-type="dfn" href="#adapter" id="ref-for-adapter⑦">Adapters</a> are exposed via <code class="idl"><a data-link-type="idl" href="#gpuadapter" id="ref-for-gpuadapter③">GPUAdapter</a></code>.</p>
-   <div class="algorithm" data-algorithm="expired" data-timeline="device">
-     A given <code class="idl"><a data-link-type="idl" href="#gpuadapter" id="ref-for-gpuadapter④">GPUAdapter</a></code> <var>adapter</var> is <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-expired">expired</dfn> if all of the requirements of
-    the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑤">device timeline</a> steps are met: 
-    <div class="validusage">
-     <ul>
-      <li data-md>
-       <p><var>adapter</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuadapter-adapter-slot" id="ref-for-dom-gpuadapter-adapter-slot">[[adapter]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-adapter-expired-slot" id="ref-for-dom-adapter-expired-slot">[[expired]]</a></code> must be <code>true</code></p>
-     </ul>
-    </div>
-   </div>
+   <div class="algorithm" data-algorithm="expired" data-timeline="device"> A given <code class="idl"><a data-link-type="idl" href="#gpuadapter" id="ref-for-gpuadapter④">GPUAdapter</a></code> <var>adapter</var> is <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-expired">expired</dfn> if <var>adapter</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuadapter-adapter-slot" id="ref-for-dom-gpuadapter-adapter-slot">[[adapter]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-adapter-expired-slot" id="ref-for-dom-adapter-expired-slot">[[expired]]</a></code> is <code>true</code>. </div>
    <div class="algorithm" data-algorithm="expire" data-timeline="device">
      To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export data-lt="expire|Expire|expires" id="abstract-opdef-expire">expire</dfn> a <code class="idl"><a data-link-type="idl" href="#gpuadapter" id="ref-for-gpuadapter⑤">GPUAdapter</a></code> <var>adapter</var>, run the
-    following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑥">device timeline</a> steps: 
+    following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑤">device timeline</a> steps: 
     <ol>
      <li data-md>
       <p>Set <var>adapter</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuadapter-adapter-slot" id="ref-for-dom-gpuadapter-adapter-slot①">[[adapter]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-adapter-expired-slot" id="ref-for-dom-adapter-expired-slot①">[[expired]]</a></code> to <code>true</code></p>
@@ -2494,7 +2485,7 @@ No additional features can be used, even if the underlying <a data-link-type="df
 No <a data-link-type="dfn" href="#limit-better" id="ref-for-limit-better②">better</a> limits can be used, even if the underlying <a data-link-type="dfn" href="#adapter" id="ref-for-adapter①②">adapter</a> can support them.</p>
    </dl>
    <div class="algorithm" data-algorithm="a new device" data-timeline="device">
-     When <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="a-new-device">a new device</dfn> <var>device</var> is created from <a data-link-type="dfn" href="#adapter" id="ref-for-adapter①③">adapter</a> <var>adapter</var> with <code class="idl"><a data-link-type="idl" href="#gpudevicedescriptor" id="ref-for-gpudevicedescriptor">GPUDeviceDescriptor</a></code> <var>descriptor</var>, run the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑦">device timeline</a> steps: 
+     When <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="a-new-device">a new device</dfn> <var>device</var> is created from <a data-link-type="dfn" href="#adapter" id="ref-for-adapter①③">adapter</a> <var>adapter</var> with <code class="idl"><a data-link-type="idl" href="#gpudevicedescriptor" id="ref-for-gpudevicedescriptor">GPUDeviceDescriptor</a></code> <var>descriptor</var>, run the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑥">device timeline</a> steps: 
     <ul>
      <li data-md>
       <p>Set <var>device</var>.<code class="idl"><a data-link-type="idl" href="#dom-device-adapter-slot" id="ref-for-dom-device-adapter-slot">[[adapter]]</a></code> to <var>adapter</var>.</p>
@@ -2506,7 +2497,7 @@ For each (<var>key</var>, <var>value</var>) pair in <var>descriptor</var>.<code 
 member corresponding to <var>key</var> in <var>device</var>.<code class="idl"><a data-link-type="idl" href="#dom-device-limits-slot" id="ref-for-dom-device-limits-slot①">[[limits]]</a></code> to the <a data-link-type="dfn" href="#limit-better" id="ref-for-limit-better③">better</a> value of <var>value</var> or the default value in <a data-link-type="dfn" href="#supported-limits" id="ref-for-supported-limits④">supported limits</a>.</p>
     </ul>
    </div>
-   <p>Any time the user agent needs to revoke access to a device, it calls <a data-link-type="dfn" href="#lose-the-device" id="ref-for-lose-the-device②">lose the device</a>(<code>device</code>, <code class="idl"><a data-link-type="idl" href="#dom-gpudevicelostreason-unknown" id="ref-for-dom-gpudevicelostreason-unknown">"unknown"</a></code>) on the device’s <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑧">device timeline</a>,
+   <p>Any time the user agent needs to revoke access to a device, it calls <a data-link-type="dfn" href="#lose-the-device" id="ref-for-lose-the-device②">lose the device</a>(<code>device</code>, <code class="idl"><a data-link-type="idl" href="#dom-gpudevicelostreason-unknown" id="ref-for-dom-gpudevicelostreason-unknown">"unknown"</a></code>) on the device’s <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑦">device timeline</a>,
 potentially ahead of other operations currently queued on that timeline.</p>
    <p>If an operation fails with side effects that would observably change the state
 of objects on the device or potentially corrupt internal implementation/driver state,
@@ -2518,7 +2509,7 @@ These scenarios should be rare, and the signal is vital to developers because mo
 API tries to behave like nothing is wrong to avoid interrupting the runtime flow of the application:
 no validation errors are raised, most promises resolve normally, etc.</p>
    <div class="algorithm" data-algorithm="lose the device" data-timeline="device">
-     To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="lose-the-device">lose the device</dfn>(<var>device</var>, <var>reason</var>) run the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑨">device timeline</a> steps: 
+     To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="lose-the-device">lose the device</dfn>(<var>device</var>, <var>reason</var>) run the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑧">device timeline</a> steps: 
     <ol>
      <li data-md>
       <p>Set <var>device</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-valid-slot" id="ref-for-dom-gpuobjectbase-valid-slot④">[[valid]]</a></code> to <code>false</code>.</p>
@@ -3200,8 +3191,8 @@ render pass clear values) take numeric values from WebIDL (<code class="idl"><a 
 them to WGSL values (<code>bool</code>, <code>i32</code>, <code>u32</code>, <code>f32</code>, <code>f16</code>).</p>
    <div class="algorithm" data-algorithm="to WGSL type" data-timeline="device">
      To convert an IDL value <var>idlValue</var> of type <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①">double</a></code> or <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-float" id="ref-for-idl-float①">float</a></code> <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-to-wgsl-type">to WGSL type</dfn> <var>T</var>,
-    possibly throwing a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror②">TypeError</a></code>, run the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline②⓪">device timeline</a> steps: 
-    <p class="note" role="note"><span class="marker">Note:</span> This <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror③">TypeError</a></code> is generated in the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline②①">device timeline</a> and never surfaced to JavaScript.</p>
+    possibly throwing a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror②">TypeError</a></code>, run the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑨">device timeline</a> steps: 
+    <p class="note" role="note"><span class="marker">Note:</span> This <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror③">TypeError</a></code> is generated in the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline②⓪">device timeline</a> and never surfaced to JavaScript.</p>
     <ol>
      <li data-md>
       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#assert" id="ref-for-assert②">Assert</a> <var>idlValue</var> is a finite value, since it is not <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-unrestricted-double" id="ref-for-idl-unrestricted-double">unrestricted double</a></code> or <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-unrestricted-float" id="ref-for-idl-unrestricted-float">unrestricted float</a></code>.</p>
@@ -3240,8 +3231,8 @@ value is out-of-range of <code>f16</code>.</p>
    </div>
    <div class="algorithm" data-algorithm="to a texel value of texture format" data-timeline="device">
      To convert a <code class="idl"><a data-link-type="idl" href="#typedefdef-gpucolor" id="ref-for-typedefdef-gpucolor">GPUColor</a></code> <var>color</var> <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-to-a-texel-value-of-texture-format">to a texel value of texture format</dfn> <var>format</var>,
-    possibly throwing a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror④">TypeError</a></code>, run the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline②②">device timeline</a> steps: 
-    <p class="note" role="note"><span class="marker">Note:</span> This <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror⑤">TypeError</a></code> is generated in the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline②③">device timeline</a> and never surfaced to JavaScript.</p>
+    possibly throwing a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror④">TypeError</a></code>, run the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline②①">device timeline</a> steps: 
+    <p class="note" role="note"><span class="marker">Note:</span> This <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror⑤">TypeError</a></code> is generated in the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline②②">device timeline</a> and never surfaced to JavaScript.</p>
     <ol>
      <li data-md>
       <p>If the components of <var>format</var> (<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#assert" id="ref-for-assert③">assert</a> they all have the same type) are:</p>
@@ -3327,13 +3318,13 @@ chooses according to the provided options.</p>
         <li data-md>
          <p>Let <var>promise</var> be <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-new-promise" id="ref-for-a-new-promise">a new promise</a>.</p>
         <li data-md>
-         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline②④">Device timeline</a> of <var>this</var>.</p>
+         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline②③">Device timeline</a> of <var>this</var>.</p>
         <li data-md>
          <p>Return <var>promise</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline②⑤">Device timeline</a> <var>initialization steps</var>: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline②④">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
          <p>Let <var>adapter</var> be <code>null</code>.</p>
@@ -3599,13 +3590,13 @@ the adapter <a data-link-type="abstract-op" href="#abstract-opdef-expire" id="re
         <li data-md>
          <p>Let <var>adapter</var> be <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuadapter-adapter-slot" id="ref-for-dom-gpuadapter-adapter-slot⑤">[[adapter]]</a></code>.</p>
         <li data-md>
-         <p>Issue the <var>initialization steps</var> to the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline②⑥">Device timeline</a> of <var>this</var>.</p>
+         <p>Issue the <var>initialization steps</var> to the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline②⑤">Device timeline</a> of <var>this</var>.</p>
         <li data-md>
          <p>Return <var>promise</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline②⑦">Device timeline</a> <var>initialization steps</var>: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline②⑥">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
          <p>If any of the following requirements are unmet:</p>
@@ -3660,7 +3651,7 @@ or the user agent otherwise cannot fulfill the request:</p>
            <p>Let <var>device</var> be a new <a data-link-type="dfn" href="#device" id="ref-for-device①④">device</a>.</p>
           <li data-md>
            <p><a data-link-type="dfn" href="#lose-the-device" id="ref-for-lose-the-device③">Lose the device</a>(<var>device</var>, <code class="idl"><a data-link-type="idl" href="#dom-gpudevicelostreason-unknown" id="ref-for-dom-gpudevicelostreason-unknown①">"unknown"</a></code>).</p>
-           <p class="note" role="note"><span class="marker">Note:</span> This <a data-link-type="abstract-op" href="#abstract-opdef-expire" id="ref-for-abstract-opdef-expire⑥">expires</a> <var>adapter</var>, if it wasn’t already.</p>
+           <p class="note" role="note"><span class="marker">Note:</span> This <a data-link-type="abstract-op" href="#abstract-opdef-expire" id="ref-for-abstract-opdef-expire⑥">expires</a> <var>adapter</var>, if it wasn’t already expired.</p>
            <p class="note" role="note"><span class="marker">Note:</span> User agents should consider issuing developer-visible warnings in
 most or all cases when this occurs. Applications should perform
 reinitialization logic starting with <code class="idl"><a data-link-type="idl" href="#dom-gpu-requestadapter" id="ref-for-dom-gpu-requestadapter①①">requestAdapter()</a></code>.</p>
@@ -3861,11 +3852,11 @@ Outstanding asynchronous operations will fail.</p>
         <li data-md>
          <p><code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-unmap" id="ref-for-dom-gpubuffer-unmap">unmap()</a></code> all <code class="idl"><a data-link-type="idl" href="#gpubuffer" id="ref-for-gpubuffer①⓪">GPUBuffer</a></code>s from this device.</p>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline②⑧">Device timeline</a> of <var>this</var>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline②⑦">Device timeline</a> of <var>this</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline②⑨">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline②⑧">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p>Once all <span data-timeline="queue">currently-enqueued operations on any queue on this device</span> are completed, issue the subsequent steps on the <span data-timeline="device">current timeline</span>.</p>
@@ -4234,13 +4225,13 @@ a <code class="idl"><a data-link-type="idl" href="#dom-gpucommandencoder-resolve
            <p>Set <var>b</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-mapping-slot" id="ref-for-dom-gpubuffer-mapping-slot①">[[mapping]]</a></code> to <a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands①⓪">?</a> <a data-link-type="abstract-op" href="#abstract-opdef-initialize-an-active-buffer-mapping" id="ref-for-abstract-opdef-initialize-an-active-buffer-mapping">initialize an active buffer mapping</a> with mode <code class="idl"><a data-link-type="idl" href="#dom-gpumapmode-write" id="ref-for-dom-gpumapmode-write①">WRITE</a></code> and range <code>[0, <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubufferdescriptor-size" id="ref-for-dom-gpubufferdescriptor-size③">size</a></code>]</code>.</p>
          </ol>
         <li data-md>
-         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline③⓪">Device timeline</a> of <var>this</var>.</p>
+         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline②⑨">Device timeline</a> of <var>this</var>.</p>
         <li data-md>
          <p>Return <var>b</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline③①">Device timeline</a> <var>initialization steps</var>: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline③⓪">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
          <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error④">generate a validation error</a>, <a data-link-type="abstract-op" href="#abstract-opdef-invalidate" id="ref-for-abstract-opdef-invalidate①">invalidate</a> <var>b</var>, and stop.</p>
@@ -4327,11 +4318,11 @@ unmaps it, freeing any memory allocated for the mapping.</p>
         <li data-md>
          <p>Call <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-unmap" id="ref-for-dom-gpubuffer-unmap③">unmap()</a></code>.</p>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline③②">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot①⓪">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline③①">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot①⓪">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline③③">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline③②">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-internal-state-slot" id="ref-for-dom-gpubuffer-internal-state-slot②">[[internal state]]</a></code> to
@@ -4434,13 +4425,13 @@ on <code class="idl"><a data-link-type="idl" href="#gpubuffer" id="ref-for-gpubu
         <li data-md>
          <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-pending_map-slot" id="ref-for-dom-gpubuffer-pending_map-slot③">[[pending_map]]</a></code> to <var>p</var>.</p>
         <li data-md>
-         <p>Issue the <var>validation steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline③④">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot①①">[[device]]</a></code>.</p>
+         <p>Issue the <var>validation steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline③③">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot①①">[[device]]</a></code>.</p>
         <li data-md>
          <p>Return <var>p</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline③⑤">Device timeline</a> <var>validation steps</var>: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline③④">Device timeline</a> <var>validation steps</var>: 
        <ol>
         <li data-md>
          <p>If <var>size</var> is <code>undefined</code>:</p>
@@ -4500,7 +4491,7 @@ on <code class="idl"><a data-link-type="idl" href="#gpubuffer" id="ref-for-gpubu
           <li data-md>
            <p>after the completion of <span data-timeline="queue">currently-enqueued operations that use <var>this</var></span>,</p>
           <li data-md>
-           <p>and no later than the next <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline③⑥">device timeline</a> operation after the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline③⑦">device timeline</a> becomes informed of the completion of <span data-timeline="queue">all currently-enqueued operations</span> (regardless of whether they use <var>this</var>),</p>
+           <p>and no later than the next <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline③⑤">device timeline</a> operation after the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline③⑥">device timeline</a> becomes informed of the completion of <span data-timeline="queue">all currently-enqueued operations</span> (regardless of whether they use <var>this</var>),</p>
          </ul>
          <p>run the following steps:</p>
          <ol>
@@ -4696,11 +4687,11 @@ unmapped, any local modifications done by the application to the mapped ranges <
         <li data-md>
          <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-mapping-slot" id="ref-for-dom-gpubuffer-mapping-slot①⑤">[[mapping]]</a></code> to <code>null</code>.</p>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline③⑧">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot①③">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline③⑦">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot①③">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline③⑨">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline③⑧">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p>If <var>this</var> is <a data-link-type="abstract-op" href="#abstract-opdef-invalid" id="ref-for-abstract-opdef-invalid⑧">invalid</a>, return.</p>
@@ -4813,7 +4804,7 @@ and its underlying memory can be freed.</p>
       <p><code class="idl"><a data-link-type="idl" href="#typedefdef-gpusize32" id="ref-for-typedefdef-gpusize32②⑨">GPUSize32</a></code> <var>mipLevel</var></p>
     </ul>
     <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="#dictdef-gpuextent3ddict" id="ref-for-dictdef-gpuextent3ddict">GPUExtent3DDict</a></code></p>
-    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline④⓪">Device timeline</a> steps:</p>
+    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline③⑨">Device timeline</a> steps:</p>
     <ol>
      <li data-md>
       <p>Let <var>extent</var> be a new <code class="idl"><a data-link-type="idl" href="#dictdef-gpuextent3ddict" id="ref-for-dictdef-gpuextent3ddict①">GPUExtent3DDict</a></code> object.</p>
@@ -5126,13 +5117,13 @@ entry for a <code class="idl"><a data-link-type="idl" href="#dictdef-gpustoraget
         <li data-md>
          <p>Set <var>t</var>.<code class="idl"><a data-link-type="idl" href="#dom-gputexture-usage" id="ref-for-dom-gputexture-usage①">usage</a></code> to <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gputexturedescriptor-usage" id="ref-for-dom-gputexturedescriptor-usage①">usage</a></code>.</p>
         <li data-md>
-         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline④①">Device timeline</a> of <var>this</var>.</p>
+         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline④⓪">Device timeline</a> of <var>this</var>.</p>
         <li data-md>
          <p>Return <var>t</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline④②">Device timeline</a> <var>initialization steps</var>: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline④①">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
          <p>If any of the following conditions are unsatisfied <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error⑥">generate a validation error</a>, <a data-link-type="abstract-op" href="#abstract-opdef-invalidate" id="ref-for-abstract-opdef-invalidate③">invalidate</a> <var>t</var>, and stop.</p>
@@ -5159,7 +5150,7 @@ entry for a <code class="idl"><a data-link-type="idl" href="#dictdef-gpustoraget
      <li data-md>
       <p><code class="idl"><a data-link-type="idl" href="#gputexturedescriptor" id="ref-for-gputexturedescriptor⑥">GPUTextureDescriptor</a></code> <var>descriptor</var></p>
     </ul>
-    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline④③">Device timeline</a> steps:</p>
+    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline④②">Device timeline</a> steps:</p>
     <ol>
      <li data-md>
       <p>Return <code>true</code> if all of the following requirements are met, and <code>false</code> otherwise:</p>
@@ -5518,13 +5509,13 @@ texture view.</p>
         <li data-md>
          <p>Let <var>view</var> be <a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands①⑦">!</a> <a data-link-type="abstract-op" href="#abstract-opdef-create-a-new-webgpu-object" id="ref-for-abstract-opdef-create-a-new-webgpu-object②">create a new WebGPU object</a>(<var>this</var>, <code class="idl"><a data-link-type="idl" href="#gputextureview" id="ref-for-gputextureview①①">GPUTextureView</a></code>, <var>descriptor</var>).</p>
         <li data-md>
-         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline④④">Device timeline</a> of <var>this</var>.</p>
+         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline④③">Device timeline</a> of <var>this</var>.</p>
         <li data-md>
          <p>Return <var>view</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline④⑤">Device timeline</a> <var>initialization steps</var>: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline④④">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
          <p>Set <var>descriptor</var> to the result of <a data-link-type="abstract-op" href="#abstract-opdef-resolving-gputextureviewdescriptor-defaults" id="ref-for-abstract-opdef-resolving-gputextureviewdescriptor-defaults">resolving GPUTextureViewDescriptor defaults</a> for <var>this</var> with <var>descriptor</var>.</p>
@@ -5634,7 +5625,7 @@ the <a data-link-type="abstract-op" href="#abstract-opdef-array-layer-count" id=
      </div>
    </dl>
    <div class="algorithm" data-algorithm="resolving GPUTextureViewDescriptor defaults" data-timeline="device">
-     When <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-resolving-gputextureviewdescriptor-defaults">resolving GPUTextureViewDescriptor defaults</dfn> for <code class="idl"><a data-link-type="idl" href="#gputextureview" id="ref-for-gputextureview①③">GPUTextureView</a></code> <var>texture</var> with a <code class="idl"><a data-link-type="idl" href="#dictdef-gputextureviewdescriptor" id="ref-for-dictdef-gputextureviewdescriptor⑥">GPUTextureViewDescriptor</a></code> <var>descriptor</var>, run the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline④⑥">device timeline</a> steps: 
+     When <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-resolving-gputextureviewdescriptor-defaults">resolving GPUTextureViewDescriptor defaults</dfn> for <code class="idl"><a data-link-type="idl" href="#gputextureview" id="ref-for-gputextureview①③">GPUTextureView</a></code> <var>texture</var> with a <code class="idl"><a data-link-type="idl" href="#dictdef-gputextureviewdescriptor" id="ref-for-dictdef-gputextureviewdescriptor⑥">GPUTextureViewDescriptor</a></code> <var>descriptor</var>, run the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline④⑤">device timeline</a> steps: 
     <ol>
      <li data-md>
       <p>Let <var>resolved</var> be a copy of <var>descriptor</var>.</p>
@@ -6369,13 +6360,13 @@ comparison test (0.0f for pass, or 1.0f for fail) is used in the filtering opera
         <li data-md>
          <p>Let <var>s</var> be <a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands①⑨">!</a> <a data-link-type="abstract-op" href="#abstract-opdef-create-a-new-webgpu-object" id="ref-for-abstract-opdef-create-a-new-webgpu-object③">create a new WebGPU object</a>(<var>this</var>, <code class="idl"><a data-link-type="idl" href="#gpusampler" id="ref-for-gpusampler①⑥">GPUSampler</a></code>, <var>descriptor</var>).</p>
         <li data-md>
-         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline④⑦">Device timeline</a> of <var>this</var>.</p>
+         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline④⑥">Device timeline</a> of <var>this</var>.</p>
         <li data-md>
          <p>Return <var>s</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline④⑧">Device timeline</a> <var>initialization steps</var>: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline④⑦">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
          <p>If any of the following conditions are unsatisfied <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error⑨">generate a validation error</a>, <a data-link-type="abstract-op" href="#abstract-opdef-invalidate" id="ref-for-abstract-opdef-invalidate⑥">invalidate</a> <var>s</var>, and stop.</p>
@@ -6571,7 +6562,7 @@ Each member has an associated <code class="idl"><a data-link-type="idl" href="#t
    <div class="algorithm" data-algorithm="exceeds the binding slot limits" data-timeline="device">
      The <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list①">list</a> of <code class="idl"><a data-link-type="idl" href="#dictdef-gpubindgrouplayoutentry" id="ref-for-dictdef-gpubindgrouplayoutentry②⑥">GPUBindGroupLayoutEntry</a></code> values <var>entries</var> <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="exceeds-the-binding-slot-limits">exceeds the binding slot limits</dfn> of <a data-link-type="dfn" href="#supported-limits" id="ref-for-supported-limits⑨">supported limits</a> <var>limits</var> if the number of slots used toward a limit exceeds the supported value in <var>limits</var>.
     Each entry may use multiple slots toward multiple limits. 
-    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline④⑨">Device timeline</a> steps:</p>
+    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline④⑧">Device timeline</a> steps:</p>
     <ol>
      <li data-md>
       <p>For each <var>entry</var> in <var>entries</var>, if:</p>
@@ -6775,13 +6766,13 @@ created with this <code class="idl"><a data-link-type="idl" href="#gpubindgroupl
         <li data-md>
          <p>Let <var>layout</var> be <a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands②①">!</a> <a data-link-type="abstract-op" href="#abstract-opdef-create-a-new-webgpu-object" id="ref-for-abstract-opdef-create-a-new-webgpu-object④">create a new WebGPU object</a>(<var>this</var>, <code class="idl"><a data-link-type="idl" href="#gpubindgrouplayout" id="ref-for-gpubindgrouplayout①⑧">GPUBindGroupLayout</a></code>, <var>descriptor</var>).</p>
         <li data-md>
-         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑤⓪">Device timeline</a> of <var>this</var>.</p>
+         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline④⑨">Device timeline</a> of <var>this</var>.</p>
         <li data-md>
          <p>Return <var>layout</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑤①">Device timeline</a> <var>initialization steps</var>: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑤⓪">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
          <p>If any of the following conditions are unsatisfied <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⓪">generate a validation error</a>, <a data-link-type="abstract-op" href="#abstract-opdef-invalidate" id="ref-for-abstract-opdef-invalidate⑦">invalidate</a> <var>layout</var>, and stop.</p>
@@ -7010,13 +7001,13 @@ If not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" 
         <li data-md>
          <p>Let <var>bindGroup</var> be <a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands②②">!</a> <a data-link-type="abstract-op" href="#abstract-opdef-create-a-new-webgpu-object" id="ref-for-abstract-opdef-create-a-new-webgpu-object⑤">create a new WebGPU object</a>(<var>this</var>, <code class="idl"><a data-link-type="idl" href="#gpubindgroup" id="ref-for-gpubindgroup②⓪">GPUBindGroup</a></code>, <var>descriptor</var>).</p>
         <li data-md>
-         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑤②">Device timeline</a> of <var>this</var>.</p>
+         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑤①">Device timeline</a> of <var>this</var>.</p>
         <li data-md>
          <p>Return <var>bindGroup</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑤③">Device timeline</a> <var>initialization steps</var>: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑤②">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
          <p>Let <var>limits</var> be <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot②⓪">[[device]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-device-limits-slot" id="ref-for-dom-device-limits-slot④">[[limits]]</a></code>.</p>
@@ -7287,13 +7278,13 @@ pipeline, and have the following members:</p>
         <li data-md>
          <p>Let <var>pl</var> be <a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands②③">!</a> <a data-link-type="abstract-op" href="#abstract-opdef-create-a-new-webgpu-object" id="ref-for-abstract-opdef-create-a-new-webgpu-object⑥">create a new WebGPU object</a>(<var>this</var>, <code class="idl"><a data-link-type="idl" href="#gpupipelinelayout" id="ref-for-gpupipelinelayout①⑨">GPUPipelineLayout</a></code>, <var>descriptor</var>).</p>
         <li data-md>
-         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑤④">Device timeline</a> of <var>this</var>.</p>
+         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑤③">Device timeline</a> of <var>this</var>.</p>
         <li data-md>
          <p>Return <var>pl</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑤⑤">Device timeline</a> <var>initialization steps</var>: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑤④">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
          <p>Let <var>limits</var> be <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot②①">[[device]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-device-limits-slot" id="ref-for-dom-device-limits-slot⑤">[[limits]]</a></code>.</p>
@@ -7441,13 +7432,13 @@ for example in the browser developer console.</p>
         <li data-md>
          <p>Let <var>sm</var> be <a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands②④">!</a> <a data-link-type="abstract-op" href="#abstract-opdef-create-a-new-webgpu-object" id="ref-for-abstract-opdef-create-a-new-webgpu-object⑦">create a new WebGPU object</a>(<var>this</var>, <code class="idl"><a data-link-type="idl" href="#gpushadermodule" id="ref-for-gpushadermodule①⑧">GPUShaderModule</a></code>, <var>descriptor</var>).</p>
         <li data-md>
-         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑤⑥">Device timeline</a> of <var>this</var>.</p>
+         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑤⑤">Device timeline</a> of <var>this</var>.</p>
         <li data-md>
          <p>Return <var>sm</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑤⑦">Device timeline</a> <var>initialization steps</var>: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑤⑥">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
          <p>Let <var>result</var> be the result of <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#shader-module-creation" id="ref-for-shader-module-creation">shader module creation</a> with the WGSL source <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpushadermoduledescriptor-code" id="ref-for-dom-gpushadermoduledescriptor-code①">code</a></code>.</p>
@@ -7613,16 +7604,16 @@ In particular, messages may not be ordered by <code class="idl"><a data-link-typ
         <li data-md>
          <p>Let <var>promise</var> be <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-new-promise" id="ref-for-a-new-promise③">a new promise</a>.</p>
         <li data-md>
-         <p>Issue the <var>synchronization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑤⑧">Device timeline</a> of <var>this</var>.</p>
+         <p>Issue the <var>synchronization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑤⑦">Device timeline</a> of <var>this</var>.</p>
         <li data-md>
          <p>Return <var>promise</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑤⑨">Device timeline</a> <var>synchronization steps</var>: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑤⑧">Device timeline</a> <var>synchronization steps</var>: 
        <ol>
         <li data-md>
-         <p>When the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑥⓪">device timeline</a> becomes informed that <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#shader-module-creation" id="ref-for-shader-module-creation①">shader module creation</a> has
+         <p>When the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑤⑨">device timeline</a> becomes informed that <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#shader-module-creation" id="ref-for-shader-module-creation①">shader module creation</a> has
 completed for <var>this</var>:</p>
          <ol>
           <li data-md>
@@ -7723,7 +7714,7 @@ and switched using one command
      <p><code class="idl"><a data-link-type="idl" href="#dom-gpudevice-createcomputepipeline" id="ref-for-dom-gpudevice-createcomputepipeline⑥">createComputePipeline()</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-gpudevice-createrenderpipeline" id="ref-for-dom-gpudevice-createrenderpipeline⑦">createRenderPipeline()</a></code> return a pipeline object which can be used immediately in a pass encoder.</p>
      <p>When this fails, the pipeline object will be invalid and the call will generate either a <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①④">validation error</a> or an <a data-link-type="abstract-op" href="#abstract-opdef-generate-an-internal-error" id="ref-for-abstract-opdef-generate-an-internal-error">internal error</a>.</p>
      <p class="note" role="note"><span class="marker">Note:</span> A handle object is returned immediately, but actual pipeline creation is not synchronous.
-If pipeline creation takes a long time, this can incur a stall in the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑥①">device timeline</a> at some point between the creation call and execution of the <code class="idl"><a data-link-type="idl" href="#dom-gpuqueue-submit" id="ref-for-dom-gpuqueue-submit①">submit()</a></code> in which it is first used.
+If pipeline creation takes a long time, this can incur a stall in the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑥⓪">device timeline</a> at some point between the creation call and execution of the <code class="idl"><a data-link-type="idl" href="#dom-gpuqueue-submit" id="ref-for-dom-gpuqueue-submit①">submit()</a></code> in which it is first used.
 The point is unspecified, but most likely to be one of: at creation, at the first usage of the
 pipeline in <code>setPipeline()</code>, at the corresponding <code>finish()</code> of that <code class="idl"><a data-link-type="idl" href="#gpucommandencoder" id="ref-for-gpucommandencoder⑥">GPUCommandEncoder</a></code> or <code class="idl"><a data-link-type="idl" href="#gpurenderbundleencoder" id="ref-for-gpurenderbundleencoder②">GPURenderBundleEncoder</a></code>, or at <code class="idl"><a data-link-type="idl" href="#dom-gpuqueue-submit" id="ref-for-dom-gpuqueue-submit②">submit()</a></code> of that <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer⑤">GPUCommandBuffer</a></code>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="async-pipeline-creation">async pipeline creation</dfn>
@@ -7876,13 +7867,13 @@ with any other pipelines.</p>
         <li data-md>
          <p>Let <var>layout</var> be a new <code class="idl"><a data-link-type="idl" href="#gpubindgrouplayout" id="ref-for-gpubindgrouplayout④①">GPUBindGroupLayout</a></code> object.</p>
         <li data-md>
-         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑥②">Device timeline</a> of <var>this</var>.</p>
+         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑥①">Device timeline</a> of <var>this</var>.</p>
         <li data-md>
          <p>Return <var>layout</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑥③">Device timeline</a> <var>initialization steps</var>: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑥②">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
          <p>If any of the following conditions are unsatisfied <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑥">generate a validation error</a>, <a data-link-type="abstract-op" href="#abstract-opdef-invalidate" id="ref-for-abstract-opdef-invalidate①①">invalidate</a> <var>layout</var>, and stop.</p>
@@ -7899,7 +7890,7 @@ with any other pipelines.</p>
          <p class="note" role="note"><span class="marker">Note:</span> <code class="idl"><a data-link-type="idl" href="#gpubindgrouplayout" id="ref-for-gpubindgrouplayout④②">GPUBindGroupLayout</a></code> is only ever used by-value, not by-reference,
 so this is equivalent to returning the same <a data-link-type="dfn" href="#internal-object" id="ref-for-internal-object①②">internal object</a> with a new <a data-link-type="dfn" href="#webgpu-interface" id="ref-for-webgpu-interface⑧">WebGPU interface</a>.
 A new <code class="idl"><a data-link-type="idl" href="#gpubindgrouplayout" id="ref-for-gpubindgrouplayout④③">GPUBindGroupLayout</a></code> <a data-link-type="dfn" href="#webgpu-interface" id="ref-for-webgpu-interface⑨">WebGPU interface</a> is returned each time to avoid a round-trip
-between the <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑤③">Content timeline</a> and the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑥④">Device timeline</a>.</p>
+between the <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑤③">Content timeline</a> and the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑥③">Device timeline</a>.</p>
        </ol>
       </div>
      </div>
@@ -7912,7 +7903,7 @@ pipelines, and the structure of the default layout may change when altering shad
 unexpected bind group creation errors.</p>
    <div class="algorithm" data-algorithm="default pipeline layout creation" data-timeline="device">
     <p>To create a <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-default-pipeline-layout">default pipeline layout</dfn> for <code class="idl"><a data-link-type="idl" href="#gpupipelinebase" id="ref-for-gpupipelinebase⑦">GPUPipelineBase</a></code> <var>pipeline</var>,
-run the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑥⑤">device timeline</a> steps:</p>
+run the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑥④">device timeline</a> steps:</p>
     <ol>
      <li data-md>
       <p>Let <var>groupCount</var> be 0.</p>
@@ -8190,7 +8181,7 @@ If conversion fails, a validation error is generated.</p>
      </div>
    </dl>
    <div class="algorithm" data-algorithm="get the entry point" data-timeline="device">
-     To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-get-the-entry-point">get the entry point</dfn>(<code class="idl"><a data-link-type="idl" href="#namespacedef-gpushaderstage" id="ref-for-namespacedef-gpushaderstage⑧">GPUShaderStage</a></code> <var>stage</var>, <code class="idl"><a data-link-type="idl" href="#gpuprogrammablestage" id="ref-for-gpuprogrammablestage⑤">GPUProgrammableStage</a></code> <var>descriptor</var>), run the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑥⑥">device timeline</a> steps: 
+     To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-get-the-entry-point">get the entry point</dfn>(<code class="idl"><a data-link-type="idl" href="#namespacedef-gpushaderstage" id="ref-for-namespacedef-gpushaderstage⑧">GPUShaderStage</a></code> <var>stage</var>, <code class="idl"><a data-link-type="idl" href="#gpuprogrammablestage" id="ref-for-gpuprogrammablestage⑤">GPUProgrammableStage</a></code> <var>descriptor</var>), run the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑥⑤">device timeline</a> steps: 
     <ol>
      <li data-md>
       <p>If <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuprogrammablestage-entrypoint" id="ref-for-dom-gpuprogrammablestage-entrypoint③">entryPoint</a></code> is <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists②④">provided</a>:</p>
@@ -8519,13 +8510,13 @@ The outputs correspond to <code class="idl"><a data-link-type="idl" href="#dom-g
         <li data-md>
          <p>Let <var>pipeline</var> be <a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands②⑤">!</a> <a data-link-type="abstract-op" href="#abstract-opdef-create-a-new-webgpu-object" id="ref-for-abstract-opdef-create-a-new-webgpu-object⑧">create a new WebGPU object</a>(<var>this</var>, <code class="idl"><a data-link-type="idl" href="#gpucomputepipeline" id="ref-for-gpucomputepipeline①⑦">GPUComputePipeline</a></code>, <var>descriptor</var>).</p>
         <li data-md>
-         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑥⑦">Device timeline</a> of <var>this</var>.</p>
+         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑥⑥">Device timeline</a> of <var>this</var>.</p>
         <li data-md>
          <p>Return <var>pipeline</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑥⑧">Device timeline</a> <var>initialization steps</var>: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑥⑦">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
          <p>Let <var>layout</var> be a new <a data-link-type="abstract-op" href="#abstract-opdef-default-pipeline-layout" id="ref-for-abstract-opdef-default-pipeline-layout①">default pipeline layout</a> for <var>pipeline</var> if <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelinedescriptorbase-layout" id="ref-for-dom-gpupipelinedescriptorbase-layout②">layout</a></code> is <code class="idl"><a data-link-type="idl" href="#dom-gpuautolayoutmode-auto" id="ref-for-dom-gpuautolayoutmode-auto④">"auto"</a></code>,
@@ -8599,13 +8590,13 @@ is ready to be used without additional delay.</p>
         <li data-md>
          <p>Let <var>promise</var> be <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-new-promise" id="ref-for-a-new-promise④">a new promise</a>.</p>
         <li data-md>
-         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑥⑨">Device timeline</a> of <var>this</var>.</p>
+         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑥⑧">Device timeline</a> of <var>this</var>.</p>
         <li data-md>
          <p>Return <var>promise</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑦⓪">Device timeline</a> <var>initialization steps</var>: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑥⑨">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
          <p>Let <var>pipeline</var> be a new <code class="idl"><a data-link-type="idl" href="#gpucomputepipeline" id="ref-for-gpucomputepipeline②①">GPUComputePipeline</a></code> created as if <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpudevice-createcomputepipeline" id="ref-for-dom-gpudevice-createcomputepipeline⑧">createComputePipeline()</a></code> was called with <var>descriptor</var>;</p>
@@ -8626,7 +8617,7 @@ subsequent steps on <var data-timeline="content">contentTimeline</var>.</p>
           <dt data-md><a data-link-type="abstract-op" href="#abstract-opdef-invalid" id="ref-for-abstract-opdef-invalid⑨">invalid</a> due to an <a data-link-type="abstract-op" href="#abstract-opdef-generate-an-internal-error" id="ref-for-abstract-opdef-generate-an-internal-error③">internal error</a>
           <dd data-md>
            <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑤">Reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror⑦">GPUPipelineError</a></code> with <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorinit-reason" id="ref-for-dom-gpupipelineerrorinit-reason①">reason</a></code> <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorreason-internal" id="ref-for-dom-gpupipelineerrorreason-internal①">"internal"</a></code>.</p>
-          <dt data-md><a data-link-type="abstract-op" href="#abstract-opdef-invalid" id="ref-for-abstract-opdef-invalid①⓪">invalid</a> due to an <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑧">validation error</a>
+          <dt data-md><a data-link-type="abstract-op" href="#abstract-opdef-invalid" id="ref-for-abstract-opdef-invalid①⓪">invalid</a> due to a <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error①⑧">validation error</a>
           <dd data-md>
            <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑥">Reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#gpupipelineerror" id="ref-for-gpupipelineerror⑧">GPUPipelineError</a></code> with <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorinit-reason" id="ref-for-dom-gpupipelineerrorinit-reason②">reason</a></code> <code class="idl"><a data-link-type="idl" href="#dom-gpupipelineerrorreason-validation" id="ref-for-dom-gpupipelineerrorreason-validation①">"validation"</a></code>.</p>
          </dl>
@@ -8786,13 +8777,13 @@ not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id=
         <li data-md>
          <p>Let <var>pipeline</var> be <a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands②⑧">!</a> <a data-link-type="abstract-op" href="#abstract-opdef-create-a-new-webgpu-object" id="ref-for-abstract-opdef-create-a-new-webgpu-object⑨">create a new WebGPU object</a>(<var>this</var>, <code class="idl"><a data-link-type="idl" href="#gpurenderpipeline" id="ref-for-gpurenderpipeline①⑨">GPURenderPipeline</a></code>, <var>descriptor</var>).</p>
         <li data-md>
-         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑦①">Device timeline</a> of <var>this</var>.</p>
+         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑦⓪">Device timeline</a> of <var>this</var>.</p>
         <li data-md>
          <p>Return <var>pipeline</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑦②">Device timeline</a> <var>initialization steps</var>: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑦①">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
          <p>Let <var>layout</var> be a new <a data-link-type="abstract-op" href="#abstract-opdef-default-pipeline-layout" id="ref-for-abstract-opdef-default-pipeline-layout②">default pipeline layout</a> for <var>pipeline</var> if <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelinedescriptorbase-layout" id="ref-for-dom-gpupipelinedescriptorbase-layout④">layout</a></code> is <code class="idl"><a data-link-type="idl" href="#dom-gpuautolayoutmode-auto" id="ref-for-dom-gpuautolayoutmode-auto⑤">"auto"</a></code>,
@@ -8896,13 +8887,13 @@ is ready to be used without additional delay.</p>
         <li data-md>
          <p>Let <var>promise</var> be <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-new-promise" id="ref-for-a-new-promise⑤">a new promise</a>.</p>
         <li data-md>
-         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑦③">Device timeline</a> of <var>this</var>.</p>
+         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑦②">Device timeline</a> of <var>this</var>.</p>
         <li data-md>
          <p>Return <var>promise</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑦④">Device timeline</a> <var>initialization steps</var>: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑦③">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
          <p>Let <var>pipeline</var> be a new <code class="idl"><a data-link-type="idl" href="#gpurenderpipeline" id="ref-for-gpurenderpipeline②③">GPURenderPipeline</a></code> created as if <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpudevice-createrenderpipeline" id="ref-for-dom-gpudevice-createrenderpipeline⑨">createRenderPipeline()</a></code> was called with <var>descriptor</var>;</p>
@@ -8942,7 +8933,7 @@ subsequent steps on <var data-timeline="content">contentTimeline</var>.</p>
      <li data-md>
       <p><code class="idl"><a data-link-type="idl" href="#gpudevice" id="ref-for-gpudevice⑤②">GPUDevice</a></code> <var>device</var></p>
     </ul>
-    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑦⑤">Device timeline</a> steps:</p>
+    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑦④">Device timeline</a> steps:</p>
     <ol>
      <li data-md>
       <p>Return <code>true</code> if all of the following conditions are satisfied:</p>
@@ -9013,7 +9004,7 @@ must <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" 
       <p><code class="idl"><a data-link-type="idl" href="#dictdef-gpurenderpipelinedescriptor" id="ref-for-dictdef-gpurenderpipelinedescriptor①①">GPURenderPipelineDescriptor</a></code> <var>descriptor</var></p>
     </ul>
     <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-boolean" id="ref-for-idl-boolean①④">boolean</a></code></p>
-    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑦⑥">Device timeline</a> steps:</p>
+    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑦⑤">Device timeline</a> steps:</p>
     <ol>
      <li data-md>
       <p>Let <var>maxVertexShaderOutputComponents</var> be <var>device</var>.limits.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxinterstageshadercomponents" id="ref-for-dom-supported-limits-maxinterstageshadercomponents">maxInterStageShaderComponents</a></code>.</p>
@@ -9149,7 +9140,7 @@ this must be set, and it must match the index buffer format used with the draw c
      <li data-md>
       <p><code class="idl"><a data-link-type="idl" href="#gpudevice" id="ref-for-gpudevice⑤④">GPUDevice</a></code> <var>device</var></p>
     </ul>
-    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑦⑦">Device timeline</a> steps:</p>
+    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑦⑥">Device timeline</a> steps:</p>
     <ol>
      <li data-md>
       <p>Return <code>true</code> if all of the following conditions are satisfied:</p>
@@ -9262,7 +9253,7 @@ coverage mask.</p>
      <li data-md>
       <p><code class="idl"><a data-link-type="idl" href="#dictdef-gpumultisamplestate" id="ref-for-dictdef-gpumultisamplestate④">GPUMultisampleState</a></code> <var>descriptor</var></p>
     </ul>
-    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑦⑧">Device timeline</a> steps:</p>
+    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑦⑦">Device timeline</a> steps:</p>
     <ol>
      <li data-md>
       <p>Return <code>true</code> if all of the following conditions are satisfied:</p>
@@ -9301,7 +9292,7 @@ this pipeline writes to.</p>
      <li data-md>
       <p><code class="idl"><a data-link-type="idl" href="#gpupipelinelayout" id="ref-for-gpupipelinelayout③①">GPUPipelineLayout</a></code> <var>layout</var></p>
     </ul>
-    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑦⑨">Device timeline</a> steps:</p>
+    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑦⑧">Device timeline</a> steps:</p>
     <ol>
      <li data-md>
       <p>Return <code>true</code> if all of the following requirements are met:</p>
@@ -9378,7 +9369,7 @@ or <code class="idl"><a data-link-type="idl" href="#dom-gpublendfactor-src-alpha
      <li data-md>
       <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence①⓪">sequence</a>&lt;<code class="idl"><a data-link-type="idl" href="#dictdef-gpucolortargetstate" id="ref-for-dictdef-gpucolortargetstate④">GPUColorTargetState</a></code>?> <var>targets</var></p>
     </ul>
-    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑧⓪">Device timeline</a> steps:</p>
+    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑦⑨">Device timeline</a> steps:</p>
     <ol>
      <li data-md>
       <p>Let <var>formats</var> be an empty <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑥">list</a>&lt;<code class="idl"><a data-link-type="idl" href="#enumdef-gputextureformat" id="ref-for-enumdef-gputextureformat②⑦">GPUTextureFormat</a></code>?></p>
@@ -9691,7 +9682,7 @@ bits are written to when performing stencil operations.</p>
      <li data-md>
       <p><code class="idl"><a data-link-type="idl" href="#dictdef-gpudepthstencilstate" id="ref-for-dictdef-gpudepthstencilstate⑨">GPUDepthStencilState</a></code> <var>descriptor</var></p>
     </ul>
-    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑧①">Device timeline</a> steps:</p>
+    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑧⓪">Device timeline</a> steps:</p>
     <ol>
      <li data-md>
       <p>Return <code>true</code> if, and only if, all of the following conditions are satisfied:</p>
@@ -10204,7 +10195,7 @@ Every location must be unique within the <code class="idl"><a data-link-type="id
      <li data-md>
       <p><code class="idl"><a data-link-type="idl" href="#gpuprogrammablestage" id="ref-for-gpuprogrammablestage①①">GPUProgrammableStage</a></code> <var>vertexStage</var></p>
     </ul>
-    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑧②">Device timeline</a> steps:</p>
+    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑧①">Device timeline</a> steps:</p>
     <ol>
      <li data-md>
       <p>Return <code>true</code>, if and only if, all of the following conditions are satisfied:</p>
@@ -10271,7 +10262,7 @@ all of the following are true:</p>
      <li data-md>
       <p><code class="idl"><a data-link-type="idl" href="#gpupipelinelayout" id="ref-for-gpupipelinelayout③②">GPUPipelineLayout</a></code> <var>layout</var></p>
     </ul>
-    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑧③">Device timeline</a> steps:</p>
+    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑧②">Device timeline</a> steps:</p>
     <ol>
      <li data-md>
       <p>Return <code>true</code>, if and only if, all of the following conditions are satisfied:</p>
@@ -10771,7 +10762,7 @@ The encoder becomes "<a data-link-type="dfn" href="#encoder-state-open" id="ref-
      <p>Any command issued in this state will <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②①">generate a validation error</a>.</p>
    </dl>
    <div class="validusage algorithm" data-algorithm="Validate the encoder state" data-timeline="device">
-     To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-validate-the-encoder-state">Validate the encoder state</dfn> of <code class="idl"><a data-link-type="idl" href="#gpucommandsmixin" id="ref-for-gpucommandsmixin③">GPUCommandsMixin</a></code> <var>encoder</var> run the <br> following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑧④">device timeline</a> steps: 
+     To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-validate-the-encoder-state">Validate the encoder state</dfn> of <code class="idl"><a data-link-type="idl" href="#gpucommandsmixin" id="ref-for-gpucommandsmixin③">GPUCommandsMixin</a></code> <var>encoder</var> run the <br> following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑧③">device timeline</a> steps: 
     <ol>
      <li data-md>
       <p>If <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-state-slot" id="ref-for-dom-gpucommandsmixin-state-slot">[[state]]</a></code> is:</p>
@@ -10789,7 +10780,7 @@ The encoder becomes "<a data-link-type="dfn" href="#encoder-state-open" id="ref-
     </ol>
    </div>
    <div class="algorithm" data-algorithm="Enqueue a command" data-timeline="device">
-     To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-enqueue-a-command">Enqueue a command</dfn> on <code class="idl"><a data-link-type="idl" href="#gpucommandsmixin" id="ref-for-gpucommandsmixin④">GPUCommandsMixin</a></code> <var>encoder</var> which issues the steps of a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command⑥">GPU Command</a> <var>command</var>, run the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑧⑤">device timeline</a> steps: 
+     To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-enqueue-a-command">Enqueue a command</dfn> on <code class="idl"><a data-link-type="idl" href="#gpucommandsmixin" id="ref-for-gpucommandsmixin④">GPUCommandsMixin</a></code> <var>encoder</var> which issues the steps of a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command⑥">GPU Command</a> <var>command</var>, run the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑧④">device timeline</a> steps: 
     <ol>
      <li data-md>
       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append③">Append</a> <var>command</var> to <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot">[[commands]]</a></code>.</p>
@@ -10883,13 +10874,13 @@ The encoder becomes "<a data-link-type="dfn" href="#encoder-state-open" id="ref-
         <li data-md>
          <p>Let <var>e</var> be <a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands②⑨">!</a> <a data-link-type="abstract-op" href="#abstract-opdef-create-a-new-webgpu-object" id="ref-for-abstract-opdef-create-a-new-webgpu-object①⓪">create a new WebGPU object</a>(<var>this</var>, <code class="idl"><a data-link-type="idl" href="#gpucommandencoder" id="ref-for-gpucommandencoder①⑦">GPUCommandEncoder</a></code>, <var>descriptor</var>).</p>
         <li data-md>
-         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑧⑥">Device timeline</a> of <var>this</var>.</p>
+         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑧⑤">Device timeline</a> of <var>this</var>.</p>
         <li data-md>
          <p>Return <var>e</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑧⑦">Device timeline</a> <var>initialization steps</var>: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑧⑥">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
          <p>If any of the following conditions are unsatisfied <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②③">generate a validation error</a>, <a data-link-type="abstract-op" href="#abstract-opdef-invalidate" id="ref-for-abstract-opdef-invalidate②①">invalidate</a> <var>e</var>, and stop.</p>
@@ -10956,13 +10947,13 @@ gpuDevice<c- p>.</c->queue<c- p>.</c->submit<c- p>([</c->commandBuffer<c- p>]);<
         <li data-md>
          <p>Let <var>pass</var> be a new <code class="idl"><a data-link-type="idl" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder⑨">GPURenderPassEncoder</a></code> object.</p>
         <li data-md>
-         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑧⑧">Device timeline</a> of <var>this</var>.</p>
+         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑧⑦">Device timeline</a> of <var>this</var>.</p>
         <li data-md>
          <p>Return <var>pass</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑧⑨">Device timeline</a> <var>initialization steps</var>: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑧⑧">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state">Validate the encoder state</a> of <var>this</var>.
@@ -11096,13 +11087,13 @@ write the <a data-link-type="abstract-op" href="#abstract-opdef-current-queue-ti
         <li data-md>
          <p>Let <var>pass</var> be a new <code class="idl"><a data-link-type="idl" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder⑦">GPUComputePassEncoder</a></code> object.</p>
         <li data-md>
-         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨⓪">Device timeline</a> of <var>this</var>.</p>
+         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑧⑨">Device timeline</a> of <var>this</var>.</p>
         <li data-md>
          <p>Return <var>pass</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨①">Device timeline</a> <var>initialization steps</var>: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨⓪">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state①">Validate the encoder state</a> of <var>this</var>.
@@ -11204,11 +11195,11 @@ write the <a data-link-type="abstract-op" href="#abstract-opdef-current-queue-ti
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑥⑤">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨②">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot③②">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨①">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot③②">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨③">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨②">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state②">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
@@ -11291,11 +11282,11 @@ beginning at <var>destinationOffset</var>.</p>
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑥⑥">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨④">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot③③">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨③">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot③③">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨⑤">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨④">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state③">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
@@ -11376,11 +11367,11 @@ beginning at <var>destinationOffset</var>.</p>
         <li data-md>
          <p><a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands③②">?</a> <a data-link-type="abstract-op" href="#abstract-opdef-validate-gpuextent3d-shape" id="ref-for-abstract-opdef-validate-gpuextent3d-shape①">validate GPUExtent3D shape</a>(<var>copySize</var>).</p>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨⑥">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot③④">[[device]]</a></code>:</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨⑤">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot③④">[[device]]</a></code>:</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨⑦">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨⑥">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state④">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
@@ -11484,11 +11475,11 @@ multiple continuous <a data-link-type="dfn" href="#texture-subresources" id="ref
         <li data-md>
          <p><a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands③④">?</a> <a data-link-type="abstract-op" href="#abstract-opdef-validate-gpuextent3d-shape" id="ref-for-abstract-opdef-validate-gpuextent3d-shape②">validate GPUExtent3D shape</a>(<var>copySize</var>).</p>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨⑧">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot③⑤">[[device]]</a></code>:</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨⑦">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot③⑤">[[device]]</a></code>:</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨⑨">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨⑧">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state⑤">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
@@ -11595,11 +11586,11 @@ multiple continuous <a data-link-type="dfn" href="#texture-subresources" id="ref
         <li data-md>
          <p><a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands③⑦">?</a> <a data-link-type="abstract-op" href="#abstract-opdef-validate-gpuextent3d-shape" id="ref-for-abstract-opdef-validate-gpuextent3d-shape③">validate GPUExtent3D shape</a>(<var>copySize</var>).</p>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪⓪">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot③⑥">[[device]]</a></code>:</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨⑨">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot③⑥">[[device]]</a></code>:</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪①">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪⓪">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state⑥">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
@@ -11702,11 +11693,11 @@ the <a data-link-type="abstract-op" href="#abstract-opdef-set-of-subresources-fo
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦⓪">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪②">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot③⑦">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪①">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot③⑦">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪③">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪②">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state⑦">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
@@ -11790,13 +11781,13 @@ command encoder can no longer be used.</p>
         <li data-md>
          <p>Let <var>commandBuffer</var> be a new <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer①⑧">GPUCommandBuffer</a></code>.</p>
         <li data-md>
-         <p>Issue the <var>finish steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪④">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot③⑧">[[device]]</a></code>.</p>
+         <p>Issue the <var>finish steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪③">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot③⑧">[[device]]</a></code>.</p>
         <li data-md>
          <p>Return <var>commandBuffer</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪⑤">Device timeline</a> <var>finish steps</var>: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪④">Device timeline</a> <var>finish steps</var>: 
        <ol>
         <li data-md>
          <p>Let <var>validationSucceeded</var> be <code>true</code> if all of the following requirements are met, and <code>false</code> otherwise.</p>
@@ -11878,11 +11869,11 @@ It must only be included by interfaces which also include those mixins.</p>
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦②">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪⑥">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot③⑨">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪⑤">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot③⑨">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪⑦">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪⑥">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state⑧">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
@@ -12013,7 +12004,7 @@ of a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.
      </div>
    </dl>
    <div class="algorithm" data-algorithm="Iterate over each dynamic binding offset" data-timeline="device">
-     To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-iterate-over-each-dynamic-binding-offset">Iterate over each dynamic binding offset</dfn> in a given <code class="idl"><a data-link-type="idl" href="#gpubindgroup" id="ref-for-gpubindgroup③④">GPUBindGroup</a></code> <var>bindGroup</var> with a given list of <var>steps</var> to be executed for each dynamic offset, run the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪⑧">device timeline</a> steps: 
+     To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-iterate-over-each-dynamic-binding-offset">Iterate over each dynamic binding offset</dfn> in a given <code class="idl"><a data-link-type="idl" href="#gpubindgroup" id="ref-for-gpubindgroup③④">GPUBindGroup</a></code> <var>bindGroup</var> with a given list of <var>steps</var> to be executed for each dynamic offset, run the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪⑦">device timeline</a> steps: 
     <ol>
      <li data-md>
       <p>Let <var>dynamicOffsetIndex</var> be <code>0</code>.</p>
@@ -12050,7 +12041,7 @@ of a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.
      <dd data-md>
       <p>Pipeline to validate <var>encoder</var>s bind groups are compatible with.</p>
     </dl>
-    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪⑨">Device timeline</a> steps:</p>
+    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪⑧">Device timeline</a> steps:</p>
     <ol>
      <li data-md>
       <p>If any of the following conditions are unsatisfied, return <code>false</code>:</p>
@@ -12094,7 +12085,7 @@ the <a data-link-type="dfn" href="#minimum-buffer-binding-size" id="ref-for-mini
      <dd data-md>
       <p>Pipeline to validate <var>encoder</var>s bind groups are compatible with.</p>
     </dl>
-    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①⓪">Device timeline</a> steps:</p>
+    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪⑨">Device timeline</a> steps:</p>
     <ol>
      <li data-md>
       <p>For each <var>stage</var> in [<code class="idl"><a data-link-type="idl" href="#dom-gpushaderstage-vertex" id="ref-for-dom-gpushaderstage-vertex⑤">VERTEX</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-gpushaderstage-fragment" id="ref-for-dom-gpushaderstage-fragment④">FRAGMENT</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-gpushaderstage-compute" id="ref-for-dom-gpushaderstage-compute④">COMPUTE</a></code>]:</p>
@@ -12202,11 +12193,11 @@ It must only be included by interfaces which also include those mixins.</p>
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦④">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①①">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④①">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①⓪">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④①">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①②">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①①">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state⑨">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
@@ -12225,11 +12216,11 @@ It must only be included by interfaces which also include those mixins.</p>
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦⑤">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①③">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④②">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①②">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④②">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①④">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①③">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state①⓪">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
@@ -12274,11 +12265,11 @@ It must only be included by interfaces which also include those mixins.</p>
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦⑥">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①⑤">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④③">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①④">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④③">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①⑥">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①⑤">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state①①">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
@@ -12376,11 +12367,11 @@ implementation-defined and may not increase monotonically. See <a href="#timesta
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦⑦">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①⑦">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④④">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①⑥">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④④">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①⑧">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①⑦">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state①②">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
@@ -12447,11 +12438,11 @@ See <a href="#computing-operations">§ 23.2 Computing</a> for the detailed spe
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦⑧">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①⑨">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④⑤">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①⑧">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④⑤">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②⓪">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①⑨">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state①③">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
@@ -12525,11 +12516,11 @@ dispatchIndirectParameters<c- p>[</c-><c- mf>2</c-><c- p>]</c-> <c- o>=</c-> wor
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦⑨">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②①">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④⑥">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②⓪">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④⑥">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②②">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②①">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state①④">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
@@ -12593,11 +12584,11 @@ called the compute pass encoder can no longer be used.</p>
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧⓪">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②③">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④⑦">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②②">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④⑦">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②④">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②③">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p>Let <var>parentEncoder</var> be <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-command_encoder-slot" id="ref-for-dom-gpurenderpassencoder-command_encoder-slot">[[command_encoder]]</a></code>.</p>
@@ -12837,7 +12828,7 @@ must return true.</p>
      <li data-md>
       <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence①⑦">sequence</a>&lt;<code class="idl"><a data-link-type="idl" href="#dictdef-gpurenderpasscolorattachment" id="ref-for-dictdef-gpurenderpasscolorattachment③">GPURenderPassColorAttachment</a></code>?> <var>colorAttachments</var></p>
     </ul>
-    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②⑤">Device timeline</a> steps:</p>
+    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②④">Device timeline</a> steps:</p>
     <ol>
      <li data-md>
       <p>Let <var>formats</var> be an empty <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list①⑥">list</a>&lt;<code class="idl"><a data-link-type="idl" href="#enumdef-gputextureformat" id="ref-for-enumdef-gputextureformat③⑤">GPUTextureFormat</a></code>?></p>
@@ -12957,7 +12948,7 @@ the corresponding WGSL primitive type (<code>f32</code>, <code>i32</code>, or <c
     </ol>
    </div>
    <div class="algorithm" data-algorithm="renderable texture view" data-timeline="device">
-     A <code class="idl"><a data-link-type="idl" href="#gputextureview" id="ref-for-gputextureview③③">GPUTextureView</a></code> <var>view</var> is a <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-renderable-texture-view">renderable texture view</dfn> if the all of the requirements in the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②⑥">device timeline</a> steps are met: 
+     A <code class="idl"><a data-link-type="idl" href="#gputextureview" id="ref-for-gputextureview③③">GPUTextureView</a></code> <var>view</var> is a <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-renderable-texture-view">renderable texture view</dfn> if the all of the requirements in the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②⑤">device timeline</a> steps are met: 
     <div class="validusage">
      <ol>
       <li data-md>
@@ -13181,7 +13172,7 @@ It determines compatibility between render passes, render bundles, and render pi
       <p><code class="idl"><a data-link-type="idl" href="#dictdef-gpurenderpassdescriptor" id="ref-for-dictdef-gpurenderpassdescriptor⑥">GPURenderPassDescriptor</a></code> <var>descriptor</var></p>
     </ul>
     <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="#dictdef-gpurenderpasslayout" id="ref-for-dictdef-gpurenderpasslayout③">GPURenderPassLayout</a></code></p>
-    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②⑦">Device timeline</a> steps:</p>
+    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②⑥">Device timeline</a> steps:</p>
     <ol>
      <li data-md>
       <p>Let <var>layout</var> be a new <code class="idl"><a data-link-type="idl" href="#dictdef-gpurenderpasslayout" id="ref-for-dictdef-gpurenderpasslayout④">GPURenderPassLayout</a></code> object.</p>
@@ -13228,7 +13219,7 @@ or <code>null</code> if not <a data-link-type="dfn" href="https://infra.spec.wha
       <p><code class="idl"><a data-link-type="idl" href="#dictdef-gpurenderpipelinedescriptor" id="ref-for-dictdef-gpurenderpipelinedescriptor①②">GPURenderPipelineDescriptor</a></code> <var>descriptor</var></p>
     </ul>
     <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="#dictdef-gpurenderpasslayout" id="ref-for-dictdef-gpurenderpasslayout⑤">GPURenderPassLayout</a></code></p>
-    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②⑧">Device timeline</a> steps:</p>
+    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②⑦">Device timeline</a> steps:</p>
     <ol>
      <li data-md>
       <p>Let <var>layout</var> be a new <code class="idl"><a data-link-type="idl" href="#dictdef-gpurenderpasslayout" id="ref-for-dictdef-gpurenderpasslayout⑥">GPURenderPassLayout</a></code> object.</p>
@@ -13269,11 +13260,11 @@ called the render pass encoder can no longer be used.</p>
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧①">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②⑨">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④⑧">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②⑧">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④⑧">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①③⓪">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②⑨">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p>Let <var>parentEncoder</var> be <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassencoder-command_encoder-slot" id="ref-for-dom-gpurenderpassencoder-command_encoder-slot①">[[command_encoder]]</a></code>.</p>
@@ -13390,7 +13381,7 @@ empty.</p>
    <div class="algorithm" data-algorithm="Enqueue a render command" data-timeline="device">
      To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-enqueue-a-render-command">Enqueue a render command</dfn> on <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin⑥">GPURenderCommandsMixin</a></code> <var>encoder</var> which
     issues the steps of a <a data-link-type="dfn" href="#gpu-command" id="ref-for-gpu-command①⑤">GPU Command</a> <var>command</var> with <a data-link-type="dfn" href="#renderstate" id="ref-for-renderstate③">RenderState</a> <var>renderState</var>, run the
-    following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①③①">device timeline</a> steps: 
+    following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①③⓪">device timeline</a> steps: 
     <ol>
      <li data-md>
       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append⑨">Append</a> <var>command</var> to <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucommandsmixin-commands-slot" id="ref-for-dom-gpucommandsmixin-commands-slot①⓪">[[commands]]</a></code>.</p>
@@ -13432,11 +13423,11 @@ empty.</p>
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧②">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①③②">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④⑨">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①③①">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④⑨">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①③③">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①③②">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state①⑤">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
@@ -13507,11 +13498,11 @@ empty.</p>
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧③">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①③④">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤⓪">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①③③">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤⓪">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①③⑤">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①③④">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state①⑥">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
@@ -13590,11 +13581,11 @@ empty.</p>
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧④">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①③⑥">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤①">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①③⑤">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤①">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①③⑦">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①③⑥">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state①⑦">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
@@ -13691,11 +13682,11 @@ See <a href="#rendering-operations">§ 23.3 Rendering</a> for the detailed spe
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧⑤">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①③⑧">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤③">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①③⑦">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤③">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①③⑨">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①③⑧">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state①⑧">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
@@ -13813,11 +13804,11 @@ See <a href="#rendering-operations">§ 23.3 Rendering</a> for the detailed spe
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧⑥">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①④⓪">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤④">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①③⑨">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤④">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①④①">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①④⓪">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state①⑨">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
@@ -13922,11 +13913,11 @@ drawIndirectParameters<c- p>[</c-><c- mf>3</c-><c- p>]</c-> <c- o>=</c-> firstIn
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧⑦">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①④②">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤⑤">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①④①">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤⑤">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①④③">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①④②">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state②⓪">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
@@ -14023,11 +14014,11 @@ drawIndexedIndirectParameters<c- p>[</c-><c- mf>4</c-><c- p>]</c-> <c- o>=</c-> 
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧⑧">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①④④">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤⑥">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①④③">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤⑥">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①④⑤">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①④④">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state②①">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
@@ -14084,7 +14075,7 @@ with the states from <var>passState</var> and <var>renderState</var>.</p>
    </dl>
    <div class="algorithm" data-algorithm="valid to draw" data-timeline="device">
      To determine if it’s <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-valid-to-draw">valid to draw</dfn> with <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①④">GPURenderCommandsMixin</a></code> <var>encoder</var>,
-    run the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①④⑥">device timeline</a> steps: 
+    run the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①④⑤">device timeline</a> steps: 
     <ol>
      <li data-md>
       <p>If any of the following conditions are unsatisfied, return <code>false</code>:</p>
@@ -14121,7 +14112,7 @@ must be <code>true</code>.</p>
    </div>
    <div class="algorithm" data-algorithm="valid to draw indexed" data-timeline="device">
      To determine if it’s <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-valid-to-draw-indexed">valid to draw indexed</dfn> with <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①⑤">GPURenderCommandsMixin</a></code> <var>encoder</var>,
-    run the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①④⑦">device timeline</a> steps: 
+    run the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①④⑥">device timeline</a> steps: 
     <ol>
      <li data-md>
       <p>If any of the following conditions are unsatisfied, return <code>false</code>:</p>
@@ -14207,11 +14198,11 @@ attachments used by this encoder.</p>
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧⑨">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①④⑧">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤⑧">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①④⑦">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤⑧">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①④⑨">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①④⑧">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state②②">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
@@ -14301,11 +14292,11 @@ rectangle will be discarded.</p>
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑨⓪">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑤⓪">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤⑨">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①④⑨">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤⑨">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑤①">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑤⓪">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state②③">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
@@ -14361,11 +14352,11 @@ rectangle will be discarded.</p>
         <li data-md>
          <p><a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands③⑧">?</a> <a data-link-type="abstract-op" href="#abstract-opdef-validate-gpucolor-shape" id="ref-for-abstract-opdef-validate-gpucolor-shape①">validate GPUColor shape</a>(<var>color</var>).</p>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑤②">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥⓪">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑤①">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥⓪">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑤③">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑤②">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state②④">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
@@ -14410,11 +14401,11 @@ the <code class="idl"><a data-link-type="idl" href="#dom-gpustenciloperation-rep
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑨②">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑤④">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥①">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑤③">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥①">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑤⑤">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑤④">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state②⑤">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
@@ -14460,11 +14451,11 @@ the <code class="idl"><a data-link-type="idl" href="#dom-gpustenciloperation-rep
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑨③">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑤⑥">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥②">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑤⑤">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥②">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑤⑦">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑤⑥">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state②⑥">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
@@ -14505,11 +14496,11 @@ the <code class="idl"><a data-link-type="idl" href="#dom-gpustenciloperation-rep
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑨④">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑤⑧">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥③">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑤⑦">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥③">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑤⑨">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑤⑧">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state②⑦">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
@@ -14577,11 +14568,11 @@ This occurs even if zero <code class="idl"><a data-link-type="idl" href="#gpuren
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑨⑤">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑥⓪">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥④">[[device]]</a></code>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑤⑨">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥④">[[device]]</a></code>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑥①">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑥⓪">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-validate-the-encoder-state" id="ref-for-abstract-opdef-validate-the-encoder-state②⑧">Validate the encoder state</a> of <var>this</var>. If it returns false, stop.</p>
@@ -14716,13 +14707,13 @@ changing.</p>
         <li data-md>
          <p>Let <var>e</var> be <a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands④①">!</a> <a data-link-type="abstract-op" href="#abstract-opdef-create-a-new-webgpu-object" id="ref-for-abstract-opdef-create-a-new-webgpu-object①①">create a new WebGPU object</a>(<var>this</var>, <code class="idl"><a data-link-type="idl" href="#gpurenderbundleencoder" id="ref-for-gpurenderbundleencoder①③">GPURenderBundleEncoder</a></code>, <var>descriptor</var>).</p>
         <li data-md>
-         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑥②">Device timeline</a> of <var>this</var>.</p>
+         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑥①">Device timeline</a> of <var>this</var>.</p>
         <li data-md>
          <p>Return <var>e</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑥③">Device timeline</a> <var>initialization steps</var>: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑥②">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
          <p>If any of the following conditions are unsatisfied <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⑦">generate a validation error</a>, <a data-link-type="abstract-op" href="#abstract-opdef-invalidate" id="ref-for-abstract-opdef-invalidate⑤④">invalidate</a> <var>e</var>, and stop.</p>
@@ -14821,13 +14812,13 @@ in.</p>
         <li data-md>
          <p>Let <var>renderBundle</var> be a new <code class="idl"><a data-link-type="idl" href="#gpurenderbundle" id="ref-for-gpurenderbundle①⑦">GPURenderBundle</a></code>.</p>
         <li data-md>
-         <p>Issue the <var>finish steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑥④">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥⑦">[[device]]</a></code>.</p>
+         <p>Issue the <var>finish steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑥③">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥⑦">[[device]]</a></code>.</p>
         <li data-md>
          <p>Return <var>renderBundle</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑥⑤">Device timeline</a> <var>finish steps</var>: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑥④">Device timeline</a> <var>finish steps</var>: 
        <ol>
         <li data-md>
          <p>Let <var>validationSucceeded</var> be <code>true</code> if all of the following requirements are met, and <code>false</code> otherwise.</p>
@@ -14976,11 +14967,11 @@ throw <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg
          <p>Let <var>contents</var> be the <var>contentsSize</var> elements of <var>dataContents</var> starting at
 an offset of <var>dataOffset</var> elements.</p>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑥⑥">Device timeline</a> of <var>this</var>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑥⑤">Device timeline</a> of <var>this</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑥⑦">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑥⑥">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p>If any of the following conditions are unsatisfied, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error②⑨">generate a validation error</a> and stop.</p>
@@ -15062,11 +15053,11 @@ an offset of <var>dataOffset</var> elements.</p>
         <li data-md>
          <p>Let <var>dataBytes</var> be <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-get-buffer-source-copy" id="ref-for-dfn-get-buffer-source-copy②">a copy of the bytes held by the buffer source</a> <var>data</var>.</p>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑥⑧">Device timeline</a> of <var>this</var>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑥⑦">Device timeline</a> of <var>this</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑥⑨">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑥⑧">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p>Let <var>texture</var> be <var>destination</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-texture" id="ref-for-dom-gpuimagecopytexture-texture①⑦">texture</a></code>.</p>
@@ -15210,11 +15201,11 @@ throw a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.what
         <li data-md>
          <p>Let <var>usability</var> be <a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands④⑦">?</a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/canvas.html#check-the-usability-of-the-image-argument" id="ref-for-check-the-usability-of-the-image-argument①">check the usability of the image argument</a>(<var>source</var>).</p>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑦⓪">Device timeline</a> of <var>this</var>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑥⑨">Device timeline</a> of <var>this</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑦①">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑦⓪">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p>Let <var>texture</var> be <var>destination</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-texture" id="ref-for-dom-gpuimagecopytexture-texture①⑧">texture</a></code>.</p>
@@ -15305,11 +15296,11 @@ formats (which all support <code class="idl"><a data-link-type="idl" href="#dom-
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①⓪①">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑦②">Device timeline</a> of <var>this</var>:</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑦①">Device timeline</a> of <var>this</var>:</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑦③">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑦②">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error③②">generate a validation error</a> and stop.</p>
@@ -15380,16 +15371,16 @@ on <code class="idl"><a data-link-type="idl" href="#gpubuffer" id="ref-for-gpubu
         <li data-md>
          <p>Let <var>promise</var> be <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-new-promise" id="ref-for-a-new-promise⑥">a new promise</a>.</p>
         <li data-md>
-         <p>Issue the <var>synchronization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑦④">Device timeline</a> of <var>this</var>.</p>
+         <p>Issue the <var>synchronization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑦③">Device timeline</a> of <var>this</var>.</p>
         <li data-md>
          <p>Return <var>promise</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑦⑤">Device timeline</a> <var>synchronization steps</var>: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑦④">Device timeline</a> <var>synchronization steps</var>: 
        <ol>
         <li data-md>
-         <p>When the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑦⑥">device timeline</a> becomes informed of the completion of all <span data-timeline="queue">currently-enqueued operations</span> on <var>this</var>, or
+         <p>When the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑦⑤">device timeline</a> becomes informed of the completion of all <span data-timeline="queue">currently-enqueued operations</span> on <var>this</var>, or
 if <var>this</var> is lost, or when <var>this</var> <a data-link-type="dfn" href="#lose-the-device" id="ref-for-lose-the-device⑥">becomes lost</a>:</p>
          <ol>
           <li data-md>
@@ -15432,7 +15423,7 @@ if <var>this</var> is lost, or when <var>this</var> <a data-link-type="dfn" href
     <dd data-md>
      <p>The current state of the <code class="idl"><a data-link-type="idl" href="#gpuqueryset" id="ref-for-gpuqueryset②②">GPUQuerySet</a></code>.</p>
    </dl>
-   <p>Each <code class="idl"><a data-link-type="idl" href="#gpuqueryset" id="ref-for-gpuqueryset②③">GPUQuerySet</a></code> has a current <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="query-set-state">query set state</dfn> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑦⑦">Device timeline</a> which is one of the following:</p>
+   <p>Each <code class="idl"><a data-link-type="idl" href="#gpuqueryset" id="ref-for-gpuqueryset②③">GPUQuerySet</a></code> has a current <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="query-set-state">query set state</dfn> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑦⑥">Device timeline</a> which is one of the following:</p>
    <dl>
     <dt data-md>"<dfn class="dfn-paneled" data-dfn-for="query set state" data-dfn-type="dfn" data-noexport id="query-set-state-available">available</dfn>"
     <dd data-md>
@@ -15499,13 +15490,13 @@ but <code class="idl"><a data-link-type="idl" href="#timestamp-query" id="ref-fo
         <li data-md>
          <p>Set <var>q</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuqueryset-count" id="ref-for-dom-gpuqueryset-count②">count</a></code> to <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuquerysetdescriptor-count" id="ref-for-dom-gpuquerysetdescriptor-count①">count</a></code>.</p>
         <li data-md>
-         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑦⑧">Device timeline</a> of <var>this</var>.</p>
+         <p>Issue the <var>initialization steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑦⑦">Device timeline</a> of <var>this</var>.</p>
         <li data-md>
          <p>Return <var>q</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑦⑨">Device timeline</a> <var>initialization steps</var>: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑦⑧">Device timeline</a> <var>initialization steps</var>: 
        <ol>
         <li data-md>
          <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error③③">generate a validation error</a>, <a data-link-type="abstract-op" href="#abstract-opdef-invalidate" id="ref-for-abstract-opdef-invalidate⑤⑦">invalidate</a> <var>q</var>, and stop.</p>
@@ -15590,7 +15581,7 @@ in nanoseconds, relative to an implementation-defined point in the past.</p>
      <li data-md>
       <p>Return the result of calling <a data-link-type="dfn" href="https://w3c.github.io/hr-time/#dfn-coarsen-time" id="ref-for-dfn-coarsen-time">coarsen time</a> on <var>fineTimestamp</var>.</p>
     </ul>
-    <p class="note" role="note"><span class="marker">Note:</span> Since cross-origin isolation may not apply to the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑧⓪">device timeline</a> or <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline⑥⑥">queue timeline</a>, <code>crossOriginIsolatedCapability</code> is never set to <code>true</code>.</p>
+    <p class="note" role="note"><span class="marker">Note:</span> Since cross-origin isolation may not apply to the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑦⑨">device timeline</a> or <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline⑥⑥">queue timeline</a>, <code>crossOriginIsolatedCapability</code> is never set to <code>true</code>.</p>
    </div>
    <div class="algorithm" data-algorithm="Validate timestampWrites" data-timeline="device">
      <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-validate-timestampwrites">Validate timestampWrites</dfn>(<var>device</var>, <var>timestampWrites</var>) 
@@ -15601,7 +15592,7 @@ in nanoseconds, relative to an implementation-defined point in the past.</p>
      <li data-md>
       <p><code>(<code class="idl"><a data-link-type="idl" href="#dictdef-gpucomputepasstimestampwrites" id="ref-for-dictdef-gpucomputepasstimestampwrites②">GPUComputePassTimestampWrites</a></code> or <code class="idl"><a data-link-type="idl" href="#dictdef-gpurenderpasstimestampwrites" id="ref-for-dictdef-gpurenderpasstimestampwrites②">GPURenderPassTimestampWrites</a></code>)</code> <var>timestampWrites</var></p>
     </ul>
-    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑧①">Device timeline</a> steps:</p>
+    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑧⓪">Device timeline</a> steps:</p>
     <ol>
      <li data-md>
       <p>Return <code>true</code> if the following requirements are met, and <code>false</code> if not:</p>
@@ -15761,11 +15752,11 @@ This clears the drawing buffer to transparent black (in <a data-link-type="abstr
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-replace-the-drawing-buffer" id="ref-for-abstract-opdef-replace-the-drawing-buffer③">Replace the drawing buffer</a> of <var>this</var>, which resets <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-drawingbuffer-slot" id="ref-for-dom-gpucanvascontext-drawingbuffer-slot①">[[drawingBuffer]]</a></code> with a bitmap with the new format and tags.</p>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑧②">Device timeline</a> of <var>device</var>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑧①">Device timeline</a> of <var>device</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑧③">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑧②">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p>If any of the following requirements are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-generate-a-validation-error" id="ref-for-abstract-opdef-generate-a-validation-error③④">generate a validation error</a> and stop.</p>
@@ -16211,7 +16202,7 @@ error, and is expected to fail the same way across all devices assuming the same
    <div class="algorithm" data-algorithm="Generate a validation error" data-timeline="device">
      To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export data-lt="Generate a validation error|generate a validation error|validation error" id="abstract-opdef-generate-a-validation-error">generate a
     validation error</dfn> for <code class="idl"><a data-link-type="idl" href="#gpudevice" id="ref-for-gpudevice⑦②">GPUDevice</a></code> <var>device</var>, run the following steps: 
-    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑧④">Device timeline</a> steps:</p>
+    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑧③">Device timeline</a> steps:</p>
     <ol>
      <li data-md>
       <p>Let <var>error</var> be a new <code class="idl"><a data-link-type="idl" href="#gpuvalidationerror" id="ref-for-gpuvalidationerror①">GPUValidationError</a></code> with an appropriate error message.</p>
@@ -16231,7 +16222,7 @@ lower memory requirement (like using smaller texture dimensions), or if memory u
 resources is released first.</p>
    <div class="algorithm" data-algorithm="Generate an out-of-memory error" data-timeline="device">
      To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export data-lt="Generate an out-of-memory error|generate an out-of-memory error|out-of-memory error" id="abstract-opdef-generate-an-out-of-memory-error"> generate an out-of-memory error</dfn> for <code class="idl"><a data-link-type="idl" href="#gpudevice" id="ref-for-gpudevice⑦③">GPUDevice</a></code> <var>device</var>, run the following steps: 
-    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑧⑤">Device timeline</a> steps:</p>
+    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑧④">Device timeline</a> steps:</p>
     <ol>
      <li data-md>
       <p>Let <var>error</var> be a new <code class="idl"><a data-link-type="idl" href="#gpuoutofmemoryerror" id="ref-for-gpuoutofmemoryerror①">GPUOutOfMemoryError</a></code> with an appropriate error message.</p>
@@ -16253,7 +16244,7 @@ difference circumstances.</p>
    <div class="algorithm" data-algorithm="Generate an internal error" data-timeline="device">
      To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export data-lt="Generate an internal error|generate an internal error|internal error" id="abstract-opdef-generate-an-internal-error">generate an
     internal error</dfn> for <code class="idl"><a data-link-type="idl" href="#gpudevice" id="ref-for-gpudevice⑦④">GPUDevice</a></code> <var>device</var>, run the following steps: 
-    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑧⑥">Device timeline</a> steps:</p>
+    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑧⑤">Device timeline</a> steps:</p>
     <ol>
      <li data-md>
       <p>Let <var>error</var> be a new <code class="idl"><a data-link-type="idl" href="#gpuinternalerror" id="ref-for-gpuinternalerror①">GPUInternalError</a></code> with an appropriate error message.</p>
@@ -16303,8 +16294,8 @@ of WebGPU calls, typically for debugging purposes or to make an operation more f
      <p>A <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#stack" id="ref-for-stack②">stack</a> of <a data-link-type="dfn" href="#gpu-error-scope" id="ref-for-gpu-error-scope⑥">GPU error scopes</a> that have been pushed to the <code class="idl"><a data-link-type="idl" href="#gpudevice" id="ref-for-gpudevice⑦⑦">GPUDevice</a></code>.</p>
    </dl>
    <div class="algorithm" data-algorithm="current error scope" data-timeline="device">
-     The <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-current-error-scope">current error scope</dfn> for a <code class="idl"><a data-link-type="idl" href="#gpuerror" id="ref-for-gpuerror①⑦">GPUError</a></code> <var>error</var> and <code class="idl"><a data-link-type="idl" href="#gpudevice" id="ref-for-gpudevice⑦⑧">GPUDevice</a></code> <var>device</var> is determined by issuing the following steps to the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑧⑦">device timeline</a> of <var>device</var>: 
-    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑧⑧">Device timeline</a> steps:</p>
+     The <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-current-error-scope">current error scope</dfn> for a <code class="idl"><a data-link-type="idl" href="#gpuerror" id="ref-for-gpuerror①⑦">GPUError</a></code> <var>error</var> and <code class="idl"><a data-link-type="idl" href="#gpudevice" id="ref-for-gpudevice⑦⑧">GPUDevice</a></code> <var>device</var> is determined by issuing the following steps to the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑧⑥">device timeline</a> of <var>device</var>: 
+    <p><a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑧⑦">Device timeline</a> steps:</p>
     <ol>
      <li data-md>
       <p>If <var>error</var> is an instance of:</p>
@@ -16334,9 +16325,9 @@ of WebGPU calls, typically for debugging purposes or to make an operation more f
     </ol>
    </div>
    <div class="algorithm" data-algorithm="Dispatch error">
-     To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export data-lt="Dispatch error|dispatch error" id="abstract-opdef-dispatch-error">dispatch an error</dfn> <code class="idl"><a data-link-type="idl" href="#gpuerror" id="ref-for-gpuerror①⑧">GPUError</a></code> <var>error</var> on <code class="idl"><a data-link-type="idl" href="#gpudevice" id="ref-for-gpudevice⑦⑨">GPUDevice</a></code> <var>device</var>, run the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑧⑨">device timeline</a> steps: 
+     To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export data-lt="Dispatch error|dispatch error" id="abstract-opdef-dispatch-error">dispatch an error</dfn> <code class="idl"><a data-link-type="idl" href="#gpuerror" id="ref-for-gpuerror①⑧">GPUError</a></code> <var>error</var> on <code class="idl"><a data-link-type="idl" href="#gpudevice" id="ref-for-gpudevice⑦⑨">GPUDevice</a></code> <var>device</var>, run the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑧⑧">device timeline</a> steps: 
     <div data-timeline="device">
-      <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑨⓪">Device timeline</a> steps: 
+      <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑧⑨">Device timeline</a> steps: 
      <ol>
       <li data-md>
        <p>If <var>device</var> is <a data-link-type="abstract-op" href="#abstract-opdef-invalid" id="ref-for-abstract-opdef-invalid①③">lost</a>, return.</p>
@@ -16404,11 +16395,11 @@ of WebGPU calls, typically for debugging purposes or to make an operation more f
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①②⓪">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑨①">Device timeline</a> of <var>this</var>.</p>
+         <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑨⓪">Device timeline</a> of <var>this</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑨②">Device timeline</a> steps: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑨①">Device timeline</a> steps: 
        <ol>
         <li data-md>
          <p>Let <var>scope</var> be a new <a data-link-type="dfn" href="#gpu-error-scope" id="ref-for-gpu-error-scope⑧">GPU error scope</a>.</p>
@@ -16434,13 +16425,13 @@ of WebGPU calls, typically for debugging purposes or to make an operation more f
         <li data-md>
          <p>Let <var>promise</var> be <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-new-promise" id="ref-for-a-new-promise⑧">a new promise</a>.</p>
         <li data-md>
-         <p>Issue the <var>check steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑨③">Device timeline</a> of <var>this</var>.</p>
+         <p>Issue the <var>check steps</var> on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑨②">Device timeline</a> of <var>this</var>.</p>
         <li data-md>
          <p>Return <var>promise</var>.</p>
        </ol>
       </div>
       <div data-timeline="device">
-        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑨④">Device timeline</a> <var>check steps</var>: 
+        <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑨③">Device timeline</a> <var>check steps</var>: 
        <ol>
         <li data-md>
          <p>If <var>this</var> is <a data-link-type="abstract-op" href="#abstract-opdef-invalid" id="ref-for-abstract-opdef-invalid①④">lost</a>, issue the following steps on <var data-timeline="content">contentTimeline</var> and return:</p>
@@ -22292,7 +22283,7 @@ let dfnPanelData = {
 "depth-or-stencil-format": {"dfnID":"depth-or-stencil-format","dfnText":"depth-or-stencil format","external":false,"refSections":[{"refs":[{"id":"ref-for-depth-or-stencil-format"}],"title":"6.1. GPUTexture\n\n"},{"refs":[{"id":"ref-for-depth-or-stencil-format\u2460"},{"id":"ref-for-depth-or-stencil-format\u2461"}],"title":"6.1.3. Texture Creation"},{"refs":[{"id":"ref-for-depth-or-stencil-format\u2462"},{"id":"ref-for-depth-or-stencil-format\u2463"},{"id":"ref-for-depth-or-stencil-format\u2464"}],"title":"6.2.1. Texture View Creation"},{"refs":[{"id":"ref-for-depth-or-stencil-format\u2465"},{"id":"ref-for-depth-or-stencil-format\u2466"}],"title":"6.3. Texture Formats"},{"refs":[{"id":"ref-for-depth-or-stencil-format\u2467"}],"title":"10.3.6. Depth/Stencil State"},{"refs":[{"id":"ref-for-depth-or-stencil-format\u2468"}],"title":"11.2.1. GPUImageDataLayout\n\n"},{"refs":[{"id":"ref-for-depth-or-stencil-format\u2460\u24ea"},{"id":"ref-for-depth-or-stencil-format\u2460\u2460"},{"id":"ref-for-depth-or-stencil-format\u2460\u2461"},{"id":"ref-for-depth-or-stencil-format\u2460\u2462"},{"id":"ref-for-depth-or-stencil-format\u2460\u2463"},{"id":"ref-for-depth-or-stencil-format\u2460\u2464"}],"title":"13.5. Image Copy Commands"},{"refs":[{"id":"ref-for-depth-or-stencil-format\u2460\u2465"}],"title":"17.1.1.2. Depth/Stencil Attachments"},{"refs":[{"id":"ref-for-depth-or-stencil-format\u2460\u2466"}],"title":"18.1.1. Render Bundle Creation"},{"refs":[{"id":"ref-for-depth-or-stencil-format\u2460\u2467"}],"title":"19.2. GPUQueue\n\n"},{"refs":[{"id":"ref-for-depth-or-stencil-format\u2460\u2468"},{"id":"ref-for-depth-or-stencil-format\u2461\u24ea"}],"title":"26.1.2. Depth-stencil formats"}],"url":"#depth-or-stencil-format"},
 "depth32float-stencil8": {"dfnID":"depth32float-stencil8","dfnText":"25.2. \"depth32float-stencil8\"\n\n","external":false,"refSections":[{"refs":[{"id":"ref-for-depth32float-stencil8"}],"title":"4.3.1.1. GPUFeatureName\n\n"},{"refs":[{"id":"ref-for-depth32float-stencil8"}],"title":"25.2. \"depth32float-stencil8\"\n\n"}],"url":"#depth32float-stencil8"},
 "device": {"dfnID":"device","dfnText":"device","external":false,"refSections":[{"refs":[{"id":"ref-for-device"},{"id":"ref-for-device\u2460"}],"title":"3.1.2. WebGPU Objects\n\n"},{"refs":[{"id":"ref-for-device\u2461"},{"id":"ref-for-device\u2462"}],"title":"3.2.1. Invalid Internal Objects & Contagious Invalidity"},{"refs":[{"id":"ref-for-device\u2463"},{"id":"ref-for-device\u2464"}],"title":"3.5.1. Adapters"},{"refs":[{"id":"ref-for-device\u2465"},{"id":"ref-for-device\u2466"},{"id":"ref-for-device\u2467"},{"id":"ref-for-device\u2468"}],"title":"3.5.2. Devices"},{"refs":[{"id":"ref-for-device\u2460\u24ea"},{"id":"ref-for-device\u2460\u2460"}],"title":"3.6. Optional Capabilities"},{"refs":[{"id":"ref-for-device\u2460\u2461"}],"title":"4.2.2. Adapter Selection"},{"refs":[{"id":"ref-for-device\u2460\u2462"},{"id":"ref-for-device\u2460\u2463"}],"title":"4.3. GPUAdapter\n\n"},{"refs":[{"id":"ref-for-device\u2460\u2464"},{"id":"ref-for-device\u2460\u2465"},{"id":"ref-for-device\u2460\u2466"}],"title":"4.4. GPUDevice\n\n"},{"refs":[{"id":"ref-for-device\u2460\u2467"}],"title":"6.3. Texture Formats"},{"refs":[{"id":"ref-for-device\u2460\u2468"}],"title":"23.2. Computing"},{"refs":[{"id":"ref-for-device\u2461\u24ea"}],"title":"23.3.2. Vertex Processing"},{"refs":[{"id":"ref-for-device\u2461\u2460"}],"title":"23.3.6. Fragment Processing"}],"url":"#device"},
-"device-timeline": {"dfnID":"device-timeline","dfnText":"Device timeline","external":false,"refSections":[{"refs":[{"id":"ref-for-device-timeline"}],"title":"2.1.7.2. Device/queue-timeline timing"},{"refs":[{"id":"ref-for-device-timeline\u2460"},{"id":"ref-for-device-timeline\u2461"},{"id":"ref-for-device-timeline\u2462"},{"id":"ref-for-device-timeline\u2463"},{"id":"ref-for-device-timeline\u2464"}],"title":"3.1.2. WebGPU Objects\n\n"},{"refs":[{"id":"ref-for-device-timeline\u2465"},{"id":"ref-for-device-timeline\u2466"},{"id":"ref-for-device-timeline\u2467"},{"id":"ref-for-device-timeline\u2468"},{"id":"ref-for-device-timeline\u2460\u24ea"}],"title":"3.2.1. Invalid Internal Objects & Contagious Invalidity"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2460"},{"id":"ref-for-device-timeline\u2460\u2461"},{"id":"ref-for-device-timeline\u2460\u2462"},{"id":"ref-for-device-timeline\u2460\u2463"}],"title":"3.4.1. Timelines"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2464"},{"id":"ref-for-device-timeline\u2460\u2465"}],"title":"3.5.1. Adapters"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2466"},{"id":"ref-for-device-timeline\u2460\u2467"},{"id":"ref-for-device-timeline\u2460\u2468"}],"title":"3.5.2. Devices"},{"refs":[{"id":"ref-for-device-timeline\u2461\u24ea"},{"id":"ref-for-device-timeline\u2461\u2460"},{"id":"ref-for-device-timeline\u2461\u2461"},{"id":"ref-for-device-timeline\u2461\u2462"}],"title":"3.11. Numeric conversions from JavaScript to WGSL"},{"refs":[{"id":"ref-for-device-timeline\u2461\u2463"},{"id":"ref-for-device-timeline\u2461\u2464"}],"title":"4.2. GPU"},{"refs":[{"id":"ref-for-device-timeline\u2461\u2465"},{"id":"ref-for-device-timeline\u2461\u2466"}],"title":"4.3. GPUAdapter\n\n"},{"refs":[{"id":"ref-for-device-timeline\u2461\u2467"},{"id":"ref-for-device-timeline\u2461\u2468"}],"title":"4.4. GPUDevice\n\n"},{"refs":[{"id":"ref-for-device-timeline\u2462\u24ea"},{"id":"ref-for-device-timeline\u2462\u2460"}],"title":"5.1.3. Buffer Creation"},{"refs":[{"id":"ref-for-device-timeline\u2462\u2461"},{"id":"ref-for-device-timeline\u2462\u2462"}],"title":"5.1.4. Buffer Destruction"},{"refs":[{"id":"ref-for-device-timeline\u2462\u2463"},{"id":"ref-for-device-timeline\u2462\u2464"},{"id":"ref-for-device-timeline\u2462\u2465"},{"id":"ref-for-device-timeline\u2462\u2466"},{"id":"ref-for-device-timeline\u2462\u2467"},{"id":"ref-for-device-timeline\u2462\u2468"}],"title":"5.2. Buffer Mapping"},{"refs":[{"id":"ref-for-device-timeline\u2463\u24ea"}],"title":"6.1. GPUTexture\n\n"},{"refs":[{"id":"ref-for-device-timeline\u2463\u2460"},{"id":"ref-for-device-timeline\u2463\u2461"},{"id":"ref-for-device-timeline\u2463\u2462"}],"title":"6.1.3. Texture Creation"},{"refs":[{"id":"ref-for-device-timeline\u2463\u2463"},{"id":"ref-for-device-timeline\u2463\u2464"},{"id":"ref-for-device-timeline\u2463\u2465"}],"title":"6.2.1. Texture View Creation"},{"refs":[{"id":"ref-for-device-timeline\u2463\u2466"},{"id":"ref-for-device-timeline\u2463\u2467"}],"title":"7.1.2. Sampler Creation"},{"refs":[{"id":"ref-for-device-timeline\u2463\u2468"},{"id":"ref-for-device-timeline\u2464\u24ea"},{"id":"ref-for-device-timeline\u2464\u2460"}],"title":"8.1.1. Bind Group Layout Creation"},{"refs":[{"id":"ref-for-device-timeline\u2464\u2461"},{"id":"ref-for-device-timeline\u2464\u2462"}],"title":"8.2.1. Bind Group Creation"},{"refs":[{"id":"ref-for-device-timeline\u2464\u2463"},{"id":"ref-for-device-timeline\u2464\u2464"}],"title":"8.3.1. Pipeline Layout Creation"},{"refs":[{"id":"ref-for-device-timeline\u2464\u2465"},{"id":"ref-for-device-timeline\u2464\u2466"}],"title":"9.1.1. Shader Module Creation"},{"refs":[{"id":"ref-for-device-timeline\u2464\u2467"},{"id":"ref-for-device-timeline\u2464\u2468"},{"id":"ref-for-device-timeline\u2465\u24ea"}],"title":"9.1.2. Shader Module Compilation Information"},{"refs":[{"id":"ref-for-device-timeline\u2465\u2460"}],"title":"10. Pipelines"},{"refs":[{"id":"ref-for-device-timeline\u2465\u2461"},{"id":"ref-for-device-timeline\u2465\u2462"},{"id":"ref-for-device-timeline\u2465\u2463"}],"title":"10.1. Base pipelines"},{"refs":[{"id":"ref-for-device-timeline\u2465\u2464"}],"title":"10.1.1. Default pipeline layout"},{"refs":[{"id":"ref-for-device-timeline\u2465\u2465"}],"title":"10.1.2. GPUProgrammableStage\n\n"},{"refs":[{"id":"ref-for-device-timeline\u2465\u2466"},{"id":"ref-for-device-timeline\u2465\u2467"},{"id":"ref-for-device-timeline\u2465\u2468"},{"id":"ref-for-device-timeline\u2466\u24ea"}],"title":"10.2.1. Compute Pipeline Creation"},{"refs":[{"id":"ref-for-device-timeline\u2466\u2460"},{"id":"ref-for-device-timeline\u2466\u2461"},{"id":"ref-for-device-timeline\u2466\u2462"},{"id":"ref-for-device-timeline\u2466\u2463"},{"id":"ref-for-device-timeline\u2466\u2464"},{"id":"ref-for-device-timeline\u2466\u2465"}],"title":"10.3.1. Render Pipeline Creation"},{"refs":[{"id":"ref-for-device-timeline\u2466\u2466"}],"title":"10.3.2. Primitive State"},{"refs":[{"id":"ref-for-device-timeline\u2466\u2467"}],"title":"10.3.3. Multisample State"},{"refs":[{"id":"ref-for-device-timeline\u2466\u2468"},{"id":"ref-for-device-timeline\u2467\u24ea"}],"title":"10.3.4. Fragment State"},{"refs":[{"id":"ref-for-device-timeline\u2467\u2460"}],"title":"10.3.6. Depth/Stencil State"},{"refs":[{"id":"ref-for-device-timeline\u2467\u2461"},{"id":"ref-for-device-timeline\u2467\u2462"}],"title":"10.3.7.1. Vertex Formats"},{"refs":[{"id":"ref-for-device-timeline\u2467\u2463"},{"id":"ref-for-device-timeline\u2467\u2464"}],"title":"13.1. GPUCommandsMixin\n\n"},{"refs":[{"id":"ref-for-device-timeline\u2467\u2465"},{"id":"ref-for-device-timeline\u2467\u2466"}],"title":"13.2.1. Command Encoder Creation"},{"refs":[{"id":"ref-for-device-timeline\u2467\u2467"},{"id":"ref-for-device-timeline\u2467\u2468"},{"id":"ref-for-device-timeline\u2468\u24ea"},{"id":"ref-for-device-timeline\u2468\u2460"}],"title":"13.3. Pass Encoding"},{"refs":[{"id":"ref-for-device-timeline\u2468\u2461"},{"id":"ref-for-device-timeline\u2468\u2462"},{"id":"ref-for-device-timeline\u2468\u2463"},{"id":"ref-for-device-timeline\u2468\u2464"}],"title":"13.4. Buffer Copy Commands"},{"refs":[{"id":"ref-for-device-timeline\u2468\u2465"},{"id":"ref-for-device-timeline\u2468\u2466"},{"id":"ref-for-device-timeline\u2468\u2467"},{"id":"ref-for-device-timeline\u2468\u2468"},{"id":"ref-for-device-timeline\u2460\u24ea\u24ea"},{"id":"ref-for-device-timeline\u2460\u24ea\u2460"}],"title":"13.5. Image Copy Commands"},{"refs":[{"id":"ref-for-device-timeline\u2460\u24ea\u2461"},{"id":"ref-for-device-timeline\u2460\u24ea\u2462"}],"title":"13.6. Queries"},{"refs":[{"id":"ref-for-device-timeline\u2460\u24ea\u2463"},{"id":"ref-for-device-timeline\u2460\u24ea\u2464"}],"title":"13.7. Finalization"},{"refs":[{"id":"ref-for-device-timeline\u2460\u24ea\u2465"},{"id":"ref-for-device-timeline\u2460\u24ea\u2466"},{"id":"ref-for-device-timeline\u2460\u24ea\u2467"},{"id":"ref-for-device-timeline\u2460\u24ea\u2468"},{"id":"ref-for-device-timeline\u2460\u2460\u24ea"}],"title":"14.1. Bind Groups"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2460\u2460"},{"id":"ref-for-device-timeline\u2460\u2460\u2461"},{"id":"ref-for-device-timeline\u2460\u2460\u2462"},{"id":"ref-for-device-timeline\u2460\u2460\u2463"},{"id":"ref-for-device-timeline\u2460\u2460\u2464"},{"id":"ref-for-device-timeline\u2460\u2460\u2465"}],"title":"15. Debug Markers"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2460\u2466"},{"id":"ref-for-device-timeline\u2460\u2460\u2467"},{"id":"ref-for-device-timeline\u2460\u2460\u2468"},{"id":"ref-for-device-timeline\u2460\u2461\u24ea"},{"id":"ref-for-device-timeline\u2460\u2461\u2460"},{"id":"ref-for-device-timeline\u2460\u2461\u2461"}],"title":"16.1.2. Dispatch"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2461\u2462"},{"id":"ref-for-device-timeline\u2460\u2461\u2463"}],"title":"16.1.3. Finalization"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2461\u2464"}],"title":"17.1.1. Render Pass Encoder Creation"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2461\u2465"}],"title":"17.1.1.1. Color Attachments"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2461\u2466"},{"id":"ref-for-device-timeline\u2460\u2461\u2467"}],"title":"17.1.1.4. Render Pass Layout"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2461\u2468"},{"id":"ref-for-device-timeline\u2460\u2462\u24ea"}],"title":"17.1.2. Finalization"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2462\u2460"}],"title":"17.2. GPURenderCommandsMixin\n\n"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2462\u2461"},{"id":"ref-for-device-timeline\u2460\u2462\u2462"},{"id":"ref-for-device-timeline\u2460\u2462\u2463"},{"id":"ref-for-device-timeline\u2460\u2462\u2464"},{"id":"ref-for-device-timeline\u2460\u2462\u2465"},{"id":"ref-for-device-timeline\u2460\u2462\u2466"},{"id":"ref-for-device-timeline\u2460\u2462\u2467"},{"id":"ref-for-device-timeline\u2460\u2462\u2468"},{"id":"ref-for-device-timeline\u2460\u2463\u24ea"},{"id":"ref-for-device-timeline\u2460\u2463\u2460"},{"id":"ref-for-device-timeline\u2460\u2463\u2461"},{"id":"ref-for-device-timeline\u2460\u2463\u2462"},{"id":"ref-for-device-timeline\u2460\u2463\u2463"},{"id":"ref-for-device-timeline\u2460\u2463\u2464"},{"id":"ref-for-device-timeline\u2460\u2463\u2465"},{"id":"ref-for-device-timeline\u2460\u2463\u2466"}],"title":"17.2.1. Drawing"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2463\u2467"},{"id":"ref-for-device-timeline\u2460\u2463\u2468"},{"id":"ref-for-device-timeline\u2460\u2464\u24ea"},{"id":"ref-for-device-timeline\u2460\u2464\u2460"},{"id":"ref-for-device-timeline\u2460\u2464\u2461"},{"id":"ref-for-device-timeline\u2460\u2464\u2462"},{"id":"ref-for-device-timeline\u2460\u2464\u2463"},{"id":"ref-for-device-timeline\u2460\u2464\u2464"}],"title":"17.2.2. Rasterization state"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2464\u2465"},{"id":"ref-for-device-timeline\u2460\u2464\u2466"},{"id":"ref-for-device-timeline\u2460\u2464\u2467"},{"id":"ref-for-device-timeline\u2460\u2464\u2468"}],"title":"17.2.3. Queries"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2465\u24ea"},{"id":"ref-for-device-timeline\u2460\u2465\u2460"}],"title":"17.2.4. Bundles"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2465\u2461"},{"id":"ref-for-device-timeline\u2460\u2465\u2462"}],"title":"18.1.1. Render Bundle Creation"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2465\u2463"},{"id":"ref-for-device-timeline\u2460\u2465\u2464"}],"title":"18.1.3. Finalization"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2465\u2465"},{"id":"ref-for-device-timeline\u2460\u2465\u2466"},{"id":"ref-for-device-timeline\u2460\u2465\u2467"},{"id":"ref-for-device-timeline\u2460\u2465\u2468"},{"id":"ref-for-device-timeline\u2460\u2466\u24ea"},{"id":"ref-for-device-timeline\u2460\u2466\u2460"},{"id":"ref-for-device-timeline\u2460\u2466\u2461"},{"id":"ref-for-device-timeline\u2460\u2466\u2462"},{"id":"ref-for-device-timeline\u2460\u2466\u2463"},{"id":"ref-for-device-timeline\u2460\u2466\u2464"},{"id":"ref-for-device-timeline\u2460\u2466\u2465"}],"title":"19.2. GPUQueue\n\n"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2466\u2466"}],"title":"20.1. GPUQuerySet\n\n"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2466\u2467"},{"id":"ref-for-device-timeline\u2460\u2466\u2468"}],"title":"20.1.1. QuerySet Creation"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2467\u24ea"},{"id":"ref-for-device-timeline\u2460\u2467\u2460"}],"title":"20.4. Timestamp Query"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2467\u2461"},{"id":"ref-for-device-timeline\u2460\u2467\u2462"}],"title":"21.2. GPUCanvasContext"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2467\u2463"},{"id":"ref-for-device-timeline\u2460\u2467\u2464"},{"id":"ref-for-device-timeline\u2460\u2467\u2465"}],"title":"22.2. GPUError\n\n"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2467\u2466"},{"id":"ref-for-device-timeline\u2460\u2467\u2467"},{"id":"ref-for-device-timeline\u2460\u2467\u2468"},{"id":"ref-for-device-timeline\u2460\u2468\u24ea"},{"id":"ref-for-device-timeline\u2460\u2468\u2460"},{"id":"ref-for-device-timeline\u2460\u2468\u2461"},{"id":"ref-for-device-timeline\u2460\u2468\u2462"},{"id":"ref-for-device-timeline\u2460\u2468\u2463"}],"title":"22.3. Error Scopes"}],"url":"#device-timeline"},
+"device-timeline": {"dfnID":"device-timeline","dfnText":"Device timeline","external":false,"refSections":[{"refs":[{"id":"ref-for-device-timeline"}],"title":"2.1.7.2. Device/queue-timeline timing"},{"refs":[{"id":"ref-for-device-timeline\u2460"},{"id":"ref-for-device-timeline\u2461"},{"id":"ref-for-device-timeline\u2462"},{"id":"ref-for-device-timeline\u2463"},{"id":"ref-for-device-timeline\u2464"}],"title":"3.1.2. WebGPU Objects\n\n"},{"refs":[{"id":"ref-for-device-timeline\u2465"},{"id":"ref-for-device-timeline\u2466"},{"id":"ref-for-device-timeline\u2467"},{"id":"ref-for-device-timeline\u2468"},{"id":"ref-for-device-timeline\u2460\u24ea"}],"title":"3.2.1. Invalid Internal Objects & Contagious Invalidity"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2460"},{"id":"ref-for-device-timeline\u2460\u2461"},{"id":"ref-for-device-timeline\u2460\u2462"},{"id":"ref-for-device-timeline\u2460\u2463"}],"title":"3.4.1. Timelines"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2464"}],"title":"3.5.1. Adapters"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2465"},{"id":"ref-for-device-timeline\u2460\u2466"},{"id":"ref-for-device-timeline\u2460\u2467"}],"title":"3.5.2. Devices"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2468"},{"id":"ref-for-device-timeline\u2461\u24ea"},{"id":"ref-for-device-timeline\u2461\u2460"},{"id":"ref-for-device-timeline\u2461\u2461"}],"title":"3.11. Numeric conversions from JavaScript to WGSL"},{"refs":[{"id":"ref-for-device-timeline\u2461\u2462"},{"id":"ref-for-device-timeline\u2461\u2463"}],"title":"4.2. GPU"},{"refs":[{"id":"ref-for-device-timeline\u2461\u2464"},{"id":"ref-for-device-timeline\u2461\u2465"}],"title":"4.3. GPUAdapter\n\n"},{"refs":[{"id":"ref-for-device-timeline\u2461\u2466"},{"id":"ref-for-device-timeline\u2461\u2467"}],"title":"4.4. GPUDevice\n\n"},{"refs":[{"id":"ref-for-device-timeline\u2461\u2468"},{"id":"ref-for-device-timeline\u2462\u24ea"}],"title":"5.1.3. Buffer Creation"},{"refs":[{"id":"ref-for-device-timeline\u2462\u2460"},{"id":"ref-for-device-timeline\u2462\u2461"}],"title":"5.1.4. Buffer Destruction"},{"refs":[{"id":"ref-for-device-timeline\u2462\u2462"},{"id":"ref-for-device-timeline\u2462\u2463"},{"id":"ref-for-device-timeline\u2462\u2464"},{"id":"ref-for-device-timeline\u2462\u2465"},{"id":"ref-for-device-timeline\u2462\u2466"},{"id":"ref-for-device-timeline\u2462\u2467"}],"title":"5.2. Buffer Mapping"},{"refs":[{"id":"ref-for-device-timeline\u2462\u2468"}],"title":"6.1. GPUTexture\n\n"},{"refs":[{"id":"ref-for-device-timeline\u2463\u24ea"},{"id":"ref-for-device-timeline\u2463\u2460"},{"id":"ref-for-device-timeline\u2463\u2461"}],"title":"6.1.3. Texture Creation"},{"refs":[{"id":"ref-for-device-timeline\u2463\u2462"},{"id":"ref-for-device-timeline\u2463\u2463"},{"id":"ref-for-device-timeline\u2463\u2464"}],"title":"6.2.1. Texture View Creation"},{"refs":[{"id":"ref-for-device-timeline\u2463\u2465"},{"id":"ref-for-device-timeline\u2463\u2466"}],"title":"7.1.2. Sampler Creation"},{"refs":[{"id":"ref-for-device-timeline\u2463\u2467"},{"id":"ref-for-device-timeline\u2463\u2468"},{"id":"ref-for-device-timeline\u2464\u24ea"}],"title":"8.1.1. Bind Group Layout Creation"},{"refs":[{"id":"ref-for-device-timeline\u2464\u2460"},{"id":"ref-for-device-timeline\u2464\u2461"}],"title":"8.2.1. Bind Group Creation"},{"refs":[{"id":"ref-for-device-timeline\u2464\u2462"},{"id":"ref-for-device-timeline\u2464\u2463"}],"title":"8.3.1. Pipeline Layout Creation"},{"refs":[{"id":"ref-for-device-timeline\u2464\u2464"},{"id":"ref-for-device-timeline\u2464\u2465"}],"title":"9.1.1. Shader Module Creation"},{"refs":[{"id":"ref-for-device-timeline\u2464\u2466"},{"id":"ref-for-device-timeline\u2464\u2467"},{"id":"ref-for-device-timeline\u2464\u2468"}],"title":"9.1.2. Shader Module Compilation Information"},{"refs":[{"id":"ref-for-device-timeline\u2465\u24ea"}],"title":"10. Pipelines"},{"refs":[{"id":"ref-for-device-timeline\u2465\u2460"},{"id":"ref-for-device-timeline\u2465\u2461"},{"id":"ref-for-device-timeline\u2465\u2462"}],"title":"10.1. Base pipelines"},{"refs":[{"id":"ref-for-device-timeline\u2465\u2463"}],"title":"10.1.1. Default pipeline layout"},{"refs":[{"id":"ref-for-device-timeline\u2465\u2464"}],"title":"10.1.2. GPUProgrammableStage\n\n"},{"refs":[{"id":"ref-for-device-timeline\u2465\u2465"},{"id":"ref-for-device-timeline\u2465\u2466"},{"id":"ref-for-device-timeline\u2465\u2467"},{"id":"ref-for-device-timeline\u2465\u2468"}],"title":"10.2.1. Compute Pipeline Creation"},{"refs":[{"id":"ref-for-device-timeline\u2466\u24ea"},{"id":"ref-for-device-timeline\u2466\u2460"},{"id":"ref-for-device-timeline\u2466\u2461"},{"id":"ref-for-device-timeline\u2466\u2462"},{"id":"ref-for-device-timeline\u2466\u2463"},{"id":"ref-for-device-timeline\u2466\u2464"}],"title":"10.3.1. Render Pipeline Creation"},{"refs":[{"id":"ref-for-device-timeline\u2466\u2465"}],"title":"10.3.2. Primitive State"},{"refs":[{"id":"ref-for-device-timeline\u2466\u2466"}],"title":"10.3.3. Multisample State"},{"refs":[{"id":"ref-for-device-timeline\u2466\u2467"},{"id":"ref-for-device-timeline\u2466\u2468"}],"title":"10.3.4. Fragment State"},{"refs":[{"id":"ref-for-device-timeline\u2467\u24ea"}],"title":"10.3.6. Depth/Stencil State"},{"refs":[{"id":"ref-for-device-timeline\u2467\u2460"},{"id":"ref-for-device-timeline\u2467\u2461"}],"title":"10.3.7.1. Vertex Formats"},{"refs":[{"id":"ref-for-device-timeline\u2467\u2462"},{"id":"ref-for-device-timeline\u2467\u2463"}],"title":"13.1. GPUCommandsMixin\n\n"},{"refs":[{"id":"ref-for-device-timeline\u2467\u2464"},{"id":"ref-for-device-timeline\u2467\u2465"}],"title":"13.2.1. Command Encoder Creation"},{"refs":[{"id":"ref-for-device-timeline\u2467\u2466"},{"id":"ref-for-device-timeline\u2467\u2467"},{"id":"ref-for-device-timeline\u2467\u2468"},{"id":"ref-for-device-timeline\u2468\u24ea"}],"title":"13.3. Pass Encoding"},{"refs":[{"id":"ref-for-device-timeline\u2468\u2460"},{"id":"ref-for-device-timeline\u2468\u2461"},{"id":"ref-for-device-timeline\u2468\u2462"},{"id":"ref-for-device-timeline\u2468\u2463"}],"title":"13.4. Buffer Copy Commands"},{"refs":[{"id":"ref-for-device-timeline\u2468\u2464"},{"id":"ref-for-device-timeline\u2468\u2465"},{"id":"ref-for-device-timeline\u2468\u2466"},{"id":"ref-for-device-timeline\u2468\u2467"},{"id":"ref-for-device-timeline\u2468\u2468"},{"id":"ref-for-device-timeline\u2460\u24ea\u24ea"}],"title":"13.5. Image Copy Commands"},{"refs":[{"id":"ref-for-device-timeline\u2460\u24ea\u2460"},{"id":"ref-for-device-timeline\u2460\u24ea\u2461"}],"title":"13.6. Queries"},{"refs":[{"id":"ref-for-device-timeline\u2460\u24ea\u2462"},{"id":"ref-for-device-timeline\u2460\u24ea\u2463"}],"title":"13.7. Finalization"},{"refs":[{"id":"ref-for-device-timeline\u2460\u24ea\u2464"},{"id":"ref-for-device-timeline\u2460\u24ea\u2465"},{"id":"ref-for-device-timeline\u2460\u24ea\u2466"},{"id":"ref-for-device-timeline\u2460\u24ea\u2467"},{"id":"ref-for-device-timeline\u2460\u24ea\u2468"}],"title":"14.1. Bind Groups"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2460\u24ea"},{"id":"ref-for-device-timeline\u2460\u2460\u2460"},{"id":"ref-for-device-timeline\u2460\u2460\u2461"},{"id":"ref-for-device-timeline\u2460\u2460\u2462"},{"id":"ref-for-device-timeline\u2460\u2460\u2463"},{"id":"ref-for-device-timeline\u2460\u2460\u2464"}],"title":"15. Debug Markers"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2460\u2465"},{"id":"ref-for-device-timeline\u2460\u2460\u2466"},{"id":"ref-for-device-timeline\u2460\u2460\u2467"},{"id":"ref-for-device-timeline\u2460\u2460\u2468"},{"id":"ref-for-device-timeline\u2460\u2461\u24ea"},{"id":"ref-for-device-timeline\u2460\u2461\u2460"}],"title":"16.1.2. Dispatch"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2461\u2461"},{"id":"ref-for-device-timeline\u2460\u2461\u2462"}],"title":"16.1.3. Finalization"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2461\u2463"}],"title":"17.1.1. Render Pass Encoder Creation"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2461\u2464"}],"title":"17.1.1.1. Color Attachments"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2461\u2465"},{"id":"ref-for-device-timeline\u2460\u2461\u2466"}],"title":"17.1.1.4. Render Pass Layout"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2461\u2467"},{"id":"ref-for-device-timeline\u2460\u2461\u2468"}],"title":"17.1.2. Finalization"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2462\u24ea"}],"title":"17.2. GPURenderCommandsMixin\n\n"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2462\u2460"},{"id":"ref-for-device-timeline\u2460\u2462\u2461"},{"id":"ref-for-device-timeline\u2460\u2462\u2462"},{"id":"ref-for-device-timeline\u2460\u2462\u2463"},{"id":"ref-for-device-timeline\u2460\u2462\u2464"},{"id":"ref-for-device-timeline\u2460\u2462\u2465"},{"id":"ref-for-device-timeline\u2460\u2462\u2466"},{"id":"ref-for-device-timeline\u2460\u2462\u2467"},{"id":"ref-for-device-timeline\u2460\u2462\u2468"},{"id":"ref-for-device-timeline\u2460\u2463\u24ea"},{"id":"ref-for-device-timeline\u2460\u2463\u2460"},{"id":"ref-for-device-timeline\u2460\u2463\u2461"},{"id":"ref-for-device-timeline\u2460\u2463\u2462"},{"id":"ref-for-device-timeline\u2460\u2463\u2463"},{"id":"ref-for-device-timeline\u2460\u2463\u2464"},{"id":"ref-for-device-timeline\u2460\u2463\u2465"}],"title":"17.2.1. Drawing"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2463\u2466"},{"id":"ref-for-device-timeline\u2460\u2463\u2467"},{"id":"ref-for-device-timeline\u2460\u2463\u2468"},{"id":"ref-for-device-timeline\u2460\u2464\u24ea"},{"id":"ref-for-device-timeline\u2460\u2464\u2460"},{"id":"ref-for-device-timeline\u2460\u2464\u2461"},{"id":"ref-for-device-timeline\u2460\u2464\u2462"},{"id":"ref-for-device-timeline\u2460\u2464\u2463"}],"title":"17.2.2. Rasterization state"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2464\u2464"},{"id":"ref-for-device-timeline\u2460\u2464\u2465"},{"id":"ref-for-device-timeline\u2460\u2464\u2466"},{"id":"ref-for-device-timeline\u2460\u2464\u2467"}],"title":"17.2.3. Queries"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2464\u2468"},{"id":"ref-for-device-timeline\u2460\u2465\u24ea"}],"title":"17.2.4. Bundles"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2465\u2460"},{"id":"ref-for-device-timeline\u2460\u2465\u2461"}],"title":"18.1.1. Render Bundle Creation"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2465\u2462"},{"id":"ref-for-device-timeline\u2460\u2465\u2463"}],"title":"18.1.3. Finalization"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2465\u2464"},{"id":"ref-for-device-timeline\u2460\u2465\u2465"},{"id":"ref-for-device-timeline\u2460\u2465\u2466"},{"id":"ref-for-device-timeline\u2460\u2465\u2467"},{"id":"ref-for-device-timeline\u2460\u2465\u2468"},{"id":"ref-for-device-timeline\u2460\u2466\u24ea"},{"id":"ref-for-device-timeline\u2460\u2466\u2460"},{"id":"ref-for-device-timeline\u2460\u2466\u2461"},{"id":"ref-for-device-timeline\u2460\u2466\u2462"},{"id":"ref-for-device-timeline\u2460\u2466\u2463"},{"id":"ref-for-device-timeline\u2460\u2466\u2464"}],"title":"19.2. GPUQueue\n\n"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2466\u2465"}],"title":"20.1. GPUQuerySet\n\n"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2466\u2466"},{"id":"ref-for-device-timeline\u2460\u2466\u2467"}],"title":"20.1.1. QuerySet Creation"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2466\u2468"},{"id":"ref-for-device-timeline\u2460\u2467\u24ea"}],"title":"20.4. Timestamp Query"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2467\u2460"},{"id":"ref-for-device-timeline\u2460\u2467\u2461"}],"title":"21.2. GPUCanvasContext"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2467\u2462"},{"id":"ref-for-device-timeline\u2460\u2467\u2463"},{"id":"ref-for-device-timeline\u2460\u2467\u2464"}],"title":"22.2. GPUError\n\n"},{"refs":[{"id":"ref-for-device-timeline\u2460\u2467\u2465"},{"id":"ref-for-device-timeline\u2460\u2467\u2466"},{"id":"ref-for-device-timeline\u2460\u2467\u2467"},{"id":"ref-for-device-timeline\u2460\u2467\u2468"},{"id":"ref-for-device-timeline\u2460\u2468\u24ea"},{"id":"ref-for-device-timeline\u2460\u2468\u2460"},{"id":"ref-for-device-timeline\u2460\u2468\u2461"},{"id":"ref-for-device-timeline\u2460\u2468\u2462"}],"title":"22.3. Error Scopes"}],"url":"#device-timeline"},
 "device-timeline-example-term": {"dfnID":"device-timeline-example-term","dfnText":"Device-timeline example term","external":false,"refSections":[{"refs":[{"id":"ref-for-device-timeline-example-term"}],"title":"3.4.1. Timelines"}],"url":"#device-timeline-example-term"},
 "device-timeline-property": {"dfnID":"device-timeline-property","dfnText":"device timeline property","external":false,"refSections":[{"refs":[{"id":"ref-for-device-timeline-property"},{"id":"ref-for-device-timeline-property\u2460"},{"id":"ref-for-device-timeline-property\u2461"}],"title":"3.1.2. WebGPU Objects\n\n"},{"refs":[{"id":"ref-for-device-timeline-property\u2462"}],"title":"5.1. GPUBuffer\n\n"}],"url":"#device-timeline-property"},
 "dictdef-gpubindgroupdescriptor": {"dfnID":"dictdef-gpubindgroupdescriptor","dfnText":"GPUBindGroupDescriptor","external":false,"refSections":[{"refs":[{"id":"ref-for-dictdef-gpubindgroupdescriptor"}],"title":"4.4. GPUDevice\n\n"},{"refs":[{"id":"ref-for-dictdef-gpubindgroupdescriptor\u2460"},{"id":"ref-for-dictdef-gpubindgroupdescriptor\u2461"}],"title":"8.2.1. Bind Group Creation"}],"url":"#dictdef-gpubindgroupdescriptor"},
