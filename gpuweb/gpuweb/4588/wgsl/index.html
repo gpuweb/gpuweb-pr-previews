@@ -806,13 +806,13 @@ var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBC
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-05-08">8 May 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-05-14">14 May 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/Jiawei-Shao/gpuweb/blob/2ec5a074753c626f4d5c9ecbb0b9bafd5be30813/wgsl/index.bs">https://github.com/Jiawei-Shao/gpuweb/blob/2ec5a074753c626f4d5c9ecbb0b9bafd5be30813/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/Jiawei-Shao/gpuweb/blob/29ae38a360d397ec12bf4a70ee5b23f530905d7d/wgsl/index.bs">https://github.com/Jiawei-Shao/gpuweb/blob/29ae38a360d397ec12bf4a70ee5b23f530905d7d/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -10950,7 +10950,7 @@ Each is described in detail in subsequent sections.</p>
       <td><a data-link-type="dfn" href="#built-in-values-clip_distances" id="ref-for-built-in-values-clip_distances②">clip_distances</a> 
       <td>vertex 
       <td>output 
-      <td>array&lt;f32, N> 
+      <td>array&lt;f32, N> (<code>N</code> ≤ <code>8</code>) 
      <tr>
       <td rowspan="2"><a data-link-type="dfn" href="#built-in-values-position" id="ref-for-built-in-values-position⑤">position</a> 
       <td>vertex 
@@ -11064,7 +11064,8 @@ Each is described in detail in subsequent sections.</p>
       <td style="width:10%">Description 
       <td> Each value in the array represents a distance to a user-defined clip plane. A clip distance of
       0 means the vertex is on the plane, a positive distance means the vertex is inside the clip
-      half-space, and a negative distance means the vertex is outside the clip half-space.
+      half-space, and a negative distance means the vertex is outside the clip half-space. The
+      maximum value of <code>N</code> is <code>8</code>.
       See <a href="https://gpuweb.github.io/gpuweb/#primitive-clipping"><cite>WebGPU</cite> § 23.3.4 Primitive Clipping</a>. 
    </table>
    <h6 class="heading settled" data-level="12.3.1.1.2" id="frag-depth-builtin-value"><span class="secno">12.3.1.1.2. </span><span class="content"><code>frag_depth</code></span><a class="self-link" href="#frag-depth-builtin-value"></a></h6>
