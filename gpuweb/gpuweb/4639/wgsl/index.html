@@ -812,7 +812,7 @@ var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBC
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/greggman/gpuweb/blob/e6861aa045692a462bac60d7c12a8a562a3f47f8/wgsl/index.bs">https://github.com/greggman/gpuweb/blob/e6861aa045692a462bac60d7c12a8a562a3f47f8/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/greggman/gpuweb/blob/81d02f570fa38bb58152817089efcf603e4401a8/wgsl/index.bs">https://github.com/greggman/gpuweb/blob/81d02f570fa38bb58152817089efcf603e4401a8/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -11539,7 +11539,7 @@ Whether the value comes from the first or last vertex is implementation dependen
        <p>If the interpolation type is <code>flat</code>, then:</p>
        <ul>
         <li data-md>
-         <p>interpolation sampling <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑨⑤">must</a> be <code>first</code>, <code>either</code>, or must not be specified.</p>
+         <p>interpolation sampling <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑨⑤">must</a> be <code>first</code>, <code>either</code>, or not be specified.</p>
         <li data-md>
          <p>If interpolation sampling not specified, <code>first</code> is assumed.</p>
        </ul>
@@ -11547,7 +11547,7 @@ Whether the value comes from the first or last vertex is implementation dependen
        <p>If the interpolation type is <code>perspective</code> or <code>linear</code>, then:</p>
        <ul>
         <li data-md>
-         <p>interpolation sampling <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑨⑥">must not</a> be <code>first</code>, nor <code>either</code>.</p>
+         <p>interpolation sampling <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑨⑥">must</a> be <code>center</code>, <code>centroid</code>, <code>sample</code>, or not be specified.</p>
         <li data-md>
          <p>If interpolation sampling is not specified, <code>center</code> is assumed.</p>
        </ul>
