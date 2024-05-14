@@ -812,7 +812,7 @@ var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBC
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/Jiawei-Shao/gpuweb/blob/0dd9ffc832126c5c4fe055a2e84edcf8e0f65484/wgsl/index.bs">https://github.com/Jiawei-Shao/gpuweb/blob/0dd9ffc832126c5c4fe055a2e84edcf8e0f65484/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/Jiawei-Shao/gpuweb/blob/23a46cc1987f0bf51217f0562f593d05f5064686/wgsl/index.bs">https://github.com/Jiawei-Shao/gpuweb/blob/23a46cc1987f0bf51217f0562f593d05f5064686/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -11062,10 +11062,9 @@ Each is described in detail in subsequent sections.</p>
       <td>Output 
      <tr>
       <td style="width:10%">Description 
-      <td> Each value in the array represents a distance to a user-defined clip plane. A clip distance of
-      0 means the vertex is on the plane, a positive distance means the vertex is inside the clip
+      <td> Each value in the array represents a distance to a user-defined clip plane. A clip distance of <code>0</code> means the vertex is on the plane, a positive distance means the vertex is inside the clip
       half-space, and a negative distance means the vertex is outside the clip half-space. The array
-      size of <a data-link-type="dfn" href="#built-in-values-clip_distances" id="ref-for-built-in-values-clip_distances③">clip_distances</a> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑧⑨">must</a> be le; 8.
+      size of <a data-link-type="dfn" href="#built-in-values-clip_distances" id="ref-for-built-in-values-clip_distances③">clip_distances</a> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑧⑨">must</a> be ≤ <code>8</code>.
       See <a href="https://gpuweb.github.io/gpuweb/#primitive-clipping"><cite>WebGPU</cite> § 23.3.4 Primitive Clipping</a>. 
    </table>
    <h6 class="heading settled" data-level="12.3.1.1.2" id="frag-depth-builtin-value"><span class="secno">12.3.1.1.2. </span><span class="content"><code>frag_depth</code></span><a class="self-link" href="#frag-depth-builtin-value"></a></h6>
@@ -14114,7 +14113,7 @@ with a zero value of that type.</p>
       <li data-md>
        <p>Any inputs or outputs of operations listed in <a href="#floating-point-accuracy">§ 14.6.2 Floating Point Accuracy</a> may be flushed to zero.</p>
       <li data-md>
-       <p>Additionally, intermediate values of operations listed in <a href="#pack-builtin-functions">§ 16.9 Data Packing Built-in Functions</a> or <a href="#unpack-builtin-functions">§ 16.10 Data Unpacking Built-in Functions</a> may be flushed to zero.</p>
+       <p>Additionally, intermediate values of operations listed in <a href="#bit-reinterp-builtin-functions">§ 16.2 Bit Reinterpretation Built-in Functions</a>, <a href="#pack-builtin-functions">§ 16.9 Data Packing Built-in Functions</a>, or <a href="#unpack-builtin-functions">§ 16.10 Data Unpacking Built-in Functions</a> may be flushed to zero.</p>
       <li data-md>
        <p>Other operations are required to preserve denormalized numbers.</p>
      </ul>
