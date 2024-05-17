@@ -1078,13 +1078,13 @@ var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBC
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-05-14">14 May 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-05-17">17 May 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/22928a199fa215b4e566fceee9f33a56ee46833f/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/22928a199fa215b4e566fceee9f33a56ee46833f/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/5b833c7d158cae4077b36f8774f98300c86e593d/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/5b833c7d158cae4077b36f8774f98300c86e593d/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -2081,13 +2081,13 @@ like buffer state "<a data-link-type="dfn" href="#gpubuffer-internal-state-destr
        <p>0.0 ≤ z ≤ 1.0</p>
       <li data-md>
        <p>The bottom-left corner is at (-1.0, -1.0, z).</p>
-       <figure>
-        <figcaption>Normalized device coordinates.</figcaption>
-        <object class="coordinate-diagram" data="img/normalized-device-coordinates.svg" type="image/svg+xml"></object>
-       </figure>
-        Note: Whether <code>z = 0</code> or <code>z = 1</code> is treated as the near plane is application specific. The above diagram presents <code>z = 0</code> as the near plane but the observed behavior is determined by a combination of the projection matrices
-used by shaders, the <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassdepthstencilattachment-depthclearvalue" id="ref-for-dom-gpurenderpassdepthstencilattachment-depthclearvalue">depthClearValue</a></code>, and the <code class="idl"><a data-link-type="idl" href="#dom-gpudepthstencilstate-depthcompare" id="ref-for-dom-gpudepthstencilstate-depthcompare">depthCompare</a></code> function. 
      </ul>
+     <figure>
+      <figcaption>Normalized device coordinates.</figcaption>
+      <object class="coordinate-diagram" data="img/normalized-device-coordinates.svg" type="image/svg+xml"></object>
+     </figure>
+     <p class="note" role="note"><span class="marker">Note:</span> Whether <code>z = 0</code> or <code>z = 1</code> is treated as the near plane is application specific. The above diagram presents <code>z = 0</code> as the near plane but the observed behavior is determined by a combination of the projection matrices
+used by shaders, the <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassdepthstencilattachment-depthclearvalue" id="ref-for-dom-gpurenderpassdepthstencilattachment-depthclearvalue">depthClearValue</a></code>, and the <code class="idl"><a data-link-type="idl" href="#dom-gpudepthstencilstate-depthcompare" id="ref-for-dom-gpudepthstencilstate-depthcompare">depthCompare</a></code> function.</p>
     <li data-md>
      <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="clip-space-coordinates">Clip space coordinates</dfn> have four dimensions: (x, y, z, w)</p>
      <ul>
@@ -17022,7 +17022,7 @@ Map the <a data-link-type="dfn" href="#ndc" id="ref-for-ndc⑤">NDC</a> position
       <ul>
        <li data-md>
         <p>Compute <a data-link-type="dfn" href="#framebuffer" id="ref-for-framebuffer②">framebuffer</a> coordinates from the render target offset and size:</p>
-        <p>framebufferCoords(<var>n</var>) = vector(<var>vp</var>.<code>x</code> + 0.5 × (<var>n</var>.x + 1) × <var>vp</var>.<code>width</code>, <var>vp</var>.<code>y</code> + -0.5 × (<var>n</var>.y − 1) × <var>vp</var>.<code>height</code>)</p>
+        <p>framebufferCoords(<var>n</var>) = vector(<var>vp</var>.<code>x</code> + 0.5 × (<var>n</var>.x + 1) × <var>vp</var>.<code>width</code>, <var>vp</var>.<code>y</code> + 0.5 × (−<var>n</var>.y + 1) × <var>vp</var>.<code>height</code>)</p>
        <li data-md>
         <p>Compute depth by linearly mapping [0,1] to the viewport depth range:</p>
         <p>depth(<var>n</var>) = <var>vp</var>.<code>minDepth</code> + <var>n</var>.<code>z</code> × ( <var>vp</var>.<code>maxDepth</code> - <var>vp</var>.<code>minDepth</code> )</p>
