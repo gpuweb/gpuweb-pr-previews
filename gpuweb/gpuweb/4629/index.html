@@ -1070,13 +1070,13 @@ var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBC
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-05-09">9 May 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-05-20">20 May 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/8ce93c92296c3fa20acd56375740424ad55a3c1e/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/8ce93c92296c3fa20acd56375740424ad55a3c1e/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/66235c308d19ab3212cfe49927fa124d4444d2b8/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/66235c308d19ab3212cfe49927fa124d4444d2b8/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -10414,7 +10414,7 @@ Together with <code>copySize</code>, defines the full copy sub-region.</p>
         <li data-md>
          <p><var>imageCopyTexture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-origin" id="ref-for-dom-gpuimagecopytexture-origin②">origin</a></code>.<a data-link-type="dfn" href="#gpuorigin3d-y" id="ref-for-gpuorigin3d-y">y</a> must be a multiple of <var>blockHeight</var>.</p>
         <li data-md>
-         <p>The <a data-link-type="dfn" href="#imagecopytexture-physical-subresource-size" id="ref-for-imagecopytexture-physical-subresource-size">imageCopyTexture physical subresource size</a> of <var>imageCopyTexture</var> is equal to <var>copySize</var> if either of
+         <p>The <a data-link-type="dfn" href="#imagecopytexture-physical-subresource-size" id="ref-for-imagecopytexture-physical-subresource-size">imageCopyTexture physical subresource size</a> of <var>imageCopyTexture</var> must be equal to <var>copySize</var> if either of
 the following conditions is true:</p>
          <ul>
           <li data-md>
@@ -10447,9 +10447,9 @@ the following conditions is true:</p>
      <li data-md>
       <p>Let <var>texture</var> be <var>imageCopyTexture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-texture" id="ref-for-dom-gpuimagecopytexture-texture⑨">texture</a></code></p>
      <li data-md>
-      <p>Let <var>aspectSpecificFormat</var> = <var>texture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gputexture-format" id="ref-for-dom-gputexture-format①⓪">format</a></code>.</p>
+      <p>Let <var>aspectSpecificFormat</var> be <var>texture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gputexture-format" id="ref-for-dom-gputexture-format①⓪">format</a></code>.</p>
      <li data-md>
-      <p>Let <var>offsetAlignment</var> = <a data-link-type="dfn" href="#texel-block-copy-footprint" id="ref-for-texel-block-copy-footprint">texel block copy footprint</a> of <var>texture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gputexture-format" id="ref-for-dom-gputexture-format①①">format</a></code>.</p>
+      <p>Let <var>offsetAlignment</var> be the <a data-link-type="dfn" href="#texel-block-copy-footprint" id="ref-for-texel-block-copy-footprint">texel block copy footprint</a> of <var>texture</var>.<code class="idl"><a data-link-type="idl" href="#dom-gputexture-format" id="ref-for-dom-gputexture-format①①">format</a></code>.</p>
      <li data-md>
       <p>Return <code>true</code> if and only if all of the following conditions apply:</p>
       <div class="validusage">
@@ -11417,9 +11417,9 @@ beginning at <var>destinationOffset</var>.</p>
            <li data-md>
             <p><var>source</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopybuffer-buffer" id="ref-for-dom-gpuimagecopybuffer-buffer④">buffer</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-usage" id="ref-for-dom-gpubuffer-usage⑦">usage</a></code> contains <code class="idl"><a data-link-type="idl" href="#dom-gpubufferusage-copy_src" id="ref-for-dom-gpubufferusage-copy_src⑥">COPY_SRC</a></code>.</p>
            <li data-md>
-            <p><a data-link-type="abstract-op" href="#abstract-opdef-validating-texture-buffer-copy" id="ref-for-abstract-opdef-validating-texture-buffer-copy">validating texture buffer copy</a>(<var>destination</var>, <var>source</var>, <var>dataLength</var>, <var>copySize</var>, <var>aligned</var>) returns <code>true</code>.</p>
-           <li data-md>
             <p><var>destination</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-texture" id="ref-for-dom-gpuimagecopytexture-texture①④">texture</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gputexture-usage" id="ref-for-dom-gputexture-usage③">usage</a></code> contains <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-copy_dst" id="ref-for-dom-gputextureusage-copy_dst②">COPY_DST</a></code>.</p>
+           <li data-md>
+            <p><a data-link-type="abstract-op" href="#abstract-opdef-validating-texture-buffer-copy" id="ref-for-abstract-opdef-validating-texture-buffer-copy">validating texture buffer copy</a>(<var>destination</var>, <var>source</var>, <var>dataLength</var>, <var>copySize</var>, <var>aligned</var>) returns <code>true</code>.</p>
           </ul>
          </div>
         <li data-md>
@@ -11495,11 +11495,11 @@ multiple continuous <a data-link-type="dfn" href="#texture-subresources" id="ref
            <li data-md>
             <p><a data-link-type="abstract-op" href="#abstract-opdef-validating-gpuimagecopybuffer" id="ref-for-abstract-opdef-validating-gpuimagecopybuffer①">validating GPUImageCopyBuffer</a>(<var>destination</var>) returns <code>true</code>.</p>
            <li data-md>
+            <p><var>source</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-texture" id="ref-for-dom-gpuimagecopytexture-texture①⑤">texture</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gputexture-usage" id="ref-for-dom-gputexture-usage④">usage</a></code> contains <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-copy_src" id="ref-for-dom-gputextureusage-copy_src②">COPY_SRC</a></code>.</p>
+           <li data-md>
             <p><var>destination</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopybuffer-buffer" id="ref-for-dom-gpuimagecopybuffer-buffer⑥">buffer</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpubuffer-usage" id="ref-for-dom-gpubuffer-usage⑧">usage</a></code> contains <code class="idl"><a data-link-type="idl" href="#dom-gpubufferusage-copy_dst" id="ref-for-dom-gpubufferusage-copy_dst⑥">COPY_DST</a></code>.</p>
            <li data-md>
             <p><a data-link-type="abstract-op" href="#abstract-opdef-validating-texture-buffer-copy" id="ref-for-abstract-opdef-validating-texture-buffer-copy①">validating texture buffer copy</a>(<var>source</var>, <var>destination</var>, <var>dataLength</var>, <var>copySize</var>, <var>aligned</var>) returns <code>true</code>.</p>
-           <li data-md>
-            <p><var>source</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-texture" id="ref-for-dom-gpuimagecopytexture-texture①⑤">texture</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gputexture-usage" id="ref-for-dom-gputexture-usage④">usage</a></code> contains <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-copy_src" id="ref-for-dom-gputextureusage-copy_src②">COPY_SRC</a></code>.</p>
           </ul>
          </div>
         <li data-md>
