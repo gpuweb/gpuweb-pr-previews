@@ -1070,13 +1070,13 @@ var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBC
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-05-15">15 May 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-05-20">20 May 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/be9c0356d8ab4dfe7a7290c350fb5f48e2dce904/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/be9c0356d8ab4dfe7a7290c350fb5f48e2dce904/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/afaae53a1937ba5e69115816763d716554c39749/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/afaae53a1937ba5e69115816763d716554c39749/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -6253,8 +6253,9 @@ match one texel.</p>
    <p><code class="idl"><a data-link-type="idl" href="#enumdef-gpucomparefunction" id="ref-for-enumdef-gpucomparefunction③">GPUCompareFunction</a></code> specifies the behavior of a comparison sampler. If a comparison sampler is
 used in a shader, an input value is compared to each sampled texel value, and the result of this
 comparison test is generated (<code>0.0f</code> for pass, or <code>1.0f</code> for fail).</p>
-   <p>The comparison results for each texel may be blended together with the sampler’s normal
-texture filtering, with the resulting value in the range <code>[0..1]</code> returned.</p>
+   <p>If texture filtering is enabled, the filtering step occurs after comparison, so that comparison
+results are mixed together resulting in values in the range <code>[0, 1]</code>. Filtering <strong>should</strong> behave
+as usual, however it <strong>may</strong> be computed with lower precision or not mix results at all.</p>
 <pre class="idl highlight def"><c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-gpucomparefunction"><code><c- g>GPUCompareFunction</c-></code></dfn> {
     <a class="idl-code" data-link-type="enum-value" href="#dom-gpucomparefunction-never" id="ref-for-dom-gpucomparefunction-never"><c- s>"never"</c-></a>,
     <a class="idl-code" data-link-type="enum-value" href="#dom-gpucomparefunction-less" id="ref-for-dom-gpucomparefunction-less"><c- s>"less"</c-></a>,
