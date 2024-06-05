@@ -806,13 +806,13 @@ var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBC
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-05-31">31 May 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-06-05">5 June 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/Jiawei-Shao/gpuweb/blob/3b66fbdb49583cc072df551d868f954eb47624ee/wgsl/index.bs">https://github.com/Jiawei-Shao/gpuweb/blob/3b66fbdb49583cc072df551d868f954eb47624ee/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/Jiawei-Shao/gpuweb/blob/775c2d42b12352150a3c26db9841b9de55082144/wgsl/index.bs">https://github.com/Jiawei-Shao/gpuweb/blob/775c2d42b12352150a3c26db9841b9de55082144/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -10456,7 +10456,7 @@ some attribute parameters are also context-dependent names.</p>
       <td>
         Specifies a part of the <a data-link-type="dfn" href="#fragment" id="ref-for-fragment②">fragment</a> output when the feature <a data-link-type="dfn" href="#extension-dual_source_blending" id="ref-for-extension-dual_source_blending">dual_source_blending</a> is enabled.
     See <a href="#input-output-locations">§ 12.3.1.3 Input-output Locations</a>. 
-       <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑤⓪">Must</a> only be applied to a member of a <a data-link-type="dfn" href="#structure" id="ref-for-structure①⑥">structure</a> type. <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑤①">Must</a> only be applied to declarations of objects with <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar②">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector①">numeric vector</a> type. <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑤②">Must</a> only be used as an output of the <a data-link-type="dfn" href="#fragment" id="ref-for-fragment③">fragment</a> shader stage.</p>
+       <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑤⓪">Must</a> only be applied to a member of a <a data-link-type="dfn" href="#structure" id="ref-for-structure①⑥">structure</a> type with a <a data-link-type="dfn" href="#attribute-location" id="ref-for-attribute-location④">location</a> attribute. <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑤①">Must</a> only be applied to declarations of objects with <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar②">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector①">numeric vector</a> type. <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑤②">Must</a> only be used as an output of the <a data-link-type="dfn" href="#fragment" id="ref-for-fragment③">fragment</a> shader stage.</p>
      <tr>
       <td>Parameters 
       <td><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑤③">Must</a> be a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑤⓪">const-expression</a> that <a data-link-type="dfn" href="#resolves" id="ref-for-resolves②⑤">resolves</a> to an i32 or u32 with value of <code>0</code> or <code>1</code>. 
@@ -10582,7 +10582,7 @@ some attribute parameters are also context-dependent names.</p>
     and <a data-link-type="dfn" href="#fragment" id="ref-for-fragment④">fragment</a> inputs.
     See <a href="#interpolation">§ 12.3.1.4 Interpolation</a>. 
        <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑥⑥">Must</a> only be applied to a declaration that
-    has a <a data-link-type="dfn" href="#attribute-location" id="ref-for-attribute-location④">location</a> attribute applied.</p>
+    has a <a data-link-type="dfn" href="#attribute-location" id="ref-for-attribute-location⑤">location</a> attribute applied.</p>
      <tr>
       <td>Parameters 
       <td>
@@ -10927,7 +10927,7 @@ The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="io-attributes
     <li data-md>
      <p><a data-link-type="dfn" href="#attribute-builtin" id="ref-for-attribute-builtin④">builtin</a></p>
     <li data-md>
-     <p><a data-link-type="dfn" href="#attribute-location" id="ref-for-attribute-location⑤">location</a></p>
+     <p><a data-link-type="dfn" href="#attribute-location" id="ref-for-attribute-location⑥">location</a></p>
     <li data-md>
      <p><a data-link-type="dfn" href="#attribute-blend_src" id="ref-for-attribute-blend_src⑥">blend_src</a></p>
     <li data-md>
@@ -11455,7 +11455,7 @@ between stages of a pipeline or output from the end of a pipeline.</p>
    <p>Each input-output location can store a value up to 16 bytes in size.
 The byte size of a type is defined using the <em>SizeOf</em> column in <a href="#alignment-and-size">§ 13.4.1 Alignment and Size</a>.
 For example, a four-component vector of floating-point values occupies a single location.</p>
-   <p>IO locations are specified via the <a data-link-type="dfn" href="#attribute-location" id="ref-for-attribute-location⑥">location</a> attribute.</p>
+   <p>IO locations are specified via the <a data-link-type="dfn" href="#attribute-location" id="ref-for-attribute-location⑦">location</a> attribute.</p>
    <p>Each user-defined <a data-link-type="dfn" href="#user-defined-input-datum" id="ref-for-user-defined-input-datum②">input</a> and <a data-link-type="dfn" href="#user-defined-output-datum" id="ref-for-user-defined-output-datum②">output</a> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑨⑦">must</a> have an explicitly specified IO location.
 Each structure member in the entry point IO <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑨⑧">must</a> be one of either a built-in value
 (see <a href="#builtin-inputs-outputs">§ 12.3.1.1 Built-in Inputs and Outputs</a>), or assigned a location.</p>
@@ -11464,12 +11464,12 @@ Each structure member in the entry point IO <a data-link-type="dfn" href="#shade
     (i.e. locations for its formal parameters, or for the members of its formal parameters of structure type). 
     <ul>
      <li data-md>
-      <p><var>inputs</var> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑨⑨">must not</a> contain two entries with the same <a data-link-type="dfn" href="#attribute-location" id="ref-for-attribute-location⑦">location</a> value.</p>
+      <p><var>inputs</var> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑨⑨">must not</a> contain two entries with the same <a data-link-type="dfn" href="#attribute-location" id="ref-for-attribute-location⑧">location</a> value.</p>
     </ul>
    </div>
    <div class="algorithm" data-algorithm="locations in structs">
      For each structure type defined in a WGSL module (not just those used in shader stage inputs or outputs),
-    let <var>members</var> be the set of struct members with <a data-link-type="dfn" href="#attribute-location" id="ref-for-attribute-location⑧">location</a> attributes. 
+    let <var>members</var> be the set of struct members with <a data-link-type="dfn" href="#attribute-location" id="ref-for-attribute-location⑨">location</a> attributes. 
     <ul>
      <li data-md>
       <p>If any entry in <var>members</var> specifies a <a data-link-type="dfn" href="#attribute-blend_src" id="ref-for-attribute-blend_src⑦">blend_src</a> attribute:</p>
@@ -11479,7 +11479,7 @@ Each structure member in the entry point IO <a data-link-type="dfn" href="#shade
 one with <code>@location(0) @blend_src(0)</code> and one with <code>@location(0) @blend_src(1)</code>.</p>
       </ul>
      <li data-md>
-      <p>Otherwise, <var>members</var> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪①">must not</a> contain two entries with the same <a data-link-type="dfn" href="#attribute-location" id="ref-for-attribute-location⑨">location</a> value.</p>
+      <p>Otherwise, <var>members</var> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪①">must not</a> contain two entries with the same <a data-link-type="dfn" href="#attribute-location" id="ref-for-attribute-location①⓪">location</a> value.</p>
     </ul>
    </div>
    <p class="note" role="note"><span class="marker">Note:</span> Location numbering is distinct between inputs and outputs:
@@ -11636,7 +11636,7 @@ Whether the value comes from the first or last vertex is implementation dependen
    </ul>
    <p>User-defined <a data-link-type="dfn" href="#vertex" id="ref-for-vertex②">vertex</a> outputs and <a data-link-type="dfn" href="#fragment" id="ref-for-fragment⑦">fragment</a> inputs of scalar or vector
 integer type <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪⑥">must</a> always be specified with interpolation type <code>flat</code>.</p>
-   <p>Interpolation attributes <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪⑦">must</a> match between <a data-link-type="dfn" href="#vertex" id="ref-for-vertex③">vertex</a> outputs and <a data-link-type="dfn" href="#fragment" id="ref-for-fragment⑧">fragment</a> inputs with the same <a data-link-type="dfn" href="#attribute-location" id="ref-for-attribute-location①⓪">location</a> assignment within the same <a data-link-type="dfn" href="#pipeline" id="ref-for-pipeline③">pipeline</a>.</p>
+   <p>Interpolation attributes <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⓪⑦">must</a> match between <a data-link-type="dfn" href="#vertex" id="ref-for-vertex③">vertex</a> outputs and <a data-link-type="dfn" href="#fragment" id="ref-for-fragment⑧">fragment</a> inputs with the same <a data-link-type="dfn" href="#attribute-location" id="ref-for-attribute-location①①">location</a> assignment within the same <a data-link-type="dfn" href="#pipeline" id="ref-for-pipeline③">pipeline</a>.</p>
    <h4 class="heading settled" data-level="12.3.2" id="resource-interface"><span class="secno">12.3.2. </span><span class="content">Resource Interface</span><a class="self-link" href="#resource-interface"></a></h4>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="resource">resource</dfn> is an object which provides access to data external to a <a data-link-type="dfn" href="#shader-stages" id="ref-for-shader-stages⑧">shader stage</a>,
 and which is not an <a data-link-type="dfn" href="#override-declaration" id="ref-for-override-declaration①⑤">override-declaration</a> and not a <a href="#stage-inputs-outputs">shader stage input or output</a>.
@@ -22066,7 +22066,7 @@ let dfnPanelData = {
 "attribute-id": {"dfnID":"attribute-id","dfnText":"id","external":false,"refSections":[{"refs":[{"id":"ref-for-attribute-id"}],"title":"3.8.1. Attribute Names"},{"refs":[{"id":"ref-for-attribute-id\u2460"}],"title":"7.2.2. override Declarations"}],"url":"#attribute-id"},
 "attribute-interpolate": {"dfnID":"attribute-interpolate","dfnText":"interpolate","external":false,"refSections":[{"refs":[{"id":"ref-for-attribute-interpolate"}],"title":"3.8.1. Attribute Names"},{"refs":[{"id":"ref-for-attribute-interpolate\u2460"},{"id":"ref-for-attribute-interpolate\u2461"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-attribute-interpolate\u2462"}],"title":"10.1. Declaring a User-defined Function"},{"refs":[{"id":"ref-for-attribute-interpolate\u2463"}],"title":"12.3.1. Inter-stage Input and Output Interface"},{"refs":[{"id":"ref-for-attribute-interpolate\u2464"}],"title":"12.3.1.4. Interpolation"}],"url":"#attribute-interpolate"},
 "attribute-invariant": {"dfnID":"attribute-invariant","dfnText":"invariant","external":false,"refSections":[{"refs":[{"id":"ref-for-attribute-invariant"}],"title":"3.8.1. Attribute Names"},{"refs":[{"id":"ref-for-attribute-invariant\u2460"},{"id":"ref-for-attribute-invariant\u2461"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-attribute-invariant\u2462"}],"title":"10.1. Declaring a User-defined Function"},{"refs":[{"id":"ref-for-attribute-invariant\u2463"}],"title":"12.3.1. Inter-stage Input and Output Interface"}],"url":"#attribute-invariant"},
-"attribute-location": {"dfnID":"attribute-location","dfnText":"location","external":false,"refSections":[{"refs":[{"id":"ref-for-attribute-location"}],"title":"3.8.1. Attribute Names"},{"refs":[{"id":"ref-for-attribute-location\u2460"},{"id":"ref-for-attribute-location\u2461"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-attribute-location\u2462"}],"title":"10.1. Declaring a User-defined Function"},{"refs":[{"id":"ref-for-attribute-location\u2463"}],"title":"11.9. interpolate"},{"refs":[{"id":"ref-for-attribute-location\u2464"}],"title":"12.3.1. Inter-stage Input and Output Interface"},{"refs":[{"id":"ref-for-attribute-location\u2465"},{"id":"ref-for-attribute-location\u2466"},{"id":"ref-for-attribute-location\u2467"},{"id":"ref-for-attribute-location\u2468"}],"title":"12.3.1.3. Input-output Locations"},{"refs":[{"id":"ref-for-attribute-location\u2460\u24ea"}],"title":"12.3.1.4. Interpolation"}],"url":"#attribute-location"},
+"attribute-location": {"dfnID":"attribute-location","dfnText":"location","external":false,"refSections":[{"refs":[{"id":"ref-for-attribute-location"}],"title":"3.8.1. Attribute Names"},{"refs":[{"id":"ref-for-attribute-location\u2460"},{"id":"ref-for-attribute-location\u2461"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-attribute-location\u2462"}],"title":"10.1. Declaring a User-defined Function"},{"refs":[{"id":"ref-for-attribute-location\u2463"}],"title":"11.3. blend_src"},{"refs":[{"id":"ref-for-attribute-location\u2464"}],"title":"11.9. interpolate"},{"refs":[{"id":"ref-for-attribute-location\u2465"}],"title":"12.3.1. Inter-stage Input and Output Interface"},{"refs":[{"id":"ref-for-attribute-location\u2466"},{"id":"ref-for-attribute-location\u2467"},{"id":"ref-for-attribute-location\u2468"},{"id":"ref-for-attribute-location\u2460\u24ea"}],"title":"12.3.1.3. Input-output Locations"},{"refs":[{"id":"ref-for-attribute-location\u2460\u2460"}],"title":"12.3.1.4. Interpolation"}],"url":"#attribute-location"},
 "attribute-must_use": {"dfnID":"attribute-must_use","dfnText":"must_use","external":false,"refSections":[{"refs":[{"id":"ref-for-attribute-must_use"}],"title":"3.8.1. Attribute Names"},{"refs":[{"id":"ref-for-attribute-must_use\u2460"},{"id":"ref-for-attribute-must_use\u2461"}],"title":"9.5. Function Call Statement"}],"url":"#attribute-must_use"},
 "attribute-size": {"dfnID":"attribute-size","dfnText":"size","external":false,"refSections":[{"refs":[{"id":"ref-for-attribute-size"}],"title":"3.8.1. Attribute Names"},{"refs":[{"id":"ref-for-attribute-size\u2460"},{"id":"ref-for-attribute-size\u2461"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-attribute-size\u2462"},{"id":"ref-for-attribute-size\u2463"},{"id":"ref-for-attribute-size\u2464"}],"title":"13.4.2. Structure Member Layout"},{"refs":[{"id":"ref-for-attribute-size\u2465"}],"title":"13.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-attribute-size\u2466"}],"title":"13.4.5. Address Space Layout Constraints"}],"url":"#attribute-size"},
 "attribute-vertex": {"dfnID":"attribute-vertex","dfnText":"vertex","external":false,"refSections":[{"refs":[{"id":"ref-for-attribute-vertex"}],"title":"3.8.1. Attribute Names"},{"refs":[{"id":"ref-for-attribute-vertex\u2460"}],"title":"10.1. Declaring a User-defined Function"},{"refs":[{"id":"ref-for-attribute-vertex\u2461"}],"title":"12.2.1. Function Attributes for Entry Points"}],"url":"#attribute-vertex"},
