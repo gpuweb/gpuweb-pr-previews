@@ -1078,13 +1078,13 @@ var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBC
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-06-10">10 June 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-06-11">11 June 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/c045c6e77b38809574768b296f87574c66a7259c/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/c045c6e77b38809574768b296f87574c66a7259c/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/5b3a99097766988cf9b36c8887359abe42f00909/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/5b3a99097766988cf9b36c8887359abe42f00909/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -8916,7 +8916,6 @@ creation, the error is surfaced here.</p>
          <p>Set <var>pipeline</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelinebase-layout-slot" id="ref-for-dom-gpupipelinebase-layout-slot④">[[layout]]</a></code> to <var>layout</var>.</p>
        </ol>
       </div>
-      <p class="issue" id="issue-22c6f42f"><a class="self-link" href="#issue-22c6f42f"></a> need description of the render states.</p>
      </div>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUDevice" data-dfn-type="method" data-export id="dom-gpudevice-createrenderpipelineasync"><code>createRenderPipelineAsync(descriptor)</code></dfn>
     <dd data-md>
@@ -12720,7 +12719,7 @@ is <code>true</code>.</p>
           </ul>
          </div>
         <li data-md>
-         <p>Let <var>passState</var> be a snapshot of <var>this</var>’s current state.</p>
+         <p>Let <var>bindingState</var> be a snapshot of <var>this</var>’s current state.</p>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command⑦">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⓪">Queue timeline</a>.</p>
        </ol>
@@ -12729,7 +12728,7 @@ is <code>true</code>.</p>
         <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③①">Queue timeline</a> steps: 
        <ol>
         <li data-md>
-         <p>Execute a grid of workgroups with dimensions [<var>workgroupCountX</var>, <var>workgroupCountY</var>, <var>workgroupCountZ</var>] with <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepassencoder-pipeline-slot" id="ref-for-dom-gpucomputepassencoder-pipeline-slot②">[[pipeline]]</a></code> using <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑤">[[bind_groups]]</a></code>.</p>
+         <p>Execute a grid of workgroups with dimensions [<var>workgroupCountX</var>, <var>workgroupCountY</var>, <var>workgroupCountZ</var>] with <var>bindingState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepassencoder-pipeline-slot" id="ref-for-dom-gpucomputepassencoder-pipeline-slot②">[[pipeline]]</a></code> using <var>bindingState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑤">[[bind_groups]]</a></code>.</p>
        </ol>
       </div>
      </div>
@@ -12806,7 +12805,7 @@ is <code>true</code>.</p>
         <li data-md>
          <p>Add <var>indirectBuffer</var> to the <a data-link-type="dfn" href="#usage-scopes" id="ref-for-usage-scopes①①">usage scope</a> as <a data-link-type="dfn" href="#internal-usage-input" id="ref-for-internal-usage-input②">input</a>.</p>
         <li data-md>
-         <p>Let <var>passState</var> be a snapshot of <var>this</var>’s current state.</p>
+         <p>Let <var>bindingState</var> be a snapshot of <var>this</var>’s current state.</p>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-command" id="ref-for-abstract-opdef-enqueue-a-command⑧">Enqueue a command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③②">Queue timeline</a>.</p>
        </ol>
@@ -12826,7 +12825,7 @@ is <code>true</code>.</p>
          <p>If <var>workgroupCountX</var>, <var>workgroupCountY</var>, or <var>workgroupCountZ</var> is greater than <var>this</var>.device.limits.<code class="idl"><a data-link-type="idl" href="#dom-supported-limits-maxcomputeworkgroupsperdimension" id="ref-for-dom-supported-limits-maxcomputeworkgroupsperdimension①">maxComputeWorkgroupsPerDimension</a></code>,
 stop.</p>
         <li data-md>
-         <p>Execute a grid of workgroups with dimensions [<var>workgroupCountX</var>, <var>workgroupCountY</var>, <var>workgroupCountZ</var>] with <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepassencoder-pipeline-slot" id="ref-for-dom-gpucomputepassencoder-pipeline-slot④">[[pipeline]]</a></code> using <var>passState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑥">[[bind_groups]]</a></code>.</p>
+         <p>Execute a grid of workgroups with dimensions [<var>workgroupCountX</var>, <var>workgroupCountY</var>, <var>workgroupCountZ</var>] with <var>bindingState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepassencoder-pipeline-slot" id="ref-for-dom-gpucomputepassencoder-pipeline-slot④">[[pipeline]]</a></code> using <var>bindingState</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot⑥">[[bind_groups]]</a></code>.</p>
        </ol>
       </div>
      </div>
@@ -13999,7 +13998,7 @@ over each <var>attribute</var> in <var>attributes</var>, or 0 if <var>attributes
         <li data-md>
          <p>Increment <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawcount-slot" id="ref-for-dom-gpurendercommandsmixin-drawcount-slot②">[[drawCount]]</a></code> by 1.</p>
         <li data-md>
-         <p>Let <var>passState</var> be a snapshot of <var>this</var>’s current state.</p>
+         <p>Let <var>bindingState</var> be a snapshot of <var>this</var>’s current state.</p>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command①">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⑥">Queue timeline</a> with <var>renderState</var> when executed.</p>
        </ol>
@@ -14010,7 +14009,7 @@ over each <var>attribute</var> in <var>attributes</var>, or 0 if <var>attributes
         <li data-md>
          <p>Draw <var>instanceCount</var> instances, starting with instance <var>firstInstance</var>, of
 primitives consisting of <var>vertexCount</var> verticies, starting with vertex <var>firstVertex</var>,
-with the states from <var>passState</var> and <var>renderState</var>.</p>
+with the states from <var>bindingState</var> and <var>renderState</var>.</p>
        </ol>
       </div>
      </div>
@@ -14111,7 +14110,7 @@ for each <var>attribute</var> in <var>buffers</var>[<var>slot</var>].<code class
         <li data-md>
          <p>Increment <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawcount-slot" id="ref-for-dom-gpurendercommandsmixin-drawcount-slot③">[[drawCount]]</a></code> by 1.</p>
         <li data-md>
-         <p>Let <var>passState</var> be a snapshot of <var>this</var>’s current state.</p>
+         <p>Let <var>bindingState</var> be a snapshot of <var>this</var>’s current state.</p>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command②">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline③⑧">Queue timeline</a> with <var>renderState</var> when executed.</p>
        </ol>
@@ -14122,7 +14121,7 @@ for each <var>attribute</var> in <var>buffers</var>[<var>slot</var>].<code class
         <li data-md>
          <p>Draw <var>instanceCount</var> instances, starting with instance <var>firstInstance</var>, of
 primitives consisting of <var>indexCount</var> indexed verticies, starting with index <var>firstIndex</var> from vertex <var>baseVertex</var>,
-with the states from <var>passState</var> and <var>renderState</var>.</p>
+with the states from <var>bindingState</var> and <var>renderState</var>.</p>
        </ol>
       </div>
       <p class="note" role="note"><span class="marker">Note:</span> a valid program should also never use vertex indices with <code class="idl"><a data-link-type="idl" href="#dom-gpuvertexstepmode-vertex" id="ref-for-dom-gpuvertexstepmode-vertex②">GPUVertexStepMode."vertex"</a></code> that are out of bounds.
@@ -14205,7 +14204,7 @@ drawIndirectParameters<c- p>[</c-><c- mf>3</c-><c- p>]</c-> <c- o>=</c-> firstIn
         <li data-md>
          <p>Increment <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawcount-slot" id="ref-for-dom-gpurendercommandsmixin-drawcount-slot④">[[drawCount]]</a></code> by 1.</p>
         <li data-md>
-         <p>Let <var>passState</var> be a snapshot of <var>this</var>’s current state.</p>
+         <p>Let <var>bindingState</var> be a snapshot of <var>this</var>’s current state.</p>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command③">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline④⓪">Queue timeline</a> with <var>renderState</var> when executed.</p>
        </ol>
@@ -14227,7 +14226,7 @@ drawIndirectParameters<c- p>[</c-><c- mf>3</c-><c- p>]</c-> <c- o>=</c-> firstIn
         <li data-md>
          <p>Draw <var>instanceCount</var> instances, starting with instance <var>firstInstance</var>, of
 primitives consisting of <var>vertexCount</var> verticies, starting with vertex <var>firstVertex</var>,
-with the states from <var>passState</var> and <var>renderState</var>.</p>
+with the states from <var>bindingState</var> and <var>renderState</var>.</p>
        </ol>
       </div>
      </div>
@@ -14309,7 +14308,7 @@ drawIndexedIndirectParameters<c- p>[</c-><c- mf>4</c-><c- p>]</c-> <c- o>=</c-> 
         <li data-md>
          <p>Increment <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawcount-slot" id="ref-for-dom-gpurendercommandsmixin-drawcount-slot⑤">[[drawCount]]</a></code> by 1.</p>
         <li data-md>
-         <p>Let <var>passState</var> be a snapshot of <var>this</var>’s current state.</p>
+         <p>Let <var>bindingState</var> be a snapshot of <var>this</var>’s current state.</p>
         <li data-md>
          <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command④">Enqueue a render command</a> on <var>this</var> which issues the subsequent steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline④②">Queue timeline</a> with <var>renderState</var> when executed.</p>
        </ol>
@@ -14334,7 +14333,7 @@ drawIndexedIndirectParameters<c- p>[</c-><c- mf>4</c-><c- p>]</c-> <c- o>=</c-> 
         <li data-md>
          <p>Draw <var>instanceCount</var> instances, starting with instance <var>firstInstance</var>, of
 primitives consisting of <var>indexCount</var> indexed verticies, starting with index <var>firstIndex</var> from vertex <var>baseVertex</var>,
-with the states from <var>passState</var> and <var>renderState</var>.</p>
+with the states from <var>bindingState</var> and <var>renderState</var>.</p>
        </ol>
       </div>
      </div>
@@ -14866,29 +14865,24 @@ This occurs even if zero <code class="idl"><a data-link-type="idl" href="#gpuren
           <li data-md>
            <p>Increment <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-drawcount-slot" id="ref-for-dom-gpurendercommandsmixin-drawcount-slot⑥">[[drawCount]]</a></code> by <var>bundle</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderbundle-drawcount-slot" id="ref-for-dom-gpurenderbundle-drawcount-slot">[[drawCount]]</a></code>.</p>
           <li data-md>
-           <p><a data-link-type="abstract-op" href="#abstract-opdef-reset-the-render-pass-bindings" id="ref-for-abstract-opdef-reset-the-render-pass-bindings">Reset the render pass bindings</a> of <var>this</var>.</p>
-          <li data-md>
-           <p>Let <var>passState</var> be a snapshot of <var>this</var>’s current state.</p>
-          <li data-md>
            <p><a data-link-type="abstract-op" href="#abstract-opdef-enqueue-a-render-command" id="ref-for-abstract-opdef-enqueue-a-render-command①①">Enqueue a render command</a> on <var>this</var> which issues the following steps on the <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline⑤⑥">Queue timeline</a> with <var>renderState</var> when executed:</p>
            <div data-timeline="queue">
              <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline⑤⑦">Queue timeline</a> steps: 
             <ol>
              <li data-md>
-              <p>Execute each command in <var>bundle</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderbundle-command_list-slot" id="ref-for-dom-gpurenderbundle-command_list-slot">[[command_list]]</a></code> with <var>passState</var> and <var>renderState</var>.</p>
-              <p class="note" role="note"><span class="marker">Note:</span> <var>renderState</var> cannot be changed by executing render bundles.
-Also note, no mutable <var>passState</var> state is visible to render bundles.</p>
+              <p>Execute each command in <var>bundle</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderbundle-command_list-slot" id="ref-for-dom-gpurenderbundle-command_list-slot">[[command_list]]</a></code> with <var>renderState</var>.</p>
+              <p class="note" role="note"><span class="marker">Note:</span> <var>renderState</var> cannot be changed by executing render bundles.</p>
             </ol>
            </div>
          </ol>
         <li data-md>
-         <p><a data-link-type="abstract-op" href="#abstract-opdef-reset-the-render-pass-bindings" id="ref-for-abstract-opdef-reset-the-render-pass-bindings①">Reset the render pass bindings</a> of <var>this</var>.</p>
+         <p><a data-link-type="abstract-op" href="#abstract-opdef-reset-the-render-pass-binding-state" id="ref-for-abstract-opdef-reset-the-render-pass-binding-state">Reset the render pass binding state</a> of <var>this</var>.</p>
        </ol>
       </div>
      </div>
    </dl>
-   <div class="algorithm" data-algorithm="Reset the render pass bindings" data-timeline="device">
-     To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-reset-the-render-pass-bindings">Reset the render pass bindings</dfn> of <code class="idl"><a data-link-type="idl" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder②⑧">GPURenderPassEncoder</a></code> <var>encoder</var> run
+   <div class="algorithm" data-algorithm="Reset the render pass binding state" data-timeline="device">
+     To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-reset-the-render-pass-binding-state">Reset the render pass binding state</dfn> of <code class="idl"><a data-link-type="idl" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder②⑧">GPURenderPassEncoder</a></code> <var>encoder</var> run
     the following <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑥⑤">device timeline</a> steps: 
     <ol>
      <li data-md>
@@ -20105,7 +20099,7 @@ for (const dataLink of dataLinks) {
    <li><a href="#dom-gpuadapter-requestdevice">requestDevice(descriptor)</a><span>, in § 4.3</span>
    <li><a href="#dom-gpudevicedescriptor-requiredfeatures">requiredFeatures</a><span>, in § 4.3.1</span>
    <li><a href="#dom-gpudevicedescriptor-requiredlimits">requiredLimits</a><span>, in § 4.3.1</span>
-   <li><a href="#abstract-opdef-reset-the-render-pass-bindings">Reset the render pass bindings</a><span>, in § 17.2.4</span>
+   <li><a href="#abstract-opdef-reset-the-render-pass-binding-state">Reset the render pass binding state</a><span>, in § 17.2.4</span>
    <li><a href="#abstract-opdef-resolve-indices">resolve indices</a><span>, in § 23.3.1</span>
    <li><a href="#dom-gpucommandencoder-resolvequeryset">resolveQuerySet(querySet, firstQuery, queryCount, destination, destinationOffset)</a><span>, in § 13.6</span>
    <li><a href="#dom-gpurenderpasscolorattachment-resolvetarget">resolveTarget</a><span>, in § 17.1.1.1</span>
@@ -22078,7 +22072,6 @@ for (const dataLink of dataLinks) {
 reference specific GPU commands (like dispatch) yet. <a class="issue-return" href="#issue-04152442" title="Jump to section">↵</a></div>
    <div class="issue"> explain how LOD is calculated and if there are differences here between platforms. <a class="issue-return" href="#issue-b5fd3706" title="Jump to section">↵</a></div>
    <div class="issue"> Describe a "sample footprint" in greater detail. <a class="issue-return" href="#issue-d122b76a" title="Jump to section">↵</a></div>
-   <div class="issue"> need description of the render states. <a class="issue-return" href="#issue-22c6f42f" title="Jump to section">↵</a></div>
    <div class="issue"> Perform attachment loads/clears. <a class="issue-return" href="#issue-21edabd9" title="Jump to section">↵</a></div>
    <div class="issue"> specify the behavior of read-only depth/stencil <a class="issue-return" href="#issue-74c9d6d3" title="Jump to section">↵</a></div>
    <div class="issue"> Perform the attachment stores/discards. <a class="issue-return" href="#issue-e0f3b4fe" title="Jump to section">↵</a></div>
@@ -22468,7 +22461,7 @@ let dfnPanelData = {
 "abstract-opdef-render": {"dfnID":"abstract-opdef-render","dfnText":"render","external":false,"refSections":[],"url":"#abstract-opdef-render"},
 "abstract-opdef-renderable-texture-view": {"dfnID":"abstract-opdef-renderable-texture-view","dfnText":"renderable texture view","external":false,"refSections":[{"refs":[{"id":"ref-for-abstract-opdef-renderable-texture-view"},{"id":"ref-for-abstract-opdef-renderable-texture-view\u2460"}],"title":"17.1.1.1. Color Attachments"},{"refs":[{"id":"ref-for-abstract-opdef-renderable-texture-view\u2461"}],"title":"17.1.1.2. Depth/Stencil Attachments"}],"url":"#abstract-opdef-renderable-texture-view"},
 "abstract-opdef-replace-the-drawing-buffer": {"dfnID":"abstract-opdef-replace-the-drawing-buffer","dfnText":"Replace the drawing buffer","external":false,"refSections":[{"refs":[{"id":"ref-for-abstract-opdef-replace-the-drawing-buffer"}],"title":"21.1. HTMLCanvasElement.getContext()"},{"refs":[{"id":"ref-for-abstract-opdef-replace-the-drawing-buffer\u2460"},{"id":"ref-for-abstract-opdef-replace-the-drawing-buffer\u2461"},{"id":"ref-for-abstract-opdef-replace-the-drawing-buffer\u2462"},{"id":"ref-for-abstract-opdef-replace-the-drawing-buffer\u2463"},{"id":"ref-for-abstract-opdef-replace-the-drawing-buffer\u2464"},{"id":"ref-for-abstract-opdef-replace-the-drawing-buffer\u2465"},{"id":"ref-for-abstract-opdef-replace-the-drawing-buffer\u2466"}],"title":"21.2. GPUCanvasContext"},{"refs":[{"id":"ref-for-abstract-opdef-replace-the-drawing-buffer\u2467"}],"title":"21.3. HTML Specification Hooks"},{"refs":[{"id":"ref-for-abstract-opdef-replace-the-drawing-buffer\u2468"},{"id":"ref-for-abstract-opdef-replace-the-drawing-buffer\u2460\u24ea"}],"title":"21.4.2. Canvas Context sizing"}],"url":"#abstract-opdef-replace-the-drawing-buffer"},
-"abstract-opdef-reset-the-render-pass-bindings": {"dfnID":"abstract-opdef-reset-the-render-pass-bindings","dfnText":"Reset the render pass bindings","external":false,"refSections":[{"refs":[{"id":"ref-for-abstract-opdef-reset-the-render-pass-bindings"},{"id":"ref-for-abstract-opdef-reset-the-render-pass-bindings\u2460"}],"title":"17.2.4. Bundles"}],"url":"#abstract-opdef-reset-the-render-pass-bindings"},
+"abstract-opdef-reset-the-render-pass-binding-state": {"dfnID":"abstract-opdef-reset-the-render-pass-binding-state","dfnText":"Reset the render pass binding state","external":false,"refSections":[{"refs":[{"id":"ref-for-abstract-opdef-reset-the-render-pass-binding-state"}],"title":"17.2.4. Bundles"}],"url":"#abstract-opdef-reset-the-render-pass-binding-state"},
 "abstract-opdef-resolve-indices": {"dfnID":"abstract-opdef-resolve-indices","dfnText":"resolve indices","external":false,"refSections":[{"refs":[{"id":"ref-for-abstract-opdef-resolve-indices"}],"title":"23.3. Rendering"}],"url":"#abstract-opdef-resolve-indices"},
 "abstract-opdef-resolving-gputextureaspect": {"dfnID":"abstract-opdef-resolving-gputextureaspect","dfnText":"resolving GPUTextureAspect","external":false,"refSections":[{"refs":[{"id":"ref-for-abstract-opdef-resolving-gputextureaspect"},{"id":"ref-for-abstract-opdef-resolving-gputextureaspect\u2460"}],"title":"6.2.1. Texture View Creation"}],"url":"#abstract-opdef-resolving-gputextureaspect"},
 "abstract-opdef-resolving-gputextureviewdescriptor-defaults": {"dfnID":"abstract-opdef-resolving-gputextureviewdescriptor-defaults","dfnText":"resolving GPUTextureViewDescriptor defaults","external":false,"refSections":[{"refs":[{"id":"ref-for-abstract-opdef-resolving-gputextureviewdescriptor-defaults"}],"title":"6.2.1. Texture View Creation"}],"url":"#abstract-opdef-resolving-gputextureviewdescriptor-defaults"},
@@ -24192,7 +24185,7 @@ let refsData = {
 "#abstract-opdef-rasterize": {"export":true,"for_":[],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"rasterize","type":"abstract-op","url":"#abstract-opdef-rasterize"},
 "#abstract-opdef-renderable-texture-view": {"export":true,"for_":[],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"renderable texture view","type":"abstract-op","url":"#abstract-opdef-renderable-texture-view"},
 "#abstract-opdef-replace-the-drawing-buffer": {"export":true,"for_":[],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"Replace the drawing buffer","type":"abstract-op","url":"#abstract-opdef-replace-the-drawing-buffer"},
-"#abstract-opdef-reset-the-render-pass-bindings": {"export":true,"for_":[],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"Reset the render pass bindings","type":"abstract-op","url":"#abstract-opdef-reset-the-render-pass-bindings"},
+"#abstract-opdef-reset-the-render-pass-binding-state": {"export":true,"for_":[],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"Reset the render pass binding state","type":"abstract-op","url":"#abstract-opdef-reset-the-render-pass-binding-state"},
 "#abstract-opdef-resolve-indices": {"export":true,"for_":[],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"resolve indices","type":"abstract-op","url":"#abstract-opdef-resolve-indices"},
 "#abstract-opdef-resolving-gputextureaspect": {"export":true,"for_":[],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"resolving GPUTextureAspect","type":"abstract-op","url":"#abstract-opdef-resolving-gputextureaspect"},
 "#abstract-opdef-resolving-gputextureviewdescriptor-defaults": {"export":true,"for_":[],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"resolving GPUTextureViewDescriptor defaults","type":"abstract-op","url":"#abstract-opdef-resolving-gputextureviewdescriptor-defaults"},
