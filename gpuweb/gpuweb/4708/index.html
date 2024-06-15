@@ -1078,13 +1078,13 @@ var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBC
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-06-13">13 June 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-06-15">15 June 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/greggman/gpuweb/blob/dd7fda95c76ba3d24958977ae16620d351974d85/spec/index.bs">https://github.com/greggman/gpuweb/blob/dd7fda95c76ba3d24958977ae16620d351974d85/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/greggman/gpuweb/blob/27d8f3672235ab310d9a645aab6567f3e450bfee/spec/index.bs">https://github.com/greggman/gpuweb/blob/27d8f3672235ab310d9a645aab6567f3e450bfee/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -16666,8 +16666,7 @@ of WebGPU calls, typically for debugging purposes or to make an operation more f
        </div>
      </ol>
      <p class="note" role="note"><span class="marker">Note:</span> After dispatching the event, user agents <strong>should</strong> surface uncaptured errors to
-        developers, for example as warnings in the browser’s developer console, unless event’s <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#dom-event-defaultprevented" id="ref-for-dom-event-defaultprevented">defaultPrevented</a></code> is true. In other words, if <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#dom-event-preventdefault" id="ref-for-dom-event-preventdefault">preventDefault</a></code> has been
-        called on the event don’t surface the error.</p>
+        developers, for example as warnings in the browser’s developer console, unless event’s <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#dom-event-defaultprevented" id="ref-for-dom-event-defaultprevented">defaultPrevented</a></code> is true. In other words, calling <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#dom-event-preventdefault" id="ref-for-dom-event-preventdefault">preventDefault()</a></code> on the event should silence the console warning.</p>
     </div>
     <p class="note" role="note"><span class="marker">Note:</span> The user agent may choose to throttle or limit the number of <code class="idl"><a data-link-type="idl" href="#gpuuncapturederrorevent" id="ref-for-gpuuncapturederrorevent①">GPUUncapturedErrorEvent</a></code>s
     that a <code class="idl"><a data-link-type="idl" href="#gpudevice" id="ref-for-gpudevice⑧①">GPUDevice</a></code> can raise to prevent an excessive amount of error handling or logging from
