@@ -1078,13 +1078,13 @@ var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBC
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-06-24">24 June 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-06-25">25 June 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/6d0703389ede725968d02b2c7b1ae50dad0e83ef/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/6d0703389ede725968d02b2c7b1ae50dad0e83ef/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/669c3fac76f70c783011728cef56b9c5d1bbedd7/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/669c3fac76f70c783011728cef56b9c5d1bbedd7/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -17097,7 +17097,7 @@ blocks in hardware.</p>
      <li data-md>
       <p><var>descriptor</var>: Description of the current <code class="idl"><a data-link-type="idl" href="#gpurenderpipeline" id="ref-for-gpurenderpipeline④⓪">GPURenderPipeline</a></code>.</p>
      <li data-md>
-      <p><var>drawCall</var>: The draw call parameters.</p>
+      <p><var>drawCall</var>: The draw call parameters. May come from function arguments or an <code class="idl"><a data-link-type="idl" href="#dom-gpubufferusage-indirect" id="ref-for-dom-gpubufferusage-indirect⑥">INDIRECT</a></code> buffer.</p>
      <li data-md>
       <p><var>state</var>: <a data-link-type="dfn" href="#renderstate" id="ref-for-renderstate④">RenderState</a> of the <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①⑦">GPURenderCommandsMixin</a></code> where the draw call is issued.</p>
     </ul>
@@ -17137,7 +17137,7 @@ a list of vertices to process for each instance.</p>
     <p><strong>Arguments:</strong></p>
     <ul>
      <li data-md>
-      <p><var>drawCall</var>: The draw call parameters.</p>
+      <p><var>drawCall</var>: The draw call parameters. May come from function arguments or an <code class="idl"><a data-link-type="idl" href="#dom-gpubufferusage-indirect" id="ref-for-dom-gpubufferusage-indirect⑦">INDIRECT</a></code> buffer.</p>
      <li data-md>
       <p><var>state</var>: The snapshot of the <code class="idl"><a data-link-type="idl" href="#gpurendercommandsmixin" id="ref-for-gpurendercommandsmixin①⑧">GPURenderCommandsMixin</a></code> state at the time of the draw call.</p>
     </ul>
@@ -17175,10 +17175,9 @@ especially when it is easy to detect (like in non-indirect indexed draw calls).<
      <li data-md>
       <p>Return <var>vertexIndexList</var>.</p>
     </ol>
-    <p class="note" role="note"><span class="marker">Note:</span> in case of indirect draw calls, the <code>indexCount</code>, <code>vertexCount</code>,
+    <p class="note" role="note"><span class="marker">Note:</span> in the case of indirect draw calls, the <code>indexCount</code>, <code>vertexCount</code>,
     and other properties of <var>drawCall</var> are read from the indirect buffer
     instead of the draw command itself.</p>
-    <p class="note editorial" role="note"><span class="marker">Editorial note:</span> specify indirect commands better. </p>
    </div>
    <div class="algorithm" data-algorithm="fetch index" data-timeline="queue">
      <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-fetch-index">fetch index</dfn>(i, buffer, offset, format) 
@@ -17221,7 +17220,7 @@ clip space positions for <a href="#primitive-clipping">§ 23.2.4 Primitive Cli
      <li data-md>
       <p><var>vertexIndexList</var>: List of vertex indices to process (mutable, passed by reference).</p>
      <li data-md>
-      <p><var>drawCall</var>: The draw call parameters.</p>
+      <p><var>drawCall</var>: The draw call parameters. May come from function arguments or an <code class="idl"><a data-link-type="idl" href="#dom-gpubufferusage-indirect" id="ref-for-dom-gpubufferusage-indirect⑧">INDIRECT</a></code> buffer.</p>
      <li data-md>
       <p><var>desc</var>: The descriptor of type <code class="idl"><a data-link-type="idl" href="#dictdef-gpuvertexstate" id="ref-for-dictdef-gpuvertexstate⑥">GPUVertexState</a></code>.</p>
      <li data-md>
@@ -17333,7 +17332,7 @@ result in multiple invocations. Similarly, there is no guarantee that a single <
      <li data-md>
       <p><var>vertexIndexList</var>: List of vertex indices to process.</p>
      <li data-md>
-      <p><var>drawCall</var>: The draw call parameters.</p>
+      <p><var>drawCall</var>: The draw call parameters. May come from function arguments or an <code class="idl"><a data-link-type="idl" href="#dom-gpubufferusage-indirect" id="ref-for-dom-gpubufferusage-indirect⑨">INDIRECT</a></code> buffer.</p>
      <li data-md>
       <p><var>desc</var>: The descriptor of type <code class="idl"><a data-link-type="idl" href="#dictdef-gpuprimitivestate" id="ref-for-dictdef-gpuprimitivestate⑧">GPUPrimitiveState</a></code>.</p>
     </ul>
@@ -23000,7 +22999,7 @@ let dfnPanelData = {
 "dom-gpubufferusage-copy_dst": {"dfnID":"dom-gpubufferusage-copy_dst","dfnText":"COPY_DST","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gpubufferusage-copy_dst"}],"title":"4.4. GPUDevice\n\n"},{"refs":[{"id":"ref-for-dom-gpubufferusage-copy_dst\u2460"},{"id":"ref-for-dom-gpubufferusage-copy_dst\u2461"}],"title":"5.1.2. Buffer Usages"},{"refs":[{"id":"ref-for-dom-gpubufferusage-copy_dst\u2462"}],"title":"5.1.3. Buffer Creation"},{"refs":[{"id":"ref-for-dom-gpubufferusage-copy_dst\u2463"},{"id":"ref-for-dom-gpubufferusage-copy_dst\u2464"}],"title":"13.4. Buffer Copy Commands"},{"refs":[{"id":"ref-for-dom-gpubufferusage-copy_dst\u2465"}],"title":"13.5. Image Copy Commands"},{"refs":[{"id":"ref-for-dom-gpubufferusage-copy_dst\u2466"}],"title":"19.2. GPUQueue\n\n"}],"url":"#dom-gpubufferusage-copy_dst"},
 "dom-gpubufferusage-copy_src": {"dfnID":"dom-gpubufferusage-copy_src","dfnText":"COPY_SRC","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gpubufferusage-copy_src"}],"title":"4.4. GPUDevice\n\n"},{"refs":[{"id":"ref-for-dom-gpubufferusage-copy_src\u2460"},{"id":"ref-for-dom-gpubufferusage-copy_src\u2461"}],"title":"5.1.2. Buffer Usages"},{"refs":[{"id":"ref-for-dom-gpubufferusage-copy_src\u2462"}],"title":"5.1.3. Buffer Creation"},{"refs":[{"id":"ref-for-dom-gpubufferusage-copy_src\u2463"}],"title":"5.2. Buffer Mapping"},{"refs":[{"id":"ref-for-dom-gpubufferusage-copy_src\u2464"}],"title":"13.4. Buffer Copy Commands"},{"refs":[{"id":"ref-for-dom-gpubufferusage-copy_src\u2465"}],"title":"13.5. Image Copy Commands"}],"url":"#dom-gpubufferusage-copy_src"},
 "dom-gpubufferusage-index": {"dfnID":"dom-gpubufferusage-index","dfnText":"INDEX","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gpubufferusage-index"}],"title":"3.4.3. Resource Usages"},{"refs":[{"id":"ref-for-dom-gpubufferusage-index\u2460"}],"title":"4.4. GPUDevice\n\n"},{"refs":[{"id":"ref-for-dom-gpubufferusage-index\u2461"}],"title":"5.1.2. Buffer Usages"},{"refs":[{"id":"ref-for-dom-gpubufferusage-index\u2462"}],"title":"17.2.1. Drawing"}],"url":"#dom-gpubufferusage-index"},
-"dom-gpubufferusage-indirect": {"dfnID":"dom-gpubufferusage-indirect","dfnText":"INDIRECT","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gpubufferusage-indirect"}],"title":"3.4.3. Resource Usages"},{"refs":[{"id":"ref-for-dom-gpubufferusage-indirect\u2460"}],"title":"4.4. GPUDevice\n\n"},{"refs":[{"id":"ref-for-dom-gpubufferusage-indirect\u2461"}],"title":"5.1.2. Buffer Usages"},{"refs":[{"id":"ref-for-dom-gpubufferusage-indirect\u2462"}],"title":"16.1.2. Dispatch"},{"refs":[{"id":"ref-for-dom-gpubufferusage-indirect\u2463"},{"id":"ref-for-dom-gpubufferusage-indirect\u2464"}],"title":"17.2.1. Drawing"}],"url":"#dom-gpubufferusage-indirect"},
+"dom-gpubufferusage-indirect": {"dfnID":"dom-gpubufferusage-indirect","dfnText":"INDIRECT","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gpubufferusage-indirect"}],"title":"3.4.3. Resource Usages"},{"refs":[{"id":"ref-for-dom-gpubufferusage-indirect\u2460"}],"title":"4.4. GPUDevice\n\n"},{"refs":[{"id":"ref-for-dom-gpubufferusage-indirect\u2461"}],"title":"5.1.2. Buffer Usages"},{"refs":[{"id":"ref-for-dom-gpubufferusage-indirect\u2462"}],"title":"16.1.2. Dispatch"},{"refs":[{"id":"ref-for-dom-gpubufferusage-indirect\u2463"},{"id":"ref-for-dom-gpubufferusage-indirect\u2464"}],"title":"17.2.1. Drawing"},{"refs":[{"id":"ref-for-dom-gpubufferusage-indirect\u2465"}],"title":"23.2. Rendering"},{"refs":[{"id":"ref-for-dom-gpubufferusage-indirect\u2466"}],"title":"23.2.1. Index Resolution"},{"refs":[{"id":"ref-for-dom-gpubufferusage-indirect\u2467"}],"title":"23.2.2. Vertex Processing"},{"refs":[{"id":"ref-for-dom-gpubufferusage-indirect\u2468"}],"title":"23.2.3. Primitive Assembly"}],"url":"#dom-gpubufferusage-indirect"},
 "dom-gpubufferusage-map_read": {"dfnID":"dom-gpubufferusage-map_read","dfnText":"MAP_READ","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gpubufferusage-map_read"}],"title":"4.4. GPUDevice\n\n"},{"refs":[{"id":"ref-for-dom-gpubufferusage-map_read\u2460"}],"title":"5.1.1. GPUBufferDescriptor\n\n\n"},{"refs":[{"id":"ref-for-dom-gpubufferusage-map_read\u2461"}],"title":"5.1.2. Buffer Usages"},{"refs":[{"id":"ref-for-dom-gpubufferusage-map_read\u2462"}],"title":"5.1.3. Buffer Creation"},{"refs":[{"id":"ref-for-dom-gpubufferusage-map_read\u2463"},{"id":"ref-for-dom-gpubufferusage-map_read\u2464"}],"title":"5.2. Buffer Mapping"}],"url":"#dom-gpubufferusage-map_read"},
 "dom-gpubufferusage-map_write": {"dfnID":"dom-gpubufferusage-map_write","dfnText":"MAP_WRITE","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gpubufferusage-map_write"}],"title":"4.4. GPUDevice\n\n"},{"refs":[{"id":"ref-for-dom-gpubufferusage-map_write\u2460"}],"title":"5.1.1. GPUBufferDescriptor\n\n\n"},{"refs":[{"id":"ref-for-dom-gpubufferusage-map_write\u2461"}],"title":"5.1.2. Buffer Usages"},{"refs":[{"id":"ref-for-dom-gpubufferusage-map_write\u2462"}],"title":"5.1.3. Buffer Creation"},{"refs":[{"id":"ref-for-dom-gpubufferusage-map_write\u2463"},{"id":"ref-for-dom-gpubufferusage-map_write\u2464"},{"id":"ref-for-dom-gpubufferusage-map_write\u2465"}],"title":"5.2. Buffer Mapping"}],"url":"#dom-gpubufferusage-map_write"},
 "dom-gpubufferusage-query_resolve": {"dfnID":"dom-gpubufferusage-query_resolve","dfnText":"QUERY_RESOLVE","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gpubufferusage-query_resolve"}],"title":"4.4. GPUDevice\n\n"},{"refs":[{"id":"ref-for-dom-gpubufferusage-query_resolve\u2460"}],"title":"5.1.2. Buffer Usages"},{"refs":[{"id":"ref-for-dom-gpubufferusage-query_resolve\u2461"}],"title":"13.6. Queries"}],"url":"#dom-gpubufferusage-query_resolve"},
