@@ -1084,7 +1084,7 @@ var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBC
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/Jiawei-Shao/gpuweb/blob/5aa738e3dc366f965bca9decb91667ab1939e40b/spec/index.bs">https://github.com/Jiawei-Shao/gpuweb/blob/5aa738e3dc366f965bca9decb91667ab1939e40b/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/Jiawei-Shao/gpuweb/blob/e5cef7a1c06ba3b4b50749582787ffd83d44936e/spec/index.bs">https://github.com/Jiawei-Shao/gpuweb/blob/e5cef7a1c06ba3b4b50749582787ffd83d44936e/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -9507,7 +9507,7 @@ and <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#input-ou
    <p class="note" role="note"><span class="marker">Note:</span> The fragment shader may output more values than what the pipeline uses. If that is the case
 the values are ignored.</p>
    <div class="algorithm" data-algorithm="valid GPUBlendComponent" data-timeline="device">
-     To validate if <code class="idl"><a data-link-type="idl" href="#dictdef-gpublendcomponent" id="ref-for-dictdef-gpublendcomponent">GPUBlendComponent</a></code> <var>component</var> is a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="valid-gpublendcomponent">valid GPUBlendComponent</dfn><br> with logical <a data-link-type="dfn" href="#device" id="ref-for-device②⓪">device</a> <var>device</var>, run the following <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑥②">content timeline</a> steps: 
+     <code class="idl"><a data-link-type="idl" href="#dictdef-gpublendcomponent" id="ref-for-dictdef-gpublendcomponent">GPUBlendComponent</a></code> <var>component</var> is a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="valid-gpublendcomponent">valid GPUBlendComponent</dfn> with logical <a data-link-type="dfn" href="#device" id="ref-for-device②⓪">device</a> <var>device</var> if it meets<br> the following requirements: 
     <div class="validusage">
      <ul>
       <li data-md>
@@ -11142,7 +11142,7 @@ The encoder becomes "<a data-link-type="dfn" href="#encoder-state-open" id="ref-
           <td>Description of the <code class="idl"><a data-link-type="idl" href="#gpucommandencoder" id="ref-for-gpucommandencoder①⑤">GPUCommandEncoder</a></code> to create. 
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="#gpucommandencoder" id="ref-for-gpucommandencoder①⑥">GPUCommandEncoder</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑥③">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑥②">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Let <var>e</var> be <a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands②⑨">!</a> <a data-link-type="abstract-op" href="#abstract-opdef-create-a-new-webgpu-object" id="ref-for-abstract-opdef-create-a-new-webgpu-object①⓪">create a new WebGPU object</a>(<var>this</var>, <code class="idl"><a data-link-type="idl" href="#gpucommandencoder" id="ref-for-gpucommandencoder①⑦">GPUCommandEncoder</a></code>, <var>descriptor</var>).</p>
@@ -11203,7 +11203,7 @@ gpuDevice<c- p>.</c->queue<c- p>.</c->submit<c- p>([</c->commandBuffer<c- p>]);<
           <td>Description of the <code class="idl"><a data-link-type="idl" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder⑦">GPURenderPassEncoder</a></code> to create. 
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder⑧">GPURenderPassEncoder</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑥④">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑥③">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>For each non-<code>null</code> <var>colorAttachment</var> in <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassdescriptor-colorattachments" id="ref-for-dom-gpurenderpassdescriptor-colorattachments②">colorAttachments</a></code>:</p>
@@ -11414,7 +11414,7 @@ write the <a data-link-type="abstract-op" href="#abstract-opdef-current-queue-ti
           <td>
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder⑥">GPUComputePassEncoder</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑥⑤">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑥④">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Let <var>pass</var> be a new <code class="idl"><a data-link-type="idl" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder⑦">GPUComputePassEncoder</a></code> object.</p>
@@ -11524,7 +11524,7 @@ write the <a data-link-type="abstract-op" href="#abstract-opdef-current-queue-ti
           <td>Bytes to copy. 
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined①⑤">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑥⑥">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑥⑤">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨⑤">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot③⑤">[[device]]</a></code>.</p>
@@ -11611,7 +11611,7 @@ beginning at <var>destinationOffset</var>.</p>
           <td>Size in bytes of the sub-region to clear. Defaults to the size of the buffer minus <var>offset</var>. 
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined①⑥">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑥⑦">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑥⑥">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline⑨⑦">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot③⑥">[[device]]</a></code>.</p>
@@ -11692,7 +11692,7 @@ beginning at <var>destinationOffset</var>.</p>
           <td>
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined①⑦">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑥⑧">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑥⑦">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p><a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands③①">?</a> <a data-link-type="abstract-op" href="#abstract-opdef-validate-gpuorigin3d-shape" id="ref-for-abstract-opdef-validate-gpuorigin3d-shape">validate GPUOrigin3D shape</a>(<var>destination</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-origin" id="ref-for-dom-gpuimagecopytexture-origin⑧">origin</a></code>).</p>
@@ -11805,7 +11805,7 @@ multiple continuous <a data-link-type="dfn" href="#texture-subresources" id="ref
           <td>
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined①⑧">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑥⑨">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑥⑧">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p><a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands③③">?</a> <a data-link-type="abstract-op" href="#abstract-opdef-validate-gpuorigin3d-shape" id="ref-for-abstract-opdef-validate-gpuorigin3d-shape①">validate GPUOrigin3D shape</a>(<var>source</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-origin" id="ref-for-dom-gpuimagecopytexture-origin①⓪">origin</a></code>).</p>
@@ -11919,7 +11919,7 @@ multiple continuous <a data-link-type="dfn" href="#texture-subresources" id="ref
           <td>
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined①⑨">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦⓪">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑥⑨">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p><a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands③⑤">?</a> <a data-link-type="abstract-op" href="#abstract-opdef-validate-gpuorigin3d-shape" id="ref-for-abstract-opdef-validate-gpuorigin3d-shape②">validate GPUOrigin3D shape</a>(<var>source</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-origin" id="ref-for-dom-gpuimagecopytexture-origin①②">origin</a></code>).</p>
@@ -12069,7 +12069,7 @@ the <a data-link-type="abstract-op" href="#abstract-opdef-set-of-subresources-fo
           <td>
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined②⓪">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦①">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦⓪">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪⑤">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④⓪">[[device]]</a></code>.</p>
@@ -12155,7 +12155,7 @@ command encoder can no longer be used.</p>
           <td>
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer①⑦">GPUCommandBuffer</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦②">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦①">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Let <var>commandBuffer</var> be a new <code class="idl"><a data-link-type="idl" href="#gpucommandbuffer" id="ref-for-gpucommandbuffer①⑧">GPUCommandBuffer</a></code>.</p>
@@ -12245,7 +12245,7 @@ It must only be included by interfaces which also include those mixins.</p>
        <p class="note" role="note"><span class="marker">Note:</span> <var>dynamicOffsets</var>[<var>i</var>] is used for the <var>i</var>-th dynamic buffer binding in the bind group,
         when bindings are ordered by <code class="idl"><a data-link-type="idl" href="#dictdef-gpubindgrouplayoutentry" id="ref-for-dictdef-gpubindgrouplayoutentry③⑧">GPUBindGroupLayoutEntry</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindgrouplayoutentry-binding" id="ref-for-dom-gpubindgrouplayoutentry-binding①⓪">binding</a></code>.
         Said differently <var>dynamicOffsets</var> are in the same order as dynamic buffer binding’s <code class="idl"><a data-link-type="idl" href="#dictdef-gpubindgrouplayoutentry" id="ref-for-dictdef-gpubindgrouplayoutentry③⑨">GPUBindGroupLayoutEntry</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindgrouplayoutentry-binding" id="ref-for-dom-gpubindgrouplayoutentry-binding①①">binding</a></code>.</p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦③">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦②">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⓪⑨">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④②">[[device]]</a></code>.</p>
@@ -12362,7 +12362,7 @@ of a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.
           <td>Number of buffer offsets to read from <var>dynamicOffsetsData</var>. 
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined②④">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦④">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦③">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>If any of the following requirements are unmet, throw a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-rangeerror" id="ref-for-exceptiondef-rangeerror④">RangeError</a></code> and stop.</p>
@@ -12575,7 +12575,7 @@ It must only be included by interfaces which also include those mixins.</p>
           <td>The label for the command group. 
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined②⑧">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦⑤">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦④">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①④">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④④">[[device]]</a></code>.</p>
@@ -12598,7 +12598,7 @@ It must only be included by interfaces which also include those mixins.</p>
       <div data-timeline="content">
         <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpudebugcommandsmixin" id="ref-for-gpudebugcommandsmixin⑥">GPUDebugCommandsMixin</a></code> <var>this</var>. 
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined②⑨">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦⑥">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦⑤">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①⑥">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④⑤">[[device]]</a></code>.</p>
@@ -12647,7 +12647,7 @@ It must only be included by interfaces which also include those mixins.</p>
           <td>The label to insert. 
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined③⓪">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦⑦">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦⑥">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①①⑧">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④⑥">[[device]]</a></code>.</p>
@@ -12749,7 +12749,7 @@ implementation-defined and may not increase monotonically. See <a href="#timesta
           <td>The compute pipeline to use for subsequent dispatch commands. 
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined③⑤">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦⑧">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦⑦">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②⓪">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④⑦">[[device]]</a></code>.</p>
@@ -12820,7 +12820,7 @@ See <a href="#computing-operations">§ 23.1 Computing</a> for the detailed spe
             (<code>4*4*8*8=1024</code>)</p>
        </div>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined③⑥">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦⑨">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦⑧">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②②">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④⑧">[[device]]</a></code>.</p>
@@ -12898,7 +12898,7 @@ dispatchIndirectParameters<c- p>[</c-><c- mf>2</c-><c- p>]</c-> <c- o>=</c-> wor
           <td>Offset in bytes into <var>indirectBuffer</var> where the dispatch data begins. 
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined③⑦">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧⓪">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑦⑨">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②④">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot④⑨">[[device]]</a></code>.</p>
@@ -12966,7 +12966,7 @@ called the compute pass encoder can no longer be used.</p>
       <div data-timeline="content">
         <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpucomputepassencoder" id="ref-for-gpucomputepassencoder①⑦">GPUComputePassEncoder</a></code> <var>this</var>. 
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined③⑧">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧①">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧⓪">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①②⑥">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤⓪">[[device]]</a></code>.</p>
@@ -13653,7 +13653,7 @@ called the render pass encoder can no longer be used.</p>
       <div data-timeline="content">
         <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder①⑧">GPURenderPassEncoder</a></code> <var>this</var>. 
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined④⑦">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧②">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧①">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①③②">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤①">[[device]]</a></code>.</p>
@@ -13885,7 +13885,7 @@ empty.</p>
           <td>The render pipeline to use for subsequent drawing commands. 
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑤⑤">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧③">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧②">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①③⑤">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤②">[[device]]</a></code>.</p>
@@ -13960,7 +13960,7 @@ empty.</p>
           <td>Size in bytes of the index data in <var>buffer</var>.        Defaults to the size of the buffer minus the offset. 
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑤⑥">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧④">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧③">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①③⑦">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤③">[[device]]</a></code>.</p>
@@ -14043,7 +14043,7 @@ empty.</p>
           <td>Size in bytes of the vertex data in <var>buffer</var>.        Defaults to the size of the buffer minus the offset. 
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑤⑦">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧⑤">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧④">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①③⑨">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤④">[[device]]</a></code>.</p>
@@ -14144,7 +14144,7 @@ See <a href="#rendering-operations">§ 23.2 Rendering</a> for the detailed spe
           <td>First instance to draw. 
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑤⑧">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧⑥">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧⑤">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①④①">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤⑥">[[device]]</a></code>.</p>
@@ -14266,7 +14266,7 @@ See <a href="#rendering-operations">§ 23.2 Rendering</a> for the detailed spe
           <td>First instance to draw. 
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑤⑨">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧⑦">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧⑥">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①④③">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤⑦">[[device]]</a></code>.</p>
@@ -14375,7 +14375,7 @@ drawIndirectParameters<c- p>[</c-><c- mf>3</c-><c- p>]</c-> <c- o>=</c-> firstIn
           <td>Offset in bytes into <var>indirectBuffer</var> where the drawing data begins. 
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑥⓪">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧⑧">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧⑦">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①④⑤">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤⑧">[[device]]</a></code>.</p>
@@ -14479,7 +14479,7 @@ drawIndexedIndirectParameters<c- p>[</c-><c- mf>4</c-><c- p>]</c-> <c- o>=</c-> 
           <td>Offset in bytes into <var>indirectBuffer</var> where the drawing data begins. 
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑥①">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧⑨">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧⑧">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①④⑦">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑤⑨">[[device]]</a></code>.</p>
@@ -14663,7 +14663,7 @@ attachments used by this encoder.</p>
           <td>Maximum depth value of the viewport. 
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑥②">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑨⓪">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑧⑨">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑤①">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥①">[[device]]</a></code>.</p>
@@ -14757,7 +14757,7 @@ rectangle will be discarded.</p>
           <td>Height of the scissor rectangle in pixels. 
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑥③">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑨①">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑨⓪">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑤③">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥②">[[device]]</a></code>.</p>
@@ -14815,7 +14815,7 @@ rectangle will be discarded.</p>
           <td>The color to use when blending. 
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑥④">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑨②">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑨①">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p><a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands③⑧">?</a> <a data-link-type="abstract-op" href="#abstract-opdef-validate-gpucolor-shape" id="ref-for-abstract-opdef-validate-gpucolor-shape①">validate GPUColor shape</a>(<var>color</var>).</p>
@@ -14866,7 +14866,7 @@ the <code class="idl"><a data-link-type="idl" href="#dom-gpustenciloperation-rep
           <td>The new stencil reference value. 
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑥⑤">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑨③">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑨②">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑤⑦">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥④">[[device]]</a></code>.</p>
@@ -14916,7 +14916,7 @@ the <code class="idl"><a data-link-type="idl" href="#dom-gpustenciloperation-rep
           <td>The index of the query in the query set. 
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑥⑥">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑨④">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑨③">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑤⑨">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥⑤">[[device]]</a></code>.</p>
@@ -14961,7 +14961,7 @@ the <code class="idl"><a data-link-type="idl" href="#dom-gpustenciloperation-rep
       <div data-timeline="content">
         <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpurenderpassencoder" id="ref-for-gpurenderpassencoder②⑥">GPURenderPassEncoder</a></code> this. 
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑥⑦">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑨⑤">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑨④">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑥①">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥⑥">[[device]]</a></code>.</p>
@@ -15033,7 +15033,7 @@ This occurs even if zero <code class="idl"><a data-link-type="idl" href="#gpuren
           <td>List of render bundles to execute. 
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑥⑧">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑨⑥">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑨⑤">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑥③">Device timeline</a> of <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥⑦">[[device]]</a></code>.</p>
@@ -15168,7 +15168,7 @@ changing.</p>
           <td>Description of the <code class="idl"><a data-link-type="idl" href="#gpurenderbundleencoder" id="ref-for-gpurenderbundleencoder①①">GPURenderBundleEncoder</a></code> to create. 
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="#gpurenderbundleencoder" id="ref-for-gpurenderbundleencoder①②">GPURenderBundleEncoder</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑨⑦">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑨⑥">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p><a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands③⑨">?</a> <a data-link-type="abstract-op" href="#abstract-opdef-validate-texture-format-required-features" id="ref-for-abstract-opdef-validate-texture-format-required-features⑥">Validate texture format required features</a> of each non-<code>null</code> element of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpasslayout-colorformats" id="ref-for-dom-gpurenderpasslayout-colorformats⑥">colorFormats</a></code> with <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot⑥⑧">[[device]]</a></code>.</p>
@@ -15276,7 +15276,7 @@ in.</p>
           <td>
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="#gpurenderbundle" id="ref-for-gpurenderbundle①⑥">GPURenderBundle</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑨⑧">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑨⑦">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Let <var>renderBundle</var> be a new <code class="idl"><a data-link-type="idl" href="#gpurenderbundle" id="ref-for-gpurenderbundle①⑦">GPURenderBundle</a></code>.</p>
@@ -15406,7 +15406,7 @@ in.</p>
           <td>Size of content to write from <var>data</var> to <var>buffer</var>. Given in elements if <var>data</var> is a <code>TypedArray</code> and bytes otherwise. 
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑦④">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑨⑨">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑨⑧">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>If <var>data</var> is an <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-ArrayBuffer" id="ref-for-idl-ArrayBuffer②⓪">ArrayBuffer</a></code> or <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DataView" id="ref-for-idl-DataView">DataView</a></code>, let the element type be "byte".
@@ -15513,7 +15513,7 @@ an offset of <var>dataOffset</var> elements.</p>
           <td>Extents of the content to write from <var>data</var> to <var>destination</var>. 
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑦⑤">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①⓪⓪">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline⑨⑨">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p><a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands④②">?</a> <a data-link-type="abstract-op" href="#abstract-opdef-validate-gpuorigin3d-shape" id="ref-for-abstract-opdef-validate-gpuorigin3d-shape④">validate GPUOrigin3D shape</a>(<var>destination</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopytexture-origin" id="ref-for-dom-gpuimagecopytexture-origin①⑥">origin</a></code>).</p>
@@ -15651,7 +15651,7 @@ Note, this extra copy may have a performance cost.</p>
           <td>Extents of the content to write from <var>source</var> to <var>destination</var>. 
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑦⑥">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①⓪①">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①⓪⓪">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p><a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands④④">?</a> <a data-link-type="abstract-op" href="#abstract-opdef-validate-gpuorigin2d-shape" id="ref-for-abstract-opdef-validate-gpuorigin2d-shape">validate GPUOrigin2D shape</a>(<var>source</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuimagecopyexternalimage-origin" id="ref-for-dom-gpuimagecopyexternalimage-origin②">origin</a></code>).</p>
@@ -15798,7 +15798,7 @@ the <a data-link-type="dfn" href="#texel-block-height" id="ref-for-texel-block-h
           <td>
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑦⑦">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①⓪②">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①⓪①">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑦⑥">Device timeline</a> of <var>this</var>:</p>
@@ -15869,10 +15869,10 @@ on <code class="idl"><a data-link-type="idl" href="#gpubuffer" id="ref-for-gpubu
       <div data-timeline="content">
         <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpuqueue" id="ref-for-gpuqueue②①">GPUQueue</a></code> <var>this</var>. 
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise②⑥">Promise</a></code>&lt;<code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑦⑧">undefined</a></code>></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①⓪③">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①⓪②">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Let <var data-timeline="content">contentTimeline</var> be the current <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①⓪④">Content timeline</a>.</p>
+         <p>Let <var data-timeline="content">contentTimeline</var> be the current <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①⓪③">Content timeline</a>.</p>
         <li data-md>
          <p>Let <var>promise</var> be <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-new-promise" id="ref-for-a-new-promise⑤">a new promise</a>.</p>
         <li data-md>
@@ -15894,7 +15894,7 @@ if <var>this</var> is <a data-link-type="abstract-op" href="#abstract-opdef-inva
        </ol>
       </div>
       <div data-timeline="content">
-        <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①⓪⑤">Content timeline</a> steps: 
+        <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①⓪④">Content timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#resolve" id="ref-for-resolve⑧">Resolve</a> <var>promise</var>.</p>
@@ -15979,7 +15979,7 @@ if <var>this</var> is <a data-link-type="abstract-op" href="#abstract-opdef-inva
           <td>Description of the <code class="idl"><a data-link-type="idl" href="#gpuqueryset" id="ref-for-gpuqueryset③⓪">GPUQuerySet</a></code> to create. 
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="#gpuqueryset" id="ref-for-gpuqueryset③①">GPUQuerySet</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①⓪⑥">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①⓪⑤">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>If <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuquerysetdescriptor-type" id="ref-for-dom-gpuquerysetdescriptor-type①">type</a></code> is <code class="idl"><a data-link-type="idl" href="#dom-gpuquerytype-timestamp" id="ref-for-dom-gpuquerytype-timestamp②">"timestamp"</a></code>,
@@ -16038,7 +16038,7 @@ garbage collection by calling <code class="idl"><a data-link-type="idl" href="#d
       <div data-timeline="content">
         <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpuqueryset" id="ref-for-gpuqueryset③⑥">GPUQuerySet</a></code> <var>this</var>. 
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑧⓪">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①⓪⑦">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①⓪⑥">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuqueryset-state-slot" id="ref-for-dom-gpuqueryset-state-slot①">[[state]]</a></code> to <a data-link-type="dfn" href="#query-set-state-destroyed" id="ref-for-query-set-state-destroyed">destroyed</a>.</p>
@@ -16141,7 +16141,7 @@ the context creation attribute dictionary <code>options</code>, is ignored.
 Instead, use <code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-configure" id="ref-for-dom-gpucanvascontext-configure①">GPUCanvasContext.configure()</a></code>,
 which allows changing the canvas configuration without replacing the canvas.</p>
    <div class="algorithm" data-algorithm="create a &apos;webgpu&apos; context on a canvas" data-timeline="content">
-     To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-create-a-webgpu-context-on-a-canvas">create a 'webgpu' context on a canvas</dfn> (<code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#htmlcanvaselement" id="ref-for-htmlcanvaselement⑥">HTMLCanvasElement</a></code> or <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#offscreencanvas" id="ref-for-offscreencanvas④">OffscreenCanvas</a></code>) <var>canvas</var>, run the following <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①⓪⑧">content timeline</a> steps: 
+     To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-create-a-webgpu-context-on-a-canvas">create a 'webgpu' context on a canvas</dfn> (<code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#htmlcanvaselement" id="ref-for-htmlcanvaselement⑥">HTMLCanvasElement</a></code> or <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#offscreencanvas" id="ref-for-offscreencanvas④">OffscreenCanvas</a></code>) <var>canvas</var>, run the following <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①⓪⑦">content timeline</a> steps: 
     <ol>
      <li data-md>
       <p>Let <var>context</var> be a new <code class="idl"><a data-link-type="idl" href="#gpucanvascontext" id="ref-for-gpucanvascontext④">GPUCanvasContext</a></code>.</p>
@@ -16240,7 +16240,7 @@ This clears the drawing buffer to transparent black (in <a data-link-type="abstr
           <td>Desired configuration for the context. 
        </table>
        <p><strong>Returns:</strong> undefined</p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①⓪⑨">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①⓪⑧">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Let <var>device</var> be <var>configuration</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucanvasconfiguration-device" id="ref-for-dom-gpucanvasconfiguration-device">device</a></code>.</p>
@@ -16287,7 +16287,7 @@ the canvas is resized.</p>
       <div data-timeline="content">
         <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpucanvascontext" id="ref-for-gpucanvascontext⑨">GPUCanvasContext</a></code> <var>this</var>. 
        <p><strong>Returns:</strong> undefined</p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①①⓪">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①⓪⑨">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Set <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-configuration-slot" id="ref-for-dom-gpucanvascontext-configuration-slot③">[[configuration]]</a></code> to <code>null</code>.</p>
@@ -16318,7 +16318,7 @@ the canvas is resized.</p>
       <div data-timeline="content">
         <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpucanvascontext" id="ref-for-gpucanvascontext①①">GPUCanvasContext</a></code> <var>this</var>. 
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="#gputexture" id="ref-for-gputexture④④">GPUTexture</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①①①">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①①⓪">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>If <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-configuration-slot" id="ref-for-dom-gpucanvascontext-configuration-slot④">[[configuration]]</a></code> is <code>null</code>:</p>
@@ -16369,7 +16369,7 @@ runs, even if that <code class="idl"><a data-link-type="idl" href="#gputexture" 
       <p><var>context</var>: the <code class="idl"><a data-link-type="idl" href="#gpucanvascontext" id="ref-for-gpucanvascontext①②">GPUCanvasContext</a></code></p>
     </ul>
     <p><strong>Returns:</strong> image contents</p>
-    <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①①②">Content timeline</a> steps:</p>
+    <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①①①">Content timeline</a> steps:</p>
     <ol>
      <li data-md>
       <p>Ensure that all submitted work items (e.g. queue submissions) have
@@ -16401,7 +16401,7 @@ and implementations may clear the alpha channel in-place.</p>
    </div>
    <div class="algorithm" data-algorithm="Replace the drawing buffer" data-timeline="content">
      To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-replace-the-drawing-buffer">Replace the drawing buffer</dfn> of a <code class="idl"><a data-link-type="idl" href="#gpucanvascontext" id="ref-for-gpucanvascontext①③">GPUCanvasContext</a></code> <var>context</var>, run
-    the following <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①①③">content timeline</a> steps: 
+    the following <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①①②">content timeline</a> steps: 
     <ol>
      <li data-md>
       <p><a data-link-type="abstract-op" href="#abstract-opdef-expire-the-current-texture" id="ref-for-abstract-opdef-expire-the-current-texture③">Expire the current texture</a> of <var>context</var>.</p>
@@ -16431,7 +16431,7 @@ and has the correct configuration.</p>
    </div>
    <div class="algorithm" data-algorithm="Expire the current texture" data-timeline="content">
      To <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-expire-the-current-texture">Expire the current texture</dfn> of a <code class="idl"><a data-link-type="idl" href="#gpucanvascontext" id="ref-for-gpucanvascontext①④">GPUCanvasContext</a></code> <var>context</var>, run
-    the following <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①①④">content timeline</a> steps: 
+    the following <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①①③">content timeline</a> steps: 
     <ol>
      <li data-md>
       <p>If <var>context</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucanvascontext-currenttexture-slot" id="ref-for-dom-gpucanvascontext-currenttexture-slot⑨">[[currentTexture]]</a></code> is not <code>null</code>:</p>
@@ -16448,7 +16448,7 @@ to terminate write access to the image.</p>
    <p>The following algorithms "hook" into algorithms in the HTML specification, and must run at the
 specified points.</p>
    <div class="algorithm" data-algorithm="get the bitmap of a WebGPU canvas" data-timeline="content">
-     When the "bitmap" is read from an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#htmlcanvaselement" id="ref-for-htmlcanvaselement⑧">HTMLCanvasElement</a></code> or <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#offscreencanvas" id="ref-for-offscreencanvas⑥">OffscreenCanvas</a></code> with a <code class="idl"><a data-link-type="idl" href="#gpucanvascontext" id="ref-for-gpucanvascontext①⑤">GPUCanvasContext</a></code> <var>context</var>, run the following <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①①⑤">content timeline</a> steps: 
+     When the "bitmap" is read from an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#htmlcanvaselement" id="ref-for-htmlcanvaselement⑧">HTMLCanvasElement</a></code> or <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#offscreencanvas" id="ref-for-offscreencanvas⑥">OffscreenCanvas</a></code> with a <code class="idl"><a data-link-type="idl" href="#gpucanvascontext" id="ref-for-gpucanvascontext①⑤">GPUCanvasContext</a></code> <var>context</var>, run the following <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①①④">content timeline</a> steps: 
     <ol>
      <li data-md>
       <p>Return <a data-link-type="abstract-op" href="#abstract-opdef-get-a-copy-of-the-image-contents-of-a-context" id="ref-for-abstract-opdef-get-a-copy-of-the-image-contents-of-a-context④">a copy of the image contents</a> of <var>context</var>.</p>
@@ -16474,7 +16474,7 @@ specified points.</p>
    </div>
    <div class="algorithm" data-algorithm="updating the rendering of a WebGPU canvas" data-timeline="content">
      When <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-updating-the-rendering-of-a-webgpu-canvas">updating the rendering of a WebGPU canvas</dfn> (an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#htmlcanvaselement" id="ref-for-htmlcanvaselement①⓪">HTMLCanvasElement</a></code> or an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#offscreencanvas" id="ref-for-offscreencanvas⑧">OffscreenCanvas</a></code> with a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/canvas.html#offscreencanvas-placeholder" id="ref-for-offscreencanvas-placeholder①">placeholder canvas element</a>)
-    with a <code class="idl"><a data-link-type="idl" href="#gpucanvascontext" id="ref-for-gpucanvascontext①⑥">GPUCanvasContext</a></code> <var>context</var>, which occurs in the following sub-steps of the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loop-processing-model" id="ref-for-event-loop-processing-model①">event loop processing model</a>, run the following <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①①⑥">content timeline</a> steps: 
+    with a <code class="idl"><a data-link-type="idl" href="#gpucanvascontext" id="ref-for-gpucanvascontext①⑥">GPUCanvasContext</a></code> <var>context</var>, which occurs in the following sub-steps of the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loop-processing-model" id="ref-for-event-loop-processing-model①">event loop processing model</a>, run the following <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①①⑤">content timeline</a> steps: 
     <ul>
      <li data-md>
       <p>"update the rendering or user interface of that <code>Document</code>"</p>
@@ -16493,7 +16493,7 @@ specified points.</p>
    </div>
    <div class="algorithm" data-algorithm="transferToImageBitmap from WebGPU" data-timeline="content">
      When <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#dom-offscreencanvas-transfertoimagebitmap" id="ref-for-dom-offscreencanvas-transfertoimagebitmap②">transferToImageBitmap()</a></code> is called on a canvas with <code class="idl"><a data-link-type="idl" href="#gpucanvascontext" id="ref-for-gpucanvascontext①⑦">GPUCanvasContext</a></code> <var>context</var>, after creating an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmap" id="ref-for-imagebitmap④">ImageBitmap</a></code> from the canvas’s bitmap,
-    run the following <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①①⑦">content timeline</a> steps: 
+    run the following <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①①⑥">content timeline</a> steps: 
     <ol>
      <li data-md>
       <p><a data-link-type="abstract-op" href="#abstract-opdef-replace-the-drawing-buffer" id="ref-for-abstract-opdef-replace-the-drawing-buffer⑧">Replace the drawing buffer</a> of <var>context</var>.</p>
@@ -16598,7 +16598,7 @@ of the canvas, which is set by the canvas’s <code>width</code> and <code>heigh
    <p class="note" role="note"><span class="marker">Note:</span> Like WebGL and 2d canvas, resizing a WebGPU canvas loses the current contents of the drawing buffer.
 In WebGPU, it does so by <a data-link-type="abstract-op" href="#abstract-opdef-replace-the-drawing-buffer" id="ref-for-abstract-opdef-replace-the-drawing-buffer⑨">replacing the drawing buffer</a>.</p>
    <div class="algorithm" data-algorithm="update the canvas size" data-timeline="content">
-     When an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#htmlcanvaselement" id="ref-for-htmlcanvaselement①④">HTMLCanvasElement</a></code> or <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#offscreencanvas" id="ref-for-offscreencanvas①④">OffscreenCanvas</a></code> <var>canvas</var> with a <code class="idl"><a data-link-type="idl" href="#gpucanvascontext" id="ref-for-gpucanvascontext①⑨">GPUCanvasContext</a></code> <var>context</var> has its <code>width</code> or <code>height</code> attributes set, <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-update-the-canvas-size">update the canvas size</dfn> by running the following <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①①⑧">content timeline</a> steps: 
+     When an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#htmlcanvaselement" id="ref-for-htmlcanvaselement①④">HTMLCanvasElement</a></code> or <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#offscreencanvas" id="ref-for-offscreencanvas①④">OffscreenCanvas</a></code> <var>canvas</var> with a <code class="idl"><a data-link-type="idl" href="#gpucanvascontext" id="ref-for-gpucanvascontext①⑨">GPUCanvasContext</a></code> <var>context</var> has its <code>width</code> or <code>height</code> attributes set, <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-update-the-canvas-size">update the canvas size</dfn> by running the following <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①①⑦">content timeline</a> steps: 
     <ol>
      <li data-md>
       <p><a data-link-type="abstract-op" href="#abstract-opdef-replace-the-drawing-buffer" id="ref-for-abstract-opdef-replace-the-drawing-buffer①⓪">Replace the drawing buffer</a> of <var>context</var>.</p>
@@ -16895,11 +16895,11 @@ of WebGPU calls, typically for debugging purposes or to make an operation more f
          <p>Return.</p>
        </ol>
       <li data-md>
-       <p>Otherwise issue the following steps to the <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①①⑨">content timeline</a>:</p>
+       <p>Otherwise issue the following steps to the <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①①⑧">content timeline</a>:</p>
      </ol>
     </div>
     <div data-timeline="content">
-      <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①②⓪">Content timeline</a> steps: 
+      <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①①⑨">Content timeline</a> steps: 
      <ol>
       <li data-md>
        <p>If the user agent chooses, <a data-link-type="abstract-op" href="#abstract-opdef-queue-a-global-task-for-gpudevice" id="ref-for-abstract-opdef-queue-a-global-task-for-gpudevice①">queue a global task for GPUDevice</a> <var>device</var> with the following steps:</p>
@@ -16944,7 +16944,7 @@ of WebGPU calls, typically for debugging purposes or to make an operation more f
           <td>Which class of errors this error scope observes. 
        </table>
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑧④">undefined</a></code></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①②①">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①②⓪">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
          <p>Issue the subsequent steps on the <a data-link-type="dfn" href="#device-timeline" id="ref-for-device-timeline①⑨⑤">Device timeline</a> of <var>this</var>.</p>
@@ -16970,10 +16970,10 @@ of WebGPU calls, typically for debugging purposes or to make an operation more f
       <div data-timeline="content">
         <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpudevice" id="ref-for-gpudevice⑧③">GPUDevice</a></code> <var>this</var>. 
        <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise②⑨">Promise</a></code>&lt;<code class="idl"><a data-link-type="idl" href="#gpuerror" id="ref-for-gpuerror②⓪">GPUError</a></code>?></p>
-       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①②②">Content timeline</a> steps:</p>
+       <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①②①">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
-         <p>Let <var data-timeline="content">contentTimeline</var> be the current <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①②③">Content timeline</a>.</p>
+         <p>Let <var data-timeline="content">contentTimeline</var> be the current <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①②②">Content timeline</a>.</p>
         <li data-md>
          <p>Let <var>promise</var> be <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-new-promise" id="ref-for-a-new-promise⑦">a new promise</a>.</p>
         <li data-md>
@@ -16988,7 +16988,7 @@ of WebGPU calls, typically for debugging purposes or to make an operation more f
         <li data-md>
          <p>If <var>this</var> is <a data-link-type="abstract-op" href="#abstract-opdef-invalid" id="ref-for-abstract-opdef-invalid①⑨">lost</a>, issue the following steps on <var data-timeline="content">contentTimeline</var> and return:</p>
          <div data-timeline="content">
-           <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①②④">Content timeline</a> steps: 
+           <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①②③">Content timeline</a> steps: 
           <ol>
            <li data-md>
             <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#resolve" id="ref-for-resolve⑨">Resolve</a> <var>promise</var> with <code>null</code>.</p>
@@ -17005,7 +17005,7 @@ of WebGPU calls, typically for debugging purposes or to make an operation more f
          </div>
          <p>Then issue the following steps on <var data-timeline="content">contentTimeline</var> and return:</p>
          <div data-timeline="content">
-           <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①②⑤">Content timeline</a> steps: 
+           <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①②④">Content timeline</a> steps: 
           <ol>
            <li data-md>
             <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject⑨">Reject</a> <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#operationerror" id="ref-for-operationerror⑥">OperationError</a></code>.</p>
@@ -17037,7 +17037,7 @@ and report any resulting errors later.</p>
        </ol>
       </div>
       <div data-timeline="content">
-        <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①②⑥">Content timeline</a> steps: 
+        <a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①②⑤">Content timeline</a> steps: 
        <ol>
         <li data-md>
          <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#resolve" id="ref-for-resolve①⓪">Resolve</a> <var>promise</var> with <var>error</var>.</p>
@@ -18002,7 +18002,7 @@ either <code class="idl"><a data-link-type="idl" href="#dictdef-gpucolordict" id
       <p><var>color</var>: The <code class="idl"><a data-link-type="idl" href="#typedefdef-gpucolor" id="ref-for-typedefdef-gpucolor⑦">GPUColor</a></code> to validate.</p>
     </ul>
     <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑧⑤">undefined</a></code></p>
-    <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①②⑦">Content timeline</a> steps:</p>
+    <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①②⑥">Content timeline</a> steps:</p>
     <ol>
      <li data-md>
       <p>Throw a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①④">TypeError</a></code> if <var>color</var> is a sequence and <var>color</var>.length ≠ 4.</p>
@@ -18033,7 +18033,7 @@ either <code class="idl"><a data-link-type="idl" href="#dictdef-gpuorigin2ddict"
       <p><var>origin</var>: The <code class="idl"><a data-link-type="idl" href="#typedefdef-gpuorigin2d" id="ref-for-typedefdef-gpuorigin2d③">GPUOrigin2D</a></code> to validate.</p>
     </ul>
     <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑧⑥">undefined</a></code></p>
-    <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①②⑧">Content timeline</a> steps:</p>
+    <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①②⑦">Content timeline</a> steps:</p>
     <ol>
      <li data-md>
       <p>Throw a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①⑤">TypeError</a></code> if <var>origin</var> is a sequence and <var>origin</var>.length > 2.</p>
@@ -18068,7 +18068,7 @@ either <code class="idl"><a data-link-type="idl" href="#dictdef-gpuorigin3ddict"
       <p><var>origin</var>: The <code class="idl"><a data-link-type="idl" href="#typedefdef-gpuorigin3d" id="ref-for-typedefdef-gpuorigin3d③">GPUOrigin3D</a></code> to validate.</p>
     </ul>
     <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑧⑦">undefined</a></code></p>
-    <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①②⑨">Content timeline</a> steps:</p>
+    <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①②⑧">Content timeline</a> steps:</p>
     <ol>
      <li data-md>
       <p>Throw a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①⑥">TypeError</a></code> if <var>origin</var> is a sequence and <var>origin</var>.length > 3.</p>
@@ -18115,7 +18115,7 @@ either <code class="idl"><a data-link-type="idl" href="#dictdef-gpuextent3ddict"
       <p><var>extent</var>: The <code class="idl"><a data-link-type="idl" href="#typedefdef-gpuextent3d" id="ref-for-typedefdef-gpuextent3d②⓪">GPUExtent3D</a></code> to validate.</p>
     </ul>
     <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑧⑧">undefined</a></code></p>
-    <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①③⓪">Content timeline</a> steps:</p>
+    <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①②⑨">Content timeline</a> steps:</p>
     <ol>
      <li data-md>
       <p>Throw a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①⑦">TypeError</a></code> if:</p>
@@ -22988,7 +22988,7 @@ let dfnPanelData = {
 "compatible-usage-list": {"dfnID":"compatible-usage-list","dfnText":"compatible usage list","external":false,"refSections":[{"refs":[{"id":"ref-for-compatible-usage-list"},{"id":"ref-for-compatible-usage-list\u2460"},{"id":"ref-for-compatible-usage-list\u2461"}],"title":"3.4.3. Resource Usages"},{"refs":[{"id":"ref-for-compatible-usage-list\u2462"}],"title":"3.4.4. Synchronization"},{"refs":[{"id":"ref-for-compatible-usage-list\u2463"},{"id":"ref-for-compatible-usage-list\u2464"}],"title":"17.1.1. Render Pass Encoder Creation"}],"url":"#compatible-usage-list"},
 "compressed-format": {"dfnID":"compressed-format","dfnText":"compressed format","external":false,"refSections":[{"refs":[{"id":"ref-for-compressed-format"}],"title":"6.1.3. Texture Creation"},{"refs":[{"id":"ref-for-compressed-format\u2460"}],"title":"11.2.6. Subroutines"}],"url":"#compressed-format"},
 "contagious-invalidity": {"dfnID":"contagious-invalidity","dfnText":"contagious invalidity","external":false,"refSections":[],"url":"#contagious-invalidity"},
-"content-timeline": {"dfnID":"content-timeline","dfnText":"Content timeline","external":false,"refSections":[{"refs":[{"id":"ref-for-content-timeline"},{"id":"ref-for-content-timeline\u2460"},{"id":"ref-for-content-timeline\u2461"},{"id":"ref-for-content-timeline\u2462"}],"title":"3.1.2. WebGPU Objects\n\n"},{"refs":[{"id":"ref-for-content-timeline\u2463"},{"id":"ref-for-content-timeline\u2464"},{"id":"ref-for-content-timeline\u2465"},{"id":"ref-for-content-timeline\u2466"},{"id":"ref-for-content-timeline\u2467"},{"id":"ref-for-content-timeline\u2468"}],"title":"3.4.1. Timelines"},{"refs":[{"id":"ref-for-content-timeline\u2460\u24ea"},{"id":"ref-for-content-timeline\u2460\u2460"}],"title":"3.5.2. Devices"},{"refs":[{"id":"ref-for-content-timeline\u2460\u2461"}],"title":"3.6.2.4. GPUAdapterInfo\n\n"},{"refs":[{"id":"ref-for-content-timeline\u2460\u2462"}],"title":"3.9.1. WebGPU Task Source"},{"refs":[{"id":"ref-for-content-timeline\u2460\u2463"}],"title":"3.9.2. Automatic Expiry Task Source\n"},{"refs":[{"id":"ref-for-content-timeline\u2460\u2464"},{"id":"ref-for-content-timeline\u2460\u2465"},{"id":"ref-for-content-timeline\u2460\u2466"},{"id":"ref-for-content-timeline\u2460\u2467"}],"title":"4.2. GPU"},{"refs":[{"id":"ref-for-content-timeline\u2460\u2468"},{"id":"ref-for-content-timeline\u2461\u24ea"},{"id":"ref-for-content-timeline\u2461\u2460"},{"id":"ref-for-content-timeline\u2461\u2461"},{"id":"ref-for-content-timeline\u2461\u2462"},{"id":"ref-for-content-timeline\u2461\u2463"}],"title":"4.3. GPUAdapter\n\n"},{"refs":[{"id":"ref-for-content-timeline\u2461\u2464"}],"title":"4.4. GPUDevice\n\n"},{"refs":[{"id":"ref-for-content-timeline\u2461\u2465"},{"id":"ref-for-content-timeline\u2461\u2466"}],"title":"5.1. GPUBuffer\n\n"},{"refs":[{"id":"ref-for-content-timeline\u2461\u2467"}],"title":"5.1.3. Buffer Creation"},{"refs":[{"id":"ref-for-content-timeline\u2461\u2468"}],"title":"5.1.4. Buffer Destruction"},{"refs":[{"id":"ref-for-content-timeline\u2462\u24ea"},{"id":"ref-for-content-timeline\u2462\u2460"},{"id":"ref-for-content-timeline\u2462\u2461"},{"id":"ref-for-content-timeline\u2462\u2462"},{"id":"ref-for-content-timeline\u2462\u2463"},{"id":"ref-for-content-timeline\u2462\u2464"},{"id":"ref-for-content-timeline\u2462\u2465"},{"id":"ref-for-content-timeline\u2462\u2466"}],"title":"5.2. Buffer Mapping"},{"refs":[{"id":"ref-for-content-timeline\u2462\u2467"}],"title":"6.1.3. Texture Creation"},{"refs":[{"id":"ref-for-content-timeline\u2462\u2468"}],"title":"6.1.4. Texture Destruction"},{"refs":[{"id":"ref-for-content-timeline\u2463\u24ea"}],"title":"6.2.1. Texture View Creation"},{"refs":[{"id":"ref-for-content-timeline\u2463\u2460"}],"title":"6.3. Texture Formats"},{"refs":[{"id":"ref-for-content-timeline\u2463\u2461"}],"title":"6.4.1. Importing External Textures"},{"refs":[{"id":"ref-for-content-timeline\u2463\u2462"}],"title":"7.1.2. Sampler Creation"},{"refs":[{"id":"ref-for-content-timeline\u2463\u2463"}],"title":"8.1.1. Bind Group Layout Creation"},{"refs":[{"id":"ref-for-content-timeline\u2463\u2464"}],"title":"8.2.1. Bind Group Creation"},{"refs":[{"id":"ref-for-content-timeline\u2463\u2465"}],"title":"8.3.1. Pipeline Layout Creation"},{"refs":[{"id":"ref-for-content-timeline\u2463\u2466"}],"title":"9.1.1. Shader Module Creation"},{"refs":[{"id":"ref-for-content-timeline\u2463\u2467"},{"id":"ref-for-content-timeline\u2463\u2468"},{"id":"ref-for-content-timeline\u2464\u24ea"}],"title":"9.1.2. Shader Module Compilation Information"},{"refs":[{"id":"ref-for-content-timeline\u2464\u2460"}],"title":"10. Pipelines"},{"refs":[{"id":"ref-for-content-timeline\u2464\u2461"},{"id":"ref-for-content-timeline\u2464\u2462"}],"title":"10.1. Base pipelines"},{"refs":[{"id":"ref-for-content-timeline\u2464\u2463"},{"id":"ref-for-content-timeline\u2464\u2464"},{"id":"ref-for-content-timeline\u2464\u2465"},{"id":"ref-for-content-timeline\u2464\u2466"}],"title":"10.2.1. Compute Pipeline Creation"},{"refs":[{"id":"ref-for-content-timeline\u2464\u2467"},{"id":"ref-for-content-timeline\u2464\u2468"},{"id":"ref-for-content-timeline\u2465\u24ea"},{"id":"ref-for-content-timeline\u2465\u2460"}],"title":"10.3.1. Render Pipeline Creation"},{"refs":[{"id":"ref-for-content-timeline\u2465\u2461"}],"title":"10.3.4. Fragment State"},{"refs":[{"id":"ref-for-content-timeline\u2465\u2462"}],"title":"13.2.1. Command Encoder Creation"},{"refs":[{"id":"ref-for-content-timeline\u2465\u2463"},{"id":"ref-for-content-timeline\u2465\u2464"}],"title":"13.3. Pass Encoding"},{"refs":[{"id":"ref-for-content-timeline\u2465\u2465"},{"id":"ref-for-content-timeline\u2465\u2466"}],"title":"13.4. Buffer Copy Commands"},{"refs":[{"id":"ref-for-content-timeline\u2465\u2467"},{"id":"ref-for-content-timeline\u2465\u2468"},{"id":"ref-for-content-timeline\u2466\u24ea"}],"title":"13.5. Image Copy Commands"},{"refs":[{"id":"ref-for-content-timeline\u2466\u2460"}],"title":"13.6. Queries"},{"refs":[{"id":"ref-for-content-timeline\u2466\u2461"}],"title":"13.7. Finalization"},{"refs":[{"id":"ref-for-content-timeline\u2466\u2462"},{"id":"ref-for-content-timeline\u2466\u2463"}],"title":"14.1. Bind Groups"},{"refs":[{"id":"ref-for-content-timeline\u2466\u2464"},{"id":"ref-for-content-timeline\u2466\u2465"},{"id":"ref-for-content-timeline\u2466\u2466"}],"title":"15. Debug Markers"},{"refs":[{"id":"ref-for-content-timeline\u2466\u2467"},{"id":"ref-for-content-timeline\u2466\u2468"},{"id":"ref-for-content-timeline\u2467\u24ea"}],"title":"16.1.2. Dispatch"},{"refs":[{"id":"ref-for-content-timeline\u2467\u2460"}],"title":"16.1.3. Finalization"},{"refs":[{"id":"ref-for-content-timeline\u2467\u2461"}],"title":"17.1.2. Finalization"},{"refs":[{"id":"ref-for-content-timeline\u2467\u2462"},{"id":"ref-for-content-timeline\u2467\u2463"},{"id":"ref-for-content-timeline\u2467\u2464"},{"id":"ref-for-content-timeline\u2467\u2465"},{"id":"ref-for-content-timeline\u2467\u2466"},{"id":"ref-for-content-timeline\u2467\u2467"},{"id":"ref-for-content-timeline\u2467\u2468"}],"title":"17.2.1. Drawing"},{"refs":[{"id":"ref-for-content-timeline\u2468\u24ea"},{"id":"ref-for-content-timeline\u2468\u2460"},{"id":"ref-for-content-timeline\u2468\u2461"},{"id":"ref-for-content-timeline\u2468\u2462"}],"title":"17.2.2. Rasterization state"},{"refs":[{"id":"ref-for-content-timeline\u2468\u2463"},{"id":"ref-for-content-timeline\u2468\u2464"}],"title":"17.2.3. Queries"},{"refs":[{"id":"ref-for-content-timeline\u2468\u2465"}],"title":"17.2.4. Bundles"},{"refs":[{"id":"ref-for-content-timeline\u2468\u2466"}],"title":"18.1.1. Render Bundle Creation"},{"refs":[{"id":"ref-for-content-timeline\u2468\u2467"}],"title":"18.1.3. Finalization"},{"refs":[{"id":"ref-for-content-timeline\u2468\u2468"},{"id":"ref-for-content-timeline\u2460\u24ea\u24ea"},{"id":"ref-for-content-timeline\u2460\u24ea\u2460"},{"id":"ref-for-content-timeline\u2460\u24ea\u2461"},{"id":"ref-for-content-timeline\u2460\u24ea\u2462"},{"id":"ref-for-content-timeline\u2460\u24ea\u2463"},{"id":"ref-for-content-timeline\u2460\u24ea\u2464"}],"title":"19.2. GPUQueue\n\n"},{"refs":[{"id":"ref-for-content-timeline\u2460\u24ea\u2465"}],"title":"20.1.1. QuerySet Creation"},{"refs":[{"id":"ref-for-content-timeline\u2460\u24ea\u2466"}],"title":"20.1.2. QuerySet Destruction"},{"refs":[{"id":"ref-for-content-timeline\u2460\u24ea\u2467"}],"title":"21.1. HTMLCanvasElement.getContext()"},{"refs":[{"id":"ref-for-content-timeline\u2460\u24ea\u2468"},{"id":"ref-for-content-timeline\u2460\u2460\u24ea"},{"id":"ref-for-content-timeline\u2460\u2460\u2460"},{"id":"ref-for-content-timeline\u2460\u2460\u2461"},{"id":"ref-for-content-timeline\u2460\u2460\u2462"},{"id":"ref-for-content-timeline\u2460\u2460\u2463"}],"title":"21.2. GPUCanvasContext"},{"refs":[{"id":"ref-for-content-timeline\u2460\u2460\u2464"},{"id":"ref-for-content-timeline\u2460\u2460\u2465"},{"id":"ref-for-content-timeline\u2460\u2460\u2466"}],"title":"21.3. HTML Specification Hooks"},{"refs":[{"id":"ref-for-content-timeline\u2460\u2460\u2467"}],"title":"21.4.2. Canvas Context sizing"},{"refs":[{"id":"ref-for-content-timeline\u2460\u2460\u2468"},{"id":"ref-for-content-timeline\u2460\u2461\u24ea"},{"id":"ref-for-content-timeline\u2460\u2461\u2460"},{"id":"ref-for-content-timeline\u2460\u2461\u2461"},{"id":"ref-for-content-timeline\u2460\u2461\u2462"},{"id":"ref-for-content-timeline\u2460\u2461\u2463"},{"id":"ref-for-content-timeline\u2460\u2461\u2464"},{"id":"ref-for-content-timeline\u2460\u2461\u2465"}],"title":"22.3. Error Scopes"},{"refs":[{"id":"ref-for-content-timeline\u2460\u2461\u2466"},{"id":"ref-for-content-timeline\u2460\u2461\u2467"},{"id":"ref-for-content-timeline\u2460\u2461\u2468"},{"id":"ref-for-content-timeline\u2460\u2462\u24ea"}],"title":"24.1. Colors & Vectors"}],"url":"#content-timeline"},
+"content-timeline": {"dfnID":"content-timeline","dfnText":"Content timeline","external":false,"refSections":[{"refs":[{"id":"ref-for-content-timeline"},{"id":"ref-for-content-timeline\u2460"},{"id":"ref-for-content-timeline\u2461"},{"id":"ref-for-content-timeline\u2462"}],"title":"3.1.2. WebGPU Objects\n\n"},{"refs":[{"id":"ref-for-content-timeline\u2463"},{"id":"ref-for-content-timeline\u2464"},{"id":"ref-for-content-timeline\u2465"},{"id":"ref-for-content-timeline\u2466"},{"id":"ref-for-content-timeline\u2467"},{"id":"ref-for-content-timeline\u2468"}],"title":"3.4.1. Timelines"},{"refs":[{"id":"ref-for-content-timeline\u2460\u24ea"},{"id":"ref-for-content-timeline\u2460\u2460"}],"title":"3.5.2. Devices"},{"refs":[{"id":"ref-for-content-timeline\u2460\u2461"}],"title":"3.6.2.4. GPUAdapterInfo\n\n"},{"refs":[{"id":"ref-for-content-timeline\u2460\u2462"}],"title":"3.9.1. WebGPU Task Source"},{"refs":[{"id":"ref-for-content-timeline\u2460\u2463"}],"title":"3.9.2. Automatic Expiry Task Source\n"},{"refs":[{"id":"ref-for-content-timeline\u2460\u2464"},{"id":"ref-for-content-timeline\u2460\u2465"},{"id":"ref-for-content-timeline\u2460\u2466"},{"id":"ref-for-content-timeline\u2460\u2467"}],"title":"4.2. GPU"},{"refs":[{"id":"ref-for-content-timeline\u2460\u2468"},{"id":"ref-for-content-timeline\u2461\u24ea"},{"id":"ref-for-content-timeline\u2461\u2460"},{"id":"ref-for-content-timeline\u2461\u2461"},{"id":"ref-for-content-timeline\u2461\u2462"},{"id":"ref-for-content-timeline\u2461\u2463"}],"title":"4.3. GPUAdapter\n\n"},{"refs":[{"id":"ref-for-content-timeline\u2461\u2464"}],"title":"4.4. GPUDevice\n\n"},{"refs":[{"id":"ref-for-content-timeline\u2461\u2465"},{"id":"ref-for-content-timeline\u2461\u2466"}],"title":"5.1. GPUBuffer\n\n"},{"refs":[{"id":"ref-for-content-timeline\u2461\u2467"}],"title":"5.1.3. Buffer Creation"},{"refs":[{"id":"ref-for-content-timeline\u2461\u2468"}],"title":"5.1.4. Buffer Destruction"},{"refs":[{"id":"ref-for-content-timeline\u2462\u24ea"},{"id":"ref-for-content-timeline\u2462\u2460"},{"id":"ref-for-content-timeline\u2462\u2461"},{"id":"ref-for-content-timeline\u2462\u2462"},{"id":"ref-for-content-timeline\u2462\u2463"},{"id":"ref-for-content-timeline\u2462\u2464"},{"id":"ref-for-content-timeline\u2462\u2465"},{"id":"ref-for-content-timeline\u2462\u2466"}],"title":"5.2. Buffer Mapping"},{"refs":[{"id":"ref-for-content-timeline\u2462\u2467"}],"title":"6.1.3. Texture Creation"},{"refs":[{"id":"ref-for-content-timeline\u2462\u2468"}],"title":"6.1.4. Texture Destruction"},{"refs":[{"id":"ref-for-content-timeline\u2463\u24ea"}],"title":"6.2.1. Texture View Creation"},{"refs":[{"id":"ref-for-content-timeline\u2463\u2460"}],"title":"6.3. Texture Formats"},{"refs":[{"id":"ref-for-content-timeline\u2463\u2461"}],"title":"6.4.1. Importing External Textures"},{"refs":[{"id":"ref-for-content-timeline\u2463\u2462"}],"title":"7.1.2. Sampler Creation"},{"refs":[{"id":"ref-for-content-timeline\u2463\u2463"}],"title":"8.1.1. Bind Group Layout Creation"},{"refs":[{"id":"ref-for-content-timeline\u2463\u2464"}],"title":"8.2.1. Bind Group Creation"},{"refs":[{"id":"ref-for-content-timeline\u2463\u2465"}],"title":"8.3.1. Pipeline Layout Creation"},{"refs":[{"id":"ref-for-content-timeline\u2463\u2466"}],"title":"9.1.1. Shader Module Creation"},{"refs":[{"id":"ref-for-content-timeline\u2463\u2467"},{"id":"ref-for-content-timeline\u2463\u2468"},{"id":"ref-for-content-timeline\u2464\u24ea"}],"title":"9.1.2. Shader Module Compilation Information"},{"refs":[{"id":"ref-for-content-timeline\u2464\u2460"}],"title":"10. Pipelines"},{"refs":[{"id":"ref-for-content-timeline\u2464\u2461"},{"id":"ref-for-content-timeline\u2464\u2462"}],"title":"10.1. Base pipelines"},{"refs":[{"id":"ref-for-content-timeline\u2464\u2463"},{"id":"ref-for-content-timeline\u2464\u2464"},{"id":"ref-for-content-timeline\u2464\u2465"},{"id":"ref-for-content-timeline\u2464\u2466"}],"title":"10.2.1. Compute Pipeline Creation"},{"refs":[{"id":"ref-for-content-timeline\u2464\u2467"},{"id":"ref-for-content-timeline\u2464\u2468"},{"id":"ref-for-content-timeline\u2465\u24ea"},{"id":"ref-for-content-timeline\u2465\u2460"}],"title":"10.3.1. Render Pipeline Creation"},{"refs":[{"id":"ref-for-content-timeline\u2465\u2461"}],"title":"13.2.1. Command Encoder Creation"},{"refs":[{"id":"ref-for-content-timeline\u2465\u2462"},{"id":"ref-for-content-timeline\u2465\u2463"}],"title":"13.3. Pass Encoding"},{"refs":[{"id":"ref-for-content-timeline\u2465\u2464"},{"id":"ref-for-content-timeline\u2465\u2465"}],"title":"13.4. Buffer Copy Commands"},{"refs":[{"id":"ref-for-content-timeline\u2465\u2466"},{"id":"ref-for-content-timeline\u2465\u2467"},{"id":"ref-for-content-timeline\u2465\u2468"}],"title":"13.5. Image Copy Commands"},{"refs":[{"id":"ref-for-content-timeline\u2466\u24ea"}],"title":"13.6. Queries"},{"refs":[{"id":"ref-for-content-timeline\u2466\u2460"}],"title":"13.7. Finalization"},{"refs":[{"id":"ref-for-content-timeline\u2466\u2461"},{"id":"ref-for-content-timeline\u2466\u2462"}],"title":"14.1. Bind Groups"},{"refs":[{"id":"ref-for-content-timeline\u2466\u2463"},{"id":"ref-for-content-timeline\u2466\u2464"},{"id":"ref-for-content-timeline\u2466\u2465"}],"title":"15. Debug Markers"},{"refs":[{"id":"ref-for-content-timeline\u2466\u2466"},{"id":"ref-for-content-timeline\u2466\u2467"},{"id":"ref-for-content-timeline\u2466\u2468"}],"title":"16.1.2. Dispatch"},{"refs":[{"id":"ref-for-content-timeline\u2467\u24ea"}],"title":"16.1.3. Finalization"},{"refs":[{"id":"ref-for-content-timeline\u2467\u2460"}],"title":"17.1.2. Finalization"},{"refs":[{"id":"ref-for-content-timeline\u2467\u2461"},{"id":"ref-for-content-timeline\u2467\u2462"},{"id":"ref-for-content-timeline\u2467\u2463"},{"id":"ref-for-content-timeline\u2467\u2464"},{"id":"ref-for-content-timeline\u2467\u2465"},{"id":"ref-for-content-timeline\u2467\u2466"},{"id":"ref-for-content-timeline\u2467\u2467"}],"title":"17.2.1. Drawing"},{"refs":[{"id":"ref-for-content-timeline\u2467\u2468"},{"id":"ref-for-content-timeline\u2468\u24ea"},{"id":"ref-for-content-timeline\u2468\u2460"},{"id":"ref-for-content-timeline\u2468\u2461"}],"title":"17.2.2. Rasterization state"},{"refs":[{"id":"ref-for-content-timeline\u2468\u2462"},{"id":"ref-for-content-timeline\u2468\u2463"}],"title":"17.2.3. Queries"},{"refs":[{"id":"ref-for-content-timeline\u2468\u2464"}],"title":"17.2.4. Bundles"},{"refs":[{"id":"ref-for-content-timeline\u2468\u2465"}],"title":"18.1.1. Render Bundle Creation"},{"refs":[{"id":"ref-for-content-timeline\u2468\u2466"}],"title":"18.1.3. Finalization"},{"refs":[{"id":"ref-for-content-timeline\u2468\u2467"},{"id":"ref-for-content-timeline\u2468\u2468"},{"id":"ref-for-content-timeline\u2460\u24ea\u24ea"},{"id":"ref-for-content-timeline\u2460\u24ea\u2460"},{"id":"ref-for-content-timeline\u2460\u24ea\u2461"},{"id":"ref-for-content-timeline\u2460\u24ea\u2462"},{"id":"ref-for-content-timeline\u2460\u24ea\u2463"}],"title":"19.2. GPUQueue\n\n"},{"refs":[{"id":"ref-for-content-timeline\u2460\u24ea\u2464"}],"title":"20.1.1. QuerySet Creation"},{"refs":[{"id":"ref-for-content-timeline\u2460\u24ea\u2465"}],"title":"20.1.2. QuerySet Destruction"},{"refs":[{"id":"ref-for-content-timeline\u2460\u24ea\u2466"}],"title":"21.1. HTMLCanvasElement.getContext()"},{"refs":[{"id":"ref-for-content-timeline\u2460\u24ea\u2467"},{"id":"ref-for-content-timeline\u2460\u24ea\u2468"},{"id":"ref-for-content-timeline\u2460\u2460\u24ea"},{"id":"ref-for-content-timeline\u2460\u2460\u2460"},{"id":"ref-for-content-timeline\u2460\u2460\u2461"},{"id":"ref-for-content-timeline\u2460\u2460\u2462"}],"title":"21.2. GPUCanvasContext"},{"refs":[{"id":"ref-for-content-timeline\u2460\u2460\u2463"},{"id":"ref-for-content-timeline\u2460\u2460\u2464"},{"id":"ref-for-content-timeline\u2460\u2460\u2465"}],"title":"21.3. HTML Specification Hooks"},{"refs":[{"id":"ref-for-content-timeline\u2460\u2460\u2466"}],"title":"21.4.2. Canvas Context sizing"},{"refs":[{"id":"ref-for-content-timeline\u2460\u2460\u2467"},{"id":"ref-for-content-timeline\u2460\u2460\u2468"},{"id":"ref-for-content-timeline\u2460\u2461\u24ea"},{"id":"ref-for-content-timeline\u2460\u2461\u2460"},{"id":"ref-for-content-timeline\u2460\u2461\u2461"},{"id":"ref-for-content-timeline\u2460\u2461\u2462"},{"id":"ref-for-content-timeline\u2460\u2461\u2463"},{"id":"ref-for-content-timeline\u2460\u2461\u2464"}],"title":"22.3. Error Scopes"},{"refs":[{"id":"ref-for-content-timeline\u2460\u2461\u2465"},{"id":"ref-for-content-timeline\u2460\u2461\u2466"},{"id":"ref-for-content-timeline\u2460\u2461\u2467"},{"id":"ref-for-content-timeline\u2460\u2461\u2468"}],"title":"24.1. Colors & Vectors"}],"url":"#content-timeline"},
 "content-timeline-example-term": {"dfnID":"content-timeline-example-term","dfnText":"Content-timeline example term","external":false,"refSections":[{"refs":[{"id":"ref-for-content-timeline-example-term"}],"title":"3.4.1. Timelines"}],"url":"#content-timeline-example-term"},
 "content-timeline-property": {"dfnID":"content-timeline-property","dfnText":"content timeline property","external":false,"refSections":[{"refs":[{"id":"ref-for-content-timeline-property"}],"title":"3.1.2. WebGPU Objects\n\n"},{"refs":[{"id":"ref-for-content-timeline-property\u2460"}],"title":"3.5.2. Devices"},{"refs":[{"id":"ref-for-content-timeline-property\u2461"}],"title":"5.1. GPUBuffer\n\n"}],"url":"#content-timeline-property"},
 "copy-compatible": {"dfnID":"copy-compatible","dfnText":"copy-compatible","external":false,"refSections":[{"refs":[{"id":"ref-for-copy-compatible"}],"title":"13.5. Image Copy Commands"}],"url":"#copy-compatible"},
