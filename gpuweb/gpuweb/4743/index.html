@@ -1084,7 +1084,7 @@ var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBC
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/71870e266681e493fbe2a4b0aa7dc23590d68c9a/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/71870e266681e493fbe2a4b0aa7dc23590d68c9a/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/44161ae31045bfc2558ec123f06fcf889222bdd9/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/44161ae31045bfc2558ec123f06fcf889222bdd9/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -8880,6 +8880,8 @@ where <var>vertexBufferCount</var> is the maximum index in <var>descriptor</var>
          <p class="note" role="note"><span class="marker">Note:</span> Even if the implementation detected <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#uncategorized-error" id="ref-for-uncategorized-error④">uncategorized errors</a> in shader module
 creation, the error is surfaced here.</p>
         <li data-md>
+         <p>Set <var>pipeline</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipeline-descriptor-slot" id="ref-for-dom-gpurenderpipeline-descriptor-slot">[[descriptor]]</a></code> to <var>descriptor</var>.</p>
+        <li data-md>
          <p>Set <var>pipeline</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipeline-writesdepth-slot" id="ref-for-dom-gpurenderpipeline-writesdepth-slot">[[writesDepth]]</a></code> to false.</p>
         <li data-md>
          <p>Set <var>pipeline</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipeline-writesstencil-slot" id="ref-for-dom-gpurenderpipeline-writesstencil-slot">[[writesStencil]]</a></code> to false.</p>
@@ -8917,8 +8919,6 @@ creation, the error is surfaced here.</p>
              </ol>
            </ol>
          </ol>
-        <li data-md>
-         <p>Set <var>pipeline</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurenderpipeline-descriptor-slot" id="ref-for-dom-gpurenderpipeline-descriptor-slot">[[descriptor]]</a></code> to <var>descriptor</var>.</p>
         <li data-md>
          <p>Set <var>pipeline</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelinebase-layout-slot" id="ref-for-dom-gpupipelinebase-layout-slot④">[[layout]]</a></code> to <var>layout</var>.</p>
        </ol>
@@ -9781,10 +9781,9 @@ bits are written to when performing stencil operations.</p>
     <dt data-md><dfn class="dfn-paneled idl-code" data-dfn-for="GPUDepthStencilState" data-dfn-type="dict-member" data-export id="dom-gpudepthstencilstate-depthbiasclamp"><code>depthBiasClamp</code></dfn>, <span> of type <a data-link-type="idl-name" href="https://webidl.spec.whatwg.org/#idl-float" id="ref-for-idl-float①②">float</a>, defaulting to <code>0</code></span>
     <dd data-md>
      <p>The maximum depth bias of a triangle fragment. See <a data-link-type="abstract-op" href="#abstract-opdef-biased-fragment-depth" id="ref-for-abstract-opdef-biased-fragment-depth②">biased fragment depth</a> for details.</p>
-    </dd>
-    <p class="note" role="note"><span class="marker">Note:</span> <code class="idl"><a data-link-type="idl" href="#dom-gpudepthstencilstate-depthbias" id="ref-for-dom-gpudepthstencilstate-depthbias①">depthBias</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-gpudepthstencilstate-depthbiasslopescale" id="ref-for-dom-gpudepthstencilstate-depthbiasslopescale①">depthBiasSlopeScale</a></code>, and <code class="idl"><a data-link-type="idl" href="#dom-gpudepthstencilstate-depthbiasclamp" id="ref-for-dom-gpudepthstencilstate-depthbiasclamp①">depthBiasClamp</a></code> have no effect on <code class="idl"><a data-link-type="idl" href="#dom-gpuprimitivetopology-point-list" id="ref-for-dom-gpuprimitivetopology-point-list③">"point-list"</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-gpuprimitivetopology-line-list" id="ref-for-dom-gpuprimitivetopology-line-list②">"line-list"</a></code>, and <code class="idl"><a data-link-type="idl" href="#dom-gpuprimitivetopology-line-strip" id="ref-for-dom-gpuprimitivetopology-line-strip④">"line-strip"</a></code> primitives, and
-    must be 0.</p>
    </dl>
+   <p class="note" role="note"><span class="marker">Note:</span> <code class="idl"><a data-link-type="idl" href="#dom-gpudepthstencilstate-depthbias" id="ref-for-dom-gpudepthstencilstate-depthbias①">depthBias</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-gpudepthstencilstate-depthbiasslopescale" id="ref-for-dom-gpudepthstencilstate-depthbiasslopescale①">depthBiasSlopeScale</a></code>, and <code class="idl"><a data-link-type="idl" href="#dom-gpudepthstencilstate-depthbiasclamp" id="ref-for-dom-gpudepthstencilstate-depthbiasclamp①">depthBiasClamp</a></code> have no effect on <code class="idl"><a data-link-type="idl" href="#dom-gpuprimitivetopology-point-list" id="ref-for-dom-gpuprimitivetopology-point-list③">"point-list"</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-gpuprimitivetopology-line-list" id="ref-for-dom-gpuprimitivetopology-line-list②">"line-list"</a></code>, and <code class="idl"><a data-link-type="idl" href="#dom-gpuprimitivetopology-line-strip" id="ref-for-dom-gpuprimitivetopology-line-strip④">"line-strip"</a></code> primitives, and
+must be 0.</p>
    <div class="algorithm" data-algorithm="biased fragment depth" data-timeline="queue">
      The <dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-biased-fragment-depth">biased fragment depth</dfn> for a fragment being written to <code class="idl"><a data-link-type="idl" href="#dom-gpurenderpassdescriptor-depthstencilattachment" id="ref-for-dom-gpurenderpassdescriptor-depthstencilattachment⑧">depthStencilAttachment</a></code> <var>attachment</var> when drawing using <code class="idl"><a data-link-type="idl" href="#dictdef-gpudepthstencilstate" id="ref-for-dictdef-gpudepthstencilstate⑧">GPUDepthStencilState</a></code> <var>state</var> is calculated by running the following <a data-link-type="dfn" href="#queue-timeline" id="ref-for-queue-timeline①③">queue timeline</a> steps: 
     <ol>
