@@ -19,12 +19,6 @@ dictionary GPUObjectDescriptorBase {
     USVString label = "";
 };
 
-enum GPUFeatureLevel {
-    "compatibility",
-    "fl1",
-    "fl1-desktop",
-};
-
 [Exposed=(Window, Worker), SecureContext]
 interface GPUSupportedLimits {
     readonly attribute unsigned long maxTextureDimension1D;
@@ -93,7 +87,7 @@ interface GPU {
 };
 
 dictionary GPURequestAdapterOptions {
-    GPUFeatureLevel minFeatureLevel = "fl1";
+    DOMString minFeatureLevel = "fl1";
     GPUPowerPreference powerPreference;
     boolean forceFallbackAdapter = false;
 };
