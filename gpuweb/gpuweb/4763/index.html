@@ -5,7 +5,7 @@
   <title>WebGPU</title>
   <meta content="w3c/ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <meta content="Bikeshed version a1dabb26c, updated Mon Jun 17 15:00:44 2024 -0700" name="generator">
+  <meta content="Bikeshed version c3a8ac783, updated Wed Jul 24 12:20:06 2024 -0700" name="generator">
   <link href="https://www.w3.org/TR/webgpu/" rel="canonical">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
   <meta content="dark light" name="color-scheme">
@@ -1075,27 +1075,49 @@ D50 2deg illuminant, L in [0,100], a and b in [-128, 128]
 4 = lab(85,5,15)
 5 = lab(85,-10,-50)
 6 = lab(85,35,-15)
+
+For darkmode:
+0 = oklab(50%   0%  108%)
+1 = oklab(50% -51%   51%)
+2 = oklab(50% -64%  -20%)
+3 = oklab(50%   6%   19%)
+4 = oklab(50% -12%  -64%)
+5 = oklab(50%  44%  -19%)  
+6 = oklab(50% 102%   38%)
 */
+
 [data-algorithm] var { cursor: pointer; }
-var[data-var-color="0"] { background-color: #F4D200; box-shadow: 0 0 0 2px #F4D200; }
-var[data-var-color="1"] { background-color: #FF87A2; box-shadow: 0 0 0 2px #FF87A2; }
-var[data-var-color="2"] { background-color: #96E885; box-shadow: 0 0 0 2px #96E885; }
-var[data-var-color="3"] { background-color: #3EEED2; box-shadow: 0 0 0 2px #3EEED2; }
-var[data-var-color="4"] { background-color: #EACFB6; box-shadow: 0 0 0 2px #EACFB6; }
-var[data-var-color="5"] { background-color: #82DDFF; box-shadow: 0 0 0 2px #82DDFF; }
-var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
+var[data-var-color] { background-color: var(--var-bg); box-shadow: 0 0 0 2px var(--var-bg); }
+
+var[data-var-color] { --var-bg: #F4D200; }
+var[data-var-color="1"] { --var-bg: #FF87A2; }
+var[data-var-color="2"] { --var-bg: #96E885; }
+var[data-var-color="3"] { --var-bg: #3EEED2; }
+var[data-var-color="4"] { --var-bg: #EACFB6; }
+var[data-var-color="5"] { --var-bg: #82DDFF; }
+var[data-var-color="6"] { --var-vg: #FFBCF2; }
+
+@media (prefers-color-scheme: dark) {
+	var[data-var-color] { --var-bg: #bc1a00; }
+	var[data-var-color="1"] { --var-bg: #007f00; }
+	var[data-var-color="2"] { --var-bg: #008698; }
+	var[data-var-color="3"] { --var-bg: #7f5b2b; }
+	var[data-var-color="4"] { --var-bg: #004df3; }
+	var[data-var-color="5"] { --var-bg: #a1248a; }
+	var[data-var-color="6"] { --var-vg: #ff0000; }
+}
 </style>
  <body class="h-entry">
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-07-24">24 July 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-07-25">25 July 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/mehmetoguzderin/gpuweb/blob/daffb945d45044a577e81b47d16677800a1f5dde/spec/index.bs">https://github.com/mehmetoguzderin/gpuweb/blob/daffb945d45044a577e81b47d16677800a1f5dde/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/mehmetoguzderin/gpuweb/blob/31fe612c5b7372aa19bca383ef4a2189e74bad51/spec/index.bs">https://github.com/mehmetoguzderin/gpuweb/blob/31fe612c5b7372aa19bca383ef4a2189e74bad51/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -3447,9 +3469,11 @@ handling should allow it to recover.</p>
    <ul>
     <li data-md>
      <p>At least one of the following must be true:</p>
+    <li data-md>
+     <p>At least one of the following must be true:</p>
      <ul>
       <li data-md>
-       <p>Both <code class="idl"><a data-link-type="idl" href="#texture-compression-bc" id="ref-for-texture-compression-bc">"texture-compression-bc"</a></code> and <code class="idl"><a data-link-type="idl" href="#texture-compression-bc-sliced-3d" id="ref-for-texture-compression-bc-sliced-3d">"texture-compression-bc-sliced-3d"</a></code> are supported.</p>
+       <p><code class="idl"><a data-link-type="idl" href="#texture-compression-bc" id="ref-for-texture-compression-bc">"texture-compression-bc"</a></code> is supported.</p>
       <li data-md>
        <p>Both <code class="idl"><a data-link-type="idl" href="#texture-compression-etc2" id="ref-for-texture-compression-etc2">"texture-compression-etc2"</a></code> and <code class="idl"><a data-link-type="idl" href="#texture-compression-astc" id="ref-for-texture-compression-astc">"texture-compression-astc"</a></code> are supported.</p>
      </ul>
@@ -3822,7 +3846,7 @@ allows additional usages of WebGPU that would have otherwise been invalid.</p>
     <a class="idl-code" data-link-type="enum-value" href="#float32-filterable" id="ref-for-float32-filterable"><c- s>"float32-filterable"</c-></a>,
     <a class="idl-code" data-link-type="enum-value" href="#dom-gpufeaturename-clip-distances" id="ref-for-dom-gpufeaturename-clip-distances"><c- s>"clip-distances"</c-></a>,
     <a class="idl-code" data-link-type="enum-value" href="#dom-gpufeaturename-dual-source-blending" id="ref-for-dom-gpufeaturename-dual-source-blending"><c- s>"dual-source-blending"</c-></a>,
-    <a class="idl-code" data-link-type="enum-value" href="#texture-compression-bc-sliced-3d" id="ref-for-texture-compression-bc-sliced-3d①"><c- s>"texture-compression-bc-sliced-3d"</c-></a>,
+    <a class="idl-code" data-link-type="enum-value" href="#texture-compression-bc-sliced-3d" id="ref-for-texture-compression-bc-sliced-3d"><c- s>"texture-compression-bc-sliced-3d"</c-></a>,
 };
 </pre>
    <h3 class="heading settled dfn-paneled idl-code" data-dfn-type="interface" data-export data-level="4.4" data-lt="GPUDevice" id="gpudevice"><span class="secno">4.4. </span><span class="content"><code>GPUDevice</code> <span id="gpu-device"></span> </span><a class="self-link" href="#gpudevice" id="ref-for-gpudevice⑨⓪"></a></h3>
@@ -18282,7 +18306,7 @@ either <code class="idl"><a data-link-type="idl" href="#dictdef-gpuextent3ddict"
    </ul>
    <h3 class="heading settled dfn-paneled idl-code" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.3" data-lt="&quot;texture-compression-bc&quot;" id="texture-compression-bc"><span class="secno">25.3. </span><span class="content"><code>"texture-compression-bc"</code> <span id="dom-gpufeaturename-texture-compression-bc"></span> </span><a class="self-link" href="#texture-compression-bc" id="ref-for-texture-compression-bc⑥"></a></h3>
    <p>Allows for explicit creation of textures of BC compressed formats. Only supports 2D textures.</p>
-   <p class="note" role="note"><span class="marker">Note:</span> Adapters which support either <code class="idl"><a data-link-type="idl" href="#texture-compression-bc" id="ref-for-texture-compression-bc②">"texture-compression-bc"</a></code> or <code class="idl"><a data-link-type="idl" href="#texture-compression-bc-sliced-3d" id="ref-for-texture-compression-bc-sliced-3d②">"texture-compression-bc-sliced-3d"</a></code> always support both, even though they are separate features.
+   <p class="note" role="note"><span class="marker">Note:</span> Adapters which support either <code class="idl"><a data-link-type="idl" href="#texture-compression-bc" id="ref-for-texture-compression-bc②">"texture-compression-bc"</a></code> or <code class="idl"><a data-link-type="idl" href="#texture-compression-bc-sliced-3d" id="ref-for-texture-compression-bc-sliced-3d①">"texture-compression-bc-sliced-3d"</a></code> always support both, even though they are separate features.
 They still must be enabled separately.</p>
    <p>This feature adds the following <a data-link-type="dfn" href="#optional-api-surfaces" id="ref-for-optional-api-surfaces②">optional API surfaces</a>:</p>
    <ul>
@@ -18495,10 +18519,10 @@ attachment at <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl
        <p><a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#extension-dual_source_blending" id="ref-for-extension-dual_source_blending">dual_source_blending</a></p>
      </ul>
    </ul>
-   <h3 class="heading settled dfn-paneled idl-code" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.14" data-lt="&quot;texture-compression-bc-sliced-3d&quot;" id="texture-compression-bc-sliced-3d"><span class="secno">25.14. </span><span class="content"><code>"texture-compression-bc-sliced-3d"</code> <span id="dom-gpufeaturename-texture-compression-bc-sliced-3d"></span> </span><a class="self-link" href="#texture-compression-bc-sliced-3d" id="ref-for-texture-compression-bc-sliced-3d⑤"></a></h3>
+   <h3 class="heading settled dfn-paneled idl-code" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.14" data-lt="&quot;texture-compression-bc-sliced-3d&quot;" id="texture-compression-bc-sliced-3d"><span class="secno">25.14. </span><span class="content"><code>"texture-compression-bc-sliced-3d"</code> <span id="dom-gpufeaturename-texture-compression-bc-sliced-3d"></span> </span><a class="self-link" href="#texture-compression-bc-sliced-3d" id="ref-for-texture-compression-bc-sliced-3d④"></a></h3>
    <p>Allows the <code class="idl"><a data-link-type="idl" href="#dom-gputexturedimension-3d" id="ref-for-dom-gputexturedimension-3d①⑦">3d</a></code> dimension for textures with BC compressed formats.</p>
    <p>This feature requires the <code class="idl"><a data-link-type="idl" href="#texture-compression-bc" id="ref-for-texture-compression-bc③">"texture-compression-bc"</a></code> feature to be enabled.</p>
-   <p class="note" role="note"><span class="marker">Note:</span> Adapters which support either <code class="idl"><a data-link-type="idl" href="#texture-compression-bc" id="ref-for-texture-compression-bc④">"texture-compression-bc"</a></code> or <code class="idl"><a data-link-type="idl" href="#texture-compression-bc-sliced-3d" id="ref-for-texture-compression-bc-sliced-3d③">"texture-compression-bc-sliced-3d"</a></code> always support both, even though they are separate features.
+   <p class="note" role="note"><span class="marker">Note:</span> Adapters which support either <code class="idl"><a data-link-type="idl" href="#texture-compression-bc" id="ref-for-texture-compression-bc④">"texture-compression-bc"</a></code> or <code class="idl"><a data-link-type="idl" href="#texture-compression-bc-sliced-3d" id="ref-for-texture-compression-bc-sliced-3d②">"texture-compression-bc-sliced-3d"</a></code> always support both, even though they are separate features.
 They still must be enabled separately.</p>
    <p>This feature adds no <a data-link-type="dfn" href="#optional-api-surfaces" id="ref-for-optional-api-surfaces①②">optional API surfaces</a>.</p>
    <h2 class="heading settled" data-level="26" id="appendices"><span class="secno">26. </span><span class="content">Appendices</span><a class="self-link" href="#appendices"></a></h2>
@@ -19118,7 +19142,7 @@ None of these formats are <a data-link-type="dfn" href="#renderable" id="ref-for
       <td rowspan="2">8 
       <td rowspan="14"><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float②⑧">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float③⓪">"unfilterable-float"</a></code> 
       <td rowspan="14">4 × 4 
-      <td rowspan="14">If <code class="idl"><a data-link-type="idl" href="#texture-compression-bc-sliced-3d" id="ref-for-texture-compression-bc-sliced-3d④">"texture-compression-bc-sliced-3d"</a></code> is enabled 
+      <td rowspan="14">If <code class="idl"><a data-link-type="idl" href="#texture-compression-bc-sliced-3d" id="ref-for-texture-compression-bc-sliced-3d③">"texture-compression-bc-sliced-3d"</a></code> is enabled 
       <td rowspan="14"><code class="idl"><a data-link-type="idl" href="#texture-compression-bc" id="ref-for-texture-compression-bc⑤">texture-compression-bc</a></code> 
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-bc1-rgba-unorm-srgb" id="ref-for-dom-gputextureformat-bc1-rgba-unorm-srgb①">bc1-rgba-unorm-srgb</a></code> 
@@ -24340,7 +24364,7 @@ let dfnPanelData = {
 "texture": {"dfnID":"texture","dfnText":"texture","external":false,"refSections":[{"refs":[{"id":"ref-for-texture"},{"id":"ref-for-texture\u2460"},{"id":"ref-for-texture\u2461"},{"id":"ref-for-texture\u2462"}],"title":"3.6.2. Limits"},{"refs":[{"id":"ref-for-texture\u2463"},{"id":"ref-for-texture\u2464"},{"id":"ref-for-texture\u2465"},{"id":"ref-for-texture\u2466"},{"id":"ref-for-texture\u2467"},{"id":"ref-for-texture\u2468"}],"title":"6.1. GPUTexture\n\n"},{"refs":[{"id":"ref-for-texture\u2460\u24ea"},{"id":"ref-for-texture\u2460\u2460"},{"id":"ref-for-texture\u2460\u2461"}],"title":"11.2.1. GPUImageDataLayout\n\n"}],"url":"#texture"},
 "texture-compression-astc": {"dfnID":"texture-compression-astc","dfnText":"25.5. \"texture-compression-astc\"\n\n","external":false,"refSections":[{"refs":[{"id":"ref-for-texture-compression-astc"}],"title":"4.2.1. Adapter Capability Guarantees"},{"refs":[{"id":"ref-for-texture-compression-astc\u2460"}],"title":"4.3.1. GPUDeviceDescriptor\n\n"},{"refs":[{"id":"ref-for-texture-compression-astc\u2461"}],"title":"4.3.1.1. GPUFeatureName\n\n"},{"refs":[{"id":"ref-for-texture-compression-astc"}],"title":"25.5. \"texture-compression-astc\"\n\n"},{"refs":[{"id":"ref-for-texture-compression-astc\u2462"}],"title":"26.1.3. Packed formats"}],"url":"#texture-compression-astc"},
 "texture-compression-bc": {"dfnID":"texture-compression-bc","dfnText":"25.3. \"texture-compression-bc\"\n\n","external":false,"refSections":[{"refs":[{"id":"ref-for-texture-compression-bc"}],"title":"4.2.1. Adapter Capability Guarantees"},{"refs":[{"id":"ref-for-texture-compression-bc\u2460"}],"title":"4.3.1.1. GPUFeatureName\n\n"},{"refs":[{"id":"ref-for-texture-compression-bc"},{"id":"ref-for-texture-compression-bc\u2461"}],"title":"25.3. \"texture-compression-bc\"\n\n"},{"refs":[{"id":"ref-for-texture-compression-bc\u2462"},{"id":"ref-for-texture-compression-bc\u2463"}],"title":"25.14. \"texture-compression-bc-sliced-3d\"\n\n"},{"refs":[{"id":"ref-for-texture-compression-bc\u2464"}],"title":"26.1.3. Packed formats"}],"url":"#texture-compression-bc"},
-"texture-compression-bc-sliced-3d": {"dfnID":"texture-compression-bc-sliced-3d","dfnText":"25.14. \"texture-compression-bc-sliced-3d\"\n\n","external":false,"refSections":[{"refs":[{"id":"ref-for-texture-compression-bc-sliced-3d"}],"title":"4.2.1. Adapter Capability Guarantees"},{"refs":[{"id":"ref-for-texture-compression-bc-sliced-3d\u2460"}],"title":"4.3.1.1. GPUFeatureName\n\n"},{"refs":[{"id":"ref-for-texture-compression-bc-sliced-3d\u2461"}],"title":"25.3. \"texture-compression-bc\"\n\n"},{"refs":[{"id":"ref-for-texture-compression-bc-sliced-3d"},{"id":"ref-for-texture-compression-bc-sliced-3d\u2462"}],"title":"25.14. \"texture-compression-bc-sliced-3d\"\n\n"},{"refs":[{"id":"ref-for-texture-compression-bc-sliced-3d\u2463"}],"title":"26.1.3. Packed formats"}],"url":"#texture-compression-bc-sliced-3d"},
+"texture-compression-bc-sliced-3d": {"dfnID":"texture-compression-bc-sliced-3d","dfnText":"25.14. \"texture-compression-bc-sliced-3d\"\n\n","external":false,"refSections":[{"refs":[{"id":"ref-for-texture-compression-bc-sliced-3d"}],"title":"4.3.1.1. GPUFeatureName\n\n"},{"refs":[{"id":"ref-for-texture-compression-bc-sliced-3d\u2460"}],"title":"25.3. \"texture-compression-bc\"\n\n"},{"refs":[{"id":"ref-for-texture-compression-bc-sliced-3d"},{"id":"ref-for-texture-compression-bc-sliced-3d\u2461"}],"title":"25.14. \"texture-compression-bc-sliced-3d\"\n\n"},{"refs":[{"id":"ref-for-texture-compression-bc-sliced-3d\u2462"}],"title":"26.1.3. Packed formats"}],"url":"#texture-compression-bc-sliced-3d"},
 "texture-compression-etc2": {"dfnID":"texture-compression-etc2","dfnText":"25.4. \"texture-compression-etc2\"\n\n\n","external":false,"refSections":[{"refs":[{"id":"ref-for-texture-compression-etc2"}],"title":"4.2.1. Adapter Capability Guarantees"},{"refs":[{"id":"ref-for-texture-compression-etc2\u2460"}],"title":"4.3.1.1. GPUFeatureName\n\n"},{"refs":[{"id":"ref-for-texture-compression-etc2"}],"title":"25.4. \"texture-compression-etc2\"\n\n\n"},{"refs":[{"id":"ref-for-texture-compression-etc2\u2461"}],"title":"26.1.3. Packed formats"}],"url":"#texture-compression-etc2"},
 "texture-coordinates": {"dfnID":"texture-coordinates","dfnText":"Texture coordinates","external":false,"refSections":[{"refs":[{"id":"ref-for-texture-coordinates"}],"title":"7.1.1. GPUSamplerDescriptor"}],"url":"#texture-coordinates"},
 "texture-subresources": {"dfnID":"texture-subresources","dfnText":"texture subresources","external":false,"refSections":[{"refs":[{"id":"ref-for-texture-subresources"}],"title":"3.4.3. Resource Usages"},{"refs":[{"id":"ref-for-texture-subresources\u2460"}],"title":"6.1. GPUTexture\n\n"},{"refs":[{"id":"ref-for-texture-subresources\u2461"}],"title":"6.2. GPUTextureView\n\n"},{"refs":[{"id":"ref-for-texture-subresources\u2462"}],"title":"11.2.3. GPUImageCopyTexture\n\n"},{"refs":[{"id":"ref-for-texture-subresources\u2463"},{"id":"ref-for-texture-subresources\u2464"}],"title":"13.3. Pass Encoding"},{"refs":[{"id":"ref-for-texture-subresources\u2465"},{"id":"ref-for-texture-subresources\u2466"},{"id":"ref-for-texture-subresources\u2467"},{"id":"ref-for-texture-subresources\u2468"},{"id":"ref-for-texture-subresources\u2460\u24ea"},{"id":"ref-for-texture-subresources\u2460\u2460"},{"id":"ref-for-texture-subresources\u2460\u2461"},{"id":"ref-for-texture-subresources\u2460\u2462"}],"title":"13.5. Image Copy Commands"},{"refs":[{"id":"ref-for-texture-subresources\u2460\u2463"}],"title":"14.1. Bind Groups"},{"refs":[{"id":"ref-for-texture-subresources\u2460\u2464"},{"id":"ref-for-texture-subresources\u2460\u2465"}],"title":"19.2. GPUQueue\n\n"}],"url":"#texture-subresources"},
