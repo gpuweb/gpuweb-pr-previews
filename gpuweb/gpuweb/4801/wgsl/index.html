@@ -834,7 +834,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/7f0a6ce97890a4657a6aa9a6905b5898907ff118/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/7f0a6ce97890a4657a6aa9a6905b5898907ff118/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/c8770202ab0bda82f3891170d04fb5026f49bc01/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/c8770202ab0bda82f3891170d04fb5026f49bc01/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -7292,7 +7292,7 @@ An expression is a const-expression if all its <a data-link-type="dfn" href="#id
      <p><var>E</var> is <a data-link-type="dfn" href="#subexpressions" id="ref-for-subexpressions②">subexpression</a> of an expression <var>OuterE</var> such that evaluation of <var>E</var> is required to determine the <a data-link-type="dfn" href="#static-type" id="ref-for-static-type①">static type</a> of <var>OuterE</var>.</p>
    </ul>
    <p class="note" role="note"><span class="marker">Note:</span> The evaluation rule implies that short-circuiting operators <code>&amp;&amp;</code> and <code>||</code> guard evaluation of their right-hand
-side subexpressions unless their is a <a data-link-type="dfn" href="#subexpressions" id="ref-for-subexpressions③">subexpression</a> that requires evaluation to determine
+side subexpressions unless there is a <a data-link-type="dfn" href="#subexpressions" id="ref-for-subexpressions③">subexpression</a> that requires evaluation to determine
 a <a data-link-type="dfn" href="#static-type" id="ref-for-static-type②">static type</a>.</p>
    <p>A const-expression may be evaluated by the CPU implementing the WebGPU API methods.
 Therefore accuracy requirements for operations on <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②①">AbstractFloat</a> values are <em>no more strict</em> than
