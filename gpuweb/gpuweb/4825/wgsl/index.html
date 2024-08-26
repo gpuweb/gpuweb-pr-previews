@@ -828,13 +828,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-08-23">23 August 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-08-26">26 August 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/eeec44682c825b09ae88660a7376116108087687/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/eeec44682c825b09ae88660a7376116108087687/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/f3f8940ebcb63f87f71ccf6fb6096ec6c2b8692a/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/f3f8940ebcb63f87f71ccf6fb6096ec6c2b8692a/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -14590,7 +14590,7 @@ evaluation occurs during shader execution.</p>
    <p>For a floating point type <em>T</em>, define <em>MAX(T)</em> as the largest positive finite value of <em>T</em>,
 and 2<sup><em>EMAX(T)</em></sup> as the largest power of 2 representable by <em>T</em>.
 In particular, EMAX(<a data-link-type="dfn" href="#f32" id="ref-for-f32②③">f32</a>) = 127, and EMAX(<a data-link-type="dfn" href="#f16" id="ref-for-f16①⑦">f16</a>) = 15.</p>
-   <p>Let <em>X</em> be an infinite-precision <a data-link-type="dfn" href="#intermediate-result" id="ref-for-intermediate-result⑧">intermediate result</a> from a floating point computation.
+   <p>Let <em>X</em> be an infinitely precise <a data-link-type="dfn" href="#intermediate-result" id="ref-for-intermediate-result⑧">intermediate result</a> from a floating point computation.
 The final value of the expression is determined in two stages, via <a data-link-type="dfn" href="#intermediate-result" id="ref-for-intermediate-result⑨">intermediate result</a> values <em>X'</em> and <em>X''</em> as follows:</p>
    <p>From <em>X</em>, compute <em>X'</em> in <em>T</em> by rounding:</p>
    <ul>
