@@ -834,7 +834,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/f3f8940ebcb63f87f71ccf6fb6096ec6c2b8692a/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/f3f8940ebcb63f87f71ccf6fb6096ec6c2b8692a/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/259ed92c4db468cfd22db4a3d5de924bb467a54e/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/259ed92c4db468cfd22db4a3d5de924bb467a54e/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -14489,7 +14489,7 @@ Exceptions include:</p>
     <li data-md>
      <p>A NaN is never equal to, less than, or greater than any other floating point value. Such comparisons yield false.</p>
     <li data-md>
-     <p>For <code>minimum(x,y)</code> and <code>maximum(x,y)</code> operations, if one of the inputs is NaN, the result is the other input.</p>
+     <p>For <code>min(x,y)</code> and <code>max(x,y)</code> operations, if one of the inputs is NaN, the result is the other input.</p>
    </ul>
    <p>IEEE-754 defines five kinds of <dfn class="dfn-paneled" data-dfn-for="ieee754" data-dfn-type="dfn" data-noexport id="ieee754-exceptions">exceptions</dfn>:</p>
    <ul>
@@ -14579,7 +14579,7 @@ with a zero value of that type.</p>
     <li data-md>
      <p>Some built-in functions in WGSL have different semantics from the corresponding IEEE-754 operation.
 Such cases are listed as needed at the definition of the WGSL built-in function.</p>
-     <p>For example the WGSL <a href="#fma-builtin">§ 16.5.32 fma</a> function expands to an ordinary multiply (including a rounding step) and an add (and another rounding step),
+     <p>For example the WGSL <a href="#fma-builtin">§ 16.5.32 fma</a> function may expand to an ordinary multiply (including a rounding step) and an add (and another rounding step),
 while the IEEE-754 <code>fusedMultiplyAdd</code> operation requires that only final rounding step occurs.</p>
    </ul>
    <h4 class="heading settled" data-level="14.6.3" id="floating-point-overflow"><span class="secno">14.6.3. </span><span class="content">Floating Point Overflow</span><a class="self-link" href="#floating-point-overflow"></a></h4>
@@ -17480,7 +17480,7 @@ the sign bit appears in the most significant bit position.</p>
     operation is not "fused" at all.</p>
      <tr>
       <td>Domain 
-      <td><a data-link-type="dfn" href="#implied-from-linear-terms" id="ref-for-implied-from-linear-terms④">Implied from linear terms</a> of the expressions <var>e2</var>[i] × <var>e2</var>[i] + <var>e3</var>[i]. 
+      <td><a data-link-type="dfn" href="#implied-from-linear-terms" id="ref-for-implied-from-linear-terms④">Implied from linear terms</a> of the expressions <var>e2</var> × <var>e2</var> + <var>e3</var>. 
    </table>
    <h4 class="heading settled" data-level="16.5.33" id="fract-builtin"><span class="secno">16.5.33. </span><span class="content"><code>fract</code></span><a class="self-link" href="#fract-builtin"></a></h4>
    <table class="data builtin">
