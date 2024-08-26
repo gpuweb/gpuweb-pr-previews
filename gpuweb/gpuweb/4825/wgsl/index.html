@@ -834,7 +834,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/80c0adea4d9110eebced853030fed793d9670cc6/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/80c0adea4d9110eebced853030fed793d9670cc6/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/820652d90ce7d9cb5954ca0bafdbe1618da283bc/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/820652d90ce7d9cb5954ca0bafdbe1618da283bc/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -14526,10 +14526,10 @@ or when overflow occurs.</p>
     <li data-md>
      <p>No <a data-link-type="dfn" href="#ieee754-rounding-mode" id="ref-for-ieee754-rounding-mode">rounding mode</a> is specified. An implementation may round an <a data-link-type="dfn" href="#intermediate-result" id="ref-for-intermediate-result③">intermediate result</a> up or down.</p>
     <li data-md>
-     <p>No floating point exceptions are generated.</p>
+     <p>No floating point <a data-link-type="dfn" href="#ieee754-exceptions" id="ref-for-ieee754-exceptions①">exceptions</a> are generated.</p>
      <ul>
       <li data-md>
-       <p>A floating point operation in WGSL <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②⑨">will</a> produce an <a data-link-type="dfn" href="#intermediate-result" id="ref-for-intermediate-result④">intermediate result</a> according to IEEE-754 rules, but <a data-link-type="dfn" href="#ieee754-exceptions" id="ref-for-ieee754-exceptions①">exceptions</a> mandated by IEEE-754 will map to different
+       <p>A floating point operation in WGSL <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②⑨">will</a> produce an <a data-link-type="dfn" href="#intermediate-result" id="ref-for-intermediate-result④">intermediate result</a> according to IEEE-754 rules, but exceptions mandated by IEEE-754 will map to different
 behaviors depending on whether the expression is
 a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑤⑨">const-expression</a>, an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③③">override-expression</a>, or a <a data-link-type="dfn" href="#runtime-expression" id="ref-for-runtime-expression③">runtime expression</a>.</p>
       <li data-md>
@@ -14571,7 +14571,7 @@ may not return the expected result due to optimizations about the presence
 of NaNs and infinities.</p>
      </ul>
     <li data-md>
-     <p>Implementations may ignore the <a data-link-type="dfn" href="#ieee754-sign-field" id="ref-for-ieee754-sign-field②">sign field</a>of a zero.
+     <p>Implementations may ignore the <a data-link-type="dfn" href="#ieee754-sign-field" id="ref-for-ieee754-sign-field②">sign field</a> of a zero.
 That is, a zero with a positive sign may behave like a zero a with a negative sign, and vice versa.</p>
     <li data-md>
      <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="flush-to-zero" title="flushed to zero">flush to zero</dfn> is to replace a <a data-link-type="dfn" href="#ieee754-subnormal" id="ref-for-ieee754-subnormal③">subnormal</a> value for a floating point type
