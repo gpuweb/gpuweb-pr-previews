@@ -834,7 +834,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/259ed92c4db468cfd22db4a3d5de924bb467a54e/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/259ed92c4db468cfd22db4a3d5de924bb467a54e/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/ac1ebd22c2d09cf4dbcd7fd2ed8d4c1374d1ccb3/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/ac1ebd22c2d09cf4dbcd7fd2ed8d4c1374d1ccb3/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -14815,8 +14815,8 @@ the rules in <a href="#floating-point-overflow">§ 14.6.3 Floating Point Overf
       <td><code>cosh(x)</code>
       <td colspan="2" style="text-align:left;">Inherited from <code>(exp(x) + exp(-x)) * 0.5</code> 
      <tr>
-      <td><code>cross(a, b)</code>
-      <td colspan="2" style="text-align:left;">Inherited from <code>(a[i] * b[j] - a[j] * b[i])</code> where <code>i</code> ≠ <code>j</code> 
+      <td><code>cross(x, x)</code>
+      <td colspan="2" style="text-align:left;">Inherited from <code>(x[i] * y[j] - x[j] * y[i])</code> where <code>i</code> ≠ <code>j</code> 
      <tr>
       <td><code>degrees(x)</code>
       <td colspan="2" style="text-align:left;">Inherited from <code>x * 57.295779513082322865</code> 
@@ -17127,7 +17127,7 @@ a value in one type as a value in another type.</p>
       <td style="width:10%">Overload 
       <td class="nowrap">
 <pre class="highlight"><c- nd>@const</c-> <c- nd>@must_use</c-> <c- k>fn</c-> <c- n>cross</c-><c- p>(</c-><c- n>a</c-><c- p>:</c-> vec3<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c->
-                          <c- n>e2</c-><c- p>:</c-> vec3<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>)</c-> <c- p>-></c-> vec3<c- o>&lt;</c-><c- n>T</c-><c- o>></c->
+                          <c- n>b</c-><c- p>:</c-> vec3<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>)</c-> <c- p>-></c-> vec3<c- o>&lt;</c-><c- n>T</c-><c- o>></c->
 </pre>
      <tr>
       <td style="width:10%">Parameterization 
