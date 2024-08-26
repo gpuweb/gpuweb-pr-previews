@@ -834,7 +834,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/820652d90ce7d9cb5954ca0bafdbe1618da283bc/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/820652d90ce7d9cb5954ca0bafdbe1618da283bc/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/a03e6ff79a8d2d9631e0124ec369985eaa365996/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/a03e6ff79a8d2d9631e0124ec369985eaa365996/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -2556,17 +2556,17 @@ so as to avoid confusion with other languages' leading-zero-means-octal notation
     <p><span class="choice"></span> <a data-link-type="dfn" href="#syntax-decimal_float_literal" id="ref-for-syntax-decimal_float_literal">decimal_float_literal</a></p>
     <p><span class="choice">|</span> <a data-link-type="dfn" href="#syntax-hex_float_literal" id="ref-for-syntax-hex_float_literal">hex_float_literal</a></p>
    </div>
-   <p>A <a data-link-type="dfn" href="#floating-point-literal" id="ref-for-floating-point-literal①">floating point literal</a> has two logical parts: a mantissa to representing a fraction, and an optional exponent.
-Roughly, the value of the literal is the mantissa multiplied by a base value raised to the given exponent.
-A mantissa digit is <dfn class="dfn-paneled" data-dfn-for="mantissa" data-dfn-type="dfn" data-noexport id="mantissa-significant">significant</dfn> if it is non-zero,
-or if there are mantissa digits to its left and to its right that are both non-zero.
+   <p>A <a data-link-type="dfn" href="#floating-point-literal" id="ref-for-floating-point-literal①">floating point literal</a> has two logical parts: a significand to represent a fraction, and an optional exponent.
+Roughly, the value of the literal is the significand multiplied by a base value raised to the given exponent.
+A significand digit is <dfn class="dfn-paneled" data-dfn-for="significand" data-dfn-type="dfn" data-noexport id="significand-significant">significant</dfn> if it is non-zero,
+or if there are significand digits to its left and to its right that are both non-zero.
 Significant digits are counted from left-to-right: the <em>N</em>'th significant digit has <em>N</em>-1 significant digits
 to its left.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="decimal-floating-point-literal">decimal floating point literal</dfn> is:</p>
    <ul>
     <li data-md>
-     <p>A mantissa, specified as a sequence of digits, with an optional decimal point (<code>.</code>) somewhere among them.
-The mantissa represents a fraction in base 10 notation.</p>
+     <p>A significand, specified as a sequence of digits, with an optional decimal point (<code>.</code>) somewhere among them.
+The significand represents a fraction in base 10 notation.</p>
     <li data-md>
      <p>Then an optional exponent suffix consisting of:</p>
      <ul>
@@ -2605,18 +2605,18 @@ The mantissa represents a fraction in base 10 notation.</p>
      The mathematical value of a <a data-link-type="dfn" href="#decimal-floating-point-literal" id="ref-for-decimal-floating-point-literal①">decimal floating point literal</a> is computed as follows: 
     <ul>
      <li data-md>
-      <p>Compute <var>effective_mantissa</var> from <var>mantissa</var>:</p>
+      <p>Compute <var>effective_significand</var> from <var>significand</var>:</p>
       <ul>
        <li data-md>
-        <p>If <var>mantissa</var> has 20 or fewer <a data-link-type="dfn" href="#mantissa-significant" id="ref-for-mantissa-significant">significant</a> digits, then <var>effective_mantissa</var> is <var>mantissa</var>.</p>
+        <p>If <var>significand</var> has 20 or fewer <a data-link-type="dfn" href="#significand-significant" id="ref-for-significand-significant">significant</a> digits, then <var>effective_significand</var> is <var>significand</var>.</p>
        <li data-md>
         <p>Otherwise:</p>
         <ul>
          <li data-md>
-          <p>Let <var>truncated_mantissa</var> be the same as <var>mantissa</var> except each digit to the
+          <p>Let <var>truncated_significand</var> be the same as <var>significand</var> except each digit to the
  right of the 20th significant digit is replaced with 0.</p>
          <li data-md>
-          <p>Let <var>truncated_mantissa_next</var> be the same as <var>mantissa</var> except:</p>
+          <p>Let <var>truncated_significand_next</var> be the same as <var>significand</var> except:</p>
           <ul>
            <li data-md>
             <p>the 20th significant digit is incremented by 1, and carries are propagated to the left as needed
@@ -2625,24 +2625,24 @@ The mantissa represents a fraction in base 10 notation.</p>
             <p>each digit to the right of the 20th significant digit is replaced with 0.</p>
           </ul>
          <li data-md>
-          <p>Set <var>effective_mantissa</var> to either <var>truncated_mantissa</var> or <var>truncated_mantissa_next</var>.
+          <p>Set <var>effective_significand</var> to either <var>truncated_significand</var> or <var>truncated_significand_next</var>.
  This is an implementation choice.</p>
         </ul>
       </ul>
      <li data-md>
-      <p>The mathematical value of the literal is the mathematical value of <var>effective_mantissa</var> as a decimal fraction,
+      <p>The mathematical value of the literal is the mathematical value of <var>effective_significand</var> as a decimal fraction,
 multiplied by 10 to the power of the exponent.
 When no exponent is specified, an exponent of 0 is assumed.</p>
     </ul>
    </div>
-   <p class="note" role="note"><span class="marker">Note:</span> The decimal mantissa is truncated after 20 decimal digits, preserving approximately log(10)/log(2)×20 ≈ 66.4 significant bits in the fraction.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> The decimal significand is truncated after 20 decimal digits, preserving approximately log(10)/log(2)×20 ≈ 66.4 significant bits in the fraction.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="hexadecimal-floating-point-literal">hexadecimal floating point literal</dfn> is:</p>
    <ul>
     <li data-md>
      <p>A <code>0x</code> or <code>0X</code> prefix</p>
     <li data-md>
-     <p>Then a mantissa, specified as a sequence of hexadecimal digits, with an optional hexadecimal point (<code>.</code>) somewhere among them.
-The mantissa represents a fraction in base 16 notation.</p>
+     <p>Then a significand, specified as a sequence of hexadecimal digits, with an optional hexadecimal point (<code>.</code>) somewhere among them.
+The significand represents a fraction in base 16 notation.</p>
     <li data-md>
      <p>Then an optional exponent suffix consisting of:</p>
      <ul>
@@ -2678,18 +2678,18 @@ The mantissa represents a fraction in base 16 notation.</p>
      The mathematical value of a <a data-link-type="dfn" href="#hexadecimal-floating-point-literal" id="ref-for-hexadecimal-floating-point-literal①">hexadecimal floating point literal</a> is computed as follows: 
     <ul>
      <li data-md>
-      <p>Compute <em>effective_mantissa</em> from <em>mantissa</em>:</p>
+      <p>Compute <var>effective_significand</var> from <var>significand</var>:</p>
       <ul>
        <li data-md>
-        <p>If <em>mantissa</em> has 16 or fewer <a data-link-type="dfn" href="#mantissa-significant" id="ref-for-mantissa-significant①">significant</a> digits, then <em>effective_mantissa</em> is <em>mantissa</em>.</p>
+        <p>If <var>significand</var> has 16 or fewer <a data-link-type="dfn" href="#significand-significant" id="ref-for-significand-significant①">significant</a> digits, then <var>effective_significand</var> is <var>significand</var>.</p>
        <li data-md>
         <p>Otherwise:</p>
         <ul>
          <li data-md>
-          <p>Let <var>truncated_mantissa</var> be the same as <var>mantissa</var> except each digit to the
+          <p>Let <var>truncated_significand</var> be the same as <var>significand</var> except each digit to the
  right of the 16th significant digit is replaced with 0.</p>
          <li data-md>
-          <p>Let <var>truncated_mantissa_next</var> be the same as <var>mantissa</var> except:</p>
+          <p>Let <var>truncated_significand_next</var> be the same as <var>significand</var> except:</p>
           <ul>
            <li data-md>
             <p>the 16th significant digit is incremented by 1, and carries are propagated to the left as needed
@@ -2698,17 +2698,17 @@ The mantissa represents a fraction in base 16 notation.</p>
             <p>each digit to the right of the 16th significant digit is replaced with 0.</p>
           </ul>
          <li data-md>
-          <p>Set <var>effective_mantissa</var> to either <var>truncated_mantissa</var> or <var>truncated_mantissa_next</var>.
+          <p>Set <var>effective_significand</var> to either <var>truncated_significand</var> or <var>truncated_significand_next</var>.
  This is an implementation choice.</p>
         </ul>
       </ul>
      <li data-md>
-      <p>The mathematical value of the literal is the mathematical value of <var>effective_mantissa</var> as a hexadecimal fraction,
+      <p>The mathematical value of the literal is the mathematical value of <var>effective_significand</var> as a hexadecimal fraction,
 multiplied by 2 to the power of the exponent.
 When no exponent is specified, an exponent of 0 is assumed.</p>
     </ul>
    </div>
-   <p class="note" role="note"><span class="marker">Note:</span> The hexadecimal mantissa is truncated after 16 hexadecimal digits, preserving approximately 4 ×16 = 64 significant bits in the fraction.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> The hexadecimal significand is truncated after 16 hexadecimal digits, preserving approximately 4 ×16 = 64 significant bits in the fraction.</p>
    <p>When a <a data-link-type="dfn" href="#numeric-literal" id="ref-for-numeric-literal①">numeric literal</a> has a suffix, the literal denotes a value in a specific <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②">concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar①">scalar</a> type.
 Otherwise, the literal denotes a value one of the <a data-link-type="dfn" href="#abstract-numeric-types" id="ref-for-abstract-numeric-types">abstract numeric types</a> defined below.
 In either case, the value denoted by the literal is its mathematical value after conversion to the target type,
@@ -2764,8 +2764,8 @@ following the rules in <a href="#floating-point-conversion">§ 14.6.6 Floating
     <li data-md>
      <p>A <a data-link-type="dfn" href="#floating-point-literal" id="ref-for-floating-point-literal⑤">floating point literal</a> with a <code>h</code> suffix is used while the <a data-link-type="dfn" href="#extension-f16" id="ref-for-extension-f16">f16 extension</a> is not enabled.</p>
    </ul>
-   <p class="note" role="note"><span class="marker">Note:</span> The hexadecimal float value 0x1.00000001p0 requires 33 mantissa bits to be represented exactly,
-but <a data-link-type="dfn" href="#f32" id="ref-for-f32①">f32</a> only has 23 explicit mantissa bits.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> The hexadecimal float value 0x1.00000001p0 requires 33 significand bits to be represented exactly,
+but <a data-link-type="dfn" href="#f32" id="ref-for-f32①">f32</a> only has 23 explicit significand bits.</p>
    <p class="note" role="note"><span class="marker">Note:</span> If you want to use an <code>f</code> suffix to force a hexadecimal float literal to be of type, the literal must also
 use a binary exponent.  For example, write <code>0x1p0f</code>.  In comparison, <code>0x1f</code> is a hexadecimal integer literal.</p>
    <h3 class="heading settled" data-level="3.6" id="keywords"><span class="secno">3.6. </span><span class="content">Keywords</span><a class="self-link" href="#keywords"></a></h3>
@@ -4247,7 +4247,7 @@ and with a numeric range and precision that may be larger than directly implemen
      <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="abstractint">AbstractInt</dfn> type is the set of integers <var>i</var>, with -2<sup>63</sup> ≤ <var>i</var> &lt; 2<sup>63</sup>.</p>
     <li data-md>
      <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="abstractfloat">AbstractFloat</dfn> type is the set of finite floating point numbers representable
-in the <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> binary64 (double precision) format.</p>
+in the <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> <a data-link-type="dfn" href="#ieee754-binary64" id="ref-for-ieee754-binary64">binary64</a> (double precision) format.</p>
    </ul>
    <p>An evaluation of an expression in one of these types <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑨">must not</a> overflow or produce an infinite or NaN value.</p>
    <p>A type is <dfn class="dfn-paneled" data-dfn-for="type" data-dfn-type="dfn" data-noexport id="type-abstract">abstract</dfn> if it is an abstract
@@ -4503,9 +4503,9 @@ It uses a two’s complementation representation, with the sign bit in the most 
    </table>
    <p class="note" role="note"><span class="marker">Note:</span> <a data-link-type="dfn" href="#abstractint" id="ref-for-abstractint①⑧">AbstractInt</a> is also an integer type.</p>
    <h4 class="heading settled" data-level="6.2.4" id="floating-point-types"><span class="secno">6.2.4. </span><span class="content">Floating Point Types</span><a class="self-link" href="#floating-point-types"></a></h4>
-   <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="f32">f32</dfn> type is the set of 32-bit floating point values of the <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> binary32 (single precision) format.
+   <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="f32">f32</dfn> type is the set of 32-bit floating point values of the <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> <a data-link-type="dfn" href="#ieee754-binary32" id="ref-for-ieee754-binary32">binary32</a> (single precision) format.
 See <a href="#floating-point-evaluation">§ 14.6 Floating Point Evaluation</a> for details.</p>
-   <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="f16">f16</dfn> type is the set of 16-bit floating point values of the <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> binary16 (half precision) format. It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error③②">shader-creation error</a> if the <a data-link-type="dfn" href="#f16" id="ref-for-f16⑨">f16</a> type is used unless the program contains the <code>enable f16;</code> directive to enable
+   <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="f16">f16</dfn> type is the set of 16-bit floating point values of the <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> <a data-link-type="dfn" href="#ieee754-binary16" id="ref-for-ieee754-binary16">binary16</a> (half precision) format. It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error③②">shader-creation error</a> if the <a data-link-type="dfn" href="#f16" id="ref-for-f16⑨">f16</a> type is used unless the program contains the <code>enable f16;</code> directive to enable
 the <a data-link-type="dfn" href="#extension-f16" id="ref-for-extension-f16④">f16 extension</a>. See <a href="#floating-point-evaluation">§ 14.6 Floating Point Evaluation</a> for details.</p>
    <p>The following table lists certain extreme values for floating point types.
 Each has a corresponding negative value.</p>
@@ -6193,7 +6193,7 @@ This is also known as the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noex
      <tr>
       <td>16float
       <td>16
-      <td><a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> binary16 16-bit floating point value <var>v</var>, with 1 sign bit, 5 exponent bits, 10 mantissa bits
+      <td><a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> <a data-link-type="dfn" href="#ieee754-binary16" id="ref-for-ieee754-binary16①">binary16</a> 16-bit floating point value <var>v</var>
       <td>f32
       <td><var>v</var>
       <td><code>quantizeToF16(T)</code> 
@@ -6214,7 +6214,7 @@ This is also known as the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noex
      <tr>
       <td>32float
       <td>32
-      <td><a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> binary32 32-bit floating point value <var>v</var>
+      <td><a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> <a data-link-type="dfn" href="#ieee754-binary32" id="ref-for-ieee754-binary32①">binary32</a> 32-bit floating point value <var>v</var>
       <td>f32
       <td><var>v</var>
       <td><code>T</code> 
@@ -12577,7 +12577,7 @@ offset <var>k</var> of a host-shared buffer, then:</p>
      <p>Byte <var>k</var>+7 contains bits 56 through 63 of <var>V</var></p>
    </ul>
    <p class="note" role="note"><span class="marker">Note:</span> WGSL does not have a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⑨">concrete</a> <a data-link-type="dfn" href="#64-bit-integer" id="ref-for-64-bit-integer">64-bit integer</a> type.</p>
-   <p>A value <var>V</var> of type <a data-link-type="dfn" href="#f32" id="ref-for-f32②①">f32</a> is represented in <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> binary32 format.
+   <p>A value <var>V</var> of type <a data-link-type="dfn" href="#f32" id="ref-for-f32②①">f32</a> is represented in <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> <a data-link-type="dfn" href="#ieee754-binary32" id="ref-for-ieee754-binary32②">binary32</a> format.
 It has one sign bit, 8 exponent bits, and 23 fraction bits.
 When <var>V</var> is placed at byte offset <var>k</var> of host-shared buffer, then:</p>
    <ul>
@@ -12594,7 +12594,7 @@ When <var>V</var> is placed at byte offset <var>k</var> of host-shared buffer, t
     <li data-md>
      <p>Bit 7 of byte <var>k</var>+3 contains the sign bit.</p>
    </ul>
-   <p>A value <var>V</var> of type <a data-link-type="dfn" href="#f16" id="ref-for-f16①⑤">f16</a> is represented in <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> binary16 format.
+   <p>A value <var>V</var> of type <a data-link-type="dfn" href="#f16" id="ref-for-f16①⑤">f16</a> is represented in <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> <a data-link-type="dfn" href="#ieee754-binary16" id="ref-for-ieee754-binary16②">binary16</a> format.
 It has one sign bit, 5 exponent bits, and 10 fraction bits.
 When <var>V</var> is placed at byte offset <var>k</var> of host-shared buffer, then:</p>
    <ul>
@@ -15030,8 +15030,8 @@ no strict requirement is specified.</p>
      <span class="marker">Note:</span>A given absolute error bound, when quantified as ULP,
 depends critically on the underlying floating point type. 
     <p>The <a data-link-type="dfn" href="#ulp" id="ref-for-ulp①">ULP</a> for an <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②⑥">AbstractFloat</a> value assumes
-AbstractFloat is identical to the <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> binary64 type.</p>
-    <p>One <a data-link-type="dfn" href="#ulp" id="ref-for-ulp②">ULP</a> for an f32 value is 2<sup>29</sup> times larger than 1 ULP for an IEEE 754 binary64 value,
+AbstractFloat is identical to the <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> <a data-link-type="dfn" href="#ieee754-binary64" id="ref-for-ieee754-binary64①">binary64</a> type.</p>
+    <p>One <a data-link-type="dfn" href="#ulp" id="ref-for-ulp②">ULP</a> for an f32 value is 2<sup>29</sup> times larger than 1 ULP for an IEEE-754 binary64 value,
 since the significand in the binary64 format is 29 bits longer than the significand in the f32 type.</p>
     <p>For example, suppose the true result value of an operation is <var>x</var>, but it is computed as <var>x'</var>.
 If its error <var>x</var>-<var>x'</var> is 3 ULP in f32, then the same absolute error, <var>x</var>-<var>x'</var>,
@@ -15064,7 +15064,7 @@ than performing a multiply followed by an addition.</p>
     <li data-md>
      <p>A hypothetical type corresponding to a binary format defined by the <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> floating point standard.</p>
    </ul>
-   <p class="note" role="note"><span class="marker">Note:</span> Recall that the <a data-link-type="dfn" href="#f32" id="ref-for-f32②⑨">f32</a> WGSL type corresponds to the IEEE-754 binary32 format, and the <a data-link-type="dfn" href="#f16" id="ref-for-f16①⑨">f16</a> WGSL type corresponds to the IEEE-754 binary16 format.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> Recall that the <a data-link-type="dfn" href="#f32" id="ref-for-f32②⑨">f32</a> WGSL type corresponds to the IEEE-754 <a data-link-type="dfn" href="#ieee754-binary32" id="ref-for-ieee754-binary32③">binary32</a> format, and the <a data-link-type="dfn" href="#f16" id="ref-for-f16①⑨">f16</a> WGSL type corresponds to the IEEE-754 <a data-link-type="dfn" href="#ieee754-binary16" id="ref-for-ieee754-binary16③">binary16</a> format.</p>
    <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="scalar-floating-point-to-integral-conversion">scalar floating point to integral conversion</dfn> algorithm is:</p>
    <blockquote class="algorithm" data-algorithm="convert a float value to an integral value">
      To convert a floating point scalar value <var>X</var> to an <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar①⑥">integer scalar</a> type <var>T</var>: 
@@ -15128,8 +15128,8 @@ but where <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standar
            <li data-md>
             <p>Set <var>X</var> to the original value.</p>
            <li data-md>
-            <p>If the source type is a floating point type with more mantissa bits than the destination type,
- the extra mantissa bits of the source value <em>may</em> be discarded (i.e. treated as if they are 0).
+            <p>If the source type is a floating point type with more significand bits than the destination type,
+ the extra significand bits of the source value <em>may</em> be discarded (i.e. treated as if they are 0).
  Update <var>X</var> accordingly.</p>
            <li data-md>
             <p>If <var>X</var> is the most-positive or most-negative normal value of the destination type, then the result is <var>X</var>.</p>
@@ -15142,7 +15142,7 @@ but where <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standar
    </blockquote>
    <p class="note" role="note"><span class="marker">NOTE:</span> An integer value may lie between two adjacent representable floating point values.
 In particular, the <a data-link-type="dfn" href="#f32" id="ref-for-f32③⓪">f32</a> type uses 23 explicit fractional bits.
-Additionally, when the floating point value is in the normal range (the exponent is neither extreme value), then the mantissa is
+Additionally, when the floating point value is in the normal range (the exponent is neither extreme value), then the significand is
 the set of fractional bits together with an extra 1-bit at the most significant position at bit position 23.
 Then, for example, integers 2<sup>28</sup> and 1+2<sup>28</sup> both map to the same floating point value: the difference in the
 least significant 1 bit is not representable by the floating point format.
@@ -15150,7 +15150,7 @@ This kind of collision occurs for pairs of adjacent integers with a magnitude of
    <p class="note" role="note"><span class="marker">Note:</span> The original value is always within range of the destination type when
 the original type is one of <a data-link-type="dfn" href="#i32" id="ref-for-i32④①">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32②⑦">u32</a> and the destination type is <a data-link-type="dfn" href="#f32" id="ref-for-f32③①">f32</a>.</p>
    <p class="note" role="note"><span class="marker">Note:</span> The original value is always within range of the destination type when
-the source type is a floating point type with fewer exponent and mantissa bits than the target floating point type.</p>
+the source type is a floating point type with fewer exponent and significand bits than the target floating point type.</p>
    <h4 class="heading settled" data-level="14.6.7" id="domains-of-floating-point-expressions-and-builtins"><span class="secno">14.6.7. </span><span class="content">Domains of Floating Point Expressions and Built-in Functions</span><a class="self-link" href="#domains-of-floating-point-expressions-and-builtins"></a></h4>
    <p>Previous sections describe the expected behavior when a floating point expression is evaluated
 outside its <a data-link-type="dfn" href="#domain" id="ref-for-domain⑧">domain</a>.</p>
@@ -17853,7 +17853,7 @@ but a value may infer the type.</p>
         <li data-md>
          <p>127 for <code>f32</code></p>
         <li data-md>
-         <p>1023 for AbstractFloat, when AbstractFloat is <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> binary64</p>
+         <p>1023 for AbstractFloat, when AbstractFloat is <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> <a data-link-type="dfn" href="#ieee754-binary64" id="ref-for-ieee754-binary64②">binary64</a></p>
        </ul>
        <p>If <code>x</code> is zero or a finite normal value for its type, then:</p>
        <blockquote> x = ldexp(frexp(x).fract, frexp(x).exp) </blockquote>
@@ -18263,8 +18263,8 @@ but a value may infer the type.</p>
       <td>Description 
       <td>
        Quantizes a 32-bit floating point value <code>e</code> as if <code>e</code> were converted to
-        a <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE 754</a> binary16 value, and then converted back to a
-        IEEE 754 binary32 value. 
+        a <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> <a data-link-type="dfn" href="#ieee754-binary16" id="ref-for-ieee754-binary16④">binary16</a> value, and then converted back to a
+        IEEE-754 <a data-link-type="dfn" href="#ieee754-binary32" id="ref-for-ieee754-binary32④">binary32</a> value. 
        <p>If <code>e</code> is outside the finite range of binary16, then:</p>
        <ul>
         <li data-md>
@@ -20424,7 +20424,7 @@ their results into a single output value.</p>
       <td>Description 
       <td>
        Converts two floating point values to half-precision floating point numbers, and then combines
-        them into one <code>u32</code> value.<br> Component <code>e[i]</code> of the input is converted to a <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> binary16 value, which is then
+        them into one <code>u32</code> value.<br> Component <code>e[i]</code> of the input is converted to a <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> <a data-link-type="dfn" href="#ieee754-binary16" id="ref-for-ieee754-binary16⑤">binary16</a> value, which is then
         placed in bits
         16 × <code>i</code> through
         16 × <code>i</code> + 15 of the result.
@@ -20539,7 +20539,7 @@ reduce a shader’s memory bandwidth demand.</p>
       <td>Description 
       <td>Decomposes a 32-bit value into two 16-bit chunks, and reinterpets each chunk
         as a floating point value.<br> Component <code>i</code> of the result is the f32 representation of <code>v</code>,
-        where <code>v</code> is the interpretation of bits 16×<code>i</code> through 16×<code>i + 15</code> of <code>e</code> as an <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> binary16 value.
+        where <code>v</code> is the interpretation of bits 16×<code>i</code> through 16×<code>i + 15</code> of <code>e</code> as an <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> <a data-link-type="dfn" href="#ieee754-binary16" id="ref-for-ieee754-binary16⑥">binary16</a> value.
         See <a href="#floating-point-conversion">§ 14.6.6 Floating Point Conversion</a>. 
    </table>
    <h3 class="heading settled" data-level="16.11" id="sync-builtin-functions"><span class="secno">16.11. </span><span class="content">Synchronization Built-in Functions</span><a class="self-link" href="#sync-builtin-functions"></a></h3>
@@ -21915,7 +21915,7 @@ registrations, it matches widespread industry conventions.</p>
    <li><a href="#syntax-short_circuit_and_expression">short_circuit_and_expression</a><span>, in § 8.18</span>
    <li><a href="#syntax-short_circuit_or_expression">short_circuit_or_expression</a><span>, in § 8.18</span>
    <li><a href="#ieee754-sign-field">sign field</a><span>, in § 14.6.1</span>
-   <li><a href="#mantissa-significant">significant</a><span>, in § 3.5.2</span>
+   <li><a href="#significand-significant">significant</a><span>, in § 3.5.2</span>
    <li><a href="#simple-assignment">simple assignment</a><span>, in § 9.2.1</span>
    <li><a href="#syntax-singular_expression">singular_expression</a><span>, in § 8.18</span>
    <li>
@@ -22806,9 +22806,9 @@ let dfnPanelData = {
 "hyperbolic-angle": {"dfnID":"hyperbolic-angle","dfnText":"hyperbolic angle","external":false,"refSections":[{"refs":[{"id":"ref-for-hyperbolic-angle"}],"title":"16.5.3. acosh"},{"refs":[{"id":"ref-for-hyperbolic-angle\u2460"}],"title":"16.5.5. asinh"},{"refs":[{"id":"ref-for-hyperbolic-angle\u2461"}],"title":"16.5.7. atanh"},{"refs":[{"id":"ref-for-hyperbolic-angle\u2462"}],"title":"16.5.12. cosh"},{"refs":[{"id":"ref-for-hyperbolic-angle\u2463"}],"title":"16.5.56. sinh"},{"refs":[{"id":"ref-for-hyperbolic-angle\u2464"}],"title":"16.5.61. tanh"}],"url":"#hyperbolic-angle"},
 "i32": {"dfnID":"i32","dfnText":"i32","external":false,"refSections":[{"refs":[{"id":"ref-for-i32"}],"title":"3.5.2. Numeric Literals"},{"refs":[{"id":"ref-for-i32\u2460"}],"title":"5. Declaration and Scope"},{"refs":[{"id":"ref-for-i32\u2461"}],"title":"6.1.2. Conversion Rank"},{"refs":[{"id":"ref-for-i32\u2462"},{"id":"ref-for-i32\u2463"},{"id":"ref-for-i32\u2464"},{"id":"ref-for-i32\u2465"},{"id":"ref-for-i32\u2466"}],"title":"6.2.1. Abstract Numeric Types"},{"refs":[{"id":"ref-for-i32\u2467"},{"id":"ref-for-i32\u2468"},{"id":"ref-for-i32\u2460\u24ea"}],"title":"6.2.5. Scalar Types"},{"refs":[{"id":"ref-for-i32\u2460\u2460"}],"title":"6.2.8. Atomic Types"},{"refs":[{"id":"ref-for-i32\u2460\u2461"}],"title":"6.4.6. Out-of-Bounds Access"},{"refs":[{"id":"ref-for-i32\u2460\u2462"}],"title":"6.9. Predeclared Types and Type-Generators Summary"},{"refs":[{"id":"ref-for-i32\u2460\u2463"},{"id":"ref-for-i32\u2460\u2464"},{"id":"ref-for-i32\u2460\u2465"},{"id":"ref-for-i32\u2460\u2466"}],"title":"8.1.1. const Expressions"},{"refs":[{"id":"ref-for-i32\u2460\u2467"},{"id":"ref-for-i32\u2460\u2468"},{"id":"ref-for-i32\u2461\u24ea"},{"id":"ref-for-i32\u2461\u2460"},{"id":"ref-for-i32\u2461\u2461"}],"title":"8.1.2. override Expressions"},{"refs":[{"id":"ref-for-i32\u2461\u2462"}],"title":"11.1. align"},{"refs":[{"id":"ref-for-i32\u2461\u2463"}],"title":"11.2. binding"},{"refs":[{"id":"ref-for-i32\u2461\u2464"}],"title":"11.3. blend_src"},{"refs":[{"id":"ref-for-i32\u2461\u2465"}],"title":"11.7. group"},{"refs":[{"id":"ref-for-i32\u2461\u2466"}],"title":"11.8. id"},{"refs":[{"id":"ref-for-i32\u2461\u2467"}],"title":"11.11. location"},{"refs":[{"id":"ref-for-i32\u2461\u2468"}],"title":"11.13. size"},{"refs":[{"id":"ref-for-i32\u2462\u24ea"}],"title":"11.14. workgroup_size"},{"refs":[{"id":"ref-for-i32\u2462\u2460"},{"id":"ref-for-i32\u2462\u2461"},{"id":"ref-for-i32\u2462\u2462"},{"id":"ref-for-i32\u2462\u2463"}],"title":"13.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-i32\u2462\u2464"},{"id":"ref-for-i32\u2462\u2465"}],"title":"13.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-i32\u2462\u2466"}],"title":"13.4.5. Address Space Layout Constraints"},{"refs":[{"id":"ref-for-i32\u2462\u2467"},{"id":"ref-for-i32\u2462\u2468"},{"id":"ref-for-i32\u2463\u24ea"},{"id":"ref-for-i32\u2463\u2460"}],"title":"14.6.6. Floating Point Conversion"},{"refs":[{"id":"ref-for-i32\u2463\u2461"},{"id":"ref-for-i32\u2463\u2462"},{"id":"ref-for-i32\u2463\u2463"},{"id":"ref-for-i32\u2463\u2464"},{"id":"ref-for-i32\u2463\u2465"}],"title":"16.1.2.5. i32"},{"refs":[{"id":"ref-for-i32\u2463\u2466"}],"title":"16.1.2.16. u32"},{"refs":[{"id":"ref-for-i32\u2463\u2467"},{"id":"ref-for-i32\u2463\u2468"},{"id":"ref-for-i32\u2464\u24ea"},{"id":"ref-for-i32\u2464\u2460"},{"id":"ref-for-i32\u2464\u2461"},{"id":"ref-for-i32\u2464\u2462"},{"id":"ref-for-i32\u2464\u2463"},{"id":"ref-for-i32\u2464\u2464"},{"id":"ref-for-i32\u2464\u2465"}],"title":"16.7.1. textureDimensions"},{"refs":[{"id":"ref-for-i32\u2464\u2466"},{"id":"ref-for-i32\u2464\u2467"},{"id":"ref-for-i32\u2464\u2468"},{"id":"ref-for-i32\u2465\u24ea"},{"id":"ref-for-i32\u2465\u2460"},{"id":"ref-for-i32\u2465\u2461"},{"id":"ref-for-i32\u2465\u2462"},{"id":"ref-for-i32\u2465\u2463"},{"id":"ref-for-i32\u2465\u2464"},{"id":"ref-for-i32\u2465\u2465"},{"id":"ref-for-i32\u2465\u2466"},{"id":"ref-for-i32\u2465\u2467"},{"id":"ref-for-i32\u2465\u2468"},{"id":"ref-for-i32\u2466\u24ea"},{"id":"ref-for-i32\u2466\u2460"},{"id":"ref-for-i32\u2466\u2461"},{"id":"ref-for-i32\u2466\u2462"},{"id":"ref-for-i32\u2466\u2463"}],"title":"16.7.2. textureGather"},{"refs":[{"id":"ref-for-i32\u2466\u2464"},{"id":"ref-for-i32\u2466\u2465"},{"id":"ref-for-i32\u2466\u2466"}],"title":"16.7.3. textureGatherCompare"},{"refs":[{"id":"ref-for-i32\u2466\u2467"},{"id":"ref-for-i32\u2466\u2468"},{"id":"ref-for-i32\u2467\u24ea"},{"id":"ref-for-i32\u2467\u2460"},{"id":"ref-for-i32\u2467\u2461"},{"id":"ref-for-i32\u2467\u2462"},{"id":"ref-for-i32\u2467\u2463"},{"id":"ref-for-i32\u2467\u2464"},{"id":"ref-for-i32\u2467\u2465"},{"id":"ref-for-i32\u2467\u2466"},{"id":"ref-for-i32\u2467\u2467"},{"id":"ref-for-i32\u2467\u2468"},{"id":"ref-for-i32\u2468\u24ea"},{"id":"ref-for-i32\u2468\u2460"},{"id":"ref-for-i32\u2468\u2461"},{"id":"ref-for-i32\u2468\u2462"},{"id":"ref-for-i32\u2468\u2463"},{"id":"ref-for-i32\u2468\u2464"},{"id":"ref-for-i32\u2468\u2465"},{"id":"ref-for-i32\u2468\u2466"},{"id":"ref-for-i32\u2468\u2467"},{"id":"ref-for-i32\u2468\u2468"},{"id":"ref-for-i32\u2460\u24ea\u24ea"},{"id":"ref-for-i32\u2460\u24ea\u2460"},{"id":"ref-for-i32\u2460\u24ea\u2461"},{"id":"ref-for-i32\u2460\u24ea\u2462"},{"id":"ref-for-i32\u2460\u24ea\u2463"},{"id":"ref-for-i32\u2460\u24ea\u2464"},{"id":"ref-for-i32\u2460\u24ea\u2465"}],"title":"16.7.4. textureLoad"},{"refs":[{"id":"ref-for-i32\u2460\u24ea\u2466"}],"title":"16.7.5. textureNumLayers"},{"refs":[{"id":"ref-for-i32\u2460\u24ea\u2467"}],"title":"16.7.6. textureNumLevels"},{"refs":[{"id":"ref-for-i32\u2460\u24ea\u2468"}],"title":"16.7.7. textureNumSamples"},{"refs":[{"id":"ref-for-i32\u2460\u2460\u24ea"},{"id":"ref-for-i32\u2460\u2460\u2460"},{"id":"ref-for-i32\u2460\u2460\u2461"},{"id":"ref-for-i32\u2460\u2460\u2462"},{"id":"ref-for-i32\u2460\u2460\u2463"},{"id":"ref-for-i32\u2460\u2460\u2464"}],"title":"16.7.8. textureSample"},{"refs":[{"id":"ref-for-i32\u2460\u2460\u2465"},{"id":"ref-for-i32\u2460\u2460\u2466"},{"id":"ref-for-i32\u2460\u2460\u2467"}],"title":"16.7.9. textureSampleBias"},{"refs":[{"id":"ref-for-i32\u2460\u2460\u2468"},{"id":"ref-for-i32\u2460\u2461\u24ea"},{"id":"ref-for-i32\u2460\u2461\u2460"}],"title":"16.7.10. textureSampleCompare"},{"refs":[{"id":"ref-for-i32\u2460\u2461\u2461"},{"id":"ref-for-i32\u2460\u2461\u2462"},{"id":"ref-for-i32\u2460\u2461\u2463"}],"title":"16.7.11. textureSampleCompareLevel"},{"refs":[{"id":"ref-for-i32\u2460\u2461\u2464"},{"id":"ref-for-i32\u2460\u2461\u2465"},{"id":"ref-for-i32\u2460\u2461\u2466"}],"title":"16.7.12. textureSampleGrad"},{"refs":[{"id":"ref-for-i32\u2460\u2461\u2467"},{"id":"ref-for-i32\u2460\u2461\u2468"},{"id":"ref-for-i32\u2460\u2462\u24ea"},{"id":"ref-for-i32\u2460\u2462\u2460"},{"id":"ref-for-i32\u2460\u2462\u2461"},{"id":"ref-for-i32\u2460\u2462\u2462"},{"id":"ref-for-i32\u2460\u2462\u2463"},{"id":"ref-for-i32\u2460\u2462\u2464"},{"id":"ref-for-i32\u2460\u2462\u2465"},{"id":"ref-for-i32\u2460\u2462\u2466"},{"id":"ref-for-i32\u2460\u2462\u2467"},{"id":"ref-for-i32\u2460\u2462\u2468"}],"title":"16.7.13. textureSampleLevel"},{"refs":[{"id":"ref-for-i32\u2460\u2463\u24ea"},{"id":"ref-for-i32\u2460\u2463\u2460"},{"id":"ref-for-i32\u2460\u2463\u2461"},{"id":"ref-for-i32\u2460\u2463\u2462"},{"id":"ref-for-i32\u2460\u2463\u2463"}],"title":"16.7.15. textureStore"},{"refs":[{"id":"ref-for-i32\u2460\u2463\u2464"}],"title":"16.8. Atomic Built-in Functions"}],"url":"#i32"},
 "identifier": {"dfnID":"identifier","dfnText":"identifier","external":false,"refSections":[{"refs":[{"id":"ref-for-identifier"}],"title":"3.4. Tokens"},{"refs":[{"id":"ref-for-identifier\u2460"}],"title":"3.8. Context-Dependent Names"},{"refs":[{"id":"ref-for-identifier\u2461"}],"title":"3.8.4. Diagnostic Severity Control Names"},{"refs":[{"id":"ref-for-identifier\u2462"},{"id":"ref-for-identifier\u2463"}],"title":"3.8.5. Extension Names"},{"refs":[{"id":"ref-for-identifier\u2464"}],"title":"4.1.1. Enable Extensions"},{"refs":[{"id":"ref-for-identifier\u2465"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-identifier\u2466"}],"title":"5. Declaration and Scope"},{"refs":[{"id":"ref-for-identifier\u2467"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-identifier\u2468"}],"title":"6.4.8. Forming Reference and Pointer Values"},{"refs":[{"id":"ref-for-identifier\u2460\u24ea"}],"title":"7.2. Value Declarations"},{"refs":[{"id":"ref-for-identifier\u2460\u2460"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-identifier\u2460\u2461"}],"title":"8.1.1. const Expressions"},{"refs":[{"id":"ref-for-identifier\u2460\u2462"}],"title":"8.1.2. override Expressions"},{"refs":[{"id":"ref-for-identifier\u2460\u2463"}],"title":"8.11. Variable Identifier Expression"},{"refs":[{"id":"ref-for-identifier\u2460\u2464"}],"title":"8.12. Formal Parameter Expression"},{"refs":[{"id":"ref-for-identifier\u2460\u2465"},{"id":"ref-for-identifier\u2460\u2466"},{"id":"ref-for-identifier\u2460\u2467"}],"title":"8.15. Identifier Expressions for Value Declarations"},{"refs":[{"id":"ref-for-identifier\u2460\u2468"}],"title":"8.16. Enumeration Expressions"},{"refs":[{"id":"ref-for-identifier\u2461\u24ea"},{"id":"ref-for-identifier\u2461\u2460"},{"id":"ref-for-identifier\u2461\u2461"},{"id":"ref-for-identifier\u2461\u2462"}],"title":"8.17. Type Expressions"},{"refs":[{"id":"ref-for-identifier\u2461\u2463"}],"title":"8.18. Expression Grammar Summary"},{"refs":[{"id":"ref-for-identifier\u2461\u2464"}],"title":"9.1. Compound Statement"},{"refs":[{"id":"ref-for-identifier\u2461\u2465"}],"title":"9.4.4. For Statement"},{"refs":[{"id":"ref-for-identifier\u2461\u2466"}],"title":"10.1. Declaring a User-defined Function"},{"refs":[{"id":"ref-for-identifier\u2461\u2467"}],"title":"14.2.4. Pointer Desugaring"},{"refs":[{"id":"ref-for-identifier\u2461\u2468"},{"id":"ref-for-identifier\u2462\u24ea"}],"title":"16.1. Constructor Built-in Functions"}],"url":"#identifier"},
-"ieee754-binary16": {"dfnID":"ieee754-binary16","dfnText":"binary16","external":false,"refSections":[],"url":"#ieee754-binary16"},
-"ieee754-binary32": {"dfnID":"ieee754-binary32","dfnText":"binary32","external":false,"refSections":[],"url":"#ieee754-binary32"},
-"ieee754-binary64": {"dfnID":"ieee754-binary64","dfnText":"binary64","external":false,"refSections":[],"url":"#ieee754-binary64"},
+"ieee754-binary16": {"dfnID":"ieee754-binary16","dfnText":"binary16","external":false,"refSections":[{"refs":[{"id":"ref-for-ieee754-binary16"}],"title":"6.2.4. Floating Point Types"},{"refs":[{"id":"ref-for-ieee754-binary16\u2460"}],"title":"6.5.1. Texel Formats"},{"refs":[{"id":"ref-for-ieee754-binary16\u2461"}],"title":"13.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-ieee754-binary16\u2462"}],"title":"14.6.6. Floating Point Conversion"},{"refs":[{"id":"ref-for-ieee754-binary16\u2463"}],"title":"16.5.47. quantizeToF16"},{"refs":[{"id":"ref-for-ieee754-binary16\u2464"}],"title":"16.9.9. pack2x16float"},{"refs":[{"id":"ref-for-ieee754-binary16\u2465"}],"title":"16.10.7. unpack2x16float"}],"url":"#ieee754-binary16"},
+"ieee754-binary32": {"dfnID":"ieee754-binary32","dfnText":"binary32","external":false,"refSections":[{"refs":[{"id":"ref-for-ieee754-binary32"}],"title":"6.2.4. Floating Point Types"},{"refs":[{"id":"ref-for-ieee754-binary32\u2460"}],"title":"6.5.1. Texel Formats"},{"refs":[{"id":"ref-for-ieee754-binary32\u2461"}],"title":"13.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-ieee754-binary32\u2462"}],"title":"14.6.6. Floating Point Conversion"},{"refs":[{"id":"ref-for-ieee754-binary32\u2463"}],"title":"16.5.47. quantizeToF16"}],"url":"#ieee754-binary32"},
+"ieee754-binary64": {"dfnID":"ieee754-binary64","dfnText":"binary64","external":false,"refSections":[{"refs":[{"id":"ref-for-ieee754-binary64"}],"title":"6.2.1. Abstract Numeric Types"},{"refs":[{"id":"ref-for-ieee754-binary64\u2460"}],"title":"14.6.4.2. Accuracy of AbstractFloat Expressions"},{"refs":[{"id":"ref-for-ieee754-binary64\u2461"}],"title":"16.5.37. ldexp"}],"url":"#ieee754-binary64"},
 "ieee754-division-by-zero": {"dfnID":"ieee754-division-by-zero","dfnText":"Division by zero","external":false,"refSections":[{"refs":[{"id":"ref-for-ieee754-division-by-zero"}],"title":"14.6.2. Differences from IEEE-754"}],"url":"#ieee754-division-by-zero"},
 "ieee754-exceptions": {"dfnID":"ieee754-exceptions","dfnText":"exceptions","external":false,"refSections":[{"refs":[{"id":"ref-for-ieee754-exceptions"}],"title":"14.6.1. Overview of IEEE-754"},{"refs":[{"id":"ref-for-ieee754-exceptions\u2460"}],"title":"14.6.2. Differences from IEEE-754"}],"url":"#ieee754-exceptions"},
 "ieee754-exponent-bias": {"dfnID":"ieee754-exponent-bias","dfnText":"exponent bias","external":false,"refSections":[{"refs":[{"id":"ref-for-ieee754-exponent-bias"},{"id":"ref-for-ieee754-exponent-bias\u2460"},{"id":"ref-for-ieee754-exponent-bias\u2461"},{"id":"ref-for-ieee754-exponent-bias\u2462"}],"title":"14.6.1. Overview of IEEE-754"}],"url":"#ieee754-exponent-bias"},
@@ -22875,7 +22875,6 @@ let dfnPanelData = {
 "local-invocation-index": {"dfnID":"local-invocation-index","dfnText":"local invocation index","external":false,"refSections":[{"refs":[{"id":"ref-for-local-invocation-index"}],"title":"12.3.1.1.7. local_invocation_index"}],"url":"#local-invocation-index"},
 "logical-texel-address": {"dfnID":"logical-texel-address","dfnText":"logical texel address","external":false,"refSections":[{"refs":[{"id":"ref-for-logical-texel-address"}],"title":"6.5.3. Multisampled Texture Types"},{"refs":[{"id":"ref-for-logical-texel-address\u2460"}],"title":"16.7.1. textureDimensions"},{"refs":[{"id":"ref-for-logical-texel-address\u2461"}],"title":"16.7.4. textureLoad"},{"refs":[{"id":"ref-for-logical-texel-address\u2462"}],"title":"16.7.15. textureStore"}],"url":"#logical-texel-address"},
 "loop-body": {"dfnID":"loop-body","dfnText":"loop body","external":false,"refSections":[{"refs":[{"id":"ref-for-loop-body"},{"id":"ref-for-loop-body\u2460"}],"title":"2.3.3. Diagnostic Filtering"}],"url":"#loop-body"},
-"mantissa-significant": {"dfnID":"mantissa-significant","dfnText":"significant","external":false,"refSections":[{"refs":[{"id":"ref-for-mantissa-significant"},{"id":"ref-for-mantissa-significant\u2460"}],"title":"3.5.2. Numeric Literals"}],"url":"#mantissa-significant"},
 "mat2x2f": {"dfnID":"mat2x2f","dfnText":"mat2x2f","external":false,"refSections":[],"url":"#mat2x2f"},
 "mat2x2h": {"dfnID":"mat2x2h","dfnText":"mat2x2h","external":false,"refSections":[],"url":"#mat2x2h"},
 "mat2x3f": {"dfnID":"mat2x3f","dfnText":"mat2x3f","external":false,"refSections":[],"url":"#mat2x3f"},
@@ -23061,6 +23060,7 @@ let dfnPanelData = {
 "shader-stage-input": {"dfnID":"shader-stage-input","dfnText":"shader stage input","external":false,"refSections":[{"refs":[{"id":"ref-for-shader-stage-input"},{"id":"ref-for-shader-stage-input\u2460"}],"title":"1.1. Overview"},{"refs":[{"id":"ref-for-shader-stage-input\u2461"}],"title":"2.2. Errors"},{"refs":[{"id":"ref-for-shader-stage-input\u2462"}],"title":"11.3. blend_src"},{"refs":[{"id":"ref-for-shader-stage-input\u2463"}],"title":"11.11. location"},{"refs":[{"id":"ref-for-shader-stage-input\u2464"}],"title":"12.1. Shader Stages"},{"refs":[{"id":"ref-for-shader-stage-input\u2465"}],"title":"12.2. Entry Point Declaration"},{"refs":[{"id":"ref-for-shader-stage-input\u2466"}],"title":"12.3. Shader Interface"},{"refs":[{"id":"ref-for-shader-stage-input\u2467"}],"title":"12.3.1. Inter-stage Input and Output Interface"}],"url":"#shader-stage-input"},
 "shader-stage-output": {"dfnID":"shader-stage-output","dfnText":"shader stage output","external":false,"refSections":[{"refs":[{"id":"ref-for-shader-stage-output"}],"title":"1.1. Overview"},{"refs":[{"id":"ref-for-shader-stage-output\u2460"}],"title":"2.2. Errors"},{"refs":[{"id":"ref-for-shader-stage-output\u2461"}],"title":"6.4.6. Out-of-Bounds Access"},{"refs":[{"id":"ref-for-shader-stage-output\u2462"}],"title":"11.3. blend_src"},{"refs":[{"id":"ref-for-shader-stage-output\u2463"}],"title":"12.1. Shader Stages"},{"refs":[{"id":"ref-for-shader-stage-output\u2464"}],"title":"12.2. Entry Point Declaration"},{"refs":[{"id":"ref-for-shader-stage-output\u2465"}],"title":"12.3. Shader Interface"},{"refs":[{"id":"ref-for-shader-stage-output\u2466"}],"title":"12.3.1. Inter-stage Input and Output Interface"}],"url":"#shader-stage-output"},
 "shader-stages": {"dfnID":"shader-stages","dfnText":"shader stages","external":false,"refSections":[{"refs":[{"id":"ref-for-shader-stages"}],"title":"1.1. Overview"},{"refs":[{"id":"ref-for-shader-stages\u2460"},{"id":"ref-for-shader-stages\u2461"}],"title":"2.1. Shader Lifecycle"},{"refs":[{"id":"ref-for-shader-stages\u2462"}],"title":"10. Functions"},{"refs":[{"id":"ref-for-shader-stages\u2463"}],"title":"11.15. Shader Stage Attributes"},{"refs":[{"id":"ref-for-shader-stages\u2464"}],"title":"12. Entry Points"},{"refs":[{"id":"ref-for-shader-stages\u2465"}],"title":"12.3. Shader Interface"},{"refs":[{"id":"ref-for-shader-stages\u2466"},{"id":"ref-for-shader-stages\u2467"}],"title":"12.3.1.1. Built-in Inputs and Outputs"},{"refs":[{"id":"ref-for-shader-stages\u2468"}],"title":"12.3.2. Resource Interface"},{"refs":[{"id":"ref-for-shader-stages\u2460\u24ea"},{"id":"ref-for-shader-stages\u2460\u2460"}],"title":"13.3. Address Spaces"}],"url":"#shader-stages"},
+"significand-significant": {"dfnID":"significand-significant","dfnText":"significant","external":false,"refSections":[{"refs":[{"id":"ref-for-significand-significant"},{"id":"ref-for-significand-significant\u2460"}],"title":"3.5.2. Numeric Literals"}],"url":"#significand-significant"},
 "simple-assignment": {"dfnID":"simple-assignment","dfnText":"simple assignment","external":false,"refSections":[{"refs":[{"id":"ref-for-simple-assignment"}],"title":"6.4.7. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-simple-assignment\u2460"}],"title":"9.2.3. Compound Assignment"},{"refs":[{"id":"ref-for-simple-assignment\u2461"}],"title":"13.5.1. Memory Operation"}],"url":"#simple-assignment"},
 "sizeof": {"dfnID":"sizeof","dfnText":"SizeOf","external":false,"refSections":[{"refs":[{"id":"ref-for-sizeof"}],"title":"11.13. size"},{"refs":[{"id":"ref-for-sizeof\u2460"},{"id":"ref-for-sizeof\u2461"}],"title":"12.3.4. Buffer Binding Determines Runtime-Sized Array Element Count"},{"refs":[{"id":"ref-for-sizeof\u2462"},{"id":"ref-for-sizeof\u2463"}],"title":"13.4. Memory Layout"},{"refs":[{"id":"ref-for-sizeof\u2464"},{"id":"ref-for-sizeof\u2465"},{"id":"ref-for-sizeof\u2466"},{"id":"ref-for-sizeof\u2467"}],"title":"13.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-sizeof\u2468"},{"id":"ref-for-sizeof\u2460\u24ea"}],"title":"13.4.2. Structure Member Layout"},{"refs":[{"id":"ref-for-sizeof\u2460\u2460"},{"id":"ref-for-sizeof\u2460\u2461"},{"id":"ref-for-sizeof\u2460\u2462"}],"title":"13.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-sizeof\u2460\u2463"}],"title":"13.4.5. Address Space Layout Constraints"}],"url":"#sizeof"},
 "sizeofmember": {"dfnID":"sizeofmember","dfnText":"SizeOfMember","external":false,"refSections":[{"refs":[{"id":"ref-for-sizeofmember"}],"title":"13.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-sizeofmember\u2460"},{"id":"ref-for-sizeofmember\u2461"},{"id":"ref-for-sizeofmember\u2462"},{"id":"ref-for-sizeofmember\u2463"}],"title":"13.4.2. Structure Member Layout"}],"url":"#sizeofmember"},
@@ -23983,6 +23983,9 @@ let refsData = {
 "#hyperbolic-angle": {"export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"hyperbolic angle","type":"dfn","url":"#hyperbolic-angle"},
 "#i32": {"export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"i32","type":"dfn","url":"#i32"},
 "#identifier": {"export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"identifier","type":"dfn","url":"#identifier"},
+"#ieee754-binary16": {"export":true,"for_":["ieee754"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"binary16","type":"dfn","url":"#ieee754-binary16"},
+"#ieee754-binary32": {"export":true,"for_":["ieee754"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"binary32","type":"dfn","url":"#ieee754-binary32"},
+"#ieee754-binary64": {"export":true,"for_":["ieee754"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"binary64","type":"dfn","url":"#ieee754-binary64"},
 "#ieee754-division-by-zero": {"export":true,"for_":["ieee754"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"division by zero","type":"dfn","url":"#ieee754-division-by-zero"},
 "#ieee754-exceptions": {"export":true,"for_":["ieee754"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"exceptions","type":"dfn","url":"#ieee754-exceptions"},
 "#ieee754-exponent-bias": {"export":true,"for_":["ieee754"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"exponent bias","type":"dfn","url":"#ieee754-exponent-bias"},
@@ -24042,7 +24045,6 @@ let refsData = {
 "#local-invocation-index": {"export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"local invocation index","type":"dfn","url":"#local-invocation-index"},
 "#logical-texel-address": {"export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"logical texel address","type":"dfn","url":"#logical-texel-address"},
 "#loop-body": {"export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"loop body","type":"dfn","url":"#loop-body"},
-"#mantissa-significant": {"export":true,"for_":["mantissa"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"significant","type":"dfn","url":"#mantissa-significant"},
 "#matrix": {"export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"matrix","type":"dfn","url":"#matrix"},
 "#maybenonuniform": {"export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"maybenonuniform","type":"dfn","url":"#maybenonuniform"},
 "#member": {"export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"member","type":"dfn","url":"#member"},
@@ -24198,6 +24200,7 @@ let refsData = {
 "#shader-stage-input": {"export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"shader stage input","type":"dfn","url":"#shader-stage-input"},
 "#shader-stage-output": {"export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"shader stage output","type":"dfn","url":"#shader-stage-output"},
 "#shader-stages": {"export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"shader stages","type":"dfn","url":"#shader-stages"},
+"#significand-significant": {"export":true,"for_":["significand"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"significant","type":"dfn","url":"#significand-significant"},
 "#simple-assignment": {"export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"simple assignment","type":"dfn","url":"#simple-assignment"},
 "#sizeof": {"export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"sizeof","type":"dfn","url":"#sizeof"},
 "#sizeofmember": {"export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"sizeofmember","type":"dfn","url":"#sizeofmember"},
