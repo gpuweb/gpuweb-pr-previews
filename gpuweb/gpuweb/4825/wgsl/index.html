@@ -834,7 +834,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/ac1ebd22c2d09cf4dbcd7fd2ed8d4c1374d1ccb3/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/ac1ebd22c2d09cf4dbcd7fd2ed8d4c1374d1ccb3/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/80c0adea4d9110eebced853030fed793d9670cc6/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/80c0adea4d9110eebced853030fed793d9670cc6/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -1743,7 +1743,8 @@ itself.</p>
    <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="negative-infinity">Negative infinity</dfn>, denoted by −∞, is a unique value strictly lower than all real numbers.</p>
    <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="extended-real">extended real</dfn> numbers
 (also known as the affinely extended real numbers) is the set of real numbers together with +∞ and −∞.
-Computers use <a href="#floating-point-types">floating point types</a> to approximately represent the extended reals, including values for both infinities.</p>
+Computers use <a href="#floating-point-types">floating point types</a> to approximately represent the extended reals, including values for both infinities.
+See <a href="#floating-point-evaluation">§ 14.6 Floating Point Evaluation</a>.</p>
    <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="interval">interval</dfn> is a contiguous set of numbers with a lower and upper bound.
 Depending on context, they are sets of integers, floating point numbers, real numbers, or <a data-link-type="dfn" href="#extended-real" id="ref-for-extended-real">extended real</a> numbers.</p>
    <ul>
@@ -14356,7 +14357,8 @@ but with reduced functionality reflecting the compromises made by GPUs, and with
       <li data-md>
        <p>NaN values. A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="nan">NaN</dfn>, short for "Not a Number", represents the result of an <a data-link-type="dfn" href="#ieee754-invalid-operation" id="ref-for-ieee754-invalid-operation">invalid operation</a>.
 IEEE-754 requires both signalling and quiet NaNs, for distinguishing cases related to error reporting.
-As described in the next section, WGSL does require such error reporting.</p>
+WGSL does not require such error reporting, and may yield <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value⑤">indeterminate values</a> instead of NaNs.
+See <a href="#differences-from-ieee754">§ 14.6.2 Differences from IEEE-754</a>.</p>
      </ul>
     <li data-md>
      <p>The type supports operations including:</p>
@@ -14449,7 +14451,7 @@ As described in the next section, WGSL does require such error reporting.</p>
       <p>Otherwise, if the <a data-link-type="dfn" href="#ieee754-exponent-field" id="ref-for-ieee754-exponent-field⑥">exponent field</a> is all 0 bits, then:</p>
       <ul>
        <li data-md>
-        <p>The result <var>F</var> = (− 1)<sup><var>Sign</var></sup> × 2<sup>(<var>E</var>−<var>bias</var>)</sup> × <var>T</var> × 2<sup>−<var>tsw</var>+1</sup>.</p>
+        <p>The result <var>F</var> = (− 1)<sup><var>Sign</var></sup> × 2<sup>−<var>bias</var></sup> × <var>T</var> × 2<sup>−<var>tsw</var>+1</sup>.</p>
        <li data-md>
         <p>If <var>T</var> = 0, then the value is a zero.</p>
         <ul>
@@ -14473,17 +14475,25 @@ As described in the next section, WGSL does require such error reporting.</p>
       </ul>
     </ul>
    </blockquote>
-   <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="domain">domain</dfn> of a floating point operation is the set of <a data-link-type="dfn" href="#extended-real" id="ref-for-extended-real①①">extended real</a> number inputs for which the operation is well defined.
-For example, the domain of the mathematical function √ is the interval [0,+∞]: √ is not well defined for inputs less than zero.</p>
-   <p>When applied to inputs in its <a data-link-type="dfn" href="#domain" id="ref-for-domain⑤">domain</a>, an operation is defined in terms of an infinitely precise <a data-link-type="dfn" href="#extended-real" id="ref-for-extended-real①②">extended real</a> <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="intermediate-result">intermediate result</dfn>,
-which is then converted to a floating point result.</p>
+   <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="domain">domain</dfn> of a floating point operation is the set of <a data-link-type="dfn" href="#extended-real" id="ref-for-extended-real①①">extended real</a> number inputs for which the operation is well defined.</p>
+   <ul>
+    <li data-md>
+     <p>For example, the domain of the mathematical function √ is the interval [0,+∞]: √ is not well defined for inputs less than zero.</p>
+    <li data-md>
+     <p>When applied to an input <em>inside</em> its <a data-link-type="dfn" href="#domain" id="ref-for-domain⑤">domain</a>, an operation is defined in terms of an infinitely precise <a data-link-type="dfn" href="#extended-real" id="ref-for-extended-real①②">extended real</a> <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="intermediate-result">intermediate result</dfn>,
+which is then converted to a floating point result, via <a data-link-type="dfn" href="#rounding" id="ref-for-rounding">rounding</a>.</p>
+    <li data-md>
+     <p>When an operation is evaluated <em>outside</em> its <a data-link-type="dfn" href="#domain" id="ref-for-domain⑥">domain</a>,
+the default exception handling rules of IEEE-754 require an implementation to generate an <a data-link-type="dfn" href="#ieee754-exceptions" id="ref-for-ieee754-exceptions">exception</a> and yield a <a data-link-type="dfn" href="#nan" id="ref-for-nan①">NaN</a> value.
+In contrast, WGSL does not mandate floating point exceptions, and may instead yield an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value⑥">indeterminate value</a>. See <a href="#differences-from-ieee754">§ 14.6.2 Differences from IEEE-754</a>.</p>
+   </ul>
    <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="rounding">Rounding</dfn> maps an <a data-link-type="dfn" href="#extended-real" id="ref-for-extended-real①③">extended real</a> value <var>x</var> to a value <var>x'</var> in the floating point type.
 When <var>x</var> is in the floating point type, then rounding maps <var>x</var> to itself: <var>x</var> = <var>x'</var>.
 Rounding may <a data-link-type="dfn" href="#ieee754-overflow" id="ref-for-ieee754-overflow">overflow</a> when <var>x</var> is outside the finite range of the type.
 Otherwise <var>x'</var> is the either the lowest floating point value above <var>x</var>, or
 the highest floating point value below <var>x</var>;
 a <dfn class="dfn-paneled" data-dfn-for="ieee754" data-dfn-type="dfn" data-noexport id="ieee754-rounding-mode">rounding mode</dfn> determines which one is chosen.</p>
-   <p>Generally, an operation with a <a data-link-type="dfn" href="#nan" id="ref-for-nan①">NaN</a> input will yield a <a data-link-type="dfn" href="#nan" id="ref-for-nan②">NaN</a> output.
+   <p>Generally, an operation with a <a data-link-type="dfn" href="#nan" id="ref-for-nan②">NaN</a> input will yield a <a data-link-type="dfn" href="#nan" id="ref-for-nan③">NaN</a> output.
 Exceptions include:</p>
    <ul>
     <li data-md>
@@ -14495,7 +14505,7 @@ Exceptions include:</p>
    <ul>
     <li data-md>
      <p><dfn class="dfn-paneled" data-dfn-for="ieee754" data-dfn-type="dfn" data-noexport id="ieee754-invalid-operation">Invalid operation</dfn>.
-This occurs when an operation is evaluated on <a data-link-type="dfn" href="#extended-real" id="ref-for-extended-real①④">extended real</a> inputs outside its <a data-link-type="dfn" href="#domain" id="ref-for-domain⑥">domain</a>.
+This occurs when an operation is evaluated on <a data-link-type="dfn" href="#extended-real" id="ref-for-extended-real①④">extended real</a> inputs outside its <a data-link-type="dfn" href="#domain" id="ref-for-domain⑦">domain</a>.
 Such operations yield a NaN.
 Examples of invalid operations are 0 × ∞, and <code>sqrt</code>(−1).</p>
     <li data-md>
@@ -14519,7 +14529,7 @@ or when overflow occurs.</p>
      <p>No floating point exceptions are generated.</p>
      <ul>
       <li data-md>
-       <p>A floating point operation in WGSL <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②⑨">will</a> produce an <a data-link-type="dfn" href="#intermediate-result" id="ref-for-intermediate-result④">intermediate result</a> according to IEEE-754 rules, but <a data-link-type="dfn" href="#ieee754-exceptions" id="ref-for-ieee754-exceptions">exceptions</a> mandated by IEEE-754 will map to different
+       <p>A floating point operation in WGSL <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②⑨">will</a> produce an <a data-link-type="dfn" href="#intermediate-result" id="ref-for-intermediate-result④">intermediate result</a> according to IEEE-754 rules, but <a data-link-type="dfn" href="#ieee754-exceptions" id="ref-for-ieee754-exceptions①">exceptions</a> mandated by IEEE-754 will map to different
 behaviors depending on whether the expression is
 a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑤⑨">const-expression</a>, an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③③">override-expression</a>, or a <a data-link-type="dfn" href="#runtime-expression" id="ref-for-runtime-expression③">runtime expression</a>.</p>
       <li data-md>
@@ -14554,7 +14564,7 @@ floating-point type overflows or evaluates to NaN or infinity.</p>
       <li data-md>
        <p>In such an implementation, if the <a data-link-type="dfn" href="#intermediate-result" id="ref-for-intermediate-result⑥">intermediate result</a> of evaluating a <a data-link-type="dfn" href="#runtime-expression" id="ref-for-runtime-expression④">runtime expression</a> overflows,
 or yields infinity or a NaN, the final result <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements③②">will</a> be
-an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value⑤">indeterminate value</a> of the target type.</p>
+an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value⑦">indeterminate value</a> of the target type.</p>
       <li data-md>
        <p class="note" role="note"><span class="marker">Note:</span> This means some functions (e.g. <code>min</code> and <code>max</code>)
 may not return the expected result due to optimizations about the presence
@@ -14625,7 +14635,7 @@ The final value of the expression is determined in two stages, via <a data-link-
       <li data-md>
        <p>If the expression is a <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③⑥">override-expression</a>, generate a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error②⑦">pipeline-creation error</a>.</p>
       <li data-md>
-       <p>Otherwise the expression is a <a data-link-type="dfn" href="#runtime-expression" id="ref-for-runtime-expression⑤">runtime expression</a> and <em>X''</em> is an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value⑥">indeterminate value</a>.</p>
+       <p>Otherwise the expression is a <a data-link-type="dfn" href="#runtime-expression" id="ref-for-runtime-expression⑤">runtime expression</a> and <em>X''</em> is an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value⑧">indeterminate value</a>.</p>
      </ul>
     <li data-md>
      <p>Otherwise <em>X''</em> = <em>X'</em>.</p>
@@ -14647,7 +14657,7 @@ The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="correctly-rou
       </ul>
     </ul>
    </div>
-   <p>That is, the result may be <a data-link-type="dfn" href="#rounding" id="ref-for-rounding">rounded</a> up or down:
+   <p>That is, the result may be <a data-link-type="dfn" href="#rounding" id="ref-for-rounding①">rounded</a> up or down:
 WGSL does not specify a <a data-link-type="dfn" href="#ieee754-rounding-mode" id="ref-for-ieee754-rounding-mode①">rounding mode</a>.</p>
    <p class="note" role="note"><span class="marker">Note:</span> Floating point types include positive and negative infinity, so
 the correctly rounded result may be finite or infinite.</p>
@@ -14679,7 +14689,7 @@ The given expression is only one valid implementation of the function.
 A WebGPU implementation may implement the operation differently, with better accuracy
 or with greater tolerance for extreme inputs.
 Additionally, an implementation may treat <a data-link-type="dfn" href="#intermediate-result" id="ref-for-intermediate-result①⓪">intermediate result</a> as subject to the rules for
-floating-point evaluation (e.g. they may be <a data-link-type="dfn" href="#rounding" id="ref-for-rounding①">rounded</a> and/or <a data-link-type="dfn" href="#flush-to-zero" id="ref-for-flush-to-zero">flushed-to-zero</a>).</p>
+floating-point evaluation (e.g. they may be <a data-link-type="dfn" href="#rounding" id="ref-for-rounding②">rounded</a> and/or <a data-link-type="dfn" href="#flush-to-zero" id="ref-for-flush-to-zero">flushed-to-zero</a>).</p>
    </ul>
    <p>When the accuracy for an operation is specified over an input range,
 the accuracy is undefined for input values outside that range.</p>
@@ -15143,8 +15153,8 @@ the original type is one of <a data-link-type="dfn" href="#i32" id="ref-for-i32�
 the source type is a floating point type with fewer exponent and mantissa bits than the target floating point type.</p>
    <h4 class="heading settled" data-level="14.6.7" id="domains-of-floating-point-expressions-and-builtins"><span class="secno">14.6.7. </span><span class="content">Domains of Floating Point Expressions and Built-in Functions</span><a class="self-link" href="#domains-of-floating-point-expressions-and-builtins"></a></h4>
    <p>Previous sections describe the expected behavior when a floating point expression is evaluated
-outside its <a data-link-type="dfn" href="#domain" id="ref-for-domain⑦">domain</a>.</p>
-   <p>Sections <a href="#arithmetic-expr">§ 8.7 Arithmetic Expressions</a> and <a href="#numeric-builtin-functions">§ 16.5 Numeric Built-in Functions</a> define the <a data-link-type="dfn" href="#domain" id="ref-for-domain⑧">domains</a> for floating point expressions and built-in functions, respectively.
+outside its <a data-link-type="dfn" href="#domain" id="ref-for-domain⑧">domain</a>.</p>
+   <p>Sections <a href="#arithmetic-expr">§ 8.7 Arithmetic Expressions</a> and <a href="#numeric-builtin-functions">§ 16.5 Numeric Built-in Functions</a> define the <a data-link-type="dfn" href="#domain" id="ref-for-domain⑨">domains</a> for floating point expressions and built-in functions, respectively.
 If no restriction is listed for a given operation, then the domain is total: the domain includes all finite and infinite inputs.
 Otherwise an explicit domain is listed.</p>
    <p>In many cases where a WGSL operation corresponds to an operation defined by <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a>, they will have the same domain.
@@ -15768,7 +15778,7 @@ specify the component type; the component type is inferred from the constructor 
       <td>Description 
       <td>
        Construct an <a data-link-type="dfn" href="#i32" id="ref-for-i32④②">i32</a> value. 
-       <p>If <code>T</code> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④③">i32</a>, this is an identity operation.<br> If <code>T</code> is <a data-link-type="dfn" href="#u32" id="ref-for-u32②⑧">u32</a>, this is a reinterpretation of bits (i.e. the result is the unique value in <a data-link-type="dfn" href="#i32" id="ref-for-i32④④">i32</a> that has the same bit pattern as <code>e</code>).<br> If <code>T</code> is a <a href="#floating-point-types">floating point type</a>, <code>e</code> is <a data-link-type="dfn" href="#scalar-floating-point-to-integral-conversion" id="ref-for-scalar-floating-point-to-integral-conversion">converted</a> to <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑤">i32</a>, <a data-link-type="dfn" href="#rounding" id="ref-for-rounding②">rounding</a> towards zero.<br> If <code>T</code> is <a data-link-type="dfn" href="#bool" id="ref-for-bool①⑨">bool</a>, the result is <code>1i</code> if <code>e</code> is <code>true</code> and <code>0i</code> otherwise.<br> If <code>T</code> is an <a data-link-type="dfn" href="#abstractint" id="ref-for-abstractint③⑥">AbstractInt</a>, this is an identity operation if <code>e</code> can be represented in <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑥">i32</a>, otherwise it produces a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③⑤">shader-creation error</a>.</p>
+       <p>If <code>T</code> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④③">i32</a>, this is an identity operation.<br> If <code>T</code> is <a data-link-type="dfn" href="#u32" id="ref-for-u32②⑧">u32</a>, this is a reinterpretation of bits (i.e. the result is the unique value in <a data-link-type="dfn" href="#i32" id="ref-for-i32④④">i32</a> that has the same bit pattern as <code>e</code>).<br> If <code>T</code> is a <a href="#floating-point-types">floating point type</a>, <code>e</code> is <a data-link-type="dfn" href="#scalar-floating-point-to-integral-conversion" id="ref-for-scalar-floating-point-to-integral-conversion">converted</a> to <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑤">i32</a>, <a data-link-type="dfn" href="#rounding" id="ref-for-rounding③">rounding</a> towards zero.<br> If <code>T</code> is <a data-link-type="dfn" href="#bool" id="ref-for-bool①⑨">bool</a>, the result is <code>1i</code> if <code>e</code> is <code>true</code> and <code>0i</code> otherwise.<br> If <code>T</code> is an <a data-link-type="dfn" href="#abstractint" id="ref-for-abstractint③⑥">AbstractInt</a>, this is an identity operation if <code>e</code> can be represented in <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑥">i32</a>, otherwise it produces a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③⑤">shader-creation error</a>.</p>
    </table>
    <h5 class="heading settled" data-level="16.1.2.6" id="mat2x2-builtin"><span class="secno">16.1.2.6. </span><span class="content"><code>mat2x2</code></span><a class="self-link" href="#mat2x2-builtin"></a></h5>
    <table class="data builtin">
@@ -16278,7 +16288,7 @@ specify the component type; the component type is inferred from the constructor 
       <td>Description 
       <td>
        Construct a <a data-link-type="dfn" href="#u32" id="ref-for-u32②⑨">u32</a> value. 
-       <p>If <code>T</code> is <a data-link-type="dfn" href="#u32" id="ref-for-u32③⓪">u32</a>, this is an identity operation.<br> If <code>T</code> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑦">i32</a>, this is a reinterpretation of bits (i.e. the result is the unique value in <a data-link-type="dfn" href="#u32" id="ref-for-u32③①">u32</a> that has the same bit pattern as <code>e</code>).<br> If <code>T</code> is a <a href="#floating-point-types">floating point type</a>, <code>e</code> is <a data-link-type="dfn" href="#scalar-floating-point-to-integral-conversion" id="ref-for-scalar-floating-point-to-integral-conversion①">converted</a> to <a data-link-type="dfn" href="#u32" id="ref-for-u32③②">u32</a>, <a data-link-type="dfn" href="#rounding" id="ref-for-rounding③">rounding</a> towards zero.<br> If <code>T</code> is <a data-link-type="dfn" href="#bool" id="ref-for-bool②⓪">bool</a>, the result is <code>1u</code> if <code>e</code> is <code>true</code> and <code>0u</code> otherwise.<br> If <code>T</code> is <a data-link-type="dfn" href="#abstractint" id="ref-for-abstractint③⑦">AbstractInt</a>, this is an identity operation if the <code>e</code> can be represented in <a data-link-type="dfn" href="#u32" id="ref-for-u32③③">u32</a>, otherwise it produces a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③⑥">shader-creation error</a>.</p>
+       <p>If <code>T</code> is <a data-link-type="dfn" href="#u32" id="ref-for-u32③⓪">u32</a>, this is an identity operation.<br> If <code>T</code> is <a data-link-type="dfn" href="#i32" id="ref-for-i32④⑦">i32</a>, this is a reinterpretation of bits (i.e. the result is the unique value in <a data-link-type="dfn" href="#u32" id="ref-for-u32③①">u32</a> that has the same bit pattern as <code>e</code>).<br> If <code>T</code> is a <a href="#floating-point-types">floating point type</a>, <code>e</code> is <a data-link-type="dfn" href="#scalar-floating-point-to-integral-conversion" id="ref-for-scalar-floating-point-to-integral-conversion①">converted</a> to <a data-link-type="dfn" href="#u32" id="ref-for-u32③②">u32</a>, <a data-link-type="dfn" href="#rounding" id="ref-for-rounding④">rounding</a> towards zero.<br> If <code>T</code> is <a data-link-type="dfn" href="#bool" id="ref-for-bool②⓪">bool</a>, the result is <code>1u</code> if <code>e</code> is <code>true</code> and <code>0u</code> otherwise.<br> If <code>T</code> is <a data-link-type="dfn" href="#abstractint" id="ref-for-abstractint③⑦">AbstractInt</a>, this is an identity operation if the <code>e</code> can be represented in <a data-link-type="dfn" href="#u32" id="ref-for-u32③③">u32</a>, otherwise it produces a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③⑥">shader-creation error</a>.</p>
      <tr>
       <td>
       <td>
@@ -16858,7 +16868,7 @@ a value in one type as a value in another type.</p>
        Returns the principal value, in radians, of the inverse cosine (cos<sup>-1</sup>) of <code>e</code>.<br> That is, approximates <code>x</code> with 0 ≤ <code>x</code> ≤ π, such that <code>cos</code>(<code>x</code>) = <code>e</code>. 
        <p><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise⑤③">Component-wise</a> when <code>T</code> is a vector.</p>
      <tr>
-      <td>Scalar <a data-link-type="dfn" href="#domain" id="ref-for-domain⑨">domain</a> 
+      <td>Scalar <a data-link-type="dfn" href="#domain" id="ref-for-domain①⓪">domain</a> 
       <td>Interval [−1, 1] 
    </table>
    <h4 class="heading settled" data-level="16.5.3" id="acosh-builtin"><span class="secno">16.5.3. </span><span class="content"><code>acosh</code></span><a class="self-link" href="#acosh-builtin"></a></h4>
@@ -16878,7 +16888,7 @@ a value in one type as a value in another type.</p>
        Returns the inverse hyperbolic cosine (cosh<sup>-1</sup>) of <code>x</code>, as a <a data-link-type="dfn" href="#hyperbolic-angle" id="ref-for-hyperbolic-angle">hyperbolic angle</a>.<br> That is, approximates <code>a</code> with 0 ≤ a ≤ ∞, such that <code>cosh</code>(<code>a</code>) = <code>x</code>. 
        <p><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise⑤④">Component-wise</a> when <code>T</code> is a vector.</p>
      <tr>
-      <td>Scalar <a data-link-type="dfn" href="#domain" id="ref-for-domain①⓪">domain</a> 
+      <td>Scalar <a data-link-type="dfn" href="#domain" id="ref-for-domain①①">domain</a> 
       <td>Interval [1, +∞] 
    </table>
    <h4 class="heading settled" data-level="16.5.4" id="asin-builtin"><span class="secno">16.5.4. </span><span class="content"><code>asin</code></span><a class="self-link" href="#asin-builtin"></a></h4>
@@ -16898,7 +16908,7 @@ a value in one type as a value in another type.</p>
        Returns the principal value, in radians, of the inverse sine (sin<sup>-1</sup>) of <code>e</code>.<br> That is, approximates <code>x</code> with -π/2 ≤ <code>x</code> ≤ π/2, such that <code>sin</code>(<code>x</code>) = <code>e</code>. 
        <p><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise⑤⑤">Component-wise</a> when <code>T</code> is a vector.</p>
      <tr>
-      <td>Scalar <a data-link-type="dfn" href="#domain" id="ref-for-domain①①">domain</a> 
+      <td>Scalar <a data-link-type="dfn" href="#domain" id="ref-for-domain①②">domain</a> 
       <td>Interval [−1, 1] 
    </table>
    <h4 class="heading settled" data-level="16.5.5" id="asinh-builtin"><span class="secno">16.5.5. </span><span class="content"><code>asinh</code></span><a class="self-link" href="#asinh-builtin"></a></h4>
@@ -16952,7 +16962,7 @@ a value in one type as a value in another type.</p>
        Returns the inverse hyperbolic tangent (tanh<sup>-1</sup>) of <code>t</code>, as a <a data-link-type="dfn" href="#hyperbolic-angle" id="ref-for-hyperbolic-angle②">hyperbolic angle</a>.<br> That is, approximates <code>a</code> such that <code>tanh</code>(<code>a</code>) = <code>t</code>. 
        <p><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise⑤⑧">Component-wise</a> when <code>T</code> is a vector.</p>
      <tr>
-      <td>Scalar <a data-link-type="dfn" href="#domain" id="ref-for-domain①②">domain</a> 
+      <td>Scalar <a data-link-type="dfn" href="#domain" id="ref-for-domain①③">domain</a> 
       <td>Interval [−1, 1] 
    </table>
    <h4 class="heading settled" data-level="16.5.8" id="atan2-builtin"><span class="secno">16.5.8. </span><span class="content"><code>atan2</code></span><a class="self-link" href="#atan2-builtin"></a></h4>
@@ -17051,7 +17061,7 @@ a value in one type as a value in another type.</p>
       <td>Description 
       <td>Returns the cosine of <code>e</code>, where <code>e</code> is in radians. <a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise⑥②">Component-wise</a> when <code>T</code> is a vector. 
      <tr>
-      <td>Scalar <a data-link-type="dfn" href="#domain" id="ref-for-domain①③">domain</a> 
+      <td>Scalar <a data-link-type="dfn" href="#domain" id="ref-for-domain①④">domain</a> 
       <td>Interval (−∞, +∞) 
    </table>
    <h4 class="heading settled" data-level="16.5.12" id="cosh-builtin"><span class="secno">16.5.12. </span><span class="content"><code>cosh</code></span><a class="self-link" href="#cosh-builtin"></a></h4>
@@ -17197,7 +17207,7 @@ a value in one type as a value in another type.</p>
       <td>Description 
       <td>
        Returns the distance between <code>e1</code> and <code>e2</code> (e.g. <code>length(e1 - e2)</code>). 
-       <p>The <a data-link-type="dfn" href="#domain" id="ref-for-domain①④">domain</a> is all vectors (<var>e1</var>,<var>e2</var>) where the subtraction <var>e1</var>−<var>e2</var> is valid.
+       <p>The <a data-link-type="dfn" href="#domain" id="ref-for-domain①⑤">domain</a> is all vectors (<var>e1</var>,<var>e2</var>) where the subtraction <var>e1</var>−<var>e2</var> is valid.
     That is, the set of all vectors except where <code>e1[i]</code> and <code>e2[i]</code> are the same infinite value,
     for some component <code>i</code>.</p>
    </table>
@@ -17473,7 +17483,7 @@ the sign bit appears in the most significant bit position.</p>
       <td>
        Returns <code>e1 * e2 + e3</code>. <a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise⑦⑥">Component-wise</a> when <code>T</code> is a vector. 
        <p class="note" role="note"><span class="marker">Note:</span> The name <code>fma</code> is short for "fused multiply add".</p>
-       <p class="note" role="note"><span class="marker">Note:</span> The <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> <code>fusedMultiplyAdd</code> operation computes the <a data-link-type="dfn" href="#intermediate-result" id="ref-for-intermediate-result①⑦">intermediate results</a> as if with unbounded range and precision, and only the final result is <a data-link-type="dfn" href="#rounding" id="ref-for-rounding④">rounded</a> to a value in the destination type.
+       <p class="note" role="note"><span class="marker">Note:</span> The <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> <code>fusedMultiplyAdd</code> operation computes the <a data-link-type="dfn" href="#intermediate-result" id="ref-for-intermediate-result①⑦">intermediate results</a> as if with unbounded range and precision, and only the final result is <a data-link-type="dfn" href="#rounding" id="ref-for-rounding⑤">rounded</a> to a value in the destination type.
     However, the <a href="#floating-point-accuracy">§ 14.6.4 Floating Point Accuracy</a> rule for <code>fma</code> allows an implementation
     which performs an ordinary multiply to the target type followed by an ordinary addition.
     In this case the <a data-link-type="dfn" href="#intermediate-result" id="ref-for-intermediate-result①⑧">intermediate result</a> values may overflow or lose accuracy, and the overall
@@ -17524,7 +17534,7 @@ For example, if <code>e</code> is a very small negative number, then <code>fract
          <p>When <code>e</code> is non-zero and normal, <code>e</code> = <code>fraction * 2</code><sup><code>exponent</code></sup>, where
 the fraction is in the range [0.5, 1.0) or (-1.0, -0.5].</p>
         <li data-md>
-         <p>Otherwise, <code>e</code> is <a data-link-type="dfn" href="#ieee754-subnormal" id="ref-for-ieee754-subnormal①①">subnormal</a>, NaN, or infinite. The result fraction and exponent are <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value⑦">indeterminate values</a>.</p>
+         <p>Otherwise, <code>e</code> is <a data-link-type="dfn" href="#ieee754-subnormal" id="ref-for-ieee754-subnormal①①">subnormal</a>, NaN, or infinite. The result fraction and exponent are <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value⑨">indeterminate values</a>.</p>
        </ul>
        <p>Returns the <code>__frexp_result_f32</code> built-in structure, defined as follows:</p>
 <pre class="language-wgsl highlight"><c- k>struct</c-> <c- n>__frexp_result_f32</c-> <c- p>{</c->
@@ -17572,7 +17582,7 @@ but a value may infer the type.</p>
          <p>When <code>e</code> is non-zero and normal, <code>e</code> = <code>fraction * 2</code><sup><code>exponent</code></sup>, where
 the fraction is in the range [0.5, 1.0) or (-1.0, -0.5].</p>
         <li data-md>
-         <p>Otherwise, <code>e</code> is <a data-link-type="dfn" href="#ieee754-subnormal" id="ref-for-ieee754-subnormal①②">subnormal</a>, NaN, or infinite. The result fraction and exponent are <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value⑧">indeterminate values</a>.</p>
+         <p>Otherwise, <code>e</code> is <a data-link-type="dfn" href="#ieee754-subnormal" id="ref-for-ieee754-subnormal①②">subnormal</a>, NaN, or infinite. The result fraction and exponent are <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value①⓪">indeterminate values</a>.</p>
        </ul>
        <p>Returns the <code>__frexp_result_f16</code> built-in structure, defined as if as follows:</p>
 <pre class="language-wgsl highlight"><c- k>struct</c-> <c- n>__frexp_result_f16</c-> <c- p>{</c->
@@ -17658,7 +17668,7 @@ but a value may infer the type.</p>
          <p>When <code>ei</code> is non-zero and normal, <code>ei</code> = <code>fraction * 2</code><sup><code>exponent</code></sup>, where
 the fraction is in the range [0.5, 1.0) or (-1.0, -0.5].</p>
         <li data-md>
-         <p>Otherwise, <code>ei</code> is NaN or infinite. The result fraction and exponent are <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value⑨">indeterminate values</a>.</p>
+         <p>Otherwise, <code>ei</code> is NaN or infinite. The result fraction and exponent are <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value①①">indeterminate values</a>.</p>
        </ul>
        <p>Returns the <code>__frexp_result_vecN_f32</code> built-in structure, defined as follows:</p>
 <pre class="language-wgsl highlight"><c- k>struct</c-> <c- n>__frexp_result_vecN_f32</c-> <c- p>{</c->
@@ -17694,7 +17704,7 @@ but a value may infer the type.</p>
          <p>When <code>ei</code> is non-zero and normal, <code>ei</code> = <code>fraction * 2</code><sup><code>exponent</code></sup>, where
 the fraction is in the range [0.5, 1.0) or (-1.0, -0.5].</p>
         <li data-md>
-         <p>Otherwise, <code>ei</code> is NaN or infinite. The result fraction and exponent are <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value①⓪">indeterminate values</a>.</p>
+         <p>Otherwise, <code>ei</code> is NaN or infinite. The result fraction and exponent are <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value①②">indeterminate values</a>.</p>
        </ul>
        <p>Returns the <code>__frexp_result_vecN_f16</code> built-in structure, defined as if as follows:</p>
 <pre class="language-wgsl highlight"><c- k>struct</c-> <c- n>__frexp_result_vecN_f16</c-> <c- p>{</c->
@@ -17799,7 +17809,7 @@ but a value may infer the type.</p>
       <td>Description 
       <td>Returns the reciprocal of <code>sqrt(e)</code>. <a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise⑦⑨">Component-wise</a> when <code>T</code> is a vector. 
      <tr>
-      <td>Scalar <a data-link-type="dfn" href="#domain" id="ref-for-domain①⑤">domain</a> 
+      <td>Scalar <a data-link-type="dfn" href="#domain" id="ref-for-domain①⑥">domain</a> 
       <td>Interval [0, +∞] 
    </table>
    <h4 class="heading settled" data-level="16.5.37" id="ldexp-builtin"><span class="secno">16.5.37. </span><span class="content"><code>ldexp</code></span><a class="self-link" href="#ldexp-builtin"></a></h4>
@@ -17833,7 +17843,7 @@ but a value may infer the type.</p>
           <li data-md>
            <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error③③">pipeline-creation error</a> if <code>e2</code> is an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions④②">override-expression</a>.</p>
           <li data-md>
-           <p>Otherwise the result is an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value①①">indeterminate value</a> for <code>T</code>.</p>
+           <p>Otherwise the result is an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value①③">indeterminate value</a> for <code>T</code>.</p>
          </ul>
        </ul>
        <p>Here, <em>bias</em> is the exponent bias of the floating point format:</p>
@@ -17885,7 +17895,7 @@ but a value may infer the type.</p>
       <td>Description 
       <td>Returns the natural logarithm of <code>e</code>. <a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise⑧①">Component-wise</a> when <code>T</code> is a vector. 
      <tr>
-      <td>Scalar <a data-link-type="dfn" href="#domain" id="ref-for-domain①⑥">domain</a> 
+      <td>Scalar <a data-link-type="dfn" href="#domain" id="ref-for-domain①⑦">domain</a> 
       <td>Interval [0, +∞] 
    </table>
    <h4 class="heading settled" data-level="16.5.40" id="log2-builtin"><span class="secno">16.5.40. </span><span class="content"><code>log2</code></span><a class="self-link" href="#log2-builtin"></a></h4>
@@ -17903,7 +17913,7 @@ but a value may infer the type.</p>
       <td>Description 
       <td>Returns the base-2 logarithm of <code>e</code>. <a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise⑧②">Component-wise</a> when <code>T</code> is a vector. 
      <tr>
-      <td>Scalar <a data-link-type="dfn" href="#domain" id="ref-for-domain①⑦">domain</a> 
+      <td>Scalar <a data-link-type="dfn" href="#domain" id="ref-for-domain①⑧">domain</a> 
       <td>Interval [0, +∞] 
    </table>
    <h4 class="heading settled" data-level="16.5.41" id="max-float-builtin"><span class="secno">16.5.41. </span><span class="content"><code>max</code></span><a class="self-link" href="#max-float-builtin"></a></h4>
@@ -18207,7 +18217,7 @@ but a value may infer the type.</p>
       <td>Description 
       <td>
        Returns a unit vector in the same direction as <code>e</code>. 
-       <p>The <a data-link-type="dfn" href="#domain" id="ref-for-domain①⑧">domain</a> is all vectors except the zero vector.</p>
+       <p>The <a data-link-type="dfn" href="#domain" id="ref-for-domain①⑨">domain</a> is all vectors except the zero vector.</p>
    </table>
    <h4 class="heading settled" data-level="16.5.46" id="pow-builtin"><span class="secno">16.5.46. </span><span class="content"><code>pow</code></span><a class="self-link" href="#pow-builtin"></a></h4>
    <table class="data builtin">
@@ -18225,7 +18235,7 @@ but a value may infer the type.</p>
       <td>Description 
       <td>Returns <code>e1</code> raised to the power <code>e2</code>. <a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise⑧⑥">Component-wise</a> when <code>T</code> is a vector. 
      <tr>
-      <td>Scalar <a data-link-type="dfn" href="#domain" id="ref-for-domain①⑨">domain</a> 
+      <td>Scalar <a data-link-type="dfn" href="#domain" id="ref-for-domain②⓪">domain</a> 
       <td>
        The set of all pairs of <a data-link-type="dfn" href="#extended-real" id="ref-for-extended-real①⑤">extended reals</a> (<var>x</var>,<var>y</var>) except: 
        <ul>
@@ -18262,7 +18272,7 @@ but a value may infer the type.</p>
         <li data-md>
          <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error③④">pipeline-creation error</a> if <code>e</code> is an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions④③">override-expression</a>.</p>
         <li data-md>
-         <p>Otherwise the result is an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value①②">indeterminate value</a> for <code>T</code>.</p>
+         <p>Otherwise the result is an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value①④">indeterminate value</a> for <code>T</code>.</p>
        </ul>
        <p>The intermediate binary16 value may be <a data-link-type="dfn" href="#flush-to-zero" id="ref-for-flush-to-zero①">flushed to zero</a>, i.e. the final
         result may be zero if the intermediate binary16 value is <a data-link-type="dfn" href="#ieee754-subnormal" id="ref-for-ieee754-subnormal①⑦">subnormal</a>.</p>
@@ -18407,7 +18417,7 @@ but a value may infer the type.</p>
       <td>Description 
       <td>Returns the sine of <code>e</code>, where <code>e</code> is in radians. <a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise⑨③">Component-wise</a> when <code>T</code> is a vector. 
      <tr>
-      <td>Scalar <a data-link-type="dfn" href="#domain" id="ref-for-domain②⓪">domain</a> 
+      <td>Scalar <a data-link-type="dfn" href="#domain" id="ref-for-domain②①">domain</a> 
       <td>Interval (−∞, +∞) 
    </table>
    <h4 class="heading settled" data-level="16.5.56" id="sinh-builtin"><span class="secno">16.5.56. </span><span class="content"><code>sinh</code></span><a class="self-link" href="#sinh-builtin"></a></h4>
@@ -18471,7 +18481,7 @@ but a value may infer the type.</p>
       <td>Description 
       <td>Returns the square root of <code>e</code>. <a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise⑨⑥">Component-wise</a> when <code>T</code> is a vector. 
      <tr>
-      <td>Scalar <a data-link-type="dfn" href="#domain" id="ref-for-domain②①">domain</a> 
+      <td>Scalar <a data-link-type="dfn" href="#domain" id="ref-for-domain②②">domain</a> 
       <td>Interval [0, +∞] 
    </table>
    <h4 class="heading settled" data-level="16.5.59" id="step-builtin"><span class="secno">16.5.59. </span><span class="content"><code>step</code></span><a class="self-link" href="#step-builtin"></a></h4>
@@ -18505,7 +18515,7 @@ but a value may infer the type.</p>
       <td>Description 
       <td>Returns the tangent of <code>e</code>, where <code>e</code> is in radians. <a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise⑨⑧">Component-wise</a> when <code>T</code> is a vector. 
      <tr>
-      <td>Scalar <a data-link-type="dfn" href="#domain" id="ref-for-domain②②">domain</a> 
+      <td>Scalar <a data-link-type="dfn" href="#domain" id="ref-for-domain②③">domain</a> 
       <td>Interval (−∞, +∞) 
    </table>
    <h4 class="heading settled" data-level="16.5.61" id="tanh-builtin"><span class="secno">16.5.61. </span><span class="content"><code>tanh</code></span><a class="self-link" href="#tanh-builtin"></a></h4>
@@ -18584,7 +18594,7 @@ but a value may infer the type.</p>
       <td>
        Partial derivative of <code>e</code> with respect to window x coordinates.
     The result is the same as either <code>dpdxFine(e)</code> or <code>dpdxCoarse(e)</code>. 
-       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value①③">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①④">non-uniform control flow</a>.</p>
+       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value①⑤">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①④">non-uniform control flow</a>.</p>
    </table>
    <h4 class="heading settled" data-level="16.6.2" id="dpdxCoarse-builtin"><span class="secno">16.6.2. </span><span class="content"><code>dpdxCoarse</code></span><a class="self-link" href="#dpdxCoarse-builtin"></a></h4>
    <table class="data builtin">
@@ -18602,7 +18612,7 @@ but a value may infer the type.</p>
       <td>
        Returns the partial derivative of <code>e</code> with respect to window x coordinates using local differences.
     This may result in fewer unique positions than <code>dpdxFine(e)</code>. 
-       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value①④">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①⑤">non-uniform control flow</a>.</p>
+       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value①⑥">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①⑤">non-uniform control flow</a>.</p>
    </table>
    <h4 class="heading settled" data-level="16.6.3" id="dpdxFine-builtin"><span class="secno">16.6.3. </span><span class="content"><code>dpdxFine</code></span><a class="self-link" href="#dpdxFine-builtin"></a></h4>
    <table class="data builtin">
@@ -18619,7 +18629,7 @@ but a value may infer the type.</p>
       <td>Description 
       <td>
        Returns the partial derivative of <code>e</code> with respect to window x coordinates. 
-       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value①⑤">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①⑥">non-uniform control flow</a>.</p>
+       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value①⑦">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①⑥">non-uniform control flow</a>.</p>
    </table>
    <h4 class="heading settled" data-level="16.6.4" id="dpdy-builtin"><span class="secno">16.6.4. </span><span class="content"><code>dpdy</code></span><a class="self-link" href="#dpdy-builtin"></a></h4>
    <table class="data builtin">
@@ -18636,7 +18646,7 @@ but a value may infer the type.</p>
       <td>
        Partial derivative of <code>e</code> with respect to window y coordinates.
     The result is the same as either <code>dpdyFine(e)</code> or <code>dpdyCoarse(e)</code>. 
-       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value①⑥">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①⑦">non-uniform control flow</a>.</p>
+       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value①⑧">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①⑦">non-uniform control flow</a>.</p>
    </table>
    <h4 class="heading settled" data-level="16.6.5" id="dpdyCoarse-builtin"><span class="secno">16.6.5. </span><span class="content"><code>dpdyCoarse</code></span><a class="self-link" href="#dpdyCoarse-builtin"></a></h4>
    <table class="data builtin">
@@ -18654,7 +18664,7 @@ but a value may infer the type.</p>
       <td>
        Returns the partial derivative of <code>e</code> with respect to window y coordinates using local differences.
     This may result in fewer unique positions than <code>dpdyFine(e)</code>. 
-       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value①⑦">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①⑧">non-uniform control flow</a>.</p>
+       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value①⑨">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①⑧">non-uniform control flow</a>.</p>
    </table>
    <h4 class="heading settled" data-level="16.6.6" id="dpdyFine-builtin"><span class="secno">16.6.6. </span><span class="content"><code>dpdyFine</code></span><a class="self-link" href="#dpdyFine-builtin"></a></h4>
    <table class="data builtin">
@@ -18671,7 +18681,7 @@ but a value may infer the type.</p>
       <td>Description 
       <td>
        Returns the partial derivative of <code>e</code> with respect to window y coordinates. 
-       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value①⑧">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①⑨">non-uniform control flow</a>.</p>
+       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②⓪">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①⑨">non-uniform control flow</a>.</p>
    </table>
    <h4 class="heading settled" data-level="16.6.7" id="fwidth-builtin"><span class="secno">16.6.7. </span><span class="content"><code>fwidth</code></span><a class="self-link" href="#fwidth-builtin"></a></h4>
    <table class="data builtin">
@@ -18688,7 +18698,7 @@ but a value may infer the type.</p>
       <td>Description 
       <td>
        Returns <code>abs(dpdx(e)) + abs(dpdy(e))</code>. 
-       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value①⑨">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②⓪">non-uniform control flow</a>.</p>
+       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②①">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②⓪">non-uniform control flow</a>.</p>
    </table>
    <h4 class="heading settled" data-level="16.6.8" id="fwidthCoarse-builtin"><span class="secno">16.6.8. </span><span class="content"><code>fwidthCoarse</code></span><a class="self-link" href="#fwidthCoarse-builtin"></a></h4>
    <table class="data builtin">
@@ -18705,7 +18715,7 @@ but a value may infer the type.</p>
       <td>Description 
       <td>
        Returns <code>abs(dpdxCoarse(e)) + abs(dpdyCoarse(e))</code>. 
-       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②⓪">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②①">non-uniform control flow</a>.</p>
+       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②②">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②①">non-uniform control flow</a>.</p>
    </table>
    <h4 class="heading settled" data-level="16.6.9" id="fwidthFine-builtin"><span class="secno">16.6.9. </span><span class="content"><code>fwidthFine</code></span><a class="self-link" href="#fwidthFine-builtin"></a></h4>
    <table class="data builtin">
@@ -18722,7 +18732,7 @@ but a value may infer the type.</p>
       <td>Description 
       <td>
        Returns <code>abs(dpdxFine(e)) + abs(dpdyFine(e))</code>. 
-       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②①">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②②">non-uniform control flow</a>.</p>
+       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②③">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②②">non-uniform control flow</a>.</p>
    </table>
    <h3 class="heading settled" data-level="16.7" id="texture-builtin-functions"><span class="secno">16.7. </span><span class="content">Texture Built-in Functions</span><a class="self-link" href="#texture-builtin-functions"></a></h3>
    <p>Parameter values <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④⑧">must</a> be valid for the respective texture types.</p>
@@ -18788,7 +18798,7 @@ but a value may infer the type.</p>
 excluding the <a data-link-type="dfn" href="#texture-mip-level-count" id="ref-for-texture-mip-level-count①">mip level count</a>, <a data-link-type="dfn" href="#texture-array-size" id="ref-for-texture-array-size①">array size</a>, and <a data-link-type="dfn" href="#texture-sample-count" id="ref-for-texture-sample-count②">sample count</a>.</p>
    <p>For textures based on cubes, the results are the dimensions of each face of the cube.
 Cube faces are square, so the x and y components of the result are equal.</p>
-   <p>If <code>level</code> is outside the range <code>[0, textureNumLevels(t))</code> then an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②②">indeterminate value</a> for the return type may be returned.</p>
+   <p>If <code>level</code> is outside the range <code>[0, textureNumLevels(t))</code> then an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②④">indeterminate value</a> for the return type may be returned.</p>
    <h4 class="heading settled" data-level="16.7.2" id="texturegather"><span class="secno">16.7.2. </span><span class="content"><code>textureGather</code></span><a class="self-link" href="#texturegather"></a></h4>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="texture-gather">texture gather</dfn> operation reads from a 2D, 2D array, cube, or cube array texture,
 computing a four-component vector as follows:</p>
@@ -19512,7 +19522,7 @@ then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for
    </table>
    <p><strong>Returns:</strong></p>
    <p>The sampled value.</p>
-   <p>An <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②③">indeterminate value</a> results if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②④">non-uniform control flow</a>.</p>
+   <p>An <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②⑤">indeterminate value</a> results if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②④">non-uniform control flow</a>.</p>
    <h4 class="heading settled" data-level="16.7.9" id="texturesamplebias"><span class="secno">16.7.9. </span><span class="content"><code>textureSampleBias</code></span><a class="self-link" href="#texturesamplebias"></a></h4>
    <p>Samples a texture with a bias to the mip level.</p>
    <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑥①">Must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment①①">fragment</a> shader stage.</p>
@@ -19711,7 +19721,7 @@ operator defined by the <code>sampler_comparison</code>, resulting in either a <
    <p>If the sampler uses bilinear filtering then the returned value is
 the filtered average of these values, otherwise the comparison result of a
 single texel is returned.</p>
-   <p>An <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②④">indeterminate value</a> results if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②⑦">non-uniform control flow</a>.</p>
+   <p>An <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②⑥">indeterminate value</a> results if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②⑦">non-uniform control flow</a>.</p>
    <h4 class="heading settled" data-level="16.7.11" id="texturesamplecomparelevel"><span class="secno">16.7.11. </span><span class="content"><code>textureSampleCompareLevel</code></span><a class="self-link" href="#texturesamplecomparelevel"></a></h4>
    <p>Samples a <a data-link-type="dfn" href="#type-depth-texture" id="ref-for-type-depth-texture①③">depth texture</a> and compares the sampled depth values against a reference value.</p>
    <table class="data">
@@ -20426,7 +20436,7 @@ their results into a single output value.</p>
         <li data-md>
          <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error③⑥">pipeline-creation error</a> if <code>e</code> is an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions④⑤">override-expression</a>.</p>
         <li data-md>
-         <p>Otherwise the result is an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②⑤">indeterminate value</a> for u32.</p>
+         <p>Otherwise the result is an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②⑦">indeterminate value</a> for u32.</p>
        </ul>
    </table>
    <h3 class="heading settled" data-level="16.10" id="unpack-builtin-functions"><span class="secno">16.10. </span><span class="content">Data Unpacking Built-in Functions</span><a class="self-link" href="#unpack-builtin-functions"></a></h3>
@@ -22724,7 +22734,7 @@ let dfnPanelData = {
 "directive": {"dfnID":"directive","dfnText":"directive","external":false,"refSections":[{"refs":[{"id":"ref-for-directive"}],"title":"2. WGSL Module"},{"refs":[{"id":"ref-for-directive\u2460"}],"title":"4.1.1. Enable Extensions"},{"refs":[{"id":"ref-for-directive\u2461"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-directive\u2462"}],"title":"4.2. Global Diagnostic Filter"}],"url":"#directive"},
 "dispatch-command": {"dfnID":"dispatch-command","dfnText":"dispatch command","external":false,"refSections":[{"refs":[{"id":"ref-for-dispatch-command"}],"title":"2.1. Shader Lifecycle"},{"refs":[{"id":"ref-for-dispatch-command\u2460"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-dispatch-command\u2461"},{"id":"ref-for-dispatch-command\u2462"}],"title":"12.1. Shader Stages"},{"refs":[{"id":"ref-for-dispatch-command\u2463"}],"title":"12.3.4. Buffer Binding Determines Runtime-Sized Array Element Count"}],"url":"#dispatch-command"},
 "dispatch-size": {"dfnID":"dispatch-size","dfnText":"dispatch size","external":false,"refSections":[{"refs":[{"id":"ref-for-dispatch-size"}],"title":"12.3.1.1.8. num_workgroups"}],"url":"#dispatch-size"},
-"domain": {"dfnID":"domain","dfnText":"domain","external":false,"refSections":[{"refs":[{"id":"ref-for-domain"},{"id":"ref-for-domain\u2460"},{"id":"ref-for-domain\u2461"},{"id":"ref-for-domain\u2462"},{"id":"ref-for-domain\u2463"}],"title":"8.7. Arithmetic Expressions"},{"refs":[{"id":"ref-for-domain\u2464"},{"id":"ref-for-domain\u2465"}],"title":"14.6.1. Overview of IEEE-754"},{"refs":[{"id":"ref-for-domain\u2466"},{"id":"ref-for-domain\u2467"}],"title":"14.6.7. Domains of Floating Point Expressions and Built-in Functions"},{"refs":[{"id":"ref-for-domain\u2468"}],"title":"16.5.2. acos"},{"refs":[{"id":"ref-for-domain\u2460\u24ea"}],"title":"16.5.3. acosh"},{"refs":[{"id":"ref-for-domain\u2460\u2460"}],"title":"16.5.4. asin"},{"refs":[{"id":"ref-for-domain\u2460\u2461"}],"title":"16.5.7. atanh"},{"refs":[{"id":"ref-for-domain\u2460\u2462"}],"title":"16.5.11. cos"},{"refs":[{"id":"ref-for-domain\u2460\u2463"}],"title":"16.5.19. distance"},{"refs":[{"id":"ref-for-domain\u2460\u2464"}],"title":"16.5.36. inverseSqrt"},{"refs":[{"id":"ref-for-domain\u2460\u2465"}],"title":"16.5.39. log"},{"refs":[{"id":"ref-for-domain\u2460\u2466"}],"title":"16.5.40. log2"},{"refs":[{"id":"ref-for-domain\u2460\u2467"}],"title":"16.5.45. normalize"},{"refs":[{"id":"ref-for-domain\u2460\u2468"}],"title":"16.5.46. pow"},{"refs":[{"id":"ref-for-domain\u2461\u24ea"}],"title":"16.5.55. sin"},{"refs":[{"id":"ref-for-domain\u2461\u2460"}],"title":"16.5.58. sqrt"},{"refs":[{"id":"ref-for-domain\u2461\u2461"}],"title":"16.5.60. tan"}],"url":"#domain"},
+"domain": {"dfnID":"domain","dfnText":"domain","external":false,"refSections":[{"refs":[{"id":"ref-for-domain"},{"id":"ref-for-domain\u2460"},{"id":"ref-for-domain\u2461"},{"id":"ref-for-domain\u2462"},{"id":"ref-for-domain\u2463"}],"title":"8.7. Arithmetic Expressions"},{"refs":[{"id":"ref-for-domain\u2464"},{"id":"ref-for-domain\u2465"},{"id":"ref-for-domain\u2466"}],"title":"14.6.1. Overview of IEEE-754"},{"refs":[{"id":"ref-for-domain\u2467"},{"id":"ref-for-domain\u2468"}],"title":"14.6.7. Domains of Floating Point Expressions and Built-in Functions"},{"refs":[{"id":"ref-for-domain\u2460\u24ea"}],"title":"16.5.2. acos"},{"refs":[{"id":"ref-for-domain\u2460\u2460"}],"title":"16.5.3. acosh"},{"refs":[{"id":"ref-for-domain\u2460\u2461"}],"title":"16.5.4. asin"},{"refs":[{"id":"ref-for-domain\u2460\u2462"}],"title":"16.5.7. atanh"},{"refs":[{"id":"ref-for-domain\u2460\u2463"}],"title":"16.5.11. cos"},{"refs":[{"id":"ref-for-domain\u2460\u2464"}],"title":"16.5.19. distance"},{"refs":[{"id":"ref-for-domain\u2460\u2465"}],"title":"16.5.36. inverseSqrt"},{"refs":[{"id":"ref-for-domain\u2460\u2466"}],"title":"16.5.39. log"},{"refs":[{"id":"ref-for-domain\u2460\u2467"}],"title":"16.5.40. log2"},{"refs":[{"id":"ref-for-domain\u2460\u2468"}],"title":"16.5.45. normalize"},{"refs":[{"id":"ref-for-domain\u2461\u24ea"}],"title":"16.5.46. pow"},{"refs":[{"id":"ref-for-domain\u2461\u2460"}],"title":"16.5.55. sin"},{"refs":[{"id":"ref-for-domain\u2461\u2461"}],"title":"16.5.58. sqrt"},{"refs":[{"id":"ref-for-domain\u2461\u2462"}],"title":"16.5.60. tan"}],"url":"#domain"},
 "draw-command": {"dfnID":"draw-command","dfnText":"draw command","external":false,"refSections":[{"refs":[{"id":"ref-for-draw-command"}],"title":"2.1. Shader Lifecycle"},{"refs":[{"id":"ref-for-draw-command\u2460"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-draw-command\u2461"},{"id":"ref-for-draw-command\u2462"}],"title":"12.1. Shader Stages"},{"refs":[{"id":"ref-for-draw-command\u2463"}],"title":"12.3.4. Buffer Binding Determines Runtime-Sized Array Element Count"},{"refs":[{"id":"ref-for-draw-command\u2464"}],"title":"14.2.1. Terminology and Concepts"}],"url":"#draw-command"},
 "dynamic-context": {"dfnID":"dynamic-context","dfnText":"dynamic context","external":false,"refSections":[{"refs":[{"id":"ref-for-dynamic-context"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-dynamic-context\u2460"}],"title":"7.2.3. let Declarations"},{"refs":[{"id":"ref-for-dynamic-context\u2461"},{"id":"ref-for-dynamic-context\u2462"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-dynamic-context\u2463"}],"title":"8.2. Indeterminate values"},{"refs":[{"id":"ref-for-dynamic-context\u2464"}],"title":"10.2. Function Calls"}],"url":"#dynamic-context"},
 "dynamic-error": {"dfnID":"dynamic-error","dfnText":"dynamic error","external":false,"refSections":[{"refs":[{"id":"ref-for-dynamic-error"}],"title":"2.2. Errors"},{"refs":[{"id":"ref-for-dynamic-error\u2460"}],"title":"6.4.6. Out-of-Bounds Access"},{"refs":[{"id":"ref-for-dynamic-error\u2461"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-dynamic-error\u2462"}],"title":"13.4. Memory Layout"},{"refs":[{"id":"ref-for-dynamic-error\u2463"},{"id":"ref-for-dynamic-error\u2464"}],"title":"14.2.2. Uniformity Analysis Overview"}],"url":"#dynamic-error"},
@@ -22800,7 +22810,7 @@ let dfnPanelData = {
 "ieee754-binary32": {"dfnID":"ieee754-binary32","dfnText":"binary32","external":false,"refSections":[],"url":"#ieee754-binary32"},
 "ieee754-binary64": {"dfnID":"ieee754-binary64","dfnText":"binary64","external":false,"refSections":[],"url":"#ieee754-binary64"},
 "ieee754-division-by-zero": {"dfnID":"ieee754-division-by-zero","dfnText":"Division by zero","external":false,"refSections":[{"refs":[{"id":"ref-for-ieee754-division-by-zero"}],"title":"14.6.2. Differences from IEEE-754"}],"url":"#ieee754-division-by-zero"},
-"ieee754-exceptions": {"dfnID":"ieee754-exceptions","dfnText":"exceptions","external":false,"refSections":[{"refs":[{"id":"ref-for-ieee754-exceptions"}],"title":"14.6.2. Differences from IEEE-754"}],"url":"#ieee754-exceptions"},
+"ieee754-exceptions": {"dfnID":"ieee754-exceptions","dfnText":"exceptions","external":false,"refSections":[{"refs":[{"id":"ref-for-ieee754-exceptions"}],"title":"14.6.1. Overview of IEEE-754"},{"refs":[{"id":"ref-for-ieee754-exceptions\u2460"}],"title":"14.6.2. Differences from IEEE-754"}],"url":"#ieee754-exceptions"},
 "ieee754-exponent-bias": {"dfnID":"ieee754-exponent-bias","dfnText":"exponent bias","external":false,"refSections":[{"refs":[{"id":"ref-for-ieee754-exponent-bias"},{"id":"ref-for-ieee754-exponent-bias\u2460"},{"id":"ref-for-ieee754-exponent-bias\u2461"},{"id":"ref-for-ieee754-exponent-bias\u2462"}],"title":"14.6.1. Overview of IEEE-754"}],"url":"#ieee754-exponent-bias"},
 "ieee754-exponent-field": {"dfnID":"ieee754-exponent-field","dfnText":"exponent field","external":false,"refSections":[{"refs":[{"id":"ref-for-ieee754-exponent-field"},{"id":"ref-for-ieee754-exponent-field\u2460"},{"id":"ref-for-ieee754-exponent-field\u2461"},{"id":"ref-for-ieee754-exponent-field\u2462"},{"id":"ref-for-ieee754-exponent-field\u2463"},{"id":"ref-for-ieee754-exponent-field\u2464"},{"id":"ref-for-ieee754-exponent-field\u2465"},{"id":"ref-for-ieee754-exponent-field\u2466"}],"title":"14.6.1. Overview of IEEE-754"}],"url":"#ieee754-exponent-field"},
 "ieee754-inexact": {"dfnID":"ieee754-inexact","dfnText":"Inexact","external":false,"refSections":[],"url":"#ieee754-inexact"},
@@ -22816,7 +22826,7 @@ let dfnPanelData = {
 "in-bounds-index": {"dfnID":"in-bounds-index","dfnText":"in-bounds index","external":false,"refSections":[{"refs":[{"id":"ref-for-in-bounds-index"}],"title":"6.4.4. Valid and Invalid Memory References"},{"refs":[{"id":"ref-for-in-bounds-index\u2460"}],"title":"8.5. Composite Value Decomposition Expressions"}],"url":"#in-bounds-index"},
 "in-scope": {"dfnID":"in-scope","dfnText":"in scope","external":false,"refSections":[{"refs":[{"id":"ref-for-in-scope"},{"id":"ref-for-in-scope\u2460"},{"id":"ref-for-in-scope\u2461"}],"title":"5. Declaration and Scope"},{"refs":[{"id":"ref-for-in-scope\u2462"}],"title":"6.4.8. Forming Reference and Pointer Values"},{"refs":[{"id":"ref-for-in-scope\u2463"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-in-scope\u2464"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-in-scope\u2465"}],"title":"8.11. Variable Identifier Expression"},{"refs":[{"id":"ref-for-in-scope\u2466"}],"title":"8.12. Formal Parameter Expression"},{"refs":[{"id":"ref-for-in-scope\u2467"},{"id":"ref-for-in-scope\u2468"},{"id":"ref-for-in-scope\u2460\u24ea"}],"title":"8.15. Identifier Expressions for Value Declarations"},{"refs":[{"id":"ref-for-in-scope\u2460\u2460"}],"title":"9.1. Compound Statement"},{"refs":[{"id":"ref-for-in-scope\u2460\u2461"},{"id":"ref-for-in-scope\u2460\u2462"}],"title":"9.4.4. For Statement"},{"refs":[{"id":"ref-for-in-scope\u2460\u2463"}],"title":"10.1. Declaring a User-defined Function"},{"refs":[{"id":"ref-for-in-scope\u2460\u2464"}],"title":"16.1. Constructor Built-in Functions"}],"url":"#in-scope"},
 "increment-statement": {"dfnID":"increment-statement","dfnText":"increment statement","external":false,"refSections":[{"refs":[{"id":"ref-for-increment-statement"},{"id":"ref-for-increment-statement\u2460"}],"title":"14.2.6. Uniformity Rules for Statements"}],"url":"#increment-statement"},
-"indeterminate-value": {"dfnID":"indeterminate-value","dfnText":"indeterminate value","external":false,"refSections":[{"refs":[{"id":"ref-for-indeterminate-value"}],"title":"8.5.1.1. Vector Single Component Selection"},{"refs":[{"id":"ref-for-indeterminate-value\u2460"}],"title":"8.5.2. Matrix Access Expression"},{"refs":[{"id":"ref-for-indeterminate-value\u2461"}],"title":"8.5.3. Array Access Expression"},{"refs":[{"id":"ref-for-indeterminate-value\u2462"}],"title":"14.4. Fragment Shaders and Helper Invocations"},{"refs":[{"id":"ref-for-indeterminate-value\u2463"}],"title":"14.5.2. Derivatives"},{"refs":[{"id":"ref-for-indeterminate-value\u2464"}],"title":"14.6.2. Differences from IEEE-754"},{"refs":[{"id":"ref-for-indeterminate-value\u2465"}],"title":"14.6.3. Floating Point Overflow"},{"refs":[{"id":"ref-for-indeterminate-value\u2466"},{"id":"ref-for-indeterminate-value\u2467"},{"id":"ref-for-indeterminate-value\u2468"},{"id":"ref-for-indeterminate-value\u2460\u24ea"}],"title":"16.5.34. frexp"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u2460"}],"title":"16.5.37. ldexp"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u2461"}],"title":"16.5.47. quantizeToF16"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u2462"}],"title":"16.6.1. dpdx"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u2463"}],"title":"16.6.2. dpdxCoarse"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u2464"}],"title":"16.6.3. dpdxFine"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u2465"}],"title":"16.6.4. dpdy"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u2466"}],"title":"16.6.5. dpdyCoarse"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u2467"}],"title":"16.6.6. dpdyFine"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u2468"}],"title":"16.6.7. fwidth"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u24ea"}],"title":"16.6.8. fwidthCoarse"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2460"}],"title":"16.6.9. fwidthFine"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2461"}],"title":"16.7.1. textureDimensions"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2462"}],"title":"16.7.8. textureSample"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2463"}],"title":"16.7.10. textureSampleCompare"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2464"}],"title":"16.9.9. pack2x16float"}],"url":"#indeterminate-value"},
+"indeterminate-value": {"dfnID":"indeterminate-value","dfnText":"indeterminate value","external":false,"refSections":[{"refs":[{"id":"ref-for-indeterminate-value"}],"title":"8.5.1.1. Vector Single Component Selection"},{"refs":[{"id":"ref-for-indeterminate-value\u2460"}],"title":"8.5.2. Matrix Access Expression"},{"refs":[{"id":"ref-for-indeterminate-value\u2461"}],"title":"8.5.3. Array Access Expression"},{"refs":[{"id":"ref-for-indeterminate-value\u2462"}],"title":"14.4. Fragment Shaders and Helper Invocations"},{"refs":[{"id":"ref-for-indeterminate-value\u2463"}],"title":"14.5.2. Derivatives"},{"refs":[{"id":"ref-for-indeterminate-value\u2464"},{"id":"ref-for-indeterminate-value\u2465"}],"title":"14.6.1. Overview of IEEE-754"},{"refs":[{"id":"ref-for-indeterminate-value\u2466"}],"title":"14.6.2. Differences from IEEE-754"},{"refs":[{"id":"ref-for-indeterminate-value\u2467"}],"title":"14.6.3. Floating Point Overflow"},{"refs":[{"id":"ref-for-indeterminate-value\u2468"},{"id":"ref-for-indeterminate-value\u2460\u24ea"},{"id":"ref-for-indeterminate-value\u2460\u2460"},{"id":"ref-for-indeterminate-value\u2460\u2461"}],"title":"16.5.34. frexp"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u2462"}],"title":"16.5.37. ldexp"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u2463"}],"title":"16.5.47. quantizeToF16"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u2464"}],"title":"16.6.1. dpdx"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u2465"}],"title":"16.6.2. dpdxCoarse"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u2466"}],"title":"16.6.3. dpdxFine"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u2467"}],"title":"16.6.4. dpdy"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u2468"}],"title":"16.6.5. dpdyCoarse"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u24ea"}],"title":"16.6.6. dpdyFine"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2460"}],"title":"16.6.7. fwidth"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2461"}],"title":"16.6.8. fwidthCoarse"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2462"}],"title":"16.6.9. fwidthFine"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2463"}],"title":"16.7.1. textureDimensions"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2464"}],"title":"16.7.8. textureSample"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2465"}],"title":"16.7.10. textureSampleCompare"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2466"}],"title":"16.9.9. pack2x16float"}],"url":"#indeterminate-value"},
 "indexing-expression": {"dfnID":"indexing-expression","dfnText":"indexing expression","external":false,"refSections":[{"refs":[{"id":"ref-for-indexing-expression"}],"title":"3.9. Template Lists"},{"refs":[{"id":"ref-for-indexing-expression\u2460"},{"id":"ref-for-indexing-expression\u2461"}],"title":"6.4.4. Valid and Invalid Memory References"},{"refs":[{"id":"ref-for-indexing-expression\u2462"}],"title":"6.4.5. Originating Variable"},{"refs":[{"id":"ref-for-indexing-expression\u2463"}],"title":"6.4.8. Forming Reference and Pointer Values"},{"refs":[{"id":"ref-for-indexing-expression\u2464"}],"title":"8.5. Composite Value Decomposition Expressions"}],"url":"#indexing-expression"},
 "indirection": {"dfnID":"indirection","dfnText":"indirection","external":false,"refSections":[{"refs":[{"id":"ref-for-indirection"}],"title":"6.4.4. Valid and Invalid Memory References"},{"refs":[{"id":"ref-for-indirection\u2460"}],"title":"6.4.7. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-indirection\u2461"}],"title":"6.4.8. Forming Reference and Pointer Values"},{"refs":[{"id":"ref-for-indirection\u2462"},{"id":"ref-for-indirection\u2463"},{"id":"ref-for-indirection\u2464"},{"id":"ref-for-indirection\u2465"},{"id":"ref-for-indirection\u2466"},{"id":"ref-for-indirection\u2467"}],"title":"8.5.1.2. Vector Multiple Component Selection"}],"url":"#indirection"},
 "inherited-from": {"dfnID":"inherited-from","dfnText":"inherited from","external":false,"refSections":[{"refs":[{"id":"ref-for-inherited-from"},{"id":"ref-for-inherited-from\u2460"}],"title":"14.6.7. Domains of Floating Point Expressions and Built-in Functions"}],"url":"#inherited-from"},
@@ -22897,7 +22907,7 @@ let dfnPanelData = {
 "module-scope": {"dfnID":"module-scope","dfnText":"module scope","external":false,"refSections":[{"refs":[{"id":"ref-for-module-scope"},{"id":"ref-for-module-scope\u2460"}],"title":"1.1. Overview"},{"refs":[{"id":"ref-for-module-scope\u2461"}],"title":"2. WGSL Module"},{"refs":[{"id":"ref-for-module-scope\u2462"}],"title":"4.2. Global Diagnostic Filter"},{"refs":[{"id":"ref-for-module-scope\u2463"},{"id":"ref-for-module-scope\u2464"},{"id":"ref-for-module-scope\u2465"}],"title":"5. Declaration and Scope"},{"refs":[{"id":"ref-for-module-scope\u2466"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-module-scope\u2467"}],"title":"6.7. Type Aliases"},{"refs":[{"id":"ref-for-module-scope\u2468"},{"id":"ref-for-module-scope\u2460\u24ea"},{"id":"ref-for-module-scope\u2460\u2460"},{"id":"ref-for-module-scope\u2460\u2461"},{"id":"ref-for-module-scope\u2460\u2462"},{"id":"ref-for-module-scope\u2460\u2463"},{"id":"ref-for-module-scope\u2460\u2464"},{"id":"ref-for-module-scope\u2460\u2465"},{"id":"ref-for-module-scope\u2460\u2466"},{"id":"ref-for-module-scope\u2460\u2467"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-module-scope\u2460\u2468"}],"title":"7.2.1. const Declarations"},{"refs":[{"id":"ref-for-module-scope\u2461\u24ea"}],"title":"7.2.2. override Declarations"},{"refs":[{"id":"ref-for-module-scope\u2461\u2460"},{"id":"ref-for-module-scope\u2461\u2461"},{"id":"ref-for-module-scope\u2461\u2462"},{"id":"ref-for-module-scope\u2461\u2463"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-module-scope\u2461\u2464"}],"title":"9.6. Const Assertion Statement"},{"refs":[{"id":"ref-for-module-scope\u2461\u2465"}],"title":"10.1. Declaring a User-defined Function"},{"refs":[{"id":"ref-for-module-scope\u2461\u2466"},{"id":"ref-for-module-scope\u2461\u2467"}],"title":"10.4.1.2. Aliasing"},{"refs":[{"id":"ref-for-module-scope\u2461\u2468"}],"title":"14.2. Uniformity"}],"url":"#module-scope"},
 "name": {"dfnID":"name","dfnText":"name","external":false,"refSections":[{"refs":[{"id":"ref-for-name"}],"title":"7.2.2. override Declarations"},{"refs":[{"id":"ref-for-name\u2460"}],"title":"7.3. var Declarations"}],"url":"#name"},
 "named-component-expression": {"dfnID":"named-component-expression","dfnText":"named component expression","external":false,"refSections":[{"refs":[{"id":"ref-for-named-component-expression"},{"id":"ref-for-named-component-expression\u2460"}],"title":"6.4.4. Valid and Invalid Memory References"},{"refs":[{"id":"ref-for-named-component-expression\u2461"}],"title":"6.4.5. Originating Variable"},{"refs":[{"id":"ref-for-named-component-expression\u2462"}],"title":"6.4.8. Forming Reference and Pointer Values"}],"url":"#named-component-expression"},
-"nan": {"dfnID":"nan","dfnText":"NaN","external":false,"refSections":[{"refs":[{"id":"ref-for-nan"},{"id":"ref-for-nan\u2460"},{"id":"ref-for-nan\u2461"}],"title":"14.6.1. Overview of IEEE-754"}],"url":"#nan"},
+"nan": {"dfnID":"nan","dfnText":"NaN","external":false,"refSections":[{"refs":[{"id":"ref-for-nan"},{"id":"ref-for-nan\u2460"},{"id":"ref-for-nan\u2461"},{"id":"ref-for-nan\u2462"}],"title":"14.6.1. Overview of IEEE-754"}],"url":"#nan"},
 "nearest-enclosing-diagnostic-filter": {"dfnID":"nearest-enclosing-diagnostic-filter","dfnText":"nearest enclosing diagnostic filter","external":false,"refSections":[{"refs":[{"id":"ref-for-nearest-enclosing-diagnostic-filter"}],"title":"14.2.7. Uniformity Rules for Function Calls"}],"url":"#nearest-enclosing-diagnostic-filter"},
 "negative-infinity": {"dfnID":"negative-infinity","dfnText":"Negative infinity","external":false,"refSections":[{"refs":[{"id":"ref-for-negative-infinity"}],"title":"14.6.1. Overview of IEEE-754"}],"url":"#negative-infinity"},
 "negative-zero": {"dfnID":"negative-zero","dfnText":"negative zero","external":false,"refSections":[],"url":"#negative-zero"},
@@ -23026,7 +23036,7 @@ let dfnPanelData = {
 "rhsvalue": {"dfnID":"rhsvalue","dfnText":"RHSValue","external":false,"refSections":[{"refs":[{"id":"ref-for-rhsvalue"}],"title":"14.2.5. Function-scope Variable Value Analysis"},{"refs":[{"id":"ref-for-rhsvalue\u2460"}],"title":"14.2.6. Uniformity Rules for Statements"},{"refs":[{"id":"ref-for-rhsvalue\u2461"}],"title":"14.2.8. Uniformity Rules for Expressions"}],"url":"#rhsvalue"},
 "right-hand-side": {"dfnID":"right-hand-side","dfnText":"right-hand side","external":false,"refSections":[{"refs":[{"id":"ref-for-right-hand-side"}],"title":"6.4.7. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-right-hand-side\u2460"}],"title":"9.2.1. Simple Assignment"},{"refs":[{"id":"ref-for-right-hand-side\u2461"}],"title":"9.2.2. Phony Assignment"},{"refs":[{"id":"ref-for-right-hand-side\u2462"}],"title":"14.2.6. Uniformity Rules for Statements"}],"url":"#right-hand-side"},
 "root-identifier": {"dfnID":"root-identifier","dfnText":"root identifier","external":false,"refSections":[{"refs":[{"id":"ref-for-root-identifier"},{"id":"ref-for-root-identifier\u2460"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-root-identifier\u2461"}],"title":"10.4.1.1. Root Identifier"},{"refs":[{"id":"ref-for-root-identifier\u2462"},{"id":"ref-for-root-identifier\u2463"}],"title":"10.4.1.2. Aliasing"},{"refs":[{"id":"ref-for-root-identifier\u2464"},{"id":"ref-for-root-identifier\u2465"}],"title":"14.2.4. Pointer Desugaring"},{"refs":[{"id":"ref-for-root-identifier\u2466"},{"id":"ref-for-root-identifier\u2467"},{"id":"ref-for-root-identifier\u2468"},{"id":"ref-for-root-identifier\u2460\u24ea"},{"id":"ref-for-root-identifier\u2460\u2460"},{"id":"ref-for-root-identifier\u2460\u2461"},{"id":"ref-for-root-identifier\u2460\u2462"}],"title":"14.2.8. Uniformity Rules for Expressions"}],"url":"#root-identifier"},
-"rounding": {"dfnID":"rounding","dfnText":"Rounding","external":false,"refSections":[{"refs":[{"id":"ref-for-rounding"},{"id":"ref-for-rounding\u2460"}],"title":"14.6.4. Floating Point Accuracy"},{"refs":[{"id":"ref-for-rounding\u2461"}],"title":"16.1.2.5. i32"},{"refs":[{"id":"ref-for-rounding\u2462"}],"title":"16.1.2.16. u32"},{"refs":[{"id":"ref-for-rounding\u2463"}],"title":"16.5.32. fma"}],"url":"#rounding"},
+"rounding": {"dfnID":"rounding","dfnText":"Rounding","external":false,"refSections":[{"refs":[{"id":"ref-for-rounding"}],"title":"14.6.1. Overview of IEEE-754"},{"refs":[{"id":"ref-for-rounding\u2460"},{"id":"ref-for-rounding\u2461"}],"title":"14.6.4. Floating Point Accuracy"},{"refs":[{"id":"ref-for-rounding\u2462"}],"title":"16.1.2.5. i32"},{"refs":[{"id":"ref-for-rounding\u2463"}],"title":"16.1.2.16. u32"},{"refs":[{"id":"ref-for-rounding\u2464"}],"title":"16.5.32. fma"}],"url":"#rounding"},
 "roundup": {"dfnID":"roundup","dfnText":"roundUp","external":false,"refSections":[{"refs":[{"id":"ref-for-roundup"},{"id":"ref-for-roundup\u2460"}],"title":"12.3.4. Buffer Binding Determines Runtime-Sized Array Element Count"},{"refs":[{"id":"ref-for-roundup\u2461"},{"id":"ref-for-roundup\u2462"}],"title":"13.4. Memory Layout"},{"refs":[{"id":"ref-for-roundup\u2463"},{"id":"ref-for-roundup\u2464"},{"id":"ref-for-roundup\u2465"}],"title":"13.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-roundup\u2466"}],"title":"13.4.2. Structure Member Layout"},{"refs":[{"id":"ref-for-roundup\u2467"},{"id":"ref-for-roundup\u2468"},{"id":"ref-for-roundup\u2460\u24ea"},{"id":"ref-for-roundup\u2460\u2460"}],"title":"13.4.5. Address Space Layout Constraints"}],"url":"#roundup"},
 "runtime-expression": {"dfnID":"runtime-expression","dfnText":"runtime expression","external":false,"refSections":[{"refs":[{"id":"ref-for-runtime-expression"},{"id":"ref-for-runtime-expression\u2460"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-runtime-expression\u2461"}],"title":"8.2. Indeterminate values"},{"refs":[{"id":"ref-for-runtime-expression\u2462"},{"id":"ref-for-runtime-expression\u2463"}],"title":"14.6.2. Differences from IEEE-754"},{"refs":[{"id":"ref-for-runtime-expression\u2464"}],"title":"14.6.3. Floating Point Overflow"}],"url":"#runtime-expression"},
 "runtime-sized": {"dfnID":"runtime-sized","dfnText":"runtime-sized","external":false,"refSections":[{"refs":[{"id":"ref-for-runtime-sized"},{"id":"ref-for-runtime-sized\u2460"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-runtime-sized\u2461"},{"id":"ref-for-runtime-sized\u2462"}],"title":"6.2.13. Fixed-Footprint Types"},{"refs":[{"id":"ref-for-runtime-sized\u2463"}],"title":"6.4.2. Host-shareable Types"},{"refs":[{"id":"ref-for-runtime-sized\u2464"},{"id":"ref-for-runtime-sized\u2465"}],"title":"8.5. Composite Value Decomposition Expressions"},{"refs":[{"id":"ref-for-runtime-sized\u2466"},{"id":"ref-for-runtime-sized\u2467"}],"title":"12.3.4. Buffer Binding Determines Runtime-Sized Array Element Count"},{"refs":[{"id":"ref-for-runtime-sized\u2468"}],"title":"16.1.1. Zero Value Built-in Functions"},{"refs":[{"id":"ref-for-runtime-sized\u2460\u24ea"},{"id":"ref-for-runtime-sized\u2460\u2460"}],"title":"16.4.1. arrayLength"}],"url":"#runtime-sized"},
