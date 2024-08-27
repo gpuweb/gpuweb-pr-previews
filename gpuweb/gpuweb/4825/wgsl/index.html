@@ -828,13 +828,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-08-26">26 August 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-08-27">27 August 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/a03e6ff79a8d2d9631e0124ec369985eaa365996/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/a03e6ff79a8d2d9631e0124ec369985eaa365996/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/f62a8f214288be921a4482499cd97c8fdb1a3be4/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/f62a8f214288be921a4482499cd97c8fdb1a3be4/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -15176,8 +15176,7 @@ is derived by:</p>
        <p>Applying and combining the domain restrictions for those remaining operations over the given parameters.</p>
      </ul>
    </ul>
-   <p>For example: The <code>dot(a,b)</code> function over 2-element vectors <var>a</var> and <var>b</var> has its accuracy <a data-link-type="dfn" href="#inherited-from" id="ref-for-inherited-from①">inherited from</a> the expression
-    |a[0]| * |b[0]| + |a[1]| * |b[1]|.
+   <p>For example: The <code>dot(a,b)</code> function over 2-element vectors <var>a</var> and <var>b</var> has its accuracy <a data-link-type="dfn" href="#inherited-from" id="ref-for-inherited-from①">inherited from</a> the expression <var>a</var>[0] * <var>b</var>[0] + <var>a</var>[1] * <var>b</var>[1].
 This uses two floating point multiplications, and one floating point addition.</p>
    <ul>
     <li data-md>
