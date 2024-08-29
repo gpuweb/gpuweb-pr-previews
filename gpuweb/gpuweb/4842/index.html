@@ -1117,7 +1117,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/0ff400b56debfa199b4d2119044c9443212556eb/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/0ff400b56debfa199b4d2119044c9443212556eb/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/3e2f792cc6a2e6549acf839e9cbc2fc7e55d1932/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/3e2f792cc6a2e6549acf839e9cbc2fc7e55d1932/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -10691,9 +10691,18 @@ is ≤ <var>device</var>.<code class="idl"><a data-link-type="idl" href="#dom-gp
     <li data-md>
      <p><code class="idl"><a data-link-type="idl" href="#dom-gpuqueue-copyexternalimagetotexture" id="ref-for-dom-gpuqueue-copyexternalimagetotexture①">copyExternalImageToTexture()</a></code>, for copies from Web Platform image sources to textures</p>
    </ul>
-   <p>Some texel values have <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="equivalent texel representation" data-noexport id="equivalent-texel-representation">multiple possible representations</dfn> of some values, e.g. as <code>r8snorm</code>, -1.0 can be represented as either -127 or -128. Additionally NaN,
-zero, and subnormal float values may also have multiple equivalent representations. Copy commands
-are not guaranteed to preserve the source’s bit-representation.</p>
+   <p>Some texel values have <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="equivalent texel representation" data-noexport id="equivalent-texel-representation">multiple possible representations</dfn> of some values. As a result copy commands are not guaranteed to preserve the source’s bit-representation.
+Examples include:</p>
+   <ul>
+    <li data-md>
+     <p>snorm values may represent -1.0 as either -127 or -128.</p>
+    <li data-md>
+     <p>Any NaN or Infinity may be represented by an indeterminant, non-signaling NaN.</p>
+    <li data-md>
+     <p>Any subnormal value, -0.0, or +0.0 may be represented by either -0.0 or +0.0.</p>
+   </ul>
+   <p class="note" role="note"><span class="marker">Note:</span> Copies may be performed with WGSL shaders, which means that any of the documented <a href="https://gpuweb.github.io/gpuweb/wgsl/#differences-from-ieee754">WGSL IEEE-754 behaviors</a> may be
+observed.</p>
    <p>The following definitions are used by these methods:</p>
    <h4 class="heading settled dfn-paneled idl-code" data-dfn-type="dictionary" data-export data-level="11.2.1" data-lt="GPUImageDataLayout" id="gpuimagedatalayout"><span class="secno">11.2.1. </span><span class="content"><code>GPUImageDataLayout</code> <span id="gpu-image-data-layout"></span> </span><a class="self-link" href="#gpuimagedatalayout" id="ref-for-gpuimagedatalayout"></a></h4>
 <pre class="idl highlight def"><c- b>dictionary</c-> <a class="idl-code" data-link-type="dictionary" href="#gpuimagedatalayout" id="ref-for-gpuimagedatalayout⑨"><c- g>GPUImageDataLayout</c-></a> {
