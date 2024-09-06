@@ -1488,7 +1488,7 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 4afc1fdf9, updated Tue May 28 15:43:17 2024 -0700" name="generator">
+  <meta content="Bikeshed version 6270e4735, updated Tue Aug 6 12:12:30 2024 -0700" name="generator">
   <link href="https://gpuweb.github.io/gpuweb/correspondence/" rel="canonical">
   <meta content="dark light" name="color-scheme">
 <style>
@@ -1904,7 +1904,7 @@ dfn > a.self-link::before      { content: "#"; }
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">WebGPU Correspondence Reference</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Living Document, <time class="dt-updated" datetime="2024-06-15">15 June 2024</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Living Document, <time class="dt-updated" datetime="2024-09-06">6 September 2024</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2133,16 +2133,17 @@ User agents are not required to use these formulas and may expose whatever they 
       <td><em>No documented limit?</em> 
       <td>2048 B = <code>D3D12_SO_BUFFER_MAX_STRIDE_IN_BYTES</code> 
      <tr>
-      <th><code>maxInterStageShaderComponents</code> 
-      <td><a href="https://github.com/gpuweb/gpuweb/issues/1962">#1962</a> 
-      <td><code>min(maxVertexOutputComponents, maxFragmentInputComponents)</code> 
-      <td><code>Maximum number of input components to a fragment function, declared with the stage_in qualifier</code>, subtract 4 for non-Apple GPUs 
-      <td>120 = <code>maxInterStageShaderVariables * 4</code> 
-     <tr>
       <th><code>maxInterStageShaderVariables</code> 
-      <td><a href="https://github.com/gpuweb/gpuweb/issues/1962">#1962</a> 
+      <td><a href="https://github.com/gpuweb/gpuweb/issues/1962#issuecomment-1136316791">#1962</a> 
       <td><code>min(maxVertexOutputComponents // 4, maxFragmentInputComponents // 4)</code> 
-      <td><code>Maximum number of inputs (scalars or vectors) to a fragment function, declared with the stage_in qualifier</code>, subtract 2 for non-Apple GPUs 
+      <td>
+       Min of: 
+       <ul>
+        <li data-md>
+         <p><code>Maximum scalar or vector inputs to a fragment function</code>, subtract 2 for non-Apple GPUs</p>
+        <li data-md>
+         <p><code>(Maximum number of input components to a fragment function) / 4</code>, subtract 1 for non-Apple GPUs</p>
+       </ul>
       <td>30 = <code>min(D3D12_VS_OUTPUT_REGISTER_COUNT - 1, D3D12_PS_INPUT_REGISTER_COUNT - 2)</code> 
      <tr>
       <th><code>maxColorAttachments</code> 

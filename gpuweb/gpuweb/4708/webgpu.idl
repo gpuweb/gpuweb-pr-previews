@@ -43,7 +43,6 @@ interface GPUSupportedLimits {
     readonly attribute unsigned long long maxBufferSize;
     readonly attribute unsigned long maxVertexAttributes;
     readonly attribute unsigned long maxVertexBufferArrayStride;
-    readonly attribute unsigned long maxInterStageShaderComponents;
     readonly attribute unsigned long maxInterStageShaderVariables;
     readonly attribute unsigned long maxColorAttachments;
     readonly attribute unsigned long maxColorAttachmentBytesPerSample;
@@ -109,7 +108,7 @@ interface GPUAdapter {
 dictionary GPUDeviceDescriptor
          : GPUObjectDescriptorBase {
     sequence<GPUFeatureName> requiredFeatures = [];
-    record<DOMString, GPUSize64> requiredLimits = {};
+    record<DOMString, (GPUSize64 or undefined)> requiredLimits = {};
     GPUQueueDescriptor defaultQueue = {};
 };
 
@@ -117,6 +116,7 @@ enum GPUFeatureName {
     "depth-clip-control",
     "depth32float-stencil8",
     "texture-compression-bc",
+    "texture-compression-bc-sliced-3d",
     "texture-compression-etc2",
     "texture-compression-astc",
     "timestamp-query",
@@ -126,6 +126,7 @@ enum GPUFeatureName {
     "bgra8unorm-storage",
     "float32-filterable",
     "clip-distances",
+    "dual-source-blending",
 };
 
 [Exposed=(Window, Worker), SecureContext]
@@ -262,6 +263,7 @@ dictionary GPUTextureViewDescriptor
          : GPUObjectDescriptorBase {
     GPUTextureFormat format;
     GPUTextureViewDimension dimension;
+    GPUTextureUsageFlags usage = 0;
     GPUTextureAspect aspect = "all";
     GPUIntegerCoordinate baseMipLevel = 0;
     GPUIntegerCoordinate mipLevelCount;
@@ -585,7 +587,6 @@ GPUShaderModule includes GPUObjectBase;
 dictionary GPUShaderModuleDescriptor
          : GPUObjectDescriptorBase {
     required USVString code;
-    object sourceMap;
     sequence<GPUShaderModuleCompilationHint> compilationHints = [];
 };
 
@@ -759,6 +760,10 @@ enum GPUBlendFactor {
     "src-alpha-saturated",
     "constant",
     "one-minus-constant",
+    "src1",
+    "one-minus-src1",
+    "src1-alpha",
+    "one-minus-src1-alpha",
 };
 
 enum GPUBlendOperation {
@@ -1192,12 +1197,22 @@ enum GPUCanvasAlphaMode {
     "premultiplied",
 };
 
+enum GPUCanvasToneMappingMode {
+    "standard",
+    "extended",
+};
+
+dictionary GPUCanvasToneMapping {
+  GPUCanvasToneMappingMode mode = "standard";
+};
+
 dictionary GPUCanvasConfiguration {
     required GPUDevice device;
     required GPUTextureFormat format;
     GPUTextureUsageFlags usage = 0x10;  // GPUTextureUsage.RENDER_ATTACHMENT
     sequence<GPUTextureFormat> viewFormats = [];
     PredefinedColorSpace colorSpace = "srgb";
+    GPUCanvasToneMapping toneMapping = {};
     GPUCanvasAlphaMode alphaMode = "opaque";
 };
 
