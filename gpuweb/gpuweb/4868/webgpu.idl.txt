@@ -86,7 +86,7 @@ interface GPU {
 };
 
 dictionary GPURequestAdapterOptions {
-    any capabilityLevel;
+    any featureLevel;
     GPUPowerPreference powerPreference;
     boolean forceFallbackAdapter = false;
 };
