@@ -1111,13 +1111,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-09-10">10 September 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-09-11">11 September 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/e1cb3e8b975d181ea66999111ff08708dc534386/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/e1cb3e8b975d181ea66999111ff08708dc534386/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/e706930d112b4120b67dddea63d9a83d58a3cede/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/e706930d112b4120b67dddea63d9a83d58a3cede/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -3526,7 +3526,7 @@ chooses according to the provided options.</p>
          <div class="validusage">
           <ol>
            <li data-md>
-            <p><var>options</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurequestadapteroptions-featurelevel" id="ref-for-dom-gpurequestadapteroptions-featurelevel">featureLevel</a></code> <var>must</var> be <code>undefined</code>.</p>
+            <p><var>options</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurequestadapteroptions-capabilitylevel" id="ref-for-dom-gpurequestadapteroptions-capabilitylevel">capabilityLevel</a></code> <var>must</var> be <code>undefined</code>.</p>
           </ol>
          </div>
          <p>If they are met <strong>and</strong> the user agent chooses to return an adapter:</p>
@@ -3668,7 +3668,7 @@ other limits.</p>
    <p><dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-gpurequestadapteroptions"><code>GPURequestAdapterOptions</code></dfn> provides hints to the user agent indicating what
 configuration is suitable for the application.</p>
 <pre class="idl highlight def"><c- b>dictionary</c-> <a class="idl-code" data-link-type="dictionary" href="#dictdef-gpurequestadapteroptions" id="ref-for-dictdef-gpurequestadapteroptions②"><c- g>GPURequestAdapterOptions</c-></a> {
-    <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-any" id="ref-for-idl-any"><c- b>any</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="GPURequestAdapterOptions" data-dfn-type="dict-member" data-export data-type="any" id="dom-gpurequestadapteroptions-featurelevel"><code><c- g>featureLevel</c-></code></dfn>;
+    <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-any" id="ref-for-idl-any"><c- b>any</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="GPURequestAdapterOptions" data-dfn-type="dict-member" data-export data-type="any" id="dom-gpurequestadapteroptions-capabilitylevel"><code><c- g>capabilityLevel</c-></code></dfn>;
     <a data-link-type="idl-name" href="#enumdef-gpupowerpreference" id="ref-for-enumdef-gpupowerpreference"><c- n>GPUPowerPreference</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUPowerPreference" href="#dom-gpurequestadapteroptions-powerpreference" id="ref-for-dom-gpurequestadapteroptions-powerpreference"><c- g>powerPreference</c-></a>;
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean" id="ref-for-idl-boolean④"><c- b>boolean</c-></a> <a class="idl-code" data-default="false" data-link-type="dict-member" data-type="boolean" href="#dom-gpurequestadapteroptions-forcefallbackadapter" id="ref-for-dom-gpurequestadapteroptions-forcefallbackadapter"><c- g>forceFallbackAdapter</c-></a> = <c- b>false</c->;
 };
@@ -19956,6 +19956,7 @@ for (const dataLink of dataLinks) {
    <li><a href="#abstract-opdef-calculating-color-attachment-bytes-per-sample">Calculating color attachment bytes per sample</a><span>, in § 17.1.1.1</span>
    <li><a href="#dom-gpucanvascontext-canvas">canvas</a><span>, in § 21.2</span>
    <li><a href="#capabilities">capabilities</a><span>, in § 3.6</span>
+   <li><a href="#dom-gpurequestadapteroptions-capabilitylevel">capabilityLevel</a><span>, in § 4.2.2</span>
    <li><a href="#dom-gpufrontface-ccw">"ccw"</a><span>, in § 10.3.2</span>
    <li><a href="#dom-gpuaddressmode-clamp-to-edge">"clamp-to-edge"</a><span>, in § 7.1.1</span>
    <li><a href="#dom-gpuloadop-clear">"clear"</a><span>, in § 17.1.1.3</span>
@@ -20325,7 +20326,6 @@ for (const dataLink of dataLinks) {
    <li><a href="#dom-adapter-fallback-slot">[[fallback]]</a><span>, in § 3.5.1</span>
    <li><a href="#fallback-adapter">fallback adapter</a><span>, in § 3.5.1</span>
    <li><a href="#feature">feature</a><span>, in § 3.6.1</span>
-   <li><a href="#dom-gpurequestadapteroptions-featurelevel">featureLevel</a><span>, in § 4.2.2</span>
    <li>
     [[features]]
     <ul>
@@ -21881,7 +21881,7 @@ for (const dataLink of dataLinks) {
 };
 
 <c- b>dictionary</c-> <a class="idl-code" data-link-type="dictionary" href="#dictdef-gpurequestadapteroptions"><c- g>GPURequestAdapterOptions</c-></a> {
-    <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-any"><c- b>any</c-></a> <a data-type="any" href="#dom-gpurequestadapteroptions-featurelevel"><code><c- g>featureLevel</c-></code></a>;
+    <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-any"><c- b>any</c-></a> <a data-type="any" href="#dom-gpurequestadapteroptions-capabilitylevel"><code><c- g>capabilityLevel</c-></code></a>;
     <a data-link-type="idl-name" href="#enumdef-gpupowerpreference"><c- n>GPUPowerPreference</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="GPUPowerPreference" href="#dom-gpurequestadapteroptions-powerpreference"><c- g>powerPreference</c-></a>;
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean"><c- b>boolean</c-></a> <a class="idl-code" data-default="false" data-link-type="dict-member" data-type="boolean" href="#dom-gpurequestadapteroptions-forcefallbackadapter"><c- g>forceFallbackAdapter</c-></a> = <c- b>false</c->;
 };
@@ -24246,7 +24246,7 @@ let dfnPanelData = {
 "dom-gpurenderpipelinedescriptor-multisample": {"dfnID":"dom-gpurenderpipelinedescriptor-multisample","dfnText":"multisample","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gpurenderpipelinedescriptor-multisample"},{"id":"ref-for-dom-gpurenderpipelinedescriptor-multisample\u2460"},{"id":"ref-for-dom-gpurenderpipelinedescriptor-multisample\u2461"},{"id":"ref-for-dom-gpurenderpipelinedescriptor-multisample\u2462"}],"title":"10.3.1. Render Pipeline Creation"},{"refs":[{"id":"ref-for-dom-gpurenderpipelinedescriptor-multisample\u2463"}],"title":"17.1.1.4. Render Pass Layout"},{"refs":[{"id":"ref-for-dom-gpurenderpipelinedescriptor-multisample\u2464"},{"id":"ref-for-dom-gpurenderpipelinedescriptor-multisample\u2465"},{"id":"ref-for-dom-gpurenderpipelinedescriptor-multisample\u2466"}],"title":"23.2.5. Rasterization"},{"refs":[{"id":"ref-for-dom-gpurenderpipelinedescriptor-multisample\u2467"}],"title":"23.2.5.1. Point Rasterization"},{"refs":[{"id":"ref-for-dom-gpurenderpipelinedescriptor-multisample\u2468"},{"id":"ref-for-dom-gpurenderpipelinedescriptor-multisample\u2460\u24ea"}],"title":"23.2.5.4. Polygon Rasterization"}],"url":"#dom-gpurenderpipelinedescriptor-multisample"},
 "dom-gpurenderpipelinedescriptor-primitive": {"dfnID":"dom-gpurenderpipelinedescriptor-primitive","dfnText":"primitive","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gpurenderpipelinedescriptor-primitive"},{"id":"ref-for-dom-gpurenderpipelinedescriptor-primitive\u2460"},{"id":"ref-for-dom-gpurenderpipelinedescriptor-primitive\u2461"},{"id":"ref-for-dom-gpurenderpipelinedescriptor-primitive\u2462"},{"id":"ref-for-dom-gpurenderpipelinedescriptor-primitive\u2463"}],"title":"10.3.1. Render Pipeline Creation"},{"refs":[{"id":"ref-for-dom-gpurenderpipelinedescriptor-primitive\u2464"},{"id":"ref-for-dom-gpurenderpipelinedescriptor-primitive\u2465"}],"title":"17.2.1. Drawing"},{"refs":[{"id":"ref-for-dom-gpurenderpipelinedescriptor-primitive\u2466"}],"title":"23.2. Rendering"},{"refs":[{"id":"ref-for-dom-gpurenderpipelinedescriptor-primitive\u2467"},{"id":"ref-for-dom-gpurenderpipelinedescriptor-primitive\u2468"}],"title":"23.2.4. Primitive Clipping"},{"refs":[{"id":"ref-for-dom-gpurenderpipelinedescriptor-primitive\u2460\u24ea"}],"title":"23.2.5. Rasterization"},{"refs":[{"id":"ref-for-dom-gpurenderpipelinedescriptor-primitive\u2460\u2460"},{"id":"ref-for-dom-gpurenderpipelinedescriptor-primitive\u2460\u2461"}],"title":"23.2.5.4. Polygon Rasterization"}],"url":"#dom-gpurenderpipelinedescriptor-primitive"},
 "dom-gpurenderpipelinedescriptor-vertex": {"dfnID":"dom-gpurenderpipelinedescriptor-vertex","dfnText":"vertex","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gpurenderpipelinedescriptor-vertex"},{"id":"ref-for-dom-gpurenderpipelinedescriptor-vertex\u2460"},{"id":"ref-for-dom-gpurenderpipelinedescriptor-vertex\u2461"},{"id":"ref-for-dom-gpurenderpipelinedescriptor-vertex\u2462"},{"id":"ref-for-dom-gpurenderpipelinedescriptor-vertex\u2463"},{"id":"ref-for-dom-gpurenderpipelinedescriptor-vertex\u2464"},{"id":"ref-for-dom-gpurenderpipelinedescriptor-vertex\u2465"}],"title":"10.3.1. Render Pipeline Creation"},{"refs":[{"id":"ref-for-dom-gpurenderpipelinedescriptor-vertex\u2466"}],"title":"10.3.7.1. Vertex Formats"},{"refs":[{"id":"ref-for-dom-gpurenderpipelinedescriptor-vertex\u2467"},{"id":"ref-for-dom-gpurenderpipelinedescriptor-vertex\u2468"},{"id":"ref-for-dom-gpurenderpipelinedescriptor-vertex\u2460\u24ea"},{"id":"ref-for-dom-gpurenderpipelinedescriptor-vertex\u2460\u2460"}],"title":"17.2.1. Drawing"},{"refs":[{"id":"ref-for-dom-gpurenderpipelinedescriptor-vertex\u2460\u2461"}],"title":"23.2. Rendering"}],"url":"#dom-gpurenderpipelinedescriptor-vertex"},
-"dom-gpurequestadapteroptions-featurelevel": {"dfnID":"dom-gpurequestadapteroptions-featurelevel","dfnText":"featureLevel","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gpurequestadapteroptions-featurelevel"}],"title":"4.2. GPU"}],"url":"#dom-gpurequestadapteroptions-featurelevel"},
+"dom-gpurequestadapteroptions-capabilitylevel": {"dfnID":"dom-gpurequestadapteroptions-capabilitylevel","dfnText":"capabilityLevel","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gpurequestadapteroptions-capabilitylevel"}],"title":"4.2. GPU"}],"url":"#dom-gpurequestadapteroptions-capabilitylevel"},
 "dom-gpurequestadapteroptions-forcefallbackadapter": {"dfnID":"dom-gpurequestadapteroptions-forcefallbackadapter","dfnText":"forceFallbackAdapter","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gpurequestadapteroptions-forcefallbackadapter"},{"id":"ref-for-dom-gpurequestadapteroptions-forcefallbackadapter\u2460"}],"title":"4.2.2. Adapter Selection"}],"url":"#dom-gpurequestadapteroptions-forcefallbackadapter"},
 "dom-gpurequestadapteroptions-powerpreference": {"dfnID":"dom-gpurequestadapteroptions-powerpreference","dfnText":"powerPreference","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gpurequestadapteroptions-powerpreference"}],"title":"4.2.2. Adapter Selection"}],"url":"#dom-gpurequestadapteroptions-powerpreference"},
 "dom-gpusampler-descriptor-slot": {"dfnID":"dom-gpusampler-descriptor-slot","dfnText":"[[descriptor]]","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gpusampler-descriptor-slot"},{"id":"ref-for-dom-gpusampler-descriptor-slot\u2460"}],"title":"7.1.2. Sampler Creation"}],"url":"#dom-gpusampler-descriptor-slot"},
@@ -25949,7 +25949,7 @@ let refsData = {
 "#dom-gpurenderpipelinedescriptor-multisample": {"export":true,"for_":["GPURenderPipelineDescriptor"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"multisample","type":"dict-member","url":"#dom-gpurenderpipelinedescriptor-multisample"},
 "#dom-gpurenderpipelinedescriptor-primitive": {"export":true,"for_":["GPURenderPipelineDescriptor"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"primitive","type":"dict-member","url":"#dom-gpurenderpipelinedescriptor-primitive"},
 "#dom-gpurenderpipelinedescriptor-vertex": {"export":true,"for_":["GPURenderPipelineDescriptor"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"vertex","type":"dict-member","url":"#dom-gpurenderpipelinedescriptor-vertex"},
-"#dom-gpurequestadapteroptions-featurelevel": {"export":true,"for_":["GPURequestAdapterOptions"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"featureLevel","type":"dict-member","url":"#dom-gpurequestadapteroptions-featurelevel"},
+"#dom-gpurequestadapteroptions-capabilitylevel": {"export":true,"for_":["GPURequestAdapterOptions"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"capabilityLevel","type":"dict-member","url":"#dom-gpurequestadapteroptions-capabilitylevel"},
 "#dom-gpurequestadapteroptions-forcefallbackadapter": {"export":true,"for_":["GPURequestAdapterOptions"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"forceFallbackAdapter","type":"dict-member","url":"#dom-gpurequestadapteroptions-forcefallbackadapter"},
 "#dom-gpurequestadapteroptions-powerpreference": {"export":true,"for_":["GPURequestAdapterOptions"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"powerPreference","type":"dict-member","url":"#dom-gpurequestadapteroptions-powerpreference"},
 "#dom-gpusampler-descriptor-slot": {"export":true,"for_":["GPUSampler"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"[[descriptor]]","type":"attribute","url":"#dom-gpusampler-descriptor-slot"},
