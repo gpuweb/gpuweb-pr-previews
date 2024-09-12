@@ -1117,7 +1117,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/85f6f4344c11324534e07c79251b354f2d5fb472/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/85f6f4344c11324534e07c79251b354f2d5fb472/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/5f1185f15888b4a7a8b46852f2a948128f861818/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/5f1185f15888b4a7a8b46852f2a948128f861818/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -18494,7 +18494,7 @@ then the produced sample mask has at least as many bits set to 1 as the mask for
    <h4 class="heading settled" data-level="23.2.10" id="per-sample-shading"><span class="secno">23.2.10. </span><span class="content">Per-Sample shading</span><a class="self-link" href="#per-sample-shading"></a></h4>
     <span id="sample-frequency-shading"></span> 
    <p>When rendering into multisampled render attachments, fragment shaders can be run once per-pixel or once per-sample.
-Fragment shaders are run once per-sample if either the <code>sample_index</code> <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#built-in-values" id="ref-for-built-in-values①⓪">builtin</a> or <code>sample</code> <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#interpolation-sampling" id="ref-for-interpolation-sampling①">interpolation sampling</a> is used and contributes to the shader output. Otherwise fragment shaders may run once per-pixel with the result
+Fragment shaders <strong>must</strong> run once per-sample if either the <code>sample_index</code> <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#built-in-values" id="ref-for-built-in-values①⓪">builtin</a> or <code>sample</code> <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#interpolation-sampling" id="ref-for-interpolation-sampling①">interpolation sampling</a> is used and contributes to the shader output. Otherwise fragment shaders <strong>may</strong> run once per-pixel with the result
 broadcast out to each of the samples included in the <a data-link-type="dfn" href="#final-sample-mask" id="ref-for-final-sample-mask">final sample mask</a>.</p>
    <p>When using per-sample shading, the color output for sample <var>N</var> is produced by the fragment shader execution
 with <code>sample_index</code> == <var>N</var> for the current pixel.</p>
