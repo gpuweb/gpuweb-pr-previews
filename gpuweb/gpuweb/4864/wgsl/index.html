@@ -834,7 +834,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/mehmetoguzderin/gpuweb/blob/ec79124a58576af6551bf648f91105ddc08de0e4/wgsl/index.bs">https://github.com/mehmetoguzderin/gpuweb/blob/ec79124a58576af6551bf648f91105ddc08de0e4/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/mehmetoguzderin/gpuweb/blob/200296787da43fb569df4e2fee6abf2f0a960935/wgsl/index.bs">https://github.com/mehmetoguzderin/gpuweb/blob/200296787da43fb569df4e2fee6abf2f0a960935/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -20284,9 +20284,9 @@ name with the value <var>v</var>.</p>
 <pre class="language-wgsl highlight"><c- k>fn</c-> <c- n>atomicAdd</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-><c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c->
 </pre>
    <p>Atomically performs an addition operation on the atomic object pointed to by <code>atomic_ptr</code> with the value <code>v</code>, and returns the original value stored in the atomic object before the operation.</p>
-   <div class="example wgsl global-scope no-marker" id="example-5845da18">
-    <a class="self-link" href="#example-5845da18"></a>
-    <div class="marker">EXAMPLE: Operation of `atomicAdd` as a function</div>
+   <div class="example wgsl global-scope no-marker" id="example-7f58aad4">
+    <a class="self-link" href="#example-7f58aad4"></a>
+    <div class="marker">EXAMPLE: Operation of atomic addition as a function</div>
 <pre class="highlight"><c- c1>// All operation performed atomically</c->
 <c- k>fn</c-> <c- n>atomicAdd</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-> <c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c-> <c- p>{</c->
   <c- a>let</c-> <c- n>old</c-> <c- o>=</c-> <c- o>*</c-><c- n>atomic_ptr</c-><c- p>;</c->
@@ -20299,9 +20299,9 @@ name with the value <var>v</var>.</p>
 <pre class="language-wgsl highlight"><c- k>fn</c-> <c- n>atomicSub</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-><c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c->
 </pre>
    <p>Atomically performs a subtraction operation on the atomic object pointed to by <code>atomic_ptr</code> with the value <code>v</code>, and returns the original value stored in the atomic object before the operation.</p>
-   <div class="example wgsl global-scope no-marker" id="example-1411629b">
-    <a class="self-link" href="#example-1411629b"></a>
-    <div class="marker">EXAMPLE: Operation of `atomicSub` as a function</div>
+   <div class="example wgsl global-scope no-marker" id="example-077af0cf">
+    <a class="self-link" href="#example-077af0cf"></a>
+    <div class="marker">EXAMPLE: Operation of atomic subtraction as a function</div>
 <pre class="highlight"><c- c1>// All operation performed atomically</c->
 <c- k>fn</c-> <c- n>atomicSub</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-> <c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c-> <c- p>{</c->
   <c- a>let</c-> <c- n>old</c-> <c- o>=</c-> <c- o>*</c-><c- n>atomic_ptr</c-><c- p>;</c->
@@ -20314,9 +20314,9 @@ name with the value <var>v</var>.</p>
 <pre class="language-wgsl highlight"><c- k>fn</c-> <c- n>atomicMax</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-><c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c->
 </pre>
    <p>Atomically performs a maximum operation on the atomic object pointed to by <code>atomic_ptr</code> with the value <code>v</code>, and returns the original value stored in the atomic object before the operation.</p>
-   <div class="example wgsl global-scope no-marker" id="example-ce2a51b6">
-    <a class="self-link" href="#example-ce2a51b6"></a>
-    <div class="marker">EXAMPLE: Operation of `atomicMax` as a function</div>
+   <div class="example wgsl global-scope no-marker" id="example-1d767b14">
+    <a class="self-link" href="#example-1d767b14"></a>
+    <div class="marker">EXAMPLE: Operation of atomic maximum as a function</div>
 <pre class="highlight"><c- c1>// All operation performed atomically</c->
 <c- k>fn</c-> <c- n>atomicMax</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-> <c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c-> <c- p>{</c->
   <c- a>let</c-> <c- n>old</c-> <c- o>=</c-> <c- o>*</c-><c- n>atomic_ptr</c-><c- p>;</c->
@@ -20329,9 +20329,9 @@ name with the value <var>v</var>.</p>
 <pre class="language-wgsl highlight"><c- k>fn</c-> <c- n>atomicMin</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-><c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c->
 </pre>
    <p>Atomically performs a minimum operation on the atomic object pointed to by <code>atomic_ptr</code> with the value <code>v</code>, and returns the original value stored in the atomic object before the operation.</p>
-   <div class="example wgsl global-scope no-marker" id="example-e1098e66">
-    <a class="self-link" href="#example-e1098e66"></a>
-    <div class="marker">EXAMPLE: Operation of `atomicMin` as a function</div>
+   <div class="example wgsl global-scope no-marker" id="example-ababf8aa">
+    <a class="self-link" href="#example-ababf8aa"></a>
+    <div class="marker">EXAMPLE: Operation of atomic minimum as a function</div>
 <pre class="highlight"><c- c1>// All operation performed atomically</c->
 <c- k>fn</c-> <c- n>atomicMin</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-> <c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c-> <c- p>{</c->
   <c- a>let</c-> <c- n>old</c-> <c- o>=</c-> <c- o>*</c-><c- n>atomic_ptr</c-><c- p>;</c->
@@ -20344,9 +20344,9 @@ name with the value <var>v</var>.</p>
 <pre class="language-wgsl highlight"><c- k>fn</c-> <c- n>atomicAnd</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-><c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c->
 </pre>
    <p>Atomically performs a bitwise AND operation on the atomic object pointed to by <code>atomic_ptr</code> with the value <code>v</code>, and returns the original value stored in the atomic object before the operation.</p>
-   <div class="example wgsl global-scope no-marker" id="example-58df0482">
-    <a class="self-link" href="#example-58df0482"></a>
-    <div class="marker">EXAMPLE: Operation of `atomicAnd` as a function</div>
+   <div class="example wgsl global-scope no-marker" id="example-529bd084">
+    <a class="self-link" href="#example-529bd084"></a>
+    <div class="marker">EXAMPLE: Operation of atomic bitwise and as a function</div>
 <pre class="highlight"><c- c1>// All operation performed atomically</c->
 <c- k>fn</c-> <c- n>atomicAnd</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-> <c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c-> <c- p>{</c->
   <c- a>let</c-> <c- n>old</c-> <c- o>=</c-> <c- o>*</c-><c- n>atomic_ptr</c-><c- p>;</c->
@@ -20359,9 +20359,9 @@ name with the value <var>v</var>.</p>
 <pre class="language-wgsl highlight"><c- k>fn</c-> <c- n>atomicOr</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-><c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c->
 </pre>
    <p>Atomically performs a bitwise OR operation on the atomic object pointed to by <code>atomic_ptr</code> with the value <code>v</code>, and returns the original value stored in the atomic object before the operation.</p>
-   <div class="example wgsl global-scope no-marker" id="example-c7b656d5">
-    <a class="self-link" href="#example-c7b656d5"></a>
-    <div class="marker">EXAMPLE: Operation of `atomicOr` as a function</div>
+   <div class="example wgsl global-scope no-marker" id="example-70b33e13">
+    <a class="self-link" href="#example-70b33e13"></a>
+    <div class="marker">EXAMPLE: Operation of atomic bitwise or as a function</div>
 <pre class="highlight"><c- c1>// All operation performed atomically</c->
 <c- k>fn</c-> <c- n>atomicOr</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-> <c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c-> <c- p>{</c->
   <c- a>let</c-> <c- n>old</c-> <c- o>=</c-> <c- o>*</c-><c- n>atomic_ptr</c-><c- p>;</c->
@@ -20374,9 +20374,9 @@ name with the value <var>v</var>.</p>
 <pre class="language-wgsl highlight"><c- k>fn</c-> <c- n>atomicXor</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-><c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c->
 </pre>
    <p>Atomically performs a bitwise XOR operation on the atomic object pointed to by <code>atomic_ptr</code> with the value <code>v</code>, and returns the original value stored in the atomic object before the operation.</p>
-   <div class="example wgsl global-scope no-marker" id="example-5b3f508c">
-    <a class="self-link" href="#example-5b3f508c"></a>
-    <div class="marker">EXAMPLE: Operation of `atomicXor` as a function</div>
+   <div class="example wgsl global-scope no-marker" id="example-1ac7a3f6">
+    <a class="self-link" href="#example-1ac7a3f6"></a>
+    <div class="marker">EXAMPLE: Operation of atomic bitwise xor as a function</div>
 <pre class="highlight"><c- c1>// All operation performed atomically</c->
 <c- k>fn</c-> <c- n>atomicXor</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-> <c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c-> <c- p>{</c->
   <c- a>let</c-> <c- n>old</c-> <c- o>=</c-> <c- o>*</c-><c- n>atomic_ptr</c-><c- p>;</c->
@@ -20389,9 +20389,9 @@ name with the value <var>v</var>.</p>
 <pre class="language-wgsl highlight"><c- k>fn</c-> <c- n>atomicExchange</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-><c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c->
 </pre>
    <p>Atomically stores the value <code>v</code> in the atomic object pointed to by <code>atomic_ptr</code> and returns the original value stored in the atomic object before the operation.</p>
-   <div class="example wgsl global-scope no-marker" id="example-875790a8">
-    <a class="self-link" href="#example-875790a8"></a>
-    <div class="marker">EXAMPLE: Operation of `atomicExchange` as a function</div>
+   <div class="example wgsl global-scope no-marker" id="example-832d10c1">
+    <a class="self-link" href="#example-832d10c1"></a>
+    <div class="marker">EXAMPLE: Operation of atomic exchange as a function</div>
 <pre class="highlight"><c- c1>// All operation performed atomically</c->
 <c- k>fn</c-> <c- n>atomicExchange</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-> <c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c-> <c- p>{</c->
   <c- a>let</c-> <c- n>old</c-> <c- o>=</c-> <c- o>*</c-><c- n>atomic_ptr</c-><c- p>;</c->
@@ -20399,7 +20399,8 @@ name with the value <var>v</var>.</p>
   <c- k>return</c-> <c- n>old</c-><c- p>;</c->
 <c- p>}</c->
 </pre>
-    <h4 class="heading settled" data-level="16.8.5" id="atomic-compare-exchange-weak"><span class="secno">16.8.5. </span><span class="content"><code>atomicCompareExchangeWeak</code></span><a class="self-link" href="#atomic-compare-exchange-weak"></a></h4>
+   </div>
+   <h4 class="heading settled" data-level="16.8.5" id="atomic-compare-exchange-weak"><span class="secno">16.8.5. </span><span class="content"><code>atomicCompareExchangeWeak</code></span><a class="self-link" href="#atomic-compare-exchange-weak"></a></h4>
 <pre class="language-wgsl highlight"><c- k>fn</c-> <c- n>atomicCompareExchangeWeak</c-><c- p>(</c->
       <c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c->
       <c- n>cmp</c-><c- p>:</c-> <c- n>T</c-><c- p>,</c->
@@ -20410,22 +20411,22 @@ name with the value <var>v</var>.</p>
   <c- n>exchanged</c-> <c- p>:</c-> bool<c- p>;</c-> <c- c1>// true if the exchange was done</c->
 <c- p>}</c->
 </pre>
-    <p class="note" role="note"><span class="marker">Note:</span> A value cannot be explicitly declared with the type <code>__atomic_compare_exchange_result</code>, but a value may infer the type.</p>
-    <p>Performs the following steps atomically:</p>
-    <ol>
-     <li data-md>
-      <p>Load the original value pointed to by <code>atomic_ptr</code>.</p>
-     <li data-md>
-      <p>Compare the original value to the value <code>cmp</code> using an equality operation.</p>
-     <li data-md>
-      <p>Store the value <code>v</code> <code>only if</code> the result of the equality comparison was <code>true</code>.</p>
-    </ol>
-    <p>Returns a two member structure, where the first member, <code>old_value</code>, is the
+   <p class="note" role="note"><span class="marker">Note:</span> A value cannot be explicitly declared with the type <code>__atomic_compare_exchange_result</code>, but a value may infer the type.</p>
+   <p>Performs the following steps atomically:</p>
+   <ol>
+    <li data-md>
+     <p>Load the original value pointed to by <code>atomic_ptr</code>.</p>
+    <li data-md>
+     <p>Compare the original value to the value <code>cmp</code> using an equality operation.</p>
+    <li data-md>
+     <p>Store the value <code>v</code> <code>only if</code> the result of the equality comparison was <code>true</code>.</p>
+   </ol>
+   <p>Returns a two member structure, where the first member, <code>old_value</code>, is the
 original value of the atomic object before the operation and the second member, <code>exchanged</code>, is
 whether or not the comparison succeeded.</p>
-    <div class="example wgsl global-scope no-marker" id="example-bdd95deb">
-     <a class="self-link" href="#example-bdd95deb"></a>
-     <div class="marker">EXAMPLE: Operation of `atomicCompareExchangeWeak` as a function</div>
+   <div class="example wgsl global-scope no-marker" id="example-ac32a7db">
+    <a class="self-link" href="#example-ac32a7db"></a>
+    <div class="marker">EXAMPLE: Operation of atomic compare exchange as a function</div>
 <pre class="highlight"><c- c1>// All operation performed atomically</c->
 <c- k>fn</c-> <c- n>atomicCompareExchangeWeak</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>cmp</c-> <c- p>:</c-> <c- n>T</c-><c- p>,</c-> <c- n>v</c-> <c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c->
   <c- n>_atomic_compare_exchange_result</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-> <c- p>{</c->
@@ -20438,285 +20439,285 @@ whether or not the comparison succeeded.</p>
   <c- k>return</c-> <c- n>_atomic_compare_exchange_result</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>(</c-><c- n>old</c-><c- p>,</c-> <c- n>comparison</c-><c- p>);</c->  
 <c- p>}</c->
 </pre>
-    </div>
-    <p class="note" role="note"><span class="marker">Note:</span> The equality comparison may spuriously fail on some implementations. That
+   </div>
+   <p class="note" role="note"><span class="marker">Note:</span> The equality comparison may spuriously fail on some implementations. That
 is, the second component of the result vector may be <code>false</code> even if the first
 component of the result vector equals <code>cmp</code>.</p>
-    <h3 class="heading settled" data-level="16.9" id="pack-builtin-functions"><span class="secno">16.9. </span><span class="content">Data Packing Built-in Functions</span><a class="self-link" href="#pack-builtin-functions"></a></h3>
-    <p>Data packing builtin functions can be used to encode values using data formats that
+   <h3 class="heading settled" data-level="16.9" id="pack-builtin-functions"><span class="secno">16.9. </span><span class="content">Data Packing Built-in Functions</span><a class="self-link" href="#pack-builtin-functions"></a></h3>
+   <p>Data packing builtin functions can be used to encode values using data formats that
 do not correspond directly to types in WGSL.
 This enables a program to write many densely packed values to memory, which can
 reduce a shader’s memory bandwidth demand.</p>
-    <p>Each builtin applies the <em>inverse</em> of a <a data-link-type="dfn" href="#channel-transfer-function" id="ref-for-channel-transfer-function②">channel transfer function</a> to several input values, then combines
+   <p>Each builtin applies the <em>inverse</em> of a <a data-link-type="dfn" href="#channel-transfer-function" id="ref-for-channel-transfer-function②">channel transfer function</a> to several input values, then combines
 their results into a single output value.</p>
-    <p class="note" role="note"><span class="marker">Note:</span> For packing unorm values, the normalized floating point values are in the interval [0.0, 1.0].</p>
-    <p class="note" role="note"><span class="marker">Note:</span> For packing snorm values, the normalized floating point values are in the interval [-1.0, 1.0].</p>
-    <h4 class="heading settled" data-level="16.9.1" id="pack4x8snorm-builtin"><span class="secno">16.9.1. </span><span class="content"><code>pack4x8snorm</code></span><a class="self-link" href="#pack4x8snorm-builtin"></a></h4>
-    <table class="data builtin">
-     <tbody>
-      <tr class="algorithm" data-algorithm="packing 4x8snorm">
-       <td style="width:10%">Overload 
-       <td class="nowrap">
+   <p class="note" role="note"><span class="marker">Note:</span> For packing unorm values, the normalized floating point values are in the interval [0.0, 1.0].</p>
+   <p class="note" role="note"><span class="marker">Note:</span> For packing snorm values, the normalized floating point values are in the interval [-1.0, 1.0].</p>
+   <h4 class="heading settled" data-level="16.9.1" id="pack4x8snorm-builtin"><span class="secno">16.9.1. </span><span class="content"><code>pack4x8snorm</code></span><a class="self-link" href="#pack4x8snorm-builtin"></a></h4>
+   <table class="data builtin">
+    <tbody>
+     <tr class="algorithm" data-algorithm="packing 4x8snorm">
+      <td style="width:10%">Overload 
+      <td class="nowrap">
 <pre class="highlight"><c- nd>@const</c-> <c- nd>@must_use</c-> <c- k>fn</c-> <c- n>pack4x8snorm</c-><c- p>(</c-><c- n>e</c-><c- p>:</c-> vec4<c- o>&lt;</c->f32<c- o>></c-><c- p>)</c-> <c- p>-></c-> u32
 </pre>
-      <tr>
-       <td>Description 
-       <td>
-        Converts four normalized floating point values to 8-bit signed integers, and then combines them
+     <tr>
+      <td>Description 
+      <td>
+       Converts four normalized floating point values to 8-bit signed integers, and then combines them
         into one <code>u32</code> value. 
-        <p>Component <code>e[i]</code> of the input is converted to an 8-bit twos complement integer value
+       <p>Component <code>e[i]</code> of the input is converted to an 8-bit twos complement integer value
         ⌊ 0.5 + 127 × min(1, max(-1, e[i])) ⌋ which is then placed in bits
         8 × <code>i</code> through
         8 × <code>i</code> + 7 of the result.</p>
-    </table>
-    <h4 class="heading settled" data-level="16.9.2" id="pack4x8unorm-builtin"><span class="secno">16.9.2. </span><span class="content"><code>pack4x8unorm</code></span><a class="self-link" href="#pack4x8unorm-builtin"></a></h4>
-    <table class="data builtin">
-     <tbody>
-      <tr class="algorithm" data-algorithm="packing 4x8unorm">
-       <td style="width:10%">Overload 
-       <td class="nowrap">
+   </table>
+   <h4 class="heading settled" data-level="16.9.2" id="pack4x8unorm-builtin"><span class="secno">16.9.2. </span><span class="content"><code>pack4x8unorm</code></span><a class="self-link" href="#pack4x8unorm-builtin"></a></h4>
+   <table class="data builtin">
+    <tbody>
+     <tr class="algorithm" data-algorithm="packing 4x8unorm">
+      <td style="width:10%">Overload 
+      <td class="nowrap">
 <pre class="highlight"><c- nd>@const</c-> <c- nd>@must_use</c-> <c- k>fn</c-> <c- n>pack4x8unorm</c-><c- p>(</c-><c- n>e</c-><c- p>:</c-> vec4<c- o>&lt;</c->f32<c- o>></c-><c- p>)</c-> <c- p>-></c-> u32
 </pre>
-      <tr>
-       <td>Description 
-       <td>
-        Converts four normalized floating point values to 8-bit unsigned integers, and then combines them
+     <tr>
+      <td>Description 
+      <td>
+       Converts four normalized floating point values to 8-bit unsigned integers, and then combines them
         into one <code>u32</code> value. 
-        <p>Component <code>e[i]</code> of the input is converted to an 8-bit unsigned integer value
+       <p>Component <code>e[i]</code> of the input is converted to an 8-bit unsigned integer value
         ⌊ 0.5 + 255 × min(1, max(0, e[i])) ⌋ which is then placed in bits
         8 × <code>i</code> through
         8 × <code>i</code> + 7 of the result.</p>
-    </table>
-    <h4 class="heading settled" data-level="16.9.3" id="pack4xI8-builtin"><span class="secno">16.9.3. </span><span class="content"><code>pack4xI8</code></span><a class="self-link" href="#pack4xI8-builtin"></a></h4>
-    <table class="data builtin">
-     <tbody>
-      <tr class="algorithm" data-algorithm="packing 4xI8">
-       <td style="width:10%">Overload 
-       <td class="nowrap">
+   </table>
+   <h4 class="heading settled" data-level="16.9.3" id="pack4xI8-builtin"><span class="secno">16.9.3. </span><span class="content"><code>pack4xI8</code></span><a class="self-link" href="#pack4xI8-builtin"></a></h4>
+   <table class="data builtin">
+    <tbody>
+     <tr class="algorithm" data-algorithm="packing 4xI8">
+      <td style="width:10%">Overload 
+      <td class="nowrap">
 <pre class="highlight"><c- nd>@const</c-> <c- nd>@must_use</c-> <c- k>fn</c-> <c- n>pack4xI8</c-><c- p>(</c-><c- n>e</c-><c- p>:</c-> vec4<c- o>&lt;</c->i32<c- o>></c-><c- p>)</c-> <c- p>-></c-> u32
 </pre>
-      <tr>
-       <td>Description 
-       <td>
-        Pack the lower 8 bits of each component of <code>e</code> into a <a data-link-type="dfn" href="#u32" id="ref-for-u32①③③">u32</a> value and drop all the unused bits. 
-        <p>Component <code>e[i]</code> of the input is mapped to bits
+     <tr>
+      <td>Description 
+      <td>
+       Pack the lower 8 bits of each component of <code>e</code> into a <a data-link-type="dfn" href="#u32" id="ref-for-u32①③③">u32</a> value and drop all the unused bits. 
+       <p>Component <code>e[i]</code> of the input is mapped to bits
         8 × <code>i</code> through
         8 × <code>i</code> + 7 of the result.</p>
-    </table>
-    <h4 class="heading settled" data-level="16.9.4" id="pack4xU8-builtin"><span class="secno">16.9.4. </span><span class="content"><code>pack4xU8</code></span><a class="self-link" href="#pack4xU8-builtin"></a></h4>
-    <table class="data builtin">
-     <tbody>
-      <tr class="algorithm" data-algorithm="packing 4xU8">
-       <td style="width:10%">Overload 
-       <td class="nowrap">
+   </table>
+   <h4 class="heading settled" data-level="16.9.4" id="pack4xU8-builtin"><span class="secno">16.9.4. </span><span class="content"><code>pack4xU8</code></span><a class="self-link" href="#pack4xU8-builtin"></a></h4>
+   <table class="data builtin">
+    <tbody>
+     <tr class="algorithm" data-algorithm="packing 4xU8">
+      <td style="width:10%">Overload 
+      <td class="nowrap">
 <pre class="highlight"><c- nd>@const</c-> <c- nd>@must_use</c-> <c- k>fn</c-> <c- n>pack4xU8</c-><c- p>(</c-><c- n>e</c-><c- p>:</c-> vec4<c- o>&lt;</c->u32<c- o>></c-><c- p>)</c-> <c- p>-></c-> u32
 </pre>
-      <tr>
-       <td>Description 
-       <td>
-        Pack the lower 8 bits of each component of <code>e</code> into a <a data-link-type="dfn" href="#u32" id="ref-for-u32①③④">u32</a> value and drop all the unused bits. 
-        <p>Component <code>e[i]</code> of the input is mapped to bits
+     <tr>
+      <td>Description 
+      <td>
+       Pack the lower 8 bits of each component of <code>e</code> into a <a data-link-type="dfn" href="#u32" id="ref-for-u32①③④">u32</a> value and drop all the unused bits. 
+       <p>Component <code>e[i]</code> of the input is mapped to bits
         8 × <code>i</code> through
         8 × <code>i</code> + 7 of the result.</p>
-    </table>
-    <h4 class="heading settled" data-level="16.9.5" id="pack4xI8Clamp-builtin"><span class="secno">16.9.5. </span><span class="content"><code>pack4xI8Clamp</code></span><a class="self-link" href="#pack4xI8Clamp-builtin"></a></h4>
-    <table class="data builtin">
-     <tbody>
-      <tr class="algorithm" data-algorithm="packing 4xI8Clamp">
-       <td style="width:10%">Overload 
-       <td class="nowrap">
+   </table>
+   <h4 class="heading settled" data-level="16.9.5" id="pack4xI8Clamp-builtin"><span class="secno">16.9.5. </span><span class="content"><code>pack4xI8Clamp</code></span><a class="self-link" href="#pack4xI8Clamp-builtin"></a></h4>
+   <table class="data builtin">
+    <tbody>
+     <tr class="algorithm" data-algorithm="packing 4xI8Clamp">
+      <td style="width:10%">Overload 
+      <td class="nowrap">
 <pre class="highlight"><c- nd>@const</c-> <c- nd>@must_use</c-> <c- k>fn</c-> <c- n>pack4xI8Clamp</c-><c- p>(</c-><c- n>e</c-><c- p>:</c-> vec4<c- o>&lt;</c->i32<c- o>></c-><c- p>)</c-> <c- p>-></c-> u32
 </pre>
-      <tr>
-       <td>Description 
-       <td>
-        Clamp each component of <code>e</code> in the range [-128, 127] and then pack the lower 8 bits of each
+     <tr>
+      <td>Description 
+      <td>
+       Clamp each component of <code>e</code> in the range [-128, 127] and then pack the lower 8 bits of each
         component into a <a data-link-type="dfn" href="#u32" id="ref-for-u32①③⑤">u32</a> value. 
-        <p>Component <code>e[i]</code> of the input is mapped to bits
+       <p>Component <code>e[i]</code> of the input is mapped to bits
         8 × <code>i</code> through
         8 × <code>i</code> + 7 of the result.</p>
-    </table>
-    <h4 class="heading settled" data-level="16.9.6" id="pack4xU8Clamp-builtin"><span class="secno">16.9.6. </span><span class="content"><code>pack4xU8Clamp</code></span><a class="self-link" href="#pack4xU8Clamp-builtin"></a></h4>
-    <table class="data builtin">
-     <tbody>
-      <tr class="algorithm" data-algorithm="packing 4xU8Clamp">
-       <td style="width:10%">Overload 
-       <td class="nowrap">
+   </table>
+   <h4 class="heading settled" data-level="16.9.6" id="pack4xU8Clamp-builtin"><span class="secno">16.9.6. </span><span class="content"><code>pack4xU8Clamp</code></span><a class="self-link" href="#pack4xU8Clamp-builtin"></a></h4>
+   <table class="data builtin">
+    <tbody>
+     <tr class="algorithm" data-algorithm="packing 4xU8Clamp">
+      <td style="width:10%">Overload 
+      <td class="nowrap">
 <pre class="highlight"><c- nd>@const</c-> <c- nd>@must_use</c-> <c- k>fn</c-> <c- n>pack4xU8Clamp</c-><c- p>(</c-><c- n>e</c-><c- p>:</c-> vec4<c- o>&lt;</c->u32<c- o>></c-><c- p>)</c-> <c- p>-></c-> u32
 </pre>
-      <tr>
-       <td>Description 
-       <td>
-        Clamp each component of <code>e</code> in the range of [0, 255] and then pack the lower 8 bits of each
+     <tr>
+      <td>Description 
+      <td>
+       Clamp each component of <code>e</code> in the range of [0, 255] and then pack the lower 8 bits of each
         component into a <a data-link-type="dfn" href="#u32" id="ref-for-u32①③⑥">u32</a> value. 
-        <p>Component <code>e[i]</code> of the input is mapped to bits
+       <p>Component <code>e[i]</code> of the input is mapped to bits
         8 × <code>i</code> through
         8 × <code>i</code> + 7 of the result.</p>
-    </table>
-    <h4 class="heading settled" data-level="16.9.7" id="pack2x16snorm-builtin"><span class="secno">16.9.7. </span><span class="content"><code>pack2x16snorm</code></span><a class="self-link" href="#pack2x16snorm-builtin"></a></h4>
-    <table class="data builtin">
-     <tbody>
-      <tr class="algorithm" data-algorithm="packing 2x16snorm">
-       <td style="width:10%">Overload 
-       <td class="nowrap">
+   </table>
+   <h4 class="heading settled" data-level="16.9.7" id="pack2x16snorm-builtin"><span class="secno">16.9.7. </span><span class="content"><code>pack2x16snorm</code></span><a class="self-link" href="#pack2x16snorm-builtin"></a></h4>
+   <table class="data builtin">
+    <tbody>
+     <tr class="algorithm" data-algorithm="packing 2x16snorm">
+      <td style="width:10%">Overload 
+      <td class="nowrap">
 <pre class="highlight"><c- nd>@const</c-> <c- nd>@must_use</c-> <c- k>fn</c-> <c- n>pack2x16snorm</c-><c- p>(</c-><c- n>e</c-><c- p>:</c-> vec2<c- o>&lt;</c->f32<c- o>></c-><c- p>)</c-> <c- p>-></c-> u32
 </pre>
-      <tr>
-       <td>Description 
-       <td>Converts two normalized floating point values to 16-bit signed integers, and then combines them
+     <tr>
+      <td>Description 
+      <td>Converts two normalized floating point values to 16-bit signed integers, and then combines them
         into one <code>u32</code> value.<br> Component <code>e[i]</code> of the input is converted to a 16-bit twos complement integer value
         ⌊ 0.5 + 32767 × min(1, max(-1, e[i])) ⌋ which is then placed in bits
         16 × <code>i</code> through
         16 × <code>i</code> + 15 of the result. 
-    </table>
-    <h4 class="heading settled" data-level="16.9.8" id="pack2x16unorm-builtin"><span class="secno">16.9.8. </span><span class="content"><code>pack2x16unorm</code></span><a class="self-link" href="#pack2x16unorm-builtin"></a></h4>
-    <table class="data builtin">
-     <tbody>
-      <tr class="algorithm" data-algorithm="packing 2x16unorm">
-       <td style="width:10%">Overload 
-       <td class="nowrap">
+   </table>
+   <h4 class="heading settled" data-level="16.9.8" id="pack2x16unorm-builtin"><span class="secno">16.9.8. </span><span class="content"><code>pack2x16unorm</code></span><a class="self-link" href="#pack2x16unorm-builtin"></a></h4>
+   <table class="data builtin">
+    <tbody>
+     <tr class="algorithm" data-algorithm="packing 2x16unorm">
+      <td style="width:10%">Overload 
+      <td class="nowrap">
 <pre class="highlight"><c- nd>@const</c-> <c- nd>@must_use</c-> <c- k>fn</c-> <c- n>pack2x16unorm</c-><c- p>(</c-><c- n>e</c-><c- p>:</c-> vec2<c- o>&lt;</c->f32<c- o>></c-><c- p>)</c-> <c- p>-></c-> u32
 </pre>
-      <tr>
-       <td>Description 
-       <td>Converts two normalized floating point values to 16-bit unsigned integers, and then combines them
+     <tr>
+      <td>Description 
+      <td>Converts two normalized floating point values to 16-bit unsigned integers, and then combines them
         into one <code>u32</code> value.<br> Component <code>e[i]</code> of the input is converted to a 16-bit unsigned integer value
         ⌊ 0.5 + 65535 × min(1, max(0, e[i])) ⌋ which is then placed in bits
         16 × <code>i</code> through
         16 × <code>i</code> + 15 of the result. 
-    </table>
-    <h4 class="heading settled" data-level="16.9.9" id="pack2x16float-builtin"><span class="secno">16.9.9. </span><span class="content"><code>pack2x16float</code></span><a class="self-link" href="#pack2x16float-builtin"></a></h4>
-    <table class="data builtin">
-     <tbody>
-      <tr class="algorithm" data-algorithm="packing 2x16float">
-       <td style="width:10%">Overload 
-       <td class="nowrap">
+   </table>
+   <h4 class="heading settled" data-level="16.9.9" id="pack2x16float-builtin"><span class="secno">16.9.9. </span><span class="content"><code>pack2x16float</code></span><a class="self-link" href="#pack2x16float-builtin"></a></h4>
+   <table class="data builtin">
+    <tbody>
+     <tr class="algorithm" data-algorithm="packing 2x16float">
+      <td style="width:10%">Overload 
+      <td class="nowrap">
 <pre class="highlight"><c- nd>@const</c-> <c- nd>@must_use</c-> <c- k>fn</c-> <c- n>pack2x16float</c-><c- p>(</c-><c- n>e</c-><c- p>:</c-> vec2<c- o>&lt;</c->f32<c- o>></c-><c- p>)</c-> <c- p>-></c-> u32
 </pre>
-      <tr>
-       <td>Description 
-       <td>
-        Converts two floating point values to half-precision floating point numbers, and then combines
+     <tr>
+      <td>Description 
+      <td>
+       Converts two floating point values to half-precision floating point numbers, and then combines
         them into one <code>u32</code> value.<br> Component <code>e[i]</code> of the input is converted to a <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> <a data-link-type="dfn" href="#ieee754-binary16" id="ref-for-ieee754-binary16⑤">binary16</a> value, which is then
         placed in bits
         16 × <code>i</code> through
         16 × <code>i</code> + 15 of the result.
         See <a href="#floating-point-conversion">§ 14.6.6 Floating Point Conversion</a>. 
-        <p>If either <code>e[0]</code> or <code>e[1]</code> is outside the finite range of binary16 then:</p>
-        <ul>
-         <li data-md>
-          <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑧①">shader-creation error</a> if <code>e</code> is a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑧⓪">const-expression</a>.</p>
-         <li data-md>
-          <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error③⑧">pipeline-creation error</a> if <code>e</code> is an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions④⑤">override-expression</a>.</p>
-         <li data-md>
-          <p>Otherwise the result is an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②⑦">indeterminate value</a> for u32.</p>
-        </ul>
-    </table>
-    <h3 class="heading settled" data-level="16.10" id="unpack-builtin-functions"><span class="secno">16.10. </span><span class="content">Data Unpacking Built-in Functions</span><a class="self-link" href="#unpack-builtin-functions"></a></h3>
-    <p>Data unpacking builtin functions can be used to decode values in
+       <p>If either <code>e[0]</code> or <code>e[1]</code> is outside the finite range of binary16 then:</p>
+       <ul>
+        <li data-md>
+         <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑧①">shader-creation error</a> if <code>e</code> is a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑧⓪">const-expression</a>.</p>
+        <li data-md>
+         <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error③⑧">pipeline-creation error</a> if <code>e</code> is an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions④⑤">override-expression</a>.</p>
+        <li data-md>
+         <p>Otherwise the result is an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②⑦">indeterminate value</a> for u32.</p>
+       </ul>
+   </table>
+   <h3 class="heading settled" data-level="16.10" id="unpack-builtin-functions"><span class="secno">16.10. </span><span class="content">Data Unpacking Built-in Functions</span><a class="self-link" href="#unpack-builtin-functions"></a></h3>
+   <p>Data unpacking builtin functions can be used to decode values in
 data formats that do not correspond directly to types in WGSL.
 This enables a program to read many densely packed values from memory, which can
 reduce a shader’s memory bandwidth demand.</p>
-    <p>Each builtin breaks up an input value into channels, then applies a <a data-link-type="dfn" href="#channel-transfer-function" id="ref-for-channel-transfer-function③">channel transfer function</a> to each.</p>
-    <p class="note" role="note"><span class="marker">Note:</span> For unpacking unorm values, the normalized floating point result is in the interval [0.0, 1.0].</p>
-    <p class="note" role="note"><span class="marker">Note:</span> For unpacking snorm values, the normalized floating point result is in the interval [-1.0, 1.0].</p>
-    <h4 class="heading settled" data-level="16.10.1" id="unpack4x8snorm-builtin"><span class="secno">16.10.1. </span><span class="content"><code>unpack4x8snorm</code></span><a class="self-link" href="#unpack4x8snorm-builtin"></a></h4>
-    <table class="data builtin">
-     <tbody>
-      <tr class="algorithm" data-algorithm="unpacking 4x8snorm">
-       <td style="width:10%">Overload 
-       <td class="nowrap">
+   <p>Each builtin breaks up an input value into channels, then applies a <a data-link-type="dfn" href="#channel-transfer-function" id="ref-for-channel-transfer-function③">channel transfer function</a> to each.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> For unpacking unorm values, the normalized floating point result is in the interval [0.0, 1.0].</p>
+   <p class="note" role="note"><span class="marker">Note:</span> For unpacking snorm values, the normalized floating point result is in the interval [-1.0, 1.0].</p>
+   <h4 class="heading settled" data-level="16.10.1" id="unpack4x8snorm-builtin"><span class="secno">16.10.1. </span><span class="content"><code>unpack4x8snorm</code></span><a class="self-link" href="#unpack4x8snorm-builtin"></a></h4>
+   <table class="data builtin">
+    <tbody>
+     <tr class="algorithm" data-algorithm="unpacking 4x8snorm">
+      <td style="width:10%">Overload 
+      <td class="nowrap">
 <pre class="highlight"><c- nd>@const</c-> <c- nd>@must_use</c-> <c- k>fn</c-> <c- n>unpack4x8snorm</c-><c- p>(</c-><c- n>e</c-><c- p>:</c-> u32<c- p>)</c-> <c- p>-></c-> vec4<c- o>&lt;</c->f32<c- o>></c->
 </pre>
-      <tr>
-       <td>Description 
-       <td>Decomposes a 32-bit value into four 8-bit chunks, then reinterprets
+     <tr>
+      <td>Description 
+      <td>Decomposes a 32-bit value into four 8-bit chunks, then reinterprets
         each chunk as a signed normalized floating point value.<br> Component <code>i</code> of the result is max(v ÷ 127, -1), where <code>v</code> is the interpretation of
         bits 8×<code>i</code> through 8×<code>i + 7</code> of <code>e</code> as a twos-complement signed integer. 
-    </table>
-    <h4 class="heading settled" data-level="16.10.2" id="unpack4x8unorm-builtin"><span class="secno">16.10.2. </span><span class="content"><code>unpack4x8unorm</code></span><a class="self-link" href="#unpack4x8unorm-builtin"></a></h4>
-    <table class="data builtin">
-     <tbody>
-      <tr class="algorithm" data-algorithm="unpacking 4x8unorm">
-       <td style="width:10%">Overload 
-       <td class="nowrap">
+   </table>
+   <h4 class="heading settled" data-level="16.10.2" id="unpack4x8unorm-builtin"><span class="secno">16.10.2. </span><span class="content"><code>unpack4x8unorm</code></span><a class="self-link" href="#unpack4x8unorm-builtin"></a></h4>
+   <table class="data builtin">
+    <tbody>
+     <tr class="algorithm" data-algorithm="unpacking 4x8unorm">
+      <td style="width:10%">Overload 
+      <td class="nowrap">
 <pre class="highlight"><c- nd>@const</c-> <c- nd>@must_use</c-> <c- k>fn</c-> <c- n>unpack4x8unorm</c-><c- p>(</c-><c- n>e</c-><c- p>:</c-> u32<c- p>)</c-> <c- p>-></c-> vec4<c- o>&lt;</c->f32<c- o>></c->
 </pre>
-      <tr>
-       <td>Description 
-       <td>Decomposes a 32-bit value into four 8-bit chunks, then reinterprets
+     <tr>
+      <td>Description 
+      <td>Decomposes a 32-bit value into four 8-bit chunks, then reinterprets
         each chunk as an unsigned normalized floating point value.<br> Component <code>i</code> of the result is <code>v</code> ÷ 255, where <code>v</code> is the interpretation of
         bits 8×<code>i</code> through 8×<code>i + 7</code> of <code>e</code> as an unsigned integer. 
-    </table>
-    <h4 class="heading settled" data-level="16.10.3" id="unpack4xI8-builtin"><span class="secno">16.10.3. </span><span class="content"><code>unpack4xI8</code></span><a class="self-link" href="#unpack4xI8-builtin"></a></h4>
-    <table class="data builtin">
-     <tbody>
-      <tr class="algorithm" data-algorithm="unpacking 4xI8">
-       <td style="width:10%">Overload 
-       <td class="nowrap">
+   </table>
+   <h4 class="heading settled" data-level="16.10.3" id="unpack4xI8-builtin"><span class="secno">16.10.3. </span><span class="content"><code>unpack4xI8</code></span><a class="self-link" href="#unpack4xI8-builtin"></a></h4>
+   <table class="data builtin">
+    <tbody>
+     <tr class="algorithm" data-algorithm="unpacking 4xI8">
+      <td style="width:10%">Overload 
+      <td class="nowrap">
 <pre class="highlight"><c- nd>@const</c-> <c- nd>@must_use</c-> <c- k>fn</c-> <c- n>unpack4xI8</c-><c- p>(</c-><c- n>e</c-><c- p>:</c-> u32<c- p>)</c-> <c- p>-></c-> vec4<c- o>&lt;</c->i32<c- o>></c->
 </pre>
-      <tr>
-       <td>Description 
-       <td><code>e</code> is interpreted as a vector with four 8-bit signed integer components. Unpack <code>e</code> into a vec4&lt;i32> with sign extension. 
-    </table>
-    <h4 class="heading settled" data-level="16.10.4" id="unpack4xU8-builtin"><span class="secno">16.10.4. </span><span class="content"><code>unpack4xU8</code></span><a class="self-link" href="#unpack4xU8-builtin"></a></h4>
-    <table class="data builtin">
-     <tbody>
-      <tr class="algorithm" data-algorithm="unpacking 4xU8">
-       <td style="width:10%">Overload 
-       <td class="nowrap">
+     <tr>
+      <td>Description 
+      <td><code>e</code> is interpreted as a vector with four 8-bit signed integer components. Unpack <code>e</code> into a vec4&lt;i32> with sign extension. 
+   </table>
+   <h4 class="heading settled" data-level="16.10.4" id="unpack4xU8-builtin"><span class="secno">16.10.4. </span><span class="content"><code>unpack4xU8</code></span><a class="self-link" href="#unpack4xU8-builtin"></a></h4>
+   <table class="data builtin">
+    <tbody>
+     <tr class="algorithm" data-algorithm="unpacking 4xU8">
+      <td style="width:10%">Overload 
+      <td class="nowrap">
 <pre class="highlight"><c- nd>@const</c-> <c- nd>@must_use</c-> <c- k>fn</c-> <c- n>unpack4xU8</c-><c- p>(</c-><c- n>e</c-><c- p>:</c-> u32<c- p>)</c-> <c- p>-></c-> vec4<c- o>&lt;</c->u32<c- o>></c->
 </pre>
-      <tr>
-       <td>Description 
-       <td><code>e</code> is interpreted as a vector with four 8-bit unsigned integer components. Unpack <code>e</code> into a vec4&lt;u32> with zero extension. 
-    </table>
-    <h4 class="heading settled" data-level="16.10.5" id="unpack2x16snorm-builtin"><span class="secno">16.10.5. </span><span class="content"><code>unpack2x16snorm</code></span><a class="self-link" href="#unpack2x16snorm-builtin"></a></h4>
-    <table class="data builtin">
-     <tbody>
-      <tr class="algorithm" data-algorithm="unpacking 2x16snorm">
-       <td style="width:10%">Overload 
-       <td class="nowrap">
+     <tr>
+      <td>Description 
+      <td><code>e</code> is interpreted as a vector with four 8-bit unsigned integer components. Unpack <code>e</code> into a vec4&lt;u32> with zero extension. 
+   </table>
+   <h4 class="heading settled" data-level="16.10.5" id="unpack2x16snorm-builtin"><span class="secno">16.10.5. </span><span class="content"><code>unpack2x16snorm</code></span><a class="self-link" href="#unpack2x16snorm-builtin"></a></h4>
+   <table class="data builtin">
+    <tbody>
+     <tr class="algorithm" data-algorithm="unpacking 2x16snorm">
+      <td style="width:10%">Overload 
+      <td class="nowrap">
 <pre class="highlight"><c- nd>@const</c-> <c- nd>@must_use</c-> <c- k>fn</c-> <c- n>unpack2x16snorm</c-><c- p>(</c-><c- n>e</c-><c- p>:</c-> u32<c- p>)</c-> <c- p>-></c-> vec2<c- o>&lt;</c->f32<c- o>></c->
 </pre>
-      <tr>
-       <td>Description 
-       <td>Decomposes a 32-bit value into two 16-bit chunks, then reinterprets
+     <tr>
+      <td>Description 
+      <td>Decomposes a 32-bit value into two 16-bit chunks, then reinterprets
         each chunk as a signed normalized floating point value.<br> Component <code>i</code> of the result is max(v ÷ 32767, -1), where <code>v</code> is the interpretation of
         bits 16×<code>i</code> through 16×<code>i + 15</code> of <code>e</code> as a twos-complement signed integer. 
-    </table>
-    <h4 class="heading settled" data-level="16.10.6" id="unpack2x16unorm-builtin"><span class="secno">16.10.6. </span><span class="content"><code>unpack2x16unorm</code></span><a class="self-link" href="#unpack2x16unorm-builtin"></a></h4>
-    <table class="data builtin">
-     <tbody>
-      <tr class="algorithm" data-algorithm="unpacking 2x16unorm">
-       <td style="width:10%">Overload 
-       <td class="nowrap">
+   </table>
+   <h4 class="heading settled" data-level="16.10.6" id="unpack2x16unorm-builtin"><span class="secno">16.10.6. </span><span class="content"><code>unpack2x16unorm</code></span><a class="self-link" href="#unpack2x16unorm-builtin"></a></h4>
+   <table class="data builtin">
+    <tbody>
+     <tr class="algorithm" data-algorithm="unpacking 2x16unorm">
+      <td style="width:10%">Overload 
+      <td class="nowrap">
 <pre class="highlight"><c- nd>@const</c-> <c- nd>@must_use</c-> <c- k>fn</c-> <c- n>unpack2x16unorm</c-><c- p>(</c-><c- n>e</c-><c- p>:</c-> u32<c- p>)</c-> <c- p>-></c-> vec2<c- o>&lt;</c->f32<c- o>></c->
 </pre>
-      <tr>
-       <td>Description 
-       <td>Decomposes a 32-bit value into two 16-bit chunks, then reinterprets
+     <tr>
+      <td>Description 
+      <td>Decomposes a 32-bit value into two 16-bit chunks, then reinterprets
         each chunk as an unsigned normalized floating point value.<br> Component <code>i</code> of the result is <code>v</code> ÷ 65535, where <code>v</code> is the interpretation of
         bits 16×<code>i</code> through 16×<code>i + 15</code> of <code>e</code> as an unsigned integer. 
-    </table>
-    <h4 class="heading settled" data-level="16.10.7" id="unpack2x16float-builtin"><span class="secno">16.10.7. </span><span class="content"><code>unpack2x16float</code></span><a class="self-link" href="#unpack2x16float-builtin"></a></h4>
-    <table class="data builtin">
-     <tbody>
-      <tr class="algorithm" data-algorithm="unpacking 2x16float">
-       <td style="width:10%">Overload 
-       <td class="nowrap">
+   </table>
+   <h4 class="heading settled" data-level="16.10.7" id="unpack2x16float-builtin"><span class="secno">16.10.7. </span><span class="content"><code>unpack2x16float</code></span><a class="self-link" href="#unpack2x16float-builtin"></a></h4>
+   <table class="data builtin">
+    <tbody>
+     <tr class="algorithm" data-algorithm="unpacking 2x16float">
+      <td style="width:10%">Overload 
+      <td class="nowrap">
 <pre class="highlight"><c- nd>@const</c-> <c- nd>@must_use</c-> <c- k>fn</c-> <c- n>unpack2x16float</c-><c- p>(</c-><c- n>e</c-><c- p>:</c-> u32<c- p>)</c-> <c- p>-></c-> vec2<c- o>&lt;</c->f32<c- o>></c->
 </pre>
-      <tr>
-       <td>Description 
-       <td>Decomposes a 32-bit value into two 16-bit chunks, and reinterpets each chunk
+     <tr>
+      <td>Description 
+      <td>Decomposes a 32-bit value into two 16-bit chunks, and reinterpets each chunk
         as a floating point value.<br> Component <code>i</code> of the result is the f32 representation of <code>v</code>,
         where <code>v</code> is the interpretation of bits 16×<code>i</code> through 16×<code>i + 15</code> of <code>e</code> as an <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> <a data-link-type="dfn" href="#ieee754-binary16" id="ref-for-ieee754-binary16⑥">binary16</a> value.
         See <a href="#floating-point-conversion">§ 14.6.6 Floating Point Conversion</a>. 
-    </table>
-    <h3 class="heading settled" data-level="16.11" id="sync-builtin-functions"><span class="secno">16.11. </span><span class="content">Synchronization Built-in Functions</span><a class="self-link" href="#sync-builtin-functions"></a></h3>
-    <p>All synchronization functions execute a <a data-link-type="dfn" href="#control-barrier" id="ref-for-control-barrier">control barrier</a> with
+   </table>
+   <h3 class="heading settled" data-level="16.11" id="sync-builtin-functions"><span class="secno">16.11. </span><span class="content">Synchronization Built-in Functions</span><a class="self-link" href="#sync-builtin-functions"></a></h3>
+   <p>All synchronization functions execute a <a data-link-type="dfn" href="#control-barrier" id="ref-for-control-barrier">control barrier</a> with
 Acquire/Release <a href="#memory-semantics">memory ordering</a>.
 That is, all synchronization functions, and affected memory and atomic
 operations are ordered in <a href="#program-order">program order</a> relative to the
@@ -20725,493 +20726,492 @@ Additionally, the affected memory and atomic operations program-ordered before
 the synchronization function must be visible to all other threads in the
 workgroup before any affected memory or atomic operation program-ordered after
 the synchronization function is executed by a member of the workgroup.</p>
-    <p>All synchronization functions use the <code>Workgroup</code> <a data-link-type="dfn" href="#memory-scope" id="ref-for-memory-scope①">memory scope</a>.<br> All synchronization functions have a <code>Workgroup</code> <a data-link-type="dfn" href="#execution-scope" id="ref-for-execution-scope">execution scope</a>.<br> All synchronization functions <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑧②">must</a> only be used in
+   <p>All synchronization functions use the <code>Workgroup</code> <a data-link-type="dfn" href="#memory-scope" id="ref-for-memory-scope①">memory scope</a>.<br> All synchronization functions have a <code>Workgroup</code> <a data-link-type="dfn" href="#execution-scope" id="ref-for-execution-scope">execution scope</a>.<br> All synchronization functions <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑧②">must</a> only be used in
 the <a data-link-type="dfn" href="#compute" id="ref-for-compute③">compute</a> shader stage.
 All synchronization functions <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑧③">must</a> only be invoked in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②⑨">uniform control flow</a>.</p>
-    <h4 class="heading settled" data-level="16.11.1" id="storageBarrier-builtin"><span class="secno">16.11.1. </span><span class="content"><code>storageBarrier</code></span><a class="self-link" href="#storageBarrier-builtin"></a></h4>
-    <table class="data builtin">
-     <tbody>
-      <tr class="algorithm" data-algorithm="storageBarrier">
-       <td style="width:10%">Overload 
-       <td class="nowrap">
+   <h4 class="heading settled" data-level="16.11.1" id="storageBarrier-builtin"><span class="secno">16.11.1. </span><span class="content"><code>storageBarrier</code></span><a class="self-link" href="#storageBarrier-builtin"></a></h4>
+   <table class="data builtin">
+    <tbody>
+     <tr class="algorithm" data-algorithm="storageBarrier">
+      <td style="width:10%">Overload 
+      <td class="nowrap">
 <pre class="highlight"><c- k>fn</c-> <c- n>storageBarrier</c-><c- p>()</c->
 </pre>
-      <tr>
-       <td>Description 
-       <td>Executes a <a data-link-type="dfn" href="#control-barrier" id="ref-for-control-barrier①">control barrier</a> synchronization function that affects
+     <tr>
+      <td>Description 
+      <td>Executes a <a data-link-type="dfn" href="#control-barrier" id="ref-for-control-barrier①">control barrier</a> synchronization function that affects
     memory and atomic operations in the <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage②⑤">storage</a> address
     space. 
-    </table>
-    <h4 class="heading settled" data-level="16.11.2" id="textureBarrier-builtin"><span class="secno">16.11.2. </span><span class="content"><code>textureBarrier</code></span><a class="self-link" href="#textureBarrier-builtin"></a></h4>
-    <table class="data builtin">
-     <tbody>
-      <tr class="algorithm" data-algorithm="textureBarrier">
-       <td style="width:10%">Overload 
-       <td class="nowrap">
+   </table>
+   <h4 class="heading settled" data-level="16.11.2" id="textureBarrier-builtin"><span class="secno">16.11.2. </span><span class="content"><code>textureBarrier</code></span><a class="self-link" href="#textureBarrier-builtin"></a></h4>
+   <table class="data builtin">
+    <tbody>
+     <tr class="algorithm" data-algorithm="textureBarrier">
+      <td style="width:10%">Overload 
+      <td class="nowrap">
 <pre class="highlight"><c- k>fn</c-> <c- n>textureBarrier</c-><c- p>()</c->
 </pre>
-      <tr>
-       <td>Description 
-       <td>Executes a <a data-link-type="dfn" href="#control-barrier" id="ref-for-control-barrier②">control barrier</a> synchronization function that affects
+     <tr>
+      <td>Description 
+      <td>Executes a <a data-link-type="dfn" href="#control-barrier" id="ref-for-control-barrier②">control barrier</a> synchronization function that affects
     memory operations in the <a data-link-type="dfn" href="#address-spaces-handle" id="ref-for-address-spaces-handle⑥">handle</a> address space. 
-    </table>
-    <h4 class="heading settled" data-level="16.11.3" id="workgroupBarrier-builtin"><span class="secno">16.11.3. </span><span class="content"><code>workgroupBarrier</code></span><a class="self-link" href="#workgroupBarrier-builtin"></a></h4>
-    <table class="data builtin">
-     <tbody>
-      <tr class="algorithm" data-algorithm="workgroupBarrier">
-       <td style="width:10%">Overload 
-       <td class="nowrap">
+   </table>
+   <h4 class="heading settled" data-level="16.11.3" id="workgroupBarrier-builtin"><span class="secno">16.11.3. </span><span class="content"><code>workgroupBarrier</code></span><a class="self-link" href="#workgroupBarrier-builtin"></a></h4>
+   <table class="data builtin">
+    <tbody>
+     <tr class="algorithm" data-algorithm="workgroupBarrier">
+      <td style="width:10%">Overload 
+      <td class="nowrap">
 <pre class="highlight"><c- k>fn</c-> <c- n>workgroupBarrier</c-><c- p>()</c->
 </pre>
-      <tr>
-       <td>Description 
-       <td>Executes a <a data-link-type="dfn" href="#control-barrier" id="ref-for-control-barrier③">control barrier</a> synchronization function that affects
+     <tr>
+      <td>Description 
+      <td>Executes a <a data-link-type="dfn" href="#control-barrier" id="ref-for-control-barrier③">control barrier</a> synchronization function that affects
     memory and atomic operations in the <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup②③">workgroup</a> address
     space. 
-    </table>
-    <h4 class="heading settled" data-level="16.11.4" id="workgroupUniformLoad-builtin"><span class="secno">16.11.4. </span><span class="content"><code>workgroupUniformLoad</code></span><a class="self-link" href="#workgroupUniformLoad-builtin"></a></h4>
-    <table class="data builtin">
-     <tbody>
-      <tr class="algorithm" data-algorithm="workgroupUniformLoad">
-       <td style="width:10%">Overload 
-       <td class="nowrap">
+   </table>
+   <h4 class="heading settled" data-level="16.11.4" id="workgroupUniformLoad-builtin"><span class="secno">16.11.4. </span><span class="content"><code>workgroupUniformLoad</code></span><a class="self-link" href="#workgroupUniformLoad-builtin"></a></h4>
+   <table class="data builtin">
+    <tbody>
+     <tr class="algorithm" data-algorithm="workgroupUniformLoad">
+      <td style="width:10%">Overload 
+      <td class="nowrap">
 <pre class="highlight"><c- nd>@must_use</c-> <c- k>fn</c-> <c- n>workgroupUniformLoad</c-><c- p>(</c-><c- n>p</c-> <c- p>:</c-> ptr<c- o>&lt;</c->workgroup<c- p>,</c-> <c- n>T</c-><c- o>></c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c->
 </pre>
-      <tr>
-       <td>Parameterization 
-       <td><code>T</code> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑤⑤">concrete</a> <a data-link-type="dfn" href="#plain-type" id="ref-for-plain-type⑧">plain type</a> with a <a data-link-type="dfn" href="#fixed-footprint" id="ref-for-fixed-footprint⑤">fixed footprint</a> that does not contain any <a data-link-type="dfn" href="#atomic-type" id="ref-for-atomic-type①④">atomic types</a> 
-      <tr>
-       <td>Description 
-       <td>
-        Returns the value pointed to by <code>p</code> to all invocations in the workgroup.
+     <tr>
+      <td>Parameterization 
+      <td><code>T</code> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑤⑤">concrete</a> <a data-link-type="dfn" href="#plain-type" id="ref-for-plain-type⑧">plain type</a> with a <a data-link-type="dfn" href="#fixed-footprint" id="ref-for-fixed-footprint⑤">fixed footprint</a> that does not contain any <a data-link-type="dfn" href="#atomic-type" id="ref-for-atomic-type①④">atomic types</a> 
+     <tr>
+      <td>Description 
+      <td>
+       Returns the value pointed to by <code>p</code> to all invocations in the workgroup.
     The return value is <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value①⓪">uniform</a>. <code>p</code> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑧④">must</a> be a <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value①①">uniform value</a>. 
-        <p>Executes a <a data-link-type="dfn" href="#control-barrier" id="ref-for-control-barrier④">control barrier</a> synchronization function that affects
+       <p>Executes a <a data-link-type="dfn" href="#control-barrier" id="ref-for-control-barrier④">control barrier</a> synchronization function that affects
     memory and atomic operations in the <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup②④">workgroup</a> address
     space.</p>
-    </table>
-    <h2 class="heading settled" data-level="17" id="grammar-recursive-descent"><span class="secno">17. </span><span class="content">Grammar for Recursive Descent Parsing</span><a class="self-link" href="#grammar-recursive-descent"></a></h2>
-    <p>This section is non-normative.</p>
-    <p>The WGSL grammar is specified in a form suitable for an LALR(1) parser.
+   </table>
+   <h2 class="heading settled" data-level="17" id="grammar-recursive-descent"><span class="secno">17. </span><span class="content">Grammar for Recursive Descent Parsing</span><a class="self-link" href="#grammar-recursive-descent"></a></h2>
+   <p>This section is non-normative.</p>
+   <p>The WGSL grammar is specified in a form suitable for an LALR(1) parser.
 An implementation may want to use a recursive-descent parser instead.</p>
-    <p>The normative grammar cannot be used directly in a recursive-descent parser, because
+   <p>The normative grammar cannot be used directly in a recursive-descent parser, because
 several of its rules are left-recursive.
 A grammar rule is directly left-recursive when the nonterminal being defined appears first
 in one of its productions.</p>
-    <p>The following is the WGSL grammar, but mechanically transformed to:</p>
-    <ul>
-     <li data-md>
-      <p>Eliminate direct and indirect left-recursion.</p>
-     <li data-md>
-      <p>Avoid empty productions. (That is, avoid epsilon-rules.)</p>
-     <li data-md>
-      <p>Bring together common prefixes among sibling productions.</p>
-    </ul>
-    <p>However, it is not LL(1).
+   <p>The following is the WGSL grammar, but mechanically transformed to:</p>
+   <ul>
+    <li data-md>
+     <p>Eliminate direct and indirect left-recursion.</p>
+    <li data-md>
+     <p>Avoid empty productions. (That is, avoid epsilon-rules.)</p>
+    <li data-md>
+     <p>Bring together common prefixes among sibling productions.</p>
+   </ul>
+   <p>However, it is not LL(1).
 For some nonterminals, several productions have common lookahead sets.
 For example, all productions for the <code>attribute</code> nonterminal start with the <code>attr</code> token.
 A more subtle example is <code>global_decl</code>, where three productions start with an <code>attribute *</code> phrase, but then are distinguished by tokens <code>fn</code>, <code>override</code>, and <code>var</code>.</p>
-    <p>For the sake of brevity, many token definitions are not repeated.
+   <p>For the sake of brevity, many token definitions are not repeated.
 Use token definitions from the main part of the specification.</p>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-additive_operator">additive_operator</dfn>: 
-     <p>| <code>'+'</code></p>
-     <p>| <code>'-'</code></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-argument_expression_list">argument_expression_list</dfn>: 
-     <p>| <code>'('</code> ( <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression">expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①">expression</a> )* <code>','</code> ? )? <code>')'</code></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-assignment_statement-01">assignment_statement/0.1</dfn>: 
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-compound_assignment_operator" id="ref-for-recursive-descent-syntax-compound_assignment_operator">compound_assignment_operator</a></p>
-     <p>| <code>'='</code></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-attribute">attribute</dfn>: 
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-compute_attr" id="ref-for-recursive-descent-syntax-compute_attr">compute_attr</a></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-const_attr" id="ref-for-recursive-descent-syntax-const_attr">const_attr</a></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-fragment_attr" id="ref-for-recursive-descent-syntax-fragment_attr">fragment_attr</a></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-interpolate_attr" id="ref-for-recursive-descent-syntax-interpolate_attr">interpolate_attr</a></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-invariant_attr" id="ref-for-recursive-descent-syntax-invariant_attr">invariant_attr</a></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-must_use_attr" id="ref-for-recursive-descent-syntax-must_use_attr">must_use_attr</a></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-vertex_attr" id="ref-for-recursive-descent-syntax-vertex_attr">vertex_attr</a></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-workgroup_size_attr" id="ref-for-recursive-descent-syntax-workgroup_size_attr">workgroup_size_attr</a></p>
-     <p>| <code>'@'</code> <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token①③">ident_pattern_token</a> ( <code>'('</code> ( <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②">expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③">expression</a> )* <code>','</code> ? )? <code>')'</code> )?</p>
-     <p>| <code>'@'</code> <code>'align'</code> <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④">expression</a> <code>','</code> ? <code>')'</code></p>
-     <p>| <code>'@'</code> <code>'binding'</code> <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression⑤">expression</a> <code>','</code> ? <code>')'</code></p>
-     <p>| <code>'@'</code> <code>'blend_src'</code> <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression⑥">expression</a> <code>','</code> ? <code>')'</code></p>
-     <p>| <code>'@'</code> <code>'builtin'</code> <code>'('</code> <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token①④">ident_pattern_token</a> <code>','</code> ? <code>')'</code></p>
-     <p>| <code>'@'</code> <code>'diagnostic'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-diagnostic_control" id="ref-for-recursive-descent-syntax-diagnostic_control">diagnostic_control</a></p>
-     <p>| <code>'@'</code> <code>'group'</code> <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression⑦">expression</a> <code>','</code> ? <code>')'</code></p>
-     <p>| <code>'@'</code> <code>'id'</code> <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression⑧">expression</a> <code>','</code> ? <code>')'</code></p>
-     <p>| <code>'@'</code> <code>'location'</code> <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression⑨">expression</a> <code>','</code> ? <code>')'</code></p>
-     <p>| <code>'@'</code> <code>'size'</code> <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①⓪">expression</a> <code>','</code> ? <code>')'</code></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-bitwise_expressionpostunary_expression">bitwise_expression.post.unary_expression</dfn>: 
-     <p>| <code>'&amp;'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression">unary_expression</a> ( <code>'&amp;'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①">unary_expression</a> )*</p>
-     <p>| <code>'^'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression②">unary_expression</a> ( <code>'^'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression③">unary_expression</a> )*</p>
-     <p>| <code>'|'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression④">unary_expression</a> ( <code>'|'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression⑤">unary_expression</a> )*</p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-bool_literal">bool_literal</dfn>: 
-     <p>| <code>'false'</code></p>
-     <p>| <code>'true'</code></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-case_selector">case_selector</dfn>: 
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①①">expression</a></p>
-     <p>| <code>'default'</code></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-component_or_swizzle_specifier">component_or_swizzle_specifier</dfn>: 
-     <p>| <code>'.'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-member_ident" id="ref-for-recursive-descent-syntax-member_ident">member_ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-component_or_swizzle_specifier" id="ref-for-recursive-descent-syntax-component_or_swizzle_specifier">component_or_swizzle_specifier</a> ?</p>
-     <p>| <code>'.'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-swizzle_name" id="ref-for-recursive-descent-syntax-swizzle_name">swizzle_name</a> <a data-link-type="dfn" href="#recursive-descent-syntax-component_or_swizzle_specifier" id="ref-for-recursive-descent-syntax-component_or_swizzle_specifier①">component_or_swizzle_specifier</a> ?</p>
-     <p>| <code>'['</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①②">expression</a> <code>']'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-component_or_swizzle_specifier" id="ref-for-recursive-descent-syntax-component_or_swizzle_specifier②">component_or_swizzle_specifier</a> ?</p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-compound_assignment_operator">compound_assignment_operator</dfn>: 
-     <p>| <a data-link-type="dfn" href="#syntax_sym-shift_left_assign" id="ref-for-syntax_sym-shift_left_assign">shift_left_assign</a></p>
-     <p>| <a data-link-type="dfn" href="#syntax_sym-shift_right_assign" id="ref-for-syntax_sym-shift_right_assign">shift_right_assign</a></p>
-     <p>| <code>'%='</code></p>
-     <p>| <code>'&amp;='</code></p>
-     <p>| <code>'*='</code></p>
-     <p>| <code>'+='</code></p>
-     <p>| <code>'-='</code></p>
-     <p>| <code>'/='</code></p>
-     <p>| <code>'^='</code></p>
-     <p>| <code>'|='</code></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-compound_statement">compound_statement</dfn>: 
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute">attribute</a> * <code>'{'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-statement" id="ref-for-recursive-descent-syntax-statement">statement</a> * <code>'}'</code></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-compute_attr">compute_attr</dfn>: 
-     <p>| <code>'@'</code> <code>'compute'</code></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-const_attr">const_attr</dfn>: 
-     <p>| <code>'@'</code> <code>'const'</code></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-core_lhs_expression">core_lhs_expression</dfn>: 
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident">ident</a></p>
-     <p>| <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-lhs_expression" id="ref-for-recursive-descent-syntax-lhs_expression">lhs_expression</a> <code>')'</code></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-decimal_float_literal">decimal_float_literal</dfn>: 
-     <p>| <code>/0[fh]/</code></p>
-     <p>| <code>/[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/</code></p>
-     <p>| <code>/[0-9]+[eE][+-]?[0-9]+[fh]?/</code></p>
-     <p>| <code>/[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/</code></p>
-     <p>| <code>/[1-9][0-9]*[fh]/</code></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-decimal_int_literal">decimal_int_literal</dfn>: 
-     <p>| <code>/0[iu]?/</code></p>
-     <p>| <code>/[1-9][0-9]*[iu]?/</code></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-diagnostic_control">diagnostic_control</dfn>: 
-     <p>| <code>'('</code> <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token①⑤">ident_pattern_token</a> <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-diagnostic_rule_name" id="ref-for-recursive-descent-syntax-diagnostic_rule_name">diagnostic_rule_name</a> <code>','</code> ? <code>')'</code></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-diagnostic_rule_name">diagnostic_rule_name</dfn>: 
-     <p>| <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token①⑥">ident_pattern_token</a></p>
-     <p>| <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token①⑦">ident_pattern_token</a> <code>'.'</code> <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token①⑧">ident_pattern_token</a></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-expression">expression</dfn>: 
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression⑥">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-bitwise_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-bitwise_expressionpostunary_expression">bitwise_expression.post.unary_expression</a></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression⑦">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-relational_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-relational_expressionpostunary_expression">relational_expression.post.unary_expression</a></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression⑧">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-relational_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-relational_expressionpostunary_expression①">relational_expression.post.unary_expression</a> <code>'&amp;&amp;'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression⑨">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-relational_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-relational_expressionpostunary_expression②">relational_expression.post.unary_expression</a> ( <code>'&amp;&amp;'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①⓪">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-relational_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-relational_expressionpostunary_expression③">relational_expression.post.unary_expression</a> )*</p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①①">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-relational_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-relational_expressionpostunary_expression④">relational_expression.post.unary_expression</a> <code>'||'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①②">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-relational_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-relational_expressionpostunary_expression⑤">relational_expression.post.unary_expression</a> ( <code>'||'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①③">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-relational_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-relational_expressionpostunary_expression⑥">relational_expression.post.unary_expression</a> )*</p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-float_literal">float_literal</dfn>: 
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-decimal_float_literal" id="ref-for-recursive-descent-syntax-decimal_float_literal">decimal_float_literal</a></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-hex_float_literal" id="ref-for-recursive-descent-syntax-hex_float_literal">hex_float_literal</a></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-for_init">for_init</dfn>: 
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-func_call_statementpostident" id="ref-for-recursive-descent-syntax-func_call_statementpostident">func_call_statement.post.ident</a></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-variable_or_value_statement" id="ref-for-recursive-descent-syntax-variable_or_value_statement">variable_or_value_statement</a></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-variable_updating_statement" id="ref-for-recursive-descent-syntax-variable_updating_statement">variable_updating_statement</a></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-for_update">for_update</dfn>: 
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident②">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-func_call_statementpostident" id="ref-for-recursive-descent-syntax-func_call_statementpostident①">func_call_statement.post.ident</a></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-variable_updating_statement" id="ref-for-recursive-descent-syntax-variable_updating_statement①">variable_updating_statement</a></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-fragment_attr">fragment_attr</dfn>: 
-     <p>| <code>'@'</code> <code>'fragment'</code></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-func_call_statementpostident">func_call_statement.post.ident</dfn>: 
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident">template_elaborated_ident.post.ident</a> <code>'('</code> ( <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①③">expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①④">expression</a> )* <code>','</code> ? )? <code>')'</code></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-global_decl">global_decl</dfn>: 
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute①">attribute</a> * <code>'fn'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident③">ident</a> <code>'('</code> ( <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute②">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident④">ident</a> <code>':'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier">type_specifier</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-param" id="ref-for-recursive-descent-syntax-param">param</a> )* <code>','</code> ? )? <code>')'</code> ( <code>'->'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute③">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑤">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident①">template_elaborated_ident.post.ident</a> )? <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute④">attribute</a> * <code>'{'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-statement" id="ref-for-recursive-descent-syntax-statement①">statement</a> * <code>'}'</code></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute⑤">attribute</a> * <code>'var'</code> ( <a data-link-type="dfn" href="#syntax_sym-_template_args_start" id="ref-for-syntax_sym-_template_args_start⑤">_template_args_start</a> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①⑤">expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①⑥">expression</a> )* <code>','</code> ? <a data-link-type="dfn" href="#syntax_sym-_template_args_end" id="ref-for-syntax_sym-_template_args_end⑤">_template_args_end</a> )? <a data-link-type="dfn" href="#recursive-descent-syntax-optionally_typed_ident" id="ref-for-recursive-descent-syntax-optionally_typed_ident">optionally_typed_ident</a> ( <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①⑦">expression</a> )? <code>';'</code></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-global_value_decl" id="ref-for-recursive-descent-syntax-global_value_decl">global_value_decl</a> <code>';'</code></p>
-     <p>| <code>';'</code></p>
-     <p>| <code>'alias'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑥">ident</a> <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑦">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident②">template_elaborated_ident.post.ident</a> <code>';'</code></p>
-     <p>| <code>'const_assert'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①⑧">expression</a> <code>';'</code></p>
-     <p>| <code>'struct'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑧">ident</a> <code>'{'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute⑥">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-member_ident" id="ref-for-recursive-descent-syntax-member_ident①">member_ident</a> <code>':'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier①">type_specifier</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute⑦">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-member_ident" id="ref-for-recursive-descent-syntax-member_ident②">member_ident</a> <code>':'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier②">type_specifier</a> )* <code>','</code> ? <code>'}'</code></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-global_directive">global_directive</dfn>: 
-     <p>| <code>'diagnostic'</code> <code>'('</code> <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token①⑨">ident_pattern_token</a> <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-diagnostic_rule_name" id="ref-for-recursive-descent-syntax-diagnostic_rule_name①">diagnostic_rule_name</a> <code>','</code> ? <code>')'</code> <code>';'</code></p>
-     <p>| <code>'enable'</code> <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token②⓪">ident_pattern_token</a> ( <code>','</code> <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token②①">ident_pattern_token</a> )* <code>','</code> ? <code>';'</code></p>
-     <p>| <code>'requires'</code> <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token②②">ident_pattern_token</a> ( <code>','</code> <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token②③">ident_pattern_token</a> )* <code>','</code> ? <code>';'</code></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-global_value_decl">global_value_decl</dfn>: 
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute⑧">attribute</a> * <code>'override'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-optionally_typed_ident" id="ref-for-recursive-descent-syntax-optionally_typed_ident①">optionally_typed_ident</a> ( <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①⑨">expression</a> )?</p>
-     <p>| <code>'const'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-optionally_typed_ident" id="ref-for-recursive-descent-syntax-optionally_typed_ident②">optionally_typed_ident</a> <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②⓪">expression</a></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-hex_float_literal">hex_float_literal</dfn>: 
-     <p>| <code>/0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/</code></p>
-     <p>| <code>/0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/</code></p>
-     <p>| <code>/0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/</code></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-ident">ident</dfn>: 
-     <p>| <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token②④">ident_pattern_token</a></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-int_literal">int_literal</dfn>: 
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-decimal_int_literal" id="ref-for-recursive-descent-syntax-decimal_int_literal">decimal_int_literal</a></p>
-     <p>| <a data-link-type="dfn" href="#syntax-hex_int_literal" id="ref-for-syntax-hex_int_literal①">hex_int_literal</a></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-interpolate_attr">interpolate_attr</dfn>: 
-     <p>| <code>'@'</code> <code>'interpolate'</code> <code>'('</code> <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token②⑤">ident_pattern_token</a> <code>','</code> ? <code>')'</code></p>
-     <p>| <code>'@'</code> <code>'interpolate'</code> <code>'('</code> <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token②⑥">ident_pattern_token</a> <code>','</code> <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token②⑦">ident_pattern_token</a> <code>','</code> ? <code>')'</code></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-invariant_attr">invariant_attr</dfn>: 
-     <p>| <code>'@'</code> <code>'invariant'</code></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-lhs_expression">lhs_expression</dfn>: 
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-core_lhs_expression" id="ref-for-recursive-descent-syntax-core_lhs_expression">core_lhs_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-component_or_swizzle_specifier" id="ref-for-recursive-descent-syntax-component_or_swizzle_specifier③">component_or_swizzle_specifier</a> ?</p>
-     <p>| <code>'&amp;'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-lhs_expression" id="ref-for-recursive-descent-syntax-lhs_expression①">lhs_expression</a></p>
-     <p>| <code>'*'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-lhs_expression" id="ref-for-recursive-descent-syntax-lhs_expression②">lhs_expression</a></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-literal">literal</dfn>: 
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-bool_literal" id="ref-for-recursive-descent-syntax-bool_literal">bool_literal</a></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-float_literal" id="ref-for-recursive-descent-syntax-float_literal">float_literal</a></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-int_literal" id="ref-for-recursive-descent-syntax-int_literal">int_literal</a></p>
-    </div>
-    <div class="syntax"> <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-member_ident">member_ident</dfn>: <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token②⑧">ident_pattern_token</a> </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-multiplicative_operator">multiplicative_operator</dfn>: 
-     <p>| <code>'%'</code></p>
-     <p>| <code>'*'</code></p>
-     <p>| <code>'/'</code></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-must_use_attr">must_use_attr</dfn>: 
-     <p>| <code>'@'</code> <code>'must_use'</code></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-optionally_typed_ident">optionally_typed_ident</dfn>: 
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑨">ident</a> ( <code>':'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier③">type_specifier</a> )?</p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-param">param</dfn>: 
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute⑨">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①⓪">ident</a> <code>':'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier④">type_specifier</a></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-primary_expression">primary_expression</dfn>: 
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①①">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident③">template_elaborated_ident.post.ident</a></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①②">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident④">template_elaborated_ident.post.ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-argument_expression_list" id="ref-for-recursive-descent-syntax-argument_expression_list">argument_expression_list</a></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-literal" id="ref-for-recursive-descent-syntax-literal">literal</a></p>
-     <p>| <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②①">expression</a> <code>')'</code></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-relational_expressionpostunary_expression">relational_expression.post.unary_expression</dfn>: 
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-shift_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-shift_expressionpostunary_expression">shift_expression.post.unary_expression</a></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-shift_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-shift_expressionpostunary_expression①">shift_expression.post.unary_expression</a> <a data-link-type="dfn" href="#syntax_sym-greater_than" id="ref-for-syntax_sym-greater_than①">greater_than</a> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①④">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-shift_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-shift_expressionpostunary_expression②">shift_expression.post.unary_expression</a></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-shift_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-shift_expressionpostunary_expression③">shift_expression.post.unary_expression</a> <a data-link-type="dfn" href="#syntax_sym-greater_than_equal" id="ref-for-syntax_sym-greater_than_equal②">greater_than_equal</a> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①⑤">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-shift_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-shift_expressionpostunary_expression④">shift_expression.post.unary_expression</a></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-shift_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-shift_expressionpostunary_expression⑤">shift_expression.post.unary_expression</a> <a data-link-type="dfn" href="#syntax_sym-less_than" id="ref-for-syntax_sym-less_than①">less_than</a> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①⑥">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-shift_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-shift_expressionpostunary_expression⑥">shift_expression.post.unary_expression</a></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-shift_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-shift_expressionpostunary_expression⑦">shift_expression.post.unary_expression</a> <a data-link-type="dfn" href="#syntax_sym-less_than_equal" id="ref-for-syntax_sym-less_than_equal③">less_than_equal</a> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①⑦">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-shift_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-shift_expressionpostunary_expression⑧">shift_expression.post.unary_expression</a></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-shift_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-shift_expressionpostunary_expression⑨">shift_expression.post.unary_expression</a> <code>'!='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①⑧">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-shift_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-shift_expressionpostunary_expression①⓪">shift_expression.post.unary_expression</a></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-shift_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-shift_expressionpostunary_expression①①">shift_expression.post.unary_expression</a> <code>'=='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①⑨">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-shift_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-shift_expressionpostunary_expression①②">shift_expression.post.unary_expression</a></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-shift_expressionpostunary_expression">shift_expression.post.unary_expression</dfn>: 
-     <p>| ( <a data-link-type="dfn" href="#recursive-descent-syntax-multiplicative_operator" id="ref-for-recursive-descent-syntax-multiplicative_operator">multiplicative_operator</a> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression②⓪">unary_expression</a> )* ( <a data-link-type="dfn" href="#recursive-descent-syntax-additive_operator" id="ref-for-recursive-descent-syntax-additive_operator">additive_operator</a> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression②①">unary_expression</a> ( <a data-link-type="dfn" href="#recursive-descent-syntax-multiplicative_operator" id="ref-for-recursive-descent-syntax-multiplicative_operator①">multiplicative_operator</a> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression②②">unary_expression</a> )* )*</p>
-     <p>| <a data-link-type="dfn" href="#syntax_sym-shift_left" id="ref-for-syntax_sym-shift_left②">shift_left</a> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression②③">unary_expression</a></p>
-     <p>| <a data-link-type="dfn" href="#syntax_sym-shift_right" id="ref-for-syntax_sym-shift_right">shift_right</a> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression②④">unary_expression</a></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-statement">statement</dfn>: 
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute①⓪">attribute</a> * <code>'for'</code> <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-for_init" id="ref-for-recursive-descent-syntax-for_init">for_init</a> ? <code>';'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②②">expression</a> ? <code>';'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-for_update" id="ref-for-recursive-descent-syntax-for_update">for_update</a> ? <code>')'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement">compound_statement</a></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute①①">attribute</a> * <code>'if'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②③">expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement①">compound_statement</a> ( <code>'else'</code> <code>'if'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②④">expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement②">compound_statement</a> )* ( <code>'else'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement③">compound_statement</a> )?</p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute①②">attribute</a> * <code>'loop'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute①③">attribute</a> * <code>'{'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-statement" id="ref-for-recursive-descent-syntax-statement②">statement</a> * ( <code>'continuing'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute①④">attribute</a> * <code>'{'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-statement" id="ref-for-recursive-descent-syntax-statement③">statement</a> * ( <code>'break'</code> <code>'if'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②⑤">expression</a> <code>';'</code> )? <code>'}'</code> )? <code>'}'</code></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute①⑤">attribute</a> * <code>'switch'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②⑥">expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute①⑥">attribute</a> * <code>'{'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-switch_clause" id="ref-for-recursive-descent-syntax-switch_clause">switch_clause</a> * <code>'}'</code></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute①⑦">attribute</a> * <code>'while'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②⑦">expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement④">compound_statement</a></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement⑤">compound_statement</a></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①③">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident⑤">template_elaborated_ident.post.ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-argument_expression_list" id="ref-for-recursive-descent-syntax-argument_expression_list①">argument_expression_list</a> <code>';'</code></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-variable_or_value_statement" id="ref-for-recursive-descent-syntax-variable_or_value_statement①">variable_or_value_statement</a> <code>';'</code></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-variable_updating_statement" id="ref-for-recursive-descent-syntax-variable_updating_statement②">variable_updating_statement</a> <code>';'</code></p>
-     <p>| <a data-link-type="dfn" href="#syntax-break_statement" id="ref-for-syntax-break_statement①">break_statement</a> <code>';'</code></p>
-     <p>| <a data-link-type="dfn" href="#syntax-continue_statement" id="ref-for-syntax-continue_statement①">continue_statement</a> <code>';'</code></p>
-     <p>| <code>';'</code></p>
-     <p>| <code>'const_assert'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②⑧">expression</a> <code>';'</code></p>
-     <p>| <code>'discard'</code> <code>';'</code></p>
-     <p>| <code>'return'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②⑨">expression</a> ? <code>';'</code></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-switch_clause">switch_clause</dfn>: 
-     <p>| <code>'case'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-case_selector" id="ref-for-recursive-descent-syntax-case_selector">case_selector</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-case_selector" id="ref-for-recursive-descent-syntax-case_selector①">case_selector</a> )* <code>','</code> ? <code>':'</code> ? <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement⑥">compound_statement</a></p>
-     <p>| <code>'default'</code> <code>':'</code> ? <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement⑦">compound_statement</a></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-swizzle_name">swizzle_name</dfn>: 
-     <p>| <code>/[rgba]/</code></p>
-     <p>| <code>/[rgba][rgba]/</code></p>
-     <p>| <code>/[rgba][rgba][rgba]/</code></p>
-     <p>| <code>/[rgba][rgba][rgba][rgba]/</code></p>
-     <p>| <code>/[xyzw]/</code></p>
-     <p>| <code>/[xyzw][xyzw]/</code></p>
-     <p>| <code>/[xyzw][xyzw][xyzw]/</code></p>
-     <p>| <code>/[xyzw][xyzw][xyzw][xyzw]/</code></p>
-    </div>
-    <div class="syntax"> <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-template_arg_expression">template_arg_expression</dfn>: <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③⓪">expression</a> </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-template_elaborated_identpostident">template_elaborated_ident.post.ident</dfn>: 
-     <p>| ( <a data-link-type="dfn" href="#syntax_sym-_template_args_start" id="ref-for-syntax_sym-_template_args_start⑥">_template_args_start</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_arg_expression" id="ref-for-recursive-descent-syntax-template_arg_expression">template_arg_expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③①">expression</a> )* <code>','</code> ? <a data-link-type="dfn" href="#syntax_sym-_template_args_end" id="ref-for-syntax_sym-_template_args_end⑥">_template_args_end</a> )?</p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-translation_unit">translation_unit</dfn>: 
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-global_directive" id="ref-for-recursive-descent-syntax-global_directive">global_directive</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-global_decl" id="ref-for-recursive-descent-syntax-global_decl">global_decl</a> *</p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-type_specifier">type_specifier</dfn>: 
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①④">ident</a> ( <a data-link-type="dfn" href="#syntax_sym-_template_args_start" id="ref-for-syntax_sym-_template_args_start⑦">_template_args_start</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_arg_expression" id="ref-for-recursive-descent-syntax-template_arg_expression①">template_arg_expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③②">expression</a> )* <code>','</code> ? <a data-link-type="dfn" href="#syntax_sym-_template_args_end" id="ref-for-syntax_sym-_template_args_end⑦">_template_args_end</a> )?</p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-unary_expression">unary_expression</dfn>: 
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-primary_expression" id="ref-for-recursive-descent-syntax-primary_expression">primary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-component_or_swizzle_specifier" id="ref-for-recursive-descent-syntax-component_or_swizzle_specifier④">component_or_swizzle_specifier</a> ?</p>
-     <p>| <code>'!'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression②⑤">unary_expression</a></p>
-     <p>| <code>'&amp;'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression②⑥">unary_expression</a></p>
-     <p>| <code>'*'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression②⑦">unary_expression</a></p>
-     <p>| <code>'-'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression②⑧">unary_expression</a></p>
-     <p>| <code>'~'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression②⑨">unary_expression</a></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-variable_decl">variable_decl</dfn>: 
-     <p>| <code>'var'</code> ( <a data-link-type="dfn" href="#syntax_sym-_template_args_start" id="ref-for-syntax_sym-_template_args_start⑧">_template_args_start</a> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③③">expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③④">expression</a> )* <code>','</code> ? <a data-link-type="dfn" href="#syntax_sym-_template_args_end" id="ref-for-syntax_sym-_template_args_end⑧">_template_args_end</a> )? <a data-link-type="dfn" href="#recursive-descent-syntax-optionally_typed_ident" id="ref-for-recursive-descent-syntax-optionally_typed_ident③">optionally_typed_ident</a></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-variable_or_value_statement">variable_or_value_statement</dfn>: 
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-variable_decl" id="ref-for-recursive-descent-syntax-variable_decl">variable_decl</a></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-variable_decl" id="ref-for-recursive-descent-syntax-variable_decl①">variable_decl</a> <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③⑤">expression</a></p>
-     <p>| <code>'const'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-optionally_typed_ident" id="ref-for-recursive-descent-syntax-optionally_typed_ident④">optionally_typed_ident</a> <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③⑥">expression</a></p>
-     <p>| <code>'let'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-optionally_typed_ident" id="ref-for-recursive-descent-syntax-optionally_typed_ident⑤">optionally_typed_ident</a> <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③⑦">expression</a></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-variable_updating_statement">variable_updating_statement</dfn>: 
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-lhs_expression" id="ref-for-recursive-descent-syntax-lhs_expression③">lhs_expression</a> ( <code>'='</code> | <a data-link-type="dfn" href="#recursive-descent-syntax-compound_assignment_operator" id="ref-for-recursive-descent-syntax-compound_assignment_operator①">compound_assignment_operator</a> ) <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③⑧">expression</a></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-lhs_expression" id="ref-for-recursive-descent-syntax-lhs_expression④">lhs_expression</a> <code>'++'</code></p>
-     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-lhs_expression" id="ref-for-recursive-descent-syntax-lhs_expression⑤">lhs_expression</a> <code>'--'</code></p>
-     <p>| <code>'_'</code> <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③⑨">expression</a></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-vertex_attr">vertex_attr</dfn>: 
-     <p>| <code>'@'</code> <code>'vertex'</code></p>
-    </div>
-    <div class="syntax">
-      <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-workgroup_size_attr">workgroup_size_attr</dfn>: 
-     <p>| <code>'@'</code> <code>'workgroup_size'</code> <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④⓪">expression</a> <code>','</code> ? <code>')'</code></p>
-     <p>| <code>'@'</code> <code>'workgroup_size'</code> <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④①">expression</a> <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④②">expression</a> <code>','</code> ? <code>')'</code></p>
-     <p>| <code>'@'</code> <code>'workgroup_size'</code> <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④③">expression</a> <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④④">expression</a> <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④⑤">expression</a> <code>','</code> ? <code>')'</code></p>
-    </div>
-    <h2 class="heading settled" id="text-wgsl-media-type"><span class="content">Appendix A: The <code>text/wgsl</code> Media Type</span><a class="self-link" href="#text-wgsl-media-type"></a></h2>
-    <p>The Internet Assigned Numbers Authority (IANA) maintains a registry of media types, at <a data-link-type="biblio" href="#biblio-iana-media-types" title="Media Types">[IANA-MEDIA-TYPES]</a>.</p>
-    <p>The following is the definition of the <code>text/wgsl</code> media type for WGSL modules.
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-additive_operator">additive_operator</dfn>: 
+    <p>| <code>'+'</code></p>
+    <p>| <code>'-'</code></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-argument_expression_list">argument_expression_list</dfn>: 
+    <p>| <code>'('</code> ( <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression">expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①">expression</a> )* <code>','</code> ? )? <code>')'</code></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-assignment_statement-01">assignment_statement/0.1</dfn>: 
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-compound_assignment_operator" id="ref-for-recursive-descent-syntax-compound_assignment_operator">compound_assignment_operator</a></p>
+    <p>| <code>'='</code></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-attribute">attribute</dfn>: 
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-compute_attr" id="ref-for-recursive-descent-syntax-compute_attr">compute_attr</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-const_attr" id="ref-for-recursive-descent-syntax-const_attr">const_attr</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-fragment_attr" id="ref-for-recursive-descent-syntax-fragment_attr">fragment_attr</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-interpolate_attr" id="ref-for-recursive-descent-syntax-interpolate_attr">interpolate_attr</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-invariant_attr" id="ref-for-recursive-descent-syntax-invariant_attr">invariant_attr</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-must_use_attr" id="ref-for-recursive-descent-syntax-must_use_attr">must_use_attr</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-vertex_attr" id="ref-for-recursive-descent-syntax-vertex_attr">vertex_attr</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-workgroup_size_attr" id="ref-for-recursive-descent-syntax-workgroup_size_attr">workgroup_size_attr</a></p>
+    <p>| <code>'@'</code> <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token①③">ident_pattern_token</a> ( <code>'('</code> ( <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②">expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③">expression</a> )* <code>','</code> ? )? <code>')'</code> )?</p>
+    <p>| <code>'@'</code> <code>'align'</code> <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④">expression</a> <code>','</code> ? <code>')'</code></p>
+    <p>| <code>'@'</code> <code>'binding'</code> <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression⑤">expression</a> <code>','</code> ? <code>')'</code></p>
+    <p>| <code>'@'</code> <code>'blend_src'</code> <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression⑥">expression</a> <code>','</code> ? <code>')'</code></p>
+    <p>| <code>'@'</code> <code>'builtin'</code> <code>'('</code> <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token①④">ident_pattern_token</a> <code>','</code> ? <code>')'</code></p>
+    <p>| <code>'@'</code> <code>'diagnostic'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-diagnostic_control" id="ref-for-recursive-descent-syntax-diagnostic_control">diagnostic_control</a></p>
+    <p>| <code>'@'</code> <code>'group'</code> <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression⑦">expression</a> <code>','</code> ? <code>')'</code></p>
+    <p>| <code>'@'</code> <code>'id'</code> <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression⑧">expression</a> <code>','</code> ? <code>')'</code></p>
+    <p>| <code>'@'</code> <code>'location'</code> <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression⑨">expression</a> <code>','</code> ? <code>')'</code></p>
+    <p>| <code>'@'</code> <code>'size'</code> <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①⓪">expression</a> <code>','</code> ? <code>')'</code></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-bitwise_expressionpostunary_expression">bitwise_expression.post.unary_expression</dfn>: 
+    <p>| <code>'&amp;'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression">unary_expression</a> ( <code>'&amp;'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①">unary_expression</a> )*</p>
+    <p>| <code>'^'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression②">unary_expression</a> ( <code>'^'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression③">unary_expression</a> )*</p>
+    <p>| <code>'|'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression④">unary_expression</a> ( <code>'|'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression⑤">unary_expression</a> )*</p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-bool_literal">bool_literal</dfn>: 
+    <p>| <code>'false'</code></p>
+    <p>| <code>'true'</code></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-case_selector">case_selector</dfn>: 
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①①">expression</a></p>
+    <p>| <code>'default'</code></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-component_or_swizzle_specifier">component_or_swizzle_specifier</dfn>: 
+    <p>| <code>'.'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-member_ident" id="ref-for-recursive-descent-syntax-member_ident">member_ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-component_or_swizzle_specifier" id="ref-for-recursive-descent-syntax-component_or_swizzle_specifier">component_or_swizzle_specifier</a> ?</p>
+    <p>| <code>'.'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-swizzle_name" id="ref-for-recursive-descent-syntax-swizzle_name">swizzle_name</a> <a data-link-type="dfn" href="#recursive-descent-syntax-component_or_swizzle_specifier" id="ref-for-recursive-descent-syntax-component_or_swizzle_specifier①">component_or_swizzle_specifier</a> ?</p>
+    <p>| <code>'['</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①②">expression</a> <code>']'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-component_or_swizzle_specifier" id="ref-for-recursive-descent-syntax-component_or_swizzle_specifier②">component_or_swizzle_specifier</a> ?</p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-compound_assignment_operator">compound_assignment_operator</dfn>: 
+    <p>| <a data-link-type="dfn" href="#syntax_sym-shift_left_assign" id="ref-for-syntax_sym-shift_left_assign">shift_left_assign</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax_sym-shift_right_assign" id="ref-for-syntax_sym-shift_right_assign">shift_right_assign</a></p>
+    <p>| <code>'%='</code></p>
+    <p>| <code>'&amp;='</code></p>
+    <p>| <code>'*='</code></p>
+    <p>| <code>'+='</code></p>
+    <p>| <code>'-='</code></p>
+    <p>| <code>'/='</code></p>
+    <p>| <code>'^='</code></p>
+    <p>| <code>'|='</code></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-compound_statement">compound_statement</dfn>: 
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute">attribute</a> * <code>'{'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-statement" id="ref-for-recursive-descent-syntax-statement">statement</a> * <code>'}'</code></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-compute_attr">compute_attr</dfn>: 
+    <p>| <code>'@'</code> <code>'compute'</code></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-const_attr">const_attr</dfn>: 
+    <p>| <code>'@'</code> <code>'const'</code></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-core_lhs_expression">core_lhs_expression</dfn>: 
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident">ident</a></p>
+    <p>| <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-lhs_expression" id="ref-for-recursive-descent-syntax-lhs_expression">lhs_expression</a> <code>')'</code></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-decimal_float_literal">decimal_float_literal</dfn>: 
+    <p>| <code>/0[fh]/</code></p>
+    <p>| <code>/[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/</code></p>
+    <p>| <code>/[0-9]+[eE][+-]?[0-9]+[fh]?/</code></p>
+    <p>| <code>/[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/</code></p>
+    <p>| <code>/[1-9][0-9]*[fh]/</code></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-decimal_int_literal">decimal_int_literal</dfn>: 
+    <p>| <code>/0[iu]?/</code></p>
+    <p>| <code>/[1-9][0-9]*[iu]?/</code></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-diagnostic_control">diagnostic_control</dfn>: 
+    <p>| <code>'('</code> <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token①⑤">ident_pattern_token</a> <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-diagnostic_rule_name" id="ref-for-recursive-descent-syntax-diagnostic_rule_name">diagnostic_rule_name</a> <code>','</code> ? <code>')'</code></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-diagnostic_rule_name">diagnostic_rule_name</dfn>: 
+    <p>| <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token①⑥">ident_pattern_token</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token①⑦">ident_pattern_token</a> <code>'.'</code> <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token①⑧">ident_pattern_token</a></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-expression">expression</dfn>: 
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression⑥">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-bitwise_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-bitwise_expressionpostunary_expression">bitwise_expression.post.unary_expression</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression⑦">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-relational_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-relational_expressionpostunary_expression">relational_expression.post.unary_expression</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression⑧">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-relational_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-relational_expressionpostunary_expression①">relational_expression.post.unary_expression</a> <code>'&amp;&amp;'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression⑨">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-relational_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-relational_expressionpostunary_expression②">relational_expression.post.unary_expression</a> ( <code>'&amp;&amp;'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①⓪">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-relational_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-relational_expressionpostunary_expression③">relational_expression.post.unary_expression</a> )*</p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①①">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-relational_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-relational_expressionpostunary_expression④">relational_expression.post.unary_expression</a> <code>'||'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①②">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-relational_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-relational_expressionpostunary_expression⑤">relational_expression.post.unary_expression</a> ( <code>'||'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①③">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-relational_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-relational_expressionpostunary_expression⑥">relational_expression.post.unary_expression</a> )*</p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-float_literal">float_literal</dfn>: 
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-decimal_float_literal" id="ref-for-recursive-descent-syntax-decimal_float_literal">decimal_float_literal</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-hex_float_literal" id="ref-for-recursive-descent-syntax-hex_float_literal">hex_float_literal</a></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-for_init">for_init</dfn>: 
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-func_call_statementpostident" id="ref-for-recursive-descent-syntax-func_call_statementpostident">func_call_statement.post.ident</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-variable_or_value_statement" id="ref-for-recursive-descent-syntax-variable_or_value_statement">variable_or_value_statement</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-variable_updating_statement" id="ref-for-recursive-descent-syntax-variable_updating_statement">variable_updating_statement</a></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-for_update">for_update</dfn>: 
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident②">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-func_call_statementpostident" id="ref-for-recursive-descent-syntax-func_call_statementpostident①">func_call_statement.post.ident</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-variable_updating_statement" id="ref-for-recursive-descent-syntax-variable_updating_statement①">variable_updating_statement</a></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-fragment_attr">fragment_attr</dfn>: 
+    <p>| <code>'@'</code> <code>'fragment'</code></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-func_call_statementpostident">func_call_statement.post.ident</dfn>: 
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident">template_elaborated_ident.post.ident</a> <code>'('</code> ( <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①③">expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①④">expression</a> )* <code>','</code> ? )? <code>')'</code></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-global_decl">global_decl</dfn>: 
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute①">attribute</a> * <code>'fn'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident③">ident</a> <code>'('</code> ( <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute②">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident④">ident</a> <code>':'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier">type_specifier</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-param" id="ref-for-recursive-descent-syntax-param">param</a> )* <code>','</code> ? )? <code>')'</code> ( <code>'->'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute③">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑤">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident①">template_elaborated_ident.post.ident</a> )? <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute④">attribute</a> * <code>'{'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-statement" id="ref-for-recursive-descent-syntax-statement①">statement</a> * <code>'}'</code></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute⑤">attribute</a> * <code>'var'</code> ( <a data-link-type="dfn" href="#syntax_sym-_template_args_start" id="ref-for-syntax_sym-_template_args_start⑤">_template_args_start</a> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①⑤">expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①⑥">expression</a> )* <code>','</code> ? <a data-link-type="dfn" href="#syntax_sym-_template_args_end" id="ref-for-syntax_sym-_template_args_end⑤">_template_args_end</a> )? <a data-link-type="dfn" href="#recursive-descent-syntax-optionally_typed_ident" id="ref-for-recursive-descent-syntax-optionally_typed_ident">optionally_typed_ident</a> ( <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①⑦">expression</a> )? <code>';'</code></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-global_value_decl" id="ref-for-recursive-descent-syntax-global_value_decl">global_value_decl</a> <code>';'</code></p>
+    <p>| <code>';'</code></p>
+    <p>| <code>'alias'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑥">ident</a> <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑦">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident②">template_elaborated_ident.post.ident</a> <code>';'</code></p>
+    <p>| <code>'const_assert'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①⑧">expression</a> <code>';'</code></p>
+    <p>| <code>'struct'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑧">ident</a> <code>'{'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute⑥">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-member_ident" id="ref-for-recursive-descent-syntax-member_ident①">member_ident</a> <code>':'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier①">type_specifier</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute⑦">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-member_ident" id="ref-for-recursive-descent-syntax-member_ident②">member_ident</a> <code>':'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier②">type_specifier</a> )* <code>','</code> ? <code>'}'</code></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-global_directive">global_directive</dfn>: 
+    <p>| <code>'diagnostic'</code> <code>'('</code> <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token①⑨">ident_pattern_token</a> <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-diagnostic_rule_name" id="ref-for-recursive-descent-syntax-diagnostic_rule_name①">diagnostic_rule_name</a> <code>','</code> ? <code>')'</code> <code>';'</code></p>
+    <p>| <code>'enable'</code> <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token②⓪">ident_pattern_token</a> ( <code>','</code> <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token②①">ident_pattern_token</a> )* <code>','</code> ? <code>';'</code></p>
+    <p>| <code>'requires'</code> <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token②②">ident_pattern_token</a> ( <code>','</code> <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token②③">ident_pattern_token</a> )* <code>','</code> ? <code>';'</code></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-global_value_decl">global_value_decl</dfn>: 
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute⑧">attribute</a> * <code>'override'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-optionally_typed_ident" id="ref-for-recursive-descent-syntax-optionally_typed_ident①">optionally_typed_ident</a> ( <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①⑨">expression</a> )?</p>
+    <p>| <code>'const'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-optionally_typed_ident" id="ref-for-recursive-descent-syntax-optionally_typed_ident②">optionally_typed_ident</a> <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②⓪">expression</a></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-hex_float_literal">hex_float_literal</dfn>: 
+    <p>| <code>/0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/</code></p>
+    <p>| <code>/0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/</code></p>
+    <p>| <code>/0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/</code></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-ident">ident</dfn>: 
+    <p>| <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token②④">ident_pattern_token</a></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-int_literal">int_literal</dfn>: 
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-decimal_int_literal" id="ref-for-recursive-descent-syntax-decimal_int_literal">decimal_int_literal</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax-hex_int_literal" id="ref-for-syntax-hex_int_literal①">hex_int_literal</a></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-interpolate_attr">interpolate_attr</dfn>: 
+    <p>| <code>'@'</code> <code>'interpolate'</code> <code>'('</code> <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token②⑤">ident_pattern_token</a> <code>','</code> ? <code>')'</code></p>
+    <p>| <code>'@'</code> <code>'interpolate'</code> <code>'('</code> <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token②⑥">ident_pattern_token</a> <code>','</code> <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token②⑦">ident_pattern_token</a> <code>','</code> ? <code>')'</code></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-invariant_attr">invariant_attr</dfn>: 
+    <p>| <code>'@'</code> <code>'invariant'</code></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-lhs_expression">lhs_expression</dfn>: 
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-core_lhs_expression" id="ref-for-recursive-descent-syntax-core_lhs_expression">core_lhs_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-component_or_swizzle_specifier" id="ref-for-recursive-descent-syntax-component_or_swizzle_specifier③">component_or_swizzle_specifier</a> ?</p>
+    <p>| <code>'&amp;'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-lhs_expression" id="ref-for-recursive-descent-syntax-lhs_expression①">lhs_expression</a></p>
+    <p>| <code>'*'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-lhs_expression" id="ref-for-recursive-descent-syntax-lhs_expression②">lhs_expression</a></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-literal">literal</dfn>: 
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-bool_literal" id="ref-for-recursive-descent-syntax-bool_literal">bool_literal</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-float_literal" id="ref-for-recursive-descent-syntax-float_literal">float_literal</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-int_literal" id="ref-for-recursive-descent-syntax-int_literal">int_literal</a></p>
+   </div>
+   <div class="syntax"> <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-member_ident">member_ident</dfn>: <a data-link-type="dfn" href="#syntax-ident_pattern_token" id="ref-for-syntax-ident_pattern_token②⑧">ident_pattern_token</a> </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-multiplicative_operator">multiplicative_operator</dfn>: 
+    <p>| <code>'%'</code></p>
+    <p>| <code>'*'</code></p>
+    <p>| <code>'/'</code></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-must_use_attr">must_use_attr</dfn>: 
+    <p>| <code>'@'</code> <code>'must_use'</code></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-optionally_typed_ident">optionally_typed_ident</dfn>: 
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑨">ident</a> ( <code>':'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier③">type_specifier</a> )?</p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-param">param</dfn>: 
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute⑨">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①⓪">ident</a> <code>':'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier④">type_specifier</a></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-primary_expression">primary_expression</dfn>: 
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①①">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident③">template_elaborated_ident.post.ident</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①②">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident④">template_elaborated_ident.post.ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-argument_expression_list" id="ref-for-recursive-descent-syntax-argument_expression_list">argument_expression_list</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-literal" id="ref-for-recursive-descent-syntax-literal">literal</a></p>
+    <p>| <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②①">expression</a> <code>')'</code></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-relational_expressionpostunary_expression">relational_expression.post.unary_expression</dfn>: 
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-shift_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-shift_expressionpostunary_expression">shift_expression.post.unary_expression</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-shift_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-shift_expressionpostunary_expression①">shift_expression.post.unary_expression</a> <a data-link-type="dfn" href="#syntax_sym-greater_than" id="ref-for-syntax_sym-greater_than①">greater_than</a> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①④">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-shift_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-shift_expressionpostunary_expression②">shift_expression.post.unary_expression</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-shift_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-shift_expressionpostunary_expression③">shift_expression.post.unary_expression</a> <a data-link-type="dfn" href="#syntax_sym-greater_than_equal" id="ref-for-syntax_sym-greater_than_equal②">greater_than_equal</a> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①⑤">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-shift_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-shift_expressionpostunary_expression④">shift_expression.post.unary_expression</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-shift_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-shift_expressionpostunary_expression⑤">shift_expression.post.unary_expression</a> <a data-link-type="dfn" href="#syntax_sym-less_than" id="ref-for-syntax_sym-less_than①">less_than</a> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①⑥">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-shift_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-shift_expressionpostunary_expression⑥">shift_expression.post.unary_expression</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-shift_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-shift_expressionpostunary_expression⑦">shift_expression.post.unary_expression</a> <a data-link-type="dfn" href="#syntax_sym-less_than_equal" id="ref-for-syntax_sym-less_than_equal③">less_than_equal</a> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①⑦">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-shift_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-shift_expressionpostunary_expression⑧">shift_expression.post.unary_expression</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-shift_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-shift_expressionpostunary_expression⑨">shift_expression.post.unary_expression</a> <code>'!='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①⑧">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-shift_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-shift_expressionpostunary_expression①⓪">shift_expression.post.unary_expression</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-shift_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-shift_expressionpostunary_expression①①">shift_expression.post.unary_expression</a> <code>'=='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression①⑨">unary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-shift_expressionpostunary_expression" id="ref-for-recursive-descent-syntax-shift_expressionpostunary_expression①②">shift_expression.post.unary_expression</a></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-shift_expressionpostunary_expression">shift_expression.post.unary_expression</dfn>: 
+    <p>| ( <a data-link-type="dfn" href="#recursive-descent-syntax-multiplicative_operator" id="ref-for-recursive-descent-syntax-multiplicative_operator">multiplicative_operator</a> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression②⓪">unary_expression</a> )* ( <a data-link-type="dfn" href="#recursive-descent-syntax-additive_operator" id="ref-for-recursive-descent-syntax-additive_operator">additive_operator</a> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression②①">unary_expression</a> ( <a data-link-type="dfn" href="#recursive-descent-syntax-multiplicative_operator" id="ref-for-recursive-descent-syntax-multiplicative_operator①">multiplicative_operator</a> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression②②">unary_expression</a> )* )*</p>
+    <p>| <a data-link-type="dfn" href="#syntax_sym-shift_left" id="ref-for-syntax_sym-shift_left②">shift_left</a> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression②③">unary_expression</a></p>
+    <p>| <a data-link-type="dfn" href="#syntax_sym-shift_right" id="ref-for-syntax_sym-shift_right">shift_right</a> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression②④">unary_expression</a></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-statement">statement</dfn>: 
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute①⓪">attribute</a> * <code>'for'</code> <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-for_init" id="ref-for-recursive-descent-syntax-for_init">for_init</a> ? <code>';'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②②">expression</a> ? <code>';'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-for_update" id="ref-for-recursive-descent-syntax-for_update">for_update</a> ? <code>')'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement">compound_statement</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute①①">attribute</a> * <code>'if'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②③">expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement①">compound_statement</a> ( <code>'else'</code> <code>'if'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②④">expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement②">compound_statement</a> )* ( <code>'else'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement③">compound_statement</a> )?</p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute①②">attribute</a> * <code>'loop'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute①③">attribute</a> * <code>'{'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-statement" id="ref-for-recursive-descent-syntax-statement②">statement</a> * ( <code>'continuing'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute①④">attribute</a> * <code>'{'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-statement" id="ref-for-recursive-descent-syntax-statement③">statement</a> * ( <code>'break'</code> <code>'if'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②⑤">expression</a> <code>';'</code> )? <code>'}'</code> )? <code>'}'</code></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute①⑤">attribute</a> * <code>'switch'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②⑥">expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute①⑥">attribute</a> * <code>'{'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-switch_clause" id="ref-for-recursive-descent-syntax-switch_clause">switch_clause</a> * <code>'}'</code></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute①⑦">attribute</a> * <code>'while'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②⑦">expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement④">compound_statement</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement⑤">compound_statement</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①③">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident⑤">template_elaborated_ident.post.ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-argument_expression_list" id="ref-for-recursive-descent-syntax-argument_expression_list①">argument_expression_list</a> <code>';'</code></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-variable_or_value_statement" id="ref-for-recursive-descent-syntax-variable_or_value_statement①">variable_or_value_statement</a> <code>';'</code></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-variable_updating_statement" id="ref-for-recursive-descent-syntax-variable_updating_statement②">variable_updating_statement</a> <code>';'</code></p>
+    <p>| <a data-link-type="dfn" href="#syntax-break_statement" id="ref-for-syntax-break_statement①">break_statement</a> <code>';'</code></p>
+    <p>| <a data-link-type="dfn" href="#syntax-continue_statement" id="ref-for-syntax-continue_statement①">continue_statement</a> <code>';'</code></p>
+    <p>| <code>';'</code></p>
+    <p>| <code>'const_assert'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②⑧">expression</a> <code>';'</code></p>
+    <p>| <code>'discard'</code> <code>';'</code></p>
+    <p>| <code>'return'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②⑨">expression</a> ? <code>';'</code></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-switch_clause">switch_clause</dfn>: 
+    <p>| <code>'case'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-case_selector" id="ref-for-recursive-descent-syntax-case_selector">case_selector</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-case_selector" id="ref-for-recursive-descent-syntax-case_selector①">case_selector</a> )* <code>','</code> ? <code>':'</code> ? <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement⑥">compound_statement</a></p>
+    <p>| <code>'default'</code> <code>':'</code> ? <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement⑦">compound_statement</a></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-swizzle_name">swizzle_name</dfn>: 
+    <p>| <code>/[rgba]/</code></p>
+    <p>| <code>/[rgba][rgba]/</code></p>
+    <p>| <code>/[rgba][rgba][rgba]/</code></p>
+    <p>| <code>/[rgba][rgba][rgba][rgba]/</code></p>
+    <p>| <code>/[xyzw]/</code></p>
+    <p>| <code>/[xyzw][xyzw]/</code></p>
+    <p>| <code>/[xyzw][xyzw][xyzw]/</code></p>
+    <p>| <code>/[xyzw][xyzw][xyzw][xyzw]/</code></p>
+   </div>
+   <div class="syntax"> <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-template_arg_expression">template_arg_expression</dfn>: <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③⓪">expression</a> </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-template_elaborated_identpostident">template_elaborated_ident.post.ident</dfn>: 
+    <p>| ( <a data-link-type="dfn" href="#syntax_sym-_template_args_start" id="ref-for-syntax_sym-_template_args_start⑥">_template_args_start</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_arg_expression" id="ref-for-recursive-descent-syntax-template_arg_expression">template_arg_expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③①">expression</a> )* <code>','</code> ? <a data-link-type="dfn" href="#syntax_sym-_template_args_end" id="ref-for-syntax_sym-_template_args_end⑥">_template_args_end</a> )?</p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-translation_unit">translation_unit</dfn>: 
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-global_directive" id="ref-for-recursive-descent-syntax-global_directive">global_directive</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-global_decl" id="ref-for-recursive-descent-syntax-global_decl">global_decl</a> *</p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-type_specifier">type_specifier</dfn>: 
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①④">ident</a> ( <a data-link-type="dfn" href="#syntax_sym-_template_args_start" id="ref-for-syntax_sym-_template_args_start⑦">_template_args_start</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_arg_expression" id="ref-for-recursive-descent-syntax-template_arg_expression①">template_arg_expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③②">expression</a> )* <code>','</code> ? <a data-link-type="dfn" href="#syntax_sym-_template_args_end" id="ref-for-syntax_sym-_template_args_end⑦">_template_args_end</a> )?</p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-unary_expression">unary_expression</dfn>: 
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-primary_expression" id="ref-for-recursive-descent-syntax-primary_expression">primary_expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-component_or_swizzle_specifier" id="ref-for-recursive-descent-syntax-component_or_swizzle_specifier④">component_or_swizzle_specifier</a> ?</p>
+    <p>| <code>'!'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression②⑤">unary_expression</a></p>
+    <p>| <code>'&amp;'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression②⑥">unary_expression</a></p>
+    <p>| <code>'*'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression②⑦">unary_expression</a></p>
+    <p>| <code>'-'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression②⑧">unary_expression</a></p>
+    <p>| <code>'~'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-unary_expression" id="ref-for-recursive-descent-syntax-unary_expression②⑨">unary_expression</a></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-variable_decl">variable_decl</dfn>: 
+    <p>| <code>'var'</code> ( <a data-link-type="dfn" href="#syntax_sym-_template_args_start" id="ref-for-syntax_sym-_template_args_start⑧">_template_args_start</a> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③③">expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③④">expression</a> )* <code>','</code> ? <a data-link-type="dfn" href="#syntax_sym-_template_args_end" id="ref-for-syntax_sym-_template_args_end⑧">_template_args_end</a> )? <a data-link-type="dfn" href="#recursive-descent-syntax-optionally_typed_ident" id="ref-for-recursive-descent-syntax-optionally_typed_ident③">optionally_typed_ident</a></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-variable_or_value_statement">variable_or_value_statement</dfn>: 
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-variable_decl" id="ref-for-recursive-descent-syntax-variable_decl">variable_decl</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-variable_decl" id="ref-for-recursive-descent-syntax-variable_decl①">variable_decl</a> <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③⑤">expression</a></p>
+    <p>| <code>'const'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-optionally_typed_ident" id="ref-for-recursive-descent-syntax-optionally_typed_ident④">optionally_typed_ident</a> <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③⑥">expression</a></p>
+    <p>| <code>'let'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-optionally_typed_ident" id="ref-for-recursive-descent-syntax-optionally_typed_ident⑤">optionally_typed_ident</a> <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③⑦">expression</a></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-variable_updating_statement">variable_updating_statement</dfn>: 
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-lhs_expression" id="ref-for-recursive-descent-syntax-lhs_expression③">lhs_expression</a> ( <code>'='</code> | <a data-link-type="dfn" href="#recursive-descent-syntax-compound_assignment_operator" id="ref-for-recursive-descent-syntax-compound_assignment_operator①">compound_assignment_operator</a> ) <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③⑧">expression</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-lhs_expression" id="ref-for-recursive-descent-syntax-lhs_expression④">lhs_expression</a> <code>'++'</code></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-lhs_expression" id="ref-for-recursive-descent-syntax-lhs_expression⑤">lhs_expression</a> <code>'--'</code></p>
+    <p>| <code>'_'</code> <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③⑨">expression</a></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-vertex_attr">vertex_attr</dfn>: 
+    <p>| <code>'@'</code> <code>'vertex'</code></p>
+   </div>
+   <div class="syntax">
+     <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-workgroup_size_attr">workgroup_size_attr</dfn>: 
+    <p>| <code>'@'</code> <code>'workgroup_size'</code> <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④⓪">expression</a> <code>','</code> ? <code>')'</code></p>
+    <p>| <code>'@'</code> <code>'workgroup_size'</code> <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④①">expression</a> <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④②">expression</a> <code>','</code> ? <code>')'</code></p>
+    <p>| <code>'@'</code> <code>'workgroup_size'</code> <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④③">expression</a> <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④④">expression</a> <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression④⑤">expression</a> <code>','</code> ? <code>')'</code></p>
+   </div>
+   <h2 class="heading settled" id="text-wgsl-media-type"><span class="content">Appendix A: The <code>text/wgsl</code> Media Type</span><a class="self-link" href="#text-wgsl-media-type"></a></h2>
+   <p>The Internet Assigned Numbers Authority (IANA) maintains a registry of media types, at <a data-link-type="biblio" href="#biblio-iana-media-types" title="Media Types">[IANA-MEDIA-TYPES]</a>.</p>
+   <p>The following is the definition of the <code>text/wgsl</code> media type for WGSL modules.
 It has been registered at IANA,
 appearing at <a href="https://www.iana.org/assignments/media-types/text/wgsl">https://www.iana.org/assignments/media-types/text/wgsl</a>.</p>
-    <dl>
-     <dt data-md>Type name
-     <dd data-md>
-      <p>text</p>
-     <dt data-md>Subtype name
-     <dd data-md>
-      <p>wgsl</p>
-     <dt data-md>Required parameters
-     <dd data-md>
-      <p>N/A</p>
-     <dt data-md>Optional parameters
-     <dd data-md>
-      <p>None</p>
-     <dt data-md>Encoding considerations
-     <dd data-md>
-      <p>binary</p>
-     <dd data-md>
-      <p>WGSL is Unicode text using the UTF-8 encoding, with no byte order mark (BOM).
+   <dl>
+    <dt data-md>Type name
+    <dd data-md>
+     <p>text</p>
+    <dt data-md>Subtype name
+    <dd data-md>
+     <p>wgsl</p>
+    <dt data-md>Required parameters
+    <dd data-md>
+     <p>N/A</p>
+    <dt data-md>Optional parameters
+    <dd data-md>
+     <p>None</p>
+    <dt data-md>Encoding considerations
+    <dd data-md>
+     <p>binary</p>
+    <dd data-md>
+     <p>WGSL is Unicode text using the UTF-8 encoding, with no byte order mark (BOM).
 See <a href="#textual-structure">§ 3 Textual Structure</a>.</p>
-     <dt data-md>Security considerations:
-     <dd data-md>
-      <p>WebGPU Shading Language (WGSL) is a programming language for GPU
+    <dt data-md>Security considerations:
+    <dd data-md>
+     <p>WebGPU Shading Language (WGSL) is a programming language for GPU
 code to be executed in the context of the WebGPU API. For security
 considerations, see <a data-link-type="biblio" href="#biblio-webgpu" title="WebGPU">[WebGPU]</a> Section 2.1 Security Considerations.
 For privacy considerations, see <a data-link-type="biblio" href="#biblio-webgpu" title="WebGPU">[WebGPU]</a> Section 2.2 Privacy
 Considerations.</p>
-     <dt data-md>Interoperability considerations:
-     <dd data-md>
-      <p>Implementations of WebGPU may have different capabilities, and
+    <dt data-md>Interoperability considerations:
+    <dd data-md>
+     <p>Implementations of WebGPU may have different capabilities, and
 these differences may affect what features may be exercised by
 WGSL programs. See <a data-link-type="biblio" href="#biblio-webgpu" title="WebGPU">[WebGPU]</a> Section 3.6 Optional capabilities,
 and <a href="#language-extensions-sec">§ 4.1.2 Language Extensions</a>.</p>
-      <p>It is expected that implementations will behave as if this
+     <p>It is expected that implementations will behave as if this
 registration applies to later editions of WGSL, and its published
 specification references may be updated accordingly from time to
 time.  Although this expectation is unusual among media type
 registrations, it matches widespread industry conventions.</p>
-     <dt data-md>Published specification:
-     <dd data-md>
-      <p>WebGPU Shading Language</p>
-     <dt data-md>Applications that use this media type:
-     <dd data-md>
-      <p>Implementations of WebGPU. This is expected to include web browsers.</p>
-     <dt data-md>Fragment identifier considerations
-     <dd data-md>
-      <p>None</p>
-     <dt data-md>Additional information:
-     <dd data-md>
-      <p>Magic number(s): None</p>
-     <dd data-md>
-      <p>File extension(s): <code>.wgsl</code></p>
-     <dd data-md>
-      <p>Macintosh file type code(s): <code>TEXT</code></p>
-     <dt data-md>Person &amp; email address to contact for further information:
-     <dd data-md>
-      <p>David Neto, dneto@google.com, or the Editors listed in WGSL.</p>
-     <dt data-md>Intended usage
-     <dd data-md>
-      <p>COMMON</p>
-     <dt data-md>Author
-     <dd data-md>
-      <p>W3C. See the Editors listed in WGSL.</p>
-     <dt data-md>Change controller
-     <dd data-md>
-      <p>W3C</p>
-     <dt data-md>Normative References
-     <dd data-md>
-      <p><a data-link-type="biblio" href="#biblio-webgpu" title="WebGPU">[WebGPU]</a> W3C, "WebGPU” W3C Working Draft, January 2023.  https://w3.org/TR/webgpu</p>
-     <dd data-md>
-      <p>Webgpu Shading Language W3C, "WebGPU Shading Language" W3C Working Draft, January 2023. https://w3.org/TR/WGSL</p>
-    </dl>
-   </div>
+    <dt data-md>Published specification:
+    <dd data-md>
+     <p>WebGPU Shading Language</p>
+    <dt data-md>Applications that use this media type:
+    <dd data-md>
+     <p>Implementations of WebGPU. This is expected to include web browsers.</p>
+    <dt data-md>Fragment identifier considerations
+    <dd data-md>
+     <p>None</p>
+    <dt data-md>Additional information:
+    <dd data-md>
+     <p>Magic number(s): None</p>
+    <dd data-md>
+     <p>File extension(s): <code>.wgsl</code></p>
+    <dd data-md>
+     <p>Macintosh file type code(s): <code>TEXT</code></p>
+    <dt data-md>Person &amp; email address to contact for further information:
+    <dd data-md>
+     <p>David Neto, dneto@google.com, or the Editors listed in WGSL.</p>
+    <dt data-md>Intended usage
+    <dd data-md>
+     <p>COMMON</p>
+    <dt data-md>Author
+    <dd data-md>
+     <p>W3C. See the Editors listed in WGSL.</p>
+    <dt data-md>Change controller
+    <dd data-md>
+     <p>W3C</p>
+    <dt data-md>Normative References
+    <dd data-md>
+     <p><a data-link-type="biblio" href="#biblio-webgpu" title="WebGPU">[WebGPU]</a> W3C, "WebGPU” W3C Working Draft, January 2023.  https://w3.org/TR/webgpu</p>
+    <dd data-md>
+     <p>Webgpu Shading Language W3C, "WebGPU Shading Language" W3C Working Draft, January 2023. https://w3.org/TR/WGSL</p>
+   </dl>
   </main>
   <div data-fill-with="conformance">
    <h2 class="no-ref no-num heading settled" id="w3c-conformance"><span class="content">Conformance</span><a class="self-link" href="#w3c-conformance"></a></h2>
