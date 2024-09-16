@@ -834,7 +834,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/mehmetoguzderin/gpuweb/blob/5b549a6bcaea4bf47c9e9d1710ad2f0aece9ccd0/wgsl/index.bs">https://github.com/mehmetoguzderin/gpuweb/blob/5b549a6bcaea4bf47c9e9d1710ad2f0aece9ccd0/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/mehmetoguzderin/gpuweb/blob/e4b75f6c87458e0ea239b462c31bffc5b352ce1d/wgsl/index.bs">https://github.com/mehmetoguzderin/gpuweb/blob/e4b75f6c87458e0ea239b462c31bffc5b352ce1d/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -1425,8 +1425,8 @@ Learn more about <a href="http://www.w3.org/community/">W3C Community and Busine
           <li><a href="#atomic-or"><span class="secno">16.8.3.6</span> <span class="content"><code>atomicOr</code></span></a>
           <li><a href="#atomic-xor"><span class="secno">16.8.3.7</span> <span class="content"><code>atomicXor</code></span></a>
          </ol>
-        <li><a href="#atomic-exchange"><span class="secno">16.8.4</span> <span class="content"><code>atomicExchange</code> #</span></a>
-        <li><a href="#atomic-compare-exchange-weak"><span class="secno">16.8.5</span> <span class="content"><code>atomicCompareExchangeWeak</code> #</span></a>
+        <li><a href="#atomic-exchange"><span class="secno">16.8.4</span> <span class="content"><code>atomicExchange</code></span></a>
+        <li><a href="#atomic-compare-exchange-weak"><span class="secno">16.8.5</span> <span class="content"><code>atomicCompareExchangeWeak</code></span></a>
        </ol>
       <li>
        <a href="#pack-builtin-functions"><span class="secno">16.9</span> <span class="content">Data Packing Built-in Functions</span></a>
@@ -20385,11 +20385,11 @@ name with the value <var>v</var>.</p>
 <c- p>}</c->
 </pre>
    </div>
-   <h4 class="heading settled" data-level="16.8.4" id="atomic-exchange"><span class="secno">16.8.4. </span><span class="content"><code>atomicExchange</code> #</span><a class="self-link" href="#atomic-exchange"></a></h4>
+   <h4 class="heading settled" data-level="16.8.4" id="atomic-exchange"><span class="secno">16.8.4. </span><span class="content"><code>atomicExchange</code></span><a class="self-link" href="#atomic-exchange"></a></h4>
 <pre class="language-wgsl highlight"><c- k>fn</c-> <c- n>atomicExchange</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-><c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c->
 </pre>
    <p>Atomically stores the value <code>v</code> in the atomic object pointed to by <code>atomic_ptr</code> and returns the original value stored in the atomic object before the operation.</p>
-   <h4 class="heading settled" data-level="16.8.5" id="atomic-compare-exchange-weak"><span class="secno">16.8.5. </span><span class="content"><code>atomicCompareExchangeWeak</code> #</span><a class="self-link" href="#atomic-compare-exchange-weak"></a></h4>
+   <h4 class="heading settled" data-level="16.8.5" id="atomic-compare-exchange-weak"><span class="secno">16.8.5. </span><span class="content"><code>atomicCompareExchangeWeak</code></span><a class="self-link" href="#atomic-compare-exchange-weak"></a></h4>
 <pre class="language-wgsl highlight"><c- k>fn</c-> <c- n>atomicCompareExchangeWeak</c-><c- p>(</c->
       <c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c->
       <c- n>cmp</c-><c- p>:</c-> <c- n>T</c-><c- p>,</c->
