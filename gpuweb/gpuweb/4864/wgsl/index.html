@@ -828,13 +828,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-09-11">11 September 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-09-16">16 September 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/mehmetoguzderin/gpuweb/blob/b1b3911934588b16e786362a210cecbc8c97e93e/wgsl/index.bs">https://github.com/mehmetoguzderin/gpuweb/blob/b1b3911934588b16e786362a210cecbc8c97e93e/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/mehmetoguzderin/gpuweb/blob/89a6027a69c1da4f0fce318d4997ba009870c05e/wgsl/index.bs">https://github.com/mehmetoguzderin/gpuweb/blob/89a6027a69c1da4f0fce318d4997ba009870c05e/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -1415,7 +1415,7 @@ Learn more about <a href="http://www.w3.org/community/">W3C Community and Busine
         <li><a href="#atomic-load"><span class="secno">16.8.1</span> <span class="content"><code>atomicLoad</code></span></a>
         <li><a href="#atomic-store"><span class="secno">16.8.2</span> <span class="content"><code>atomicStore</code></span></a>
         <li>
-         <a href="#atomic-rmw"><span class="secno">16.8.3</span> <span class="content">Atomic Read-modify-write Functions</span></a>
+         <a href="#atomic-rmw"><span class="secno">16.8.3</span> <span class="content">Atomic Read-modify-write Arithmetic and Logical Functions</span></a>
          <ol class="toc">
           <li><a href="#atomic-add"><span class="secno">16.8.3.1</span> <span class="content"><code>atomicAdd</code></span></a>
           <li><a href="#atomic-sub"><span class="secno">16.8.3.2</span> <span class="content"><code>atomicSub</code></span></a>
@@ -1424,9 +1424,9 @@ Learn more about <a href="http://www.w3.org/community/">W3C Community and Busine
           <li><a href="#atomic-and"><span class="secno">16.8.3.5</span> <span class="content"><code>atomicAnd</code></span></a>
           <li><a href="#atomic-or"><span class="secno">16.8.3.6</span> <span class="content"><code>atomicOr</code></span></a>
           <li><a href="#atomic-xor"><span class="secno">16.8.3.7</span> <span class="content"><code>atomicXor</code></span></a>
-          <li><a href="#atomic-exchange"><span class="secno">16.8.3.8</span> <span class="content"><code>atomicExchange</code></span></a>
-          <li><a href="#atomic-compare-exchange-weak"><span class="secno">16.8.3.9</span> <span class="content"><code>atomicCompareExchangeWeak</code></span></a>
          </ol>
+        <li><a href="#atomic-exchange"><span class="secno">16.8.4</span> <span class="content"><code>atomicExchange</code> #</span></a>
+        <li><a href="#atomic-compare-exchange-weak"><span class="secno">16.8.5</span> <span class="content"><code>atomicCompareExchangeWeak</code> #</span></a>
        </ol>
       <li>
        <a href="#pack-builtin-functions"><span class="secno">16.9</span> <span class="content">Data Packing Built-in Functions</span></a>
@@ -20268,7 +20268,7 @@ It does not <a data-link-type="dfn" href="#atomic-modification" id="ref-for-atom
 <pre class="language-wgsl highlight"><c- k>fn</c-> <c- n>atomicStore</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-><c- p>:</c-> <c- n>T</c-><c- p>)</c->
 </pre>
    <p>Atomically stores the value <code>v</code> in the atomic object pointed to by <code>atomic_ptr</code>.</p>
-   <h4 class="heading settled" data-level="16.8.3" id="atomic-rmw"><span class="secno">16.8.3. </span><span class="content">Atomic Read-modify-write Functions</span><a class="self-link" href="#atomic-rmw"></a></h4>
+   <h4 class="heading settled" data-level="16.8.3" id="atomic-rmw"><span class="secno">16.8.3. </span><span class="content">Atomic Read-modify-write Arithmetic and Logical Functions</span><a class="self-link" href="#atomic-rmw"></a></h4>
    <p>Each function performs the following steps atomically:</p>
    <ol>
     <li data-md>
@@ -20284,35 +20284,112 @@ name with the value <var>v</var>.</p>
 <pre class="language-wgsl highlight"><c- k>fn</c-> <c- n>atomicAdd</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-><c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c->
 </pre>
    <p>Atomically performs an addition operation on the atomic object pointed to by <code>atomic_ptr</code> with the value <code>v</code>, and returns the original value stored in the atomic object before the operation.</p>
+   <div class="example wgsl global-scope no-marker" id="example-5845da18">
+    <a class="self-link" href="#example-5845da18"></a>
+    <div class="marker">EXAMPLE: Operation of `atomicAdd` as a function</div>
+<pre class="highlight"><c- c1>// All operation performed atomically</c->
+<c- k>fn</c-> <c- n>atomicAdd</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-> <c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c-> <c- p>{</c->
+  <c- a>let</c-> <c- n>old</c-> <c- o>=</c-> <c- o>*</c-><c- n>atomic_ptr</c-><c- p>;</c->
+  <c- o>*</c-><c- n>atomic_ptr</c-> <c- o>=</c-> <c- n>old</c-> <c- o>+</c-> <c- n>v</c-><c- p>;</c->
+  <c- k>return</c-> <c- n>old</c-><c- p>;</c->
+<c- p>}</c->
+</pre>
+   </div>
    <h5 class="heading settled" data-level="16.8.3.2" id="atomic-sub"><span class="secno">16.8.3.2. </span><span class="content"><code>atomicSub</code></span><a class="self-link" href="#atomic-sub"></a></h5>
 <pre class="language-wgsl highlight"><c- k>fn</c-> <c- n>atomicSub</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-><c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c->
 </pre>
    <p>Atomically performs a subtraction operation on the atomic object pointed to by <code>atomic_ptr</code> with the value <code>v</code>, and returns the original value stored in the atomic object before the operation.</p>
+   <div class="example wgsl global-scope no-marker" id="example-1411629b">
+    <a class="self-link" href="#example-1411629b"></a>
+    <div class="marker">EXAMPLE: Operation of `atomicSub` as a function</div>
+<pre class="highlight"><c- c1>// All operation performed atomically</c->
+<c- k>fn</c-> <c- n>atomicSub</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-> <c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c-> <c- p>{</c->
+  <c- a>let</c-> <c- n>old</c-> <c- o>=</c-> <c- o>*</c-><c- n>atomic_ptr</c-><c- p>;</c->
+  <c- o>*</c-><c- n>atomic_ptr</c-> <c- o>=</c-> <c- n>old</c-> <c- o>-</c-> <c- n>v</c-><c- p>;</c->
+  <c- k>return</c-> <c- n>old</c-><c- p>;</c->
+<c- p>}</c->
+</pre>
+   </div>
    <h5 class="heading settled" data-level="16.8.3.3" id="atomic-max"><span class="secno">16.8.3.3. </span><span class="content"><code>atomicMax</code></span><a class="self-link" href="#atomic-max"></a></h5>
 <pre class="language-wgsl highlight"><c- k>fn</c-> <c- n>atomicMax</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-><c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c->
 </pre>
    <p>Atomically performs a maximum operation on the atomic object pointed to by <code>atomic_ptr</code> with the value <code>v</code>, and returns the original value stored in the atomic object before the operation.</p>
+   <div class="example wgsl global-scope no-marker" id="example-ce2a51b6">
+    <a class="self-link" href="#example-ce2a51b6"></a>
+    <div class="marker">EXAMPLE: Operation of `atomicMax` as a function</div>
+<pre class="highlight"><c- c1>// All operation performed atomically</c->
+<c- k>fn</c-> <c- n>atomicMax</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-> <c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c-> <c- p>{</c->
+  <c- a>let</c-> <c- n>old</c-> <c- o>=</c-> <c- o>*</c-><c- n>atomic_ptr</c-><c- p>;</c->
+  <c- o>*</c-><c- n>atomic_ptr</c-> <c- o>=</c-> <c- n>max</c-><c- p>(</c-><c- n>old</c-><c- p>,</c-> <c- n>v</c-><c- p>);</c->
+  <c- k>return</c-> <c- n>old</c-><c- p>;</c->
+<c- p>}</c->
+</pre>
+   </div>
    <h5 class="heading settled" data-level="16.8.3.4" id="atomic-min"><span class="secno">16.8.3.4. </span><span class="content"><code>atomicMin</code></span><a class="self-link" href="#atomic-min"></a></h5>
 <pre class="language-wgsl highlight"><c- k>fn</c-> <c- n>atomicMin</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-><c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c->
 </pre>
    <p>Atomically performs a minimum operation on the atomic object pointed to by <code>atomic_ptr</code> with the value <code>v</code>, and returns the original value stored in the atomic object before the operation.</p>
+   <div class="example wgsl global-scope no-marker" id="example-e1098e66">
+    <a class="self-link" href="#example-e1098e66"></a>
+    <div class="marker">EXAMPLE: Operation of `atomicMin` as a function</div>
+<pre class="highlight"><c- c1>// All operation performed atomically</c->
+<c- k>fn</c-> <c- n>atomicMin</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-> <c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c-> <c- p>{</c->
+  <c- a>let</c-> <c- n>old</c-> <c- o>=</c-> <c- o>*</c-><c- n>atomic_ptr</c-><c- p>;</c->
+  <c- o>*</c-><c- n>atomic_ptr</c-> <c- o>=</c-> <c- n>min</c-><c- p>(</c-><c- n>old</c-><c- p>,</c-> <c- n>v</c-><c- p>);</c->
+  <c- k>return</c-> <c- n>old</c-><c- p>;</c->
+<c- p>}</c->
+</pre>
+   </div>
    <h5 class="heading settled" data-level="16.8.3.5" id="atomic-and"><span class="secno">16.8.3.5. </span><span class="content"><code>atomicAnd</code></span><a class="self-link" href="#atomic-and"></a></h5>
 <pre class="language-wgsl highlight"><c- k>fn</c-> <c- n>atomicAnd</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-><c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c->
 </pre>
    <p>Atomically performs a bitwise AND operation on the atomic object pointed to by <code>atomic_ptr</code> with the value <code>v</code>, and returns the original value stored in the atomic object before the operation.</p>
+   <div class="example wgsl global-scope no-marker" id="example-58df0482">
+    <a class="self-link" href="#example-58df0482"></a>
+    <div class="marker">EXAMPLE: Operation of `atomicAnd` as a function</div>
+<pre class="highlight"><c- c1>// All operation performed atomically</c->
+<c- k>fn</c-> <c- n>atomicAnd</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-> <c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c-> <c- p>{</c->
+  <c- a>let</c-> <c- n>old</c-> <c- o>=</c-> <c- o>*</c-><c- n>atomic_ptr</c-><c- p>;</c->
+  <c- o>*</c-><c- n>atomic_ptr</c-> <c- o>=</c-> <c- n>old</c-> <c- o>&amp;</c-> <c- n>v</c-><c- p>;</c->
+  <c- k>return</c-> <c- n>old</c-><c- p>;</c->
+<c- p>}</c->
+</pre>
+   </div>
    <h5 class="heading settled" data-level="16.8.3.6" id="atomic-or"><span class="secno">16.8.3.6. </span><span class="content"><code>atomicOr</code></span><a class="self-link" href="#atomic-or"></a></h5>
 <pre class="language-wgsl highlight"><c- k>fn</c-> <c- n>atomicOr</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-><c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c->
 </pre>
    <p>Atomically performs a bitwise OR operation on the atomic object pointed to by <code>atomic_ptr</code> with the value <code>v</code>, and returns the original value stored in the atomic object before the operation.</p>
+   <div class="example wgsl global-scope no-marker" id="example-c7b656d5">
+    <a class="self-link" href="#example-c7b656d5"></a>
+    <div class="marker">EXAMPLE: Operation of `atomicOr` as a function</div>
+<pre class="highlight"><c- c1>// All operation performed atomically</c->
+<c- k>fn</c-> <c- n>atomicOr</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-> <c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c-> <c- p>{</c->
+  <c- a>let</c-> <c- n>old</c-> <c- o>=</c-> <c- o>*</c-><c- n>atomic_ptr</c-><c- p>;</c->
+  <c- o>*</c-><c- n>atomic_ptr</c-> <c- o>=</c-> <c- n>old</c-> <c- o>|</c-> <c- n>v</c-><c- p>;</c->
+  <c- k>return</c-> <c- n>old</c-><c- p>;</c->
+<c- p>}</c->
+</pre>
+   </div>
    <h5 class="heading settled" data-level="16.8.3.7" id="atomic-xor"><span class="secno">16.8.3.7. </span><span class="content"><code>atomicXor</code></span><a class="self-link" href="#atomic-xor"></a></h5>
 <pre class="language-wgsl highlight"><c- k>fn</c-> <c- n>atomicXor</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-><c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c->
 </pre>
    <p>Atomically performs a bitwise XOR operation on the atomic object pointed to by <code>atomic_ptr</code> with the value <code>v</code>, and returns the original value stored in the atomic object before the operation.</p>
-   <h5 class="heading settled" data-level="16.8.3.8" id="atomic-exchange"><span class="secno">16.8.3.8. </span><span class="content"><code>atomicExchange</code></span><a class="self-link" href="#atomic-exchange"></a></h5>
+   <div class="example wgsl global-scope no-marker" id="example-5b3f508c">
+    <a class="self-link" href="#example-5b3f508c"></a>
+    <div class="marker">EXAMPLE: Operation of `atomicXor` as a function</div>
+<pre class="highlight"><c- c1>// All operation performed atomically</c->
+<c- k>fn</c-> <c- n>atomicXor</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-> <c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c-> <c- p>{</c->
+  <c- a>let</c-> <c- n>old</c-> <c- o>=</c-> <c- o>*</c-><c- n>atomic_ptr</c-><c- p>;</c->
+  <c- o>*</c-><c- n>atomic_ptr</c-> <c- o>=</c-> <c- n>old</c-> <c- o>^</c-> <c- n>v</c-><c- p>;</c->
+  <c- k>return</c-> <c- n>old</c-><c- p>;</c->
+<c- p>}</c->
+</pre>
+   </div>
+   <h4 class="heading settled" data-level="16.8.4" id="atomic-exchange"><span class="secno">16.8.4. </span><span class="content"><code>atomicExchange</code> #</span><a class="self-link" href="#atomic-exchange"></a></h4>
 <pre class="language-wgsl highlight"><c- k>fn</c-> <c- n>atomicExchange</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-><c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c->
 </pre>
    <p>Atomically stores the value <code>v</code> in the atomic object pointed to by <code>atomic_ptr</code> and returns the original value stored in the atomic object before the operation.</p>
-   <h5 class="heading settled" data-level="16.8.3.9" id="atomic-compare-exchange-weak"><span class="secno">16.8.3.9. </span><span class="content"><code>atomicCompareExchangeWeak</code></span><a class="self-link" href="#atomic-compare-exchange-weak"></a></h5>
+   <h4 class="heading settled" data-level="16.8.5" id="atomic-compare-exchange-weak"><span class="secno">16.8.5. </span><span class="content"><code>atomicCompareExchangeWeak</code> #</span><a class="self-link" href="#atomic-compare-exchange-weak"></a></h4>
 <pre class="language-wgsl highlight"><c- k>fn</c-> <c- n>atomicCompareExchangeWeak</c-><c- p>(</c->
       <c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c-><c- n>AS</c-><c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c->
       <c- n>cmp</c-><c- p>:</c-> <c- n>T</c-><c- p>,</c->
