@@ -828,13 +828,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-09-23">23 September 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-09-25">25 September 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/mehmetoguzderin/gpuweb/blob/2679b5d362216b98eb7b89c1e740b552def8d05e/wgsl/index.bs">https://github.com/mehmetoguzderin/gpuweb/blob/2679b5d362216b98eb7b89c1e740b552def8d05e/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/mehmetoguzderin/gpuweb/blob/9733868218617a74f534c13775b3f463f882cab7/wgsl/index.bs">https://github.com/mehmetoguzderin/gpuweb/blob/9733868218617a74f534c13775b3f463f882cab7/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -18931,8 +18931,7 @@ according to the relative coordinates of the texels, as follows:</p>
        </table>
      </ul>
    </ul>
-   <p>TODO: The four texels are the "sample footprint" that should be described by the WebGPU spec.
-https://github.com/gpuweb/gpuweb/issues/2343</p>
+   <p>The four texels form the sampled area as described in the <a href="https://gpuweb.github.io/gpuweb/#GPUSamplerDescriptor">WebGPU sampler descriptor</a>.</p>
    <table class="data">
     <thead>
      <tr>
@@ -20425,8 +20424,8 @@ name with the value <var>v</var>.</p>
       <c- n>v</c-><c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>__atomic_compare_exchange_result</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c->
 
 <c- k>struct</c-> <c- n>__atomic_compare_exchange_result</c-><c- o>&lt;</c-><c- n>T</c-><c- o>></c-> <c- p>{</c->
-  <c- n>old_value</c-> <c- p>:</c-> <c- n>T</c-><c- p>;</c-> <c- c1>// old value stored in the atomic</c->
-  <c- n>exchanged</c-> <c- p>:</c-> bool<c- p>;</c-> <c- c1>// true if the exchange was done</c->
+  <c- n>old_value</c-> <c- p>:</c-> <c- n>T</c-><c- p>,</c->   <c- c1>// old value stored in the atomic</c->
+  <c- n>exchanged</c-> <c- p>:</c-> bool <c- c1>// true if the exchange was done</c->
 <c- p>}</c->
 </pre>
    <p class="note" role="note"><span class="marker">Note:</span> A value cannot be explicitly declared with the type <code>__atomic_compare_exchange_result</code>, but a value may infer the type.</p>
