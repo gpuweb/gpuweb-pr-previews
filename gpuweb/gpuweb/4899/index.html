@@ -1117,7 +1117,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/fd51e2059bcd2f6691031752ffff507b3b7e38bd/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/fd51e2059bcd2f6691031752ffff507b3b7e38bd/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/a193c2ee5fc050b5d7f591a16b1abda7015a49ed/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/a193c2ee5fc050b5d7f591a16b1abda7015a49ed/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -16540,7 +16540,7 @@ which allows changing the canvas configuration without replacing the canvas.</p>
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑧②"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpucanvascontext-configure" id="ref-for-dom-gpucanvascontext-configure②"><c- g>configure</c-></a>(<a data-link-type="idl-name" href="#dictdef-gpucanvasconfiguration" id="ref-for-dictdef-gpucanvasconfiguration①"><c- n>GPUCanvasConfiguration</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpucanvascontext-configure-configuration-configuration" id="ref-for-dom-gpucanvascontext-configure-configuration-configuration"><c- g>configuration</c-></a>);
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined⑧③"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpucanvascontext-unconfigure" id="ref-for-dom-gpucanvascontext-unconfigure"><c- g>unconfigure</c-></a>();
 
-    <a data-link-type="idl-name" href="#dictdef-gpucanvasconfiguration" id="ref-for-dictdef-gpucanvasconfiguration②"><c- n>GPUCanvasConfiguration</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpucanvascontext-getconfiguration" id="ref-for-dom-gpucanvascontext-getconfiguration"><c- g>getConfiguration</c-></a>();
+    <a data-link-type="idl-name" href="#dictdef-gpucanvasconfiguration" id="ref-for-dictdef-gpucanvasconfiguration②"><c- n>GPUCanvasConfiguration</c-></a>? <a class="idl-code" data-link-type="method" href="#dom-gpucanvascontext-getconfiguration" id="ref-for-dom-gpucanvascontext-getconfiguration"><c- g>getConfiguration</c-></a>();
     <a data-link-type="idl-name" href="#gputexture" id="ref-for-gputexture④①"><c- n>GPUTexture</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpucanvascontext-getcurrenttexture" id="ref-for-dom-gpucanvascontext-getcurrenttexture①"><c- g>getCurrentTexture</c-></a>();
 };
 </pre>
@@ -16679,7 +16679,7 @@ the canvas is resized.</p>
      <div class="algorithm" data-algorithm="GPUCanvasContext.getConfiguration">
       <div data-timeline="content">
         <strong>Called on:</strong> <code class="idl"><a data-link-type="idl" href="#gpucanvascontext" id="ref-for-gpucanvascontext⑨">GPUCanvasContext</a></code> <var>this</var>. 
-       <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="#dictdef-gpucanvasconfiguration" id="ref-for-dictdef-gpucanvasconfiguration⑤">GPUCanvasConfiguration</a></code></p>
+       <p><strong>Returns:</strong> <code class="idl"><a data-link-type="idl" href="#dictdef-gpucanvasconfiguration" id="ref-for-dictdef-gpucanvasconfiguration⑤">GPUCanvasConfiguration</a></code> or <code>null</code></p>
        <p><a data-link-type="dfn" href="#content-timeline" id="ref-for-content-timeline①①⑦">Content timeline</a> steps:</p>
        <ol>
         <li data-md>
@@ -23015,7 +23015,7 @@ for (const dataLink of dataLinks) {
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpucanvascontext-configure"><c- g>configure</c-></a>(<a data-link-type="idl-name" href="#dictdef-gpucanvasconfiguration"><c- n>GPUCanvasConfiguration</c-></a> <a class="idl-code" data-link-type="argument" href="#dom-gpucanvascontext-configure-configuration-configuration"><c- g>configuration</c-></a>);
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpucanvascontext-unconfigure"><c- g>unconfigure</c-></a>();
 
-    <a data-link-type="idl-name" href="#dictdef-gpucanvasconfiguration"><c- n>GPUCanvasConfiguration</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpucanvascontext-getconfiguration"><c- g>getConfiguration</c-></a>();
+    <a data-link-type="idl-name" href="#dictdef-gpucanvasconfiguration"><c- n>GPUCanvasConfiguration</c-></a>? <a class="idl-code" data-link-type="method" href="#dom-gpucanvascontext-getconfiguration"><c- g>getConfiguration</c-></a>();
     <a data-link-type="idl-name" href="#gputexture"><c- n>GPUTexture</c-></a> <a class="idl-code" data-link-type="method" href="#dom-gpucanvascontext-getcurrenttexture"><c- g>getCurrentTexture</c-></a>();
 };
 
