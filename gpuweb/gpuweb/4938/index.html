@@ -1111,13 +1111,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2024-10-24">24 October 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2024-10-25">25 October 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/20966ef3d524675363c9c4b844be8186e40956e2/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/20966ef3d524675363c9c4b844be8186e40956e2/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/9711010021f9e3c44cb52d4445bbd69e6f7004d6/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/9711010021f9e3c44cb52d4445bbd69e6f7004d6/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -6187,15 +6187,15 @@ bytes needed to store one <a data-link-type="dfn" href="#texel-block" id="ref-fo
 
     // R/RG/RGBA16 unorm formats usable if "unorm16-texture-formats" is both
     // supported by the device/user agent and enabled in requestDevice.
-    <dfn class="dfn-paneled idl-code" data-dfn-for="GPUTextureFormat" data-dfn-type="enum-value" data-export id="dom-gputextureformat-r16-unorm"><code><c- s>"r16-unorm"</c-></code></dfn>,
-    <dfn class="dfn-paneled idl-code" data-dfn-for="GPUTextureFormat" data-dfn-type="enum-value" data-export id="dom-gputextureformat-rg16-unorm"><code><c- s>"rg16-unorm"</c-></code></dfn>,
-    <dfn class="dfn-paneled idl-code" data-dfn-for="GPUTextureFormat" data-dfn-type="enum-value" data-export id="dom-gputextureformat-rgba16-unorm"><code><c- s>"rgba16-unorm"</c-></code></dfn>,
+    <dfn class="dfn-paneled idl-code" data-dfn-for="GPUTextureFormat" data-dfn-type="enum-value" data-export id="dom-gputextureformat-r16unorm"><code><c- s>"r16unorm"</c-></code></dfn>,
+    <dfn class="dfn-paneled idl-code" data-dfn-for="GPUTextureFormat" data-dfn-type="enum-value" data-export id="dom-gputextureformat-rg16unorm"><code><c- s>"rg16unorm"</c-></code></dfn>,
+    <dfn class="dfn-paneled idl-code" data-dfn-for="GPUTextureFormat" data-dfn-type="enum-value" data-export id="dom-gputextureformat-rgba16unorm"><code><c- s>"rgba16unorm"</c-></code></dfn>,
 
     // R/RG/RGBA16 snorm formats usable if "snorm16-texture-formats" is both
     // supported by the device/user agent and enabled in requestDevice.
-    <dfn class="dfn-paneled idl-code" data-dfn-for="GPUTextureFormat" data-dfn-type="enum-value" data-export id="dom-gputextureformat-r16-snorm"><code><c- s>"r16-snorm"</c-></code></dfn>,
-    <dfn class="dfn-paneled idl-code" data-dfn-for="GPUTextureFormat" data-dfn-type="enum-value" data-export id="dom-gputextureformat-rg16-snorm"><code><c- s>"rg16-snorm"</c-></code></dfn>,
-    <dfn class="dfn-paneled idl-code" data-dfn-for="GPUTextureFormat" data-dfn-type="enum-value" data-export id="dom-gputextureformat-rgba16-snorm"><code><c- s>"rgba16-snorm"</c-></code></dfn>,
+    <dfn class="dfn-paneled idl-code" data-dfn-for="GPUTextureFormat" data-dfn-type="enum-value" data-export id="dom-gputextureformat-r16snorm"><code><c- s>"r16snorm"</c-></code></dfn>,
+    <dfn class="dfn-paneled idl-code" data-dfn-for="GPUTextureFormat" data-dfn-type="enum-value" data-export id="dom-gputextureformat-rg16snorm"><code><c- s>"rg16snorm"</c-></code></dfn>,
+    <dfn class="dfn-paneled idl-code" data-dfn-for="GPUTextureFormat" data-dfn-type="enum-value" data-export id="dom-gputextureformat-rgba16snorm"><code><c- s>"rgba16snorm"</c-></code></dfn>,
 
 };
 </pre>
@@ -19040,11 +19040,11 @@ attachment at <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl
      <p>New <code class="idl"><a data-link-type="idl" href="#enumdef-gputextureformat" id="ref-for-enumdef-gputextureformat⑤②">GPUTextureFormat</a></code> enum values:</p>
      <ul>
       <li data-md>
-       <p><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-r16-unorm" id="ref-for-dom-gputextureformat-r16-unorm">"r16-unorm"</a></code></p>
+       <p><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-r16unorm" id="ref-for-dom-gputextureformat-r16unorm">"r16unorm"</a></code></p>
       <li data-md>
-       <p><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rg16-unorm" id="ref-for-dom-gputextureformat-rg16-unorm">"rg16-unorm"</a></code></p>
+       <p><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rg16unorm" id="ref-for-dom-gputextureformat-rg16unorm">"rg16unorm"</a></code></p>
       <li data-md>
-       <p><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgba16-unorm" id="ref-for-dom-gputextureformat-rgba16-unorm">"rgba16-unorm"</a></code></p>
+       <p><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgba16unorm" id="ref-for-dom-gputextureformat-rgba16unorm">"rgba16unorm"</a></code></p>
      </ul>
    </ul>
    <h3 class="heading settled dfn-paneled idl-code" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.18" data-lt="&quot;snorm16-texture-formats&quot;" id="snorm16-texture-formats"><span class="secno">25.18. </span><span class="content"><code>"snorm16-texture-formats"</code> <span id="dom-gpufeaturename-snorm16-texture-formats"></span> </span><a class="self-link" href="#snorm16-texture-formats" id="ref-for-snorm16-texture-formats"></a></h3>
@@ -19055,11 +19055,11 @@ attachment at <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl
      <p>New <code class="idl"><a data-link-type="idl" href="#enumdef-gputextureformat" id="ref-for-enumdef-gputextureformat⑤③">GPUTextureFormat</a></code> enum values:</p>
      <ul>
       <li data-md>
-       <p><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-r16-snorm" id="ref-for-dom-gputextureformat-r16-snorm">"r16-snorm"</a></code></p>
+       <p><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-r16snorm" id="ref-for-dom-gputextureformat-r16snorm">"r16snorm"</a></code></p>
       <li data-md>
-       <p><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rg16-snorm" id="ref-for-dom-gputextureformat-rg16-snorm">"rg16-snorm"</a></code></p>
+       <p><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rg16snorm" id="ref-for-dom-gputextureformat-rg16snorm">"rg16snorm"</a></code></p>
       <li data-md>
-       <p><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgba16-snorm" id="ref-for-dom-gputextureformat-rgba16-snorm">"rgba16-snorm"</a></code></p>
+       <p><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgba16snorm" id="ref-for-dom-gputextureformat-rgba16snorm">"rgba16snorm"</a></code></p>
      </ul>
    </ul>
    <h2 class="heading settled" data-level="26" id="appendices"><span class="secno">26. </span><span class="content">Appendices</span><a class="self-link" href="#appendices"></a></h2>
@@ -19365,7 +19365,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>
       <td colspan="2">8 
      <tr>
-      <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-r16-unorm" id="ref-for-dom-gputextureformat-r16-unorm①">r16-unorm</a></code> 
+      <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-r16unorm" id="ref-for-dom-gputextureformat-r16unorm①">r16unorm</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float②②">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float①⑨">"unfilterable-float"</a></code> 
       <td>If <code class="idl"><a data-link-type="idl" href="#unorm16-texture-formats" id="ref-for-unorm16-texture-formats⑥">"unorm16-texture-formats"</a></code> is enabled 
       <td>
@@ -19376,7 +19376,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>
       <td colspan="2">2 
      <tr>
-      <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rg16-unorm" id="ref-for-dom-gputextureformat-rg16-unorm①">rg16-unorm</a></code> 
+      <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rg16unorm" id="ref-for-dom-gputextureformat-rg16unorm①">rg16unorm</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float②③">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float②⓪">"unfilterable-float"</a></code> 
       <td>If <code class="idl"><a data-link-type="idl" href="#unorm16-texture-formats" id="ref-for-unorm16-texture-formats②">"unorm16-texture-formats"</a></code> is enabled 
       <td>
@@ -19387,7 +19387,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>
       <td colspan="2">4 
      <tr>
-      <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgba16-unorm" id="ref-for-dom-gputextureformat-rgba16-unorm①">rgba16-unorm</a></code> 
+      <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgba16unorm" id="ref-for-dom-gputextureformat-rgba16unorm①">rgba16unorm</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float②④">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float②①">"unfilterable-float"</a></code> 
       <td>If <code class="idl"><a data-link-type="idl" href="#unorm16-texture-formats" id="ref-for-unorm16-texture-formats④">"unorm16-texture-formats"</a></code> is enabled 
       <td>
@@ -19398,7 +19398,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>
       <td colspan="2">8 
      <tr>
-      <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-r16-snorm" id="ref-for-dom-gputextureformat-r16-snorm①">r16-snorm</a></code> 
+      <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-r16snorm" id="ref-for-dom-gputextureformat-r16snorm①">r16snorm</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float②⑤">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float②②">"unfilterable-float"</a></code> 
       <td>If <code class="idl"><a data-link-type="idl" href="#snorm16-texture-formats" id="ref-for-snorm16-texture-formats⑥">"snorm16-texture-formats"</a></code> is enabled 
       <td>
@@ -19409,7 +19409,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>
       <td colspan="2">2 
      <tr>
-      <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rg16-snorm" id="ref-for-dom-gputextureformat-rg16-snorm①">rg16-snorm</a></code> 
+      <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rg16snorm" id="ref-for-dom-gputextureformat-rg16snorm①">rg16snorm</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float②⑥">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float②③">"unfilterable-float"</a></code> 
       <td>If <code class="idl"><a data-link-type="idl" href="#snorm16-texture-formats" id="ref-for-snorm16-texture-formats②">"snorm16-texture-formats"</a></code> is enabled 
       <td>
@@ -19420,7 +19420,7 @@ specify support for <code class="idl"><a data-link-type="idl" href="#dom-gputext
       <td>
       <td colspan="2">4 
      <tr>
-      <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgba16-snorm" id="ref-for-dom-gputextureformat-rgba16-snorm①">rgba16-snorm</a></code> 
+      <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rgba16snorm" id="ref-for-dom-gputextureformat-rgba16snorm①">rgba16snorm</a></code> 
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float②⑦">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float②④">"unfilterable-float"</a></code> 
       <td>If <code class="idl"><a data-link-type="idl" href="#snorm16-texture-formats" id="ref-for-snorm16-texture-formats④">"snorm16-texture-formats"</a></code> is enabled 
       <td>
@@ -21232,9 +21232,9 @@ for (const dataLink of dataLinks) {
     </ul>
    <li><a href="#dom-gputextureformat-r16float">"r16float"</a><span>, in § 6.3</span>
    <li><a href="#dom-gputextureformat-r16sint">"r16sint"</a><span>, in § 6.3</span>
-   <li><a href="#dom-gputextureformat-r16-snorm">"r16-snorm"</a><span>, in § 6.3</span>
+   <li><a href="#dom-gputextureformat-r16snorm">"r16snorm"</a><span>, in § 6.3</span>
    <li><a href="#dom-gputextureformat-r16uint">"r16uint"</a><span>, in § 6.3</span>
-   <li><a href="#dom-gputextureformat-r16-unorm">"r16-unorm"</a><span>, in § 6.3</span>
+   <li><a href="#dom-gputextureformat-r16unorm">"r16unorm"</a><span>, in § 6.3</span>
    <li><a href="#dom-gputextureformat-r32float">"r32float"</a><span>, in § 6.3</span>
    <li><a href="#dom-gputextureformat-r32sint">"r32sint"</a><span>, in § 6.3</span>
    <li><a href="#dom-gputextureformat-r32uint">"r32uint"</a><span>, in § 6.3</span>
@@ -21292,9 +21292,9 @@ for (const dataLink of dataLinks) {
    <li><a href="#rg11b10ufloat-renderable">"rg11b10ufloat-renderable"</a><span>, in § 25.10</span>
    <li><a href="#dom-gputextureformat-rg16float">"rg16float"</a><span>, in § 6.3</span>
    <li><a href="#dom-gputextureformat-rg16sint">"rg16sint"</a><span>, in § 6.3</span>
-   <li><a href="#dom-gputextureformat-rg16-snorm">"rg16-snorm"</a><span>, in § 6.3</span>
+   <li><a href="#dom-gputextureformat-rg16snorm">"rg16snorm"</a><span>, in § 6.3</span>
    <li><a href="#dom-gputextureformat-rg16uint">"rg16uint"</a><span>, in § 6.3</span>
-   <li><a href="#dom-gputextureformat-rg16-unorm">"rg16-unorm"</a><span>, in § 6.3</span>
+   <li><a href="#dom-gputextureformat-rg16unorm">"rg16unorm"</a><span>, in § 6.3</span>
    <li><a href="#dom-gputextureformat-rg32float">"rg32float"</a><span>, in § 6.3</span>
    <li><a href="#dom-gputextureformat-rg32sint">"rg32sint"</a><span>, in § 6.3</span>
    <li><a href="#dom-gputextureformat-rg32uint">"rg32uint"</a><span>, in § 6.3</span>
@@ -21307,9 +21307,9 @@ for (const dataLink of dataLinks) {
    <li><a href="#dom-gputextureformat-rgb9e5ufloat">"rgb9e5ufloat"</a><span>, in § 6.3</span>
    <li><a href="#dom-gputextureformat-rgba16float">"rgba16float"</a><span>, in § 6.3</span>
    <li><a href="#dom-gputextureformat-rgba16sint">"rgba16sint"</a><span>, in § 6.3</span>
-   <li><a href="#dom-gputextureformat-rgba16-snorm">"rgba16-snorm"</a><span>, in § 6.3</span>
+   <li><a href="#dom-gputextureformat-rgba16snorm">"rgba16snorm"</a><span>, in § 6.3</span>
    <li><a href="#dom-gputextureformat-rgba16uint">"rgba16uint"</a><span>, in § 6.3</span>
-   <li><a href="#dom-gputextureformat-rgba16-unorm">"rgba16-unorm"</a><span>, in § 6.3</span>
+   <li><a href="#dom-gputextureformat-rgba16unorm">"rgba16unorm"</a><span>, in § 6.3</span>
    <li><a href="#dom-gputextureformat-rgba32float">"rgba32float"</a><span>, in § 6.3</span>
    <li><a href="#dom-gputextureformat-rgba32sint">"rgba32sint"</a><span>, in § 6.3</span>
    <li><a href="#dom-gputextureformat-rgba32uint">"rgba32uint"</a><span>, in § 6.3</span>
@@ -22395,15 +22395,15 @@ for (const dataLink of dataLinks) {
 
     // R/RG/RGBA16 unorm formats usable if "unorm16-texture-formats" is both
     // supported by the device/user agent and enabled in requestDevice.
-    <a href="#dom-gputextureformat-r16-unorm"><code><c- s>"r16-unorm"</c-></code></a>,
-    <a href="#dom-gputextureformat-rg16-unorm"><code><c- s>"rg16-unorm"</c-></code></a>,
-    <a href="#dom-gputextureformat-rgba16-unorm"><code><c- s>"rgba16-unorm"</c-></code></a>,
+    <a href="#dom-gputextureformat-r16unorm"><code><c- s>"r16unorm"</c-></code></a>,
+    <a href="#dom-gputextureformat-rg16unorm"><code><c- s>"rg16unorm"</c-></code></a>,
+    <a href="#dom-gputextureformat-rgba16unorm"><code><c- s>"rgba16unorm"</c-></code></a>,
 
     // R/RG/RGBA16 snorm formats usable if "snorm16-texture-formats" is both
     // supported by the device/user agent and enabled in requestDevice.
-    <a href="#dom-gputextureformat-r16-snorm"><code><c- s>"r16-snorm"</c-></code></a>,
-    <a href="#dom-gputextureformat-rg16-snorm"><code><c- s>"rg16-snorm"</c-></code></a>,
-    <a href="#dom-gputextureformat-rgba16-snorm"><code><c- s>"rgba16-snorm"</c-></code></a>,
+    <a href="#dom-gputextureformat-r16snorm"><code><c- s>"r16snorm"</c-></code></a>,
+    <a href="#dom-gputextureformat-rg16snorm"><code><c- s>"rg16snorm"</c-></code></a>,
+    <a href="#dom-gputextureformat-rgba16snorm"><code><c- s>"rgba16snorm"</c-></code></a>,
 
 };
 
@@ -24617,11 +24617,11 @@ let dfnPanelData = {
 "dom-gputextureformat-etc2-rgb8unorm-srgb": {"dfnID":"dom-gputextureformat-etc2-rgb8unorm-srgb","dfnText":"\"etc2-rgb8unorm-srgb\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-etc2-rgb8unorm-srgb"}],"title":"25.5. \"texture-compression-etc2\"\n\n\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-etc2-rgb8unorm-srgb\u2460"}],"title":"26.1.3. Packed formats"}],"url":"#dom-gputextureformat-etc2-rgb8unorm-srgb"},
 "dom-gputextureformat-etc2-rgba8unorm": {"dfnID":"dom-gputextureformat-etc2-rgba8unorm","dfnText":"\"etc2-rgba8unorm\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-etc2-rgba8unorm"}],"title":"25.5. \"texture-compression-etc2\"\n\n\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-etc2-rgba8unorm\u2460"}],"title":"26.1.3. Packed formats"}],"url":"#dom-gputextureformat-etc2-rgba8unorm"},
 "dom-gputextureformat-etc2-rgba8unorm-srgb": {"dfnID":"dom-gputextureformat-etc2-rgba8unorm-srgb","dfnText":"\"etc2-rgba8unorm-srgb\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-etc2-rgba8unorm-srgb"}],"title":"25.5. \"texture-compression-etc2\"\n\n\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-etc2-rgba8unorm-srgb\u2460"}],"title":"26.1.3. Packed formats"}],"url":"#dom-gputextureformat-etc2-rgba8unorm-srgb"},
-"dom-gputextureformat-r16-snorm": {"dfnID":"dom-gputextureformat-r16-snorm","dfnText":"\"r16-snorm\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-r16-snorm"}],"title":"25.18. \"snorm16-texture-formats\"\n\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-r16-snorm\u2460"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-r16-snorm"},
-"dom-gputextureformat-r16-unorm": {"dfnID":"dom-gputextureformat-r16-unorm","dfnText":"\"r16-unorm\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-r16-unorm"}],"title":"25.17. \"unorm16-texture-formats\"\n\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-r16-unorm\u2460"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-r16-unorm"},
 "dom-gputextureformat-r16float": {"dfnID":"dom-gputextureformat-r16float","dfnText":"\"r16float\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-r16float"}],"title":"19.2. GPUQueue\n\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-r16float\u2460"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-r16float"},
 "dom-gputextureformat-r16sint": {"dfnID":"dom-gputextureformat-r16sint","dfnText":"\"r16sint\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-r16sint"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-r16sint"},
+"dom-gputextureformat-r16snorm": {"dfnID":"dom-gputextureformat-r16snorm","dfnText":"\"r16snorm\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-r16snorm"}],"title":"25.18. \"snorm16-texture-formats\"\n\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-r16snorm\u2460"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-r16snorm"},
 "dom-gputextureformat-r16uint": {"dfnID":"dom-gputextureformat-r16uint","dfnText":"\"r16uint\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-r16uint"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-r16uint"},
+"dom-gputextureformat-r16unorm": {"dfnID":"dom-gputextureformat-r16unorm","dfnText":"\"r16unorm\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-r16unorm"}],"title":"25.17. \"unorm16-texture-formats\"\n\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-r16unorm\u2460"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-r16unorm"},
 "dom-gputextureformat-r32float": {"dfnID":"dom-gputextureformat-r32float","dfnText":"\"r32float\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-r32float"}],"title":"19.2. GPUQueue\n\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-r32float\u2460"}],"title":"25.13. \"float32-filterable\"\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-r32float\u2461"}],"title":"25.14. \"float32-blendable\"\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-r32float\u2462"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-r32float"},
 "dom-gputextureformat-r32sint": {"dfnID":"dom-gputextureformat-r32sint","dfnText":"\"r32sint\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-r32sint"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-r32sint"},
 "dom-gputextureformat-r32uint": {"dfnID":"dom-gputextureformat-r32uint","dfnText":"\"r32uint\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-r32uint"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-r32uint"},
@@ -24630,11 +24630,11 @@ let dfnPanelData = {
 "dom-gputextureformat-r8uint": {"dfnID":"dom-gputextureformat-r8uint","dfnText":"\"r8uint\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-r8uint"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-r8uint"},
 "dom-gputextureformat-r8unorm": {"dfnID":"dom-gputextureformat-r8unorm","dfnText":"\"r8unorm\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-r8unorm"}],"title":"19.2. GPUQueue\n\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-r8unorm\u2460"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-r8unorm"},
 "dom-gputextureformat-rg11b10ufloat": {"dfnID":"dom-gputextureformat-rg11b10ufloat","dfnText":"\"rg11b10ufloat\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-rg11b10ufloat"}],"title":"25.11. \"rg11b10ufloat-renderable\"\n\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-rg11b10ufloat\u2460"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-rg11b10ufloat"},
-"dom-gputextureformat-rg16-snorm": {"dfnID":"dom-gputextureformat-rg16-snorm","dfnText":"\"rg16-snorm\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-rg16-snorm"}],"title":"25.18. \"snorm16-texture-formats\"\n\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-rg16-snorm\u2460"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-rg16-snorm"},
-"dom-gputextureformat-rg16-unorm": {"dfnID":"dom-gputextureformat-rg16-unorm","dfnText":"\"rg16-unorm\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-rg16-unorm"}],"title":"25.17. \"unorm16-texture-formats\"\n\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-rg16-unorm\u2460"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-rg16-unorm"},
 "dom-gputextureformat-rg16float": {"dfnID":"dom-gputextureformat-rg16float","dfnText":"\"rg16float\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-rg16float"}],"title":"19.2. GPUQueue\n\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-rg16float\u2460"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-rg16float"},
 "dom-gputextureformat-rg16sint": {"dfnID":"dom-gputextureformat-rg16sint","dfnText":"\"rg16sint\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-rg16sint"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-rg16sint"},
+"dom-gputextureformat-rg16snorm": {"dfnID":"dom-gputextureformat-rg16snorm","dfnText":"\"rg16snorm\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-rg16snorm"}],"title":"25.18. \"snorm16-texture-formats\"\n\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-rg16snorm\u2460"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-rg16snorm"},
 "dom-gputextureformat-rg16uint": {"dfnID":"dom-gputextureformat-rg16uint","dfnText":"\"rg16uint\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-rg16uint"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-rg16uint"},
+"dom-gputextureformat-rg16unorm": {"dfnID":"dom-gputextureformat-rg16unorm","dfnText":"\"rg16unorm\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-rg16unorm"}],"title":"25.17. \"unorm16-texture-formats\"\n\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-rg16unorm\u2460"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-rg16unorm"},
 "dom-gputextureformat-rg32float": {"dfnID":"dom-gputextureformat-rg32float","dfnText":"\"rg32float\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-rg32float"}],"title":"19.2. GPUQueue\n\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-rg32float\u2460"}],"title":"25.13. \"float32-filterable\"\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-rg32float\u2461"}],"title":"25.14. \"float32-blendable\"\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-rg32float\u2462"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-rg32float"},
 "dom-gputextureformat-rg32sint": {"dfnID":"dom-gputextureformat-rg32sint","dfnText":"\"rg32sint\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-rg32sint"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-rg32sint"},
 "dom-gputextureformat-rg32uint": {"dfnID":"dom-gputextureformat-rg32uint","dfnText":"\"rg32uint\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-rg32uint"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-rg32uint"},
@@ -24645,11 +24645,11 @@ let dfnPanelData = {
 "dom-gputextureformat-rgb10a2uint": {"dfnID":"dom-gputextureformat-rgb10a2uint","dfnText":"\"rgb10a2uint\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-rgb10a2uint"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-rgb10a2uint"},
 "dom-gputextureformat-rgb10a2unorm": {"dfnID":"dom-gputextureformat-rgb10a2unorm","dfnText":"\"rgb10a2unorm\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-rgb10a2unorm"}],"title":"19.2. GPUQueue\n\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-rgb10a2unorm\u2460"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-rgb10a2unorm"},
 "dom-gputextureformat-rgb9e5ufloat": {"dfnID":"dom-gputextureformat-rgb9e5ufloat","dfnText":"\"rgb9e5ufloat\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-rgb9e5ufloat"}],"title":"26.1.3. Packed formats"}],"url":"#dom-gputextureformat-rgb9e5ufloat"},
-"dom-gputextureformat-rgba16-snorm": {"dfnID":"dom-gputextureformat-rgba16-snorm","dfnText":"\"rgba16-snorm\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-rgba16-snorm"}],"title":"25.18. \"snorm16-texture-formats\"\n\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-rgba16-snorm\u2460"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-rgba16-snorm"},
-"dom-gputextureformat-rgba16-unorm": {"dfnID":"dom-gputextureformat-rgba16-unorm","dfnText":"\"rgba16-unorm\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-rgba16-unorm"}],"title":"25.17. \"unorm16-texture-formats\"\n\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-rgba16-unorm\u2460"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-rgba16-unorm"},
 "dom-gputextureformat-rgba16float": {"dfnID":"dom-gputextureformat-rgba16float","dfnText":"\"rgba16float\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-rgba16float"}],"title":"19.2. GPUQueue\n\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-rgba16float\u2460"}],"title":"21.4. GPUCanvasConfiguration"},{"refs":[{"id":"ref-for-dom-gputextureformat-rgba16float\u2461"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-rgba16float"},
 "dom-gputextureformat-rgba16sint": {"dfnID":"dom-gputextureformat-rgba16sint","dfnText":"\"rgba16sint\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-rgba16sint"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-rgba16sint"},
+"dom-gputextureformat-rgba16snorm": {"dfnID":"dom-gputextureformat-rgba16snorm","dfnText":"\"rgba16snorm\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-rgba16snorm"}],"title":"25.18. \"snorm16-texture-formats\"\n\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-rgba16snorm\u2460"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-rgba16snorm"},
 "dom-gputextureformat-rgba16uint": {"dfnID":"dom-gputextureformat-rgba16uint","dfnText":"\"rgba16uint\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-rgba16uint"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-rgba16uint"},
+"dom-gputextureformat-rgba16unorm": {"dfnID":"dom-gputextureformat-rgba16unorm","dfnText":"\"rgba16unorm\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-rgba16unorm"}],"title":"25.17. \"unorm16-texture-formats\"\n\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-rgba16unorm\u2460"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-rgba16unorm"},
 "dom-gputextureformat-rgba32float": {"dfnID":"dom-gputextureformat-rgba32float","dfnText":"\"rgba32float\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-rgba32float"}],"title":"19.2. GPUQueue\n\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-rgba32float\u2460"}],"title":"25.13. \"float32-filterable\"\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-rgba32float\u2461"}],"title":"25.14. \"float32-blendable\"\n"},{"refs":[{"id":"ref-for-dom-gputextureformat-rgba32float\u2462"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-rgba32float"},
 "dom-gputextureformat-rgba32sint": {"dfnID":"dom-gputextureformat-rgba32sint","dfnText":"\"rgba32sint\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-rgba32sint"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-rgba32sint"},
 "dom-gputextureformat-rgba32uint": {"dfnID":"dom-gputextureformat-rgba32uint","dfnText":"\"rgba32uint\"","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureformat-rgba32uint"}],"title":"26.1.1. Plain color formats"}],"url":"#dom-gputextureformat-rgba32uint"},
@@ -26307,11 +26307,11 @@ let refsData = {
 "#dom-gputextureformat-etc2-rgb8unorm-srgb": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"etc2-rgb8unorm-srgb\"","type":"enum-value","url":"#dom-gputextureformat-etc2-rgb8unorm-srgb"},
 "#dom-gputextureformat-etc2-rgba8unorm": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"etc2-rgba8unorm\"","type":"enum-value","url":"#dom-gputextureformat-etc2-rgba8unorm"},
 "#dom-gputextureformat-etc2-rgba8unorm-srgb": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"etc2-rgba8unorm-srgb\"","type":"enum-value","url":"#dom-gputextureformat-etc2-rgba8unorm-srgb"},
-"#dom-gputextureformat-r16-snorm": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"r16-snorm\"","type":"enum-value","url":"#dom-gputextureformat-r16-snorm"},
-"#dom-gputextureformat-r16-unorm": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"r16-unorm\"","type":"enum-value","url":"#dom-gputextureformat-r16-unorm"},
 "#dom-gputextureformat-r16float": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"r16float\"","type":"enum-value","url":"#dom-gputextureformat-r16float"},
 "#dom-gputextureformat-r16sint": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"r16sint\"","type":"enum-value","url":"#dom-gputextureformat-r16sint"},
+"#dom-gputextureformat-r16snorm": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"r16snorm\"","type":"enum-value","url":"#dom-gputextureformat-r16snorm"},
 "#dom-gputextureformat-r16uint": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"r16uint\"","type":"enum-value","url":"#dom-gputextureformat-r16uint"},
+"#dom-gputextureformat-r16unorm": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"r16unorm\"","type":"enum-value","url":"#dom-gputextureformat-r16unorm"},
 "#dom-gputextureformat-r32float": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"r32float\"","type":"enum-value","url":"#dom-gputextureformat-r32float"},
 "#dom-gputextureformat-r32sint": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"r32sint\"","type":"enum-value","url":"#dom-gputextureformat-r32sint"},
 "#dom-gputextureformat-r32uint": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"r32uint\"","type":"enum-value","url":"#dom-gputextureformat-r32uint"},
@@ -26320,11 +26320,11 @@ let refsData = {
 "#dom-gputextureformat-r8uint": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"r8uint\"","type":"enum-value","url":"#dom-gputextureformat-r8uint"},
 "#dom-gputextureformat-r8unorm": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"r8unorm\"","type":"enum-value","url":"#dom-gputextureformat-r8unorm"},
 "#dom-gputextureformat-rg11b10ufloat": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"rg11b10ufloat\"","type":"enum-value","url":"#dom-gputextureformat-rg11b10ufloat"},
-"#dom-gputextureformat-rg16-snorm": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"rg16-snorm\"","type":"enum-value","url":"#dom-gputextureformat-rg16-snorm"},
-"#dom-gputextureformat-rg16-unorm": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"rg16-unorm\"","type":"enum-value","url":"#dom-gputextureformat-rg16-unorm"},
 "#dom-gputextureformat-rg16float": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"rg16float\"","type":"enum-value","url":"#dom-gputextureformat-rg16float"},
 "#dom-gputextureformat-rg16sint": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"rg16sint\"","type":"enum-value","url":"#dom-gputextureformat-rg16sint"},
+"#dom-gputextureformat-rg16snorm": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"rg16snorm\"","type":"enum-value","url":"#dom-gputextureformat-rg16snorm"},
 "#dom-gputextureformat-rg16uint": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"rg16uint\"","type":"enum-value","url":"#dom-gputextureformat-rg16uint"},
+"#dom-gputextureformat-rg16unorm": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"rg16unorm\"","type":"enum-value","url":"#dom-gputextureformat-rg16unorm"},
 "#dom-gputextureformat-rg32float": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"rg32float\"","type":"enum-value","url":"#dom-gputextureformat-rg32float"},
 "#dom-gputextureformat-rg32sint": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"rg32sint\"","type":"enum-value","url":"#dom-gputextureformat-rg32sint"},
 "#dom-gputextureformat-rg32uint": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"rg32uint\"","type":"enum-value","url":"#dom-gputextureformat-rg32uint"},
@@ -26335,11 +26335,11 @@ let refsData = {
 "#dom-gputextureformat-rgb10a2uint": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"rgb10a2uint\"","type":"enum-value","url":"#dom-gputextureformat-rgb10a2uint"},
 "#dom-gputextureformat-rgb10a2unorm": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"rgb10a2unorm\"","type":"enum-value","url":"#dom-gputextureformat-rgb10a2unorm"},
 "#dom-gputextureformat-rgb9e5ufloat": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"rgb9e5ufloat\"","type":"enum-value","url":"#dom-gputextureformat-rgb9e5ufloat"},
-"#dom-gputextureformat-rgba16-snorm": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"rgba16-snorm\"","type":"enum-value","url":"#dom-gputextureformat-rgba16-snorm"},
-"#dom-gputextureformat-rgba16-unorm": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"rgba16-unorm\"","type":"enum-value","url":"#dom-gputextureformat-rgba16-unorm"},
 "#dom-gputextureformat-rgba16float": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"rgba16float\"","type":"enum-value","url":"#dom-gputextureformat-rgba16float"},
 "#dom-gputextureformat-rgba16sint": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"rgba16sint\"","type":"enum-value","url":"#dom-gputextureformat-rgba16sint"},
+"#dom-gputextureformat-rgba16snorm": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"rgba16snorm\"","type":"enum-value","url":"#dom-gputextureformat-rgba16snorm"},
 "#dom-gputextureformat-rgba16uint": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"rgba16uint\"","type":"enum-value","url":"#dom-gputextureformat-rgba16uint"},
+"#dom-gputextureformat-rgba16unorm": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"rgba16unorm\"","type":"enum-value","url":"#dom-gputextureformat-rgba16unorm"},
 "#dom-gputextureformat-rgba32float": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"rgba32float\"","type":"enum-value","url":"#dom-gputextureformat-rgba32float"},
 "#dom-gputextureformat-rgba32sint": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"rgba32sint\"","type":"enum-value","url":"#dom-gputextureformat-rgba32sint"},
 "#dom-gputextureformat-rgba32uint": {"export":true,"for_":["GPUTextureFormat"],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"local","text":"\"rgba32uint\"","type":"enum-value","url":"#dom-gputextureformat-rgba32uint"},

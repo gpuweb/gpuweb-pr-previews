@@ -411,15 +411,15 @@ enum GPUTextureFormat {
 
     // R/RG/RGBA16 unorm formats usable if "unorm16-texture-formats" is both
     // supported by the device/user agent and enabled in requestDevice.
-    "r16-unorm",
-    "rg16-unorm",
-    "rgba16-unorm",
+    "r16unorm",
+    "rg16unorm",
+    "rgba16unorm",
 
     // R/RG/RGBA16 snorm formats usable if "snorm16-texture-formats" is both
     // supported by the device/user agent and enabled in requestDevice.
-    "r16-snorm",
-    "rg16-snorm",
-    "rgba16-snorm",
+    "r16snorm",
+    "rg16snorm",
+    "rgba16snorm",
 
 };
 
