@@ -1111,13 +1111,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2024-10-31">31 October 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2024-11-01">1 November 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/1caa775cce315665fca2ec5ba58164d5d542fa97/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/1caa775cce315665fca2ec5ba58164d5d542fa97/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/c64f060d4642a3bebf41f93ff0102d6330f1ae16/spec/index.bs">https://github.com/gpuweb/gpuweb/blob/c64f060d4642a3bebf41f93ff0102d6330f1ae16/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -7640,7 +7640,7 @@ with <code>@group(N)</code>.</p>
          <p>For each <var>bindGroupLayout</var> in <var>bindGroupLayouts</var>:</p>
          <ol>
           <li data-md>
-           <p>If <var>bindGroupLayout</var> is <code>undefined</code>, set <var>bindGroupLayout</var> to <code>null</code></p>
+           <p>If <var>bindGroupLayout</var> is <code>undefined</code> or <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-empty" id="ref-for-list-empty">empty</a>, set <var>bindGroupLayout</var> to <code>null</code></p>
          </ol>
         <li data-md>
          <p>Let <var>allEntries</var> be the result of concatenating <var>bgl</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindgrouplayout-descriptor-slot" id="ref-for-dom-gpubindgrouplayout-descriptor-slot①">[[descriptor]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindgrouplayoutdescriptor-entries" id="ref-for-dom-gpubindgrouplayoutdescriptor-entries⑦">entries</a></code> for all non-<code>null</code> <var>bgl</var> in <var>bindGroupLayouts</var>.</p>
@@ -12764,9 +12764,10 @@ of a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.
          <p><var>pipeline</var> must not be <code>null</code>.</p>
         <li data-md>
          <p>All bind groups used by the pipeline must be set and compatible with the pipeline layout:
-For each pair of (<code class="idl"><a data-link-type="idl" href="#typedefdef-gpuindex32" id="ref-for-typedefdef-gpuindex32①②">GPUIndex32</a></code> <var>index</var>, <code class="idl"><a data-link-type="idl" href="#gpubindgrouplayout" id="ref-for-gpubindgrouplayout④③">GPUBindGroupLayout</a></code> <var>bindGroupLayout</var>) in
-non-<code>null</code> <var>pipeline</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelinebase-layout-slot" id="ref-for-dom-gpupipelinebase-layout-slot⑤">[[layout]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelinelayout-bindgrouplayouts-slot" id="ref-for-dom-gpupipelinelayout-bindgrouplayouts-slot①⓪">[[bindGroupLayouts]]</a></code>:</p>
+For each pair of (<code class="idl"><a data-link-type="idl" href="#typedefdef-gpuindex32" id="ref-for-typedefdef-gpuindex32①②">GPUIndex32</a></code> <var>index</var>, <code class="idl"><a data-link-type="idl" href="#gpubindgrouplayout" id="ref-for-gpubindgrouplayout④③">GPUBindGroupLayout</a></code> <var>bindGroupLayout</var>) in <var>pipeline</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelinebase-layout-slot" id="ref-for-dom-gpupipelinebase-layout-slot⑤">[[layout]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelinelayout-bindgrouplayouts-slot" id="ref-for-dom-gpupipelinelayout-bindgrouplayouts-slot①⓪">[[bindGroupLayouts]]</a></code>:</p>
          <ul>
+          <li data-md>
+           <p>If <var>bindGroupLayout</var> is <code>null</code>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#iteration-continue" id="ref-for-iteration-continue">continue</a>.</p>
           <li data-md>
            <p>Let <var>bindGroup</var> be <var>encoder</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindingcommandsmixin-bind_groups-slot" id="ref-for-dom-gpubindingcommandsmixin-bind_groups-slot④">[[bind_groups]]</a></code>[<var>index</var>].</p>
           <li data-md>
@@ -14549,7 +14550,7 @@ If any are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-invalida
             <p>For each <code class="idl"><a data-link-type="idl" href="#typedefdef-gpuindex32" id="ref-for-typedefdef-gpuindex32①⑥">GPUIndex32</a></code> <var>slot</var> from <code>0</code> to <var>buffers</var>.<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-size" id="ref-for-list-size⑨">size</a> (non-inclusive):</p>
             <ol>
              <li data-md>
-              <p>If <var>buffers</var>[<var>slot</var>] is <code>null</code>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#iteration-continue" id="ref-for-iteration-continue">continue</a>.</p>
+              <p>If <var>buffers</var>[<var>slot</var>] is <code>null</code>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#iteration-continue" id="ref-for-iteration-continue①">continue</a>.</p>
              <li data-md>
               <p>Let <var>bufferSize</var> be <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-vertex_buffer_sizes-slot" id="ref-for-dom-gpurendercommandsmixin-vertex_buffer_sizes-slot②">[[vertex_buffer_sizes]]</a></code>[<var>slot</var>].</p>
              <li data-md>
@@ -14559,7 +14560,7 @@ If any are unmet, <a data-link-type="abstract-op" href="#abstract-opdef-invalida
              <li data-md>
               <p>Let <var>lastStride</var> be the maximum value of
 (<var>attribute</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuvertexattribute-offset" id="ref-for-dom-gpuvertexattribute-offset⑤">offset</a></code> + <a data-link-type="abstract-op" href="#abstract-opdef-gpuvertexformat-bytesize" id="ref-for-abstract-opdef-gpuvertexformat-bytesize③">byteSize</a>(<var>attribute</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuvertexattribute-format" id="ref-for-dom-gpuvertexattribute-format⑥">format</a></code>))
-over each <var>attribute</var> in <var>attributes</var>, or 0 if <var>attributes</var> is <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-empty" id="ref-for-list-empty">empty</a>.</p>
+over each <var>attribute</var> in <var>attributes</var>, or 0 if <var>attributes</var> is <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-empty" id="ref-for-list-empty①">empty</a>.</p>
              <li data-md>
               <p>Let <var>strideCount</var> be computed based on <var>buffers</var>[<var>slot</var>].<code class="idl"><a data-link-type="idl" href="#dom-gpuvertexbufferlayout-stepmode" id="ref-for-dom-gpuvertexbufferlayout-stepmode①">stepMode</a></code>:</p>
               <dl class="switch">
@@ -14672,7 +14673,7 @@ See <a href="#rendering-operations">§ 23.2 Rendering</a> for the detailed spe
             <p>For each <code class="idl"><a data-link-type="idl" href="#typedefdef-gpuindex32" id="ref-for-typedefdef-gpuindex32①⑦">GPUIndex32</a></code> <var>slot</var> from <code>0</code> to <var>buffers</var>.<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-size" id="ref-for-list-size①⓪">size</a> (non-inclusive):</p>
             <ul>
              <li data-md>
-              <p>If <var>buffers</var>[<var>slot</var>] is <code>null</code>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#iteration-continue" id="ref-for-iteration-continue①">continue</a>.</p>
+              <p>If <var>buffers</var>[<var>slot</var>] is <code>null</code>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#iteration-continue" id="ref-for-iteration-continue②">continue</a>.</p>
              <li data-md>
               <p>Let <var>bufferSize</var> be <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpurendercommandsmixin-vertex_buffer_sizes-slot" id="ref-for-dom-gpurendercommandsmixin-vertex_buffer_sizes-slot③">[[vertex_buffer_sizes]]</a></code>[<var>slot</var>].</p>
              <li data-md>
@@ -17628,7 +17629,7 @@ These operations are encoded within <code class="idl"><a data-link-type="idl" hr
     </ul>
     <ol>
      <li data-md>
-      <p>Let <var>computeInvocations</var> be an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-empty" id="ref-for-list-empty①">empty</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list②⓪">list</a>.</p>
+      <p>Let <var>computeInvocations</var> be an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-empty" id="ref-for-list-empty②">empty</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list②⓪">list</a>.</p>
      <li data-md>
       <p>Let <var>computeStage</var> be <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpucomputepipelinedescriptor-compute" id="ref-for-dom-gpucomputepipelinedescriptor-compute③">compute</a></code>.</p>
      <li data-md>
@@ -17889,7 +17890,7 @@ buffer, offset, and size at slot <var>i</var> of <var>state</var>.<code class="i
            <li data-md>
             <p>Set <var>drawCallOutOfBounds</var> to <code>true</code>.</p>
            <li data-md>
-            <p><strong>Optionally (<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#implementation-defined" id="ref-for-implementation-defined①⓪">implementation-defined</a>)</strong>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-empty" id="ref-for-list-empty②">empty</a> <var>vertexIndexList</var> and return, cancelling the draw call.</p>
+            <p><strong>Optionally (<a data-link-type="dfn" href="https://infra.spec.whatwg.org/#implementation-defined" id="ref-for-implementation-defined①⓪">implementation-defined</a>)</strong>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-empty" id="ref-for-list-empty③">empty</a> <var>vertexIndexList</var> and return, cancelling the draw call.</p>
             <p class="note" role="note"><span class="marker">Note:</span> This allows implementations to detect out-of-bounds values in the index buffer
 before issuing a draw call, instead of using <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#invalid-memory-reference" id="ref-for-invalid-memory-reference①">invalid memory reference</a> behavior.</p>
           </ol>
@@ -23417,7 +23418,7 @@ function parseHTML(markup) {
 let dfnPanelData = {
 "0204d188": {"dfnID":"0204d188","dfnText":"size","external":true,"refSections":[{"refs":[{"id":"ref-for-list-size"}],"title":"8.3.1. Pipeline Layout Creation"},{"refs":[{"id":"ref-for-list-size\u2460"}],"title":"10.1. Base pipelines"},{"refs":[{"id":"ref-for-list-size\u2461"}],"title":"10.3.1. Render Pipeline Creation"},{"refs":[{"id":"ref-for-list-size\u2462"},{"id":"ref-for-list-size\u2463"}],"title":"10.3.4. Fragment State"},{"refs":[{"id":"ref-for-list-size\u2464"},{"id":"ref-for-list-size\u2465"}],"title":"10.3.7.1. Vertex Formats"},{"refs":[{"id":"ref-for-list-size\u2466"}],"title":"14.1. Bind Groups"},{"refs":[{"id":"ref-for-list-size\u2467"}],"title":"17.1.1. Render Pass Encoder Creation"},{"refs":[{"id":"ref-for-list-size\u2468"},{"id":"ref-for-list-size\u2460\u24ea"},{"id":"ref-for-list-size\u2460\u2460"}],"title":"17.2.1. Drawing"},{"refs":[{"id":"ref-for-list-size\u2460\u2461"}],"title":"18.1.1. Render Bundle Creation"},{"refs":[{"id":"ref-for-list-size\u2460\u2462"}],"title":"22.3. Error Scopes"},{"refs":[{"id":"ref-for-list-size\u2460\u2463"},{"id":"ref-for-list-size\u2460\u2464"},{"id":"ref-for-list-size\u2460\u2465"},{"id":"ref-for-list-size\u2460\u2466"},{"id":"ref-for-list-size\u2460\u2467"}],"title":"24.1. Colors & Vectors"}],"url":"https://infra.spec.whatwg.org/#list-size"},
 "03675365": {"dfnID":"03675365","dfnText":"event handler idl attribute","external":true,"refSections":[{"refs":[{"id":"ref-for-event-handler-idl-attributes"}],"title":"22.4. Telemetry"}],"url":"https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-idl-attributes"},
-"03afaf9c": {"dfnID":"03afaf9c","dfnText":"empty","external":true,"refSections":[{"refs":[{"id":"ref-for-list-empty"}],"title":"17.2.1. Drawing"},{"refs":[{"id":"ref-for-list-empty\u2460"}],"title":"23.1. Computing"},{"refs":[{"id":"ref-for-list-empty\u2461"}],"title":"23.2.2. Vertex Processing"}],"url":"https://infra.spec.whatwg.org/#list-empty"},
+"03afaf9c": {"dfnID":"03afaf9c","dfnText":"empty","external":true,"refSections":[{"refs":[{"id":"ref-for-list-empty"}],"title":"8.3.1. Pipeline Layout Creation"},{"refs":[{"id":"ref-for-list-empty\u2460"}],"title":"17.2.1. Drawing"},{"refs":[{"id":"ref-for-list-empty\u2461"}],"title":"23.1. Computing"},{"refs":[{"id":"ref-for-list-empty\u2462"}],"title":"23.2.2. Vertex Processing"}],"url":"https://infra.spec.whatwg.org/#list-empty"},
 "0846dc90": {"dfnID":"0846dc90","dfnText":"pipeline creation","external":true,"refSections":[{"refs":[{"id":"ref-for-pipeline-creation"}],"title":"10.2.1. Compute Pipeline Creation"},{"refs":[{"id":"ref-for-pipeline-creation\u2460"}],"title":"10.3.1. Render Pipeline Creation"}],"url":"https://gpuweb.github.io/gpuweb/wgsl/#pipeline-creation"},
 "088dac08": {"dfnID":"088dac08","dfnText":"workgroup_id","external":true,"refSections":[{"refs":[{"id":"ref-for-built-in-values-workgroup_id"}],"title":"23.1. Computing"}],"url":"https://gpuweb.github.io/gpuweb/wgsl/#built-in-values-workgroup_id"},
 "0a01e10f": {"dfnID":"0a01e10f","dfnText":"drawingBufferColorSpace","external":true,"refSections":[{"refs":[{"id":"ref-for-DOM-WebGLRenderingContext-drawingBufferColorSpace"}],"title":"3.10.2. Color Space Conversion Elision"}],"url":"https://www.khronos.org/registry/webgl/specs/latest/1.0/#DOM-WebGLRenderingContext-drawingBufferColorSpace"},
@@ -24711,7 +24712,7 @@ let dfnPanelData = {
 "f89c7d0d": {"dfnID":"f89c7d0d","dfnText":"Clamp","external":true,"refSections":[{"refs":[{"id":"ref-for-Clamp"}],"title":"7.1.1. GPUSamplerDescriptor"}],"url":"https://webidl.spec.whatwg.org/#Clamp"},
 "f8de33a3": {"dfnID":"f8de33a3","dfnText":"long","external":true,"refSections":[{"refs":[{"id":"ref-for-idl-long"}],"title":"3.11. Numeric conversions from JavaScript to WGSL"},{"refs":[{"id":"ref-for-idl-long\u2460"},{"id":"ref-for-idl-long\u2461"}],"title":"24. Type Definitions"}],"url":"https://webidl.spec.whatwg.org/#idl-long"},
 "f8e64670": {"dfnID":"f8e64670","dfnText":"naturalWidth","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-img-naturalwidth"}],"title":"11.2.5. GPUImageCopyExternalImage\n\n"}],"url":"https://html.spec.whatwg.org/multipage/embedded-content.html#dom-img-naturalwidth"},
-"f937b7b6": {"dfnID":"f937b7b6","dfnText":"continue","external":true,"refSections":[{"refs":[{"id":"ref-for-iteration-continue"},{"id":"ref-for-iteration-continue\u2460"}],"title":"17.2.1. Drawing"}],"url":"https://infra.spec.whatwg.org/#iteration-continue"},
+"f937b7b6": {"dfnID":"f937b7b6","dfnText":"continue","external":true,"refSections":[{"refs":[{"id":"ref-for-iteration-continue"}],"title":"14.1. Bind Groups"},{"refs":[{"id":"ref-for-iteration-continue\u2460"},{"id":"ref-for-iteration-continue\u2461"}],"title":"17.2.1. Drawing"}],"url":"https://infra.spec.whatwg.org/#iteration-continue"},
 "fallback-adapter": {"dfnID":"fallback-adapter","dfnText":"fallback adapter","external":false,"refSections":[{"refs":[{"id":"ref-for-fallback-adapter"},{"id":"ref-for-fallback-adapter\u2460"}],"title":"3.5.1. Adapters"},{"refs":[{"id":"ref-for-fallback-adapter\u2461"}],"title":"4.2. GPU"},{"refs":[{"id":"ref-for-fallback-adapter\u2462"},{"id":"ref-for-fallback-adapter\u2463"},{"id":"ref-for-fallback-adapter\u2464"},{"id":"ref-for-fallback-adapter\u2465"},{"id":"ref-for-fallback-adapter\u2466"}],"title":"4.2.2. Adapter Selection"}],"url":"#fallback-adapter"},
 "fb8f82b0": {"dfnID":"fb8f82b0","dfnText":"indices","external":true,"refSections":[{"refs":[{"id":"ref-for-list-get-the-indices"}],"title":"10.3.4. Fragment State"}],"url":"https://infra.spec.whatwg.org/#list-get-the-indices"},
 "fb9ecdfa": {"dfnID":"fb9ecdfa","dfnText":"drawingBufferWidth","external":true,"refSections":[{"refs":[{"id":"ref-for-DOM-WebGLRenderingContext-drawingBufferWidth"}],"title":"11.2.5. GPUImageCopyExternalImage\n\n"}],"url":"https://www.khronos.org/registry/webgl/specs/latest/1.0/#DOM-WebGLRenderingContext-drawingBufferWidth"},
