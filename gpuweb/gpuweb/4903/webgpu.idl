@@ -127,6 +127,7 @@ enum GPUFeatureName {
     "rg11b10ufloat-renderable",
     "bgra8unorm-storage",
     "float32-filterable",
+    "float32-blendable",
     "clip-distances",
     "dual-source-blending",
 };
@@ -1191,6 +1192,7 @@ interface GPUCanvasContext {
     undefined configure(GPUCanvasConfiguration configuration);
     undefined unconfigure();
 
+    GPUCanvasConfiguration? getConfiguration();
     GPUTexture getCurrentTexture();
 };
 
@@ -1281,7 +1283,6 @@ dictionary GPUUncapturedErrorEventInit : EventInit {
 };
 
 partial interface GPUDevice {
-    [Exposed=(Window, Worker)]
     attribute EventHandler onuncapturederror;
 };
 
