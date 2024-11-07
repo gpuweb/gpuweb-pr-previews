@@ -1116,7 +1116,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/beaufortfrancois/gpuweb/blob/f7d0318919e2f057e8e9308326910ac93a208cf2/spec/index.bs">https://github.com/beaufortfrancois/gpuweb/blob/f7d0318919e2f057e8e9308326910ac93a208cf2/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/beaufortfrancois/gpuweb/blob/efd387767e118c3bbaffbab54d28004734e33e97/spec/index.bs">https://github.com/beaufortfrancois/gpuweb/blob/efd387767e118c3bbaffbab54d28004734e33e97/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -7637,12 +7637,12 @@ with <code>@group(N)</code>.</p>
         <li data-md>
          <p>Let <var>limits</var> be <var>this</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpuobjectbase-device-slot" id="ref-for-dom-gpuobjectbase-device-slot③⓪">[[device]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-device-limits-slot" id="ref-for-dom-device-limits-slot⑤">[[limits]]</a></code>.</p>
         <li data-md>
-         <p>Let <var>bindGroupLayouts</var> be a copy of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelinelayoutdescriptor-bindgrouplayouts" id="ref-for-dom-gpupipelinelayoutdescriptor-bindgrouplayouts③">bindGroupLayouts</a></code></p>
+         <p>Let <var>bindGroupLayouts</var> be a copy of <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpupipelinelayoutdescriptor-bindgrouplayouts" id="ref-for-dom-gpupipelinelayoutdescriptor-bindgrouplayouts③">bindGroupLayouts</a></code>.</p>
         <li data-md>
          <p>For each <var>i</var> in the <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-get-the-indices" id="ref-for-list-get-the-indices">indices</a> of <var>bindGroupLayouts</var>:</p>
          <ol>
           <li data-md>
-           <p>If <var>bindGroupLayouts</var>[<var>i</var>] is <code>undefined</code> or <var>bindGroupLayouts</var>[<var>i</var>].<code class="idl"><a data-link-type="idl" href="#dom-gpubindgrouplayout-descriptor-slot" id="ref-for-dom-gpubindgrouplayout-descriptor-slot①">[[descriptor]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindgrouplayoutdescriptor-entries" id="ref-for-dom-gpubindgrouplayoutdescriptor-entries⑦">entries</a></code> is <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-empty" id="ref-for-list-empty">empty</a>, set <var>bindGroupLayouts</var>[<var>i</var>] to <code>null</code>.</p>
+           <p>If <var>bindGroupLayouts</var>[<var>i</var>] is not <code>null</code> and <var>bindGroupLayouts</var>[<var>i</var>].<code class="idl"><a data-link-type="idl" href="#dom-gpubindgrouplayout-descriptor-slot" id="ref-for-dom-gpubindgrouplayout-descriptor-slot①">[[descriptor]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindgrouplayoutdescriptor-entries" id="ref-for-dom-gpubindgrouplayoutdescriptor-entries⑦">entries</a></code> is <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-empty" id="ref-for-list-empty">empty</a>, set <var>bindGroupLayouts</var>[<var>i</var>] to <code>null</code>.</p>
          </ol>
         <li data-md>
          <p>Let <var>allEntries</var> be the result of concatenating <var>bgl</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindgrouplayout-descriptor-slot" id="ref-for-dom-gpubindgrouplayout-descriptor-slot②">[[descriptor]]</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-gpubindgrouplayoutdescriptor-entries" id="ref-for-dom-gpubindgrouplayoutdescriptor-entries⑧">entries</a></code> for all non-<code>null</code> <var>bgl</var> in <var>bindGroupLayouts</var>.</p>
