@@ -833,7 +833,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/c0e29129fc75e08d015df223f8859524a8e9fa52/wgsl/index.bs">https://github.com/gpuweb/gpuweb/blob/c0e29129fc75e08d015df223f8859524a8e9fa52/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/4afda3490085261bb0f6d8ed0f3af6ad2b7ae2cc/wgsl/index.bs">https://github.com/gpuweb/gpuweb/blob/4afda3490085261bb0f6d8ed0f3af6ad2b7ae2cc/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -14628,16 +14628,16 @@ Their use does not require the <a data-link-type="dfn" href="#extension-subgroup
    <p>The <a href="#subgroup-builtin-functions">subgroup built-in functions</a> allow efficient
 communication and computation between the invocations in a subgroup.
 Subgroup operations are single-intruction multiple-thread (SIMT) operations.</p>
-   <p>Because neighbouring invocations commuicate to produce the results, these
-functions should only be invoked in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①④">uniform control flow</a>.
-For each call to one of these functions, a <a data-link-type="dfn" href="#trigger-subgroup_uniformity" id="ref-for-trigger-subgroup_uniformity⑥">subgroup_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①②">diagnostic</a> is triggered if <a href="#uniformity">uniformity analysis</a> cannot prove
-the call occurs in uniform control flow.</p>
+   <p>The <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active">active</a> invocations in a subgroup communicate to determine results.
+Therefore, portability is maximized when these functions are invoked when all
+invocations are active (i.e. in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①④">uniform control flow</a> at the subgroup
+level).</p>
    <h4 class="heading settled" data-level="14.6.4" id="quad-ops"><span class="secno">14.6.4. </span><span class="content">Quad Operations</span><a class="self-link" href="#quad-ops"></a></h4>
    <p>The <a href="#quad-builtin-functions">quad built-in functions</a> operate on a <a data-link-type="dfn" href="#quad" id="ref-for-quad④">quad</a> of invocations.
 They are useful for data communication among the quad.</p>
    <p>Because neighbouring invocations commuicate to produce the results, these
 functions should only be invoked in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①⑤">uniform control flow</a>.
-For each call to one of these functions, a <a data-link-type="dfn" href="#trigger-subgroup_uniformity" id="ref-for-trigger-subgroup_uniformity⑦">subgroup_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①③">diagnostic</a> is triggered if <a href="#uniformity">uniformity analysis</a> cannot prove
+For each call to one of these functions, a <a data-link-type="dfn" href="#trigger-subgroup_uniformity" id="ref-for-trigger-subgroup_uniformity⑥">subgroup_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①②">diagnostic</a> is triggered if <a href="#uniformity">uniformity analysis</a> cannot prove
 the call occurs in uniform control flow.</p>
    <h3 class="heading settled" data-level="14.7" id="floating-point-evaluation"><span class="secno">14.7. </span><span class="content">Floating Point Evaluation</span><a class="self-link" href="#floating-point-evaluation"></a></h3>
    <p>WGSL floating point features are based on the <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> standard for floating point,
@@ -15337,42 +15337,42 @@ the rules in <a href="#floating-point-rounding-and-overflow">§ 14.7.3 Floatin
      <tr>
       <td><code>subgroupAdd(x)</code>
       <td colspan="2">
-       Inherited from ∑x for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active">active</a> invocations in the subgroup 
+       Inherited from ∑x for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①">active</a> invocations in the subgroup 
        <p class="note" role="note"><span class="marker">Note:</span> The order of operations is implementation dependent.</p>
      <tr>
       <td><code>subgroupExclusiveAdd(x)</code>
       <td colspan="2">
-       Inherited from ∑x<sub>i</sub> for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①">active</a> invocations in the subgroup whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id①">subgroup invocation ID</a> is less than ID of the i’th invocation 
+       Inherited from ∑x<sub>i</sub> for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②">active</a> invocations in the subgroup whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id①">subgroup invocation ID</a> is less than ID of the i’th invocation 
        <p class="note" role="note"><span class="marker">Note:</span> The order of operations is implementation dependent.</p>
      <tr>
       <td><code>subgroupInclusiveAdd(x)</code>
       <td colspan="2">
-       Inherited from ∑x<sub>i</sub> for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②">active</a> invocations in the subgroup whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id②">subgroup invocation ID</a> is less than or equal to ID of the i’th invocation 
+       Inherited from ∑x<sub>i</sub> for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active③">active</a> invocations in the subgroup whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id②">subgroup invocation ID</a> is less than or equal to ID of the i’th invocation 
        <p class="note" role="note"><span class="marker">Note:</span> The order of operations is implementation dependent.</p>
      <tr>
       <td><code>subgroupMul(x)</code>
       <td colspan="2">
-       Inherited from ∏x for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active③">active</a> invocations in the subgroup 
+       Inherited from ∏x for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active④">active</a> invocations in the subgroup 
        <p class="note" role="note"><span class="marker">Note:</span> The order of operations is implementation dependent.</p>
      <tr>
       <td><code>subgroupExclusiveMul(x)</code>
       <td colspan="2">
-       Inherited from ∏x<sub>i</sub> for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active④">active</a> invocations in the subgroup whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id③">subgroup invocation ID</a> is less than ID of the i’th invocation 
+       Inherited from ∏x<sub>i</sub> for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active⑤">active</a> invocations in the subgroup whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id③">subgroup invocation ID</a> is less than ID of the i’th invocation 
        <p class="note" role="note"><span class="marker">Note:</span> The order of operations is implementation dependent.</p>
      <tr>
       <td><code>subgroupInclusiveMul(x)</code>
       <td colspan="2">
-       Inherited from ∏x<sub>i</sub> for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active⑤">active</a> invocations in the subgroup whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id④">subgroup invocation ID</a> is less than or equal to ID of the i’th invocation 
+       Inherited from ∏x<sub>i</sub> for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active⑥">active</a> invocations in the subgroup whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id④">subgroup invocation ID</a> is less than or equal to ID of the i’th invocation 
        <p class="note" role="note"><span class="marker">Note:</span> The order of operations is implementation dependent.</p>
      <tr>
       <td><code>subgroupMax(x)</code>
       <td colspan="2">
-       Inherited from max(x) for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active⑥">active</a> invocations in the subgroup 
+       Inherited from max(x) for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active⑦">active</a> invocations in the subgroup 
        <p class="note" role="note"><span class="marker">Note:</span> The order of operations is implementation dependent.</p>
      <tr>
       <td><code>subgroupMin(x)</code>
       <td colspan="2">
-       Inherited from min(x) for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active⑦">active</a> invocations in the subgroup 
+       Inherited from min(x) for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active⑧">active</a> invocations in the subgroup 
        <p class="note" role="note"><span class="marker">Note:</span> The order of operations is implementation dependent.</p>
      <tr>
       <td><code>subgroupShuffle(x, id)</code>
@@ -18990,7 +18990,7 @@ but a value may infer the type.</p>
     <li data-md>
      <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④⑧">Must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment⑨">fragment</a> shader stage.</p>
     <li data-md>
-     <p><a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑥">Trigger</a> a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity⑧">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①④">diagnostic</a> if <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis③">uniformity analysis</a> cannot prove the call is in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①⑥">uniform control flow</a>.</p>
+     <p><a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑥">Trigger</a> a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity⑧">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①③">diagnostic</a> if <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis③">uniformity analysis</a> cannot prove the call is in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①⑥">uniform control flow</a>.</p>
    </ul>
    <h4 class="heading settled" data-level="16.6.1" id="dpdx-builtin"><span class="secno">16.6.1. </span><span class="content"><code>dpdx</code></span><a class="self-link" href="#dpdx-builtin"></a></h4>
    <table class="data builtin">
@@ -19794,7 +19794,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
    <p>Samples a texture.</p>
    <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑤⑧">Must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment①⓪">fragment</a> shader stage.</p>
    <p>If <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis④">uniformity analysis</a> cannot prove a call to this function is in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②⑥">uniform control flow</a>,
-then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity⑨">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①⑤">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑦">triggered</a>.</p>
+then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity⑨">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①④">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑦">triggered</a>.</p>
    <table class="data">
     <thead>
      <tr>
@@ -19940,7 +19940,7 @@ then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for
    <p>Samples a texture with a bias to the mip level.</p>
    <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑥②">Must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment①①">fragment</a> shader stage.</p>
    <p>If <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis⑤">uniformity analysis</a> cannot prove a call to this function is in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②⑧">uniform control flow</a>,
-then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity①⓪">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①⑥">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑧">triggered</a>.</p>
+then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity①⓪">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①⑤">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑧">triggered</a>.</p>
    <table class="data">
     <thead>
      <tr>
@@ -20041,7 +20041,7 @@ then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for
    <p>Samples a <a data-link-type="dfn" href="#type-depth-texture" id="ref-for-type-depth-texture①①">depth texture</a> and compares the sampled depth values against a reference value.</p>
    <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑥⑥">Must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment①②">fragment</a> shader stage.</p>
    <p>If <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis⑥">uniformity analysis</a> cannot prove a call to this function is in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②⑨">uniform control flow</a>,
-then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity①①">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①⑦">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑨">triggered</a>.</p>
+then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for-trigger-derivative_uniformity①①">derivative_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①⑥">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered⑨">triggered</a>.</p>
    <table class="data">
     <thead>
      <tr>
@@ -21162,7 +21162,7 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
     <li data-md>
      <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑧⑥">Must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment①③">fragment</a> or <a data-link-type="dfn" href="#compute" id="ref-for-compute④">compute</a> shader stage.</p>
     <li data-md>
-     <p><a data-link-type="dfn" href="#triggered" id="ref-for-triggered①⓪">Trigger</a> a <a data-link-type="dfn" href="#trigger-subgroup_uniformity" id="ref-for-trigger-subgroup_uniformity⑧">subgroup_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①⑧">diagnostic</a> if <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis⑦">uniformity analysis</a> cannot prove the call is in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow③③">uniform control flow</a>.</p>
+     <p><a data-link-type="dfn" href="#triggered" id="ref-for-triggered①⓪">Trigger</a> a <a data-link-type="dfn" href="#trigger-subgroup_uniformity" id="ref-for-trigger-subgroup_uniformity⑦">subgroup_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①⑦">diagnostic</a> if <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis⑦">uniformity analysis</a> cannot prove the call is in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow③③">uniform control flow</a>.</p>
    </ul>
    <h4 class="heading settled" data-level="16.12.1" id="subgroupadd-builtin"><span class="secno">16.12.1. </span><span class="content"><code>subgroupAdd</code></span><a class="self-link" href="#subgroupadd-builtin"></a></h4>
    <table class="data builtin">
@@ -21179,7 +21179,7 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
       <td>Description 
       <td>
        Reduction operation.<br> 
-       <p>Returns the sum of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active⑧">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup">subgroup</a>.</p>
+       <p>Returns the sum of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active⑨">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup">subgroup</a>.</p>
    </table>
    <h5 class="heading settled" data-level="16.12.1.1" id="subgroupexclusiveadd-builtin"><span class="secno">16.12.1.1. </span><span class="content"><code>subgroupExclusiveAdd</code></span><a class="self-link" href="#subgroupexclusiveadd-builtin"></a></h5>
    <table class="data builtin">
@@ -21196,7 +21196,7 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
       <td>Description 
       <td>
        Exclusive scan operation.<br> 
-       <p>Returns the sum of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active⑨">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①">subgroup</a> whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id⑤">subgroup invocation IDs</a> are less than the current
+       <p>Returns the sum of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①⓪">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①">subgroup</a> whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id⑤">subgroup invocation IDs</a> are less than the current
     invocation’s id.</p>
        <p>The value returned for the invocation with the lowest id among active invocations is <code>T(0)</code>.</p>
    </table>
@@ -21215,7 +21215,7 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
       <td>Description 
       <td>
        Inclusive scan operation.<br> 
-       <p>Returns the sum of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①⓪">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup②">subgroup</a> whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id⑥">subgroup invocation IDs</a> are less than or equal to
+       <p>Returns the sum of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①①">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup②">subgroup</a> whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id⑥">subgroup invocation IDs</a> are less than or equal to
     the current invocation’s id.</p>
        <p class="note" role="note"><span class="marker">Note:</span> equivalent to <code>subgroupInclusiveAdd(x) + x</code>.</p>
    </table>
@@ -21229,7 +21229,7 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
 </pre>
      <tr>
       <td>Description 
-      <td>Returns <code>true</code> if <code>e</code> is <code>true</code> for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①①">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup③">subgroup</a>. 
+      <td>Returns <code>true</code> if <code>e</code> is <code>true</code> for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①②">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup③">subgroup</a>. 
    </table>
    <h4 class="heading settled" data-level="16.12.3" id="subgroupand-builtin"><span class="secno">16.12.3. </span><span class="content"><code>subgroupAnd</code></span><a class="self-link" href="#subgroupand-builtin"></a></h4>
    <table class="data builtin">
@@ -21246,7 +21246,7 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
       <td>Description 
       <td>
        Reduction operation.<br> 
-       <p>Returns the bitwise and (<code>&amp;</code>) of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①②">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup④">subgroup</a>.</p>
+       <p>Returns the bitwise and (<code>&amp;</code>) of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①③">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup④">subgroup</a>.</p>
    </table>
    <h4 class="heading settled" data-level="16.12.4" id="subgroupany-builtin"><span class="secno">16.12.4. </span><span class="content"><code>subgroupAny</code></span><a class="self-link" href="#subgroupany-builtin"></a></h4>
    <table class="data builtin">
@@ -21258,7 +21258,7 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
 </pre>
      <tr>
       <td>Description 
-      <td>Returns <code>true</code> if <code>e</code> is <code>true</code> for any <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①③">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup⑤">subgroup</a>. 
+      <td>Returns <code>true</code> if <code>e</code> is <code>true</code> for any <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①④">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup⑤">subgroup</a>. 
    </table>
    <h4 class="heading settled" data-level="16.12.5" id="subgroupballot-builtin"><span class="secno">16.12.5. </span><span class="content"><code>subgroupBallot</code></span><a class="self-link" href="#subgroupballot-builtin"></a></h4>
    <table class="data builtin">
@@ -21271,7 +21271,7 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
      <tr>
       <td>Description 
       <td>
-       Returns a bitmask of the <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①④">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup⑥">subgroup</a> for whom <code>pred</code> is <code>true</code>.<br> 
+       Returns a bitmask of the <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①⑤">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup⑥">subgroup</a> for whom <code>pred</code> is <code>true</code>.<br> 
        <p>The x component of the return value contains invocations 0 through 31.<br> The y component of the return value contains invocations 32 through 63.<br> The z component of the return value contains invocations 64 through 95.<br> The w component of the return value contains invocations 96 through 127.<br> Within each component, the ids are in ascending order by bit position
     (e.g. id 32 is at bit position 0 in the y component).</p>
    </table>
@@ -21289,9 +21289,9 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
      <tr>
       <td>Description 
       <td>
-       Returns the value of <code>e</code> from the invocation whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id⑦">subgroup invocation ID</a> matches <code>id</code> in the subgroup to all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①⑤">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup⑦">subgroup</a>. 
+       Returns the value of <code>e</code> from the invocation whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id⑦">subgroup invocation ID</a> matches <code>id</code> in the subgroup to all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①⑥">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup⑦">subgroup</a>. 
        <p><code>id</code> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑧⑦">must</a> be a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑧①">const-expression</a> in the range [0, 128).</p>
-       <p>It is a <a data-link-type="dfn" href="#dynamic-error" id="ref-for-dynamic-error①⓪">dynamic error</a> <code>id</code> does not select an <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①⑥">active</a> invocation.</p>
+       <p>It is a <a data-link-type="dfn" href="#dynamic-error" id="ref-for-dynamic-error①⓪">dynamic error</a> <code>id</code> does not select an <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①⑦">active</a> invocation.</p>
        <p class="note" role="note"><span class="marker">Note:</span> if a non-constant version of <code>id</code> is required, use <a href="#subgroupshuffle-builtin">subgroupShuffle</a> instead.</p>
    </table>
    <h5 class="heading settled" data-level="16.12.6.1" id="subgroupbroadcastfirst-builtin"><span class="secno">16.12.6.1. </span><span class="content"><code>subgroupBroadcastFirst</code></span><a class="self-link" href="#subgroupbroadcastfirst-builtin"></a></h5>
@@ -21307,7 +21307,7 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
       <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑥⓪">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar①⑤">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector①①">numeric vector</a> 
      <tr>
       <td>Description 
-      <td>Returns the value of <code>e</code> from the invocation that has the lowest <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id⑧">subgroup invocation ID</a> among <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①⑦">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup⑧">subgroup</a> to all active invocations in the subgroup. 
+      <td>Returns the value of <code>e</code> from the invocation that has the lowest <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id⑧">subgroup invocation ID</a> among <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①⑧">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup⑧">subgroup</a> to all active invocations in the subgroup. 
    </table>
    <h4 class="heading settled" data-level="16.12.7" id="subgroupelect-builtin"><span class="secno">16.12.7. </span><span class="content"><code>subgroupElect</code></span><a class="self-link" href="#subgroupelect-builtin"></a></h4>
    <table class="data builtin">
@@ -21319,7 +21319,7 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
 </pre>
      <tr>
       <td>Description 
-      <td>Returns <code>true</code> if the current invocation has the lowest <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id⑨">subgroup invocation ID</a> among <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①⑧">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup⑨">subgroup</a>. 
+      <td>Returns <code>true</code> if the current invocation has the lowest <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id⑨">subgroup invocation ID</a> among <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①⑨">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup⑨">subgroup</a>. 
    </table>
    <h4 class="heading settled" data-level="16.12.8" id="subgroupmax-builtin"><span class="secno">16.12.8. </span><span class="content"><code>subgroupMax</code></span><a class="self-link" href="#subgroupmax-builtin"></a></h4>
    <table class="data builtin">
@@ -21336,7 +21336,7 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
       <td>Description 
       <td>
        Reduction operation.<br> 
-       <p>Returns the maximum value of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①⑨">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①⓪">subgroup</a>.</p>
+       <p>Returns the maximum value of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②⓪">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①⓪">subgroup</a>.</p>
    </table>
    <h4 class="heading settled" data-level="16.12.9" id="subgroupmin-builtin"><span class="secno">16.12.9. </span><span class="content"><code>subgroupMin</code></span><a class="self-link" href="#subgroupmin-builtin"></a></h4>
    <table class="data builtin">
@@ -21353,7 +21353,7 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
       <td>Description 
       <td>
        Reduction operation.<br> 
-       <p>Returns the minimum value of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②⓪">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①①">subgroup</a>.</p>
+       <p>Returns the minimum value of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②①">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①①">subgroup</a>.</p>
    </table>
    <h4 class="heading settled" data-level="16.12.10" id="subgroupmul-builtin"><span class="secno">16.12.10. </span><span class="content"><code>subgroupMul</code></span><a class="self-link" href="#subgroupmul-builtin"></a></h4>
    <table class="data builtin">
@@ -21370,7 +21370,7 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
       <td>Description 
       <td>
        Reduction operation.<br> 
-       <p>Returns the product of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②①">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①②">subgroup</a>.</p>
+       <p>Returns the product of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②②">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①②">subgroup</a>.</p>
    </table>
    <h5 class="heading settled" data-level="16.12.10.1" id="subgroupexclusivemul-builtin"><span class="secno">16.12.10.1. </span><span class="content"><code>subgroupExclusiveMul</code></span><a class="self-link" href="#subgroupexclusivemul-builtin"></a></h5>
    <table class="data builtin">
@@ -21387,7 +21387,7 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
       <td>Description 
       <td>
        Exclusive scan operation.<br> 
-       <p>Returns the product of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②②">active</a> invocations in
+       <p>Returns the product of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②③">active</a> invocations in
     the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①③">subgroup</a> whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id①⓪">subgroup invocation IDs</a> are less than the
     current invocation’s id.</p>
        <p>The value returned for the invocation with the lowest id among active invocations is <code>T(1)</code>.</p>
@@ -21407,7 +21407,7 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
       <td>Description 
       <td>
        Inclusive scan operation.<br> 
-       <p>Returns the product of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②③">active</a> invocations in
+       <p>Returns the product of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②④">active</a> invocations in
     the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①④">subgroup</a> whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id①①">subgroup invocation IDs</a> are less than or equal
     to the current invocation’s id.</p>
        <p class="note" role="note"><span class="marker">Note:</span> equivalent to <code>subgroupExclusiveMul(x) * x</code>.</p>
@@ -21427,7 +21427,7 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
       <td>Description 
       <td>
        Reduction operation.<br> 
-       <p>Returns the bitwise or (<code>|</code>) of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②④">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①⑤">subgroup</a>.</p>
+       <p>Returns the bitwise or (<code>|</code>) of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②⑤">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①⑤">subgroup</a>.</p>
    </table>
    <h4 class="heading settled" data-level="16.12.12" id="subgroupshuffle-builtin"><span class="secno">16.12.12. </span><span class="content"><code>subgroupShuffle</code></span><a class="self-link" href="#subgroupshuffle-builtin"></a></h4>
    <table class="data builtin">
@@ -21451,7 +21451,7 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
         <li data-md>
          <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error③⑨">pipeline-creation error</a> if <code>id</code> is an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions④⑥">override-expression</a>.</p>
        </ul>
-       <p>An <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②⑨">indeterminate value</a> is returned if <code>id</code> does not select an <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②⑤">active</a> invocation.</p>
+       <p>An <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②⑨">indeterminate value</a> is returned if <code>id</code> does not select an <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②⑥">active</a> invocation.</p>
    </table>
    <h5 class="heading settled" data-level="16.12.12.1" id="subgroupshuffledown-builtin"><span class="secno">16.12.12.1. </span><span class="content"><code>subgroupShuffleDown</code></span><a class="self-link" href="#subgroupshuffledown-builtin"></a></h5>
    <table class="data builtin">
@@ -21475,8 +21475,8 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
         <li data-md>
          <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error④⓪">pipeline-creation error</a> if <code>delta</code> is an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions④⑦">override-expression</a>.</p>
        </ul>
-       <p>A <a data-link-type="dfn" href="#trigger-subgroup_uniformity" id="ref-for-trigger-subgroup_uniformity⑨">subgroup_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①⑨">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered①①">triggered</a> if <code>delta</code> is not a <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value①③">uniform value</a>.
-    An <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value③⓪">indeterminate value</a> is returned if <code>subgroup_invocation_id + delta</code> does not select an <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②⑥">active</a> invocation or if <code>delta</code> is a not a
+       <p>A <a data-link-type="dfn" href="#trigger-subgroup_uniformity" id="ref-for-trigger-subgroup_uniformity⑧">subgroup_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①⑧">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered①①">triggered</a> if <code>delta</code> is not a <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value①③">uniform value</a>.
+    An <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value③⓪">indeterminate value</a> is returned if <code>subgroup_invocation_id + delta</code> does not select an <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②⑦">active</a> invocation or if <code>delta</code> is a not a
     uniform value within the subgroup.</p>
    </table>
    <h5 class="heading settled" data-level="16.12.12.2" id="subgroupshuffleup-builtin"><span class="secno">16.12.12.2. </span><span class="content"><code>subgroupShuffleUp</code></span><a class="self-link" href="#subgroupshuffleup-builtin"></a></h5>
@@ -21501,8 +21501,8 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
         <li data-md>
          <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error④①">pipeline-creation error</a> if <code>delta</code> is an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions④⑧">override-expression</a>.</p>
        </ul>
-       <p>A <a data-link-type="dfn" href="#trigger-subgroup_uniformity" id="ref-for-trigger-subgroup_uniformity①⓪">subgroup_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic②⓪">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered①②">triggered</a> if <code>delta</code> is not a <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value①④">uniform value</a>.
-    An <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value③①">indeterminate value</a> is returned if <code>subgroup_invocation_id - delta</code> does not select an <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②⑦">active</a> invocation or if <code>delta</code> is not a
+       <p>A <a data-link-type="dfn" href="#trigger-subgroup_uniformity" id="ref-for-trigger-subgroup_uniformity⑨">subgroup_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic①⑨">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered①②">triggered</a> if <code>delta</code> is not a <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value①④">uniform value</a>.
+    An <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value③①">indeterminate value</a> is returned if <code>subgroup_invocation_id - delta</code> does not select an <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②⑧">active</a> invocation or if <code>delta</code> is not a
     uniform value within the subgroup.</p>
    </table>
    <h5 class="heading settled" data-level="16.12.12.3" id="subgroupshufflexor-builtin"><span class="secno">16.12.12.3. </span><span class="content"><code>subgroupShuffleXor</code></span><a class="self-link" href="#subgroupshufflexor-builtin"></a></h5>
@@ -21527,8 +21527,8 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
         <li data-md>
          <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error④②">pipeline-creation error</a> if <code>mask</code> is an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions④⑨">override-expression</a>.</p>
        </ul>
-       <p>A <a data-link-type="dfn" href="#trigger-subgroup_uniformity" id="ref-for-trigger-subgroup_uniformity①①">subgroup_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic②①">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered①③">triggered</a> if <code>mask</code> is not a <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value①⑤">uniform value</a>.
-    An <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value③②">indeterminate value</a> is returned if <code>mask</code> does not select an <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②⑧">active</a> invocation or if <code>mask</code> is not a
+       <p>A <a data-link-type="dfn" href="#trigger-subgroup_uniformity" id="ref-for-trigger-subgroup_uniformity①⓪">subgroup_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic②⓪">diagnostic</a> is <a data-link-type="dfn" href="#triggered" id="ref-for-triggered①③">triggered</a> if <code>mask</code> is not a <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value①⑤">uniform value</a>.
+    An <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value③②">indeterminate value</a> is returned if <code>mask</code> does not select an <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②⑨">active</a> invocation or if <code>mask</code> is not a
     uniform value within the subgroup.</p>
    </table>
    <h4 class="heading settled" data-level="16.12.13" id="subgroupxor-builtin"><span class="secno">16.12.13. </span><span class="content"><code>subgroupXor</code></span><a class="self-link" href="#subgroupxor-builtin"></a></h4>
@@ -21546,7 +21546,7 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
       <td>Description 
       <td>
        Reduction operation.<br> 
-       <p>Returns the bitwise xor (<code>^</code>) of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②⑨">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①⑥">subgroup</a>.</p>
+       <p>Returns the bitwise xor (<code>^</code>) of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active③⓪">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①⑥">subgroup</a>.</p>
    </table>
    <h3 class="heading settled" data-level="16.13" id="quad-builtin-functions"><span class="secno">16.13. </span><span class="content">Quad Operations</span><a class="self-link" href="#quad-builtin-functions"></a></h3>
    <p>See <a href="#quad-ops">§ 14.6.4 Quad Operations</a>.</p>
@@ -21555,7 +21555,7 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
     <li data-md>
      <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑨②">Must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment①④">fragment</a> or <a data-link-type="dfn" href="#compute" id="ref-for-compute⑤">compute</a> shader stage.</p>
     <li data-md>
-     <p><a data-link-type="dfn" href="#triggered" id="ref-for-triggered①④">Trigger</a> a <a data-link-type="dfn" href="#trigger-subgroup_uniformity" id="ref-for-trigger-subgroup_uniformity①②">subgroup_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic②②">diagnostic</a> if <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis⑧">uniformity analysis</a> cannot prove the call is in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow③④">uniform control flow</a>.</p>
+     <p><a data-link-type="dfn" href="#triggered" id="ref-for-triggered①④">Trigger</a> a <a data-link-type="dfn" href="#trigger-subgroup_uniformity" id="ref-for-trigger-subgroup_uniformity①①">subgroup_uniformity</a> <a data-link-type="dfn" href="#diagnostic" id="ref-for-diagnostic②①">diagnostic</a> if <a data-link-type="dfn" href="#uniformity-analysis" id="ref-for-uniformity-analysis⑧">uniformity analysis</a> cannot prove the call is in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow③④">uniform control flow</a>.</p>
    </ul>
    <h4 class="heading settled" data-level="16.13.1" id="quadbroadcast-builtin"><span class="secno">16.13.1. </span><span class="content"><code>quadBroadcast</code></span><a class="self-link" href="#quadbroadcast-builtin"></a></h4>
    <table class="data builtin">
@@ -21572,9 +21572,9 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
       <td>Description 
       <td>
        Returns the value of <code>e</code> from the invocation whose <a data-link-type="dfn" href="#quad" id="ref-for-quad⑤">quad</a> index
-    matches <code>id</code> in the quad to all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active③⓪">active</a> invocations in the quad. 
+    matches <code>id</code> in the quad to all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active③①">active</a> invocations in the quad. 
        <p><code>id</code> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑨③">must</a> be a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑧⑥">const-expression</a> in the range [0, 4).</p>
-       <p>An <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value③③">indeterminate value</a> is returned if <code>id</code> does not select an <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active③①">active</a> invocation.</p>
+       <p>An <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value③③">indeterminate value</a> is returned if <code>id</code> does not select an <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active③②">active</a> invocation.</p>
        <p class="note" role="note"><span class="marker">Note:</span> unlike <a href="#subgroupbroadcast-builtin">subgroupBroadcast</a>, there is currently
     no non-constant alternative.</p>
    </table>
@@ -23775,7 +23775,7 @@ let dfnPanelData = {
 "default-clause": {"dfnID":"default-clause","dfnText":"default clause","external":false,"refSections":[{"refs":[{"id":"ref-for-default-clause"}],"title":"2.4. Limits"},{"refs":[{"id":"ref-for-default-clause\u2460"},{"id":"ref-for-default-clause\u2461"},{"id":"ref-for-default-clause\u2462"}],"title":"9.4.2. Switch Statement"}],"url":"#default-clause"},
 "default-initial-value": {"dfnID":"default-initial-value","dfnText":"default\ninitial value","external":false,"refSections":[{"refs":[{"id":"ref-for-default-initial-value"}],"title":"7. Variable and Value Declarations"}],"url":"#default-initial-value"},
 "denormalized": {"dfnID":"denormalized","dfnText":"Denormalized","external":false,"refSections":[],"url":"#denormalized"},
-"diagnostic": {"dfnID":"diagnostic","dfnText":"diagnostic","external":false,"refSections":[{"refs":[{"id":"ref-for-diagnostic"}],"title":"2.2. Errors"},{"refs":[{"id":"ref-for-diagnostic\u2460"},{"id":"ref-for-diagnostic\u2461"}],"title":"2.3. Diagnostics"},{"refs":[{"id":"ref-for-diagnostic\u2462"}],"title":"2.3.2. Filterable Triggering Rules"},{"refs":[{"id":"ref-for-diagnostic\u2463"}],"title":"2.3.3. Diagnostic Filtering"},{"refs":[{"id":"ref-for-diagnostic\u2464"},{"id":"ref-for-diagnostic\u2465"},{"id":"ref-for-diagnostic\u2466"}],"title":"14.2. Uniformity"},{"refs":[{"id":"ref-for-diagnostic\u2467"},{"id":"ref-for-diagnostic\u2468"},{"id":"ref-for-diagnostic\u2460\u24ea"}],"title":"14.2.3. Analyzing the Uniformity Requirements of a Function"},{"refs":[{"id":"ref-for-diagnostic\u2460\u2460"}],"title":"14.6.2. Derivatives"},{"refs":[{"id":"ref-for-diagnostic\u2460\u2461"}],"title":"14.6.3. Subgroup Operations"},{"refs":[{"id":"ref-for-diagnostic\u2460\u2462"}],"title":"14.6.4. Quad Operations"},{"refs":[{"id":"ref-for-diagnostic\u2460\u2463"}],"title":"16.6. Derivative Built-in Functions"},{"refs":[{"id":"ref-for-diagnostic\u2460\u2464"}],"title":"16.7.8. textureSample"},{"refs":[{"id":"ref-for-diagnostic\u2460\u2465"}],"title":"16.7.9. textureSampleBias"},{"refs":[{"id":"ref-for-diagnostic\u2460\u2466"}],"title":"16.7.10. textureSampleCompare"},{"refs":[{"id":"ref-for-diagnostic\u2460\u2467"}],"title":"16.12. Subgroup Built-in Functions"},{"refs":[{"id":"ref-for-diagnostic\u2460\u2468"}],"title":"16.12.12.1. subgroupShuffleDown"},{"refs":[{"id":"ref-for-diagnostic\u2461\u24ea"}],"title":"16.12.12.2. subgroupShuffleUp"},{"refs":[{"id":"ref-for-diagnostic\u2461\u2460"}],"title":"16.12.12.3. subgroupShuffleXor"},{"refs":[{"id":"ref-for-diagnostic\u2461\u2461"}],"title":"16.13. Quad Operations"}],"url":"#diagnostic"},
+"diagnostic": {"dfnID":"diagnostic","dfnText":"diagnostic","external":false,"refSections":[{"refs":[{"id":"ref-for-diagnostic"}],"title":"2.2. Errors"},{"refs":[{"id":"ref-for-diagnostic\u2460"},{"id":"ref-for-diagnostic\u2461"}],"title":"2.3. Diagnostics"},{"refs":[{"id":"ref-for-diagnostic\u2462"}],"title":"2.3.2. Filterable Triggering Rules"},{"refs":[{"id":"ref-for-diagnostic\u2463"}],"title":"2.3.3. Diagnostic Filtering"},{"refs":[{"id":"ref-for-diagnostic\u2464"},{"id":"ref-for-diagnostic\u2465"},{"id":"ref-for-diagnostic\u2466"}],"title":"14.2. Uniformity"},{"refs":[{"id":"ref-for-diagnostic\u2467"},{"id":"ref-for-diagnostic\u2468"},{"id":"ref-for-diagnostic\u2460\u24ea"}],"title":"14.2.3. Analyzing the Uniformity Requirements of a Function"},{"refs":[{"id":"ref-for-diagnostic\u2460\u2460"}],"title":"14.6.2. Derivatives"},{"refs":[{"id":"ref-for-diagnostic\u2460\u2461"}],"title":"14.6.4. Quad Operations"},{"refs":[{"id":"ref-for-diagnostic\u2460\u2462"}],"title":"16.6. Derivative Built-in Functions"},{"refs":[{"id":"ref-for-diagnostic\u2460\u2463"}],"title":"16.7.8. textureSample"},{"refs":[{"id":"ref-for-diagnostic\u2460\u2464"}],"title":"16.7.9. textureSampleBias"},{"refs":[{"id":"ref-for-diagnostic\u2460\u2465"}],"title":"16.7.10. textureSampleCompare"},{"refs":[{"id":"ref-for-diagnostic\u2460\u2466"}],"title":"16.12. Subgroup Built-in Functions"},{"refs":[{"id":"ref-for-diagnostic\u2460\u2467"}],"title":"16.12.12.1. subgroupShuffleDown"},{"refs":[{"id":"ref-for-diagnostic\u2460\u2468"}],"title":"16.12.12.2. subgroupShuffleUp"},{"refs":[{"id":"ref-for-diagnostic\u2461\u24ea"}],"title":"16.12.12.3. subgroupShuffleXor"},{"refs":[{"id":"ref-for-diagnostic\u2461\u2460"}],"title":"16.13. Quad Operations"}],"url":"#diagnostic"},
 "diagnostic-conflict": {"dfnID":"diagnostic-conflict","dfnText":"conflict","external":false,"refSections":[{"refs":[{"id":"ref-for-diagnostic-conflict"}],"title":"2.3.3. Diagnostic Filtering"}],"url":"#diagnostic-conflict"},
 "diagnostic-filter": {"dfnID":"diagnostic-filter","dfnText":"diagnostic filter","external":false,"refSections":[{"refs":[{"id":"ref-for-diagnostic-filter"}],"title":"2.3.1. Diagnostic Processing"},{"refs":[{"id":"ref-for-diagnostic-filter\u2460"},{"id":"ref-for-diagnostic-filter\u2461"},{"id":"ref-for-diagnostic-filter\u2462"}],"title":"2.3.3. Diagnostic Filtering"},{"refs":[{"id":"ref-for-diagnostic-filter\u2463"},{"id":"ref-for-diagnostic-filter\u2464"}],"title":"3.8.4. Diagnostic Severity Control Names"},{"refs":[{"id":"ref-for-diagnostic-filter\u2465"},{"id":"ref-for-diagnostic-filter\u2466"}],"title":"14.2. Uniformity"}],"url":"#diagnostic-filter"},
 "diagnostic-name-token": {"dfnID":"diagnostic-name-token","dfnText":"diagnostic name-token","external":false,"refSections":[{"refs":[{"id":"ref-for-diagnostic-name-token"}],"title":"2.3.2. Filterable Triggering Rules"}],"url":"#diagnostic-name-token"},
@@ -24146,7 +24146,7 @@ let dfnPanelData = {
 "subgroup": {"dfnID":"subgroup","dfnText":"subgroup","external":false,"refSections":[{"refs":[{"id":"ref-for-subgroup"}],"title":"16.12.1. subgroupAdd"},{"refs":[{"id":"ref-for-subgroup\u2460"}],"title":"16.12.1.1. subgroupExclusiveAdd"},{"refs":[{"id":"ref-for-subgroup\u2461"}],"title":"16.12.1.2. subgroupInclusiveAdd"},{"refs":[{"id":"ref-for-subgroup\u2462"}],"title":"16.12.2. subgroupAll"},{"refs":[{"id":"ref-for-subgroup\u2463"}],"title":"16.12.3. subgroupAnd"},{"refs":[{"id":"ref-for-subgroup\u2464"}],"title":"16.12.4. subgroupAny"},{"refs":[{"id":"ref-for-subgroup\u2465"}],"title":"16.12.5. subgroupBallot"},{"refs":[{"id":"ref-for-subgroup\u2466"}],"title":"16.12.6. subgroupBroadcast"},{"refs":[{"id":"ref-for-subgroup\u2467"}],"title":"16.12.6.1. subgroupBroadcastFirst"},{"refs":[{"id":"ref-for-subgroup\u2468"}],"title":"16.12.7. subgroupElect"},{"refs":[{"id":"ref-for-subgroup\u2460\u24ea"}],"title":"16.12.8. subgroupMax"},{"refs":[{"id":"ref-for-subgroup\u2460\u2460"}],"title":"16.12.9. subgroupMin"},{"refs":[{"id":"ref-for-subgroup\u2460\u2461"}],"title":"16.12.10. subgroupMul"},{"refs":[{"id":"ref-for-subgroup\u2460\u2462"}],"title":"16.12.10.1. subgroupExclusiveMul"},{"refs":[{"id":"ref-for-subgroup\u2460\u2463"}],"title":"16.12.10.2. subgroupInclusiveMul"},{"refs":[{"id":"ref-for-subgroup\u2460\u2464"}],"title":"16.12.11. subgroupOr"},{"refs":[{"id":"ref-for-subgroup\u2460\u2465"}],"title":"16.12.13. subgroupXor"}],"url":"#subgroup"},
 "subgroup-invocation-id": {"dfnID":"subgroup-invocation-id","dfnText":"subgroup invocation ID","external":false,"refSections":[{"refs":[{"id":"ref-for-subgroup-invocation-id"}],"title":"12.3.1.1.14. subgroup_invocation_id"},{"refs":[{"id":"ref-for-subgroup-invocation-id\u2460"},{"id":"ref-for-subgroup-invocation-id\u2461"},{"id":"ref-for-subgroup-invocation-id\u2462"},{"id":"ref-for-subgroup-invocation-id\u2463"}],"title":"14.7.4.1. Accuracy of Concrete Floating Point Expressions"},{"refs":[{"id":"ref-for-subgroup-invocation-id\u2464"}],"title":"16.12.1.1. subgroupExclusiveAdd"},{"refs":[{"id":"ref-for-subgroup-invocation-id\u2465"}],"title":"16.12.1.2. subgroupInclusiveAdd"},{"refs":[{"id":"ref-for-subgroup-invocation-id\u2466"}],"title":"16.12.6. subgroupBroadcast"},{"refs":[{"id":"ref-for-subgroup-invocation-id\u2467"}],"title":"16.12.6.1. subgroupBroadcastFirst"},{"refs":[{"id":"ref-for-subgroup-invocation-id\u2468"}],"title":"16.12.7. subgroupElect"},{"refs":[{"id":"ref-for-subgroup-invocation-id\u2460\u24ea"}],"title":"16.12.10.1. subgroupExclusiveMul"},{"refs":[{"id":"ref-for-subgroup-invocation-id\u2460\u2460"}],"title":"16.12.10.2. subgroupInclusiveMul"},{"refs":[{"id":"ref-for-subgroup-invocation-id\u2460\u2461"}],"title":"16.12.12. subgroupShuffle"},{"refs":[{"id":"ref-for-subgroup-invocation-id\u2460\u2462"}],"title":"16.12.12.1. subgroupShuffleDown"},{"refs":[{"id":"ref-for-subgroup-invocation-id\u2460\u2463"}],"title":"16.12.12.2. subgroupShuffleUp"},{"refs":[{"id":"ref-for-subgroup-invocation-id\u2460\u2464"}],"title":"16.12.12.3. subgroupShuffleXor"}],"url":"#subgroup-invocation-id"},
 "subgroup-size": {"dfnID":"subgroup-size","dfnText":"subgroup size","external":false,"refSections":[{"refs":[{"id":"ref-for-subgroup-size"}],"title":"12.3.1.1.15. subgroup_size"}],"url":"#subgroup-size"},
-"subgroups-active": {"dfnID":"subgroups-active","dfnText":"active","external":false,"refSections":[{"refs":[{"id":"ref-for-subgroups-active"},{"id":"ref-for-subgroups-active\u2460"},{"id":"ref-for-subgroups-active\u2461"},{"id":"ref-for-subgroups-active\u2462"},{"id":"ref-for-subgroups-active\u2463"},{"id":"ref-for-subgroups-active\u2464"},{"id":"ref-for-subgroups-active\u2465"},{"id":"ref-for-subgroups-active\u2466"}],"title":"14.7.4.1. Accuracy of Concrete Floating Point Expressions"},{"refs":[{"id":"ref-for-subgroups-active\u2467"}],"title":"16.12.1. subgroupAdd"},{"refs":[{"id":"ref-for-subgroups-active\u2468"}],"title":"16.12.1.1. subgroupExclusiveAdd"},{"refs":[{"id":"ref-for-subgroups-active\u2460\u24ea"}],"title":"16.12.1.2. subgroupInclusiveAdd"},{"refs":[{"id":"ref-for-subgroups-active\u2460\u2460"}],"title":"16.12.2. subgroupAll"},{"refs":[{"id":"ref-for-subgroups-active\u2460\u2461"}],"title":"16.12.3. subgroupAnd"},{"refs":[{"id":"ref-for-subgroups-active\u2460\u2462"}],"title":"16.12.4. subgroupAny"},{"refs":[{"id":"ref-for-subgroups-active\u2460\u2463"}],"title":"16.12.5. subgroupBallot"},{"refs":[{"id":"ref-for-subgroups-active\u2460\u2464"},{"id":"ref-for-subgroups-active\u2460\u2465"}],"title":"16.12.6. subgroupBroadcast"},{"refs":[{"id":"ref-for-subgroups-active\u2460\u2466"}],"title":"16.12.6.1. subgroupBroadcastFirst"},{"refs":[{"id":"ref-for-subgroups-active\u2460\u2467"}],"title":"16.12.7. subgroupElect"},{"refs":[{"id":"ref-for-subgroups-active\u2460\u2468"}],"title":"16.12.8. subgroupMax"},{"refs":[{"id":"ref-for-subgroups-active\u2461\u24ea"}],"title":"16.12.9. subgroupMin"},{"refs":[{"id":"ref-for-subgroups-active\u2461\u2460"}],"title":"16.12.10. subgroupMul"},{"refs":[{"id":"ref-for-subgroups-active\u2461\u2461"}],"title":"16.12.10.1. subgroupExclusiveMul"},{"refs":[{"id":"ref-for-subgroups-active\u2461\u2462"}],"title":"16.12.10.2. subgroupInclusiveMul"},{"refs":[{"id":"ref-for-subgroups-active\u2461\u2463"}],"title":"16.12.11. subgroupOr"},{"refs":[{"id":"ref-for-subgroups-active\u2461\u2464"}],"title":"16.12.12. subgroupShuffle"},{"refs":[{"id":"ref-for-subgroups-active\u2461\u2465"}],"title":"16.12.12.1. subgroupShuffleDown"},{"refs":[{"id":"ref-for-subgroups-active\u2461\u2466"}],"title":"16.12.12.2. subgroupShuffleUp"},{"refs":[{"id":"ref-for-subgroups-active\u2461\u2467"}],"title":"16.12.12.3. subgroupShuffleXor"},{"refs":[{"id":"ref-for-subgroups-active\u2461\u2468"}],"title":"16.12.13. subgroupXor"},{"refs":[{"id":"ref-for-subgroups-active\u2462\u24ea"},{"id":"ref-for-subgroups-active\u2462\u2460"}],"title":"16.13.1. quadBroadcast"}],"url":"#subgroups-active"},
+"subgroups-active": {"dfnID":"subgroups-active","dfnText":"active","external":false,"refSections":[{"refs":[{"id":"ref-for-subgroups-active"}],"title":"14.6.3. Subgroup Operations"},{"refs":[{"id":"ref-for-subgroups-active\u2460"},{"id":"ref-for-subgroups-active\u2461"},{"id":"ref-for-subgroups-active\u2462"},{"id":"ref-for-subgroups-active\u2463"},{"id":"ref-for-subgroups-active\u2464"},{"id":"ref-for-subgroups-active\u2465"},{"id":"ref-for-subgroups-active\u2466"},{"id":"ref-for-subgroups-active\u2467"}],"title":"14.7.4.1. Accuracy of Concrete Floating Point Expressions"},{"refs":[{"id":"ref-for-subgroups-active\u2468"}],"title":"16.12.1. subgroupAdd"},{"refs":[{"id":"ref-for-subgroups-active\u2460\u24ea"}],"title":"16.12.1.1. subgroupExclusiveAdd"},{"refs":[{"id":"ref-for-subgroups-active\u2460\u2460"}],"title":"16.12.1.2. subgroupInclusiveAdd"},{"refs":[{"id":"ref-for-subgroups-active\u2460\u2461"}],"title":"16.12.2. subgroupAll"},{"refs":[{"id":"ref-for-subgroups-active\u2460\u2462"}],"title":"16.12.3. subgroupAnd"},{"refs":[{"id":"ref-for-subgroups-active\u2460\u2463"}],"title":"16.12.4. subgroupAny"},{"refs":[{"id":"ref-for-subgroups-active\u2460\u2464"}],"title":"16.12.5. subgroupBallot"},{"refs":[{"id":"ref-for-subgroups-active\u2460\u2465"},{"id":"ref-for-subgroups-active\u2460\u2466"}],"title":"16.12.6. subgroupBroadcast"},{"refs":[{"id":"ref-for-subgroups-active\u2460\u2467"}],"title":"16.12.6.1. subgroupBroadcastFirst"},{"refs":[{"id":"ref-for-subgroups-active\u2460\u2468"}],"title":"16.12.7. subgroupElect"},{"refs":[{"id":"ref-for-subgroups-active\u2461\u24ea"}],"title":"16.12.8. subgroupMax"},{"refs":[{"id":"ref-for-subgroups-active\u2461\u2460"}],"title":"16.12.9. subgroupMin"},{"refs":[{"id":"ref-for-subgroups-active\u2461\u2461"}],"title":"16.12.10. subgroupMul"},{"refs":[{"id":"ref-for-subgroups-active\u2461\u2462"}],"title":"16.12.10.1. subgroupExclusiveMul"},{"refs":[{"id":"ref-for-subgroups-active\u2461\u2463"}],"title":"16.12.10.2. subgroupInclusiveMul"},{"refs":[{"id":"ref-for-subgroups-active\u2461\u2464"}],"title":"16.12.11. subgroupOr"},{"refs":[{"id":"ref-for-subgroups-active\u2461\u2465"}],"title":"16.12.12. subgroupShuffle"},{"refs":[{"id":"ref-for-subgroups-active\u2461\u2466"}],"title":"16.12.12.1. subgroupShuffleDown"},{"refs":[{"id":"ref-for-subgroups-active\u2461\u2467"}],"title":"16.12.12.2. subgroupShuffleUp"},{"refs":[{"id":"ref-for-subgroups-active\u2461\u2468"}],"title":"16.12.12.3. subgroupShuffleXor"},{"refs":[{"id":"ref-for-subgroups-active\u2462\u24ea"}],"title":"16.12.13. subgroupXor"},{"refs":[{"id":"ref-for-subgroups-active\u2462\u2460"},{"id":"ref-for-subgroups-active\u2462\u2461"}],"title":"16.13.1. quadBroadcast"}],"url":"#subgroups-active"},
 "subgroups-inactive": {"dfnID":"subgroups-inactive","dfnText":"inactive","external":false,"refSections":[],"url":"#subgroups-inactive"},
 "substitution": {"dfnID":"substitution","dfnText":"substitution","external":false,"refSections":[{"refs":[{"id":"ref-for-substitution"}],"title":"6.1. Type Checking"}],"url":"#substitution"},
 "swizzle": {"dfnID":"swizzle","dfnText":"swizzle","external":false,"refSections":[{"refs":[{"id":"ref-for-swizzle"}],"title":"3.8.8. Swizzle Names"},{"refs":[{"id":"ref-for-swizzle\u2460"}],"title":"8.5. Composite Value Decomposition Expressions"},{"refs":[{"id":"ref-for-swizzle\u2461"},{"id":"ref-for-swizzle\u2462"},{"id":"ref-for-swizzle\u2463"},{"id":"ref-for-swizzle\u2464"}],"title":"8.5.1.1. Vector Single Component Selection"},{"refs":[{"id":"ref-for-swizzle\u2465"},{"id":"ref-for-swizzle\u2466"}],"title":"8.5.1.2. Vector Multiple Component Selection"},{"refs":[{"id":"ref-for-swizzle\u2467"}],"title":"10.4.1.1. Root Identifier"}],"url":"#swizzle"},
@@ -24397,7 +24397,7 @@ let dfnPanelData = {
 "transpose": {"dfnID":"transpose","dfnText":"transpose","external":false,"refSections":[{"refs":[{"id":"ref-for-transpose"}],"title":"8.7. Arithmetic Expressions"}],"url":"#transpose"},
 "trap": {"dfnID":"trap","dfnText":"Trap","external":false,"refSections":[],"url":"#trap"},
 "trigger-derivative_uniformity": {"dfnID":"trigger-derivative_uniformity","dfnText":"derivative_uniformity","external":false,"refSections":[{"refs":[{"id":"ref-for-trigger-derivative_uniformity"}],"title":"2.3.2. Filterable Triggering Rules"},{"refs":[{"id":"ref-for-trigger-derivative_uniformity\u2460"}],"title":"3.8.3. Diagnostic Rule Names"},{"refs":[{"id":"ref-for-trigger-derivative_uniformity\u2461"}],"title":"14.2. Uniformity"},{"refs":[{"id":"ref-for-trigger-derivative_uniformity\u2462"}],"title":"14.2.2. Uniformity Analysis Overview"},{"refs":[{"id":"ref-for-trigger-derivative_uniformity\u2463"},{"id":"ref-for-trigger-derivative_uniformity\u2464"},{"id":"ref-for-trigger-derivative_uniformity\u2465"}],"title":"14.2.7. Uniformity Rules for Function Calls"},{"refs":[{"id":"ref-for-trigger-derivative_uniformity\u2466"}],"title":"14.6.2. Derivatives"},{"refs":[{"id":"ref-for-trigger-derivative_uniformity\u2467"}],"title":"16.6. Derivative Built-in Functions"},{"refs":[{"id":"ref-for-trigger-derivative_uniformity\u2468"}],"title":"16.7.8. textureSample"},{"refs":[{"id":"ref-for-trigger-derivative_uniformity\u2460\u24ea"}],"title":"16.7.9. textureSampleBias"},{"refs":[{"id":"ref-for-trigger-derivative_uniformity\u2460\u2460"}],"title":"16.7.10. textureSampleCompare"}],"url":"#trigger-derivative_uniformity"},
-"trigger-subgroup_uniformity": {"dfnID":"trigger-subgroup_uniformity","dfnText":"subgroup_uniformity","external":false,"refSections":[{"refs":[{"id":"ref-for-trigger-subgroup_uniformity"}],"title":"3.8.3. Diagnostic Rule Names"},{"refs":[{"id":"ref-for-trigger-subgroup_uniformity\u2460"}],"title":"14.2. Uniformity"},{"refs":[{"id":"ref-for-trigger-subgroup_uniformity\u2461"}],"title":"14.2.2. Uniformity Analysis Overview"},{"refs":[{"id":"ref-for-trigger-subgroup_uniformity\u2462"},{"id":"ref-for-trigger-subgroup_uniformity\u2463"},{"id":"ref-for-trigger-subgroup_uniformity\u2464"}],"title":"14.2.7. Uniformity Rules for Function Calls"},{"refs":[{"id":"ref-for-trigger-subgroup_uniformity\u2465"}],"title":"14.6.3. Subgroup Operations"},{"refs":[{"id":"ref-for-trigger-subgroup_uniformity\u2466"}],"title":"14.6.4. Quad Operations"},{"refs":[{"id":"ref-for-trigger-subgroup_uniformity\u2467"}],"title":"16.12. Subgroup Built-in Functions"},{"refs":[{"id":"ref-for-trigger-subgroup_uniformity\u2468"}],"title":"16.12.12.1. subgroupShuffleDown"},{"refs":[{"id":"ref-for-trigger-subgroup_uniformity\u2460\u24ea"}],"title":"16.12.12.2. subgroupShuffleUp"},{"refs":[{"id":"ref-for-trigger-subgroup_uniformity\u2460\u2460"}],"title":"16.12.12.3. subgroupShuffleXor"},{"refs":[{"id":"ref-for-trigger-subgroup_uniformity\u2460\u2461"}],"title":"16.13. Quad Operations"}],"url":"#trigger-subgroup_uniformity"},
+"trigger-subgroup_uniformity": {"dfnID":"trigger-subgroup_uniformity","dfnText":"subgroup_uniformity","external":false,"refSections":[{"refs":[{"id":"ref-for-trigger-subgroup_uniformity"}],"title":"3.8.3. Diagnostic Rule Names"},{"refs":[{"id":"ref-for-trigger-subgroup_uniformity\u2460"}],"title":"14.2. Uniformity"},{"refs":[{"id":"ref-for-trigger-subgroup_uniformity\u2461"}],"title":"14.2.2. Uniformity Analysis Overview"},{"refs":[{"id":"ref-for-trigger-subgroup_uniformity\u2462"},{"id":"ref-for-trigger-subgroup_uniformity\u2463"},{"id":"ref-for-trigger-subgroup_uniformity\u2464"}],"title":"14.2.7. Uniformity Rules for Function Calls"},{"refs":[{"id":"ref-for-trigger-subgroup_uniformity\u2465"}],"title":"14.6.4. Quad Operations"},{"refs":[{"id":"ref-for-trigger-subgroup_uniformity\u2466"}],"title":"16.12. Subgroup Built-in Functions"},{"refs":[{"id":"ref-for-trigger-subgroup_uniformity\u2467"}],"title":"16.12.12.1. subgroupShuffleDown"},{"refs":[{"id":"ref-for-trigger-subgroup_uniformity\u2468"}],"title":"16.12.12.2. subgroupShuffleUp"},{"refs":[{"id":"ref-for-trigger-subgroup_uniformity\u2460\u24ea"}],"title":"16.12.12.3. subgroupShuffleXor"},{"refs":[{"id":"ref-for-trigger-subgroup_uniformity\u2460\u2460"}],"title":"16.13. Quad Operations"}],"url":"#trigger-subgroup_uniformity"},
 "triggered": {"dfnID":"triggered","dfnText":"triggered","external":false,"refSections":[{"refs":[{"id":"ref-for-triggered"}],"title":"2.2. Errors"},{"refs":[{"id":"ref-for-triggered\u2460"}],"title":"2.3.3. Diagnostic Filtering"},{"refs":[{"id":"ref-for-triggered\u2461"},{"id":"ref-for-triggered\u2462"},{"id":"ref-for-triggered\u2463"}],"title":"14.2. Uniformity"},{"refs":[{"id":"ref-for-triggered\u2464"}],"title":"14.2.3. Analyzing the Uniformity Requirements of a Function"},{"refs":[{"id":"ref-for-triggered\u2465"}],"title":"16.6. Derivative Built-in Functions"},{"refs":[{"id":"ref-for-triggered\u2466"}],"title":"16.7.8. textureSample"},{"refs":[{"id":"ref-for-triggered\u2467"}],"title":"16.7.9. textureSampleBias"},{"refs":[{"id":"ref-for-triggered\u2468"}],"title":"16.7.10. textureSampleCompare"},{"refs":[{"id":"ref-for-triggered\u2460\u24ea"}],"title":"16.12. Subgroup Built-in Functions"},{"refs":[{"id":"ref-for-triggered\u2460\u2460"}],"title":"16.12.12.1. subgroupShuffleDown"},{"refs":[{"id":"ref-for-triggered\u2460\u2461"}],"title":"16.12.12.2. subgroupShuffleUp"},{"refs":[{"id":"ref-for-triggered\u2460\u2462"}],"title":"16.12.12.3. subgroupShuffleXor"},{"refs":[{"id":"ref-for-triggered\u2460\u2463"}],"title":"16.13. Quad Operations"}],"url":"#triggered"},
 "truncate": {"dfnID":"truncate","dfnText":"truncate","external":false,"refSections":[{"refs":[{"id":"ref-for-truncate"},{"id":"ref-for-truncate\u2460"}],"title":"8.7. Arithmetic Expressions"},{"refs":[{"id":"ref-for-truncate\u2461"},{"id":"ref-for-truncate\u2462"},{"id":"ref-for-truncate\u2463"},{"id":"ref-for-truncate\u2464"},{"id":"ref-for-truncate\u2465"},{"id":"ref-for-truncate\u2466"},{"id":"ref-for-truncate\u2467"},{"id":"ref-for-truncate\u2468"},{"id":"ref-for-truncate\u2460\u24ea"},{"id":"ref-for-truncate\u2460\u2460"}],"title":"12.3.4. Buffer Binding Determines Runtime-Sized Array Element Count"},{"refs":[{"id":"ref-for-truncate\u2460\u2461"}],"title":"14.7.6. Floating Point Conversion"},{"refs":[{"id":"ref-for-truncate\u2460\u2462"}],"title":"16.5.63. trunc"}],"url":"#truncate"},
 "type": {"dfnID":"type","dfnText":"type","external":false,"refSections":[{"refs":[{"id":"ref-for-type"}],"title":"5. Declaration and Scope"},{"refs":[{"id":"ref-for-type\u2460"}],"title":"6.4. Memory Views"},{"refs":[{"id":"ref-for-type\u2461"},{"id":"ref-for-type\u2462"}],"title":"6.6. AllTypes Type"},{"refs":[{"id":"ref-for-type\u2463"}],"title":"6.9. Predeclared Types and Type-Generators Summary"},{"refs":[{"id":"ref-for-type\u2464"}],"title":"8.17. Type Expressions"},{"refs":[{"id":"ref-for-type\u2465"}],"title":"8.18. Expression Grammar Summary"}],"url":"#type"},
