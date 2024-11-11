@@ -827,13 +827,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-11-08">8 November 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-11-11">11 November 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/3a5e0cfebfbc0c8f2bc3e814c3d9595bfa924b8b/wgsl/index.bs">https://github.com/gpuweb/gpuweb/blob/3a5e0cfebfbc0c8f2bc3e814c3d9595bfa924b8b/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/c0e29129fc75e08d015df223f8859524a8e9fa52/wgsl/index.bs">https://github.com/gpuweb/gpuweb/blob/c0e29129fc75e08d015df223f8859524a8e9fa52/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -14572,10 +14572,10 @@ considered inactive. <a data-link-type="dfn" href="#helper-invocation" id="ref-f
 That is, on some devices helper invocations may participate in subgroup operations,
 while on other devices they may not.</p>
    <p class="note" role="note"><span class="marker">Note:</span> There is considerable non-portability among underlying devices when
-operating in non-uniform control flow and device compilers often agressively
+operating in non-uniform control flow and device compilers often aggressively
 optimize such code.
-The result is that subgroups may contain different invocations than the shader author
-reasons ought to be active in a particular operation.</p>
+The result is that the subgroup may contain a different set of active
+invocations than the shader author expects.</p>
    <h3 class="heading settled" data-level="14.6" id="collective-operations"><span class="secno">14.6. </span><span class="content">Collective Operations</span><a class="self-link" href="#collective-operations"></a></h3>
    <h4 class="heading settled" data-level="14.6.1" id="barrier"><span class="secno">14.6.1. </span><span class="content">Barriers</span><a class="self-link" href="#barrier"></a></h4>
    <p>A barrier is a <a href="#sync-builtin-functions">synchronization built-in function</a> that orders memory operations in a program.
@@ -15336,36 +15336,44 @@ the rules in <a href="#floating-point-rounding-and-overflow">§ 14.7.3 Floatin
       <td colspan="2">Correctly rounded 
      <tr>
       <td><code>subgroupAdd(x)</code>
-      <td colspan="2">Inherited from ∑x for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active">active</a> invocations in the subgroup
-      Note: The order of operations is implementation dependent. 
+      <td colspan="2">
+       Inherited from ∑x for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active">active</a> invocations in the subgroup 
+       <p class="note" role="note"><span class="marker">Note:</span> The order of operations is implementation dependent.</p>
      <tr>
       <td><code>subgroupExclusiveAdd(x)</code>
-      <td colspan="2">Inherited from ∑x<sub>i</sub> for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①">active</a> invocations in the subgroup whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id①">subgroup invocation ID</a> is less than ID of the i’th invocation
-      Note: The order of operations is implementation dependent. 
+      <td colspan="2">
+       Inherited from ∑x<sub>i</sub> for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①">active</a> invocations in the subgroup whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id①">subgroup invocation ID</a> is less than ID of the i’th invocation 
+       <p class="note" role="note"><span class="marker">Note:</span> The order of operations is implementation dependent.</p>
      <tr>
       <td><code>subgroupInclusiveAdd(x)</code>
-      <td colspan="2">Inherited from ∑x<sub>i</sub> for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②">active</a> invocations in the subgroup whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id②">subgroup invocation ID</a> is less than or equal to ID of the i’th invocation
-      Note: The order of operations is implementation dependent. 
+      <td colspan="2">
+       Inherited from ∑x<sub>i</sub> for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②">active</a> invocations in the subgroup whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id②">subgroup invocation ID</a> is less than or equal to ID of the i’th invocation 
+       <p class="note" role="note"><span class="marker">Note:</span> The order of operations is implementation dependent.</p>
      <tr>
       <td><code>subgroupMul(x)</code>
-      <td colspan="2">Inherited from ∏x for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active③">active</a> invocations in the subgroup
-      Note: The order of operations is implementation dependent. 
+      <td colspan="2">
+       Inherited from ∏x for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active③">active</a> invocations in the subgroup 
+       <p class="note" role="note"><span class="marker">Note:</span> The order of operations is implementation dependent.</p>
      <tr>
       <td><code>subgroupExclusiveMul(x)</code>
-      <td colspan="2">Inherited from ∏x<sub>i</sub> for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active④">active</a> invocations in the subgroup whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id③">subgroup invocation ID</a> is less than ID of the i’th invocation
-      Note: The order of operations is implementation dependent. 
+      <td colspan="2">
+       Inherited from ∏x<sub>i</sub> for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active④">active</a> invocations in the subgroup whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id③">subgroup invocation ID</a> is less than ID of the i’th invocation 
+       <p class="note" role="note"><span class="marker">Note:</span> The order of operations is implementation dependent.</p>
      <tr>
       <td><code>subgroupInclusiveMul(x)</code>
-      <td colspan="2">Inherited from ∏x<sub>i</sub> for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active⑤">active</a> invocations in the subgroup whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id④">subgroup invocation ID</a> is less than or equal to ID of the i’th invocation
-      Note: The order of operations is implementation dependent. 
+      <td colspan="2">
+       Inherited from ∏x<sub>i</sub> for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active⑤">active</a> invocations in the subgroup whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id④">subgroup invocation ID</a> is less than or equal to ID of the i’th invocation 
+       <p class="note" role="note"><span class="marker">Note:</span> The order of operations is implementation dependent.</p>
      <tr>
       <td><code>subgroupMax(x)</code>
-      <td colspan="2">Inherited from max(x) for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active⑥">active</a> invocations in the subgroup
-      Note: The order of operations is implementation dependent. 
+      <td colspan="2">
+       Inherited from max(x) for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active⑥">active</a> invocations in the subgroup 
+       <p class="note" role="note"><span class="marker">Note:</span> The order of operations is implementation dependent.</p>
      <tr>
       <td><code>subgroupMin(x)</code>
-      <td colspan="2">Inherited from min(x) for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active⑦">active</a> invocations in the subgroup
-      Note: The order of operations is implementation dependent. 
+      <td colspan="2">
+       Inherited from min(x) for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active⑦">active</a> invocations in the subgroup 
+       <p class="note" role="note"><span class="marker">Note:</span> The order of operations is implementation dependent.</p>
      <tr>
       <td><code>subgroupShuffle(x, id)</code>
       <td colspan="2">Correctly rounded 
