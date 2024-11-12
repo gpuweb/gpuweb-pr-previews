@@ -827,13 +827,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-11-11">11 November 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-11-12">12 November 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/617b829b48e2f2b8707fcf1395ec9eb01fc50e45/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/617b829b48e2f2b8707fcf1395ec9eb01fc50e45/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/70d39f33ce67ebf5c7fa66bc12ed9d38f7c540f2/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/70d39f33ce67ebf5c7fa66bc12ed9d38f7c540f2/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -12767,7 +12767,7 @@ used in address space <var>C</var>.</p>
      Consider a variable <var>v</var> in address space <var>AS</var>.
 Scalars and vectors inside <var>v</var> must be placed so their alignment requirements are satisfied: 
     <blockquote> If <var>x</var> is a <a data-link-type="dfn" href="#scalar" id="ref-for-scalar①⑤">scalar</a> or <a data-link-type="dfn" href="#vector" id="ref-for-vector②②">vector</a> of type <var>T</var> nested somewhere in the <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②⑧">store type</a> for <var>v</var>,
-then the byte offset of <var>x</var> in <var>v</var> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②③">must</a> evenly divide <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof③">RequiredAlignOf</a>(<var>T</var>,<var>AS</var>). </blockquote>
+then <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof③">RequiredAlignOf</a>(<var>T</var>,<var>AS</var>) <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②③">must</a> evenly divide the byte offset of <var>x</var> in <var>v</var>. </blockquote>
    </div>
    <p>Structure members of type <var>T</var> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②④">must</a> have a byte offset
 from the start of the structure that is a multiple of the <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof④">RequiredAlignOf</a>(<var>T</var>, <var>C</var>)
