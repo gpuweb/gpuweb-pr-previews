@@ -70,12 +70,8 @@ interface GPUAdapterInfo {
     readonly attribute DOMString architecture;
     readonly attribute DOMString device;
     readonly attribute DOMString description;
-    readonly attribute GPUAdapterProperties properties;
-};
-
-interface GPUAdapterProperties {
-    readonly attribute unsigned long minSubgroupSize; // From "subgroups" feature
-    readonly attribute unsigned long maxSubgroupSize; // From "subgroups" feature
+    readonly attribute unsigned long minSubgroupSize;
+    readonly attribute unsigned long maxSubgroupSize;
 };
 
 interface mixin NavigatorGPU {
