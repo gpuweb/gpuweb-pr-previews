@@ -833,7 +833,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/e538bc7b4ee10e856a06cb7e53f4a13ed775712a/wgsl/index.bs">https://github.com/gpuweb/gpuweb/blob/e538bc7b4ee10e856a06cb7e53f4a13ed775712a/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/f5a2dff5fe8d99a08c74f37a5ecaadd29c8c890c/wgsl/index.bs">https://github.com/gpuweb/gpuweb/blob/f5a2dff5fe8d99a08c74f37a5ecaadd29c8c890c/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -11839,7 +11839,9 @@ Each is described in detail in subsequent sections.</p>
       <td>Input 
      <tr>
       <td style="width:10%">Description 
-      <td> The current invocation’s <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id">subgroup invocation ID</a>. 
+      <td>
+        The current invocation’s <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id">subgroup invocation ID</a>. 
+       <p>The ID is within the range [0, <a data-link-type="dfn" href="#built-in-values-subgroup_size" id="ref-for-built-in-values-subgroup_size②">subgroup_size</a> - 1].</p>
    </table>
    <h6 class="heading settled" data-level="12.3.1.1.15" id="subgroup-size-builtin-value"><span class="secno">12.3.1.1.15. </span><span class="content"><code>subgroup_size</code></span><a class="self-link" href="#subgroup-size-builtin-value"></a></h6>
    <table class="data">
@@ -11858,7 +11860,7 @@ Each is described in detail in subsequent sections.</p>
       <td>Input 
      <tr>
       <td style="width:10%">Description 
-      <td> The current invocation’s <a data-link-type="dfn" href="#subgroup-size" id="ref-for-subgroup-size">subgroup size</a>. 
+      <td> The <a data-link-type="dfn" href="#subgroup-size" id="ref-for-subgroup-size">subgroup size</a> of current invocation’s subgroup. 
    </table>
    <h5 class="heading settled" data-level="12.3.1.2" id="user-defined-inputs-outputs"><span class="secno">12.3.1.2. </span><span class="content">User-defined Inputs and Outputs</span><a class="self-link" href="#user-defined-inputs-outputs"></a></h5>
    <p>User-defined data can be passed as input to the start of a pipeline, passed
@@ -14187,7 +14189,7 @@ after the function call.</p>
     <li data-md>
      <p><a data-link-type="dfn" href="#built-in-values-num_workgroups" id="ref-for-built-in-values-num_workgroups③">num_workgroups</a></p>
     <li data-md>
-     <p><a data-link-type="dfn" href="#built-in-values-subgroup_size" id="ref-for-built-in-values-subgroup_size②">subgroup_size</a> when used in a <a data-link-type="dfn" href="#compute-shader-stage" id="ref-for-compute-shader-stage①④">compute shader stage</a></p>
+     <p><a data-link-type="dfn" href="#built-in-values-subgroup_size" id="ref-for-built-in-values-subgroup_size③">subgroup_size</a> when used in a <a data-link-type="dfn" href="#compute-shader-stage" id="ref-for-compute-shader-stage①④">compute shader stage</a></p>
    </ul>
    <p>All other ones (see <a data-link-type="dfn" href="#built-in-values" id="ref-for-built-in-values⑥">built-in values</a>) are considered non-uniform.</p>
    <p class="note" role="note"><span class="marker">Note:</span> An author should avoid grouping the uniform built-in values together with
@@ -14594,7 +14596,7 @@ In a compute shader, each subgroup is a subset of a particular <a data-link-type
 In a fragment shader, a subgroup might contain invocations from multiple <a data-link-type="dfn" href="#draw-command" id="ref-for-draw-command⑥">draw commands</a>.
 Each <a data-link-type="dfn" href="#quad" id="ref-for-quad②">quad</a> will be contained in a single subgroup.</p>
    <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="subgroup-size">subgroup size</dfn> is the maximum number of invocations in a subgroup.
-This value is accessible via the <a data-link-type="dfn" href="#built-in-values-subgroup_size" id="ref-for-built-in-values-subgroup_size③">subgroup_size</a> built-in value.
+This value is accessible via the <a data-link-type="dfn" href="#built-in-values-subgroup_size" id="ref-for-built-in-values-subgroup_size④">subgroup_size</a> built-in value.
 Subgroup size is a <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value①①">uniform value</a> within a <a data-link-type="dfn" href="#compute-shader-stage-workgroup" id="ref-for-compute-shader-stage-workgroup⑤">workgroup</a>,
 but not within a <a data-link-type="dfn" href="#draw-command" id="ref-for-draw-command⑦">draw command</a>.
 All subgroup sizes are within the range [4, 128].
@@ -23756,7 +23758,7 @@ let dfnPanelData = {
 "built-in-values-sample_index": {"dfnID":"built-in-values-sample_index","dfnText":"sample_index","external":false,"refSections":[{"refs":[{"id":"ref-for-built-in-values-sample_index"}],"title":"3.8.2. Built-in Value Names"},{"refs":[{"id":"ref-for-built-in-values-sample_index\u2460"}],"title":"12.3.1.1. Built-in Inputs and Outputs"},{"refs":[{"id":"ref-for-built-in-values-sample_index\u2461"}],"title":"12.3.1.1.10. sample_index"}],"url":"#built-in-values-sample_index"},
 "built-in-values-sample_mask": {"dfnID":"built-in-values-sample_mask","dfnText":"sample_mask","external":false,"refSections":[{"refs":[{"id":"ref-for-built-in-values-sample_mask"}],"title":"3.8.2. Built-in Value Names"},{"refs":[{"id":"ref-for-built-in-values-sample_mask\u2460"}],"title":"12.3.1.1. Built-in Inputs and Outputs"}],"url":"#built-in-values-sample_mask"},
 "built-in-values-subgroup_invocation_id": {"dfnID":"built-in-values-subgroup_invocation_id","dfnText":"subgroup_invocation_id","external":false,"refSections":[{"refs":[{"id":"ref-for-built-in-values-subgroup_invocation_id"}],"title":"3.8.2. Built-in Value Names"},{"refs":[{"id":"ref-for-built-in-values-subgroup_invocation_id\u2460"}],"title":"12.3.1.1. Built-in Inputs and Outputs"},{"refs":[{"id":"ref-for-built-in-values-subgroup_invocation_id\u2461"}],"title":"14.5. Subgroups"}],"url":"#built-in-values-subgroup_invocation_id"},
-"built-in-values-subgroup_size": {"dfnID":"built-in-values-subgroup_size","dfnText":"subgroup_size","external":false,"refSections":[{"refs":[{"id":"ref-for-built-in-values-subgroup_size"}],"title":"3.8.2. Built-in Value Names"},{"refs":[{"id":"ref-for-built-in-values-subgroup_size\u2460"}],"title":"12.3.1.1. Built-in Inputs and Outputs"},{"refs":[{"id":"ref-for-built-in-values-subgroup_size\u2461"}],"title":"14.2.8. Uniformity Rules for Expressions"},{"refs":[{"id":"ref-for-built-in-values-subgroup_size\u2462"}],"title":"14.5. Subgroups"}],"url":"#built-in-values-subgroup_size"},
+"built-in-values-subgroup_size": {"dfnID":"built-in-values-subgroup_size","dfnText":"subgroup_size","external":false,"refSections":[{"refs":[{"id":"ref-for-built-in-values-subgroup_size"}],"title":"3.8.2. Built-in Value Names"},{"refs":[{"id":"ref-for-built-in-values-subgroup_size\u2460"}],"title":"12.3.1.1. Built-in Inputs and Outputs"},{"refs":[{"id":"ref-for-built-in-values-subgroup_size\u2461"}],"title":"12.3.1.1.14. subgroup_invocation_id"},{"refs":[{"id":"ref-for-built-in-values-subgroup_size\u2462"}],"title":"14.2.8. Uniformity Rules for Expressions"},{"refs":[{"id":"ref-for-built-in-values-subgroup_size\u2463"}],"title":"14.5. Subgroups"}],"url":"#built-in-values-subgroup_size"},
 "built-in-values-vertex_index": {"dfnID":"built-in-values-vertex_index","dfnText":"vertex_index","external":false,"refSections":[{"refs":[{"id":"ref-for-built-in-values-vertex_index"}],"title":"3.8.2. Built-in Value Names"},{"refs":[{"id":"ref-for-built-in-values-vertex_index\u2460"}],"title":"12.3.1.1. Built-in Inputs and Outputs"}],"url":"#built-in-values-vertex_index"},
 "built-in-values-workgroup_id": {"dfnID":"built-in-values-workgroup_id","dfnText":"workgroup_id","external":false,"refSections":[{"refs":[{"id":"ref-for-built-in-values-workgroup_id"}],"title":"3.8.2. Built-in Value Names"},{"refs":[{"id":"ref-for-built-in-values-workgroup_id\u2460"}],"title":"12.3.1.1. Built-in Inputs and Outputs"},{"refs":[{"id":"ref-for-built-in-values-workgroup_id\u2461"}],"title":"12.3.1.1.4. global_invocation_id"},{"refs":[{"id":"ref-for-built-in-values-workgroup_id\u2462"}],"title":"14.2. Uniformity"},{"refs":[{"id":"ref-for-built-in-values-workgroup_id\u2463"}],"title":"14.2.8. Uniformity Rules for Expressions"}],"url":"#built-in-values-workgroup_id"},
 "builtin-functions-that-compute-a-derivative": {"dfnID":"builtin-functions-that-compute-a-derivative","dfnText":"builtin functions that compute a derivative","external":false,"refSections":[{"refs":[{"id":"ref-for-builtin-functions-that-compute-a-derivative"}],"title":"2.3.2. Filterable Triggering Rules"},{"refs":[{"id":"ref-for-builtin-functions-that-compute-a-derivative\u2460"}],"title":"14.2. Uniformity"}],"url":"#builtin-functions-that-compute-a-derivative"},
