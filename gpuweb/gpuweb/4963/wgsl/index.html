@@ -827,13 +827,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-11-15">15 November 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-11-18">18 November 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/a5ef6bc7acdae9b4a5dbe84be946fc149e6f7e26/wgsl/index.bs">https://github.com/gpuweb/gpuweb/blob/a5ef6bc7acdae9b4a5dbe84be946fc149e6f7e26/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/e538bc7b4ee10e856a06cb7e53f4a13ed775712a/wgsl/index.bs">https://github.com/gpuweb/gpuweb/blob/e538bc7b4ee10e856a06cb7e53f4a13ed775712a/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -14615,10 +14615,10 @@ Divergence affects the semantics of subgroup operations.
 The invocations in a subgroup that concurrently execute a subgroup operation
 are <dfn class="dfn-paneled" data-dfn-for="subgroups" data-dfn-type="dfn" data-noexport id="subgroups-active">active</dfn> for that operation.
 Other invocations in the subgroup are <dfn class="dfn-paneled" data-dfn-for="subgroups" data-dfn-type="dfn" data-noexport id="subgroups-inactive">inactive</dfn> for that operation.
-When the subgroup size exceeds the number of invocations in a subgroup, the <a data-link-type="dfn" href="#helper-invocation" id="ref-for-helper-invocation②">Helper invocations</a> may be active or inactive in an operation.
+When the subgroup size exceeds the number of invocations in a subgroup, the
+extra hypothetical invocations are considered inactive. <a data-link-type="dfn" href="#helper-invocation" id="ref-for-helper-invocation②">Helper invocations</a> may be active or inactive in an operation.
 That is, on some devices helper invocations may participate in subgroup operations,
-while on other devices they may not.
-extra hypothetical invocations are considered inactive.</p>
+while on other devices they may not.</p>
    <p class="note" role="note"><span class="marker">Note:</span> There is considerable non-portability among underlying devices when
 operating in non-uniform control flow, and device compilers often aggressively
 optimize such code.
