@@ -833,7 +833,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/938337c39416be27464da84f3cb49169a4ab2706/wgsl/index.bs">https://github.com/gpuweb/gpuweb/blob/938337c39416be27464da84f3cb49169a4ab2706/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/152ecdd2fd5676603d36ce07d4a9a8a45afe8c93/wgsl/index.bs">https://github.com/gpuweb/gpuweb/blob/152ecdd2fd5676603d36ce07d4a9a8a45afe8c93/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -14550,20 +14550,23 @@ That is, you cannot assume that workgroups are launched in a particular order.</
    </ul>
    <h3 class="heading settled" data-level="14.4" id="fragment-shaders-helper-invocations"><span class="secno">14.4. </span><span class="content">Fragment Shaders and Helper Invocations</span><a class="self-link" href="#fragment-shaders-helper-invocations"></a></h3>
    <p>Invocations in the <a data-link-type="dfn" href="#fragment-shader-stage" id="ref-for-fragment-shader-stage⑨">fragment shader stage</a> are divided into 2x2 grids of
-invocations with neighbouring <a data-link-type="dfn" href="#built-in-values-position" id="ref-for-built-in-values-position⑦">positions</a> in the X and Y dimensions.
+invocations with neighbouring <a data-link-type="dfn" href="#built-in-values-position" id="ref-for-built-in-values-position⑦">positions</a> in the X
+and Y dimensions.
 Each of these grids is referred to as a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="quad">quad</dfn>.
 Quads can collaborate in some collective operations (see <a href="#derivatives">§ 14.6.2 Derivatives</a>).
-Each invocation in the quad has an effective ID, where:</p>
+An invocation’s <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="quad-invocation-id">quad invocation ID</dfn> is the unique ID within
+the quad, where:</p>
    <ul>
     <li data-md>
-     <p>Index 0 is the upper-left invocation.</p>
+     <p>ID 0 is the upper-left invocation.</p>
     <li data-md>
-     <p>Index 1 is the upper-right invocation.</p>
+     <p>ID 1 is the upper-right invocation.</p>
     <li data-md>
-     <p>Index 2 is the lower-left invocation.</p>
+     <p>ID 2 is the lower-left invocation.</p>
     <li data-md>
-     <p>Index 3 is the lower-right invocation.</p>
+     <p>ID 3 is the lower-right invocation.</p>
    </ul>
+   <p class="note" role="note"><span class="marker">Note:</span> There is no built-in value accessor for the quad ID.</p>
    <p>Ordinarily, <a href="https://gpuweb.github.io/gpuweb/#fragment-processing">fragment processing</a> creates one
 invocation of a fragment shader for each <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/#rasterizationpoint" id="ref-for-rasterizationpoint①">RasterizationPoint</a> produced by <a href="https://gpuweb.github.io/gpuweb/#rasterization">rasterization</a>.
 Sometimes there may be insufficient RasterizationPoints to fully populate a
@@ -21345,7 +21348,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
        Returns the value of <code>e</code> from the invocation whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id⑦">subgroup invocation ID</a> matches <code>id</code> in the subgroup to all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①⑦">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup⑨">subgroup</a>. 
        <p><code>id</code> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑧⑦">must</a> be a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑧①">const-expression</a> in the range [0, 128).</p>
        <p>It is a <a data-link-type="dfn" href="#dynamic-error" id="ref-for-dynamic-error①⓪">dynamic error</a> <code>id</code> does not select an <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①⑧">active</a> invocation.</p>
-       <p class="note" role="note"><span class="marker">Note:</span> if a non-constant version of <code>id</code> is required, use <a href="#subgroupshuffle-builtin">subgroupShuffle</a> instead.</p>
+       <p class="note" role="note"><span class="marker">Note:</span> If a non-constant version of <code>id</code> is required, use <a href="#subgroupshuffle-builtin">subgroupShuffle</a> instead.</p>
    </table>
    <h5 class="heading settled" data-level="16.12.6.1" id="subgroupbroadcastfirst-builtin"><span class="secno">16.12.6.1. </span><span class="content"><code>subgroupBroadcastFirst</code></span><a class="self-link" href="#subgroupbroadcastfirst-builtin"></a></h5>
    <table class="data builtin">
@@ -21628,11 +21631,10 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#quad" id="re
      <tr>
       <td>Description 
       <td>
-       Returns the value of <code>e</code> from the invocation whose <a data-link-type="dfn" href="#quad" id="ref-for-quad⑦">quad</a> index
-    matches <code>id</code> in the quad to all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active③②">active</a> invocations in the quad. 
+       Returns the value of <code>e</code> from the invocation whose <a data-link-type="dfn" href="#quad-invocation-id" id="ref-for-quad-invocation-id">quad invocation ID</a> matches <code>id</code> in the quad to all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active③②">active</a> invocations in the quad. 
        <p><code>id</code> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑨③">must</a> be a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑧⑥">const-expression</a> in the range [0, 4).</p>
        <p>An <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value③③">indeterminate value</a> is returned if <code>id</code> does not select an <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active③③">active</a> invocation.</p>
-       <p class="note" role="note"><span class="marker">Note:</span> unlike <a href="#subgroupbroadcast-builtin">subgroupBroadcast</a>, there is currently
+       <p class="note" role="note"><span class="marker">Note:</span> Unlike <a href="#subgroupbroadcast-builtin">subgroupBroadcast</a>, there is currently
     no non-constant alternative.</p>
    </table>
    <h4 class="heading settled" data-level="16.13.2" id="quadswapdiagonal-builtin"><span class="secno">16.13.2. </span><span class="content"><code>quadSwapDiagonal</code></span><a class="self-link" href="#quadswapdiagonal-builtin"></a></h4>
@@ -21649,13 +21651,13 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#quad" id="re
      <tr>
       <td>Description 
       <td>
-       Returns the value of <code>e</code> for invocation in the <a data-link-type="dfn" href="#quad" id="ref-for-quad⑧">quad</a> with the opposite coordinates.
+       Returns the value of <code>e</code> from invocation in the <a data-link-type="dfn" href="#quad" id="ref-for-quad⑦">quad</a> with the opposite coordinates.
     That is: 
        <ul>
         <li data-md>
-         <p>indices 0 and 3 swap.</p>
+         <p>IDs 0 and 3 swap.</p>
         <li data-md>
-         <p>indices 1 and 2 swap.</p>
+         <p>IDs 1 and 2 swap.</p>
        </ul>
    </table>
    <h4 class="heading settled" data-level="16.13.3" id="quadswapx-builtin"><span class="secno">16.13.3. </span><span class="content"><code>quadSwapX</code></span><a class="self-link" href="#quadswapx-builtin"></a></h4>
@@ -21672,13 +21674,13 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#quad" id="re
      <tr>
       <td>Description 
       <td>
-       Returns the value of <code>e</code> for invocation in the <a data-link-type="dfn" href="#quad" id="ref-for-quad⑨">quad</a> sharing the same X dimension.
+       Returns the value of <code>e</code> from invocation in the <a data-link-type="dfn" href="#quad" id="ref-for-quad⑧">quad</a> sharing the same X dimension.
     That is: 
        <ul>
         <li data-md>
-         <p>indices 0 and 1 swap.</p>
+         <p>IDs 0 and 1 swap.</p>
         <li data-md>
-         <p>indices 2 and 3 swap.</p>
+         <p>IDs 2 and 3 swap.</p>
        </ul>
    </table>
    <h4 class="heading settled" data-level="16.13.4" id="quadswapy-builtin"><span class="secno">16.13.4. </span><span class="content"><code>quadSwapY</code></span><a class="self-link" href="#quadswapy-builtin"></a></h4>
@@ -21695,13 +21697,13 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#quad" id="re
      <tr>
       <td>Description 
       <td>
-       Returns the value of <code>e</code> for invocation in the <a data-link-type="dfn" href="#quad" id="ref-for-quad①⓪">quad</a> sharing the same Y dimension.
+       Returns the value of <code>e</code> from invocation in the <a data-link-type="dfn" href="#quad" id="ref-for-quad⑨">quad</a> sharing the same Y dimension.
     That is: 
        <ul>
         <li data-md>
-         <p>indices 0 and 2 swap.</p>
+         <p>IDs 0 and 2 swap.</p>
         <li data-md>
-         <p>indices 1 and 3 swap.</p>
+         <p>IDs 1 and 3 swap.</p>
        </ul>
    </table>
    <h2 class="heading settled" data-level="17" id="grammar-recursive-descent"><span class="secno">17. </span><span class="content">Grammar for Recursive Descent Parsing</span><a class="self-link" href="#grammar-recursive-descent"></a></h2>
@@ -22903,6 +22905,7 @@ registrations, it matches widespread industry conventions.</p>
    <li><a href="#address-spaces-private">private</a><span>, in § 13.3</span>
    <li><a href="#program-error">program error</a><span>, in § 2.2</span>
    <li><a href="#quad">quad</a><span>, in § 14.4</span>
+   <li><a href="#quad-invocation-id">quad invocation ID</a><span>, in § 14.4</span>
    <li><a href="#texel-format-r32float">r32float</a><span>, in § 6.5.1</span>
    <li><a href="#texel-format-r32sint">r32sint</a><span>, in § 6.5.1</span>
    <li><a href="#texel-format-r32uint">r32uint</a><span>, in § 6.5.1</span>
@@ -24069,7 +24072,8 @@ let dfnPanelData = {
 "predeclared": {"dfnID":"predeclared","dfnText":"predeclared","external":false,"refSections":[{"refs":[{"id":"ref-for-predeclared"}],"title":"3.7. Identifiers"},{"refs":[{"id":"ref-for-predeclared\u2460"}],"title":"5. Declaration and Scope"},{"refs":[{"id":"ref-for-predeclared\u2461"},{"id":"ref-for-predeclared\u2462"}],"title":"6. Types"},{"refs":[{"id":"ref-for-predeclared\u2463"}],"title":"6.2.6. Vector Types"},{"refs":[{"id":"ref-for-predeclared\u2464"}],"title":"6.2.7. Matrix Types"},{"refs":[{"id":"ref-for-predeclared\u2465"}],"title":"6.3.1. Predeclared enumerants"},{"refs":[{"id":"ref-for-predeclared\u2466"}],"title":"6.5.1. Texel Formats"},{"refs":[{"id":"ref-for-predeclared\u2467"}],"title":"6.6. AllTypes Type"},{"refs":[{"id":"ref-for-predeclared\u2468"}],"title":"6.9. Predeclared Types and Type-Generators Summary"},{"refs":[{"id":"ref-for-predeclared\u2460\u24ea"},{"id":"ref-for-predeclared\u2460\u2460"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-predeclared\u2460\u2461"}],"title":"8.16. Enumeration Expressions"},{"refs":[{"id":"ref-for-predeclared\u2460\u2462"}],"title":"8.17. Type Expressions"},{"refs":[{"id":"ref-for-predeclared\u2460\u2463"}],"title":"13.2. Memory Access Mode"},{"refs":[{"id":"ref-for-predeclared\u2460\u2464"}],"title":"13.3. Address Spaces"},{"refs":[{"id":"ref-for-predeclared\u2460\u2465"}],"title":"16. Built-in Functions"},{"refs":[{"id":"ref-for-predeclared\u2460\u2466"}],"title":"16.1. Constructor Built-in Functions"}],"url":"#predeclared"},
 "preferable-candidate": {"dfnID":"preferable-candidate","dfnText":"preferred","external":false,"refSections":[{"refs":[{"id":"ref-for-preferable-candidate"},{"id":"ref-for-preferable-candidate\u2460"}],"title":"6.1.3. Overload Resolution"},{"refs":[{"id":"ref-for-preferable-candidate\u2461"},{"id":"ref-for-preferable-candidate\u2462"}],"title":"6.2.1. Abstract Numeric Types"}],"url":"#preferable-candidate"},
 "program-error": {"dfnID":"program-error","dfnText":"program error","external":false,"refSections":[{"refs":[{"id":"ref-for-program-error"}],"title":"2.3.1. Diagnostic Processing"}],"url":"#program-error"},
-"quad": {"dfnID":"quad","dfnText":"quad","external":false,"refSections":[{"refs":[{"id":"ref-for-quad"}],"title":"10.2. Function Calls"},{"refs":[{"id":"ref-for-quad\u2460"}],"title":"13.5.3. Scoped Operations"},{"refs":[{"id":"ref-for-quad\u2461"}],"title":"14.5. Subgroups"},{"refs":[{"id":"ref-for-quad\u2462"}],"title":"14.6.2. Derivatives"},{"refs":[{"id":"ref-for-quad\u2463"},{"id":"ref-for-quad\u2464"}],"title":"14.6.4. Quad Operations"},{"refs":[{"id":"ref-for-quad\u2465"}],"title":"16.13. Quad Operations"},{"refs":[{"id":"ref-for-quad\u2466"}],"title":"16.13.1. quadBroadcast"},{"refs":[{"id":"ref-for-quad\u2467"}],"title":"16.13.2. quadSwapDiagonal"},{"refs":[{"id":"ref-for-quad\u2468"}],"title":"16.13.3. quadSwapX"},{"refs":[{"id":"ref-for-quad\u2460\u24ea"}],"title":"16.13.4. quadSwapY"}],"url":"#quad"},
+"quad": {"dfnID":"quad","dfnText":"quad","external":false,"refSections":[{"refs":[{"id":"ref-for-quad"}],"title":"10.2. Function Calls"},{"refs":[{"id":"ref-for-quad\u2460"}],"title":"13.5.3. Scoped Operations"},{"refs":[{"id":"ref-for-quad\u2461"}],"title":"14.5. Subgroups"},{"refs":[{"id":"ref-for-quad\u2462"}],"title":"14.6.2. Derivatives"},{"refs":[{"id":"ref-for-quad\u2463"},{"id":"ref-for-quad\u2464"}],"title":"14.6.4. Quad Operations"},{"refs":[{"id":"ref-for-quad\u2465"}],"title":"16.13. Quad Operations"},{"refs":[{"id":"ref-for-quad\u2466"}],"title":"16.13.2. quadSwapDiagonal"},{"refs":[{"id":"ref-for-quad\u2467"}],"title":"16.13.3. quadSwapX"},{"refs":[{"id":"ref-for-quad\u2468"}],"title":"16.13.4. quadSwapY"}],"url":"#quad"},
+"quad-invocation-id": {"dfnID":"quad-invocation-id","dfnText":"quad invocation ID","external":false,"refSections":[{"refs":[{"id":"ref-for-quad-invocation-id"}],"title":"16.13.1. quadBroadcast"}],"url":"#quad-invocation-id"},
 "range-diagnostic-filter": {"dfnID":"range-diagnostic-filter","dfnText":"range diagnostic filter","external":false,"refSections":[{"refs":[{"id":"ref-for-range-diagnostic-filter"}],"title":"11.6. diagnostic"}],"url":"#range-diagnostic-filter"},
 "read-access": {"dfnID":"read-access","dfnText":"read access","external":false,"refSections":[{"refs":[{"id":"ref-for-read-access"}],"title":"6.4.7. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-read-access\u2460"}],"title":"6.5.2. Sampled Texture Types"},{"refs":[{"id":"ref-for-read-access\u2461"},{"id":"ref-for-read-access\u2462"}],"title":"6.5.5. Storage Texture Types"},{"refs":[{"id":"ref-for-read-access\u2463"}],"title":"6.5.6. Depth Texture Types"},{"refs":[{"id":"ref-for-read-access\u2464"}],"title":"7.1. Variables vs Values"},{"refs":[{"id":"ref-for-read-access\u2465"}],"title":"9.2.3. Compound Assignment"},{"refs":[{"id":"ref-for-read-access\u2466"},{"id":"ref-for-read-access\u2467"}],"title":"10.4.1.2. Aliasing"},{"refs":[{"id":"ref-for-read-access\u2468"},{"id":"ref-for-read-access\u2460\u24ea"},{"id":"ref-for-read-access\u2460\u2460"}],"title":"13.5.1. Memory Operation"},{"refs":[{"id":"ref-for-read-access\u2460\u2461"},{"id":"ref-for-read-access\u2460\u2462"}],"title":"13.5.5. Private vs Non-private"}],"url":"#read-access"},
 "reassociation": {"dfnID":"reassociation","dfnText":"Reassociation","external":false,"refSections":[{"refs":[{"id":"ref-for-reassociation"}],"title":"14.7.4. Floating Point Accuracy"}],"url":"#reassociation"},
@@ -25228,6 +25232,7 @@ let refsData = {
 "#preferable-candidate": {"displayText":"preferable candidate","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"preferable candidate","type":"dfn","url":"#preferable-candidate"},
 "#program-error": {"displayText":"program error","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"program error","type":"dfn","url":"#program-error"},
 "#quad": {"displayText":"quad","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"quad","type":"dfn","url":"#quad"},
+"#quad-invocation-id": {"displayText":"quad invocation id","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"quad invocation id","type":"dfn","url":"#quad-invocation-id"},
 "#range-diagnostic-filter": {"displayText":"range diagnostic filter","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"range diagnostic filter","type":"dfn","url":"#range-diagnostic-filter"},
 "#read-access": {"displayText":"read access","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"read access","type":"dfn","url":"#read-access"},
 "#reassociation": {"displayText":"reassociation","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"reassociation","type":"dfn","url":"#reassociation"},
