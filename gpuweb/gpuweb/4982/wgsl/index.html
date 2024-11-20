@@ -833,7 +833,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/toji/gpuweb/blob/dc40309188dec5d6832e6d2796fdd66fd7bf6208/wgsl/index.bs">https://github.com/toji/gpuweb/blob/dc40309188dec5d6832e6d2796fdd66fd7bf6208/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/toji/gpuweb/blob/1acb9a2916fb4a8d30a644aa1de4388f043cd3b8/wgsl/index.bs">https://github.com/toji/gpuweb/blob/1acb9a2916fb4a8d30a644aa1de4388f043cd3b8/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -2251,6 +2251,7 @@ and the bodies of <a data-link-type="dfn" href="#syntax-if_clause" id="ref-for-s
      <p>(<em>NS1</em> ≠ <em>NS2</em>).</p>
    </ul>
    <p><a data-link-type="dfn" href="#diagnostic-filter" id="ref-for-diagnostic-filter③">Diagnostic filters</a> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error④">must</a> not <a data-link-type="dfn" href="#diagnostic-conflict" id="ref-for-diagnostic-conflict">conflict</a>.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> Multiple <a data-link-type="dfn" href="#global-diagnostic-filter" id="ref-for-global-diagnostic-filter①">global diagnostic filters</a> are permitted when they do not <a data-link-type="dfn" href="#diagnostic-conflict" id="ref-for-diagnostic-conflict①">conflict</a>.</p>
    <p>WGSL’s diagnostic filters are designed so their affected ranges nest perfectly.
 If the affected range of DF1 overlaps with the affected range of DF2, then
 either DF1’s affected range is fully contained in DF2’s affected range, or the other way around.</p>
@@ -2262,7 +2263,15 @@ if one exists, is the diagnostic filter <em>DF(AR,NS,TR)</em> where:</p>
     <li data-md>
      <p>If there is another filter <em>DF'(AR',NS',TR)</em> where <em>L</em> falls in <em>AR'</em>, then <em>AR</em> is contained in <em>AR'</em>.</p>
    </ul>
-   <p>Because affected ranges nest, the nearest enclosing diagnostic is unique, or does not exist.</p>
+   <p>Because affected ranges nest, the nearest enclosing diagnostic:</p>
+   <ul>
+    <li data-md>
+     <p>is a unique <a data-link-type="dfn" href="#range-diagnostic-filter" id="ref-for-range-diagnostic-filter">range diagnostic filter</a>,</p>
+    <li data-md>
+     <p>otherwise is one of a set of duplicate (non-<a data-link-type="dfn" href="#diagnostic-conflict" id="ref-for-diagnostic-conflict②">conflicting</a>) <a data-link-type="dfn" href="#global-diagnostic-filter" id="ref-for-global-diagnostic-filter②">global diagnostic filters</a>,</p>
+    <li data-md>
+     <p>otherwise does not exist.</p>
+   </ul>
    <h3 class="heading settled" data-level="2.4" id="limits"><span class="secno">2.4. </span><span class="content">Limits</span><a class="self-link" href="#limits"></a></h3>
    <p>A WGSL implementation <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements④">will</a> support shaders that
 satisfy the following limits.
@@ -10794,7 +10803,7 @@ some attribute parameters are also context-dependent names.</p>
      <tr>
       <td style="width:10%">Description 
       <td>
-       Specifies a <a data-link-type="dfn" href="#range-diagnostic-filter" id="ref-for-range-diagnostic-filter">range diagnostic filter</a>.  See <a href="#diagnostics">§ 2.3 Diagnostics</a>. 
+       Specifies a <a data-link-type="dfn" href="#range-diagnostic-filter" id="ref-for-range-diagnostic-filter①">range diagnostic filter</a>.  See <a href="#diagnostics">§ 2.3 Diagnostics</a>. 
        <p>More than one <a data-link-type="dfn" href="#attribute-diagnostic" id="ref-for-attribute-diagnostic①">diagnostic</a> attribute may be specified on a syntactic form,
         but they <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑥②">must</a> specify different <a data-link-type="dfn" href="#diagnostic-triggering-rule" id="ref-for-diagnostic-triggering-rule⑨">triggering rules</a>.</p>
      <tr>
@@ -15073,8 +15082,8 @@ the rules in <a href="#floating-point-rounding-and-overflow">§ 14.6.3 Floatin
       <td><code>saturate(x)</code>
       <td colspan="2" style="text-align:left;">Correctly rounded 
      <tr>
-      <td><code>smoothstep(low, high, x)</code>
-      <td colspan="2" style="text-align:left;">Inherited from <code>t * t * (3.0 - 2.0 * t)</code>,<br>where <code>t = clamp((x - low) / (high - low), 0.0, 1.0)</code> 
+      <td><code>smoothstep(edge0, edge1, x)</code>
+      <td colspan="2" style="text-align:left;">Inherited from <code>t * t * (3.0 - 2.0 * t)</code>,<br>where <code>t = clamp((x - edge0) / (edge1 - edge0), 0.0, 1.0)</code> 
      <tr>
       <td><code>sqrt(x)</code>
       <td colspan="2" style="text-align:left;">Inherited from <code>1.0 / inverseSqrt(x)</code> 
@@ -18575,8 +18584,8 @@ but a value may infer the type.</p>
      <tr class="algorithm" data-algorithm="smoothstep">
       <td style="width:10%">Overload 
       <td class="nowrap">
-<pre class="highlight"><c- nd>@const</c-> <c- nd>@must_use</c-> <c- k>fn</c-> <c- n>smoothstep</c-><c- p>(</c-><c- n>low</c-><c- p>:</c-> <c- n>T</c-><c- p>,</c->
-                               <c- n>high</c-><c- p>:</c-> <c- n>T</c-><c- p>,</c->
+<pre class="highlight"><c- nd>@const</c-> <c- nd>@must_use</c-> <c- k>fn</c-> <c- n>smoothstep</c-><c- p>(</c-><c- n>edge0</c-><c- p>:</c-> <c- n>T</c-><c- p>,</c->
+                               <c- n>edge1</c-><c- p>:</c-> <c- n>T</c-><c- p>,</c->
                                <c- n>x</c-><c- p>:</c-> <c- n>T</c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c->
 </pre>
      <tr>
@@ -18586,13 +18595,26 @@ but a value may infer the type.</p>
       <td>Description 
       <td>
        Returns the smooth Hermite interpolation between 0 and 1. <a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise⑨⑤">Component-wise</a> when <code>T</code> is a vector. 
-       <p>For scalar <code>T</code>, the result is <code>t * t * (3.0 - 2.0 * t)</code>,<br> where <code>t = clamp((x - low) / (high - low), 0.0, 1.0)</code>.</p>
-       <p>If <code>low >= high</code>:</p>
+       <p>For scalar <code>T</code>, the result is <code>t * t * (3.0 - 2.0 * t)</code>,<br> where <code>t = clamp((x - edge0) / (edge1 - edge0), 0.0, 1.0)</code>.</p>
+       <p>Qualitatively:</p>
        <ul>
         <li data-md>
-         <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④⑥">shader-creation error</a> if <code>low</code> and <code>high</code> are <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑦⓪">const-expressions</a>.</p>
+         <p>When <code>edge0</code> &lt; <code>edge1</code>, the function is 0 for <code>x</code> below <code>edge0</code>, then smoothly rises
+until <code>x</code> reaches <code>edge1</code>, and remains at 1 afterward.</p>
         <li data-md>
-         <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error③⑦">pipeline-creation error</a> if <code>low</code> and <code>high</code> are <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions④④">override-expressions</a>.</p>
+         <p>When <code>edge0</code> > <code>edge1</code>, the function is 1 for <code>x</code> below <code>edge1</code>, then smoothly descends
+until <code>x</code> reaches <code>edge0</code>, and remains at 0 afterward.</p>
+       </ul>
+       <p>If <code>edge0</code> = <code>edge1</code>:</p>
+       <ul>
+        <li data-md>
+         <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④⑥">shader-creation error</a> if <code>edge0</code> and <code>edge1</code> are <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑦⓪">const-expressions</a>.</p>
+        <li data-md>
+         <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error③⑦">pipeline-creation error</a> if <code>edge0</code> and <code>edge1</code> are <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions④④">override-expressions</a>.</p>
+        <li data-md>
+         <p>Otherwise, the result is an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value①⑥">indeterminate value</a> for <code>T</code>.
+In this case the computation performs a floating point <a data-link-type="dfn" href="#ieee754-division-by-zero" id="ref-for-ieee754-division-by-zero①">division by zero</a>,
+and the <a data-link-type="dfn" href="#finite-math-assumption" id="ref-for-finite-math-assumption②">Finite Math Assumption</a> applies.</p>
        </ul>
    </table>
    <h4 class="heading settled" data-level="16.5.58" id="sqrt-builtin"><span class="secno">16.5.58. </span><span class="content"><code>sqrt</code></span><a class="self-link" href="#sqrt-builtin"></a></h4>
@@ -18723,7 +18745,7 @@ but a value may infer the type.</p>
       <td>
        Partial derivative of <code>e</code> with respect to window x coordinates.
     The result is the same as either <code>dpdxFine(e)</code> or <code>dpdxCoarse(e)</code>. 
-       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value①⑥">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①④">non-uniform control flow</a>.</p>
+       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value①⑦">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①④">non-uniform control flow</a>.</p>
    </table>
    <h4 class="heading settled" data-level="16.6.2" id="dpdxCoarse-builtin"><span class="secno">16.6.2. </span><span class="content"><code>dpdxCoarse</code></span><a class="self-link" href="#dpdxCoarse-builtin"></a></h4>
    <table class="data builtin">
@@ -18741,7 +18763,7 @@ but a value may infer the type.</p>
       <td>
        Returns the partial derivative of <code>e</code> with respect to window x coordinates using local differences.
     This may result in fewer unique positions than <code>dpdxFine(e)</code>. 
-       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value①⑦">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①⑤">non-uniform control flow</a>.</p>
+       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value①⑧">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①⑤">non-uniform control flow</a>.</p>
    </table>
    <h4 class="heading settled" data-level="16.6.3" id="dpdxFine-builtin"><span class="secno">16.6.3. </span><span class="content"><code>dpdxFine</code></span><a class="self-link" href="#dpdxFine-builtin"></a></h4>
    <table class="data builtin">
@@ -18758,7 +18780,7 @@ but a value may infer the type.</p>
       <td>Description 
       <td>
        Returns the partial derivative of <code>e</code> with respect to window x coordinates. 
-       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value①⑧">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①⑥">non-uniform control flow</a>.</p>
+       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value①⑨">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①⑥">non-uniform control flow</a>.</p>
    </table>
    <h4 class="heading settled" data-level="16.6.4" id="dpdy-builtin"><span class="secno">16.6.4. </span><span class="content"><code>dpdy</code></span><a class="self-link" href="#dpdy-builtin"></a></h4>
    <table class="data builtin">
@@ -18775,7 +18797,7 @@ but a value may infer the type.</p>
       <td>
        Partial derivative of <code>e</code> with respect to window y coordinates.
     The result is the same as either <code>dpdyFine(e)</code> or <code>dpdyCoarse(e)</code>. 
-       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value①⑨">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①⑦">non-uniform control flow</a>.</p>
+       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②⓪">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①⑦">non-uniform control flow</a>.</p>
    </table>
    <h4 class="heading settled" data-level="16.6.5" id="dpdyCoarse-builtin"><span class="secno">16.6.5. </span><span class="content"><code>dpdyCoarse</code></span><a class="self-link" href="#dpdyCoarse-builtin"></a></h4>
    <table class="data builtin">
@@ -18793,7 +18815,7 @@ but a value may infer the type.</p>
       <td>
        Returns the partial derivative of <code>e</code> with respect to window y coordinates using local differences.
     This may result in fewer unique positions than <code>dpdyFine(e)</code>. 
-       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②⓪">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①⑧">non-uniform control flow</a>.</p>
+       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②①">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①⑧">non-uniform control flow</a>.</p>
    </table>
    <h4 class="heading settled" data-level="16.6.6" id="dpdyFine-builtin"><span class="secno">16.6.6. </span><span class="content"><code>dpdyFine</code></span><a class="self-link" href="#dpdyFine-builtin"></a></h4>
    <table class="data builtin">
@@ -18810,7 +18832,7 @@ but a value may infer the type.</p>
       <td>Description 
       <td>
        Returns the partial derivative of <code>e</code> with respect to window y coordinates. 
-       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②①">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①⑨">non-uniform control flow</a>.</p>
+       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②②">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①⑨">non-uniform control flow</a>.</p>
    </table>
    <h4 class="heading settled" data-level="16.6.7" id="fwidth-builtin"><span class="secno">16.6.7. </span><span class="content"><code>fwidth</code></span><a class="self-link" href="#fwidth-builtin"></a></h4>
    <table class="data builtin">
@@ -18827,7 +18849,7 @@ but a value may infer the type.</p>
       <td>Description 
       <td>
        Returns <code>abs(dpdx(e)) + abs(dpdy(e))</code>. 
-       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②②">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②⓪">non-uniform control flow</a>.</p>
+       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②③">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②⓪">non-uniform control flow</a>.</p>
    </table>
    <h4 class="heading settled" data-level="16.6.8" id="fwidthCoarse-builtin"><span class="secno">16.6.8. </span><span class="content"><code>fwidthCoarse</code></span><a class="self-link" href="#fwidthCoarse-builtin"></a></h4>
    <table class="data builtin">
@@ -18844,7 +18866,7 @@ but a value may infer the type.</p>
       <td>Description 
       <td>
        Returns <code>abs(dpdxCoarse(e)) + abs(dpdyCoarse(e))</code>. 
-       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②③">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②①">non-uniform control flow</a>.</p>
+       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②④">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②①">non-uniform control flow</a>.</p>
    </table>
    <h4 class="heading settled" data-level="16.6.9" id="fwidthFine-builtin"><span class="secno">16.6.9. </span><span class="content"><code>fwidthFine</code></span><a class="self-link" href="#fwidthFine-builtin"></a></h4>
    <table class="data builtin">
@@ -18861,7 +18883,7 @@ but a value may infer the type.</p>
       <td>Description 
       <td>
        Returns <code>abs(dpdxFine(e)) + abs(dpdyFine(e))</code>. 
-       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②④">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②②">non-uniform control flow</a>.</p>
+       <p>Returns an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②⑤">indeterminate value</a> if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②②">non-uniform control flow</a>.</p>
    </table>
    <h3 class="heading settled" data-level="16.7" id="texture-builtin-functions"><span class="secno">16.7. </span><span class="content">Texture Built-in Functions</span><a class="self-link" href="#texture-builtin-functions"></a></h3>
    <p>Parameter values <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②④⑧">must</a> be valid for the respective texture types.</p>
@@ -18927,7 +18949,7 @@ but a value may infer the type.</p>
 excluding the <a data-link-type="dfn" href="#texture-mip-level-count" id="ref-for-texture-mip-level-count①">mip level count</a>, <a data-link-type="dfn" href="#texture-array-size" id="ref-for-texture-array-size①">array size</a>, and <a data-link-type="dfn" href="#texture-sample-count" id="ref-for-texture-sample-count②">sample count</a>.</p>
    <p>For textures based on cubes, the results are the dimensions of each face of the cube.
 Cube faces are square, so the x and y components of the result are equal.</p>
-   <p>If <code>level</code> is outside the range <code>[0, textureNumLevels(t))</code> then an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②⑤">indeterminate value</a> for the return type may be returned.</p>
+   <p>If <code>level</code> is outside the range <code>[0, textureNumLevels(t))</code> then an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②⑥">indeterminate value</a> for the return type may be returned.</p>
    <h4 class="heading settled" data-level="16.7.2" id="texturegather"><span class="secno">16.7.2. </span><span class="content"><code>textureGather</code></span><a class="self-link" href="#texturegather"></a></h4>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="texture-gather">texture gather</dfn> operation reads from a 2D, 2D array, cube, or cube array texture,
 computing a four-component vector as follows:</p>
@@ -19650,7 +19672,7 @@ then a <a data-link-type="dfn" href="#trigger-derivative_uniformity" id="ref-for
    </table>
    <p><strong>Returns:</strong></p>
    <p>The sampled value.</p>
-   <p>An <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②⑥">indeterminate value</a> results if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②④">non-uniform control flow</a>.</p>
+   <p>An <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②⑦">indeterminate value</a> results if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②④">non-uniform control flow</a>.</p>
    <h4 class="heading settled" data-level="16.7.9" id="texturesamplebias"><span class="secno">16.7.9. </span><span class="content"><code>textureSampleBias</code></span><a class="self-link" href="#texturesamplebias"></a></h4>
    <p>Samples a texture with a bias to the mip level.</p>
    <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑥①">Must</a> only be used in a <a data-link-type="dfn" href="#fragment" id="ref-for-fragment①①">fragment</a> shader stage.</p>
@@ -19849,7 +19871,7 @@ operator defined by the <code>sampler_comparison</code>, resulting in either a <
    <p>If the sampler uses bilinear filtering then the returned value is
 the filtered average of these values, otherwise the comparison result of a
 single texel is returned.</p>
-   <p>An <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②⑦">indeterminate value</a> results if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②⑦">non-uniform control flow</a>.</p>
+   <p>An <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②⑧">indeterminate value</a> results if called in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow②⑦">non-uniform control flow</a>.</p>
    <h4 class="heading settled" data-level="16.7.11" id="texturesamplecomparelevel"><span class="secno">16.7.11. </span><span class="content"><code>textureSampleCompareLevel</code></span><a class="self-link" href="#texturesamplecomparelevel"></a></h4>
    <p>Samples a <a data-link-type="dfn" href="#type-depth-texture" id="ref-for-type-depth-texture①③">depth texture</a> and compares the sampled depth values against a reference value.</p>
    <table class="data">
@@ -20690,7 +20712,7 @@ their results into a single output value.</p>
         <li data-md>
          <p>It is a <a data-link-type="dfn" href="#pipeline-creation-error" id="ref-for-pipeline-creation-error③⑧">pipeline-creation error</a> if <code>e</code> is an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions④⑤">override-expression</a>.</p>
         <li data-md>
-         <p>Otherwise the result is an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②⑧">indeterminate value</a> for u32.</p>
+         <p>Otherwise the result is an <a data-link-type="dfn" href="#indeterminate-value" id="ref-for-indeterminate-value②⑨">indeterminate value</a> for u32.</p>
        </ul>
    </table>
    <h3 class="heading settled" data-level="16.10" id="unpack-builtin-functions"><span class="secno">16.10. </span><span class="content">Data Unpacking Built-in Functions</span><a class="self-link" href="#unpack-builtin-functions"></a></h3>
@@ -22984,7 +23006,7 @@ let dfnPanelData = {
 "default-initial-value": {"dfnID":"default-initial-value","dfnText":"default\ninitial value","external":false,"refSections":[{"refs":[{"id":"ref-for-default-initial-value"}],"title":"7. Variable and Value Declarations"}],"url":"#default-initial-value"},
 "denormalized": {"dfnID":"denormalized","dfnText":"Denormalized","external":false,"refSections":[],"url":"#denormalized"},
 "diagnostic": {"dfnID":"diagnostic","dfnText":"diagnostic","external":false,"refSections":[{"refs":[{"id":"ref-for-diagnostic"}],"title":"2.2. Errors"},{"refs":[{"id":"ref-for-diagnostic\u2460"},{"id":"ref-for-diagnostic\u2461"}],"title":"2.3. Diagnostics"},{"refs":[{"id":"ref-for-diagnostic\u2462"}],"title":"2.3.2. Filterable Triggering Rules"},{"refs":[{"id":"ref-for-diagnostic\u2463"}],"title":"2.3.3. Diagnostic Filtering"},{"refs":[{"id":"ref-for-diagnostic\u2464"},{"id":"ref-for-diagnostic\u2465"}],"title":"14.2. Uniformity"},{"refs":[{"id":"ref-for-diagnostic\u2466"},{"id":"ref-for-diagnostic\u2467"},{"id":"ref-for-diagnostic\u2468"}],"title":"14.2.3. Analyzing the Uniformity Requirements of a Function"},{"refs":[{"id":"ref-for-diagnostic\u2460\u24ea"}],"title":"14.5.2. Derivatives"},{"refs":[{"id":"ref-for-diagnostic\u2460\u2460"}],"title":"16.6. Derivative Built-in Functions"},{"refs":[{"id":"ref-for-diagnostic\u2460\u2461"}],"title":"16.7.8. textureSample"},{"refs":[{"id":"ref-for-diagnostic\u2460\u2462"}],"title":"16.7.9. textureSampleBias"},{"refs":[{"id":"ref-for-diagnostic\u2460\u2463"}],"title":"16.7.10. textureSampleCompare"}],"url":"#diagnostic"},
-"diagnostic-conflict": {"dfnID":"diagnostic-conflict","dfnText":"conflict","external":false,"refSections":[{"refs":[{"id":"ref-for-diagnostic-conflict"}],"title":"2.3.3. Diagnostic Filtering"}],"url":"#diagnostic-conflict"},
+"diagnostic-conflict": {"dfnID":"diagnostic-conflict","dfnText":"conflict","external":false,"refSections":[{"refs":[{"id":"ref-for-diagnostic-conflict"},{"id":"ref-for-diagnostic-conflict\u2460"},{"id":"ref-for-diagnostic-conflict\u2461"}],"title":"2.3.3. Diagnostic Filtering"}],"url":"#diagnostic-conflict"},
 "diagnostic-filter": {"dfnID":"diagnostic-filter","dfnText":"diagnostic filter","external":false,"refSections":[{"refs":[{"id":"ref-for-diagnostic-filter"}],"title":"2.3.1. Diagnostic Processing"},{"refs":[{"id":"ref-for-diagnostic-filter\u2460"},{"id":"ref-for-diagnostic-filter\u2461"},{"id":"ref-for-diagnostic-filter\u2462"}],"title":"2.3.3. Diagnostic Filtering"},{"refs":[{"id":"ref-for-diagnostic-filter\u2463"},{"id":"ref-for-diagnostic-filter\u2464"}],"title":"3.8.4. Diagnostic Severity Control Names"},{"refs":[{"id":"ref-for-diagnostic-filter\u2465"}],"title":"14.2. Uniformity"}],"url":"#diagnostic-filter"},
 "diagnostic-name-token": {"dfnID":"diagnostic-name-token","dfnText":"diagnostic name-token","external":false,"refSections":[{"refs":[{"id":"ref-for-diagnostic-name-token"}],"title":"2.3.2. Filterable Triggering Rules"}],"url":"#diagnostic-name-token"},
 "diagnostic-severity": {"dfnID":"diagnostic-severity","dfnText":"severity","external":false,"refSections":[{"refs":[{"id":"ref-for-diagnostic-severity"}],"title":"2.3. Diagnostics"},{"refs":[{"id":"ref-for-diagnostic-severity\u2460"}],"title":"2.3.1. Diagnostic Processing"},{"refs":[{"id":"ref-for-diagnostic-severity\u2461"},{"id":"ref-for-diagnostic-severity\u2462"}],"title":"2.3.3. Diagnostic Filtering"},{"refs":[{"id":"ref-for-diagnostic-severity\u2463"}],"title":"14.2. Uniformity"}],"url":"#diagnostic-severity"},
@@ -23032,7 +23054,7 @@ let dfnPanelData = {
 "fe523dff": {"dfnID":"fe523dff","dfnText":"GPUStorageTextureAccess","external":true,"refSections":[{"refs":[{"id":"ref-for-enumdef-gpustoragetextureaccess"}],"title":"12.3.3. Resource Layout Compatibility"}],"url":"https://gpuweb.github.io/gpuweb/#enumdef-gpustoragetextureaccess"},
 "fe929a16": {"dfnID":"fe929a16","dfnText":"code point","external":true,"refSections":[{"refs":[{"id":"ref-for-something"}],"title":"3. Textual Structure"}],"url":"https://www.unicode.org/versions/Unicode14.0.0/UnicodeStandard-14.0.pdf#"},
 "feasible-automatic-conversion": {"dfnID":"feasible-automatic-conversion","dfnText":"feasible automatic conversion","external":false,"refSections":[{"refs":[{"id":"ref-for-feasible-automatic-conversion"}],"title":"6.1. Type Checking"},{"refs":[{"id":"ref-for-feasible-automatic-conversion\u2460"}],"title":"6.1.2. Conversion Rank"},{"refs":[{"id":"ref-for-feasible-automatic-conversion\u2461"},{"id":"ref-for-feasible-automatic-conversion\u2462"},{"id":"ref-for-feasible-automatic-conversion\u2463"}],"title":"6.1.3. Overload Resolution"},{"refs":[{"id":"ref-for-feasible-automatic-conversion\u2464"}],"title":"6.2.1. Abstract Numeric Types"},{"refs":[{"id":"ref-for-feasible-automatic-conversion\u2465"}],"title":"6.2.5. Scalar Types"},{"refs":[{"id":"ref-for-feasible-automatic-conversion\u2466"}],"title":"6.2.13. Fixed-Footprint Types"},{"refs":[{"id":"ref-for-feasible-automatic-conversion\u2467"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-feasible-automatic-conversion\u2468"}],"title":"8.1.1. const Expressions"},{"refs":[{"id":"ref-for-feasible-automatic-conversion\u2460\u24ea"}],"title":"8.1.2. override Expressions"},{"refs":[{"id":"ref-for-feasible-automatic-conversion\u2460\u2460"}],"title":"16.5.37. ldexp"}],"url":"#feasible-automatic-conversion"},
-"finite-math-assumption": {"dfnID":"finite-math-assumption","dfnText":"Finite Math Assumption","external":false,"refSections":[{"refs":[{"id":"ref-for-finite-math-assumption"}],"title":"14.6.2. Differences from IEEE-754"},{"refs":[{"id":"ref-for-finite-math-assumption\u2460"}],"title":"14.6.3. Floating Point Rounding and Overflow"}],"url":"#finite-math-assumption"},
+"finite-math-assumption": {"dfnID":"finite-math-assumption","dfnText":"Finite Math Assumption","external":false,"refSections":[{"refs":[{"id":"ref-for-finite-math-assumption"}],"title":"14.6.2. Differences from IEEE-754"},{"refs":[{"id":"ref-for-finite-math-assumption\u2460"}],"title":"14.6.3. Floating Point Rounding and Overflow"},{"refs":[{"id":"ref-for-finite-math-assumption\u2461"}],"title":"16.5.57. smoothstep"}],"url":"#finite-math-assumption"},
 "finite-range": {"dfnID":"finite-range","dfnText":"finite range","external":false,"refSections":[{"refs":[{"id":"ref-for-finite-range"},{"id":"ref-for-finite-range\u2460"},{"id":"ref-for-finite-range\u2461"},{"id":"ref-for-finite-range\u2462"},{"id":"ref-for-finite-range\u2463"}],"title":"14.6.1. Overview of IEEE-754"},{"refs":[{"id":"ref-for-finite-range\u2464"}],"title":"14.6.3. Floating Point Rounding and Overflow"},{"refs":[{"id":"ref-for-finite-range\u2465"},{"id":"ref-for-finite-range\u2466"}],"title":"14.6.4. Floating Point Accuracy"},{"refs":[{"id":"ref-for-finite-range\u2467"}],"title":"14.6.6. Floating Point Conversion"},{"refs":[{"id":"ref-for-finite-range\u2468"}],"title":"16.5.47. quantizeToF16"},{"refs":[{"id":"ref-for-finite-range\u2460\u24ea"}],"title":"16.9.9. pack2x16float"}],"url":"#finite-range"},
 "fixed-footprint": {"dfnID":"fixed-footprint","dfnText":"fixed footprint","external":false,"refSections":[{"refs":[{"id":"ref-for-fixed-footprint"}],"title":"2.4. Limits"},{"refs":[{"id":"ref-for-fixed-footprint\u2460"},{"id":"ref-for-fixed-footprint\u2461"}],"title":"6.2.13. Fixed-Footprint Types"},{"refs":[{"id":"ref-for-fixed-footprint\u2462"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-fixed-footprint\u2463"}],"title":"13.4. Memory Layout"},{"refs":[{"id":"ref-for-fixed-footprint\u2464"},{"id":"ref-for-fixed-footprint\u2465"}],"title":"13.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-fixed-footprint\u2466"}],"title":"16.11.4. workgroupUniformLoad"}],"url":"#fixed-footprint"},
 "fixed-size-array": {"dfnID":"fixed-size-array","dfnText":"fixed-size array","external":false,"refSections":[{"refs":[{"id":"ref-for-fixed-size-array"}],"title":"6.1.2. Conversion Rank"},{"refs":[{"id":"ref-for-fixed-size-array\u2460"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-fixed-size-array\u2461"}],"title":"6.2.12. Constructible Types"},{"refs":[{"id":"ref-for-fixed-size-array\u2462"},{"id":"ref-for-fixed-size-array\u2463"}],"title":"6.2.13. Fixed-Footprint Types"},{"refs":[{"id":"ref-for-fixed-size-array\u2464"}],"title":"6.4.2. Host-shareable Types"},{"refs":[{"id":"ref-for-fixed-size-array\u2465"},{"id":"ref-for-fixed-size-array\u2466"}],"title":"8.5. Composite Value Decomposition Expressions"}],"url":"#fixed-size-array"},
@@ -23054,7 +23076,7 @@ let dfnPanelData = {
 "function-scope": {"dfnID":"function-scope","dfnText":"function scope","external":false,"refSections":[{"refs":[{"id":"ref-for-function-scope"},{"id":"ref-for-function-scope\u2460"},{"id":"ref-for-function-scope\u2461"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-function-scope\u2462"}],"title":"7.2.1. const Declarations"},{"refs":[{"id":"ref-for-function-scope\u2463"}],"title":"7.2.3. let Declarations"},{"refs":[{"id":"ref-for-function-scope\u2464"},{"id":"ref-for-function-scope\u2465"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-function-scope\u2466"}],"title":"8. Expressions"},{"refs":[{"id":"ref-for-function-scope\u2467"}],"title":"9.6. Const Assertion Statement"},{"refs":[{"id":"ref-for-function-scope\u2468"}],"title":"10.2. Function Calls"},{"refs":[{"id":"ref-for-function-scope\u2460\u24ea"}],"title":"14.2.5. Function-scope Variable Value Analysis"}],"url":"#function-scope"},
 "function-tag": {"dfnID":"function-tag","dfnText":"function tag","external":false,"refSections":[{"refs":[{"id":"ref-for-function-tag"},{"id":"ref-for-function-tag\u2460"},{"id":"ref-for-function-tag\u2461"}],"title":"14.2.3. Analyzing the Uniformity Requirements of a Function"},{"refs":[{"id":"ref-for-function-tag\u2462"},{"id":"ref-for-function-tag\u2463"},{"id":"ref-for-function-tag\u2464"},{"id":"ref-for-function-tag\u2465"},{"id":"ref-for-function-tag\u2466"}],"title":"14.2.7. Uniformity Rules for Function Calls"}],"url":"#function-tag"},
 "functions-in-a-shader-stage": {"dfnID":"functions-in-a-shader-stage","dfnText":"functions in a shader stage","external":false,"refSections":[{"refs":[{"id":"ref-for-functions-in-a-shader-stage"}],"title":"1.1. Overview"},{"refs":[{"id":"ref-for-functions-in-a-shader-stage\u2460"}],"title":"9.4.11. Discard Statement"},{"refs":[{"id":"ref-for-functions-in-a-shader-stage\u2461"}],"title":"12.3. Shader Interface"},{"refs":[{"id":"ref-for-functions-in-a-shader-stage\u2462"}],"title":"12.3.2. Resource Interface"}],"url":"#functions-in-a-shader-stage"},
-"global-diagnostic-filter": {"dfnID":"global-diagnostic-filter","dfnText":"global diagnostic filter","external":false,"refSections":[{"refs":[{"id":"ref-for-global-diagnostic-filter"}],"title":"2.3.3. Diagnostic Filtering"}],"url":"#global-diagnostic-filter"},
+"global-diagnostic-filter": {"dfnID":"global-diagnostic-filter","dfnText":"global diagnostic filter","external":false,"refSections":[{"refs":[{"id":"ref-for-global-diagnostic-filter"},{"id":"ref-for-global-diagnostic-filter\u2460"},{"id":"ref-for-global-diagnostic-filter\u2461"}],"title":"2.3.3. Diagnostic Filtering"}],"url":"#global-diagnostic-filter"},
 "global-invocation-id": {"dfnID":"global-invocation-id","dfnText":"global invocation ID","external":false,"refSections":[{"refs":[{"id":"ref-for-global-invocation-id"}],"title":"12.3.1.1.4. global_invocation_id"},{"refs":[{"id":"ref-for-global-invocation-id\u2460"}],"title":"14.3. Compute Shaders and Workgroups"}],"url":"#global-invocation-id"},
 "gpucomputepipeline": {"dfnID":"gpucomputepipeline","dfnText":"GPUComputePipeline","external":false,"refSections":[{"refs":[{"id":"ref-for-gpucomputepipeline"}],"title":"1.1. Overview"},{"refs":[{"id":"ref-for-gpucomputepipeline\u2460"}],"title":"11.15.3. compute"}],"url":"#gpucomputepipeline"},
 "gpurenderpipeline": {"dfnID":"gpurenderpipeline","dfnText":"GPURenderPipeline","external":false,"refSections":[{"refs":[{"id":"ref-for-gpurenderpipeline"}],"title":"1.1. Overview"},{"refs":[{"id":"ref-for-gpurenderpipeline\u2460"}],"title":"9.4.11. Discard Statement"},{"refs":[{"id":"ref-for-gpurenderpipeline\u2461"}],"title":"11.15.1. vertex"},{"refs":[{"id":"ref-for-gpurenderpipeline\u2462"}],"title":"11.15.2. fragment"},{"refs":[{"id":"ref-for-gpurenderpipeline\u2463"}],"title":"12.3.1.4. Interpolation"},{"refs":[{"id":"ref-for-gpurenderpipeline\u2464"}],"title":"14.4. Fragment Shaders and Helper Invocations"}],"url":"#gpurenderpipeline"},
@@ -23070,7 +23092,7 @@ let dfnPanelData = {
 "ieee754-binary16": {"dfnID":"ieee754-binary16","dfnText":"binary16","external":false,"refSections":[{"refs":[{"id":"ref-for-ieee754-binary16"}],"title":"6.2.4. Floating Point Types"},{"refs":[{"id":"ref-for-ieee754-binary16\u2460"}],"title":"6.5.1. Texel Formats"},{"refs":[{"id":"ref-for-ieee754-binary16\u2461"}],"title":"13.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-ieee754-binary16\u2462"}],"title":"14.6.6. Floating Point Conversion"},{"refs":[{"id":"ref-for-ieee754-binary16\u2463"}],"title":"16.5.47. quantizeToF16"},{"refs":[{"id":"ref-for-ieee754-binary16\u2464"}],"title":"16.9.9. pack2x16float"},{"refs":[{"id":"ref-for-ieee754-binary16\u2465"}],"title":"16.10.7. unpack2x16float"}],"url":"#ieee754-binary16"},
 "ieee754-binary32": {"dfnID":"ieee754-binary32","dfnText":"binary32","external":false,"refSections":[{"refs":[{"id":"ref-for-ieee754-binary32"}],"title":"6.2.4. Floating Point Types"},{"refs":[{"id":"ref-for-ieee754-binary32\u2460"}],"title":"6.5.1. Texel Formats"},{"refs":[{"id":"ref-for-ieee754-binary32\u2461"}],"title":"13.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-ieee754-binary32\u2462"}],"title":"14.6.6. Floating Point Conversion"},{"refs":[{"id":"ref-for-ieee754-binary32\u2463"}],"title":"16.5.47. quantizeToF16"}],"url":"#ieee754-binary32"},
 "ieee754-binary64": {"dfnID":"ieee754-binary64","dfnText":"binary64","external":false,"refSections":[{"refs":[{"id":"ref-for-ieee754-binary64"}],"title":"6.2.1. Abstract Numeric Types"},{"refs":[{"id":"ref-for-ieee754-binary64\u2460"}],"title":"14.6.4.2. Accuracy of AbstractFloat Expressions"},{"refs":[{"id":"ref-for-ieee754-binary64\u2461"}],"title":"16.5.37. ldexp"}],"url":"#ieee754-binary64"},
-"ieee754-division-by-zero": {"dfnID":"ieee754-division-by-zero","dfnText":"Division by zero","external":false,"refSections":[{"refs":[{"id":"ref-for-ieee754-division-by-zero"}],"title":"14.6.2. Differences from IEEE-754"}],"url":"#ieee754-division-by-zero"},
+"ieee754-division-by-zero": {"dfnID":"ieee754-division-by-zero","dfnText":"Division by zero","external":false,"refSections":[{"refs":[{"id":"ref-for-ieee754-division-by-zero"}],"title":"14.6.2. Differences from IEEE-754"},{"refs":[{"id":"ref-for-ieee754-division-by-zero\u2460"}],"title":"16.5.57. smoothstep"}],"url":"#ieee754-division-by-zero"},
 "ieee754-exceptions": {"dfnID":"ieee754-exceptions","dfnText":"exceptions","external":false,"refSections":[{"refs":[{"id":"ref-for-ieee754-exceptions"}],"title":"14.6.1. Overview of IEEE-754"},{"refs":[{"id":"ref-for-ieee754-exceptions\u2460"}],"title":"14.6.2. Differences from IEEE-754"}],"url":"#ieee754-exceptions"},
 "ieee754-exponent-bias": {"dfnID":"ieee754-exponent-bias","dfnText":"exponent bias","external":false,"refSections":[{"refs":[{"id":"ref-for-ieee754-exponent-bias"},{"id":"ref-for-ieee754-exponent-bias\u2460"},{"id":"ref-for-ieee754-exponent-bias\u2461"},{"id":"ref-for-ieee754-exponent-bias\u2462"}],"title":"14.6.1. Overview of IEEE-754"}],"url":"#ieee754-exponent-bias"},
 "ieee754-exponent-field": {"dfnID":"ieee754-exponent-field","dfnText":"exponent field","external":false,"refSections":[{"refs":[{"id":"ref-for-ieee754-exponent-field"},{"id":"ref-for-ieee754-exponent-field\u2460"},{"id":"ref-for-ieee754-exponent-field\u2461"},{"id":"ref-for-ieee754-exponent-field\u2462"},{"id":"ref-for-ieee754-exponent-field\u2463"},{"id":"ref-for-ieee754-exponent-field\u2464"},{"id":"ref-for-ieee754-exponent-field\u2465"},{"id":"ref-for-ieee754-exponent-field\u2466"}],"title":"14.6.1. Overview of IEEE-754"}],"url":"#ieee754-exponent-field"},
@@ -23087,7 +23109,7 @@ let dfnPanelData = {
 "in-bounds-index": {"dfnID":"in-bounds-index","dfnText":"in-bounds index","external":false,"refSections":[{"refs":[{"id":"ref-for-in-bounds-index"}],"title":"6.4.4. Valid and Invalid Memory References"},{"refs":[{"id":"ref-for-in-bounds-index\u2460"}],"title":"8.5. Composite Value Decomposition Expressions"}],"url":"#in-bounds-index"},
 "in-scope": {"dfnID":"in-scope","dfnText":"in scope","external":false,"refSections":[{"refs":[{"id":"ref-for-in-scope"},{"id":"ref-for-in-scope\u2460"},{"id":"ref-for-in-scope\u2461"}],"title":"5. Declaration and Scope"},{"refs":[{"id":"ref-for-in-scope\u2462"}],"title":"6.4.8. Forming Reference and Pointer Values"},{"refs":[{"id":"ref-for-in-scope\u2463"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-in-scope\u2464"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-in-scope\u2465"}],"title":"8.11. Variable Identifier Expression"},{"refs":[{"id":"ref-for-in-scope\u2466"}],"title":"8.12. Formal Parameter Expression"},{"refs":[{"id":"ref-for-in-scope\u2467"},{"id":"ref-for-in-scope\u2468"},{"id":"ref-for-in-scope\u2460\u24ea"}],"title":"8.15. Identifier Expressions for Value Declarations"},{"refs":[{"id":"ref-for-in-scope\u2460\u2460"}],"title":"9.1. Compound Statement"},{"refs":[{"id":"ref-for-in-scope\u2460\u2461"},{"id":"ref-for-in-scope\u2460\u2462"}],"title":"9.4.4. For Statement"},{"refs":[{"id":"ref-for-in-scope\u2460\u2463"}],"title":"10.1. Declaring a User-defined Function"},{"refs":[{"id":"ref-for-in-scope\u2460\u2464"}],"title":"16.1. Constructor Built-in Functions"}],"url":"#in-scope"},
 "increment-statement": {"dfnID":"increment-statement","dfnText":"increment statement","external":false,"refSections":[{"refs":[{"id":"ref-for-increment-statement"},{"id":"ref-for-increment-statement\u2460"}],"title":"14.2.6. Uniformity Rules for Statements"}],"url":"#increment-statement"},
-"indeterminate-value": {"dfnID":"indeterminate-value","dfnText":"indeterminate value","external":false,"refSections":[{"refs":[{"id":"ref-for-indeterminate-value"}],"title":"8.5.1.1. Vector Single Component Selection"},{"refs":[{"id":"ref-for-indeterminate-value\u2460"}],"title":"8.5.2. Matrix Access Expression"},{"refs":[{"id":"ref-for-indeterminate-value\u2461"}],"title":"8.5.3. Array Access Expression"},{"refs":[{"id":"ref-for-indeterminate-value\u2462"}],"title":"14.4. Fragment Shaders and Helper Invocations"},{"refs":[{"id":"ref-for-indeterminate-value\u2463"}],"title":"14.5.2. Derivatives"},{"refs":[{"id":"ref-for-indeterminate-value\u2464"},{"id":"ref-for-indeterminate-value\u2465"}],"title":"14.6.1. Overview of IEEE-754"},{"refs":[{"id":"ref-for-indeterminate-value\u2466"}],"title":"14.6.2. Differences from IEEE-754"},{"refs":[{"id":"ref-for-indeterminate-value\u2467"}],"title":"14.6.3. Floating Point Rounding and Overflow"},{"refs":[{"id":"ref-for-indeterminate-value\u2468"}],"title":"14.6.6. Floating Point Conversion"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u24ea"},{"id":"ref-for-indeterminate-value\u2460\u2460"},{"id":"ref-for-indeterminate-value\u2460\u2461"},{"id":"ref-for-indeterminate-value\u2460\u2462"}],"title":"16.5.34. frexp"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u2463"}],"title":"16.5.37. ldexp"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u2464"}],"title":"16.5.47. quantizeToF16"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u2465"}],"title":"16.6.1. dpdx"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u2466"}],"title":"16.6.2. dpdxCoarse"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u2467"}],"title":"16.6.3. dpdxFine"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u2468"}],"title":"16.6.4. dpdy"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u24ea"}],"title":"16.6.5. dpdyCoarse"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2460"}],"title":"16.6.6. dpdyFine"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2461"}],"title":"16.6.7. fwidth"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2462"}],"title":"16.6.8. fwidthCoarse"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2463"}],"title":"16.6.9. fwidthFine"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2464"}],"title":"16.7.1. textureDimensions"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2465"}],"title":"16.7.8. textureSample"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2466"}],"title":"16.7.10. textureSampleCompare"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2467"}],"title":"16.9.9. pack2x16float"}],"url":"#indeterminate-value"},
+"indeterminate-value": {"dfnID":"indeterminate-value","dfnText":"indeterminate value","external":false,"refSections":[{"refs":[{"id":"ref-for-indeterminate-value"}],"title":"8.5.1.1. Vector Single Component Selection"},{"refs":[{"id":"ref-for-indeterminate-value\u2460"}],"title":"8.5.2. Matrix Access Expression"},{"refs":[{"id":"ref-for-indeterminate-value\u2461"}],"title":"8.5.3. Array Access Expression"},{"refs":[{"id":"ref-for-indeterminate-value\u2462"}],"title":"14.4. Fragment Shaders and Helper Invocations"},{"refs":[{"id":"ref-for-indeterminate-value\u2463"}],"title":"14.5.2. Derivatives"},{"refs":[{"id":"ref-for-indeterminate-value\u2464"},{"id":"ref-for-indeterminate-value\u2465"}],"title":"14.6.1. Overview of IEEE-754"},{"refs":[{"id":"ref-for-indeterminate-value\u2466"}],"title":"14.6.2. Differences from IEEE-754"},{"refs":[{"id":"ref-for-indeterminate-value\u2467"}],"title":"14.6.3. Floating Point Rounding and Overflow"},{"refs":[{"id":"ref-for-indeterminate-value\u2468"}],"title":"14.6.6. Floating Point Conversion"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u24ea"},{"id":"ref-for-indeterminate-value\u2460\u2460"},{"id":"ref-for-indeterminate-value\u2460\u2461"},{"id":"ref-for-indeterminate-value\u2460\u2462"}],"title":"16.5.34. frexp"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u2463"}],"title":"16.5.37. ldexp"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u2464"}],"title":"16.5.47. quantizeToF16"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u2465"}],"title":"16.5.57. smoothstep"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u2466"}],"title":"16.6.1. dpdx"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u2467"}],"title":"16.6.2. dpdxCoarse"},{"refs":[{"id":"ref-for-indeterminate-value\u2460\u2468"}],"title":"16.6.3. dpdxFine"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u24ea"}],"title":"16.6.4. dpdy"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2460"}],"title":"16.6.5. dpdyCoarse"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2461"}],"title":"16.6.6. dpdyFine"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2462"}],"title":"16.6.7. fwidth"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2463"}],"title":"16.6.8. fwidthCoarse"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2464"}],"title":"16.6.9. fwidthFine"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2465"}],"title":"16.7.1. textureDimensions"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2466"}],"title":"16.7.8. textureSample"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2467"}],"title":"16.7.10. textureSampleCompare"},{"refs":[{"id":"ref-for-indeterminate-value\u2461\u2468"}],"title":"16.9.9. pack2x16float"}],"url":"#indeterminate-value"},
 "indexing-expression": {"dfnID":"indexing-expression","dfnText":"indexing expression","external":false,"refSections":[{"refs":[{"id":"ref-for-indexing-expression"}],"title":"3.9. Template Lists"},{"refs":[{"id":"ref-for-indexing-expression\u2460"},{"id":"ref-for-indexing-expression\u2461"}],"title":"6.4.4. Valid and Invalid Memory References"},{"refs":[{"id":"ref-for-indexing-expression\u2462"}],"title":"6.4.5. Originating Variable"},{"refs":[{"id":"ref-for-indexing-expression\u2463"}],"title":"6.4.8. Forming Reference and Pointer Values"},{"refs":[{"id":"ref-for-indexing-expression\u2464"}],"title":"8.5. Composite Value Decomposition Expressions"}],"url":"#indexing-expression"},
 "indirection": {"dfnID":"indirection","dfnText":"indirection","external":false,"refSections":[{"refs":[{"id":"ref-for-indirection"}],"title":"6.4.4. Valid and Invalid Memory References"},{"refs":[{"id":"ref-for-indirection\u2460"}],"title":"6.4.7. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-indirection\u2461"}],"title":"6.4.8. Forming Reference and Pointer Values"},{"refs":[{"id":"ref-for-indirection\u2462"},{"id":"ref-for-indirection\u2463"},{"id":"ref-for-indirection\u2464"},{"id":"ref-for-indirection\u2465"},{"id":"ref-for-indirection\u2466"},{"id":"ref-for-indirection\u2467"}],"title":"8.5.1.2. Vector Multiple Component Selection"}],"url":"#indirection"},
 "inherited-from": {"dfnID":"inherited-from","dfnText":"inherited from","external":false,"refSections":[{"refs":[{"id":"ref-for-inherited-from"},{"id":"ref-for-inherited-from\u2460"}],"title":"14.6.7. Domains of Floating Point Expressions and Built-in Functions"}],"url":"#inherited-from"},
@@ -23220,7 +23242,7 @@ let dfnPanelData = {
 "preferable-candidate": {"dfnID":"preferable-candidate","dfnText":"preferred","external":false,"refSections":[{"refs":[{"id":"ref-for-preferable-candidate"},{"id":"ref-for-preferable-candidate\u2460"}],"title":"6.1.3. Overload Resolution"},{"refs":[{"id":"ref-for-preferable-candidate\u2461"},{"id":"ref-for-preferable-candidate\u2462"}],"title":"6.2.1. Abstract Numeric Types"}],"url":"#preferable-candidate"},
 "program-error": {"dfnID":"program-error","dfnText":"program error","external":false,"refSections":[{"refs":[{"id":"ref-for-program-error"}],"title":"2.3.1. Diagnostic Processing"}],"url":"#program-error"},
 "quad": {"dfnID":"quad","dfnText":"quad","external":false,"refSections":[{"refs":[{"id":"ref-for-quad"}],"title":"10.2. Function Calls"},{"refs":[{"id":"ref-for-quad\u2460"}],"title":"13.5.3. Scoped Operations"},{"refs":[{"id":"ref-for-quad\u2461"}],"title":"14.5.2. Derivatives"}],"url":"#quad"},
-"range-diagnostic-filter": {"dfnID":"range-diagnostic-filter","dfnText":"range diagnostic filter","external":false,"refSections":[{"refs":[{"id":"ref-for-range-diagnostic-filter"}],"title":"11.6. diagnostic"}],"url":"#range-diagnostic-filter"},
+"range-diagnostic-filter": {"dfnID":"range-diagnostic-filter","dfnText":"range diagnostic filter","external":false,"refSections":[{"refs":[{"id":"ref-for-range-diagnostic-filter"}],"title":"2.3.3. Diagnostic Filtering"},{"refs":[{"id":"ref-for-range-diagnostic-filter\u2460"}],"title":"11.6. diagnostic"}],"url":"#range-diagnostic-filter"},
 "read-access": {"dfnID":"read-access","dfnText":"read access","external":false,"refSections":[{"refs":[{"id":"ref-for-read-access"}],"title":"6.4.7. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-read-access\u2460"}],"title":"6.5.2. Sampled Texture Types"},{"refs":[{"id":"ref-for-read-access\u2461"},{"id":"ref-for-read-access\u2462"}],"title":"6.5.5. Storage Texture Types"},{"refs":[{"id":"ref-for-read-access\u2463"}],"title":"6.5.6. Depth Texture Types"},{"refs":[{"id":"ref-for-read-access\u2464"}],"title":"7.1. Variables vs Values"},{"refs":[{"id":"ref-for-read-access\u2465"}],"title":"9.2.3. Compound Assignment"},{"refs":[{"id":"ref-for-read-access\u2466"},{"id":"ref-for-read-access\u2467"}],"title":"10.4.1.2. Aliasing"},{"refs":[{"id":"ref-for-read-access\u2468"},{"id":"ref-for-read-access\u2460\u24ea"},{"id":"ref-for-read-access\u2460\u2460"}],"title":"13.5.1. Memory Operation"},{"refs":[{"id":"ref-for-read-access\u2460\u2461"},{"id":"ref-for-read-access\u2460\u2462"}],"title":"13.5.5. Private vs Non-private"}],"url":"#read-access"},
 "reassociation": {"dfnID":"reassociation","dfnText":"Reassociation","external":false,"refSections":[{"refs":[{"id":"ref-for-reassociation"}],"title":"14.6.4. Floating Point Accuracy"}],"url":"#reassociation"},
 "recursive-descent-syntax-additive_operator": {"dfnID":"recursive-descent-syntax-additive_operator","dfnText":"additive_operator","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-additive_operator"}],"title":"17. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-additive_operator"},
