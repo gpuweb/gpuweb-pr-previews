@@ -833,7 +833,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/95fceec91020b78e96b699f34c4f7543fbe71d27/wgsl/index.bs">https://github.com/gpuweb/gpuweb/blob/95fceec91020b78e96b699f34c4f7543fbe71d27/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/5aac8ff7b32a273f54c0dd4906dfc4638be7e2f8/wgsl/index.bs">https://github.com/gpuweb/gpuweb/blob/5aac8ff7b32a273f54c0dd4906dfc4638be7e2f8/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -21328,8 +21328,9 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
       <td>Description 
       <td>
        Returns a bitmask of the <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①⑥">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup⑧">subgroup</a> for whom <code>pred</code> is <code>true</code>.<br> 
-       <p>The x component of the return value contains invocations 0 through 31.<br> The y component of the return value contains invocations 32 through 63.<br> The z component of the return value contains invocations 64 through 95.<br> The w component of the return value contains invocations 96 through 127.<br> Within each component, the ids are in ascending order by bit position
-    (e.g. id 32 is at bit position 0 in the y component).</p>
+       <p>The x component of the return value contains invocations 0 through 31.<br> The y component of the return value contains invocations 32 through 63.<br> The z component of the return value contains invocations 64 through 95.<br> The w component of the return value contains invocations 96 through 127.<br></p>
+       <p>Within each component, the IDs are in ascending order by bit position
+    (e.g. ID 32 is at bit position 0 in the y component).</p>
    </table>
    <h4 class="heading settled" data-level="16.12.6" id="subgroupbroadcast-builtin"><span class="secno">16.12.6. </span><span class="content"><code>subgroupBroadcast</code></span><a class="self-link" href="#subgroupbroadcast-builtin"></a></h4>
    <table class="data builtin">
