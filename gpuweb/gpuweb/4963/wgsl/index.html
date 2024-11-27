@@ -827,13 +827,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-11-22">22 November 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-11-27">27 November 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/5aac8ff7b32a273f54c0dd4906dfc4638be7e2f8/wgsl/index.bs">https://github.com/gpuweb/gpuweb/blob/5aac8ff7b32a273f54c0dd4906dfc4638be7e2f8/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/333b3c504a2ec77ae24a8414b8278bcd20cfea4d/wgsl/index.bs">https://github.com/gpuweb/gpuweb/blob/333b3c504a2ec77ae24a8414b8278bcd20cfea4d/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -21525,7 +21525,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
       <td>Description 
       <td>
        Returns <code>e</code> from the invocation whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id①③">subgroup invocation ID</a> matches <code>subgroup_invocation_id + delta</code> for the current invocation. 
-       <p>If <code>delta</code> is outside the range [0, 128), then:</p>
+       <p>If <code>delta</code> is greater than 127, then:</p>
        <ul>
         <li data-md>
          <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑧⑨">shader-creation error</a> if <code>delta</code> is a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑧③">const-expression</a>.</p>
@@ -21551,7 +21551,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
       <td>Description 
       <td>
        Returns <code>e</code> from the invocation whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id①④">subgroup invocation ID</a> matches <code>subgroup_invocation_id - delta</code> for the current invocation. 
-       <p>If <code>delta</code> is outside the range [0, 128), then:</p>
+       <p>If <code>delta</code> is than 127, then:</p>
        <ul>
         <li data-md>
          <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑨⓪">shader-creation error</a> if <code>delta</code> is a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑧④">const-expression</a>.</p>
@@ -21577,7 +21577,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
       <td>Description 
       <td>
        Returns <code>e</code> from the invocation whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id①⑤">subgroup invocation ID</a> matches <code>subgroup_invocation_id ^ mask</code> for the current invocation. 
-       <p>If <code>mask</code> is outside the range [0, 128), then:</p>
+       <p>If <code>mask</code> is greater than 127, then:</p>
        <ul>
         <li data-md>
          <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑨①">shader-creation error</a> if <code>mask</code> is a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑧⑤">const-expression</a>.</p>
