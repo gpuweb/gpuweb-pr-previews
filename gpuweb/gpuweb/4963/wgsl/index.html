@@ -5,7 +5,7 @@
   <title>WebGPU Shading Language</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <meta content="Bikeshed version 742f3d674, updated Mon Nov 4 14:56:54 2024 -0800" name="generator">
+  <meta content="Bikeshed version ac5ea272d, updated Fri Dec 6 15:45:15 2024 -0800" name="generator">
   <link href="https://www.w3.org/TR/WGSL/" rel="canonical">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
@@ -827,13 +827,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-12-03">3 December 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-12-10">10 December 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/92a0ee9080c36bcd82168a6135120bb78167e068/wgsl/index.bs">https://github.com/gpuweb/gpuweb/blob/92a0ee9080c36bcd82168a6135120bb78167e068/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/eff1559de108b429e767f51afafbbb855374f32f/wgsl/index.bs">https://github.com/gpuweb/gpuweb/blob/eff1559de108b429e767f51afafbbb855374f32f/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -14602,7 +14602,8 @@ Each <a data-link-type="dfn" href="#quad" id="ref-for-quad②">quad</a> will be 
 This value is accessible via the <a data-link-type="dfn" href="#built-in-values-subgroup_size" id="ref-for-built-in-values-subgroup_size④">subgroup_size</a> built-in value.
 Subgroup size is a <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value①①">uniform value</a> within a <a data-link-type="dfn" href="#compute-shader-stage-workgroup" id="ref-for-compute-shader-stage-workgroup⑤">workgroup</a>,
 but not within a <a data-link-type="dfn" href="#draw-command" id="ref-for-draw-command⑦">draw command</a>.
-All subgroup sizes are within the range [4, 128].
+All subgroup sizes are within the range [4, 128] and the value for shader
+compiled for a specific device will be within the range [<a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/#dom-gpuadapterinfo-subgroupminsize" id="ref-for-dom-gpuadapterinfo-subgroupminsize">subgroupMinSize</a>, <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/#dom-gpuadapterinfo-subgroupmaxsize" id="ref-for-dom-gpuadapterinfo-subgroupmaxsize">subgroupMaxSize</a>] for the <a href="https://gpuweb.github.io/gpuweb/#gpuadapter"><cite>WebGPU</cite> § 4.3 GPUAdapter</a>.
 The actual size is a function of the device properties and device compiler.
 Each device supports a subset of the possible range of subgroup sizes (possibly a single value).
 The device compiler selects a size from the supported sizes using a variety of heuristics.
@@ -23390,6 +23391,8 @@ registrations, it matches widespread industry conventions.</p>
      <li><span class="dfn-paneled" id="f10f0d86">sampler</span>
      <li><span class="dfn-paneled" id="faf8c865">shader-output mask</span>
      <li><span class="dfn-paneled" id="d6a3e100">storageTexture</span>
+     <li><span class="dfn-paneled" id="302a1456">subgroupMaxSize</span>
+     <li><span class="dfn-paneled" id="d177d646">subgroupMinSize</span>
      <li><span class="dfn-paneled" id="e40f4b15">texture</span>
      <li><span class="dfn-paneled" id="9a65b6d1">validating GPUProgrammableStage</span>
      <li><span class="dfn-paneled" id="a12af3bc">validating shader binding</span>
@@ -23651,6 +23654,7 @@ let dfnPanelData = {
 "1bd77354": {"dfnID":"1bd77354","dfnText":"maxComputeWorkgroupStorageSize","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-supported-limits-maxcomputeworkgroupstoragesize"},{"id":"ref-for-dom-supported-limits-maxcomputeworkgroupstoragesize\u2460"}],"title":"2.4. Limits"}],"url":"https://gpuweb.github.io/gpuweb/#dom-supported-limits-maxcomputeworkgroupstoragesize"},
 "1d6073a6": {"dfnID":"1d6073a6","dfnText":"\"1d\"","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureviewdimension-1d"}],"title":"6.5.2. Sampled Texture Types"},{"refs":[{"id":"ref-for-dom-gputextureviewdimension-1d\u2460"}],"title":"6.5.5. Storage Texture Types"}],"url":"https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-1d"},
 "2c2eb366": {"dfnID":"2c2eb366","dfnText":"\"uint\"","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gputexturesampletype-uint"}],"title":"12.3.3. Resource Layout Compatibility"}],"url":"https://gpuweb.github.io/gpuweb/#dom-gputexturesampletype-uint"},
+"302a1456": {"dfnID":"302a1456","dfnText":"subgroupMaxSize","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gpuadapterinfo-subgroupmaxsize"}],"title":"14.5. Subgroups"}],"url":"https://gpuweb.github.io/gpuweb/#dom-gpuadapterinfo-subgroupmaxsize"},
 "317e6090": {"dfnID":"317e6090","dfnText":"framebuffer","external":true,"refSections":[{"refs":[{"id":"ref-for-framebuffer"}],"title":"12.3.1.1.9. position"}],"url":"https://gpuweb.github.io/gpuweb/#framebuffer"},
 "351035bd": {"dfnID":"351035bd","dfnText":"\"write-only\"","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gpustoragetextureaccess-write-only"}],"title":"12.3.3. Resource Layout Compatibility"}],"url":"https://gpuweb.github.io/gpuweb/#dom-gpustoragetextureaccess-write-only"},
 "355e6a41": {"dfnID":"355e6a41","dfnText":"fragmentdestination-position","external":true,"refSections":[{"refs":[{"id":"ref-for-fragmentdestination-position"}],"title":"12.3.1.1.9. position"}],"url":"https://gpuweb.github.io/gpuweb/#fragmentdestination-position"},
@@ -23822,6 +23826,7 @@ let dfnPanelData = {
 "correctly-rounded": {"dfnID":"correctly-rounded","dfnText":"correctly rounded","external":false,"refSections":[{"refs":[{"id":"ref-for-correctly-rounded"}],"title":"14.7.4. Floating Point Accuracy"},{"refs":[{"id":"ref-for-correctly-rounded\u2460"}],"title":"14.7.4.2. Accuracy of AbstractFloat Expressions"}],"url":"#correctly-rounded"},
 "creation-fixed-footprint": {"dfnID":"creation-fixed-footprint","dfnText":"creation-fixed footprint","external":false,"refSections":[{"refs":[{"id":"ref-for-creation-fixed-footprint"}],"title":"2.4. Limits"},{"refs":[{"id":"ref-for-creation-fixed-footprint\u2460"},{"id":"ref-for-creation-fixed-footprint\u2461"},{"id":"ref-for-creation-fixed-footprint\u2462"}],"title":"6.2.9. Array Types"},{"refs":[{"id":"ref-for-creation-fixed-footprint\u2463"},{"id":"ref-for-creation-fixed-footprint\u2464"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-creation-fixed-footprint\u2465"},{"id":"ref-for-creation-fixed-footprint\u2466"}],"title":"6.2.12. Constructible Types"},{"refs":[{"id":"ref-for-creation-fixed-footprint\u2467"},{"id":"ref-for-creation-fixed-footprint\u2468"},{"id":"ref-for-creation-fixed-footprint\u2460\u24ea"},{"id":"ref-for-creation-fixed-footprint\u2460\u2460"},{"id":"ref-for-creation-fixed-footprint\u2460\u2461"}],"title":"6.2.13. Fixed-Footprint Types"},{"refs":[{"id":"ref-for-creation-fixed-footprint\u2460\u2462"}],"title":"6.4.2. Host-shareable Types"},{"refs":[{"id":"ref-for-creation-fixed-footprint\u2460\u2463"}],"title":"8.1.1. const Expressions"},{"refs":[{"id":"ref-for-creation-fixed-footprint\u2460\u2464"}],"title":"11.13. size"}],"url":"#creation-fixed-footprint"},
 "d0dc060b": {"dfnID":"d0dc060b","dfnText":"createShaderModule(descriptor)","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gpudevice-createshadermodule"}],"title":"2.1. Shader Lifecycle"}],"url":"https://gpuweb.github.io/gpuweb/#dom-gpudevice-createshadermodule"},
+"d177d646": {"dfnID":"d177d646","dfnText":"subgroupMinSize","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gpuadapterinfo-subgroupminsize"}],"title":"14.5. Subgroups"}],"url":"https://gpuweb.github.io/gpuweb/#dom-gpuadapterinfo-subgroupminsize"},
 "d2d6fd4d": {"dfnID":"d2d6fd4d","dfnText":"originate","external":true,"refSections":[{"refs":[{"id":"ref-for-originate"}],"title":"14.2.5. Function-scope Variable Value Analysis"}],"url":"https://drafts.csswg.org/css-tables-3/#originate"},
 "d6a3e100": {"dfnID":"d6a3e100","dfnText":"storageTexture","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gpubindgrouplayoutentry-storagetexture"}],"title":"12.3.3. Resource Layout Compatibility"}],"url":"https://gpuweb.github.io/gpuweb/#dom-gpubindgrouplayoutentry-storagetexture"},
 "db13f4de": {"dfnID":"db13f4de","dfnText":"\"filtering\"","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gpusamplerbindingtype-filtering"}],"title":"12.3.3. Resource Layout Compatibility"}],"url":"https://gpuweb.github.io/gpuweb/#dom-gpusamplerbindingtype-filtering"},
@@ -25653,6 +25658,8 @@ let refsData = {
 "https://gpuweb.github.io/gpuweb/#clip-space-coordinates": {"displayText":"clip space coordinates","export":true,"for_":[],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"anchor-block","text":"clip space coordinates","type":"dfn","url":"https://gpuweb.github.io/gpuweb/#clip-space-coordinates"},
 "https://gpuweb.github.io/gpuweb/#dictdef-gpubufferbinding": {"displayText":"GPUBufferBinding","export":true,"for_":[],"level":"1","normative":true,"shortname":"webgpu","spec":"webgpu","status":"current","text":"GPUBufferBinding","type":"dictionary","url":"https://gpuweb.github.io/gpuweb/#dictdef-gpubufferbinding"},
 "https://gpuweb.github.io/gpuweb/#dictdef-gputexturebindinglayout": {"displayText":"GPUTextureBindingLayout","export":true,"for_":[],"level":"1","normative":true,"shortname":"webgpu","spec":"webgpu","status":"current","text":"GPUTextureBindingLayout","type":"dictionary","url":"https://gpuweb.github.io/gpuweb/#dictdef-gputexturebindinglayout"},
+"https://gpuweb.github.io/gpuweb/#dom-gpuadapterinfo-subgroupmaxsize": {"displayText":"subgroupMaxSize","export":true,"for_":[],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"anchor-block","text":"subgroupmaxsize","type":"dfn","url":"https://gpuweb.github.io/gpuweb/#dom-gpuadapterinfo-subgroupmaxsize"},
+"https://gpuweb.github.io/gpuweb/#dom-gpuadapterinfo-subgroupminsize": {"displayText":"subgroupMinSize","export":true,"for_":[],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"anchor-block","text":"subgroupminsize","type":"dfn","url":"https://gpuweb.github.io/gpuweb/#dom-gpuadapterinfo-subgroupminsize"},
 "https://gpuweb.github.io/gpuweb/#dom-gpubindgrouplayoutentry-buffer": {"displayText":"buffer","export":true,"for_":["GPUBindGroupLayoutEntry"],"level":"1","normative":true,"shortname":"webgpu","spec":"webgpu","status":"current","text":"buffer","type":"dict-member","url":"https://gpuweb.github.io/gpuweb/#dom-gpubindgrouplayoutentry-buffer"},
 "https://gpuweb.github.io/gpuweb/#dom-gpubindgrouplayoutentry-externaltexture": {"displayText":"externalTexture","export":true,"for_":["GPUBindGroupLayoutEntry"],"level":"1","normative":true,"shortname":"webgpu","spec":"webgpu","status":"current","text":"externalTexture","type":"dict-member","url":"https://gpuweb.github.io/gpuweb/#dom-gpubindgrouplayoutentry-externaltexture"},
 "https://gpuweb.github.io/gpuweb/#dom-gpubindgrouplayoutentry-sampler": {"displayText":"sampler","export":true,"for_":["GPUBindGroupLayoutEntry"],"level":"1","normative":true,"shortname":"webgpu","spec":"webgpu","status":"current","text":"sampler","type":"dict-member","url":"https://gpuweb.github.io/gpuweb/#dom-gpubindgrouplayoutentry-sampler"},
