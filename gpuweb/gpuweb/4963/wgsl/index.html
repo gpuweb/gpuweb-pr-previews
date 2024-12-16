@@ -827,19 +827,18 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-12-10">10 December 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-12-16">16 December 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/eff1559de108b429e767f51afafbbb855374f32f/wgsl/index.bs">https://github.com/gpuweb/gpuweb/blob/eff1559de108b429e767f51afafbbb855374f32f/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/a7d9feb1d33a2cdb395dfb37fe916382e92bb2fa/wgsl/index.bs">https://github.com/gpuweb/gpuweb/blob/a7d9feb1d33a2cdb395dfb37fe916382e92bb2fa/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
       <dd><span><a href="mailto:public-gpu@w3.org?subject=%5BWGSL%5D%20YOUR%20TOPIC%20HERE">public-gpu@w3.org</a> with subject line “<kbd>[WGSL] <i data-lt>… message topic …</i></kbd>” (<a href="https://lists.w3.org/Archives/Public/public-gpu/" rel="discussion">archives</a>)</span>
       <dd><a href="https://github.com/gpuweb/gpuweb/issues/">GitHub</a>
-      <dd><a href="#issues-index">Inline In Spec</a>
       <dt class="editor">Editors:
       <dd class="editor p-author h-card vcard" data-editor-id="129277"><a class="p-name fn u-email email" href="mailto:alanbaker@google.com">Alan Baker</a> (<a class="p-org org" href="https://www.google.com">Google</a>)
       <dd class="editor p-author h-card vcard" data-editor-id="101130"><a class="p-name fn u-email email" href="mailto:mehmetoguzderin@mehmetoguzderin.com">Mehmet Oguz Derin</a>
@@ -1535,7 +1534,6 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
       <li><a href="#normative"><span class="secno"></span> <span class="content">Normative References</span></a>
       <li><a href="#informative"><span class="secno"></span> <span class="content">Informative References</span></a>
      </ol>
-    <li><a href="#issues-index"><span class="secno"></span> <span class="content">Issues Index</span></a>
    </ol>
   </nav>
   <main>
@@ -3560,11 +3558,9 @@ Extension names are not <a data-link-type="dfn" href="#identifier" id="ref-for-i
       <td>The attribute <a data-link-type="dfn" href="#attribute-blend_src" id="ref-for-attribute-blend_src①">blend_src</a> is valid to use in the WGSL module. Otherwise, using <a data-link-type="dfn" href="#attribute-blend_src" id="ref-for-attribute-blend_src②">blend_src</a> will result in a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑦">shader-creation error</a>. 
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-for="extension" data-dfn-type="dfn" data-noexport id="extension-subgroups"><code>subgroups</code></dfn> 
-      <td><a href="https://gpuweb.github.io/gpuweb/#gpufeaturename" id="3fce596e0">"subgroups"</a> 
-      <td>
-       It is valid to use <a href="#builtin-inputs-outputs">subgroup built-in values</a>, <a href="#subgroup-builtin-functions">subgroup built-in functions</a>, and <a href="#quad-builtin-functions">quad built-in functions</a> in a WGSL module.
+      <td>"<a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/#subgroups" id="ref-for-subgroups">subgroups</a>" 
+      <td>It is valid to use <a href="#builtin-inputs-outputs">subgroup built-in values</a>, <a href="#subgroup-builtin-functions">subgroup built-in functions</a>, and <a href="#quad-builtin-functions">quad built-in functions</a> in a WGSL module.
           Otherwise, any use will result in a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑧">shader-creation error</a>. 
-       <p class="issue" id="issue-e79ef0c2"><a class="self-link" href="#issue-e79ef0c2"></a> replace feature link when extension lands.</p>
    </table>
    <div class="example wgsl using extensions expect-error no-marker" id="example-bbb80169">
     <a class="self-link" href="#example-bbb80169"></a>
@@ -23393,6 +23389,7 @@ registrations, it matches widespread industry conventions.</p>
      <li><span class="dfn-paneled" id="d6a3e100">storageTexture</span>
      <li><span class="dfn-paneled" id="302a1456">subgroupMaxSize</span>
      <li><span class="dfn-paneled" id="d177d646">subgroupMinSize</span>
+     <li><span class="dfn-paneled" id="9b92b9ee">subgroups-feature</span>
      <li><span class="dfn-paneled" id="e40f4b15">texture</span>
      <li><span class="dfn-paneled" id="9a65b6d1">validating GPUProgrammableStage</span>
      <li><span class="dfn-paneled" id="a12af3bc">validating shader binding</span>
@@ -23440,10 +23437,6 @@ registrations, it matches widespread industry conventions.</p>
    <dt id="biblio-wasm-core-2">[WASM-CORE-2]
    <dd>Andreas Rossberg. <a href="https://webassembly.github.io/spec/core/bikeshed/"><cite>WebAssembly Core Specification</cite></a>. URL: <a href="https://webassembly.github.io/spec/core/bikeshed/">https://webassembly.github.io/spec/core/bikeshed/</a>
   </dl>
-  <h2 class="no-num no-ref heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
-  <div style="counter-reset:issue">
-   <div class="issue"> replace feature link when extension lands. <a class="issue-return" href="#issue-e79ef0c2" title="Jump to section">↵</a></div>
-  </div>
 <script>/* Boilerplate: script-dom-helper */
 "use strict";
 function query(sel) { return document.querySelector(sel); }
@@ -23696,6 +23689,7 @@ let dfnPanelData = {
 "97c673c1": {"dfnID":"97c673c1","dfnText":"GPU","external":true,"refSections":[{"refs":[{"id":"ref-for-gpu"}],"title":"4.1.2. Language Extensions"}],"url":"https://gpuweb.github.io/gpuweb/#gpu"},
 "984221ca": {"dfnID":"984221ca","dfnText":"struct","external":true,"refSections":[{"refs":[{"id":"ref-for-struct"}],"title":"4.1.2. Language Extensions"}],"url":"https://infra.spec.whatwg.org/#struct"},
 "9a65b6d1": {"dfnID":"9a65b6d1","dfnText":"validating GPUProgrammableStage","external":true,"refSections":[{"refs":[{"id":"ref-for-abstract-opdef-validating-gpuprogrammablestage"}],"title":"12.3.3. Resource Layout Compatibility"}],"url":"https://gpuweb.github.io/gpuweb/#abstract-opdef-validating-gpuprogrammablestage"},
+"9b92b9ee": {"dfnID":"9b92b9ee","dfnText":"subgroups-feature","external":true,"refSections":[{"refs":[{"id":"ref-for-subgroups"}],"title":"4.1.1. Enable Extensions"}],"url":"https://gpuweb.github.io/gpuweb/#subgroups"},
 "9bc85d75": {"dfnID":"9bc85d75","dfnText":"UAX14 LB5","external":true,"refSections":[{"refs":[{"id":"ref-for-LB5"}],"title":"3.2. Blankspace and Line Breaks"}],"url":"https://www.unicode.org/reports/tr14#LB5"},
 "9e671ccf": {"dfnID":"9e671ccf","dfnText":"STORAGE_BINDING","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureusage-storage_binding"}],"title":"6.5.1. Texel Formats"}],"url":"https://gpuweb.github.io/gpuweb/#dom-gputextureusage-storage_binding"},
 "a12af3bc": {"dfnID":"a12af3bc","dfnText":"validating shader binding","external":true,"refSections":[{"refs":[{"id":"ref-for-abstract-opdef-validating-shader-binding"}],"title":"6.5.2. Sampled Texture Types"},{"refs":[{"id":"ref-for-abstract-opdef-validating-shader-binding\u2460"}],"title":"6.5.3. Multisampled Texture Types"},{"refs":[{"id":"ref-for-abstract-opdef-validating-shader-binding\u2461"}],"title":"6.5.5. Storage Texture Types"}],"url":"https://gpuweb.github.io/gpuweb/#abstract-opdef-validating-shader-binding"},
@@ -23784,7 +23778,7 @@ let dfnPanelData = {
 "c4c22fd9": {"dfnID":"c4c22fd9","dfnText":"\"float\"","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gputexturesampletype-float"}],"title":"12.3.3. Resource Layout Compatibility"}],"url":"https://gpuweb.github.io/gpuweb/#dom-gputexturesampletype-float"},
 "c69b32cb": {"dfnID":"c69b32cb","dfnText":"memory model memory operation","external":true,"refSections":[{"refs":[{"id":"ref-for-memory-model-memory-operation"}],"title":"13.5.1. Memory Operation"}],"url":"https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#memory-model-memory-operation"},
 "c8491c30": {"dfnID":"c8491c30","dfnText":"rasterizationpoint-perspectivedivisor","external":true,"refSections":[{"refs":[{"id":"ref-for-rasterizationpoint-perspectivedivisor"}],"title":"12.3.1.1.9. position"}],"url":"https://gpuweb.github.io/gpuweb/#rasterizationpoint-perspectivedivisor"},
-"c8b3f887": {"dfnID":"c8b3f887","dfnText":"GPUFeatureName","external":true,"refSections":[{"refs":[{"id":"ref-for-gpufeaturename"},{"id":"ref-for-gpufeaturename\u2460"},{"id":"3fce596e0"}],"title":"4.1.1. Enable Extensions"}],"url":"https://gpuweb.github.io/gpuweb/#gpufeaturename"},
+"c8b3f887": {"dfnID":"c8b3f887","dfnText":"GPUFeatureName","external":true,"refSections":[{"refs":[{"id":"ref-for-gpufeaturename"},{"id":"ref-for-gpufeaturename\u2460"}],"title":"4.1.1. Enable Extensions"}],"url":"https://gpuweb.github.io/gpuweb/#gpufeaturename"},
 "call-site": {"dfnID":"call-site","dfnText":"call site","external":false,"refSections":[{"refs":[{"id":"ref-for-call-site"},{"id":"ref-for-call-site\u2460"}],"title":"2.3.2. Filterable Triggering Rules"},{"refs":[{"id":"ref-for-call-site\u2461"}],"title":"6.4.5. Originating Variable"},{"refs":[{"id":"ref-for-call-site\u2462"}],"title":"6.4.8. Forming Reference and Pointer Values"},{"refs":[{"id":"ref-for-call-site\u2463"}],"title":"8.12. Formal Parameter Expression"},{"refs":[{"id":"ref-for-call-site\u2464"}],"title":"9.4.10. Return Statement"},{"refs":[{"id":"ref-for-call-site\u2465"}],"title":"10.2. Function Calls"},{"refs":[{"id":"ref-for-call-site\u2466"},{"id":"ref-for-call-site\u2467"}],"title":"10.4.1.2. Aliasing"},{"refs":[{"id":"ref-for-call-site\u2468"},{"id":"ref-for-call-site\u2460\u24ea"}],"title":"14.2. Uniformity"},{"refs":[{"id":"ref-for-call-site\u2460\u2460"},{"id":"ref-for-call-site\u2460\u2461"}],"title":"14.2.3. Analyzing the Uniformity Requirements of a Function"}],"url":"#call-site"},
 "call-site-tag": {"dfnID":"call-site-tag","dfnText":"call site tag","external":false,"refSections":[{"refs":[{"id":"ref-for-call-site-tag"},{"id":"ref-for-call-site-tag\u2460"},{"id":"ref-for-call-site-tag\u2461"},{"id":"ref-for-call-site-tag\u2462"}],"title":"14.2.3. Analyzing the Uniformity Requirements of a Function"},{"refs":[{"id":"ref-for-call-site-tag\u2463"},{"id":"ref-for-call-site-tag\u2464"},{"id":"ref-for-call-site-tag\u2465"},{"id":"ref-for-call-site-tag\u2466"},{"id":"ref-for-call-site-tag\u2467"},{"id":"ref-for-call-site-tag\u2468"},{"id":"ref-for-call-site-tag\u2460\u24ea"}],"title":"14.2.7. Uniformity Rules for Function Calls"}],"url":"#call-site-tag"},
 "called-function": {"dfnID":"called-function","dfnText":"called function","external":false,"refSections":[{"refs":[{"id":"ref-for-called-function"},{"id":"ref-for-called-function\u2460"},{"id":"ref-for-called-function\u2461"}],"title":"10.2. Function Calls"}],"url":"#called-function"},
@@ -25724,6 +25718,7 @@ let refsData = {
 "https://gpuweb.github.io/gpuweb/#rasterizationpoint-destination": {"displayText":"rasterizationpoint-destination","export":true,"for_":[],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"anchor-block","text":"rasterizationpoint-destination","type":"dfn","url":"https://gpuweb.github.io/gpuweb/#rasterizationpoint-destination"},
 "https://gpuweb.github.io/gpuweb/#rasterizationpoint-perspectivedivisor": {"displayText":"rasterizationpoint-perspectivedivisor","export":true,"for_":[],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"anchor-block","text":"rasterizationpoint-perspectivedivisor","type":"dfn","url":"https://gpuweb.github.io/gpuweb/#rasterizationpoint-perspectivedivisor"},
 "https://gpuweb.github.io/gpuweb/#shader-output-mask": {"displayText":"shader-output mask","export":true,"for_":[],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"anchor-block","text":"shader-output mask","type":"dfn","url":"https://gpuweb.github.io/gpuweb/#shader-output-mask"},
+"https://gpuweb.github.io/gpuweb/#subgroups": {"displayText":"subgroups-feature","export":true,"for_":[],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"anchor-block","text":"subgroups-feature","type":"dfn","url":"https://gpuweb.github.io/gpuweb/#subgroups"},
 "https://infra.spec.whatwg.org/#struct": {"displayText":"struct","export":true,"for_":[],"level":"1","normative":true,"shortname":"infra","spec":"infra","status":"current","text":"struct","type":"dfn","url":"https://infra.spec.whatwg.org/#struct"},
 "https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#memory-model-atomic-operation": {"displayText":"memory model atomic operation","export":true,"for_":[],"level":"","normative":true,"shortname":"vulkan","spec":"vulkan","status":"anchor-block","text":"memory model atomic operation","type":"dfn","url":"https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#memory-model-atomic-operation"},
 "https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#memory-model-memory-operation": {"displayText":"memory model memory operation","export":true,"for_":[],"level":"","normative":true,"shortname":"vulkan","spec":"vulkan","status":"anchor-block","text":"memory model memory operation","type":"dfn","url":"https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#memory-model-memory-operation"},
