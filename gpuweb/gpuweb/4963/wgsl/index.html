@@ -827,13 +827,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-12-18">18 December 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-01-16">16 January 2025</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/2f3e22d69f86999023a26ff2631df3f35ad3c363/wgsl/index.bs">https://github.com/gpuweb/gpuweb/blob/2f3e22d69f86999023a26ff2631df3f35ad3c363/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/gpuweb/gpuweb/blob/f9505279b905778c7c02c53ae72aee805b174abe/wgsl/index.bs">https://github.com/gpuweb/gpuweb/blob/f9505279b905778c7c02c53ae72aee805b174abe/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -854,7 +854,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     </div>
    </details>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/policies/#copyright">Copyright</a> © 2024 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/policies/#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/policies/#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/copyright/software-license/" rel="license" title="W3C Software and Document License">permissive document license</a> rules apply. </p>
+   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/policies/#copyright">Copyright</a> © 2025 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/policies/#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/policies/#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/copyright/software-license/" rel="license" title="W3C Software and Document License">permissive document license</a> rules apply. </p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
@@ -867,11 +867,10 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
    <p> Feedback and comments on this specification are welcome. <a href="https://github.com/gpuweb/gpuweb/issues">GitHub Issues</a> are preferred for discussion on this specification. Alternatively, you can send comments to the GPU for the Web Working Group’s mailing-list, <a href="mailto:public-gpu@w3.org">public-gpu@w3.org</a> (<a href="https://lists.w3.org/Archives/Public/public-gpu/">archives</a>).
   This draft highlights some of the pending issues that are still to be discussed in the working group.
   No decision has been taken on the outcome of these issues including whether they are valid. </p>
-   <p> This document was published by the <a href="https://www.w3.org/groups/wg/gpu">GPU for the Web Working Group</a> as an Editor’s Draft.
-  This document is intended to become a <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation. </p>
-   <p> This is a draft document and may be updated, replaced or obsoleted by other documents at any time.
-  It is inappropriate to cite this document as other than work in progress. </p>
-   <p> This document was produced by a group operating under the <a class="css" data-link-type="property" href="https://www.w3.org/policies/patent-policy/" id="sotd_patent">W3C Patent Policy</a>. <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="https://www.w3.org/groups/wg/gpu/ipr" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/policies/patent-policy/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure">section 6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>. </p>
+   <p> This document was published by the <a href="https://www.w3.org/groups/wg/gpu">GPU for the Web Working Group</a> as an Editor’s Draft. </p>
+   <p> The group expects to demonstrate implementation of each feature in at least two deployed browsers on top of modern GPU system APIs. The test suite will be used to build an implementation report. </p>
+   <p> This document is maintained and updated at any time. Some parts of this document are work in progress. </p>
+   <p> This document was produced by a group operating under the <a class="css" data-link-type="property" href="https://www.w3.org/policies/patent-policy/" id="sotd_patent">W3C Patent Policy</a>. <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="https://www.w3.org/groups/wg/gpu/ipr/" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/policies/patent-policy/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/policies/patent-policy/#sec-Disclosure">section 6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>. </p>
    <p> This document is governed by the <a href="https://www.w3.org/policies/process/20231103/" id="w3c_process_revision">03 November 2023 W3C Process Document</a>. </p>
    <p></p>
   </div>
@@ -14677,7 +14676,7 @@ Their use does not require the <a data-link-type="dfn" href="#extension-subgroup
    <h4 class="heading settled" data-level="14.6.3" id="subgroup-ops"><span class="secno">14.6.3. </span><span class="content">Subgroup Operations</span><a class="self-link" href="#subgroup-ops"></a></h4>
    <p>The <a href="#subgroup-builtin-functions">subgroup built-in functions</a> allow efficient
 communication and computation between the invocations in a <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup">subgroup</a>.
-Subgroup operations are single-intruction multiple-thread (SIMT) operations.</p>
+Subgroup operations are single-instruction multiple-thread (SIMT) operations.</p>
    <p>The <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active">active</a> invocations in a subgroup communicate to determine results.
 Therefore, portability is maximized when these functions are invoked when all
 invocations are active (i.e. in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①⑤">uniform control flow</a> at the subgroup
@@ -15388,10 +15387,10 @@ the rules in <a href="#floating-point-rounding-and-overflow">§ 14.7.3 Floatin
       <td colspan="2">Inherited from sum of x for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②">active</a> invocations in the subgroup 
      <tr>
       <td><code>subgroupExclusiveAdd(x)</code>
-      <td colspan="2">Inherited from the sum of x<sub>i</sub> for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active③">active</a> invocations in the subgroup whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id①">subgroup invocation ID</a> is less than ID of the i’th invocation 
+      <td colspan="2">Inherited from the sum of x for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active③">active</a> invocations in the subgroup whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id①">subgroup invocation ID</a>s are less than the current invocation’s ID. 
      <tr>
       <td><code>subgroupInclusiveAdd(x)</code>
-      <td colspan="2">Inherited from the sum of x<sub>i</sub> for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active④">active</a> invocations in the subgroup whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id②">subgroup invocation ID</a> is less than or equal to ID of the i’th invocation 
+      <td colspan="2">Inherited from the sum of x for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active④">active</a> invocations in the subgroup whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id②">subgroup invocation ID</a>s are less than or equal to current invocation’s ID. 
      <tr>
       <td><code>subgroupMul(x)</code>
       <td colspan="2">Inherited from the product of x for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active⑤">active</a> invocations in the subgroup 
@@ -21329,7 +21328,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
       <td>
        Returns the value of <code>e</code> from the invocation whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id⑦">subgroup invocation ID</a> matches <code>id</code> in the subgroup to all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①⑦">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup⑨">subgroup</a>. 
        <p><code>id</code> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑧⑦">must</a> be a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑧①">const-expression</a> in the range [0, 128).</p>
-       <p>It is a <a data-link-type="dfn" href="#dynamic-error" id="ref-for-dynamic-error①⓪">dynamic error</a> <code>id</code> does not select an <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①⑧">active</a> invocation.</p>
+       <p>It is a <a data-link-type="dfn" href="#dynamic-error" id="ref-for-dynamic-error①⓪">dynamic error</a> if <code>id</code> does not select an <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①⑧">active</a> invocation.</p>
        <p class="note" role="note"><span class="marker">Note:</span> If a non-constant version of <code>id</code> is required, use <a href="#subgroupshuffle-builtin">subgroupShuffle</a> instead.</p>
    </table>
    <h5 class="heading settled" data-level="16.12.6.1" id="subgroupbroadcastfirst-builtin"><span class="secno">16.12.6.1. </span><span class="content"><code>subgroupBroadcastFirst</code></span><a class="self-link" href="#subgroupbroadcastfirst-builtin"></a></h5>
