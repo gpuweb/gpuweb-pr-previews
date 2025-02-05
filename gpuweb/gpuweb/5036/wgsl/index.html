@@ -5,7 +5,7 @@
   <title>WebGPU Shading Language</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <meta content="Bikeshed version ac5ea272d, updated Fri Dec 6 15:45:15 2024 -0800" name="generator">
+  <meta content="Bikeshed version c2797e6ab, updated Thu Jan 30 16:24:26 2025 -0800" name="generator">
   <link href="https://www.w3.org/TR/WGSL/" rel="canonical">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
@@ -827,13 +827,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-01-30">30 January 2025</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-02-05">5 February 2025</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/b630b51f0411f1f783314d963755e062aa1fc266/wgsl/index.bs">https://github.com/kainino0x/gpuweb/blob/b630b51f0411f1f783314d963755e062aa1fc266/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/c54374801fa95e85473ff441841cbb3cc6f041c6/wgsl/index.bs">https://github.com/kainino0x/gpuweb/blob/c54374801fa95e85473ff441841cbb3cc6f041c6/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -2374,8 +2374,7 @@ shader that goes beyond the specified limits.</p>
      <tr>
       <td>
        Maximum combined <a data-link-type="dfn" href="#byte-size" id="ref-for-byte-size②">byte-size</a> of all <a data-link-type="dfn" href="#variable" id="ref-for-variable②">variables</a> instantiated in the <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup①">workgroup</a> address space that are <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed②">statically accessed</a> by a single <a data-link-type="dfn" href="#shader" id="ref-for-shader③">shader</a> 
-       <p>For the purposes of this limit, a <a data-link-type="dfn" href="#fixed-footprint" id="ref-for-fixed-footprint">fixed-footprint</a> array is treated as a <a data-link-type="dfn" href="#creation-fixed-footprint" id="ref-for-creation-fixed-footprint">creation-fixed
-            footprint</a> array when substituting the override value.</p>
+       <p>For the purposes of this limit, a <a data-link-type="dfn" href="#fixed-footprint" id="ref-for-fixed-footprint">fixed-footprint</a> array is treated as a <a data-link-type="dfn" href="#creation-fixed-footprint" id="ref-for-creation-fixed-footprint">creation-fixed footprint</a> array when substituting the override value.</p>
        <p>This maps the WebGPU <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/#dom-supported-limits-maxcomputeworkgroupstoragesize" id="ref-for-dom-supported-limits-maxcomputeworkgroupstoragesize">maxComputeWorkgroupStorageSize</a> limit
             into a standalone WGSL limit.</p>
       <td><a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/#dom-supported-limits-maxcomputeworkgroupstoragesize" id="ref-for-dom-supported-limits-maxcomputeworkgroupstoragesize①">16384</a> 
@@ -5348,8 +5347,7 @@ or it may be opaque, such as for <a data-link-type="dfn" href="#texture-resource
    <h4 class="heading settled" data-level="6.4.2" id="host-shareable-types"><span class="secno">6.4.2. </span><span class="content">Host-shareable Types</span><a class="self-link" href="#host-shareable-types"></a></h4>
    <p>Host-shareable types are used to describe the contents of buffers which are shared between
 the host and the GPU, or copied between host and GPU without format translation.
-When used for this purpose, the type may additionally have <a data-link-type="dfn" href="#layout-attributes" id="ref-for-layout-attributes①">layout
-attributes</a> applied as described in <a href="#memory-layouts">§ 13.4 Memory Layout</a>.
+When used for this purpose, the type may additionally have <a data-link-type="dfn" href="#layout-attributes" id="ref-for-layout-attributes①">layout attributes</a> applied as described in <a href="#memory-layouts">§ 13.4 Memory Layout</a>.
 As described in <a href="#var-decls">§ 7.3 var Declarations</a>, the <a data-link-type="dfn" href="#store-type" id="ref-for-store-type④">store type</a> of <a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer①">uniform buffer</a> and <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer③">storage buffer</a> variables <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error④⑧">must</a> be host-shareable.</p>
    <p>A type is <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="host-shareable">host-shareable</dfn> if it is both <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete①②">concrete</a> and one of:</p>
    <ul>
@@ -7001,8 +6999,7 @@ converted</a> to the <a data-link-type="dfn" href="#effective-value-type" id="re
 bound resources.</p>
     <li data-md>
      <p><a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer①①">Storage buffers</a> and <a data-link-type="dfn" href="#type-storage-texture" id="ref-for-type-storage-texture④">storage textures</a> with an access mode other
-than <a data-link-type="dfn" href="#access-read" id="ref-for-access-read④">read</a> cannot be <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed③">statically accessed</a> in a <a data-link-type="dfn" href="#vertex-shader-stage" id="ref-for-vertex-shader-stage">vertex shader
-stage</a>.
+than <a data-link-type="dfn" href="#access-read" id="ref-for-access-read④">read</a> cannot be <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed③">statically accessed</a> in a <a data-link-type="dfn" href="#vertex-shader-stage" id="ref-for-vertex-shader-stage">vertex shader stage</a>.
 See WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpudevice-createbindgrouplayout" id="ref-for-dom-gpudevice-createbindgrouplayout">createBindGroupLayout()</a></code>.</p>
     <li data-md>
      <p><a data-link-type="dfn" href="#atomic-type" id="ref-for-atomic-type⑦">Atomic types</a> can only appear in mutable storage buffers or workgroup
@@ -7102,8 +7099,7 @@ That is, two override-declarations must not use the same pipeline constant ID.</
 The pipeline creation API accepts a mapping from overridable constants to a
 value of the constant’s type.
 The constant is identified by a <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="pipeline-overridable constant identifier string" data-noexport id="pipeline-overridable-constant-identifier-string">pipeline-overridable constant
-identifier string</dfn>, which is the base-10 representation of the <a data-link-type="dfn" href="#pipeline-constant-id" id="ref-for-pipeline-constant-id">pipeline
-constant ID</a> if specified, and otherwise the declared <a data-link-type="dfn" href="#name" id="ref-for-name">name</a> of the constant.</p>
+identifier string</dfn>, which is the base-10 representation of the <a data-link-type="dfn" href="#pipeline-constant-id" id="ref-for-pipeline-constant-id">pipeline constant ID</a> if specified, and otherwise the declared <a data-link-type="dfn" href="#name" id="ref-for-name">name</a> of the constant.</p>
    <div class="example wgsl global-scope no-marker" id="example-a789e56e">
     <a class="self-link" href="#example-a789e56e"></a>
     <div class="marker">EXAMPLE: Module constants, pipeline-overrideable</div>
@@ -7274,8 +7270,7 @@ store type.</p>
        <p>If the <a data-link-type="dfn" href="#store-type" id="ref-for-store-type①⑨">store type</a> is an <a data-link-type="dfn" href="#atomic-type" id="ref-for-atomic-type⑧">atomic type</a>, the <a data-link-type="dfn" href="#zero-value" id="ref-for-zero-value④">zero value</a> is that
 of the underlying type (<a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②⑥">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar⑤">integer scalar</a>).</p>
       <li data-md>
-       <p>Otherwise, if the <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②⓪">store type</a> is not <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①③">constructible</a>, the <a data-link-type="dfn" href="#zero-value" id="ref-for-zero-value⑤">zero
-value</a> is determined by recursively applying these rules to each <a data-link-type="dfn" href="#components" id="ref-for-components">component</a> of the <a data-link-type="dfn" href="#composite" id="ref-for-composite③">composite</a> until a <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①④">constructible</a> type is
+       <p>Otherwise, if the <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②⓪">store type</a> is not <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①③">constructible</a>, the <a data-link-type="dfn" href="#zero-value" id="ref-for-zero-value⑤">zero value</a> is determined by recursively applying these rules to each <a data-link-type="dfn" href="#components" id="ref-for-components">component</a> of the <a data-link-type="dfn" href="#composite" id="ref-for-composite③">composite</a> until a <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①④">constructible</a> type is
 encountered.</p>
        <ul>
         <li data-md>
@@ -7576,8 +7571,7 @@ evaluated if and only if:</p>
     <li data-md>
      <p>The expression <code>x + 1</code> is an override-expression because it is composed of an <a data-link-type="dfn" href="#override-declaration" id="ref-for-override-declaration①⓪">override-declaration</a> and an <a data-link-type="dfn" href="#integer-literal" id="ref-for-integer-literal⑧">integer literal</a>.</p>
     <li data-md>
-     <p>The expression has a type of <a data-link-type="dfn" href="#i32" id="ref-for-i32②⓪">i32</a> and is evaluated at <a data-link-type="dfn" href="#pipeline-creation" id="ref-for-pipeline-creation①⑤">pipeline
-creation</a> time.
+     <p>The expression has a type of <a data-link-type="dfn" href="#i32" id="ref-for-i32②⓪">i32</a> and is evaluated at <a data-link-type="dfn" href="#pipeline-creation" id="ref-for-pipeline-creation①⑤">pipeline creation</a> time.
 Its value depends on whether or not <code>x</code> is overridden at pipeline creation
 time.</p>
    </ul>
@@ -7868,7 +7862,7 @@ That is, using convenience letters can only produce a scalar type or a valid vec
       <td><var>e</var>: vec<var>N</var>&lt;<var>T</var>><br> <var>i</var>: i32 or u32<br> <var>T</var> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③①">concrete</a> 
       <td class="nowrap"> <var>e</var>[<var>i</var>]: <var>T</var> 
       <td>
-       Select the <var>i</var>’<sup>th</sup> component of vector<br> The first component is at index <var>i</var>=0. 
+       Select the <var>i</var>'<sup>th</sup> component of vector<br> The first component is at index <var>i</var>=0. 
        <p>If <var>i</var> is outside the range [0,<var>N</var>-1]:<br></p>
        <ul>
         <li data-md>
@@ -7882,7 +7876,7 @@ That is, using convenience letters can only produce a scalar type or a valid vec
       <td><var>e</var>: vec<var>N</var>&lt;<var>T</var>><br> <var>i</var>: i32 or u32<br> <var>T</var> is <a data-link-type="dfn" href="#type-abstract" id="ref-for-type-abstract⑧">abstract</a><br> <var>i</var> is a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions②②">const-expression</a> 
       <td class="nowrap"> <var>e</var>[<var>i</var>]: <var>T</var> 
       <td>
-       Select the <var>i</var>’<sup>th</sup> component of vector<br> The first component is at index <var>i</var>=0. 
+       Select the <var>i</var>'<sup>th</sup> component of vector<br> The first component is at index <var>i</var>=0. 
        <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error⑦⑧">shader-creation error</a> if <var>i</var> is outside the range [0,<var>N</var>-1].</p>
        <p class="note" role="note"><span class="marker">Note:</span> When an abstract vector value <var>e</var> is indexed by an expression that
            is not a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions②③">const-expression</a>, then the vector is <a data-link-type="dfn" href="#concretization-of-a-value" id="ref-for-concretization-of-a-value④">concretized</a> before the index is applied.</p>
@@ -7974,7 +7968,7 @@ See <a href="#sync-builtin-functions">§ 16.11 Synchronization Built-in Functi
       <td><var>r</var>: ref&lt;<var>AS</var>,vec<var>N</var>&lt;<var>T</var>>,<var>AM</var>> or<br> ptr&lt;<var>AS</var>,vec<var>N</var>&lt;<var>T</var>>,<var>AM</var>><br> <var>i</var>: i32 or u32 
       <td class="nowrap"> <var>r</var>[<var>i</var>] : ref&lt;<var>AS</var>,<var>T</var>,<var>AM</var>><br> 
       <td>
-       Compute a reference to the <var>i</var>’<sup>th</sup> component of the vector
+       Compute a reference to the <var>i</var>'<sup>th</sup> component of the vector
            referenced by the <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view②②">memory view</a> <var>r</var>. 
        <p>If <var>i</var> is outside the range [0,<var>N</var>-1]:<br></p>
        <ul>
@@ -8001,7 +7995,7 @@ See <a href="#sync-builtin-functions">§ 16.11 Synchronization Built-in Functi
       <td class="nowrap"> <var>e</var>: mat<var>C</var>x<var>R</var>&lt;<var>T</var>><br> <var>i</var>: i32 or u32<br> <var>T</var> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③②">concrete</a> 
       <td class="nowrap"> <var>e</var>[<var>i</var>]: vec<var>R</var>&lt;<var>T</var>> 
       <td>
-       The result is the <var>i</var>’<sup>th</sup> column vector of <var>e</var>. 
+       The result is the <var>i</var>'<sup>th</sup> column vector of <var>e</var>. 
        <p>If <var>i</var> is outside the range [0,<var>C</var>-1]:<br></p>
        <ul>
         <li data-md>
@@ -8015,7 +8009,7 @@ See <a href="#sync-builtin-functions">§ 16.11 Synchronization Built-in Functi
       <td class="nowrap"> <var>e</var>: mat<var>C</var>x<var>R</var>&lt;<var>T</var>><br> <var>i</var>: i32 or u32<br> <var>T</var> is <a data-link-type="dfn" href="#type-abstract" id="ref-for-type-abstract⑨">abstract</a><br> <var>i</var> is a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions②⑥">const-expression</a> 
       <td class="nowrap"> <var>e</var>[<var>i</var>]: vec<var>R</var>&lt;<var>T</var>> 
       <td>
-       The result is the <var>i</var>’<sup>th</sup> column vector of <var>e</var>. 
+       The result is the <var>i</var>'<sup>th</sup> column vector of <var>e</var>. 
        <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error⑧①">shader-creation error</a> if <var>i</var> is outside the range [0,<var>C</var>-1].</p>
        <p class="note" role="note"><span class="marker">Note:</span> When an abstract matrix value <var>e</var> is indexed by an expression that
            is not a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions②⑦">const-expression</a>, then the matrix is <a data-link-type="dfn" href="#concretization-of-a-value" id="ref-for-concretization-of-a-value⑤">concretized</a> before the index is applied.</p>
@@ -8032,7 +8026,7 @@ See <a href="#sync-builtin-functions">§ 16.11 Synchronization Built-in Functi
       <td class="nowrap"> <var>r</var>: ref&lt;<var>AS</var>,mat<var>C</var>x<var>R</var>&lt;<var>T</var>>,<var>AM</var>> or<br> ptr&lt;<var>AS</var>,mat<var>C</var>x<var>R</var>&lt;<var>T</var>>,<var>AM</var>><br> <var>i</var>: i32 or u32 
       <td class="nowrap"> <var>r</var>[<var>i</var>] : ref&lt;<var>AS</var>,vec<var>R</var>&lt;<var>T</var>>,<var>AM</var>> 
       <td>
-       Compute a reference to the <var>i</var>’<sup>th</sup> column vector of the
+       Compute a reference to the <var>i</var>'<sup>th</sup> column vector of the
            matrix referenced by the <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view②③">memory view</a> <var>r</var>. 
        <p>If <var>i</var> is outside the range [0,<var>C</var>-1]:<br></p>
        <ul>
@@ -8059,7 +8053,7 @@ See <a href="#sync-builtin-functions">§ 16.11 Synchronization Built-in Functi
       <td class="nowrap"> <var>e</var>: array&lt;<var>T</var>,<var>N</var>><br> <var>i</var>: i32 or u32<br> <var>T</var> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③③">concrete</a> 
       <td class="nowrap"> <var>e</var>[<var>i</var>] : <var>T</var> 
       <td>
-       The result is the value of the <var>i</var>’<sup>th</sup> element of the array value <var>e</var>. 
+       The result is the value of the <var>i</var>'<sup>th</sup> element of the array value <var>e</var>. 
        <p>If <var>i</var> is outside the range [0,<var>N</var>-1]:<br></p>
        <ul>
         <li data-md>
@@ -8073,7 +8067,7 @@ See <a href="#sync-builtin-functions">§ 16.11 Synchronization Built-in Functi
       <td class="nowrap"> <var>e</var>: array&lt;<var>T</var>,<var>N</var>><br> <var>i</var>: i32 or u32<br> <var>T</var> is <a data-link-type="dfn" href="#type-abstract" id="ref-for-type-abstract①⓪">abstract</a><br> <var>i</var> is a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions③⓪">const-expression</a> 
       <td class="nowrap"> <var>e</var>[<var>i</var>] : <var>T</var> 
       <td>
-       The result is the value of the <var>i</var>’<sup>th</sup> element of the array value <var>e</var>. 
+       The result is the value of the <var>i</var>'<sup>th</sup> element of the array value <var>e</var>. 
        <p>It is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error⑧④">shader-creation error</a> if <var>i</var> is outside the range [0,<var>N</var>-1].</p>
        <p class="note" role="note"><span class="marker">Note:</span> When an abstract array value <var>e</var> is indexed by an expression that
            is not a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions③①">const-expression</a>, then the array is <a data-link-type="dfn" href="#concretization-of-a-value" id="ref-for-concretization-of-a-value⑥">concretized</a> before the index is applied.</p>
@@ -8090,7 +8084,7 @@ See <a href="#sync-builtin-functions">§ 16.11 Synchronization Built-in Functi
       <td class="nowrap"> <var>r</var>: ref&lt;<var>AS</var>,array&lt;<var>T</var>,<var>N</var>>,<var>AM</var>> or<br> ptr&lt;<var>AS</var>,array&lt;<var>T</var>,<var>N</var>>,<var>AM</var>><br> <var>i</var>: i32 or u32 
       <td class="nowrap"> <var>r</var>[<var>i</var>] : ref&lt;<var>AS</var>,<var>T</var>,<var>AM</var>> 
       <td>
-       Compute a reference to the <var>i</var>’<sup>th</sup> element of the array
+       Compute a reference to the <var>i</var>'<sup>th</sup> element of the array
            referenced by the <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view②④">memory view</a> <var>r</var>. 
        <p>If <var>i</var> is outside the range [0,<var>N</var>-1]:<br></p>
        <ul>
@@ -8107,11 +8101,10 @@ See <a href="#sync-builtin-functions">§ 16.11 Synchronization Built-in Functi
       <td><var>r</var>: ref&lt;<var>AS</var>,array&lt;<var>T</var>>,<var>AM</var>> or<br> ptr&lt;<var>AS</var>,array&lt;<var>T</var>>,<var>AM</var>><br> <var>i</var>: i32 or u32 
       <td class="nowrap"> <var>r</var>[<var>i</var>] : ref&lt;<var>AS</var>,<var>T</var>,<var>AM</var>> 
       <td>
-       Compute a reference to the <var>i</var>’<sup>th</sup> element of the
+       Compute a reference to the <var>i</var>'<sup>th</sup> element of the
            runtime-sized array referenced by the <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view②⑤">memory view</a> <var>r</var>. 
        <p>If at runtime the array has <var>N</var> elements, and <var>i</var> is outside the range
-           [0,<var>N</var>-1], then the expression evaluates to an <a data-link-type="dfn" href="#invalid-memory-reference" id="ref-for-invalid-memory-reference⑧">invalid memory
-           reference</a>.</p>
+           [0,<var>N</var>-1], then the expression evaluates to an <a data-link-type="dfn" href="#invalid-memory-reference" id="ref-for-invalid-memory-reference⑧">invalid memory reference</a>.</p>
        <p>If <var>i</var> is a signed integer, and <var>i</var> is less than 0:<br></p>
        <ul>
         <li data-md>
@@ -10645,8 +10638,7 @@ but each expression has a statically determinable root identifier.</p>
    <h5 class="heading settled" data-level="10.4.1.2" id="aliasing"><span class="secno">10.4.1.2. </span><span class="content">Aliasing</span><a class="self-link" href="#aliasing"></a></h5>
    <p>While the <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable①⑧">originating variable</a> of a <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier③">root identifier</a> is a dynamic concept that
 depends on the <a data-link-type="dfn" href="#call-site" id="ref-for-call-site⑦">call sites</a> for the function, WGSL modules can be
-statically analyzed to determine the set of all possible <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable①⑨">originating
-variables</a> for each root identifier.</p>
+statically analyzed to determine the set of all possible <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable①⑨">originating variables</a> for each root identifier.</p>
    <p>Two <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier④">root identifiers</a> <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="alias">alias</dfn> when they have the same <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable②⓪">originating variable</a>.
 Execution of a WGSL function <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①④③">must not</a> potentially
 access memory through aliased root identifiers, where one access is a write and
@@ -12422,10 +12414,8 @@ table.</p>
       <td>For <a data-link-type="dfn" href="#sampler-resource" id="ref-for-sampler-resource⑤">sampler</a> and <a data-link-type="dfn" href="#texture-resource" id="ref-for-texture-resource⑥">texture</a> variables.<br> 
    </table>
    <p>WGSL <a data-link-type="dfn" href="#predeclared" id="ref-for-predeclared①⑤">predeclares</a> an <a data-link-type="dfn" href="#enumerant" id="ref-for-enumerant①②">enumerant</a> for each address space, except for the <code>handle</code> address space.</p>
-   <p><a data-link-type="dfn" href="#variable" id="ref-for-variable①⑥">Variables</a> in the <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup①④">workgroup</a> address space <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①⑤">must</a> only be <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed①③">statically accessed</a> in a <a data-link-type="dfn" href="#compute-shader-stage" id="ref-for-compute-shader-stage①②">compute
-shader stage</a>.</p>
-   <p><a data-link-type="dfn" href="#variable" id="ref-for-variable①⑦">Variables</a> in the <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage⑨">storage</a> address space (<a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer②②">storage
-buffers</a>) can only be <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed①④">statically accessed</a> by a <a data-link-type="dfn" href="#vertex-shader-stage" id="ref-for-vertex-shader-stage⑥">vertex shader stage</a> if the access mode is <a data-link-type="dfn" href="#access-read" id="ref-for-access-read①①">read</a>.
+   <p><a data-link-type="dfn" href="#variable" id="ref-for-variable①⑥">Variables</a> in the <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup①④">workgroup</a> address space <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①⑤">must</a> only be <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed①③">statically accessed</a> in a <a data-link-type="dfn" href="#compute-shader-stage" id="ref-for-compute-shader-stage①②">compute shader stage</a>.</p>
+   <p><a data-link-type="dfn" href="#variable" id="ref-for-variable①⑦">Variables</a> in the <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage⑨">storage</a> address space (<a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer②②">storage buffers</a>) can only be <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed①④">statically accessed</a> by a <a data-link-type="dfn" href="#vertex-shader-stage" id="ref-for-vertex-shader-stage⑥">vertex shader stage</a> if the access mode is <a data-link-type="dfn" href="#access-read" id="ref-for-access-read①①">read</a>.
 Variables whose <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②⑥">store type</a> is a <a data-link-type="dfn" href="#type-storage-texture" id="ref-for-type-storage-texture⑤">storage texture</a> with a <a data-link-type="dfn" href="#access-write" id="ref-for-access-write④">write</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②⓪">read_write</a> <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②④">access mode</a> cannot be <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed①⑤">statically accessed</a> by a <a data-link-type="dfn" href="#vertex-shader-stage" id="ref-for-vertex-shader-stage⑦">vertex shader stage</a>.
 See WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpudevice-createbindgrouplayout" id="ref-for-dom-gpudevice-createbindgrouplayout①">createBindGroupLayout()</a></code>.</p>
    <p class="note" role="note"><span class="marker">Note:</span> Each address space may have different performance characteristics.</p>
@@ -12515,7 +12505,7 @@ following table:</p>
       <td>2 
       <td>2 
      <tr>
-      <td><a data-link-type="dfn" href="#atomic-type" id="ref-for-atomic-type①⓪">atomic&lt;|T|></a> 
+      <td><a data-link-type="dfn" href="#atomic-type" id="ref-for-atomic-type①⓪">atomic&lt;<var>T</var>></a> 
       <td>4 
       <td>4 
      <tr>
@@ -12875,7 +12865,7 @@ then:</p>
 then:</p>
    <ul>
     <li data-md>
-     <p>The <var>i</var>’<sup>th</sup> member of the structure value is placed at byte offset <var>k</var> + <a data-link-type="dfn" href="#offsetofmember" id="ref-for-offsetofmember⑤">OffsetOfMember</a>(<var>S</var>,<var>i</var>).
+     <p>The <var>i</var>'<sup>th</sup> member of the structure value is placed at byte offset <var>k</var> + <a data-link-type="dfn" href="#offsetofmember" id="ref-for-offsetofmember⑤">OffsetOfMember</a>(<var>S</var>,<var>i</var>).
 See <a href="#structure-member-layout">§ 13.4.2 Structure Member Layout</a>.</p>
    </ul>
    <h4 class="heading settled" data-level="13.4.5" id="address-space-layout-constraints"><span class="secno">13.4.5. </span><span class="content">Address Space Layout Constraints</span><a class="self-link" href="#address-space-layout-constraints"></a></h4>
@@ -12937,7 +12927,7 @@ multiple of the <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requ
    <ul>
     <li data-md>
      <p>Array elements are aligned to 16 byte boundaries.
-That is, <a data-link-type="dfn" href="#strideof" id="ref-for-strideof⑧">StrideOf</a>(array&lt;<var>T</var>,<var>N</var>>) = 16 × <var>k</var>’ for some positive integer <var>k</var>’.</p>
+That is, <a data-link-type="dfn" href="#strideof" id="ref-for-strideof⑧">StrideOf</a>(array&lt;<var>T</var>,<var>N</var>>) = 16 × <var>k</var>’ for some positive integer <var>k</var>'.</p>
     <li data-md>
      <p>If a structure member itself has a structure type <code>S</code>, then the number of
 bytes between the start of that member and the start of any following member <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②⑥">must</a> be at least <a data-link-type="dfn" href="#roundup" id="ref-for-roundup①⓪">roundUp</a>(16, <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①④">SizeOf</a>(S)).</p>
@@ -13212,8 +13202,7 @@ same value, it is said to be a <dfn class="dfn-paneled" data-dfn-type="dfn" data
 it is said to be a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="uniform-variable">uniform variable</dfn>.</p>
    </ul>
    <h4 class="heading settled" data-level="14.2.2" id="uniformity-overview"><span class="secno">14.2.2. </span><span class="content">Uniformity Analysis Overview</span><a class="self-link" href="#uniformity-overview"></a></h4>
-   <p>The remaining subsections specify a static analysis that verifies that <a href="#collective-operations">collective operations</a> are only executed in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow⑤">uniform
-control flow</a>.</p>
+   <p>The remaining subsections specify a static analysis that verifies that <a href="#collective-operations">collective operations</a> are only executed in <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow⑤">uniform control flow</a>.</p>
    <p>The analysis assumes <a data-link-type="dfn" href="#dynamic-error" id="ref-for-dynamic-error⑧">dynamic errors</a> do not occur.
 A shader stage with a <a data-link-type="dfn" href="#dynamic-error" id="ref-for-dynamic-error⑨">dynamic error</a> is already non-portable, no matter the outcome
 of uniformity analysis.</p>
