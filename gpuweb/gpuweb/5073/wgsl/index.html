@@ -833,7 +833,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/1ac6b0ea60107272b3d57b9fe02fcb5f41664222/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/1ac6b0ea60107272b3d57b9fe02fcb5f41664222/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/f98f6e15757bccb2f651794ff484b4d11af055fe/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/f98f6e15757bccb2f651794ff484b4d11af055fe/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -15539,7 +15539,8 @@ than performing a multiply followed by an addition.</p>
      <li data-md>
       <p>If <var>X</var> is exactly representable in the target type <var>T</var>, then the result is that value.</p>
      <li data-md>
-      <p>Otherwise, the result is the value in both <var>X</var> and <var>T</var> that is closest to <a data-link-type="dfn" href="#truncate" id="ref-for-truncate①②">truncate</a>(<var>X</var>).</p>
+      <p>Otherwise, the result is the value in <var>T</var> closest to <a data-link-type="dfn" href="#truncate" id="ref-for-truncate①②">truncate</a>(<var>X</var>) and also exactly
+representable in <var>X</var>.</p>
     </ul>
    </blockquote>
    <p class="note" role="note"><span class="marker">Note:</span> In other words, for non-NaN cases, floating point to integer conversion
