@@ -827,13 +827,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-02-18">18 February 2025</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-02-19">19 February 2025</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/f98f6e15757bccb2f651794ff484b4d11af055fe/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/f98f6e15757bccb2f651794ff484b4d11af055fe/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/408bdf628ab48ec1cd808c23fb2c8732c26d305a/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/408bdf628ab48ec1cd808c23fb2c8732c26d305a/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -15540,7 +15540,7 @@ than performing a multiply followed by an addition.</p>
       <p>If <var>X</var> is exactly representable in the target type <var>T</var>, then the result is that value.</p>
      <li data-md>
       <p>Otherwise, the result is the value in <var>T</var> closest to <a data-link-type="dfn" href="#truncate" id="ref-for-truncate①②">truncate</a>(<var>X</var>) and also exactly
-representable in <var>X</var>.</p>
+representable in the original floating point type.</p>
     </ul>
    </blockquote>
    <p class="note" role="note"><span class="marker">Note:</span> In other words, for non-NaN cases, floating point to integer conversion
