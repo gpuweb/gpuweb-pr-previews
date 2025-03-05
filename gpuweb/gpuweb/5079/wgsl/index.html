@@ -827,13 +827,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-02-24">24 February 2025</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-03-05">5 March 2025</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/beaufortfrancois/gpuweb/blob/edf372604d7cd4978462ad0f4d4d19d2eeb85250/wgsl/index.bs">https://github.com/beaufortfrancois/gpuweb/blob/edf372604d7cd4978462ad0f4d4d19d2eeb85250/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/beaufortfrancois/gpuweb/blob/6626eff8e46d89eb64d8b0ca9ab9436367bfe22f/wgsl/index.bs">https://github.com/beaufortfrancois/gpuweb/blob/6626eff8e46d89eb64d8b0ca9ab9436367bfe22f/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -5707,8 +5707,8 @@ That is, a <a data-link-type="dfn" href="#read-access" id="ref-for-read-access">
 This often requires using an <a data-link-type="dfn" href="#address-of" id="ref-for-address-of①">address-of</a> operation (unary <code>&amp;</code>) to get a pointer to the variable’s contents.</p>
      </ul>
    </ul>
-   <div class="example wgsl no-marker" id="example-db23276e">
-    <a class="self-link" href="#example-db23276e"></a>
+   <div class="example wgsl no-marker" id="example-a2365448">
+    <a class="self-link" href="#example-a2365448"></a>
     <div class="marker">EXAMPLE: Using a pointer as a short name for part of a variable</div>
 <pre class="highlight"><c- k>struct</c-> <c- n>Particle</c-> <c- p>{</c->
   position<c- p>:</c-> vec3<c- o>&lt;</c->f32<c- o>></c-><c- p>,</c->
@@ -5724,8 +5724,7 @@ This often requires using an <a data-link-type="dfn" href="#address-of" id="ref-
 <c- nd>@compute</c-> <c- nd>@workgroup_size</c-><c- p>(</c-><c- mi>1</c-><c- p>)</c->
 <c- k>fn</c-> <c- n>main</c-><c- p>()</c-> <c- p>{</c->
   <c- c1>// Form a pointer to a specific Particle in storage memory.</c->
-  <c- a>let</c-> <c- n>active_particle</c-><c- p>:</c-> ptr<c- o>&lt;</c->storage<c- p>,</c-><c- n>Particle</c-><c- o>></c-> <c- o>=</c->
-      <c- o>&amp;</c-><c- n>system</c-><c- p>.</c-><c- n>particles</c-><c- p>[</c-><c- n>system</c-><c- p>.</c-><c- n>active_index</c-><c- p>];</c->
+  <c- a>let</c-> <c- n>active_particle</c-> <c- o>=</c-> <c- o>&amp;</c-><c- n>system</c-><c- p>.</c-><c- n>particles</c-><c- p>[</c-><c- n>system</c-><c- p>.</c-><c- n>active_index</c-><c- p>];</c->
 
   <c- a>let</c-> <c- n>delta_position</c-><c- p>:</c-> vec3<c- o>&lt;</c->f32<c- o>></c-> <c- o>=</c-> <c- p>(</c-><c- o>*</c-><c- n>active_particle</c-><c- p>).</c-><c- n>velocity</c-> <c- o>*</c-> <c- n>system</c-><c- p>.</c-><c- n>timestep</c-><c- p>;</c->
   <c- a>let</c-> <c- n>current_position</c-><c- p>:</c-> vec3<c- o>&lt;</c->f32<c- o>></c->  <c- o>=</c-> <c- p>(</c-><c- o>*</c-><c- n>active_particle</c-><c- p>).</c->position<c- p>;</c->
@@ -5803,8 +5802,8 @@ See <a href="#array-access-expr">§ 8.5.3 Array Access Expression</a>.</p>
      </ul>
    </ul>
    <p>In all cases, the <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode⑧">access mode</a> of the result is the same as the access mode of the original reference.</p>
-   <div class="example wgsl no-marker" id="example-4c8c00d5">
-    <a class="self-link" href="#example-4c8c00d5"></a>
+   <div class="example wgsl no-marker" id="example-5aaac12b">
+    <a class="self-link" href="#example-5aaac12b"></a>
     <div class="marker">EXAMPLE: Component reference from a composite reference</div>
 <pre class="highlight"><c- k>struct</c-> <c- n>S</c-> <c- p>{</c->
     <c- n>age</c-><c- p>:</c-> i32<c- p>,</c->
@@ -5946,7 +5945,7 @@ See <a href="#array-access-expr">§ 8.5.3 Array Access Expression</a>.</p>
     <c- c1>// is executed.</c->
     <c- a>let</c-> <c- n>p_m_col2</c-><c- p>:</c-> vec2<c- o>&lt;</c->f32<c- o>></c-> <c- o>=</c-> <c- n>m_ptr</c-><c- p>[</c-><c- mi>2</c-><c- p>];</c->
 
-    <c- a>let</c-> <c- n>A_Ptr</c-> <c- o>=</c-> <c- o>&amp;</c-><c- n>A</c-><c- p>;</c->
+    <c- a>let</c-> <c- n>A_ptr</c-> <c- o>=</c-> <c- o>&amp;</c-><c- n>A</c-><c- p>;</c->
     <c- c1>// When evaluating 'A[4]'</c->
     <c- c1>// 1. First evaluate 'A', yielding a pointer to the memory for</c->
     <c- c1>//    the 'A' variable. The result has type ptr&lt;function,array&lt;i32,5>,read_write>.</c->
@@ -18816,7 +18815,8 @@ but a value may infer the type.</p>
       <td>For the incident vector <code>e1</code> and surface normal <code>e2</code>, and the ratio of
     indices of refraction <code>e3</code>,
     let <code>k = 1.0 - e3 * e3 * (1.0 - dot(e2, e1) * dot(e2, e1))</code>.
-    If <code>k &lt; 0.0</code>, returns the refraction vector 0.0, otherwise return the refraction vector <code>e3 * e1 - (e3 * dot(e2, e1) + sqrt(k)) * e2</code>. 
+    If <code>k &lt; 0.0</code>, returns the refraction vector 0.0, otherwise return the refraction vector <code>e3 * e1 - (e3 * dot(e2, e1) + sqrt(k)) * e2</code>. The incident vector <code>e1</code> and the normal <code>e2</code> should be normalized for desired results according to Snell’s Law; otherwise, the results
+    may not conform to expected physical behavior. 
    </table>
    <h4 class="heading settled" data-level="17.5.51" id="reverseBits-builtin"><span class="secno">17.5.51. </span><span class="content"><code>reverseBits</code></span><a class="self-link" href="#reverseBits-builtin"></a></h4>
    <table class="data builtin">
@@ -21547,7 +21547,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
      <tr class="algorithm" data-algorithm="subgroupShuffleDown">
       <td style="width:10%">Overload 
       <td class="nowrap">
-<pre class="highlight"><c- nd>@must_use</c-> <c- k>fn</c-> <c- n>subgroupShuffle</c-><c- p>(</c-><c- n>e</c-> <c- p>:</c-> <c- n>T</c-><c- p>,</c-> <c- n>delta</c-> <c- p>:</c-> u32<c- p>)</c-> <c- p>-></c-> <c- n>T</c->
+<pre class="highlight"><c- nd>@must_use</c-> <c- k>fn</c-> <c- n>subgroupShuffleDown</c-><c- p>(</c-><c- n>e</c-> <c- p>:</c-> <c- n>T</c-><c- p>,</c-> <c- n>delta</c-> <c- p>:</c-> u32<c- p>)</c-> <c- p>-></c-> <c- n>T</c->
 </pre>
      <tr>
       <td>Preconditions 
