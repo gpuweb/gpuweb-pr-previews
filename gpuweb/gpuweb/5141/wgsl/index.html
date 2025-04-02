@@ -833,7 +833,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/beaufortfrancois/gpuweb/blob/06e452c9c58603b581f02132c81e5228d09db158/wgsl/index.bs">https://github.com/beaufortfrancois/gpuweb/blob/06e452c9c58603b581f02132c81e5228d09db158/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/beaufortfrancois/gpuweb/blob/f841e660ff94191567f9dff92d9810591debb55f/wgsl/index.bs">https://github.com/beaufortfrancois/gpuweb/blob/f841e660ff94191567f9dff92d9810591debb55f/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -21220,7 +21220,7 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
    <h4 class="heading settled" data-level="17.11.4" id="workgroupUniformLoad-builtin"><span class="secno">17.11.4. </span><span class="content"><code>workgroupUniformLoad</code></span><a class="self-link" href="#workgroupUniformLoad-builtin"></a></h4>
    <table class="data builtin">
     <tbody>
-     <tr>
+     <tr class="algorithm" data-algorithm="workgroupUniformLoad via pointer to constructible value">
       <td style="width:10%">Overload 
       <td class="nowrap">
 <pre class="highlight"><c- nd>@must_use</c-> <c- k>fn</c-> <c- n>workgroupUniformLoad</c-><c- p>(</c-><c- n>p</c-> <c- p>:</c-> ptr<c- o>&lt;</c->workgroup<c- p>,</c-> <c- n>T</c-><c- o>></c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c->
@@ -21239,7 +21239,7 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
    </table>
    <table class="data builtin">
     <tbody>
-     <tr>
+     <tr class="algorithm" data-algorithm="workgroupUniformLoad via pointer to atomic">
       <td style="width:10%">Overload 
       <td class="nowrap">
 <pre class="highlight"><c- nd>@must_use</c-> <c- k>fn</c-> <c- n>workgroupUniformLoad</c-><c- p>(</c-><c- n>p</c-> <c- p>:</c-> ptr<c- o>&lt;</c->workgroup<c- p>,</c-> atomic<c- o>&lt;</c-><c- n>T</c-><c- o>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>)</c-> <c- p>-></c-> <c- n>T</c->
