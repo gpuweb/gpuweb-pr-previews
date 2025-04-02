@@ -833,7 +833,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/beaufortfrancois/gpuweb/blob/f841e660ff94191567f9dff92d9810591debb55f/wgsl/index.bs">https://github.com/beaufortfrancois/gpuweb/blob/f841e660ff94191567f9dff92d9810591debb55f/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/beaufortfrancois/gpuweb/blob/812bc4e1195d2be44e3fdaa92d6b1ec1a6a26447/wgsl/index.bs">https://github.com/beaufortfrancois/gpuweb/blob/812bc4e1195d2be44e3fdaa92d6b1ec1a6a26447/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -21319,7 +21319,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
        Inclusive prefix scan operation.<br> 
        <p>Returns the sum of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①②">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup④">subgroup</a> whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id⑥">subgroup invocation IDs</a> are less than or equal to
     the current invocation’s id.</p>
-       <p class="note" role="note"><span class="marker">Note:</span> equivalent to <code>subgroupInclusiveAdd(x) + x</code>.</p>
+       <p class="note" role="note"><span class="marker">Note:</span> equivalent to <code>subgroupExclusiveAdd(x) + x</code>.</p>
    </table>
    <h4 class="heading settled" data-level="17.12.2" id="subgroupall-builtin"><span class="secno">17.12.2. </span><span class="content"><code>subgroupAll</code></span><a class="self-link" href="#subgroupall-builtin"></a></h4>
    <table class="data builtin">
