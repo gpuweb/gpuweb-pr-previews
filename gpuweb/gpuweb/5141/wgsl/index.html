@@ -827,13 +827,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-04-02">2 April 2025</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-04-05">5 April 2025</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/beaufortfrancois/gpuweb/blob/812bc4e1195d2be44e3fdaa92d6b1ec1a6a26447/wgsl/index.bs">https://github.com/beaufortfrancois/gpuweb/blob/812bc4e1195d2be44e3fdaa92d6b1ec1a6a26447/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/beaufortfrancois/gpuweb/blob/35e5344c29f1bffdbf2c8e07288b8779f81ecd89/wgsl/index.bs">https://github.com/beaufortfrancois/gpuweb/blob/35e5344c29f1bffdbf2c8e07288b8779f81ecd89/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -21247,7 +21247,7 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
      <tr>
       <td>Description 
       <td>
-       Atomically loads value pointed to by <code>p</code> and returns it to all invocations in the workgroup.
+       Atomically loads the value pointed to by <code>p</code> and returns it to all invocations in the workgroup.
     The return value is <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value①④">uniform</a>. <code>p</code> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑧⑥">must</a> be a <a data-link-type="dfn" href="#uniform-value" id="ref-for-uniform-value①⑤">uniform value</a>. 
        <p>Executes a <a data-link-type="dfn" href="#control-barrier" id="ref-for-control-barrier⑤">control barrier</a> synchronization function that affects
     memory and atomic operations in the <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup②⑤">workgroup</a> address
