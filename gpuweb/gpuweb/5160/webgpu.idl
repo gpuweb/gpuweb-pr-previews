@@ -135,7 +135,7 @@ enum GPUFeatureName {
     "clip-distances",
     "dual-source-blending",
     "subgroups",
-    "read-write-storage-texture-format-tier2",
+    "storage-texture-format-tier2",
 };
 
 [Exposed=(Window, Worker), SecureContext]
