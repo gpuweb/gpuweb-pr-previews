@@ -827,13 +827,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-04-29">29 April 2025</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-04-30">30 April 2025</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/petermcneeleychromium/gpuweb/blob/0868367e85c62939b331d0946f8b67479553b672/wgsl/index.bs">https://github.com/petermcneeleychromium/gpuweb/blob/0868367e85c62939b331d0946f8b67479553b672/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/petermcneeleychromium/gpuweb/blob/b04b6a0e9437df11bf3587bb004b9645e46f0181/wgsl/index.bs">https://github.com/petermcneeleychromium/gpuweb/blob/b04b6a0e9437df11bf3587bb004b9645e46f0181/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -15065,7 +15065,7 @@ the correctly rounded result may be finite or infinite.</p>
 An example of such a case is in <code>x - y</code> where <code>x=1.0 </code>and <code>y=1.17e-38</code> (the smallest positive normal single precision float).
 These numbers have exponents are that are <code>126</code> units apart. The <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> <a data-link-type="dfn" href="#ieee754-binary64" id="ref-for-ieee754-binary64①">binary64</a>(double precision) format only has 52 bits in its significand,
 so in doing the subtraction, all the significant bits of <code>y</code> are lost.
-Depending on rounding modes, for this and many other cases where y is small but non-zero, the WGSL expression x - y may yield the same value as x.
+Depending on rounding modes, for this and many other cases where <code>y</code> is small but non-zero, the WGSL expression <code>x - y</code> may yield the same value as <code>x</code>.
 Note that <a data-link-type="biblio" href="#biblio-ecmascript" title="ECMAScript Language Specification">[ECMASCRIPT]</a> uses the equivalent of the <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> roundTiesToEven rounding mode.</p>
    <p>The units in the last place, <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="ulp">ULP</dfn>, for a floating point
 number <code>x</code> is defined as follows <a data-link-type="biblio" href="#biblio-muller2005" title="On the definition of ulp(x)">[Muller2005]</a>:</p>
