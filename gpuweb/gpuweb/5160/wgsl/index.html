@@ -833,7 +833,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/Jiawei-Shao/gpuweb/blob/d442e0a16b13d590ca1639e4364f01453d64a373/wgsl/index.bs">https://github.com/Jiawei-Shao/gpuweb/blob/d442e0a16b13d590ca1639e4364f01453d64a373/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/Jiawei-Shao/gpuweb/blob/2e5981d879c665753dccb4f2ebdd3cd354bafbd0/wgsl/index.bs">https://github.com/Jiawei-Shao/gpuweb/blob/2e5981d879c665753dccb4f2ebdd3cd354bafbd0/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -6329,6 +6329,20 @@ This is also known as the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noex
       <td> <var>v</var>
       <td> max(-128, min(127, <code>T</code>)) 
      <tr>
+      <td>16unorm
+      <td>16
+      <td>unsigned integer <var>v</var> ∈ {0,...,65535}
+      <td>f32
+      <td> <var>v</var> ÷ 65535
+      <td> max(0, min(1, <code>T</code>)) 
+     <tr>
+      <td>16snorm
+      <td>16
+      <td>signed integer <var>v</var> ∈ {-32768,...,32767}
+      <td>f32
+      <td> <var>v</var> ÷ 32767
+      <td> max(-1, min(1, <code>T</code>)) 
+     <tr>
       <td>16uint
       <td>16
       <td>unsigned integer <var>v</var> ∈ {0,...,65535}
@@ -6370,6 +6384,48 @@ This is also known as the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noex
       <td>f32
       <td><var>v</var>
       <td><code>T</code> 
+     <tr>
+      <td>2unorm
+      <td>2
+      <td>unsigned integer <var>v</var> ∈ {0,...,3}
+      <td>f32
+      <td> <var>v</var> ÷ 3
+      <td> max(0, min(1, <code>T</code>)) 
+     <tr>
+      <td>2uint
+      <td>2
+      <td>unsigned integer <var>v</var> ∈ {0,...,3}
+      <td>u32
+      <td> <var>v</var>
+      <td> min(3, <code>T</code>) 
+     <tr>
+      <td>10unorm
+      <td>10
+      <td>unsigned integer <var>v</var> ∈ {0,...,1023}
+      <td>f32
+      <td> <var>v</var> ÷ 1023
+      <td> max(0, min(1, <code>T</code>)) 
+     <tr>
+      <td>10uint
+      <td>10
+      <td>unsigned integer <var>v</var> ∈ {0,...,1023}
+      <td>u32
+      <td> <var>v</var>
+      <td> min(1023, <code>T</code>) 
+     <tr>
+      <td>10float
+      <td>10
+      <td>10-bit floating point value: 5 bits of biased exponent, 5 bits of fraction <var>v</var>
+      <td>f32
+      <td> <var>v</var>
+      <td>max(0, <code>T</code>) 
+     <tr>
+      <td>11float
+      <td>11
+      <td>11-bit floating point value: 5 bits of biased exponent, 6 bits of fraction <var>v</var>
+      <td>f32
+      <td> <var>v</var>
+      <td>max(0, <code>T</code>) 
    </table>
    <p>The texel formats listed in the <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="storage-texel-formats" data-noexport id="storage-texel-formats">Texel Formats for Storage Textures</dfn> table
 correspond to the <a href="https://gpuweb.github.io/gpuweb/#plain-color-formats">WebGPU plain color formats</a> which support the WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding">STORAGE_BINDING</a></code> usage with at least one <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode①⓪">access mode</a>.
