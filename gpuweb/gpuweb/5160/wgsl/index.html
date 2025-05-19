@@ -827,13 +827,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-04-24">24 April 2025</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-05-19">19 May 2025</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/Jiawei-Shao/gpuweb/blob/f85c5fa2d2f859976d49c31a60b7154f97932c8c/wgsl/index.bs">https://github.com/Jiawei-Shao/gpuweb/blob/f85c5fa2d2f859976d49c31a60b7154f97932c8c/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/Jiawei-Shao/gpuweb/blob/3d3eb075d945bb5e6096a84245f9b21d9a3dd772/wgsl/index.bs">https://github.com/Jiawei-Shao/gpuweb/blob/3d3eb075d945bb5e6096a84245f9b21d9a3dd772/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -5272,7 +5272,7 @@ The enumeration types exist, but cannot be spelled in WGSL source.</p>
      <tr>
       <td><a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage①">storage</a> 
      <tr>
-      <td rowspan="23"><a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format①">texel format</a> 
+      <td rowspan="40"><a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format①">texel format</a> 
       <td><a data-link-type="dfn" href="#texel-format-rgba8unorm" id="ref-for-texel-format-rgba8unorm①">rgba8unorm</a> 
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-rgba8snorm" id="ref-for-texel-format-rgba8snorm">rgba8snorm</a> 
@@ -5281,11 +5281,33 @@ The enumeration types exist, but cannot be spelled in WGSL source.</p>
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-rgba8sint" id="ref-for-texel-format-rgba8sint">rgba8sint</a> 
      <tr>
+      <td><a data-link-type="dfn" href="#texel-format-rgba16unorm" id="ref-for-texel-format-rgba16unorm">rgba16unorm</a> 
+     <tr>
+      <td><a data-link-type="dfn" href="#texel-format-rgba16snorm" id="ref-for-texel-format-rgba16snorm">rgba16snorm</a> 
+     <tr>
       <td><a data-link-type="dfn" href="#texel-format-rgba16uint" id="ref-for-texel-format-rgba16uint">rgba16uint</a> 
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-rgba16sint" id="ref-for-texel-format-rgba16sint">rgba16sint</a> 
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-rgba16float" id="ref-for-texel-format-rgba16float">rgba16float</a> 
+     <tr>
+      <td><a data-link-type="dfn" href="#texel-format-rg8unorm" id="ref-for-texel-format-rg8unorm">rg8unorm</a> 
+     <tr>
+      <td><a data-link-type="dfn" href="#texel-format-rg8snorm" id="ref-for-texel-format-rg8snorm">rg8snorm</a> 
+     <tr>
+      <td><a data-link-type="dfn" href="#texel-format-rg8uint" id="ref-for-texel-format-rg8uint">rg8uint</a> 
+     <tr>
+      <td><a data-link-type="dfn" href="#texel-format-rg8sint" id="ref-for-texel-format-rg8sint">rg8sint</a> 
+     <tr>
+      <td><a data-link-type="dfn" href="#texel-format-rg16unorm" id="ref-for-texel-format-rg16unorm">rg16unorm</a> 
+     <tr>
+      <td><a data-link-type="dfn" href="#texel-format-rg16snorm" id="ref-for-texel-format-rg16snorm">rg16snorm</a> 
+     <tr>
+      <td><a data-link-type="dfn" href="#texel-format-rg16uint" id="ref-for-texel-format-rg16uint">rg16uint</a> 
+     <tr>
+      <td><a data-link-type="dfn" href="#texel-format-rg16sint" id="ref-for-texel-format-rg16sint">rg16sint</a> 
+     <tr>
+      <td><a data-link-type="dfn" href="#texel-format-rg16float" id="ref-for-texel-format-rg16float">rg16float</a> 
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-r32uint" id="ref-for-texel-format-r32uint">r32uint</a> 
      <tr>
@@ -5309,15 +5331,27 @@ The enumeration types exist, but cannot be spelled in WGSL source.</p>
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-r8unorm" id="ref-for-texel-format-r8unorm">r8unorm</a> 
      <tr>
+      <td><a data-link-type="dfn" href="#texel-format-r8snorm" id="ref-for-texel-format-r8snorm">r8snorm</a> 
+     <tr>
       <td><a data-link-type="dfn" href="#texel-format-r8uint" id="ref-for-texel-format-r8uint">r8uint</a> 
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-r8sint" id="ref-for-texel-format-r8sint">r8sint</a> 
+     <tr>
+      <td><a data-link-type="dfn" href="#texel-format-r16unorm" id="ref-for-texel-format-r16unorm">r16unorm</a> 
+     <tr>
+      <td><a data-link-type="dfn" href="#texel-format-r16snorm" id="ref-for-texel-format-r16snorm">r16snorm</a> 
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-r16uint" id="ref-for-texel-format-r16uint">r16uint</a> 
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-r16sint" id="ref-for-texel-format-r16sint">r16sint</a> 
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-r16float" id="ref-for-texel-format-r16float">r16float</a> 
+     <tr>
+      <td><a data-link-type="dfn" href="#texel-format-rgb10a2unorm" id="ref-for-texel-format-rgb10a2unorm">rgb10a2unorm</a> 
+     <tr>
+      <td><a data-link-type="dfn" href="#texel-format-rgb10a2uint" id="ref-for-texel-format-rgb10a2uint">rgb10a2uint</a> 
+     <tr>
+      <td><a data-link-type="dfn" href="#texel-format-rg11b10ufloat" id="ref-for-texel-format-rg11b10ufloat">rg11b10ufloat</a> 
    </table>
    <h3 class="heading settled" data-level="6.4" id="memory-views"><span class="secno">6.4. </span><span class="content">Memory Views</span><a class="self-link" href="#memory-views"></a></h3>
    <p>In addition to calculating with <a data-link-type="dfn" href="#plain-type" id="ref-for-plain-type④">plain</a> values, a WGSL program will
@@ -6387,6 +6421,16 @@ in <a href="#texture-storage">§ 6.5.5 Storage Texture Types</a>.</p>
       <td>r, g, b, a
       <td>vec4&lt;i32>(CTF(r), CTF(g), CTF(b), CTF(a)) 
      <tr>
+      <td><dfn class="dfn-paneled" data-dfn-for="texel format" data-dfn-type="dfn" data-noexport id="texel-format-rgba16unorm">rgba16unorm</dfn>
+      <td>16unorm
+      <td>r, g, b, a
+      <td>vec4&lt;f32>(CTF(r), CTF(g), CTF(b), CTF(a)) 
+     <tr>
+      <td><dfn class="dfn-paneled" data-dfn-for="texel format" data-dfn-type="dfn" data-noexport id="texel-format-rgba16snorm">rgba16snorm</dfn>
+      <td>16snorm
+      <td>r, g, b, a
+      <td>vec4&lt;f32>(CTF(r), CTF(g), CTF(b), CTF(a)) 
+     <tr>
       <td><dfn class="dfn-paneled" data-dfn-for="texel format" data-dfn-type="dfn" data-noexport id="texel-format-rgba16uint">rgba16uint</dfn>
       <td>16uint
       <td>r, g, b, a
@@ -6401,6 +6445,51 @@ in <a href="#texture-storage">§ 6.5.5 Storage Texture Types</a>.</p>
       <td>16float
       <td>r, g, b, a
       <td>vec4&lt;f32>(CTF(r), CTF(g), CTF(b), CTF(a)) 
+     <tr>
+      <td><dfn class="dfn-paneled" data-dfn-for="texel format" data-dfn-type="dfn" data-noexport id="texel-format-rg8unorm">rg8unorm</dfn>
+      <td>8unorm
+      <td>r, g
+      <td>vec4&lt;f32>(CTF(r), CTF(g), 0.0, 1.0) 
+     <tr>
+      <td><dfn class="dfn-paneled" data-dfn-for="texel format" data-dfn-type="dfn" data-noexport id="texel-format-rg8snorm">rg8snorm</dfn>
+      <td>8snorm
+      <td>r, g
+      <td>vec4&lt;f32>(CTF(r), CTF(g), 0.0, 1.0) 
+     <tr>
+      <td><dfn class="dfn-paneled" data-dfn-for="texel format" data-dfn-type="dfn" data-noexport id="texel-format-rg8uint">rg8uint</dfn>
+      <td>8uint
+      <td>r, g
+      <td>vec4&lt;u32>(CTF(r), CTF(g), 0u, 1u) 
+     <tr>
+      <td><dfn class="dfn-paneled" data-dfn-for="texel format" data-dfn-type="dfn" data-noexport id="texel-format-rg8sint">rg8sint</dfn>
+      <td>8sint
+      <td>r, g
+      <td>vec4&lt;i32>(CTF(r), CTF(g), 0, 1) 
+     <tr>
+      <td><dfn class="dfn-paneled" data-dfn-for="texel format" data-dfn-type="dfn" data-noexport id="texel-format-rg16unorm">rg16unorm</dfn>
+      <td>16unorm
+      <td>r, g
+      <td>vec4&lt;f32>(CTF(r), CTF(g), 0.0, 1.0) 
+     <tr>
+      <td><dfn class="dfn-paneled" data-dfn-for="texel format" data-dfn-type="dfn" data-noexport id="texel-format-rg16snorm">rg16snorm</dfn>
+      <td>16snorm
+      <td>r, g
+      <td>vec4&lt;f32>(CTF(r), CTF(g), 0.0, 1.0) 
+     <tr>
+      <td><dfn class="dfn-paneled" data-dfn-for="texel format" data-dfn-type="dfn" data-noexport id="texel-format-rg16uint">rg16uint</dfn>
+      <td>16uint
+      <td>r, g
+      <td>vec4&lt;u32>(CTF(r), CTF(g), 0u, 1u) 
+     <tr>
+      <td><dfn class="dfn-paneled" data-dfn-for="texel format" data-dfn-type="dfn" data-noexport id="texel-format-rg16sint">rg16sint</dfn>
+      <td>16sint
+      <td>r, g
+      <td>vec4&lt;i32>(CTF(r), CTF(g), 0, 1) 
+     <tr>
+      <td><dfn class="dfn-paneled" data-dfn-for="texel format" data-dfn-type="dfn" data-noexport id="texel-format-rg16float">rg16float</dfn>
+      <td>16float
+      <td>r, g
+      <td>vec4&lt;f32>(CTF(r), CTF(g), 0.0, 1.0) 
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-for="texel format" data-dfn-type="dfn" data-noexport id="texel-format-r32uint">r32uint</dfn>
       <td>32uint
@@ -6457,6 +6546,11 @@ in <a href="#texture-storage">§ 6.5.5 Storage Texture Types</a>.</p>
       <td>r
       <td>vec4&lt;f32>(CTF(r), 0.0, 0.0, 1.0) 
      <tr>
+      <td><dfn class="dfn-paneled" data-dfn-for="texel format" data-dfn-type="dfn" data-noexport id="texel-format-r8snorm">r8snorm</dfn>
+      <td>8snorm
+      <td>r
+      <td>vec4&lt;f32>(CTF(r), 0.0, 0.0, 1.0) 
+     <tr>
       <td><dfn class="dfn-paneled" data-dfn-for="texel format" data-dfn-type="dfn" data-noexport id="texel-format-r8uint">r8uint</dfn>
       <td>8uint
       <td>r
@@ -6466,6 +6560,16 @@ in <a href="#texture-storage">§ 6.5.5 Storage Texture Types</a>.</p>
       <td>8sint
       <td>r
       <td>vec4&lt;i32>(CTF(r), 0, 0, 1) 
+     <tr>
+      <td><dfn class="dfn-paneled" data-dfn-for="texel format" data-dfn-type="dfn" data-noexport id="texel-format-r16unorm">r16unorm</dfn>
+      <td>16unorm
+      <td>r
+      <td>vec4&lt;f32>(CTF(r), 0.0, 0.0, 1.0) 
+     <tr>
+      <td><dfn class="dfn-paneled" data-dfn-for="texel format" data-dfn-type="dfn" data-noexport id="texel-format-r16snorm">r16snorm</dfn>
+      <td>16snorm
+      <td>r
+      <td>vec4&lt;f32>(CTF(r), 0.0, 0.0, 1.0) 
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-for="texel format" data-dfn-type="dfn" data-noexport id="texel-format-r16uint">r16uint</dfn>
       <td>16uint
@@ -6481,6 +6585,21 @@ in <a href="#texture-storage">§ 6.5.5 Storage Texture Types</a>.</p>
       <td>16float
       <td>r
       <td>vec4&lt;f32>(CTF(r), 0.0, 0.0, 1.0) 
+     <tr>
+      <td><dfn class="dfn-paneled" data-dfn-for="texel format" data-dfn-type="dfn" data-noexport id="texel-format-rgb10a2unorm">rgb10a2unorm</dfn>
+      <td>r, g, b: 10unorm a: 2unorm
+      <td>r, g, b, a
+      <td>vec4&lt;f32>(CTF(r), CTF(g), CTF(b), CTF(a)) 
+     <tr>
+      <td><dfn class="dfn-paneled" data-dfn-for="texel format" data-dfn-type="dfn" data-noexport id="texel-format-rgb10a2uint">rgb10a2uint</dfn>
+      <td>r, g, b: 10uint a: 2uint
+      <td>r, g, b, a
+      <td>vec4&lt;u32>(CTF(r), CTF(g), CTF(b), CTF(a)) 
+     <tr>
+      <td><dfn class="dfn-paneled" data-dfn-for="texel format" data-dfn-type="dfn" data-noexport id="texel-format-rg11b10ufloat">rg11b10ufloat</dfn>
+      <td>r, g: 11float b: 10float
+      <td>r, g, b
+      <td>vec4&lt;f32>(CTF(r), CTF(g), CTF(b), CTF(a)) 
    </table>
    <p>WGSL <a data-link-type="dfn" href="#predeclared" id="ref-for-predeclared⑦">predeclares</a> an <a data-link-type="dfn" href="#enumerant" id="ref-for-enumerant④">enumerant</a> for each of the texel formats in the table.</p>
    <h4 class="heading settled" data-level="6.5.2" id="sampled-texture-type"><span class="secno">6.5.2. </span><span class="content">Sampled Texture Types</span><a class="self-link" href="#sampled-texture-type"></a></h4>
@@ -12271,7 +12390,7 @@ which itself cannot be part of an enclosing array or structure.
      <li data-md>
       <p>The <code>weights</code> variable is a <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer①⑨">storage buffer</a>.</p>
      <li data-md>
-      <p>Its store type is the runtime-sized arry type <code>array&lt;f32></code>.</p>
+      <p>Its store type is the runtime-sized array type <code>array&lt;f32></code>.</p>
      <li data-md>
       <p>The array offset is 0.</p>
      <li data-md>
@@ -15103,6 +15222,12 @@ The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="correctly-rou
 WGSL does not specify a <a data-link-type="dfn" href="#ieee754-rounding-mode" id="ref-for-ieee754-rounding-mode①">rounding mode</a>.</p>
    <p class="note" role="note"><span class="marker">Note:</span> Floating point types include positive and negative infinity, so
 the correctly rounded result may be finite or infinite.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> The result of an operation when computed with unbounded precision may require precision which exceeds that of a double.
+An example of such a case is in <code>x - y</code> where <code>x=1.0 </code>and <code>y=1.17e-38</code> (the smallest positive normal single precision float).
+These numbers have exponents are that are <code>126</code> units apart. The <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> <a data-link-type="dfn" href="#ieee754-binary64" id="ref-for-ieee754-binary64①">binary64</a>(double precision) format only has 52 bits in its significand,
+so in doing the subtraction, all the significant bits of <code>y</code> are lost.
+Depending on rounding modes, for this and many other cases where <code>y</code> is small but non-zero, the WGSL expression <code>x - y</code> may yield the same value as <code>x</code>.
+Note that <a data-link-type="biblio" href="#biblio-ecmascript" title="ECMAScript Language Specification">[ECMASCRIPT]</a> uses the equivalent of the <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> roundTiesToEven rounding mode.</p>
    <p>The units in the last place, <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="ulp">ULP</dfn>, for a floating point
 number <code>x</code> is defined as follows <a data-link-type="biblio" href="#biblio-muller2005" title="On the definition of ulp(x)">[Muller2005]</a>:</p>
    <ul>
@@ -15537,7 +15662,7 @@ no strict requirement is specified.</p>
      <span class="marker">Note:</span>A given absolute error bound, when quantified as ULP,
 depends critically on the underlying floating point type. 
     <p>The <a data-link-type="dfn" href="#ulp" id="ref-for-ulp①">ULP</a> for an <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②⑥">AbstractFloat</a> value assumes
-AbstractFloat is identical to the <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> <a data-link-type="dfn" href="#ieee754-binary64" id="ref-for-ieee754-binary64①">binary64</a> type.</p>
+AbstractFloat is identical to the <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> <a data-link-type="dfn" href="#ieee754-binary64" id="ref-for-ieee754-binary64②">binary64</a> type.</p>
     <p>One <a data-link-type="dfn" href="#ulp" id="ref-for-ulp②">ULP</a> for an f32 value is 2<sup>29</sup> times larger than 1 ULP for an IEEE-754 binary64 value,
 since the significand in the binary64 format is 29 bits longer than the significand in the f32 type.</p>
     <p>For example, suppose the true result value of an operation is <var>x</var>, but it is computed as <var>x'</var>.
@@ -18379,7 +18504,7 @@ but a value may infer the type.</p>
         <li data-md>
          <p>127 for <code>f32</code></p>
         <li data-md>
-         <p>1023 for AbstractFloat, when AbstractFloat is <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> <a data-link-type="dfn" href="#ieee754-binary64" id="ref-for-ieee754-binary64②">binary64</a></p>
+         <p>1023 for AbstractFloat, when AbstractFloat is <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> <a data-link-type="dfn" href="#ieee754-binary64" id="ref-for-ieee754-binary64③">binary64</a></p>
        </ul>
        <p>If <code>x</code> is zero or a finite normal value for its type, then:</p>
        <blockquote> x = ldexp(frexp(x).fract, frexp(x).exp) </blockquote>
@@ -23025,11 +23150,14 @@ registrations, it matches widespread industry conventions.</p>
    <li><a href="#quad-invocation-id">quad invocation ID</a><span>, in § 15.4</span>
    <li><a href="#texel-format-r16float">r16float</a><span>, in § 6.5.1</span>
    <li><a href="#texel-format-r16sint">r16sint</a><span>, in § 6.5.1</span>
+   <li><a href="#texel-format-r16snorm">r16snorm</a><span>, in § 6.5.1</span>
    <li><a href="#texel-format-r16uint">r16uint</a><span>, in § 6.5.1</span>
+   <li><a href="#texel-format-r16unorm">r16unorm</a><span>, in § 6.5.1</span>
    <li><a href="#texel-format-r32float">r32float</a><span>, in § 6.5.1</span>
    <li><a href="#texel-format-r32sint">r32sint</a><span>, in § 6.5.1</span>
    <li><a href="#texel-format-r32uint">r32uint</a><span>, in § 6.5.1</span>
    <li><a href="#texel-format-r8sint">r8sint</a><span>, in § 6.5.1</span>
+   <li><a href="#texel-format-r8snorm">r8snorm</a><span>, in § 6.5.1</span>
    <li><a href="#texel-format-r8uint">r8uint</a><span>, in § 6.5.1</span>
    <li><a href="#texel-format-r8unorm">r8unorm</a><span>, in § 6.5.1</span>
    <li><a href="#range-diagnostic-filter">range diagnostic filter</a><span>, in § 2.3.3</span>
@@ -23068,12 +23196,26 @@ registrations, it matches widespread industry conventions.</p>
    <li><a href="#return-type">return type</a><span>, in § 11.1</span>
    <li><a href="#return-value">return value</a><span>, in § 9.4.10</span>
    <li><a href="#returnvaluemaybenonuniform">ReturnValueMayBeNonUniform</a><span>, in § 15.2.3</span>
+   <li><a href="#texel-format-rg11b10ufloat">rg11b10ufloat</a><span>, in § 6.5.1</span>
+   <li><a href="#texel-format-rg16float">rg16float</a><span>, in § 6.5.1</span>
+   <li><a href="#texel-format-rg16sint">rg16sint</a><span>, in § 6.5.1</span>
+   <li><a href="#texel-format-rg16snorm">rg16snorm</a><span>, in § 6.5.1</span>
+   <li><a href="#texel-format-rg16uint">rg16uint</a><span>, in § 6.5.1</span>
+   <li><a href="#texel-format-rg16unorm">rg16unorm</a><span>, in § 6.5.1</span>
    <li><a href="#texel-format-rg32float">rg32float</a><span>, in § 6.5.1</span>
    <li><a href="#texel-format-rg32sint">rg32sint</a><span>, in § 6.5.1</span>
    <li><a href="#texel-format-rg32uint">rg32uint</a><span>, in § 6.5.1</span>
+   <li><a href="#texel-format-rg8sint">rg8sint</a><span>, in § 6.5.1</span>
+   <li><a href="#texel-format-rg8snorm">rg8snorm</a><span>, in § 6.5.1</span>
+   <li><a href="#texel-format-rg8uint">rg8uint</a><span>, in § 6.5.1</span>
+   <li><a href="#texel-format-rg8unorm">rg8unorm</a><span>, in § 6.5.1</span>
+   <li><a href="#texel-format-rgb10a2uint">rgb10a2uint</a><span>, in § 6.5.1</span>
+   <li><a href="#texel-format-rgb10a2unorm">rgb10a2unorm</a><span>, in § 6.5.1</span>
    <li><a href="#texel-format-rgba16float">rgba16float</a><span>, in § 6.5.1</span>
    <li><a href="#texel-format-rgba16sint">rgba16sint</a><span>, in § 6.5.1</span>
+   <li><a href="#texel-format-rgba16snorm">rgba16snorm</a><span>, in § 6.5.1</span>
    <li><a href="#texel-format-rgba16uint">rgba16uint</a><span>, in § 6.5.1</span>
+   <li><a href="#texel-format-rgba16unorm">rgba16unorm</a><span>, in § 6.5.1</span>
    <li><a href="#texel-format-rgba32float">rgba32float</a><span>, in § 6.5.1</span>
    <li><a href="#texel-format-rgba32sint">rgba32sint</a><span>, in § 6.5.1</span>
    <li><a href="#texel-format-rgba32uint">rgba32uint</a><span>, in § 6.5.1</span>
@@ -24049,7 +24191,7 @@ let dfnPanelData = {
 "identifier": {"dfnID":"identifier","dfnText":"identifier","external":false,"refSections":[{"refs":[{"id":"ref-for-identifier"}],"title":"3.4. Tokens"},{"refs":[{"id":"ref-for-identifier\u2460"}],"title":"3.8. Context-Dependent Names"},{"refs":[{"id":"ref-for-identifier\u2461"}],"title":"3.8.4. Diagnostic Severity Control Names"},{"refs":[{"id":"ref-for-identifier\u2462"},{"id":"ref-for-identifier\u2463"}],"title":"3.8.5. Extension Names"},{"refs":[{"id":"ref-for-identifier\u2464"}],"title":"4.1.1. Enable Extensions"},{"refs":[{"id":"ref-for-identifier\u2465"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-identifier\u2466"}],"title":"5. Declaration and Scope"},{"refs":[{"id":"ref-for-identifier\u2467"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-identifier\u2468"}],"title":"6.4.8. Forming Reference and Pointer Values"},{"refs":[{"id":"ref-for-identifier\u2460\u24ea"}],"title":"7.2. Value Declarations"},{"refs":[{"id":"ref-for-identifier\u2460\u2460"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-identifier\u2460\u2461"}],"title":"8.1.1. const Expressions"},{"refs":[{"id":"ref-for-identifier\u2460\u2462"}],"title":"8.1.2. override Expressions"},{"refs":[{"id":"ref-for-identifier\u2460\u2463"}],"title":"8.11. Variable Identifier Expression"},{"refs":[{"id":"ref-for-identifier\u2460\u2464"}],"title":"8.12. Formal Parameter Expression"},{"refs":[{"id":"ref-for-identifier\u2460\u2465"},{"id":"ref-for-identifier\u2460\u2466"},{"id":"ref-for-identifier\u2460\u2467"}],"title":"8.15. Identifier Expressions for Value Declarations"},{"refs":[{"id":"ref-for-identifier\u2460\u2468"}],"title":"8.16. Enumeration Expressions"},{"refs":[{"id":"ref-for-identifier\u2461\u24ea"},{"id":"ref-for-identifier\u2461\u2460"},{"id":"ref-for-identifier\u2461\u2461"},{"id":"ref-for-identifier\u2461\u2462"}],"title":"8.17. Type Expressions"},{"refs":[{"id":"ref-for-identifier\u2461\u2463"}],"title":"8.18. Expression Grammar Summary"},{"refs":[{"id":"ref-for-identifier\u2461\u2464"}],"title":"9.1. Compound Statement"},{"refs":[{"id":"ref-for-identifier\u2461\u2465"}],"title":"9.4.4. For Statement"},{"refs":[{"id":"ref-for-identifier\u2461\u2466"}],"title":"11.1. Declaring a User-defined Function"},{"refs":[{"id":"ref-for-identifier\u2461\u2467"}],"title":"15.2.4. Pointer Desugaring"},{"refs":[{"id":"ref-for-identifier\u2461\u2468"},{"id":"ref-for-identifier\u2462\u24ea"}],"title":"17.1. Constructor Built-in Functions"}],"url":"#identifier"},
 "ieee754-binary16": {"dfnID":"ieee754-binary16","dfnText":"binary16","external":false,"refSections":[{"refs":[{"id":"ref-for-ieee754-binary16"}],"title":"6.2.4. Floating Point Types"},{"refs":[{"id":"ref-for-ieee754-binary16\u2460"}],"title":"6.5.1. Texel Formats"},{"refs":[{"id":"ref-for-ieee754-binary16\u2461"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-ieee754-binary16\u2462"}],"title":"15.7.6. Floating Point Conversion"},{"refs":[{"id":"ref-for-ieee754-binary16\u2463"}],"title":"17.5.47. quantizeToF16"},{"refs":[{"id":"ref-for-ieee754-binary16\u2464"}],"title":"17.9.9. pack2x16float"},{"refs":[{"id":"ref-for-ieee754-binary16\u2465"}],"title":"17.10.7. unpack2x16float"}],"url":"#ieee754-binary16"},
 "ieee754-binary32": {"dfnID":"ieee754-binary32","dfnText":"binary32","external":false,"refSections":[{"refs":[{"id":"ref-for-ieee754-binary32"}],"title":"6.2.4. Floating Point Types"},{"refs":[{"id":"ref-for-ieee754-binary32\u2460"}],"title":"6.5.1. Texel Formats"},{"refs":[{"id":"ref-for-ieee754-binary32\u2461"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-ieee754-binary32\u2462"}],"title":"15.7.6. Floating Point Conversion"},{"refs":[{"id":"ref-for-ieee754-binary32\u2463"}],"title":"17.5.47. quantizeToF16"}],"url":"#ieee754-binary32"},
-"ieee754-binary64": {"dfnID":"ieee754-binary64","dfnText":"binary64","external":false,"refSections":[{"refs":[{"id":"ref-for-ieee754-binary64"}],"title":"6.2.1. Abstract Numeric Types"},{"refs":[{"id":"ref-for-ieee754-binary64\u2460"}],"title":"15.7.4.2. Accuracy of AbstractFloat Expressions"},{"refs":[{"id":"ref-for-ieee754-binary64\u2461"}],"title":"17.5.37. ldexp"}],"url":"#ieee754-binary64"},
+"ieee754-binary64": {"dfnID":"ieee754-binary64","dfnText":"binary64","external":false,"refSections":[{"refs":[{"id":"ref-for-ieee754-binary64"}],"title":"6.2.1. Abstract Numeric Types"},{"refs":[{"id":"ref-for-ieee754-binary64\u2460"}],"title":"15.7.4. Floating Point Accuracy"},{"refs":[{"id":"ref-for-ieee754-binary64\u2461"}],"title":"15.7.4.2. Accuracy of AbstractFloat Expressions"},{"refs":[{"id":"ref-for-ieee754-binary64\u2462"}],"title":"17.5.37. ldexp"}],"url":"#ieee754-binary64"},
 "ieee754-division-by-zero": {"dfnID":"ieee754-division-by-zero","dfnText":"Division by zero","external":false,"refSections":[{"refs":[{"id":"ref-for-ieee754-division-by-zero"}],"title":"15.7.2. Differences from IEEE-754"},{"refs":[{"id":"ref-for-ieee754-division-by-zero\u2460"}],"title":"17.5.57. smoothstep"}],"url":"#ieee754-division-by-zero"},
 "ieee754-exceptions": {"dfnID":"ieee754-exceptions","dfnText":"exceptions","external":false,"refSections":[{"refs":[{"id":"ref-for-ieee754-exceptions"}],"title":"15.7.1. Overview of IEEE-754"},{"refs":[{"id":"ref-for-ieee754-exceptions\u2460"}],"title":"15.7.2. Differences from IEEE-754"}],"url":"#ieee754-exceptions"},
 "ieee754-exponent-bias": {"dfnID":"ieee754-exponent-bias","dfnText":"exponent bias","external":false,"refSections":[{"refs":[{"id":"ref-for-ieee754-exponent-bias"},{"id":"ref-for-ieee754-exponent-bias\u2460"},{"id":"ref-for-ieee754-exponent-bias\u2461"},{"id":"ref-for-ieee754-exponent-bias\u2462"}],"title":"15.7.1. Overview of IEEE-754"}],"url":"#ieee754-exponent-bias"},
@@ -24559,19 +24701,36 @@ let dfnPanelData = {
 "texel-format-bgra8unorm": {"dfnID":"texel-format-bgra8unorm","dfnText":"bgra8unorm","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-bgra8unorm"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-bgra8unorm"},
 "texel-format-r16float": {"dfnID":"texel-format-r16float","dfnText":"r16float","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-r16float"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-r16float"},
 "texel-format-r16sint": {"dfnID":"texel-format-r16sint","dfnText":"r16sint","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-r16sint"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-r16sint"},
+"texel-format-r16snorm": {"dfnID":"texel-format-r16snorm","dfnText":"r16snorm","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-r16snorm"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-r16snorm"},
 "texel-format-r16uint": {"dfnID":"texel-format-r16uint","dfnText":"r16uint","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-r16uint"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-r16uint"},
+"texel-format-r16unorm": {"dfnID":"texel-format-r16unorm","dfnText":"r16unorm","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-r16unorm"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-r16unorm"},
 "texel-format-r32float": {"dfnID":"texel-format-r32float","dfnText":"r32float","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-r32float"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-r32float"},
 "texel-format-r32sint": {"dfnID":"texel-format-r32sint","dfnText":"r32sint","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-r32sint"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-r32sint"},
 "texel-format-r32uint": {"dfnID":"texel-format-r32uint","dfnText":"r32uint","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-r32uint"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-r32uint"},
 "texel-format-r8sint": {"dfnID":"texel-format-r8sint","dfnText":"r8sint","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-r8sint"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-r8sint"},
+"texel-format-r8snorm": {"dfnID":"texel-format-r8snorm","dfnText":"r8snorm","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-r8snorm"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-r8snorm"},
 "texel-format-r8uint": {"dfnID":"texel-format-r8uint","dfnText":"r8uint","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-r8uint"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-r8uint"},
 "texel-format-r8unorm": {"dfnID":"texel-format-r8unorm","dfnText":"r8unorm","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-r8unorm"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-r8unorm"},
+"texel-format-rg11b10ufloat": {"dfnID":"texel-format-rg11b10ufloat","dfnText":"rg11b10ufloat","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-rg11b10ufloat"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-rg11b10ufloat"},
+"texel-format-rg16float": {"dfnID":"texel-format-rg16float","dfnText":"rg16float","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-rg16float"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-rg16float"},
+"texel-format-rg16sint": {"dfnID":"texel-format-rg16sint","dfnText":"rg16sint","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-rg16sint"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-rg16sint"},
+"texel-format-rg16snorm": {"dfnID":"texel-format-rg16snorm","dfnText":"rg16snorm","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-rg16snorm"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-rg16snorm"},
+"texel-format-rg16uint": {"dfnID":"texel-format-rg16uint","dfnText":"rg16uint","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-rg16uint"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-rg16uint"},
+"texel-format-rg16unorm": {"dfnID":"texel-format-rg16unorm","dfnText":"rg16unorm","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-rg16unorm"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-rg16unorm"},
 "texel-format-rg32float": {"dfnID":"texel-format-rg32float","dfnText":"rg32float","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-rg32float"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-rg32float"},
 "texel-format-rg32sint": {"dfnID":"texel-format-rg32sint","dfnText":"rg32sint","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-rg32sint"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-rg32sint"},
 "texel-format-rg32uint": {"dfnID":"texel-format-rg32uint","dfnText":"rg32uint","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-rg32uint"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-rg32uint"},
+"texel-format-rg8sint": {"dfnID":"texel-format-rg8sint","dfnText":"rg8sint","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-rg8sint"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-rg8sint"},
+"texel-format-rg8snorm": {"dfnID":"texel-format-rg8snorm","dfnText":"rg8snorm","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-rg8snorm"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-rg8snorm"},
+"texel-format-rg8uint": {"dfnID":"texel-format-rg8uint","dfnText":"rg8uint","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-rg8uint"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-rg8uint"},
+"texel-format-rg8unorm": {"dfnID":"texel-format-rg8unorm","dfnText":"rg8unorm","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-rg8unorm"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-rg8unorm"},
+"texel-format-rgb10a2uint": {"dfnID":"texel-format-rgb10a2uint","dfnText":"rgb10a2uint","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-rgb10a2uint"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-rgb10a2uint"},
+"texel-format-rgb10a2unorm": {"dfnID":"texel-format-rgb10a2unorm","dfnText":"rgb10a2unorm","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-rgb10a2unorm"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-rgb10a2unorm"},
 "texel-format-rgba16float": {"dfnID":"texel-format-rgba16float","dfnText":"rgba16float","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-rgba16float"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-rgba16float"},
 "texel-format-rgba16sint": {"dfnID":"texel-format-rgba16sint","dfnText":"rgba16sint","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-rgba16sint"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-rgba16sint"},
+"texel-format-rgba16snorm": {"dfnID":"texel-format-rgba16snorm","dfnText":"rgba16snorm","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-rgba16snorm"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-rgba16snorm"},
 "texel-format-rgba16uint": {"dfnID":"texel-format-rgba16uint","dfnText":"rgba16uint","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-rgba16uint"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-rgba16uint"},
+"texel-format-rgba16unorm": {"dfnID":"texel-format-rgba16unorm","dfnText":"rgba16unorm","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-rgba16unorm"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-rgba16unorm"},
 "texel-format-rgba32float": {"dfnID":"texel-format-rgba32float","dfnText":"rgba32float","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-rgba32float"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-rgba32float"},
 "texel-format-rgba32sint": {"dfnID":"texel-format-rgba32sint","dfnText":"rgba32sint","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-rgba32sint"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-rgba32sint"},
 "texel-format-rgba32uint": {"dfnID":"texel-format-rgba32uint","dfnText":"rgba32uint","external":false,"refSections":[{"refs":[{"id":"ref-for-texel-format-rgba32uint"}],"title":"6.3.1. Predeclared enumerants"}],"url":"#texel-format-rgba32uint"},
@@ -25698,19 +25857,36 @@ let refsData = {
 "#texel-format-bgra8unorm": {"displayText":"bgra8unorm","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"bgra8unorm","type":"dfn","url":"#texel-format-bgra8unorm"},
 "#texel-format-r16float": {"displayText":"r16float","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"r16float","type":"dfn","url":"#texel-format-r16float"},
 "#texel-format-r16sint": {"displayText":"r16sint","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"r16sint","type":"dfn","url":"#texel-format-r16sint"},
+"#texel-format-r16snorm": {"displayText":"r16snorm","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"r16snorm","type":"dfn","url":"#texel-format-r16snorm"},
 "#texel-format-r16uint": {"displayText":"r16uint","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"r16uint","type":"dfn","url":"#texel-format-r16uint"},
+"#texel-format-r16unorm": {"displayText":"r16unorm","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"r16unorm","type":"dfn","url":"#texel-format-r16unorm"},
 "#texel-format-r32float": {"displayText":"r32float","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"r32float","type":"dfn","url":"#texel-format-r32float"},
 "#texel-format-r32sint": {"displayText":"r32sint","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"r32sint","type":"dfn","url":"#texel-format-r32sint"},
 "#texel-format-r32uint": {"displayText":"r32uint","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"r32uint","type":"dfn","url":"#texel-format-r32uint"},
 "#texel-format-r8sint": {"displayText":"r8sint","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"r8sint","type":"dfn","url":"#texel-format-r8sint"},
+"#texel-format-r8snorm": {"displayText":"r8snorm","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"r8snorm","type":"dfn","url":"#texel-format-r8snorm"},
 "#texel-format-r8uint": {"displayText":"r8uint","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"r8uint","type":"dfn","url":"#texel-format-r8uint"},
 "#texel-format-r8unorm": {"displayText":"r8unorm","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"r8unorm","type":"dfn","url":"#texel-format-r8unorm"},
+"#texel-format-rg11b10ufloat": {"displayText":"rg11b10ufloat","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"rg11b10ufloat","type":"dfn","url":"#texel-format-rg11b10ufloat"},
+"#texel-format-rg16float": {"displayText":"rg16float","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"rg16float","type":"dfn","url":"#texel-format-rg16float"},
+"#texel-format-rg16sint": {"displayText":"rg16sint","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"rg16sint","type":"dfn","url":"#texel-format-rg16sint"},
+"#texel-format-rg16snorm": {"displayText":"rg16snorm","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"rg16snorm","type":"dfn","url":"#texel-format-rg16snorm"},
+"#texel-format-rg16uint": {"displayText":"rg16uint","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"rg16uint","type":"dfn","url":"#texel-format-rg16uint"},
+"#texel-format-rg16unorm": {"displayText":"rg16unorm","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"rg16unorm","type":"dfn","url":"#texel-format-rg16unorm"},
 "#texel-format-rg32float": {"displayText":"rg32float","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"rg32float","type":"dfn","url":"#texel-format-rg32float"},
 "#texel-format-rg32sint": {"displayText":"rg32sint","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"rg32sint","type":"dfn","url":"#texel-format-rg32sint"},
 "#texel-format-rg32uint": {"displayText":"rg32uint","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"rg32uint","type":"dfn","url":"#texel-format-rg32uint"},
+"#texel-format-rg8sint": {"displayText":"rg8sint","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"rg8sint","type":"dfn","url":"#texel-format-rg8sint"},
+"#texel-format-rg8snorm": {"displayText":"rg8snorm","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"rg8snorm","type":"dfn","url":"#texel-format-rg8snorm"},
+"#texel-format-rg8uint": {"displayText":"rg8uint","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"rg8uint","type":"dfn","url":"#texel-format-rg8uint"},
+"#texel-format-rg8unorm": {"displayText":"rg8unorm","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"rg8unorm","type":"dfn","url":"#texel-format-rg8unorm"},
+"#texel-format-rgb10a2uint": {"displayText":"rgb10a2uint","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"rgb10a2uint","type":"dfn","url":"#texel-format-rgb10a2uint"},
+"#texel-format-rgb10a2unorm": {"displayText":"rgb10a2unorm","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"rgb10a2unorm","type":"dfn","url":"#texel-format-rgb10a2unorm"},
 "#texel-format-rgba16float": {"displayText":"rgba16float","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"rgba16float","type":"dfn","url":"#texel-format-rgba16float"},
 "#texel-format-rgba16sint": {"displayText":"rgba16sint","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"rgba16sint","type":"dfn","url":"#texel-format-rgba16sint"},
+"#texel-format-rgba16snorm": {"displayText":"rgba16snorm","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"rgba16snorm","type":"dfn","url":"#texel-format-rgba16snorm"},
 "#texel-format-rgba16uint": {"displayText":"rgba16uint","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"rgba16uint","type":"dfn","url":"#texel-format-rgba16uint"},
+"#texel-format-rgba16unorm": {"displayText":"rgba16unorm","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"rgba16unorm","type":"dfn","url":"#texel-format-rgba16unorm"},
 "#texel-format-rgba32float": {"displayText":"rgba32float","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"rgba32float","type":"dfn","url":"#texel-format-rgba32float"},
 "#texel-format-rgba32sint": {"displayText":"rgba32sint","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"rgba32sint","type":"dfn","url":"#texel-format-rgba32sint"},
 "#texel-format-rgba32uint": {"displayText":"rgba32uint","export":true,"for_":["texel format"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"rgba32uint","type":"dfn","url":"#texel-format-rgba32uint"},
