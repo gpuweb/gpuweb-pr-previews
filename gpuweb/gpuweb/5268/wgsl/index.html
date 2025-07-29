@@ -837,7 +837,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/abeafa12e89fa0a72c69b4099cf7b2ea4574c513/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/abeafa12e89fa0a72c69b4099cf7b2ea4574c513/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/9aa6e7f9ab639a3bd4cf59118908ba3f561da47b/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/9aa6e7f9ab639a3bd4cf59118908ba3f561da47b/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -6293,7 +6293,7 @@ if <var>AM</var> is <a data-link-type="dfn" href="#access-read_write" id="ref-fo
   <c- c1>// It is not possible to take the address of a swizzle view.</c->
   <c- c1>// Here, v.xy is a swizzle view (&amp;v,`01`)</c->
   <c- c1>// The &amp; operator does not apply to swizzle views, so type checking fails.</c->
-  <c- a>let</c-> <c- n>p</c-> <c- o>=</c-> <c- o>&amp;</c-><c- n>v</c-><c- p>.</c-><c- n>xy</c-><c- p>;</c-> 
+  <c- a>let</c-> <c- n>p</c-> <c- o>=</c-> <c- o>&amp;</c-><c- n>v</c-><c- p>.</c-><c- n>xy</c-><c- p>;</c->
 
   <c- c1>// Indexing a swizzle view does not yield a swizzle view.</c->
   <c- c1>// Here v.xy is a swizzle value. There is no array-indexing expression on</c->
@@ -11770,7 +11770,7 @@ See <a href="#forming-references-and-pointers">§ 6.4.9 Forming Reference and 
     <p>An <a data-link-type="dfn" href="#statement-assignment" id="ref-for-statement-assignment⑤">assignment</a> is a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="swizzle-assignment">swizzle assignment</dfn> when the
 <a data-link-type="dfn" href="#left-hand-side" id="ref-for-left-hand-side②">left-hand side</a> is a <a data-link-type="dfn" href="#swizzle-view" id="ref-for-swizzle-view④①">swizzle view</a>,
 and the operator is the equal (<a data-link-type="dfn" href="#syntax_sym-equal" id="ref-for-syntax_sym-equal①⓪"><code>'='</code></a>) token.
-In this case a <a data-link-type="dfn" href="#swizzle-view-write" id="ref-for-swizzle-view-write①">swizzle view write</a> is performed on the <a data-link-type="dfn" href="#left-hand-side" id="ref-for-left-hand-side③">left-hand side</a>, 
+In this case a <a data-link-type="dfn" href="#swizzle-view-write" id="ref-for-swizzle-view-write①">swizzle view write</a> is performed on the <a data-link-type="dfn" href="#left-hand-side" id="ref-for-left-hand-side③">left-hand side</a>,
 using the value of the <a data-link-type="dfn" href="#right-hand-side" id="ref-for-right-hand-side②">right-hand side</a> as the update vector.</p>
     <table class="data">
      <thead>
