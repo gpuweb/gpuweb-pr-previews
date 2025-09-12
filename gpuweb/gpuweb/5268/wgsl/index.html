@@ -831,13 +831,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
 </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
-    <time class="dt-updated" datetime="2025-07-29">29 July 2025</time></p>
+    <time class="dt-updated" datetime="2025-09-12">12 September 2025</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/9aa6e7f9ab639a3bd4cf59118908ba3f561da47b/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/9aa6e7f9ab639a3bd4cf59118908ba3f561da47b/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/f17717e46d3c846fb8c181468b1ec1c9a6030fd8/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/f17717e46d3c846fb8c181468b1ec1c9a6030fd8/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -890,7 +890,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
   This document was produced by a group operating under the <a class="css" data-link-type="property" href="https://www.w3.org/policies/patent-policy/" id="sotd_patent">W3C Patent Policy</a>. <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="https://www.w3.org/groups/wg/gpu/ipr/" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent that the individual believes contains <a href="https://www.w3.org/policies/patent-policy/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/policies/patent-policy/#sec-Disclosure">section 6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
 </p>
    <p>
-  This document is governed by the <a href="https://www.w3.org/policies/process/20231103/" id="w3c_process_revision">03 November 2023 W3C Process Document</a>.
+  This document is governed by the <a href="https://www.w3.org/policies/process/20250818/" id="w3c_process_revision">18 August 2025 W3C Process Document</a>.
 </p>
    <p></p>
   </div>
@@ -22661,8 +22661,10 @@ a value in one type as a value in another type.</p>
     
        <td><code>e1</code> and <code>e2</code> are interpreted as vectors with four 8-bit signed integer components.
         Return the signed integer dot product of these two vectors. Each component is sign-extended
-        to i32 before performing the multiply, and then the add operations are done in WGSL i32 with
-        wrapping behaviour.
+        to i32 before performing the multiply, and then the add operations are done in WGSL i32 (the
+        addition cannot overflow since the result is mathematically guaranteed to be in the range
+        from -65024 to 65536, which lies within the range of numbers that can be represented by
+        i32).
 
     </table>
     <h4 class="heading settled" data-level="17.5.23" id="exp-builtin"><span class="secno">17.5.23. </span><span class="content"><code>exp</code></span><a class="self-link" href="#exp-builtin"></a></h4>
@@ -29703,9 +29705,9 @@ registrations, it matches widespread industry conventions.</p>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://datatracker.ietf.org/doc/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>
    <dt id="biblio-uax14">[UAX14]
-   <dd>Robin Leroy. <a href="https://www.unicode.org/reports/tr14/tr14-53.html"><cite>Unicode Line Breaking Algorithm</cite></a>. 2 September 2024. Unicode Standard Annex #14. URL: <a href="https://www.unicode.org/reports/tr14/tr14-53.html">https://www.unicode.org/reports/tr14/tr14-53.html</a>
+   <dd>Robin Leroy. <a href="https://www.unicode.org/reports/tr14/tr14-55.html"><cite>Unicode Line Breaking Algorithm</cite></a>. 5 September 2025. Unicode Standard Annex #14. URL: <a href="https://www.unicode.org/reports/tr14/tr14-55.html">https://www.unicode.org/reports/tr14/tr14-55.html</a>
    <dt id="biblio-uax31">[UAX31]
-   <dd>Mark Davis; Robin Leroy. <a href="https://www.unicode.org/reports/tr31/tr31-41.html"><cite>Unicode Identifiers and Syntax</cite></a>. 2 September 2024. Unicode Standard Annex #31. URL: <a href="https://www.unicode.org/reports/tr31/tr31-41.html">https://www.unicode.org/reports/tr31/tr31-41.html</a>
+   <dd>Mark Davis; Robin Leroy. <a href="https://www.unicode.org/reports/tr31/tr31-43.html"><cite>Unicode Identifiers and Syntax</cite></a>. 20 August 2025. Unicode Standard Annex #31. URL: <a href="https://www.unicode.org/reports/tr31/tr31-43.html">https://www.unicode.org/reports/tr31/tr31-43.html</a>
    <dt id="biblio-unicodeversion14">[UnicodeVersion14]
    <dd><a href="http://www.unicode.org/versions/Unicode14.0.0/"><cite>The Unicode Standard, Version 14.0.0</cite></a>. URL: <a href="http://www.unicode.org/versions/Unicode14.0.0/">http://www.unicode.org/versions/Unicode14.0.0/</a>
    <dt id="biblio-vanwyk2007">[VanWyk2007]
