@@ -1,4 +1,4 @@
-// Copyright (C) [2024] World Wide Web Consortium,
+// Copyright (C) [2025] World Wide Web Consortium,
 // (Massachusetts Institute of Technology, European Research Consortium for
 // Informatics and Mathematics, Keio University, Beihang).
 // All Rights Reserved.
@@ -47,11 +47,11 @@ module.exports = grammar({
     word: $ => $.ident_pattern_token,
 
     rules: {
-        translation_unit: $ => seq(repeat($.global_directive), repeat($.global_decl)),
+        translation_unit: $ => seq(repeat($.global_directive), repeat(choice($.global_decl, $.global_assert, ';'))),
 
         global_directive: $ => choice($.diagnostic_directive, $.enable_directive, $.requires_directive),
 
-        global_decl: $ => choice(';', seq($.global_variable_decl, ';'), seq($.global_value_decl, ';'), seq($.type_alias_decl, ';'), $.struct_decl, $.function_decl, seq($.const_assert_statement, ';')),
+        global_decl: $ => choice(seq($.global_variable_decl, ';'), seq($.global_value_decl, ';'), seq($.type_alias_decl, ';'), $.struct_decl, $.function_decl),
 
         bool_literal: $ => choice('true', 'false'),
 
@@ -66,6 +66,8 @@ module.exports = grammar({
         decimal_float_literal: $ => choice(/0[fh]/, /[1-9][0-9]*[fh]/, /[0-9]*\.[0-9]+([eE][+-]?[0-9]+)?[fh]?/, /[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?[fh]?/, /[0-9]+[eE][+-]?[0-9]+[fh]?/),
 
         hex_float_literal: $ => choice(/0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+([pP][+-]?[0-9]+[fh]?)?/, /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*([pP][+-]?[0-9]+[fh]?)?/, /0[xX][0-9a-fA-F]+[pP][+-]?[0-9]+[fh]?/),
+
+        global_assert: $ => seq($.const_assert, ';'),
 
         diagnostic_directive: $ => seq('diagnostic', $.diagnostic_control, ';'),
 
@@ -85,17 +87,49 @@ module.exports = grammar({
 
         template_arg_expression: $ => $.expression,
 
-        attribute: $ => choice(seq('@', 'align', '(', $.expression, $.attrib_end), seq('@', 'binding', '(', $.expression, $.attrib_end), seq('@', 'builtin', '(', $.builtin_value_name, $.attrib_end), seq('@', 'const'), seq('@', 'diagnostic', $.diagnostic_control), seq('@', 'group', '(', $.expression, $.attrib_end), seq('@', 'id', '(', $.expression, $.attrib_end), seq('@', 'interpolate', '(', $.interpolate_type_name, $.attrib_end), seq('@', 'interpolate', '(', $.interpolate_type_name, ',', $.interpolate_sampling_name, $.attrib_end), seq('@', 'invariant'), seq('@', 'location', '(', $.expression, $.attrib_end), seq('@', 'must_use'), seq('@', 'size', '(', $.expression, $.attrib_end), seq('@', 'workgroup_size', '(', $.expression, $.attrib_end), seq('@', 'workgroup_size', '(', $.expression, ',', $.expression, $.attrib_end), seq('@', 'workgroup_size', '(', $.expression, ',', $.expression, ',', $.expression, $.attrib_end), seq('@', 'vertex'), seq('@', 'fragment'), seq('@', 'compute')),
+        align_attr: $ => seq('@', 'align', '(', $.expression, optional(','), ')'),
 
-        attrib_end: $ => seq(optional(','), ')'),
+        binding_attr: $ => seq('@', 'binding', '(', $.expression, optional(','), ')'),
+
+        blend_src_attr: $ => seq('@', 'blend_src', '(', $.expression, optional(','), ')'),
+
+        builtin_attr: $ => seq('@', 'builtin', '(', $.builtin_value_name, optional(','), ')'),
 
         builtin_value_name: $ => $.ident_pattern_token,
 
-        diagnostic_control: $ => seq('(', $.severity_control_name, ',', $.diagnostic_rule_name, $.attrib_end),
+        const_attr: $ => seq('@', 'const'),
+
+        diagnostic_attr: $ => seq('@', 'diagnostic', $.diagnostic_control),
+
+        group_attr: $ => seq('@', 'group', '(', $.expression, optional(','), ')'),
+
+        id_attr: $ => seq('@', 'id', '(', $.expression, optional(','), ')'),
+
+        interpolate_attr: $ => choice(seq('@', 'interpolate', '(', $.interpolate_type_name, optional(','), ')'), seq('@', 'interpolate', '(', $.interpolate_type_name, ',', $.interpolate_sampling_name, optional(','), ')')),
 
         interpolate_type_name: $ => $.ident_pattern_token,
 
         interpolate_sampling_name: $ => $.ident_pattern_token,
+
+        invariant_attr: $ => seq('@', 'invariant'),
+
+        location_attr: $ => seq('@', 'location', '(', $.expression, optional(','), ')'),
+
+        must_use_attr: $ => seq('@', 'must_use'),
+
+        size_attr: $ => seq('@', 'size', '(', $.expression, optional(','), ')'),
+
+        workgroup_size_attr: $ => choice(seq('@', 'workgroup_size', '(', $.expression, optional(','), ')'), seq('@', 'workgroup_size', '(', $.expression, ',', $.expression, optional(','), ')'), seq('@', 'workgroup_size', '(', $.expression, ',', $.expression, ',', $.expression, optional(','), ')')),
+
+        vertex_attr: $ => seq('@', 'vertex'),
+
+        fragment_attr: $ => seq('@', 'fragment'),
+
+        compute_attr: $ => seq('@', 'compute'),
+
+        attribute: $ => choice(seq('@', $.ident_pattern_token, optional($.argument_expression_list)), $.align_attr, $.binding_attr, $.blend_src_attr, $.builtin_attr, $.const_attr, $.diagnostic_attr, $.group_attr, $.id_attr, $.interpolate_attr, $.invariant_attr, $.location_attr, $.must_use_attr, $.size_attr, $.workgroup_size_attr, $.vertex_attr, $.fragment_attr, $.compute_attr),
+
+        diagnostic_control: $ => seq('(', $.severity_control_name, ',', $.diagnostic_rule_name, optional(','), ')'),
 
         struct_decl: $ => seq('struct', $.ident, $.struct_body_decl),
 
@@ -225,9 +259,11 @@ module.exports = grammar({
 
         func_call_statement: $ => $.call_phrase,
 
-        const_assert_statement: $ => seq('const_assert', $.expression),
+        const_assert: $ => seq('const_assert', $.expression),
 
-        statement: $ => choice(';', seq($.return_statement, ';'), $.if_statement, $.switch_statement, $.loop_statement, $.for_statement, $.while_statement, seq($.func_call_statement, ';'), seq($.variable_or_value_statement, ';'), seq($.break_statement, ';'), seq($.continue_statement, ';'), seq('discard', ';'), seq($.variable_updating_statement, ';'), $.compound_statement, seq($.const_assert_statement, ';')),
+        assert_statement: $ => $.const_assert,
+
+        statement: $ => choice(';', seq($.return_statement, ';'), $.if_statement, $.switch_statement, $.loop_statement, $.for_statement, $.while_statement, seq($.func_call_statement, ';'), seq($.variable_or_value_statement, ';'), seq($.break_statement, ';'), seq($.continue_statement, ';'), seq('discard', ';'), seq($.variable_updating_statement, ';'), $.compound_statement, seq($.assert_statement, ';')),
 
         variable_updating_statement: $ => choice($.assignment_statement, $.increment_statement, $.decrement_statement),
 
@@ -243,17 +279,17 @@ module.exports = grammar({
 
         enable_extension_list: $ => seq($.enable_extension_name, repeat(seq(',', $.enable_extension_name)), optional(',')),
 
-        requires_directive: $ => seq('requires', $.software_extension_list, ';'),
+        requires_directive: $ => seq('requires', $.language_extension_list, ';'),
 
-        software_extension_list: $ => seq($.software_extension_name, repeat(seq(',', $.software_extension_name)), optional(',')),
+        language_extension_list: $ => seq($.language_extension_name, repeat(seq(',', $.language_extension_name)), optional(',')),
 
         enable_extension_name: $ => $.ident_pattern_token,
 
-        software_extension_name: $ => $.ident_pattern_token,
+        language_extension_name: $ => $.ident_pattern_token,
 
         ident_pattern_token: $ => /([_\p{XID_Start}][\p{XID_Continue}]+)|([\p{XID_Start}])/u,
 
-        severity_control_name: $ => choice('error', 'warning', 'info', 'off'),
+        severity_control_name: $ => $.ident_pattern_token,
 
         swizzle_name: $ => choice(/[rgba]/, /[rgba][rgba]/, /[rgba][rgba][rgba]/, /[rgba][rgba][rgba][rgba]/, /[xyzw]/, /[xyzw][xyzw]/, /[xyzw][xyzw][xyzw]/, /[xyzw][xyzw][xyzw][xyzw]/),
 
