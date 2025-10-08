@@ -837,7 +837,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/8f10fa1574741e1d44873be6893ad79a4ea96cb5/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/8f10fa1574741e1d44873be6893ad79a4ea96cb5/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/796b75d290eb0f4d283b0409234b4a528845c090/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/796b75d290eb0f4d283b0409234b4a528845c090/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -15901,7 +15901,8 @@ multiple of the <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requ
     <a data-link-type="dfn" href="#strideof" id="ref-for-strideof⑦">StrideOf</a>(array&lt;<var>T</var>>) = <var>k</var> × <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof⑧">RequiredAlignOf</a>(<var>T</var>, C)<br>
     Where <var>k</var> is a positive integer
 </blockquote>
-   <p>The <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform①④">uniform</a> address space also requires that:</p>
+   <p>The <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform①④">uniform</a> address space without the
+<a data-link-type="dfn" href="#language_extension-uniform_unified_layout" id="ref-for-language_extension-uniform_unified_layout②">uniform_unified_layout</a> feature also requires that:</p>
    <ul>
     <li data-md>
      <p>Array elements are aligned to 16 byte boundaries.
@@ -29472,7 +29473,7 @@ let dfnPanelData = {
 "language_extension-packed_4x8_integer_dot_product": {"dfnID":"language_extension-packed_4x8_integer_dot_product","dfnText":"packed_4x8_integer_dot_product","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-packed_4x8_integer_dot_product"}],"title":"3.8.5. Extension Names"}],"url":"#language_extension-packed_4x8_integer_dot_product"},
 "language_extension-pointer_composite_access": {"dfnID":"language_extension-pointer_composite_access","dfnText":"pointer_composite_access","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-pointer_composite_access"}],"title":"3.8.5. Extension Names"}],"url":"#language_extension-pointer_composite_access"},
 "language_extension-readonly_and_readwrite_storage_textures": {"dfnID":"language_extension-readonly_and_readwrite_storage_textures","dfnText":"readonly_and_readwrite_storage_textures","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-readonly_and_readwrite_storage_textures"}],"title":"3.8.5. Extension Names"}],"url":"#language_extension-readonly_and_readwrite_storage_textures"},
-"language_extension-uniform_unified_layout": {"dfnID":"language_extension-uniform_unified_layout","dfnText":"uniform_unified_layout","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-uniform_unified_layout"},{"id":"ref-for-language_extension-uniform_unified_layout\u2460"}],"title":"14.4.5. Address Space Layout Constraints"}],"url":"#language_extension-uniform_unified_layout"},
+"language_extension-uniform_unified_layout": {"dfnID":"language_extension-uniform_unified_layout","dfnText":"uniform_unified_layout","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-uniform_unified_layout"},{"id":"ref-for-language_extension-uniform_unified_layout\u2460"},{"id":"ref-for-language_extension-uniform_unified_layout\u2461"}],"title":"14.4.5. Address Space Layout Constraints"}],"url":"#language_extension-uniform_unified_layout"},
 "language_extension-unrestricted_pointer_parameters": {"dfnID":"language_extension-unrestricted_pointer_parameters","dfnText":"unrestricted_pointer_parameters","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-unrestricted_pointer_parameters"}],"title":"3.8.5. Extension Names"}],"url":"#language_extension-unrestricted_pointer_parameters"},
 "layout-attributes": {"dfnID":"layout-attributes","dfnText":"layout attributes","external":false,"refSections":[{"refs":[{"id":"ref-for-layout-attributes"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-layout-attributes\u2460"}],"title":"6.4.2. Host-shareable Types"}],"url":"#layout-attributes"},
 "left-hand-side": {"dfnID":"left-hand-side","dfnText":"left-hand side","external":false,"refSections":[{"refs":[{"id":"ref-for-left-hand-side"}],"title":"6.4.7. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-left-hand-side\u2460"}],"title":"9.2.1. Simple Assignment"},{"refs":[{"id":"ref-for-left-hand-side\u2461"}],"title":"9.2.2. Phony Assignment"},{"refs":[{"id":"ref-for-left-hand-side\u2462"}],"title":"9.2.3. Compound Assignment"},{"refs":[{"id":"ref-for-left-hand-side\u2463"},{"id":"ref-for-left-hand-side\u2464"}],"title":"14.5.1. Memory Operation"},{"refs":[{"id":"ref-for-left-hand-side\u2465"},{"id":"ref-for-left-hand-side\u2466"}],"title":"15.2.6. Uniformity Rules for Statements"}],"url":"#left-hand-side"},
