@@ -831,13 +831,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
 </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
-    <time class="dt-updated" datetime="2025-10-08">8 October 2025</time></p>
+    <time class="dt-updated" datetime="2025-10-09">9 October 2025</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/796b75d290eb0f4d283b0409234b4a528845c090/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/796b75d290eb0f4d283b0409234b4a528845c090/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/c28135d0e9570e048931aa2fd30d7a0805ff0bb6/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/c28135d0e9570e048931aa2fd30d7a0805ff0bb6/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -15901,8 +15901,8 @@ multiple of the <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requ
     <a data-link-type="dfn" href="#strideof" id="ref-for-strideof⑦">StrideOf</a>(array&lt;<var>T</var>>) = <var>k</var> × <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof⑧">RequiredAlignOf</a>(<var>T</var>, C)<br>
     Where <var>k</var> is a positive integer
 </blockquote>
-   <p>The <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform①④">uniform</a> address space without the
-<a data-link-type="dfn" href="#language_extension-uniform_unified_layout" id="ref-for-language_extension-uniform_unified_layout②">uniform_unified_layout</a> feature also requires that:</p>
+   <p>When <a data-link-type="dfn" href="#language_extension-uniform_unified_layout" id="ref-for-language_extension-uniform_unified_layout②">uniform_unified_layout</a> is <strong>not</strong> supported,
+The <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform①④">uniform</a> address space requires that:</p>
    <ul>
     <li data-md>
      <p>Array elements are aligned to 16 byte boundaries.
