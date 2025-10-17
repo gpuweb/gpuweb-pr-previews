@@ -831,13 +831,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
 </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
-    <time class="dt-updated" datetime="2025-10-15">15 October 2025</time></p>
+    <time class="dt-updated" datetime="2025-10-17">17 October 2025</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/feb6ba48a97fda12b1dd921413c031e176e8dffb/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/feb6ba48a97fda12b1dd921413c031e176e8dffb/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/1eee3830ea303443dff3c1ca7da6fc7c4309b7da/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/1eee3830ea303443dff3c1ca7da6fc7c4309b7da/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -3230,7 +3230,7 @@ The token must not be a <a data-link-type="dfn" href="#keyword" id="ref-for-keyw
     <li data-md>
      <p><a data-link-type="dfn" href="#language_extension-pointer_composite_access" id="ref-for-language_extension-pointer_composite_access"><code>'pointer_composite_access'</code></a></p>
     <li data-md>
-     <p><a data-link-type="dfn" href="#language_extension-uniform_unified_layout" id="ref-for-language_extension-uniform_unified_layout"><code>'uniform_unified_layout'</code></a></p>
+     <p><a data-link-type="dfn" href="#language_extension-uniform_buffer_standard_layout" id="ref-for-language_extension-uniform_buffer_standard_layout"><code>'uniform_buffer_standard_layout'</code></a></p>
    </ul>
    <h4 class="heading settled" data-level="3.8.6" id="interpolation-type-names"><span class="secno">3.8.6. </span><span class="content">Interpolation Type Names</span><a class="self-link" href="#interpolation-type-names"></a></h4>
    <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="interpolation-type-name-token">interpolation type name-token</dfn> is a <a data-link-type="dfn" href="#token" id="ref-for-token⑧">token</a> used in the name of an <a data-link-type="dfn" href="#interpolation-type" id="ref-for-interpolation-type">interpolation type</a>
@@ -3931,7 +3931,7 @@ Extension names are not <a data-link-type="dfn" href="#identifier" id="ref-for-i
       to the memory locations for the <code>i</code>’th element of the array <code>pa</code> points
       to.</p>
      <tr>
-      <td><dfn class="dfn-paneled" data-dfn-for="language_extension" data-dfn-type="dfn" data-noexport id="language_extension-uniform_unified_layout">uniform_unified_layout</dfn>
+      <td><dfn class="dfn-paneled" data-dfn-for="language_extension" data-dfn-type="dfn" data-noexport id="language_extension-uniform_buffer_standard_layout">uniform_buffer_standard_layout</dfn>
       
       <td>
       Allow buffers in the <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform">uniform</a> address space to use the
@@ -15816,12 +15816,12 @@ used in address space <var>C</var>.</p>
         
       <th><a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof②">RequiredAlignOf</a>(<var>S</var>, <var>C</var>),<br>
             <var>C</var> is <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform①②">uniform</a> and
-            <a data-link-type="dfn" href="#language_extension-uniform_unified_layout" id="ref-for-language_extension-uniform_unified_layout①">uniform_unified_layout</a>
+            <a data-link-type="dfn" href="#language_extension-uniform_buffer_standard_layout" id="ref-for-language_extension-uniform_buffer_standard_layout①">uniform_buffer_standard_layout</a>
             is supported
         
       <th><a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof③">RequiredAlignOf</a>(<var>S</var>, <var>C</var>),<br>
             <var>C</var> is <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform①③">uniform</a> and
-            <a data-link-type="dfn" href="#language_extension-uniform_unified_layout" id="ref-for-language_extension-uniform_unified_layout②">uniform_unified_layout</a>
+            <a data-link-type="dfn" href="#language_extension-uniform_buffer_standard_layout" id="ref-for-language_extension-uniform_buffer_standard_layout②">uniform_buffer_standard_layout</a>
             is <strong>not</strong> supported
   
     <tbody>
@@ -15903,7 +15903,7 @@ multiple of the <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requ
     <a data-link-type="dfn" href="#strideof" id="ref-for-strideof⑦">StrideOf</a>(array&lt;<var>T</var>>) = <var>k</var> × <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof⑧">RequiredAlignOf</a>(<var>T</var>, C)<br>
     Where <var>k</var> is a positive integer
 </blockquote>
-   <p>When <a data-link-type="dfn" href="#language_extension-uniform_unified_layout" id="ref-for-language_extension-uniform_unified_layout③">uniform_unified_layout</a> is <strong>not</strong> supported,
+   <p>When <a data-link-type="dfn" href="#language_extension-uniform_buffer_standard_layout" id="ref-for-language_extension-uniform_buffer_standard_layout③">uniform_buffer_standard_layout</a> is <strong>not</strong> supported,
 The <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform①④">uniform</a> address space requires that:</p>
    <ul>
     <li data-md>
@@ -28661,10 +28661,10 @@ registrations, it matches widespread industry conventions.</p>
    <li><a href="#syntax_sym-underscore">underscore</a><span>, in § 16.3</span>
    <li><a href="#address-spaces-uniform">uniform</a><span>, in § 14.3</span>
    <li><a href="#uniform-buffer">uniform buffer</a><span>, in § 7.3</span>
+   <li><a href="#language_extension-uniform_buffer_standard_layout">uniform_buffer_standard_layout</a><span>, in § 4.1.2</span>
    <li><a href="#uniform-control-flow">uniform control flow</a><span>, in § 15.2.1</span>
    <li><a href="#uniformity-analysis">uniformity analysis</a><span>, in § 15.2</span>
    <li><a href="#uniformity-failure">uniformity failure</a><span>, in § 15.2</span>
-   <li><a href="#language_extension-uniform_unified_layout">uniform_unified_layout</a><span>, in § 4.1.2</span>
    <li><a href="#uniform-value">uniform value</a><span>, in § 15.2.1</span>
    <li><a href="#uniform-variable">uniform variable</a><span>, in § 15.2.1</span>
    <li><a href="#language_extension-unrestricted_pointer_parameters">unrestricted_pointer_parameters</a><span>, in § 4.1.2</span>
@@ -29475,7 +29475,7 @@ let dfnPanelData = {
 "language_extension-packed_4x8_integer_dot_product": {"dfnID":"language_extension-packed_4x8_integer_dot_product","dfnText":"packed_4x8_integer_dot_product","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-packed_4x8_integer_dot_product"}],"title":"3.8.5. Extension Names"}],"url":"#language_extension-packed_4x8_integer_dot_product"},
 "language_extension-pointer_composite_access": {"dfnID":"language_extension-pointer_composite_access","dfnText":"pointer_composite_access","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-pointer_composite_access"}],"title":"3.8.5. Extension Names"}],"url":"#language_extension-pointer_composite_access"},
 "language_extension-readonly_and_readwrite_storage_textures": {"dfnID":"language_extension-readonly_and_readwrite_storage_textures","dfnText":"readonly_and_readwrite_storage_textures","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-readonly_and_readwrite_storage_textures"}],"title":"3.8.5. Extension Names"}],"url":"#language_extension-readonly_and_readwrite_storage_textures"},
-"language_extension-uniform_unified_layout": {"dfnID":"language_extension-uniform_unified_layout","dfnText":"uniform_unified_layout","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-uniform_unified_layout"}],"title":"3.8.5. Extension Names"},{"refs":[{"id":"ref-for-language_extension-uniform_unified_layout\u2460"},{"id":"ref-for-language_extension-uniform_unified_layout\u2461"},{"id":"ref-for-language_extension-uniform_unified_layout\u2462"}],"title":"14.4.5. Address Space Layout Constraints"}],"url":"#language_extension-uniform_unified_layout"},
+"language_extension-uniform_buffer_standard_layout": {"dfnID":"language_extension-uniform_buffer_standard_layout","dfnText":"uniform_buffer_standard_layout","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-uniform_buffer_standard_layout"}],"title":"3.8.5. Extension Names"},{"refs":[{"id":"ref-for-language_extension-uniform_buffer_standard_layout\u2460"},{"id":"ref-for-language_extension-uniform_buffer_standard_layout\u2461"},{"id":"ref-for-language_extension-uniform_buffer_standard_layout\u2462"}],"title":"14.4.5. Address Space Layout Constraints"}],"url":"#language_extension-uniform_buffer_standard_layout"},
 "language_extension-unrestricted_pointer_parameters": {"dfnID":"language_extension-unrestricted_pointer_parameters","dfnText":"unrestricted_pointer_parameters","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-unrestricted_pointer_parameters"}],"title":"3.8.5. Extension Names"}],"url":"#language_extension-unrestricted_pointer_parameters"},
 "layout-attributes": {"dfnID":"layout-attributes","dfnText":"layout attributes","external":false,"refSections":[{"refs":[{"id":"ref-for-layout-attributes"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-layout-attributes\u2460"}],"title":"6.4.2. Host-shareable Types"}],"url":"#layout-attributes"},
 "left-hand-side": {"dfnID":"left-hand-side","dfnText":"left-hand side","external":false,"refSections":[{"refs":[{"id":"ref-for-left-hand-side"}],"title":"6.4.7. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-left-hand-side\u2460"}],"title":"9.2.1. Simple Assignment"},{"refs":[{"id":"ref-for-left-hand-side\u2461"}],"title":"9.2.2. Phony Assignment"},{"refs":[{"id":"ref-for-left-hand-side\u2462"}],"title":"9.2.3. Compound Assignment"},{"refs":[{"id":"ref-for-left-hand-side\u2463"},{"id":"ref-for-left-hand-side\u2464"}],"title":"14.5.1. Memory Operation"},{"refs":[{"id":"ref-for-left-hand-side\u2465"},{"id":"ref-for-left-hand-side\u2466"}],"title":"15.2.6. Uniformity Rules for Statements"}],"url":"#left-hand-side"},
@@ -30692,7 +30692,7 @@ let refsData = {
 "#language_extension-packed_4x8_integer_dot_product": {"displayText":"packed_4x8_integer_dot_product","export":true,"for_":["language_extension"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"packed_4x8_integer_dot_product","type":"dfn","url":"#language_extension-packed_4x8_integer_dot_product"},
 "#language_extension-pointer_composite_access": {"displayText":"pointer_composite_access","export":true,"for_":["language_extension"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"pointer_composite_access","type":"dfn","url":"#language_extension-pointer_composite_access"},
 "#language_extension-readonly_and_readwrite_storage_textures": {"displayText":"readonly_and_readwrite_storage_textures","export":true,"for_":["language_extension"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"readonly_and_readwrite_storage_textures","type":"dfn","url":"#language_extension-readonly_and_readwrite_storage_textures"},
-"#language_extension-uniform_unified_layout": {"displayText":"uniform_unified_layout","export":true,"for_":["language_extension"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"uniform_unified_layout","type":"dfn","url":"#language_extension-uniform_unified_layout"},
+"#language_extension-uniform_buffer_standard_layout": {"displayText":"uniform_buffer_standard_layout","export":true,"for_":["language_extension"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"uniform_buffer_standard_layout","type":"dfn","url":"#language_extension-uniform_buffer_standard_layout"},
 "#language_extension-unrestricted_pointer_parameters": {"displayText":"unrestricted_pointer_parameters","export":true,"for_":["language_extension"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"unrestricted_pointer_parameters","type":"dfn","url":"#language_extension-unrestricted_pointer_parameters"},
 "#layout-attributes": {"displayText":"layout attributes","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"layout attributes","type":"dfn","url":"#layout-attributes"},
 "#left-hand-side": {"displayText":"left-hand side","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"left-hand side","type":"dfn","url":"#left-hand-side"},
