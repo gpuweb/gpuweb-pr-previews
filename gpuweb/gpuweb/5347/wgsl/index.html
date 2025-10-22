@@ -831,13 +831,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
 </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
-    <time class="dt-updated" datetime="2025-10-17">17 October 2025</time></p>
+    <time class="dt-updated" datetime="2025-10-22">22 October 2025</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/1eee3830ea303443dff3c1ca7da6fc7c4309b7da/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/1eee3830ea303443dff3c1ca7da6fc7c4309b7da/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/204f9e37c1f186fd4b556be7f694a75fa87d4b11/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/204f9e37c1f186fd4b556be7f694a75fa87d4b11/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -15812,15 +15812,12 @@ used in address space <var>C</var>.</p>
             assuming <var>S</var> can appear in <var>C</var>
         
       <th><a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof①">RequiredAlignOf</a>(<var>S</var>, <var>C</var>),<br>
-            <var>C</var> is not <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform①①">uniform</a>
-        
-      <th><a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof②">RequiredAlignOf</a>(<var>S</var>, <var>C</var>),<br>
-            <var>C</var> is <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform①②">uniform</a> and
+            <var>C</var> is not <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform①①">uniform</a> or
             <a data-link-type="dfn" href="#language_extension-uniform_buffer_standard_layout" id="ref-for-language_extension-uniform_buffer_standard_layout①">uniform_buffer_standard_layout</a>
             is supported
         
-      <th><a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof③">RequiredAlignOf</a>(<var>S</var>, <var>C</var>),<br>
-            <var>C</var> is <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform①③">uniform</a> and
+      <th><a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof②">RequiredAlignOf</a>(<var>S</var>, <var>C</var>),<br>
+            <var>C</var> is <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform①②">uniform</a> and
             <a data-link-type="dfn" href="#language_extension-uniform_buffer_standard_layout" id="ref-for-language_extension-uniform_buffer_standard_layout②">uniform_buffer_standard_layout</a>
             is <strong>not</strong> supported
   
@@ -15831,80 +15828,67 @@ used in address space <var>C</var>.</p>
       <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①③">AlignOf</a>(<var>S</var>)
       
       <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①④">AlignOf</a>(<var>S</var>)
-      
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①⑤">AlignOf</a>(<var>S</var>)
   
      <tr>
       <td><a data-link-type="dfn" href="#atomic-type" id="ref-for-atomic-type①②">atomic</a>&lt;T>
       
+      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①⑤">AlignOf</a>(<var>S</var>)
+      
       <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①⑥">AlignOf</a>(<var>S</var>)
+  
+     <tr>
+      <td><a data-link-type="dfn" href="#vector" id="ref-for-vector②①">vec</a>N&lt;T>
       
       <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①⑦">AlignOf</a>(<var>S</var>)
       
       <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①⑧">AlignOf</a>(<var>S</var>)
   
-     <tr>
-      <td><a data-link-type="dfn" href="#vector" id="ref-for-vector②①">vec</a>N&lt;T>
+     <tr class="algorithm" data-algorithm="alignment of a matrix with C columns and R rows">
+      <td><a data-link-type="dfn" href="#matrix" id="ref-for-matrix①④">mat</a>CxR&lt;T>
       
       <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①⑨">AlignOf</a>(<var>S</var>)
       
       <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②⓪">AlignOf</a>(<var>S</var>)
-      
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②①">AlignOf</a>(<var>S</var>)
-  
-     <tr class="algorithm" data-algorithm="alignment of a matrix with C columns and R rows">
-      <td><a data-link-type="dfn" href="#matrix" id="ref-for-matrix①④">mat</a>CxR&lt;T>
-      
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②②">AlignOf</a>(<var>S</var>)
-      
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②③">AlignOf</a>(<var>S</var>)
-      
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②④">AlignOf</a>(<var>S</var>)
   
      <tr class="algorithm" data-algorithm="alignment of an array">
       <td><a data-link-type="dfn" href="#array" id="ref-for-array①②">array</a>&lt;T, N>
       
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②⑤">AlignOf</a>(<var>S</var>)
+      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②①">AlignOf</a>(<var>S</var>)
       
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②⑥">AlignOf</a>(<var>S</var>)
-      
-      <td><a data-link-type="dfn" href="#roundup" id="ref-for-roundup⑧">roundUp</a>(16, <a data-link-type="dfn" href="#alignof" id="ref-for-alignof②⑦">AlignOf</a>(<var>S</var>))
+      <td><a data-link-type="dfn" href="#roundup" id="ref-for-roundup⑧">roundUp</a>(16, <a data-link-type="dfn" href="#alignof" id="ref-for-alignof②②">AlignOf</a>(<var>S</var>))
   
      <tr class="algorithm" data-algorithm="alignment of an runtime-sized array">
-      <td>array&lt;T>
+      <td><a data-link-type="dfn" href="#array" id="ref-for-array①③">array</a>&lt;T>
       
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②⑧">AlignOf</a>(<var>S</var>)
+      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②③">AlignOf</a>(<var>S</var>)<br>
+      Disallowed if <var>C</var> is <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform①③">uniform</a>
       
-      <td>not applicable
-      
-      <td>not applicable
+      <td>Disallowed
   
      <tr class="algorithm" data-algorithm="alignment of a structure">
       <td><a data-link-type="dfn" href="#structure" id="ref-for-structure②④">struct</a> <var>S</var>
       
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②⑨">AlignOf</a>(<var>S</var>)
+      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②④">AlignOf</a>(<var>S</var>)
       
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof③⓪">AlignOf</a>(<var>S</var>)
-      
-      <td><a data-link-type="dfn" href="#roundup" id="ref-for-roundup⑨">roundUp</a>(16, <a data-link-type="dfn" href="#alignof" id="ref-for-alignof③①">AlignOf</a>(<var>S</var>))<br>
+      <td><a data-link-type="dfn" href="#roundup" id="ref-for-roundup⑨">roundUp</a>(16, <a data-link-type="dfn" href="#alignof" id="ref-for-alignof②⑤">AlignOf</a>(<var>S</var>))<br>
 
    </table>
    <p>Structure members of type <var>T</var> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②⑤">must</a> have a byte offset
-from the start of the structure that is a multiple of the <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof④">RequiredAlignOf</a>(<var>T</var>, <var>C</var>)
+from the start of the structure that is a multiple of the <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof③">RequiredAlignOf</a>(<var>T</var>, <var>C</var>)
 for the address space <var>C</var>:</p>
    <blockquote class="algorithm" data-algorithm="structure member minimum alignment">
-    <a data-link-type="dfn" href="#offsetofmember" id="ref-for-offsetofmember⑥">OffsetOfMember</a>(<var>S</var>, <var>i</var>) = <var>k</var> × <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof⑤">RequiredAlignOf</a>(<var>T</var>, C)<br>
+    <a data-link-type="dfn" href="#offsetofmember" id="ref-for-offsetofmember⑥">OffsetOfMember</a>(<var>S</var>, <var>i</var>) = <var>k</var> × <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof④">RequiredAlignOf</a>(<var>T</var>, C)<br>
     Where <var>k</var> is a non-negative integer and the <var>i</var>’th member of structure <var>S</var> has type <var>T</var>
 </blockquote>
    <p>Arrays of element type <var>T</var> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②⑥">must</a> have an <a data-link-type="dfn" href="#element-stride" id="ref-for-element-stride">element stride</a> that is a
-multiple of the <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof⑥">RequiredAlignOf</a>(<var>T</var>, <var>C</var>) for the address space <var>C</var>:</p>
+multiple of the <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof⑤">RequiredAlignOf</a>(<var>T</var>, <var>C</var>) for the address space <var>C</var>:</p>
    <blockquote class="algorithm" data-algorithm="array element minimum alignment">
-    <a data-link-type="dfn" href="#strideof" id="ref-for-strideof⑥">StrideOf</a>(array&lt;<var>T</var>, <var>N</var>>) = <var>k</var> × <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof⑦">RequiredAlignOf</a>(<var>T</var>, C)<br>
-    <a data-link-type="dfn" href="#strideof" id="ref-for-strideof⑦">StrideOf</a>(array&lt;<var>T</var>>) = <var>k</var> × <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof⑧">RequiredAlignOf</a>(<var>T</var>, C)<br>
+    <a data-link-type="dfn" href="#strideof" id="ref-for-strideof⑥">StrideOf</a>(array&lt;<var>T</var>, <var>N</var>>) = <var>k</var> × <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof⑥">RequiredAlignOf</a>(<var>T</var>, C)<br>
+    <a data-link-type="dfn" href="#strideof" id="ref-for-strideof⑦">StrideOf</a>(array&lt;<var>T</var>>) = <var>k</var> × <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof⑦">RequiredAlignOf</a>(<var>T</var>, C)<br>
     Where <var>k</var> is a positive integer
 </blockquote>
    <p>When <a data-link-type="dfn" href="#language_extension-uniform_buffer_standard_layout" id="ref-for-language_extension-uniform_buffer_standard_layout③">uniform_buffer_standard_layout</a> is <strong>not</strong> supported,
-The <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform①④">uniform</a> address space requires that:</p>
+the <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform①④">uniform</a> address space requires that:</p>
    <ul>
     <li data-md>
      <p>Array elements are aligned to 16 byte boundaries.
@@ -19740,7 +19724,7 @@ specify the component type; the component type is inferred from the constructor 
       <td>Description
       
       <td>
-       Construction of an <a data-link-type="dfn" href="#array" id="ref-for-array①③">array</a> from elements.
+       Construction of an <a data-link-type="dfn" href="#array" id="ref-for-array①④">array</a> from elements.
 
 
        <p class="note" role="note"><span class="marker">Note:</span> array&lt;<var>T</var>,<var>N</var>> is <a data-link-type="dfn" href="#constructible" id="ref-for-constructible②⑧">constructible</a> because its <a data-link-type="dfn" href="#element-count" id="ref-for-element-count⑦">element count</a>
@@ -19764,7 +19748,7 @@ specify the component type; the component type is inferred from the constructor 
       <td>Description
       
       <td>
-       Construction of an <a data-link-type="dfn" href="#array" id="ref-for-array①④">array</a> from elements.
+       Construction of an <a data-link-type="dfn" href="#array" id="ref-for-array①⑤">array</a> from elements.
 
 
        <p>The component type is inferred from the elements' type.
@@ -29210,12 +29194,12 @@ let dfnPanelData = {
 "affected-range": {"dfnID":"affected-range","dfnText":"affected range","external":false,"refSections":[{"refs":[{"id":"ref-for-affected-range"}],"title":"2.3.1. Diagnostic Processing"},{"refs":[{"id":"ref-for-affected-range\u2460"}],"title":"2.3.3. Diagnostic Filtering"},{"refs":[{"id":"ref-for-affected-range\u2461"}],"title":"4.2. Global Diagnostic Filter"}],"url":"#affected-range"},
 "alias": {"dfnID":"alias","dfnText":"alias","external":false,"refSections":[],"url":"#alias"},
 "alignment": {"dfnID":"alignment","dfnText":"alignment","external":false,"refSections":[{"refs":[{"id":"ref-for-alignment"}],"title":"14.4. Memory Layout"},{"refs":[{"id":"ref-for-alignment\u2460"}],"title":"14.4.5. Address Space Layout Constraints"}],"url":"#alignment"},
-"alignof": {"dfnID":"alignof","dfnText":"AlignOf","external":false,"refSections":[{"refs":[{"id":"ref-for-alignof"}],"title":"13.3.4. Buffer Binding Determines Runtime-Sized Array Element Count"},{"refs":[{"id":"ref-for-alignof\u2460"},{"id":"ref-for-alignof\u2461"}],"title":"14.4. Memory Layout"},{"refs":[{"id":"ref-for-alignof\u2462"},{"id":"ref-for-alignof\u2463"},{"id":"ref-for-alignof\u2464"},{"id":"ref-for-alignof\u2465"},{"id":"ref-for-alignof\u2466"},{"id":"ref-for-alignof\u2467"},{"id":"ref-for-alignof\u2468"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-alignof\u2460\u24ea"}],"title":"14.4.2. Structure Member Layout"},{"refs":[{"id":"ref-for-alignof\u2460\u2460"},{"id":"ref-for-alignof\u2460\u2461"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-alignof\u2460\u2462"},{"id":"ref-for-alignof\u2460\u2463"},{"id":"ref-for-alignof\u2460\u2464"},{"id":"ref-for-alignof\u2460\u2465"},{"id":"ref-for-alignof\u2460\u2466"},{"id":"ref-for-alignof\u2460\u2467"},{"id":"ref-for-alignof\u2460\u2468"},{"id":"ref-for-alignof\u2461\u24ea"},{"id":"ref-for-alignof\u2461\u2460"},{"id":"ref-for-alignof\u2461\u2461"},{"id":"ref-for-alignof\u2461\u2462"},{"id":"ref-for-alignof\u2461\u2463"},{"id":"ref-for-alignof\u2461\u2464"},{"id":"ref-for-alignof\u2461\u2465"},{"id":"ref-for-alignof\u2461\u2466"},{"id":"ref-for-alignof\u2461\u2467"},{"id":"ref-for-alignof\u2461\u2468"},{"id":"ref-for-alignof\u2462\u24ea"},{"id":"ref-for-alignof\u2462\u2460"}],"title":"14.4.5. Address Space Layout Constraints"}],"url":"#alignof"},
+"alignof": {"dfnID":"alignof","dfnText":"AlignOf","external":false,"refSections":[{"refs":[{"id":"ref-for-alignof"}],"title":"13.3.4. Buffer Binding Determines Runtime-Sized Array Element Count"},{"refs":[{"id":"ref-for-alignof\u2460"},{"id":"ref-for-alignof\u2461"}],"title":"14.4. Memory Layout"},{"refs":[{"id":"ref-for-alignof\u2462"},{"id":"ref-for-alignof\u2463"},{"id":"ref-for-alignof\u2464"},{"id":"ref-for-alignof\u2465"},{"id":"ref-for-alignof\u2466"},{"id":"ref-for-alignof\u2467"},{"id":"ref-for-alignof\u2468"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-alignof\u2460\u24ea"}],"title":"14.4.2. Structure Member Layout"},{"refs":[{"id":"ref-for-alignof\u2460\u2460"},{"id":"ref-for-alignof\u2460\u2461"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-alignof\u2460\u2462"},{"id":"ref-for-alignof\u2460\u2463"},{"id":"ref-for-alignof\u2460\u2464"},{"id":"ref-for-alignof\u2460\u2465"},{"id":"ref-for-alignof\u2460\u2466"},{"id":"ref-for-alignof\u2460\u2467"},{"id":"ref-for-alignof\u2460\u2468"},{"id":"ref-for-alignof\u2461\u24ea"},{"id":"ref-for-alignof\u2461\u2460"},{"id":"ref-for-alignof\u2461\u2461"},{"id":"ref-for-alignof\u2461\u2462"},{"id":"ref-for-alignof\u2461\u2463"},{"id":"ref-for-alignof\u2461\u2464"}],"title":"14.4.5. Address Space Layout Constraints"}],"url":"#alignof"},
 "alignofmember": {"dfnID":"alignofmember","dfnText":"AlignOfMember","external":false,"refSections":[{"refs":[{"id":"ref-for-alignofmember"},{"id":"ref-for-alignofmember\u2460"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-alignofmember\u2461"},{"id":"ref-for-alignofmember\u2462"},{"id":"ref-for-alignofmember\u2463"}],"title":"14.4.2. Structure Member Layout"}],"url":"#alignofmember"},
 "alltypes": {"dfnID":"alltypes","dfnText":"AllTypes","external":false,"refSections":[{"refs":[{"id":"ref-for-alltypes"},{"id":"ref-for-alltypes\u2460"},{"id":"ref-for-alltypes\u2461"},{"id":"ref-for-alltypes\u2462"},{"id":"ref-for-alltypes\u2463"}],"title":"8.17. Type Expressions"}],"url":"#alltypes"},
 "angles": {"dfnID":"angles","dfnText":"Angles","external":false,"refSections":[{"refs":[{"id":"ref-for-angles"}],"title":"17.5.8. atan2"}],"url":"#angles"},
 "arg_i": {"dfnID":"arg_i","dfnText":"arg_i","external":false,"refSections":[{"refs":[{"id":"ref-for-arg_i"},{"id":"ref-for-arg_i\u2460"},{"id":"ref-for-arg_i\u2461"}],"title":"15.2.7. Uniformity Rules for Function Calls"}],"url":"#arg_i"},
-"array": {"dfnID":"array","dfnText":"array","external":false,"refSections":[{"refs":[{"id":"ref-for-array"}],"title":"2.4. Limits"},{"refs":[{"id":"ref-for-array\u2460"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-array\u2461"}],"title":"6.2.9. Array Types"},{"refs":[{"id":"ref-for-array\u2462"}],"title":"6.2.11. Composite Types"},{"refs":[{"id":"ref-for-array\u2463"}],"title":"6.4.1. Storable Types"},{"refs":[{"id":"ref-for-array\u2464"}],"title":"6.4.8. Forming Reference and Pointer Values"},{"refs":[{"id":"ref-for-array\u2465"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-array\u2466"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-array\u2467"}],"title":"8. Expressions"},{"refs":[{"id":"ref-for-array\u2468"}],"title":"13.3. Shader Interface"},{"refs":[{"id":"ref-for-array\u2460\u24ea"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-array\u2460\u2460"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-array\u2460\u2461"}],"title":"14.4.5. Address Space Layout Constraints"},{"refs":[{"id":"ref-for-array\u2460\u2462"},{"id":"ref-for-array\u2460\u2463"}],"title":"17.1.2.1. array"}],"url":"#array"},
+"array": {"dfnID":"array","dfnText":"array","external":false,"refSections":[{"refs":[{"id":"ref-for-array"}],"title":"2.4. Limits"},{"refs":[{"id":"ref-for-array\u2460"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-array\u2461"}],"title":"6.2.9. Array Types"},{"refs":[{"id":"ref-for-array\u2462"}],"title":"6.2.11. Composite Types"},{"refs":[{"id":"ref-for-array\u2463"}],"title":"6.4.1. Storable Types"},{"refs":[{"id":"ref-for-array\u2464"}],"title":"6.4.8. Forming Reference and Pointer Values"},{"refs":[{"id":"ref-for-array\u2465"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-array\u2466"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-array\u2467"}],"title":"8. Expressions"},{"refs":[{"id":"ref-for-array\u2468"}],"title":"13.3. Shader Interface"},{"refs":[{"id":"ref-for-array\u2460\u24ea"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-array\u2460\u2460"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-array\u2460\u2461"},{"id":"ref-for-array\u2460\u2462"}],"title":"14.4.5. Address Space Layout Constraints"},{"refs":[{"id":"ref-for-array\u2460\u2463"},{"id":"ref-for-array\u2460\u2464"}],"title":"17.1.2.1. array"}],"url":"#array"},
 "assertion": {"dfnID":"assertion","dfnText":"assertion","external":false,"refSections":[{"refs":[{"id":"ref-for-assertion"}],"title":"2. WGSL Module"},{"refs":[{"id":"ref-for-assertion\u2460"}],"title":"10. Assertions"},{"refs":[{"id":"ref-for-assertion\u2461"}],"title":"10.1. Const Assertion Statement"}],"url":"#assertion"},
 "atomic-modification": {"dfnID":"atomic-modification","dfnText":"atomic modification","external":false,"refSections":[{"refs":[{"id":"ref-for-atomic-modification"}],"title":"17.8.1. atomicLoad"}],"url":"#atomic-modification"},
 "atomic-type": {"dfnID":"atomic-type","dfnText":"atomic type","external":false,"refSections":[{"refs":[{"id":"ref-for-atomic-type"}],"title":"6.2. Plain Types"},{"refs":[{"id":"ref-for-atomic-type\u2460"}],"title":"6.2.9. Array Types"},{"refs":[{"id":"ref-for-atomic-type\u2461"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-atomic-type\u2462"},{"id":"ref-for-atomic-type\u2463"}],"title":"6.2.13. Fixed-Footprint Types"},{"refs":[{"id":"ref-for-atomic-type\u2464"}],"title":"6.4.1. Storable Types"},{"refs":[{"id":"ref-for-atomic-type\u2465"}],"title":"6.4.2. Host-shareable Types"},{"refs":[{"id":"ref-for-atomic-type\u2466"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-atomic-type\u2467"},{"id":"ref-for-atomic-type\u2468"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-atomic-type\u2460\u24ea"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-atomic-type\u2460\u2460"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-atomic-type\u2460\u2461"}],"title":"14.4.5. Address Space Layout Constraints"},{"refs":[{"id":"ref-for-atomic-type\u2460\u2462"}],"title":"17.1.1. Zero Value Built-in Functions"}],"url":"#atomic-type"},
@@ -29636,7 +29620,7 @@ let dfnPanelData = {
 "recursive-descent-syntax-vertex_attr": {"dfnID":"recursive-descent-syntax-vertex_attr","dfnText":"vertex_attr","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-vertex_attr"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-vertex_attr"},
 "recursive-descent-syntax-workgroup_size_attr": {"dfnID":"recursive-descent-syntax-workgroup_size_attr","dfnText":"workgroup_size_attr","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-workgroup_size_attr"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-workgroup_size_attr"},
 "reference-type": {"dfnID":"reference-type","dfnText":"reference type","external":false,"refSections":[{"refs":[{"id":"ref-for-reference-type"}],"title":"6. Types"},{"refs":[{"id":"ref-for-reference-type\u2460"}],"title":"6.4.3. Reference and Pointer Types"},{"refs":[{"id":"ref-for-reference-type\u2461"}],"title":"6.4.4. Valid and Invalid Memory References"},{"refs":[{"id":"ref-for-reference-type\u2462"}],"title":"7.1. Variables vs Values"},{"refs":[{"id":"ref-for-reference-type\u2463"},{"id":"ref-for-reference-type\u2464"},{"id":"ref-for-reference-type\u2465"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-reference-type\u2466"}],"title":"8.5. Composite Value Decomposition Expressions"},{"refs":[{"id":"ref-for-reference-type\u2467"},{"id":"ref-for-reference-type\u2468"}],"title":"8.5.1.2. Vector Multiple Component Selection"},{"refs":[{"id":"ref-for-reference-type\u2460\u24ea"}],"title":"9.2.3. Compound Assignment"},{"refs":[{"id":"ref-for-reference-type\u2460\u2460"},{"id":"ref-for-reference-type\u2460\u2461"}],"title":"11.4.1.1. Root Identifier"},{"refs":[{"id":"ref-for-reference-type\u2460\u2462"}],"title":"15.2.5. Function-scope Variable Value Analysis"}],"url":"#reference-type"},
-"requiredalignof": {"dfnID":"requiredalignof","dfnText":"RequiredAlignOf","external":false,"refSections":[{"refs":[{"id":"ref-for-requiredalignof"}],"title":"12.1. align"},{"refs":[{"id":"ref-for-requiredalignof\u2460"},{"id":"ref-for-requiredalignof\u2461"},{"id":"ref-for-requiredalignof\u2462"},{"id":"ref-for-requiredalignof\u2463"},{"id":"ref-for-requiredalignof\u2464"},{"id":"ref-for-requiredalignof\u2465"},{"id":"ref-for-requiredalignof\u2466"},{"id":"ref-for-requiredalignof\u2467"}],"title":"14.4.5. Address Space Layout Constraints"}],"url":"#requiredalignof"},
+"requiredalignof": {"dfnID":"requiredalignof","dfnText":"RequiredAlignOf","external":false,"refSections":[{"refs":[{"id":"ref-for-requiredalignof"}],"title":"12.1. align"},{"refs":[{"id":"ref-for-requiredalignof\u2460"},{"id":"ref-for-requiredalignof\u2461"},{"id":"ref-for-requiredalignof\u2462"},{"id":"ref-for-requiredalignof\u2463"},{"id":"ref-for-requiredalignof\u2464"},{"id":"ref-for-requiredalignof\u2465"},{"id":"ref-for-requiredalignof\u2466"}],"title":"14.4.5. Address Space Layout Constraints"}],"url":"#requiredalignof"},
 "requiredtobeuniformerror": {"dfnID":"requiredtobeuniformerror","dfnText":"RequiredToBeUniform.error","external":false,"refSections":[{"refs":[{"id":"ref-for-requiredtobeuniformerror"},{"id":"ref-for-requiredtobeuniformerror\u2460"},{"id":"ref-for-requiredtobeuniformerror\u2461"},{"id":"ref-for-requiredtobeuniformerror\u2462"},{"id":"ref-for-requiredtobeuniformerror\u2463"},{"id":"ref-for-requiredtobeuniformerror\u2464"}],"title":"15.2.3. Analyzing the Uniformity Requirements of a Function"}],"url":"#requiredtobeuniformerror"},
 "requiredtobeuniforminfo": {"dfnID":"requiredtobeuniforminfo","dfnText":"RequiredToBeUniform.info","external":false,"refSections":[{"refs":[{"id":"ref-for-requiredtobeuniforminfo"},{"id":"ref-for-requiredtobeuniforminfo\u2460"},{"id":"ref-for-requiredtobeuniforminfo\u2461"}],"title":"15.2.3. Analyzing the Uniformity Requirements of a Function"}],"url":"#requiredtobeuniforminfo"},
 "requiredtobeuniforms": {"dfnID":"requiredtobeuniforms","dfnText":"RequiredToBeUniform.S","external":false,"refSections":[{"refs":[{"id":"ref-for-requiredtobeuniforms"},{"id":"ref-for-requiredtobeuniforms\u2460"}],"title":"15.2.3. Analyzing the Uniformity Requirements of a Function"},{"refs":[{"id":"ref-for-requiredtobeuniforms\u2461"},{"id":"ref-for-requiredtobeuniforms\u2462"},{"id":"ref-for-requiredtobeuniforms\u2463"},{"id":"ref-for-requiredtobeuniforms\u2464"},{"id":"ref-for-requiredtobeuniforms\u2465"}],"title":"15.2.7. Uniformity Rules for Function Calls"},{"refs":[{"id":"ref-for-requiredtobeuniforms\u2466"}],"title":"15.2.10.3. Composite Value Analysis Limitations"},{"refs":[{"id":"ref-for-requiredtobeuniforms\u2467"}],"title":"15.2.10.5. User-defined Function Calls"}],"url":"#requiredtobeuniforms"},
