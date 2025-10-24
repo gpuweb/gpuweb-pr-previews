@@ -837,7 +837,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/5d951e18b065e22f098cef02a7e5bf1d874f2c5b/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/5d951e18b065e22f098cef02a7e5bf1d874f2c5b/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/c06a2c73b031f45c4487b2aaed4e337091f7d746/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/c06a2c73b031f45c4487b2aaed4e337091f7d746/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -18218,16 +18218,16 @@ Each subgroup may contain fewer invocations than the reported subgroup size
 (e.g. if fewer invocations than the subgroup size are launched).</p>
    <p>An invocation’s <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="subgroup-invocation-id">subgroup invocation ID</dfn> is a unique ID within the subgroup.
 This ID is accessible via the <a data-link-type="dfn" href="#built-in-values-subgroup_invocation_id" id="ref-for-built-in-values-subgroup_invocation_id②">subgroup_invocation_id</a>
-built-in value and is in the range [0, <code>subgroup_size</code> - 1].
-There is no defined relationship between <code>subgroup_invocation_id</code> and
-<a data-link-type="dfn" href="#built-in-values-local_invocation_index" id="ref-for-built-in-values-local_invocation_index②">local_invocation_index</a>.
-To avoid non-portable code, shader authors should not assume a particular
-mapping between these two values.</p>
+built-in value and is in the range [0, <code>subgroup_size</code> - 1].</p>
    <p>If the <a data-link-type="dfn" href="#language_extension-subgroup_id" id="ref-for-language_extension-subgroup_id③">subgroup_id</a> feature is supported, within a
 compute shader the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="subgroup-id">subgroup ID</dfn> is the unique ID for the
 subgroup within the workgroup.
 This ID is accessible via the <a data-link-type="dfn" href="#built-in-values-subgroup_id" id="ref-for-built-in-values-subgroup_id③">subgroup_id</a> built-in value
 and is in the range [0, <a data-link-type="dfn" href="#built-in-values-num_subgroups" id="ref-for-built-in-values-num_subgroups⑤">num_subgroups</a> - 1].</p>
+   <p>There is no defined relationship between subgroup values (i.e.
+<code>subgroup_invocation_id</code> and <code>subgroup_id</code>) and <a data-link-type="dfn" href="#built-in-values-local_invocation_index" id="ref-for-built-in-values-local_invocation_index②">local_invocation_index</a>.
+To avoid non-portable code, shader authors should not assume a particular
+mapping between these two values.</p>
    <p>When invocations in the same subgroup execute different control flow paths, we
 say subgroup execution has diverged.
 This is a special case of <a data-link-type="dfn" href="#uniform-control-flow" id="ref-for-uniform-control-flow①②">non-uniform control flow</a>.
