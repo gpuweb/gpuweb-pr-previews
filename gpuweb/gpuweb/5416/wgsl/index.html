@@ -837,7 +837,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/ebf1c16e66d22f2738709aa4cb19d05f19c60caa/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/ebf1c16e66d22f2738709aa4cb19d05f19c60caa/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/5d951e18b065e22f098cef02a7e5bf1d874f2c5b/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/5d951e18b065e22f098cef02a7e5bf1d874f2c5b/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -14695,7 +14695,8 @@ Each is described in detail in subsequent sections.</p>
       
       <td>
        
-      The <a data-link-type="dfn" href="#subgroup-id" id="ref-for-subgroup-id">subgroup ID</a> of current invocation’s <a data-link-type="dfn" href="#compute-shader-stage-workgroup" id="ref-for-compute-shader-stage-workgroup②">workgroup</a>.
+      The <a data-link-type="dfn" href="#subgroup-id" id="ref-for-subgroup-id">subgroup ID</a> of current invocation’s <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup">subgroup</a> within the
+      <a data-link-type="dfn" href="#compute-shader-stage-workgroup" id="ref-for-compute-shader-stage-workgroup②">workgroup</a>.
 
 
        <p>The ID is in the range [0, <a data-link-type="dfn" href="#built-in-values-num_subgroups" id="ref-for-built-in-values-num_subgroups③">num_subgroups</a> - 1].</p>
@@ -14727,7 +14728,7 @@ Each is described in detail in subsequent sections.</p>
       <td style="width:10%">Description
       
       <td>
-      The number of <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup">subgroups</a> in the current invocation’s <a data-link-type="dfn" href="#compute-shader-stage-workgroup" id="ref-for-compute-shader-stage-workgroup③">workgroup</a>.
+      The number of <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①">subgroups</a> in the current invocation’s <a data-link-type="dfn" href="#compute-shader-stage-workgroup" id="ref-for-compute-shader-stage-workgroup③">workgroup</a>.
 
    </table>
    <h5 class="heading settled" data-level="13.3.1.2" id="user-defined-inputs-outputs"><span class="secno">13.3.1.2. </span><span class="content">User-defined Inputs and Outputs</span><a class="self-link" href="#user-defined-inputs-outputs"></a></h5>
@@ -16303,7 +16304,7 @@ These sources include, but are not limited to:</p>
     <li data-md>
      <p>Mutable <a data-link-type="dfn" href="#module-scope" id="ref-for-module-scope②⑨">module-scope</a> <a data-link-type="dfn" href="#variable" id="ref-for-variable①⑧">variables</a></p>
     <li data-md>
-     <p>Most <a data-link-type="dfn" href="#built-in-values" id="ref-for-built-in-values⑤">built-in values</a>, except <a data-link-type="dfn" href="#built-in-values-num_workgroups" id="ref-for-built-in-values-num_workgroups②">num_workgroups</a> and <a data-link-type="dfn" href="#built-in-values-workgroup_id" id="ref-for-built-in-values-workgroup_id③">workgroup_id</a></p>
+     <p>Most <a data-link-type="dfn" href="#built-in-values" id="ref-for-built-in-values⑤">built-in values</a></p>
     <li data-md>
      <p><a data-link-type="dfn" href="#user-defined-input-datum" id="ref-for-user-defined-input-datum③">User-defined inputs</a></p>
     <li data-md>
@@ -17744,9 +17745,9 @@ after the function call.</p>
    <p>The following built-in input variables are considered uniform:</p>
    <ul>
     <li data-md>
-     <p><a data-link-type="dfn" href="#built-in-values-workgroup_id" id="ref-for-built-in-values-workgroup_id④">workgroup_id</a></p>
+     <p><a data-link-type="dfn" href="#built-in-values-workgroup_id" id="ref-for-built-in-values-workgroup_id③">workgroup_id</a></p>
     <li data-md>
-     <p><a data-link-type="dfn" href="#built-in-values-num_workgroups" id="ref-for-built-in-values-num_workgroups③">num_workgroups</a></p>
+     <p><a data-link-type="dfn" href="#built-in-values-num_workgroups" id="ref-for-built-in-values-num_workgroups②">num_workgroups</a></p>
     <li data-md>
      <p><a data-link-type="dfn" href="#built-in-values-subgroup_size" id="ref-for-built-in-values-subgroup_size③">subgroup_size</a> when used in a <a data-link-type="dfn" href="#compute-shader-stage" id="ref-for-compute-shader-stage①⑥">compute shader stage</a></p>
     <li data-md>
@@ -18300,7 +18301,7 @@ For each call to one of these functions, a <a data-link-type="dfn" href="#trigge
 Their use does not require the <a data-link-type="dfn" href="#extension-subgroups" id="ref-for-extension-subgroups⑥">subgroups</a> extension.</p>
    <h4 class="heading settled" data-level="15.6.3" id="subgroup-ops"><span class="secno">15.6.3. </span><span class="content">Subgroup Operations</span><a class="self-link" href="#subgroup-ops"></a></h4>
    <p>The <a href="#subgroup-builtin-functions">subgroup built-in functions</a> allow efficient
-communication and computation between the invocations in a <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①">subgroup</a>.
+communication and computation between the invocations in a <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup②">subgroup</a>.
 Subgroup operations are single-instruction multiple-thread (SIMT) operations.</p>
    <p>The <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active">active</a> invocations in a subgroup communicate to determine results.
 Therefore, portability is maximized when these functions are invoked when all
@@ -26527,7 +26528,7 @@ cannot prove the call is in <a data-link-type="dfn" href="#uniform-control-flow"
 the <a data-link-type="dfn" href="#compute-shader-stage-workgroup" id="ref-for-compute-shader-stage-workgroup⑨">workgroup</a>.
 For the <a data-link-type="dfn" href="#fragment-shader-stage" id="ref-for-fragment-shader-stage①②">fragment shader stage</a>, the scope of uniform control flow is the
 <a data-link-type="dfn" href="#draw-command" id="ref-for-draw-command⑧">draw command</a>.
-Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup②">subgroup</a>.</p>
+Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup③">subgroup</a>.</p>
    <h4 class="heading settled" data-level="17.12.1" id="subgroupadd-builtin"><span class="secno">17.12.1. </span><span class="content"><code>subgroupAdd</code></span><a class="self-link" href="#subgroupadd-builtin"></a></h4>
    <table class="data builtin">
     <tbody>
@@ -26549,7 +26550,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
        Reduction operation.<br>
 
 
-       <p>Returns the sum of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①⓪">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup③">subgroup</a>.</p>
+       <p>Returns the sum of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①⓪">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup④">subgroup</a>.</p>
    </table>
    <h5 class="heading settled" data-level="17.12.1.1" id="subgroupexclusiveadd-builtin"><span class="secno">17.12.1.1. </span><span class="content"><code>subgroupExclusiveAdd</code></span><a class="self-link" href="#subgroupexclusiveadd-builtin"></a></h5>
    <table class="data builtin">
@@ -26573,7 +26574,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
 
 
        <p>Returns the sum of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①①">active</a> invocations in the
-    <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup④">subgroup</a> whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id⑤">subgroup invocation IDs</a> are less than the current
+    <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup⑤">subgroup</a> whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id⑤">subgroup invocation IDs</a> are less than the current
     invocation’s id.</p>
        <p>The value returned for the invocation with the lowest id among active invocations is <code>T(0)</code>.</p>
    </table>
@@ -26599,7 +26600,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
 
 
        <p>Returns the sum of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①②">active</a> invocations in the
-    <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup⑤">subgroup</a> whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id⑥">subgroup invocation IDs</a> are less than or equal to
+    <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup⑥">subgroup</a> whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id⑥">subgroup invocation IDs</a> are less than or equal to
     the current invocation’s id.</p>
        <p class="note" role="note"><span class="marker">Note:</span> equivalent to <code>subgroupExclusiveAdd(x) + x</code>.</p>
    </table>
@@ -26615,7 +26616,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
      <tr>
       <td>Description
     
-      <td>Returns <code>true</code> if <code>e</code> is <code>true</code> for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①③">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup⑥">subgroup</a>.
+      <td>Returns <code>true</code> if <code>e</code> is <code>true</code> for all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①③">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup⑦">subgroup</a>.
 
    </table>
    <h4 class="heading settled" data-level="17.12.3" id="subgroupand-builtin"><span class="secno">17.12.3. </span><span class="content"><code>subgroupAnd</code></span><a class="self-link" href="#subgroupand-builtin"></a></h4>
@@ -26640,7 +26641,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
 
 
        <p>Returns the bitwise and (<code>&amp;</code>) of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①④">active</a>
-    invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup⑦">subgroup</a>.</p>
+    invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup⑧">subgroup</a>.</p>
    </table>
    <h4 class="heading settled" data-level="17.12.4" id="subgroupany-builtin"><span class="secno">17.12.4. </span><span class="content"><code>subgroupAny</code></span><a class="self-link" href="#subgroupany-builtin"></a></h4>
    <table class="data builtin">
@@ -26654,7 +26655,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
      <tr>
       <td>Description
     
-      <td>Returns <code>true</code> if <code>e</code> is <code>true</code> for any <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①⑤">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup⑧">subgroup</a>.
+      <td>Returns <code>true</code> if <code>e</code> is <code>true</code> for any <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①⑤">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup⑨">subgroup</a>.
 
    </table>
    <h4 class="heading settled" data-level="17.12.5" id="subgroupballot-builtin"><span class="secno">17.12.5. </span><span class="content"><code>subgroupBallot</code></span><a class="self-link" href="#subgroupballot-builtin"></a></h4>
@@ -26671,7 +26672,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
     
       <td>
        Returns a bitmask of the <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①⑥">active</a> invocations in the
-    <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup⑨">subgroup</a> for whom <code>pred</code> is <code>true</code>.<br>
+    <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①⓪">subgroup</a> for whom <code>pred</code> is <code>true</code>.<br>
 
 
        <p>The x component of the return value contains invocations 0 through 31.<br>
@@ -26701,7 +26702,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
     
       <td>
        Returns the value of <code>e</code> from the invocation whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id⑦">subgroup invocation ID</a>
-    matches <code>id</code> in the subgroup to all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①⑦">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①⓪">subgroup</a>.
+    matches <code>id</code> in the subgroup to all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①⑦">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①①">subgroup</a>.
 
 
        <p><code>id</code> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑧⑨">must</a> be a <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions⑧①">const-expression</a> in the range [0, 128).</p>
@@ -26729,7 +26730,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
     
       <td>Returns the value of <code>e</code> from the invocation that has the lowest
     <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id⑧">subgroup invocation ID</a> among <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active①⑨">active</a> invocations in the
-    <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①①">subgroup</a> to all active invocations in the subgroup.
+    <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①②">subgroup</a> to all active invocations in the subgroup.
 
    </table>
    <h4 class="heading settled" data-level="17.12.7" id="subgroupelect-builtin"><span class="secno">17.12.7. </span><span class="content"><code>subgroupElect</code></span><a class="self-link" href="#subgroupelect-builtin"></a></h4>
@@ -26745,7 +26746,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
       <td>Description
     
       <td>Returns <code>true</code> if the current invocation has the lowest <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id⑨">subgroup invocation ID</a>
-    among <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②⓪">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①②">subgroup</a>.
+    among <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②⓪">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①③">subgroup</a>.
 
    </table>
    <h4 class="heading settled" data-level="17.12.8" id="subgroupmax-builtin"><span class="secno">17.12.8. </span><span class="content"><code>subgroupMax</code></span><a class="self-link" href="#subgroupmax-builtin"></a></h4>
@@ -26769,7 +26770,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
        Reduction operation.<br>
 
 
-       <p>Returns the maximum value of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②①">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①③">subgroup</a>.</p>
+       <p>Returns the maximum value of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②①">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①④">subgroup</a>.</p>
    </table>
    <h4 class="heading settled" data-level="17.12.9" id="subgroupmin-builtin"><span class="secno">17.12.9. </span><span class="content"><code>subgroupMin</code></span><a class="self-link" href="#subgroupmin-builtin"></a></h4>
    <table class="data builtin">
@@ -26792,7 +26793,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
        Reduction operation.<br>
 
 
-       <p>Returns the minimum value of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②②">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①④">subgroup</a>.</p>
+       <p>Returns the minimum value of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②②">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①⑤">subgroup</a>.</p>
    </table>
    <h4 class="heading settled" data-level="17.12.10" id="subgroupmul-builtin"><span class="secno">17.12.10. </span><span class="content"><code>subgroupMul</code></span><a class="self-link" href="#subgroupmul-builtin"></a></h4>
    <table class="data builtin">
@@ -26815,7 +26816,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
        Reduction operation.<br>
 
 
-       <p>Returns the product of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②③">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①⑤">subgroup</a>.</p>
+       <p>Returns the product of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②③">active</a> invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①⑥">subgroup</a>.</p>
    </table>
    <h5 class="heading settled" data-level="17.12.10.1" id="subgroupexclusivemul-builtin"><span class="secno">17.12.10.1. </span><span class="content"><code>subgroupExclusiveMul</code></span><a class="self-link" href="#subgroupexclusivemul-builtin"></a></h5>
    <table class="data builtin">
@@ -26839,7 +26840,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
 
 
        <p>Returns the product of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②④">active</a> invocations in
-    the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①⑥">subgroup</a> whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id①⓪">subgroup invocation IDs</a> are less than the
+    the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①⑦">subgroup</a> whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id①⓪">subgroup invocation IDs</a> are less than the
     current invocation’s id.</p>
        <p>The value returned for the invocation with the lowest id among active invocations is <code>T(1)</code>.</p>
    </table>
@@ -26865,7 +26866,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
 
 
        <p>Returns the product of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②⑤">active</a> invocations in
-    the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①⑦">subgroup</a> whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id①①">subgroup invocation IDs</a> are less than or equal
+    the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①⑧">subgroup</a> whose <a data-link-type="dfn" href="#subgroup-invocation-id" id="ref-for-subgroup-invocation-id①①">subgroup invocation IDs</a> are less than or equal
     to the current invocation’s id.</p>
        <p class="note" role="note"><span class="marker">Note:</span> equivalent to <code>subgroupExclusiveMul(x) * x</code>.</p>
    </table>
@@ -26891,7 +26892,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
 
 
        <p>Returns the bitwise or (<code>|</code>) of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active②⑥">active</a>
-    invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①⑧">subgroup</a>.</p>
+    invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①⑨">subgroup</a>.</p>
    </table>
    <h4 class="heading settled" data-level="17.12.12" id="subgroupshuffle-builtin"><span class="secno">17.12.12. </span><span class="content"><code>subgroupShuffle</code></span><a class="self-link" href="#subgroupshuffle-builtin"></a></h4>
    <table class="data builtin">
@@ -27052,7 +27053,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
 
 
        <p>Returns the bitwise xor (<code>^</code>) of <code>e</code> among all <a data-link-type="dfn" href="#subgroups-active" id="ref-for-subgroups-active③①">active</a>
-    invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup①⑨">subgroup</a>.</p>
+    invocations in the <a data-link-type="dfn" href="#subgroup" id="ref-for-subgroup②⓪">subgroup</a>.</p>
    </table>
    <h3 class="heading settled" data-level="17.13" id="quad-builtin-functions"><span class="secno">17.13. </span><span class="content">Quad Operations</span><a class="self-link" href="#quad-builtin-functions"></a></h3>
    <p>See <a href="#quad-ops">§ 15.6.4 Quad Operations</a>.</p>
@@ -29496,7 +29497,7 @@ let dfnPanelData = {
 "built-in-values-local_invocation_id": {"dfnID":"built-in-values-local_invocation_id","dfnText":"local_invocation_id","external":false,"refSections":[{"refs":[{"id":"ref-for-built-in-values-local_invocation_id"}],"title":"3.8.2. Built-in Value Names"},{"refs":[{"id":"ref-for-built-in-values-local_invocation_id\u2460"}],"title":"13.3.1.1. Built-in Inputs and Outputs"},{"refs":[{"id":"ref-for-built-in-values-local_invocation_id\u2461"}],"title":"13.3.1.1.4. global_invocation_id"}],"url":"#built-in-values-local_invocation_id"},
 "built-in-values-local_invocation_index": {"dfnID":"built-in-values-local_invocation_index","dfnText":"local_invocation_index","external":false,"refSections":[{"refs":[{"id":"ref-for-built-in-values-local_invocation_index"}],"title":"3.8.2. Built-in Value Names"},{"refs":[{"id":"ref-for-built-in-values-local_invocation_index\u2460"}],"title":"13.3.1.1. Built-in Inputs and Outputs"},{"refs":[{"id":"ref-for-built-in-values-local_invocation_index\u2461"}],"title":"15.5. Subgroups"}],"url":"#built-in-values-local_invocation_index"},
 "built-in-values-num_subgroups": {"dfnID":"built-in-values-num_subgroups","dfnText":"num_subgroups","external":false,"refSections":[{"refs":[{"id":"ref-for-built-in-values-num_subgroups"}],"title":"3.8.2. Built-in Value Names"},{"refs":[{"id":"ref-for-built-in-values-num_subgroups\u2460"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-built-in-values-num_subgroups\u2461"}],"title":"13.3.1.1. Built-in Inputs and Outputs"},{"refs":[{"id":"ref-for-built-in-values-num_subgroups\u2462"}],"title":"13.3.1.1.17. subgroup_id"},{"refs":[{"id":"ref-for-built-in-values-num_subgroups\u2463"}],"title":"15.2.8. Uniformity Rules for Expressions"},{"refs":[{"id":"ref-for-built-in-values-num_subgroups\u2464"}],"title":"15.5. Subgroups"}],"url":"#built-in-values-num_subgroups"},
-"built-in-values-num_workgroups": {"dfnID":"built-in-values-num_workgroups","dfnText":"num_workgroups","external":false,"refSections":[{"refs":[{"id":"ref-for-built-in-values-num_workgroups"}],"title":"3.8.2. Built-in Value Names"},{"refs":[{"id":"ref-for-built-in-values-num_workgroups\u2460"}],"title":"13.3.1.1. Built-in Inputs and Outputs"},{"refs":[{"id":"ref-for-built-in-values-num_workgroups\u2461"}],"title":"15.2. Uniformity"},{"refs":[{"id":"ref-for-built-in-values-num_workgroups\u2462"}],"title":"15.2.8. Uniformity Rules for Expressions"}],"url":"#built-in-values-num_workgroups"},
+"built-in-values-num_workgroups": {"dfnID":"built-in-values-num_workgroups","dfnText":"num_workgroups","external":false,"refSections":[{"refs":[{"id":"ref-for-built-in-values-num_workgroups"}],"title":"3.8.2. Built-in Value Names"},{"refs":[{"id":"ref-for-built-in-values-num_workgroups\u2460"}],"title":"13.3.1.1. Built-in Inputs and Outputs"},{"refs":[{"id":"ref-for-built-in-values-num_workgroups\u2461"}],"title":"15.2.8. Uniformity Rules for Expressions"}],"url":"#built-in-values-num_workgroups"},
 "built-in-values-position": {"dfnID":"built-in-values-position","dfnText":"position","external":false,"refSections":[{"refs":[{"id":"ref-for-built-in-values-position"}],"title":"3.8.2. Built-in Value Names"},{"refs":[{"id":"ref-for-built-in-values-position\u2460"}],"title":"11.4. Restrictions on Functions"},{"refs":[{"id":"ref-for-built-in-values-position\u2461"},{"id":"ref-for-built-in-values-position\u2462"}],"title":"12.10. invariant"},{"refs":[{"id":"ref-for-built-in-values-position\u2463"},{"id":"ref-for-built-in-values-position\u2464"}],"title":"13.3.1.1. Built-in Inputs and Outputs"},{"refs":[{"id":"ref-for-built-in-values-position\u2465"}],"title":"13.3.1.1.9. position"},{"refs":[{"id":"ref-for-built-in-values-position\u2466"}],"title":"15.4. Fragment Shaders and Helper Invocations"}],"url":"#built-in-values-position"},
 "built-in-values-primitive_index": {"dfnID":"built-in-values-primitive_index","dfnText":"primitive_index","external":false,"refSections":[{"refs":[{"id":"ref-for-built-in-values-primitive_index"}],"title":"3.8.2. Built-in Value Names"},{"refs":[{"id":"ref-for-built-in-values-primitive_index\u2460"},{"id":"ref-for-built-in-values-primitive_index\u2461"}],"title":"4.1.1. Enable Extensions"},{"refs":[{"id":"ref-for-built-in-values-primitive_index\u2462"}],"title":"13.3.1.1. Built-in Inputs and Outputs"}],"url":"#built-in-values-primitive_index"},
 "built-in-values-sample_index": {"dfnID":"built-in-values-sample_index","dfnText":"sample_index","external":false,"refSections":[{"refs":[{"id":"ref-for-built-in-values-sample_index"}],"title":"3.8.2. Built-in Value Names"},{"refs":[{"id":"ref-for-built-in-values-sample_index\u2460"}],"title":"13.3.1.1. Built-in Inputs and Outputs"},{"refs":[{"id":"ref-for-built-in-values-sample_index\u2461"}],"title":"13.3.1.1.11. sample_index"}],"url":"#built-in-values-sample_index"},
@@ -29505,7 +29506,7 @@ let dfnPanelData = {
 "built-in-values-subgroup_invocation_id": {"dfnID":"built-in-values-subgroup_invocation_id","dfnText":"subgroup_invocation_id","external":false,"refSections":[{"refs":[{"id":"ref-for-built-in-values-subgroup_invocation_id"}],"title":"3.8.2. Built-in Value Names"},{"refs":[{"id":"ref-for-built-in-values-subgroup_invocation_id\u2460"}],"title":"13.3.1.1. Built-in Inputs and Outputs"},{"refs":[{"id":"ref-for-built-in-values-subgroup_invocation_id\u2461"}],"title":"15.5. Subgroups"}],"url":"#built-in-values-subgroup_invocation_id"},
 "built-in-values-subgroup_size": {"dfnID":"built-in-values-subgroup_size","dfnText":"subgroup_size","external":false,"refSections":[{"refs":[{"id":"ref-for-built-in-values-subgroup_size"}],"title":"3.8.2. Built-in Value Names"},{"refs":[{"id":"ref-for-built-in-values-subgroup_size\u2460"}],"title":"13.3.1.1. Built-in Inputs and Outputs"},{"refs":[{"id":"ref-for-built-in-values-subgroup_size\u2461"}],"title":"13.3.1.1.15. subgroup_invocation_id"},{"refs":[{"id":"ref-for-built-in-values-subgroup_size\u2462"}],"title":"15.2.8. Uniformity Rules for Expressions"},{"refs":[{"id":"ref-for-built-in-values-subgroup_size\u2463"}],"title":"15.5. Subgroups"}],"url":"#built-in-values-subgroup_size"},
 "built-in-values-vertex_index": {"dfnID":"built-in-values-vertex_index","dfnText":"vertex_index","external":false,"refSections":[{"refs":[{"id":"ref-for-built-in-values-vertex_index"}],"title":"3.8.2. Built-in Value Names"},{"refs":[{"id":"ref-for-built-in-values-vertex_index\u2460"}],"title":"13.3.1.1. Built-in Inputs and Outputs"}],"url":"#built-in-values-vertex_index"},
-"built-in-values-workgroup_id": {"dfnID":"built-in-values-workgroup_id","dfnText":"workgroup_id","external":false,"refSections":[{"refs":[{"id":"ref-for-built-in-values-workgroup_id"}],"title":"3.8.2. Built-in Value Names"},{"refs":[{"id":"ref-for-built-in-values-workgroup_id\u2460"}],"title":"13.3.1.1. Built-in Inputs and Outputs"},{"refs":[{"id":"ref-for-built-in-values-workgroup_id\u2461"}],"title":"13.3.1.1.4. global_invocation_id"},{"refs":[{"id":"ref-for-built-in-values-workgroup_id\u2462"}],"title":"15.2. Uniformity"},{"refs":[{"id":"ref-for-built-in-values-workgroup_id\u2463"}],"title":"15.2.8. Uniformity Rules for Expressions"}],"url":"#built-in-values-workgroup_id"},
+"built-in-values-workgroup_id": {"dfnID":"built-in-values-workgroup_id","dfnText":"workgroup_id","external":false,"refSections":[{"refs":[{"id":"ref-for-built-in-values-workgroup_id"}],"title":"3.8.2. Built-in Value Names"},{"refs":[{"id":"ref-for-built-in-values-workgroup_id\u2460"}],"title":"13.3.1.1. Built-in Inputs and Outputs"},{"refs":[{"id":"ref-for-built-in-values-workgroup_id\u2461"}],"title":"13.3.1.1.4. global_invocation_id"},{"refs":[{"id":"ref-for-built-in-values-workgroup_id\u2462"}],"title":"15.2.8. Uniformity Rules for Expressions"}],"url":"#built-in-values-workgroup_id"},
 "builtin-functions-that-compute-a-derivative": {"dfnID":"builtin-functions-that-compute-a-derivative","dfnText":"builtin functions that compute a derivative","external":false,"refSections":[{"refs":[{"id":"ref-for-builtin-functions-that-compute-a-derivative"}],"title":"2.3.2. Filterable Triggering Rules"},{"refs":[{"id":"ref-for-builtin-functions-that-compute-a-derivative\u2460"}],"title":"15.2. Uniformity"}],"url":"#builtin-functions-that-compute-a-derivative"},
 "byte-size": {"dfnID":"byte-size","dfnText":"byte-size","external":false,"refSections":[{"refs":[{"id":"ref-for-byte-size"},{"id":"ref-for-byte-size\u2460"},{"id":"ref-for-byte-size\u2461"}],"title":"2.4. Limits"},{"refs":[{"id":"ref-for-byte-size\u2462"}],"title":"12.13. size"},{"refs":[{"id":"ref-for-byte-size\u2463"}],"title":"14.4. Memory Layout"}],"url":"#byte-size"},
 "c3803154": {"dfnID":"c3803154","dfnText":"\"3d\"","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureviewdimension-3d"}],"title":"6.5.2. Sampled Texture Types"},{"refs":[{"id":"ref-for-dom-gputextureviewdimension-3d\u2460"}],"title":"6.5.5. Storage Texture Types"}],"url":"https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-3d"},
@@ -29946,7 +29947,7 @@ let dfnPanelData = {
 "strideof": {"dfnID":"strideof","dfnText":"StrideOf","external":false,"refSections":[{"refs":[{"id":"ref-for-strideof"},{"id":"ref-for-strideof\u2460"},{"id":"ref-for-strideof\u2461"}],"title":"13.3.4. Buffer Binding Determines Runtime-Sized Array Element Count"},{"refs":[{"id":"ref-for-strideof\u2462"},{"id":"ref-for-strideof\u2463"}],"title":"14.4. Memory Layout"},{"refs":[{"id":"ref-for-strideof\u2464"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-strideof\u2465"},{"id":"ref-for-strideof\u2466"},{"id":"ref-for-strideof\u2467"}],"title":"14.4.5. Address Space Layout Constraints"}],"url":"#strideof"},
 "structure": {"dfnID":"structure","dfnText":"structure","external":false,"refSections":[{"refs":[{"id":"ref-for-structure"}],"title":"2.4. Limits"},{"refs":[{"id":"ref-for-structure\u2460"}],"title":"3.7. Identifiers"},{"refs":[{"id":"ref-for-structure\u2461"}],"title":"5. Declaration and Scope"},{"refs":[{"id":"ref-for-structure\u2462"}],"title":"6.2.9. Array Types"},{"refs":[{"id":"ref-for-structure\u2463"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-structure\u2464"}],"title":"6.2.11. Composite Types"},{"refs":[{"id":"ref-for-structure\u2465"}],"title":"6.2.12. Constructible Types"},{"refs":[{"id":"ref-for-structure\u2466"}],"title":"6.2.13. Fixed-Footprint Types"},{"refs":[{"id":"ref-for-structure\u2467"}],"title":"6.4.1. Storable Types"},{"refs":[{"id":"ref-for-structure\u2468"}],"title":"6.4.2. Host-shareable Types"},{"refs":[{"id":"ref-for-structure\u2460\u24ea"}],"title":"6.4.8. Forming Reference and Pointer Values"},{"refs":[{"id":"ref-for-structure\u2460\u2460"}],"title":"8.1.1. const Expressions"},{"refs":[{"id":"ref-for-structure\u2460\u2461"}],"title":"8.1.2. override Expressions"},{"refs":[{"id":"ref-for-structure\u2460\u2462"}],"title":"8.5. Composite Value Decomposition Expressions"},{"refs":[{"id":"ref-for-structure\u2460\u2463"}],"title":"8.17. Type Expressions"},{"refs":[{"id":"ref-for-structure\u2460\u2464"}],"title":"12.1. align"},{"refs":[{"id":"ref-for-structure\u2460\u2465"}],"title":"12.3. blend_src"},{"refs":[{"id":"ref-for-structure\u2460\u2466"}],"title":"12.4. builtin"},{"refs":[{"id":"ref-for-structure\u2460\u2467"}],"title":"12.11. location"},{"refs":[{"id":"ref-for-structure\u2460\u2468"}],"title":"12.13. size"},{"refs":[{"id":"ref-for-structure\u2461\u24ea"}],"title":"13.2. Entry Point Declaration"},{"refs":[{"id":"ref-for-structure\u2461\u2460"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-structure\u2461\u2461"}],"title":"14.4.2. Structure Member Layout"},{"refs":[{"id":"ref-for-structure\u2461\u2462"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-structure\u2461\u2463"}],"title":"14.4.5. Address Space Layout Constraints"},{"refs":[{"id":"ref-for-structure\u2461\u2464"}],"title":"17.1. Constructor Built-in Functions"},{"refs":[{"id":"ref-for-structure\u2461\u2465"}],"title":"17.1.2.15. Structures"}],"url":"#structure"},
 "subexpressions": {"dfnID":"subexpressions","dfnText":"subexpressions","external":false,"refSections":[{"refs":[{"id":"ref-for-subexpressions"}],"title":"6.1.3. Overload Resolution"},{"refs":[{"id":"ref-for-subexpressions\u2460"},{"id":"ref-for-subexpressions\u2461"},{"id":"ref-for-subexpressions\u2462"},{"id":"ref-for-subexpressions\u2463"}],"title":"8.1.1. const Expressions"},{"refs":[{"id":"ref-for-subexpressions\u2464"},{"id":"ref-for-subexpressions\u2465"}],"title":"8.1.2. override Expressions"},{"refs":[{"id":"ref-for-subexpressions\u2466"}],"title":"8.2. Indeterminate values"}],"url":"#subexpressions"},
-"subgroup": {"dfnID":"subgroup","dfnText":"subgroup","external":false,"refSections":[{"refs":[{"id":"ref-for-subgroup"}],"title":"13.3.1.1.18. num_subgroups"},{"refs":[{"id":"ref-for-subgroup\u2460"}],"title":"15.6.3. Subgroup Operations"},{"refs":[{"id":"ref-for-subgroup\u2461"}],"title":"17.12. Subgroup Built-in Functions"},{"refs":[{"id":"ref-for-subgroup\u2462"}],"title":"17.12.1. subgroupAdd"},{"refs":[{"id":"ref-for-subgroup\u2463"}],"title":"17.12.1.1. subgroupExclusiveAdd"},{"refs":[{"id":"ref-for-subgroup\u2464"}],"title":"17.12.1.2. subgroupInclusiveAdd"},{"refs":[{"id":"ref-for-subgroup\u2465"}],"title":"17.12.2. subgroupAll"},{"refs":[{"id":"ref-for-subgroup\u2466"}],"title":"17.12.3. subgroupAnd"},{"refs":[{"id":"ref-for-subgroup\u2467"}],"title":"17.12.4. subgroupAny"},{"refs":[{"id":"ref-for-subgroup\u2468"}],"title":"17.12.5. subgroupBallot"},{"refs":[{"id":"ref-for-subgroup\u2460\u24ea"}],"title":"17.12.6. subgroupBroadcast"},{"refs":[{"id":"ref-for-subgroup\u2460\u2460"}],"title":"17.12.6.1. subgroupBroadcastFirst"},{"refs":[{"id":"ref-for-subgroup\u2460\u2461"}],"title":"17.12.7. subgroupElect"},{"refs":[{"id":"ref-for-subgroup\u2460\u2462"}],"title":"17.12.8. subgroupMax"},{"refs":[{"id":"ref-for-subgroup\u2460\u2463"}],"title":"17.12.9. subgroupMin"},{"refs":[{"id":"ref-for-subgroup\u2460\u2464"}],"title":"17.12.10. subgroupMul"},{"refs":[{"id":"ref-for-subgroup\u2460\u2465"}],"title":"17.12.10.1. subgroupExclusiveMul"},{"refs":[{"id":"ref-for-subgroup\u2460\u2466"}],"title":"17.12.10.2. subgroupInclusiveMul"},{"refs":[{"id":"ref-for-subgroup\u2460\u2467"}],"title":"17.12.11. subgroupOr"},{"refs":[{"id":"ref-for-subgroup\u2460\u2468"}],"title":"17.12.13. subgroupXor"}],"url":"#subgroup"},
+"subgroup": {"dfnID":"subgroup","dfnText":"subgroup","external":false,"refSections":[{"refs":[{"id":"ref-for-subgroup"}],"title":"13.3.1.1.17. subgroup_id"},{"refs":[{"id":"ref-for-subgroup\u2460"}],"title":"13.3.1.1.18. num_subgroups"},{"refs":[{"id":"ref-for-subgroup\u2461"}],"title":"15.6.3. Subgroup Operations"},{"refs":[{"id":"ref-for-subgroup\u2462"}],"title":"17.12. Subgroup Built-in Functions"},{"refs":[{"id":"ref-for-subgroup\u2463"}],"title":"17.12.1. subgroupAdd"},{"refs":[{"id":"ref-for-subgroup\u2464"}],"title":"17.12.1.1. subgroupExclusiveAdd"},{"refs":[{"id":"ref-for-subgroup\u2465"}],"title":"17.12.1.2. subgroupInclusiveAdd"},{"refs":[{"id":"ref-for-subgroup\u2466"}],"title":"17.12.2. subgroupAll"},{"refs":[{"id":"ref-for-subgroup\u2467"}],"title":"17.12.3. subgroupAnd"},{"refs":[{"id":"ref-for-subgroup\u2468"}],"title":"17.12.4. subgroupAny"},{"refs":[{"id":"ref-for-subgroup\u2460\u24ea"}],"title":"17.12.5. subgroupBallot"},{"refs":[{"id":"ref-for-subgroup\u2460\u2460"}],"title":"17.12.6. subgroupBroadcast"},{"refs":[{"id":"ref-for-subgroup\u2460\u2461"}],"title":"17.12.6.1. subgroupBroadcastFirst"},{"refs":[{"id":"ref-for-subgroup\u2460\u2462"}],"title":"17.12.7. subgroupElect"},{"refs":[{"id":"ref-for-subgroup\u2460\u2463"}],"title":"17.12.8. subgroupMax"},{"refs":[{"id":"ref-for-subgroup\u2460\u2464"}],"title":"17.12.9. subgroupMin"},{"refs":[{"id":"ref-for-subgroup\u2460\u2465"}],"title":"17.12.10. subgroupMul"},{"refs":[{"id":"ref-for-subgroup\u2460\u2466"}],"title":"17.12.10.1. subgroupExclusiveMul"},{"refs":[{"id":"ref-for-subgroup\u2460\u2467"}],"title":"17.12.10.2. subgroupInclusiveMul"},{"refs":[{"id":"ref-for-subgroup\u2460\u2468"}],"title":"17.12.11. subgroupOr"},{"refs":[{"id":"ref-for-subgroup\u2461\u24ea"}],"title":"17.12.13. subgroupXor"}],"url":"#subgroup"},
 "subgroup-id": {"dfnID":"subgroup-id","dfnText":"subgroup ID","external":false,"refSections":[{"refs":[{"id":"ref-for-subgroup-id"}],"title":"13.3.1.1.17. subgroup_id"}],"url":"#subgroup-id"},
 "subgroup-invocation-id": {"dfnID":"subgroup-invocation-id","dfnText":"subgroup invocation ID","external":false,"refSections":[{"refs":[{"id":"ref-for-subgroup-invocation-id"}],"title":"13.3.1.1.15. subgroup_invocation_id"},{"refs":[{"id":"ref-for-subgroup-invocation-id\u2460"},{"id":"ref-for-subgroup-invocation-id\u2461"},{"id":"ref-for-subgroup-invocation-id\u2462"},{"id":"ref-for-subgroup-invocation-id\u2463"}],"title":"15.7.4.1. Accuracy of Concrete Floating Point Expressions"},{"refs":[{"id":"ref-for-subgroup-invocation-id\u2464"}],"title":"17.12.1.1. subgroupExclusiveAdd"},{"refs":[{"id":"ref-for-subgroup-invocation-id\u2465"}],"title":"17.12.1.2. subgroupInclusiveAdd"},{"refs":[{"id":"ref-for-subgroup-invocation-id\u2466"}],"title":"17.12.6. subgroupBroadcast"},{"refs":[{"id":"ref-for-subgroup-invocation-id\u2467"}],"title":"17.12.6.1. subgroupBroadcastFirst"},{"refs":[{"id":"ref-for-subgroup-invocation-id\u2468"}],"title":"17.12.7. subgroupElect"},{"refs":[{"id":"ref-for-subgroup-invocation-id\u2460\u24ea"}],"title":"17.12.10.1. subgroupExclusiveMul"},{"refs":[{"id":"ref-for-subgroup-invocation-id\u2460\u2460"}],"title":"17.12.10.2. subgroupInclusiveMul"},{"refs":[{"id":"ref-for-subgroup-invocation-id\u2460\u2461"}],"title":"17.12.12. subgroupShuffle"},{"refs":[{"id":"ref-for-subgroup-invocation-id\u2460\u2462"}],"title":"17.12.12.1. subgroupShuffleDown"},{"refs":[{"id":"ref-for-subgroup-invocation-id\u2460\u2463"}],"title":"17.12.12.2. subgroupShuffleUp"},{"refs":[{"id":"ref-for-subgroup-invocation-id\u2460\u2464"}],"title":"17.12.12.3. subgroupShuffleXor"}],"url":"#subgroup-invocation-id"},
 "subgroup-size": {"dfnID":"subgroup-size","dfnText":"subgroup size","external":false,"refSections":[{"refs":[{"id":"ref-for-subgroup-size"}],"title":"13.3.1.1.16. subgroup_size"}],"url":"#subgroup-size"},
