@@ -837,7 +837,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/shaoboyan091/gpuweb/blob/7d6cd51bb7c93f9fc98cc72d48c60986a73dde7d/wgsl/index.bs">https://github.com/shaoboyan091/gpuweb/blob/7d6cd51bb7c93f9fc98cc72d48c60986a73dde7d/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/shaoboyan091/gpuweb/blob/2a33c9b4aadd0c13716d04eee5fcb2a9fdbb7b17/wgsl/index.bs">https://github.com/shaoboyan091/gpuweb/blob/2a33c9b4aadd0c13716d04eee5fcb2a9fdbb7b17/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -2483,8 +2483,9 @@ shader that goes beyond the specified limits.</p>
     
      <tr>
       <td>
-       Maximum combined <a data-link-type="dfn" href="#byte-size" id="ref-for-byte-size③">byte-size</a> of all <a data-link-type="dfn" href="#immediate-data" id="ref-for-immediate-data">immediate data</a> variables that are
-            <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed③">statically accessed</a> by a single <a data-link-type="dfn" href="#shader" id="ref-for-shader④">shader</a>
+       Maximum combined <a data-link-type="dfn" href="#byte-size" id="ref-for-byte-size③">byte-size</a> of all <a data-link-type="dfn" href="#variable" id="ref-for-variable③">variables</a> instantiated in the
+            <a data-link-type="dfn" href="#address-spaces-immediate" id="ref-for-address-spaces-immediate">immediate</a> address space that are <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed③">statically accessed</a> by a single
+            <a data-link-type="dfn" href="#shader" id="ref-for-shader④">shader</a>
 
 
        <p>This maps the WebGPU <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/#dom-supported-limits-maximmediatesize" id="ref-for-dom-supported-limits-maximmediatesize">maxImmediateSize</a> limit
@@ -3971,7 +3972,7 @@ Extension names are not <a data-link-type="dfn" href="#identifier" id="ref-for-i
       <td><dfn class="dfn-paneled" data-dfn-for="language_extension" data-dfn-type="dfn" data-noexport id="language_extension-immediate_address_space">immediate_address_space</dfn>
       
       <td>
-      Enables the <a data-link-type="dfn" href="#address-spaces-immediate" id="ref-for-address-spaces-immediate">immediate</a> address space, allowing variables
+      Enables the <a data-link-type="dfn" href="#address-spaces-immediate" id="ref-for-address-spaces-immediate①">immediate</a> address space, allowing variables
       to be declared with <code>var&lt;immediate></code> and bound to small amounts of frequently
       updated data passed directly from the command encoder via the WebGPU API.
 
@@ -4002,7 +4003,7 @@ the following kinds of objects:</p>
     <li data-md>
      <p>a <a data-link-type="dfn" href="#value-declaration" id="ref-for-value-declaration">value</a></p>
     <li data-md>
-     <p>a <a data-link-type="dfn" href="#variable" id="ref-for-variable③">variable</a></p>
+     <p>a <a data-link-type="dfn" href="#variable" id="ref-for-variable④">variable</a></p>
     <li data-md>
      <p>a <a data-link-type="dfn" href="#function-function" id="ref-for-function-function②">function</a></p>
     <li data-md>
@@ -5953,7 +5954,7 @@ Each memory access is performed via a <a data-link-type="dfn" href="#memory-view
    </ul>
    <p>The access mode of a memory view <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error④⑦">must</a> be supported by the address space. See <a href="#var-and-value">§ 7 Variable and Value Declarations</a>.</p>
    <h4 class="heading settled" data-level="6.4.1" id="storable-types"><span class="secno">6.4.1. </span><span class="content">Storable Types</span><a class="self-link" href="#storable-types"></a></h4>
-   <p>The value contained in a <a data-link-type="dfn" href="#variable" id="ref-for-variable④">variable</a> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error④⑧">must</a> be of a <a data-link-type="dfn" href="#storable" id="ref-for-storable①">storable</a> type.
+   <p>The value contained in a <a data-link-type="dfn" href="#variable" id="ref-for-variable⑤">variable</a> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error④⑧">must</a> be of a <a data-link-type="dfn" href="#storable" id="ref-for-storable①">storable</a> type.
 A storable type may have an explicit representation defined by WGSL,
 as described in <a href="#internal-value-layout">§ 14.4.4 Internal Layout of Values</a>,
 or it may be opaque, such as for <a data-link-type="dfn" href="#texture-resource" id="ref-for-texture-resource">textures</a> and <a data-link-type="dfn" href="#sampler-resource" id="ref-for-sampler-resource">samplers</a>.</p>
@@ -6275,7 +6276,7 @@ and derivatives may yield invalid results.</p>
    <p>References and pointers are distinguished by how they are used:</p>
    <ul>
     <li data-md>
-     <p>The type of a <a data-link-type="dfn" href="#variable" id="ref-for-variable⑤">variable</a> is a reference type.</p>
+     <p>The type of a <a data-link-type="dfn" href="#variable" id="ref-for-variable⑥">variable</a> is a reference type.</p>
     <li data-md>
      <p>The <a data-link-type="dfn" href="#address-of" id="ref-for-address-of">address-of</a> operation (unary <code>&amp;</code>) converts a reference value to its corresponding pointer value.</p>
     <li data-md>
@@ -7999,8 +8000,8 @@ effective-value-type.</p>
 
      <tr>
       <td class="nowrap">
-        <a data-link-type="dfn" href="#variable" id="ref-for-variable⑥">var</a>&lt;<a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage②">storage</a>, read><br>
-        <a data-link-type="dfn" href="#variable" id="ref-for-variable⑦">var</a>&lt;<a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage③">storage</a>>
+        <a data-link-type="dfn" href="#variable" id="ref-for-variable⑦">var</a>&lt;<a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage②">storage</a>, read><br>
+        <a data-link-type="dfn" href="#variable" id="ref-for-variable⑧">var</a>&lt;<a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage③">storage</a>>
     
       <td>Immutable
     
@@ -8016,7 +8017,7 @@ effective-value-type.</p>
 
      <tr>
       <td class="nowrap">
-        <a data-link-type="dfn" href="#variable" id="ref-for-variable⑧">var</a>&lt;<a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage④">storage</a>, read_write><sup>5,6</sup>
+        <a data-link-type="dfn" href="#variable" id="ref-for-variable⑨">var</a>&lt;<a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage④">storage</a>, read_write><sup>5,6</sup>
     
       <td>Mutable
     
@@ -8031,7 +8032,7 @@ effective-value-type.</p>
 
 
      <tr>
-      <td><a data-link-type="dfn" href="#variable" id="ref-for-variable⑨">var</a>&lt;<a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform②">uniform</a>>
+      <td><a data-link-type="dfn" href="#variable" id="ref-for-variable①⓪">var</a>&lt;<a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform②">uniform</a>>
     
       <td>Immutable
     
@@ -8046,7 +8047,7 @@ effective-value-type.</p>
 
 
      <tr>
-      <td><a data-link-type="dfn" href="#variable" id="ref-for-variable①⓪">var</a>&lt;<a data-link-type="dfn" href="#address-spaces-immediate" id="ref-for-address-spaces-immediate①">immediate</a>>
+      <td><a data-link-type="dfn" href="#variable" id="ref-for-variable①①">var</a>&lt;<a data-link-type="dfn" href="#address-spaces-immediate" id="ref-for-address-spaces-immediate②">immediate</a>>
     
       <td>Immutable
     
@@ -8057,11 +8058,11 @@ effective-value-type.</p>
       <td>Disallowed
     
       <td>
-      <td>Yes.<br><a data-link-type="dfn" href="#immediate-data" id="ref-for-immediate-data①">immediate data</a>
+      <td>Yes.<br><a data-link-type="dfn" href="#immediate-data" id="ref-for-immediate-data">immediate data</a>
 
 
      <tr>
-      <td><a data-link-type="dfn" href="#variable" id="ref-for-variable①①">var</a><sup>6</sup>
+      <td><a data-link-type="dfn" href="#variable" id="ref-for-variable①②">var</a><sup>6</sup>
     
       <td>Immutable<sup>7</sup>
     
@@ -8076,7 +8077,7 @@ effective-value-type.</p>
 
 
      <tr>
-      <td><a data-link-type="dfn" href="#variable" id="ref-for-variable①②">var</a>
+      <td><a data-link-type="dfn" href="#variable" id="ref-for-variable①③">var</a>
     
       <td>Immutable
     
@@ -8091,7 +8092,7 @@ effective-value-type.</p>
 
 
      <tr>
-      <td><a data-link-type="dfn" href="#variable" id="ref-for-variable①③">var</a>&lt;<a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup⑨">workgroup</a>><sup>6,8</sup>
+      <td><a data-link-type="dfn" href="#variable" id="ref-for-variable①④">var</a>&lt;<a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup⑨">workgroup</a>><sup>6,8</sup>
     
       <td>Mutable
     
@@ -8106,7 +8107,7 @@ effective-value-type.</p>
 
 
      <tr>
-      <td><a data-link-type="dfn" href="#variable" id="ref-for-variable①④">var</a>&lt;<a data-link-type="dfn" href="#address-spaces-private" id="ref-for-address-spaces-private④">private</a>>
+      <td><a data-link-type="dfn" href="#variable" id="ref-for-variable①⑤">var</a>&lt;<a data-link-type="dfn" href="#address-spaces-private" id="ref-for-address-spaces-private④">private</a>>
     
       <td>Mutable
     
@@ -8122,8 +8123,8 @@ effective-value-type.</p>
 
 
      <tr>
-      <td><a data-link-type="dfn" href="#variable" id="ref-for-variable①⑤">var</a>&lt;<a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function④">function</a>><br>
-        <a data-link-type="dfn" href="#variable" id="ref-for-variable①⑥">var</a>
+      <td><a data-link-type="dfn" href="#variable" id="ref-for-variable①⑥">var</a>&lt;<a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function④">function</a>><br>
+        <a data-link-type="dfn" href="#variable" id="ref-for-variable①⑦">var</a>
     
       <td>Mutable
     
@@ -8375,7 +8376,7 @@ Its <a data-link-type="dfn" href="#store-type" id="ref-for-store-type①⑤">sto
 <a href="#address-space-layout-constraints">address space layout constraints</a>.
 The variable may be declared with a <a data-link-type="dfn" href="#access-read" id="ref-for-access-read⑤">read</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write⑨">read_write</a>
 access mode; the default is read.</p>
-   <p>A variable in the <a data-link-type="dfn" href="#address-spaces-immediate" id="ref-for-address-spaces-immediate②">immediate</a> address space is an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="immediate-data">immediate data</dfn> variable.
+   <p>A variable in the <a data-link-type="dfn" href="#address-spaces-immediate" id="ref-for-address-spaces-immediate③">immediate</a> address space is an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="immediate-data">immediate data</dfn> variable.
 Its <a data-link-type="dfn" href="#store-type" id="ref-for-store-type①⑥">store type</a> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error⑦①">must</a> be a <a data-link-type="dfn" href="#host-shareable" id="ref-for-host-shareable⑥">host-shareable</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①③">constructible</a> type,
 excluding arrays and structures that contain array members.
 Each <a data-link-type="dfn" href="#entry-point" id="ref-for-entry-point⑥">entry point</a> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error⑦②">must</a> <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed⑥">statically access</a> at most one immediate data variable.</p>
@@ -15011,17 +15012,17 @@ Resources are shared by all invocations of the shader.</p>
     <li data-md>
      <p><a data-link-type="dfn" href="#sampler-resource" id="ref-for-sampler-resource④">Sampler resources</a></p>
     <li data-md>
-     <p><a data-link-type="dfn" href="#immediate-data" id="ref-for-immediate-data②">Immediate data</a></p>
+     <p><a data-link-type="dfn" href="#immediate-data" id="ref-for-immediate-data①">Immediate data</a></p>
    </ul>
    <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="resource-interface-of-a-shader">resource interface of a shader</dfn> is the set of module-scope
 resource variables <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed①④">statically accessed</a> by
 <a data-link-type="dfn" href="#functions-in-a-shader-stage" id="ref-for-functions-in-a-shader-stage③">functions in the shader stage</a>.</p>
-   <p>Each resource variable, except for <a data-link-type="dfn" href="#immediate-data" id="ref-for-immediate-data③">immediate data</a> variables, <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①⑥">must</a> be declared with both <a data-link-type="dfn" href="#attribute-group" id="ref-for-attribute-group②">group</a> and <a data-link-type="dfn" href="#attribute-binding" id="ref-for-attribute-binding①">binding</a>
+   <p>Each resource variable, except for <a data-link-type="dfn" href="#immediate-data" id="ref-for-immediate-data②">immediate data</a> variables, <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①⑥">must</a> be declared with both <a data-link-type="dfn" href="#attribute-group" id="ref-for-attribute-group②">group</a> and <a data-link-type="dfn" href="#attribute-binding" id="ref-for-attribute-binding①">binding</a>
 attributes.
 Together with the shader’s stage, these identify the binding address
 of the resource on the shader’s pipeline.
 See <a href="https://gpuweb.github.io/gpuweb/#gpupipelinelayout"><cite>WebGPU</cite> § 8.3 GPUPipelineLayout</a>.</p>
-   <p><a data-link-type="dfn" href="#immediate-data" id="ref-for-immediate-data④">Immediate data</a> variables do not use <a data-link-type="dfn" href="#attribute-group" id="ref-for-attribute-group③">group</a> or <a data-link-type="dfn" href="#attribute-binding" id="ref-for-attribute-binding②">binding</a> attributes.
+   <p><a data-link-type="dfn" href="#immediate-data" id="ref-for-immediate-data③">Immediate data</a> variables do not use <a data-link-type="dfn" href="#attribute-group" id="ref-for-attribute-group③">group</a> or <a data-link-type="dfn" href="#attribute-binding" id="ref-for-attribute-binding②">binding</a> attributes.
 They are accessed via the WebGPU API on the command encoder,
 and are limited in size by the pipeline layout’s immediate data size configuration.</p>
    <p>Two different resource variables in a <a data-link-type="dfn" href="#shader" id="ref-for-shader⑥">shader</a> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①⑦">must
@@ -15130,7 +15131,7 @@ where compatibility is defined by the following table.</p>
       <td colspan="2">(not applicable)
   
      <tr>
-      <td><a data-link-type="dfn" href="#immediate-data" id="ref-for-immediate-data⑤">immediate data</a>
+      <td><a data-link-type="dfn" href="#immediate-data" id="ref-for-immediate-data④">immediate data</a>
       
       <td colspan="3">Not a bind group entry. Validated against pipeline layout immediate data size.
 
@@ -15443,7 +15444,7 @@ table.</p>
       
       <td><a data-link-type="dfn" href="#access-read" id="ref-for-access-read①⓪">read</a>
       
-      <td>For <a data-link-type="dfn" href="#immediate-data" id="ref-for-immediate-data⑥">immediate data</a> variables.<br>
+      <td>For <a data-link-type="dfn" href="#immediate-data" id="ref-for-immediate-data⑤">immediate data</a> variables.<br>
           <a data-link-type="dfn" href="#constructible" id="ref-for-constructible②②">constructible</a> <a data-link-type="dfn" href="#host-shareable" id="ref-for-host-shareable⑦">host-shareable</a> types, excluding arrays and structures containing array members.<br>
           Each <a data-link-type="dfn" href="#entry-point" id="ref-for-entry-point①⑧">entry point</a> can <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed①⑤">statically access</a> at most one immediate variable.
   
@@ -15458,9 +15459,9 @@ table.</p>
 
    </table>
    <p>WGSL <a data-link-type="dfn" href="#predeclared" id="ref-for-predeclared①⑤">predeclares</a> an <a data-link-type="dfn" href="#enumerant" id="ref-for-enumerant①②">enumerant</a> for each address space, except for the <code>handle</code> address space.</p>
-   <p><a data-link-type="dfn" href="#variable" id="ref-for-variable①⑦">Variables</a> in the <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup①④">workgroup</a> address space
+   <p><a data-link-type="dfn" href="#variable" id="ref-for-variable①⑧">Variables</a> in the <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup①④">workgroup</a> address space
 <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①⑧">must</a> only be <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed①⑥">statically accessed</a> in a <a data-link-type="dfn" href="#compute-shader-stage" id="ref-for-compute-shader-stage①④">compute shader stage</a>.</p>
-   <p><a data-link-type="dfn" href="#variable" id="ref-for-variable①⑧">Variables</a> in the <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage⑨">storage</a> address space (<a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer②②">storage buffers</a>) can only be <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed①⑦">statically accessed</a> by a <a data-link-type="dfn" href="#vertex-shader-stage" id="ref-for-vertex-shader-stage⑥">vertex shader stage</a> if the access mode is <a data-link-type="dfn" href="#access-read" id="ref-for-access-read①②">read</a>.
+   <p><a data-link-type="dfn" href="#variable" id="ref-for-variable①⑨">Variables</a> in the <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage⑨">storage</a> address space (<a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer②②">storage buffers</a>) can only be <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed①⑦">statically accessed</a> by a <a data-link-type="dfn" href="#vertex-shader-stage" id="ref-for-vertex-shader-stage⑥">vertex shader stage</a> if the access mode is <a data-link-type="dfn" href="#access-read" id="ref-for-access-read①②">read</a>.
 Variables whose <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②⑦">store type</a> is a <a data-link-type="dfn" href="#type-storage-texture" id="ref-for-type-storage-texture⑤">storage texture</a> with a
 <a data-link-type="dfn" href="#access-write" id="ref-for-access-write④">write</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②⓪">read_write</a> <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②④">access mode</a> cannot be
 <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed①⑧">statically accessed</a> by a <a data-link-type="dfn" href="#vertex-shader-stage" id="ref-for-vertex-shader-stage⑦">vertex shader stage</a>.
@@ -16400,7 +16401,7 @@ statically proven to be uniform.
 These sources include, but are not limited to:</p>
    <ul>
     <li data-md>
-     <p>Mutable <a data-link-type="dfn" href="#module-scope" id="ref-for-module-scope③⓪">module-scope</a> <a data-link-type="dfn" href="#variable" id="ref-for-variable①⑨">variables</a></p>
+     <p>Mutable <a data-link-type="dfn" href="#module-scope" id="ref-for-module-scope③⓪">module-scope</a> <a data-link-type="dfn" href="#variable" id="ref-for-variable②⓪">variables</a></p>
     <li data-md>
      <p>Most <a data-link-type="dfn" href="#built-in-values" id="ref-for-built-in-values⑤">built-in values</a></p>
     <li data-md>
@@ -16863,7 +16864,7 @@ occur both before and after this desugaring has occurred.</p>
 </pre>
    </div>
    <h4 class="heading settled" data-level="15.2.5" id="func-var-value-analysis"><span class="secno">15.2.5. </span><span class="content">Function-scope Variable Value Analysis</span><a class="self-link" href="#func-var-value-analysis"></a></h4>
-   <p>The value of each <a data-link-type="dfn" href="#function-scope" id="ref-for-function-scope①⓪">function-scope</a> <a data-link-type="dfn" href="#variable" id="ref-for-variable②⓪">variable</a> at a
+   <p>The value of each <a data-link-type="dfn" href="#function-scope" id="ref-for-function-scope①⓪">function-scope</a> <a data-link-type="dfn" href="#variable" id="ref-for-variable②①">variable</a> at a
 particular statement can be analyzed in terms of the assignments that reach it
 and, potentially, its initial value.</p>
    <p>An assignment is a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="full-assignment">full assignment</dfn> if:</p>
@@ -29547,7 +29548,7 @@ let dfnPanelData = {
 "address-spaces": {"dfnID":"address-spaces","dfnText":"address spaces","external":false,"refSections":[{"refs":[{"id":"ref-for-address-spaces"}],"title":"1.1. Overview"},{"refs":[{"id":"ref-for-address-spaces\u2460"}],"title":"6.1.2. Conversion Rank"},{"refs":[{"id":"ref-for-address-spaces\u2461"}],"title":"6.2.8. Atomic Types"},{"refs":[{"id":"ref-for-address-spaces\u2462"}],"title":"6.3.1. Predeclared enumerants"},{"refs":[{"id":"ref-for-address-spaces\u2463"}],"title":"6.4. Memory Views"},{"refs":[{"id":"ref-for-address-spaces\u2464"},{"id":"ref-for-address-spaces\u2465"},{"id":"ref-for-address-spaces\u2466"},{"id":"ref-for-address-spaces\u2467"}],"title":"6.4.3. Reference and Pointer Types"},{"refs":[{"id":"ref-for-address-spaces\u2468"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-address-spaces\u2460\u24ea"},{"id":"ref-for-address-spaces\u2460\u2460"},{"id":"ref-for-address-spaces\u2460\u2461"},{"id":"ref-for-address-spaces\u2460\u2462"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-address-spaces\u2460\u2463"}],"title":"8.11. Variable Identifier Expression"},{"refs":[{"id":"ref-for-address-spaces\u2460\u2464"}],"title":"9.2.1. Simple Assignment"},{"refs":[{"id":"ref-for-address-spaces\u2460\u2465"}],"title":"11.4. Restrictions on Functions"},{"refs":[{"id":"ref-for-address-spaces\u2460\u2466"}],"title":"14.4. Memory Layout"},{"refs":[{"id":"ref-for-address-spaces\u2460\u2467"}],"title":"14.4.5. Address Space Layout Constraints"},{"refs":[{"id":"ref-for-address-spaces\u2460\u2468"},{"id":"ref-for-address-spaces\u2461\u24ea"},{"id":"ref-for-address-spaces\u2461\u2460"}],"title":"15.2.8. Uniformity Rules for Expressions"}],"url":"#address-spaces"},
 "address-spaces-function": {"dfnID":"address-spaces-function","dfnText":"function","external":false,"refSections":[{"refs":[{"id":"ref-for-address-spaces-function"}],"title":"1.1. Overview"},{"refs":[{"id":"ref-for-address-spaces-function\u2460"}],"title":"2.4. Limits"},{"refs":[{"id":"ref-for-address-spaces-function\u2461"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-address-spaces-function\u2462"}],"title":"6.3.1. Predeclared enumerants"},{"refs":[{"id":"ref-for-address-spaces-function\u2463"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-address-spaces-function\u2464"},{"id":"ref-for-address-spaces-function\u2465"},{"id":"ref-for-address-spaces-function\u2466"},{"id":"ref-for-address-spaces-function\u2467"},{"id":"ref-for-address-spaces-function\u2468"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-address-spaces-function\u2460\u24ea"}],"title":"14.5.2. Memory Model Reference"},{"refs":[{"id":"ref-for-address-spaces-function\u2460\u2460"},{"id":"ref-for-address-spaces-function\u2460\u2461"}],"title":"15.2.3. Analyzing the Uniformity Requirements of a Function"},{"refs":[{"id":"ref-for-address-spaces-function\u2460\u2462"}],"title":"15.2.4. Pointer Desugaring"},{"refs":[{"id":"ref-for-address-spaces-function\u2460\u2463"},{"id":"ref-for-address-spaces-function\u2460\u2464"},{"id":"ref-for-address-spaces-function\u2460\u2465"},{"id":"ref-for-address-spaces-function\u2460\u2466"}],"title":"15.2.6. Uniformity Rules for Statements"},{"refs":[{"id":"ref-for-address-spaces-function\u2460\u2467"}],"title":"15.2.7. Uniformity Rules for Function Calls"},{"refs":[{"id":"ref-for-address-spaces-function\u2460\u2468"}],"title":"15.2.8. Uniformity Rules for Expressions"}],"url":"#address-spaces-function"},
 "address-spaces-handle": {"dfnID":"address-spaces-handle","dfnText":"handle","external":false,"refSections":[{"refs":[{"id":"ref-for-address-spaces-handle"}],"title":"6.5. Texture and Sampler Types"},{"refs":[{"id":"ref-for-address-spaces-handle\u2460"},{"id":"ref-for-address-spaces-handle\u2461"},{"id":"ref-for-address-spaces-handle\u2462"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-address-spaces-handle\u2463"}],"title":"8.13. Address-Of Expression"},{"refs":[{"id":"ref-for-address-spaces-handle\u2464"},{"id":"ref-for-address-spaces-handle\u2465"}],"title":"14.5.5. Private vs Non-private"},{"refs":[{"id":"ref-for-address-spaces-handle\u2466"}],"title":"15.4. Fragment Shaders and Helper Invocations"},{"refs":[{"id":"ref-for-address-spaces-handle\u2467"}],"title":"17.11.2. textureBarrier"}],"url":"#address-spaces-handle"},
-"address-spaces-immediate": {"dfnID":"address-spaces-immediate","dfnText":"immediate","external":false,"refSections":[{"refs":[{"id":"ref-for-address-spaces-immediate"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-address-spaces-immediate\u2460"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-address-spaces-immediate\u2461"}],"title":"7.3. var Declarations"}],"url":"#address-spaces-immediate"},
+"address-spaces-immediate": {"dfnID":"address-spaces-immediate","dfnText":"immediate","external":false,"refSections":[{"refs":[{"id":"ref-for-address-spaces-immediate"}],"title":"2.4. Limits"},{"refs":[{"id":"ref-for-address-spaces-immediate\u2460"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-address-spaces-immediate\u2461"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-address-spaces-immediate\u2462"}],"title":"7.3. var Declarations"}],"url":"#address-spaces-immediate"},
 "address-spaces-private": {"dfnID":"address-spaces-private","dfnText":"private","external":false,"refSections":[{"refs":[{"id":"ref-for-address-spaces-private"}],"title":"1.1. Overview"},{"refs":[{"id":"ref-for-address-spaces-private\u2460"}],"title":"2.4. Limits"},{"refs":[{"id":"ref-for-address-spaces-private\u2461"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-address-spaces-private\u2462"}],"title":"6.3.1. Predeclared enumerants"},{"refs":[{"id":"ref-for-address-spaces-private\u2463"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-address-spaces-private\u2464"},{"id":"ref-for-address-spaces-private\u2465"},{"id":"ref-for-address-spaces-private\u2466"},{"id":"ref-for-address-spaces-private\u2467"},{"id":"ref-for-address-spaces-private\u2468"},{"id":"ref-for-address-spaces-private\u2460\u24ea"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-address-spaces-private\u2460\u2460"}],"title":"14.5.2. Memory Model Reference"},{"refs":[{"id":"ref-for-address-spaces-private\u2460\u2461"},{"id":"ref-for-address-spaces-private\u2460\u2462"}],"title":"15.2.8. Uniformity Rules for Expressions"}],"url":"#address-spaces-private"},
 "address-spaces-storage": {"dfnID":"address-spaces-storage","dfnText":"storage","external":false,"refSections":[{"refs":[{"id":"ref-for-address-spaces-storage"}],"title":"6.2.8. Atomic Types"},{"refs":[{"id":"ref-for-address-spaces-storage\u2460"}],"title":"6.3.1. Predeclared enumerants"},{"refs":[{"id":"ref-for-address-spaces-storage\u2461"},{"id":"ref-for-address-spaces-storage\u2462"},{"id":"ref-for-address-spaces-storage\u2463"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-address-spaces-storage\u2464"},{"id":"ref-for-address-spaces-storage\u2465"},{"id":"ref-for-address-spaces-storage\u2466"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-address-spaces-storage\u2467"},{"id":"ref-for-address-spaces-storage\u2468"},{"id":"ref-for-address-spaces-storage\u2460\u24ea"}],"title":"14.3. Address Spaces"},{"refs":[{"id":"ref-for-address-spaces-storage\u2460\u2460"},{"id":"ref-for-address-spaces-storage\u2460\u2461"},{"id":"ref-for-address-spaces-storage\u2460\u2462"}],"title":"14.4. Memory Layout"},{"refs":[{"id":"ref-for-address-spaces-storage\u2460\u2463"},{"id":"ref-for-address-spaces-storage\u2460\u2464"}],"title":"14.4.5. Address Space Layout Constraints"},{"refs":[{"id":"ref-for-address-spaces-storage\u2460\u2465"}],"title":"14.5.3. Scoped Operations"},{"refs":[{"id":"ref-for-address-spaces-storage\u2460\u2466"},{"id":"ref-for-address-spaces-storage\u2460\u2467"}],"title":"14.5.5. Private vs Non-private"},{"refs":[{"id":"ref-for-address-spaces-storage\u2460\u2468"},{"id":"ref-for-address-spaces-storage\u2461\u24ea"}],"title":"15.2.8. Uniformity Rules for Expressions"},{"refs":[{"id":"ref-for-address-spaces-storage\u2461\u2460"}],"title":"15.4. Fragment Shaders and Helper Invocations"},{"refs":[{"id":"ref-for-address-spaces-storage\u2461\u2461"}],"title":"17.8. Atomic Built-in Functions"},{"refs":[{"id":"ref-for-address-spaces-storage\u2461\u2462"}],"title":"17.11.1. storageBarrier"}],"url":"#address-spaces-storage"},
 "address-spaces-uniform": {"dfnID":"address-spaces-uniform","dfnText":"uniform","external":false,"refSections":[{"refs":[{"id":"ref-for-address-spaces-uniform"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-address-spaces-uniform\u2460"}],"title":"6.3.1. Predeclared enumerants"},{"refs":[{"id":"ref-for-address-spaces-uniform\u2461"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-address-spaces-uniform\u2462"},{"id":"ref-for-address-spaces-uniform\u2463"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-address-spaces-uniform\u2464"}],"title":"12.1. align"},{"refs":[{"id":"ref-for-address-spaces-uniform\u2465"},{"id":"ref-for-address-spaces-uniform\u2466"},{"id":"ref-for-address-spaces-uniform\u2467"}],"title":"14.4. Memory Layout"},{"refs":[{"id":"ref-for-address-spaces-uniform\u2468"},{"id":"ref-for-address-spaces-uniform\u2460\u24ea"},{"id":"ref-for-address-spaces-uniform\u2460\u2460"},{"id":"ref-for-address-spaces-uniform\u2460\u2461"},{"id":"ref-for-address-spaces-uniform\u2460\u2462"},{"id":"ref-for-address-spaces-uniform\u2460\u2463"}],"title":"14.4.5. Address Space Layout Constraints"}],"url":"#address-spaces-uniform"},
@@ -29784,7 +29785,7 @@ let dfnPanelData = {
 "ieee754-subnormal": {"dfnID":"ieee754-subnormal","dfnText":"subnormal","external":false,"refSections":[{"refs":[{"id":"ref-for-ieee754-subnormal"}],"title":"6.2.4. Floating Point Types"},{"refs":[{"id":"ref-for-ieee754-subnormal\u2460"},{"id":"ref-for-ieee754-subnormal\u2461"}],"title":"15.7.1. Overview of IEEE-754"},{"refs":[{"id":"ref-for-ieee754-subnormal\u2462"},{"id":"ref-for-ieee754-subnormal\u2463"}],"title":"15.7.2. Differences from IEEE-754"},{"refs":[{"id":"ref-for-ieee754-subnormal\u2464"},{"id":"ref-for-ieee754-subnormal\u2465"},{"id":"ref-for-ieee754-subnormal\u2466"},{"id":"ref-for-ieee754-subnormal\u2467"},{"id":"ref-for-ieee754-subnormal\u2468"}],"title":"15.7.4.1. Accuracy of Concrete Floating Point Expressions"},{"refs":[{"id":"ref-for-ieee754-subnormal\u2460\u24ea"}],"title":"17.5.8. atan2"},{"refs":[{"id":"ref-for-ieee754-subnormal\u2460\u2460"},{"id":"ref-for-ieee754-subnormal\u2460\u2461"},{"id":"ref-for-ieee754-subnormal\u2460\u2462"},{"id":"ref-for-ieee754-subnormal\u2460\u2463"}],"title":"17.5.34. frexp"},{"refs":[{"id":"ref-for-ieee754-subnormal\u2460\u2464"}],"title":"17.5.41. max"},{"refs":[{"id":"ref-for-ieee754-subnormal\u2460\u2465"}],"title":"17.5.42. min"},{"refs":[{"id":"ref-for-ieee754-subnormal\u2460\u2466"}],"title":"17.5.47. quantizeToF16"}],"url":"#ieee754-subnormal"},
 "ieee754-trailing-significand-field": {"dfnID":"ieee754-trailing-significand-field","dfnText":"trailing significand field","external":false,"refSections":[{"refs":[{"id":"ref-for-ieee754-trailing-significand-field"},{"id":"ref-for-ieee754-trailing-significand-field\u2460"},{"id":"ref-for-ieee754-trailing-significand-field\u2461"},{"id":"ref-for-ieee754-trailing-significand-field\u2462"},{"id":"ref-for-ieee754-trailing-significand-field\u2463"}],"title":"15.7.1. Overview of IEEE-754"}],"url":"#ieee754-trailing-significand-field"},
 "ieee754-underflow": {"dfnID":"ieee754-underflow","dfnText":"Underflow","external":false,"refSections":[],"url":"#ieee754-underflow"},
-"immediate-data": {"dfnID":"immediate-data","dfnText":"immediate data","external":false,"refSections":[{"refs":[{"id":"ref-for-immediate-data"}],"title":"2.4. Limits"},{"refs":[{"id":"ref-for-immediate-data\u2460"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-immediate-data\u2461"},{"id":"ref-for-immediate-data\u2462"},{"id":"ref-for-immediate-data\u2463"}],"title":"13.3.2. Resource Interface"},{"refs":[{"id":"ref-for-immediate-data\u2464"}],"title":"13.3.3. Resource Layout Compatibility"},{"refs":[{"id":"ref-for-immediate-data\u2465"}],"title":"14.3. Address Spaces"}],"url":"#immediate-data"},
+"immediate-data": {"dfnID":"immediate-data","dfnText":"immediate data","external":false,"refSections":[{"refs":[{"id":"ref-for-immediate-data"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-immediate-data\u2460"},{"id":"ref-for-immediate-data\u2461"},{"id":"ref-for-immediate-data\u2462"}],"title":"13.3.2. Resource Interface"},{"refs":[{"id":"ref-for-immediate-data\u2463"}],"title":"13.3.3. Resource Layout Compatibility"},{"refs":[{"id":"ref-for-immediate-data\u2464"}],"title":"14.3. Address Spaces"}],"url":"#immediate-data"},
 "implied-from-linear-terms": {"dfnID":"implied-from-linear-terms","dfnText":"implied from linear terms","external":false,"refSections":[{"refs":[{"id":"ref-for-implied-from-linear-terms"}],"title":"17.5.16. cross"},{"refs":[{"id":"ref-for-implied-from-linear-terms\u2460"}],"title":"17.5.18. determinant"},{"refs":[{"id":"ref-for-implied-from-linear-terms\u2461"}],"title":"17.5.20. dot"},{"refs":[{"id":"ref-for-implied-from-linear-terms\u2462"}],"title":"17.5.27. faceForward"},{"refs":[{"id":"ref-for-implied-from-linear-terms\u2463"}],"title":"17.5.32. fma"},{"refs":[{"id":"ref-for-implied-from-linear-terms\u2464"},{"id":"ref-for-implied-from-linear-terms\u2465"}],"title":"17.5.43. mix"}],"url":"#implied-from-linear-terms"},
 "in-bounds-index": {"dfnID":"in-bounds-index","dfnText":"in-bounds index","external":false,"refSections":[{"refs":[{"id":"ref-for-in-bounds-index"}],"title":"6.4.4. Valid and Invalid Memory References"},{"refs":[{"id":"ref-for-in-bounds-index\u2460"}],"title":"8.5. Composite Value Decomposition Expressions"}],"url":"#in-bounds-index"},
 "in-scope": {"dfnID":"in-scope","dfnText":"in scope","external":false,"refSections":[{"refs":[{"id":"ref-for-in-scope"},{"id":"ref-for-in-scope\u2460"},{"id":"ref-for-in-scope\u2461"}],"title":"5. Declaration and Scope"},{"refs":[{"id":"ref-for-in-scope\u2462"}],"title":"6.4.8. Forming Reference and Pointer Values"},{"refs":[{"id":"ref-for-in-scope\u2463"}],"title":"6.7. Type Aliases"},{"refs":[{"id":"ref-for-in-scope\u2464"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-in-scope\u2465"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-in-scope\u2466"}],"title":"8.11. Variable Identifier Expression"},{"refs":[{"id":"ref-for-in-scope\u2467"}],"title":"8.12. Formal Parameter Expression"},{"refs":[{"id":"ref-for-in-scope\u2468"},{"id":"ref-for-in-scope\u2460\u24ea"},{"id":"ref-for-in-scope\u2460\u2460"}],"title":"8.15. Identifier Expressions for Value Declarations"},{"refs":[{"id":"ref-for-in-scope\u2460\u2461"}],"title":"9.1. Compound Statement"},{"refs":[{"id":"ref-for-in-scope\u2460\u2462"},{"id":"ref-for-in-scope\u2460\u2463"}],"title":"9.4.4. For Statement"},{"refs":[{"id":"ref-for-in-scope\u2460\u2464"}],"title":"11.1. Declaring a User-defined Function"},{"refs":[{"id":"ref-for-in-scope\u2460\u2465"}],"title":"17.1. Constructor Built-in Functions"}],"url":"#in-scope"},
@@ -30402,7 +30403,7 @@ let dfnPanelData = {
 "value-declaration": {"dfnID":"value-declaration","dfnText":"value declaration","external":false,"refSections":[{"refs":[{"id":"ref-for-value-declaration"}],"title":"5. Declaration and Scope"},{"refs":[{"id":"ref-for-value-declaration\u2460"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-value-declaration\u2461"}],"title":"7.1. Variables vs Values"},{"refs":[{"id":"ref-for-value-declaration\u2462"}],"title":"7.2. Value Declarations"},{"refs":[{"id":"ref-for-value-declaration\u2463"}],"title":"9.4.2. Switch Statement"},{"refs":[{"id":"ref-for-value-declaration\u2464"}],"title":"9.4.3. Loop Statement"},{"refs":[{"id":"ref-for-value-declaration\u2465"}],"title":"12.12. must_use"}],"url":"#value-declaration"},
 "value_return": {"dfnID":"value_return","dfnText":"Value_return","external":false,"refSections":[{"refs":[{"id":"ref-for-value_return"},{"id":"ref-for-value_return\u2460"}],"title":"15.2.3. Analyzing the Uniformity Requirements of a Function"},{"refs":[{"id":"ref-for-value_return\u2461"}],"title":"15.2.6. Uniformity Rules for Statements"}],"url":"#value_return"},
 "value_return_i_contents": {"dfnID":"value_return_i_contents","dfnText":"Value_return_i_contents","external":false,"refSections":[{"refs":[{"id":"ref-for-value_return_i_contents"},{"id":"ref-for-value_return_i_contents\u2460"}],"title":"15.2.3. Analyzing the Uniformity Requirements of a Function"},{"refs":[{"id":"ref-for-value_return_i_contents\u2461"},{"id":"ref-for-value_return_i_contents\u2462"}],"title":"15.2.6. Uniformity Rules for Statements"}],"url":"#value_return_i_contents"},
-"variable": {"dfnID":"variable","dfnText":"variable","external":false,"refSections":[{"refs":[{"id":"ref-for-variable"},{"id":"ref-for-variable\u2460"},{"id":"ref-for-variable\u2461"}],"title":"2.4. Limits"},{"refs":[{"id":"ref-for-variable\u2462"}],"title":"5. Declaration and Scope"},{"refs":[{"id":"ref-for-variable\u2463"}],"title":"6.4.1. Storable Types"},{"refs":[{"id":"ref-for-variable\u2464"}],"title":"6.4.7. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-variable\u2465"},{"id":"ref-for-variable\u2466"},{"id":"ref-for-variable\u2467"},{"id":"ref-for-variable\u2468"},{"id":"ref-for-variable\u2460\u24ea"},{"id":"ref-for-variable\u2460\u2460"},{"id":"ref-for-variable\u2460\u2461"},{"id":"ref-for-variable\u2460\u2462"},{"id":"ref-for-variable\u2460\u2463"},{"id":"ref-for-variable\u2460\u2464"},{"id":"ref-for-variable\u2460\u2465"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-variable\u2460\u2466"},{"id":"ref-for-variable\u2460\u2467"}],"title":"14.3. Address Spaces"},{"refs":[{"id":"ref-for-variable\u2460\u2468"}],"title":"15.2. Uniformity"},{"refs":[{"id":"ref-for-variable\u2461\u24ea"}],"title":"15.2.5. Function-scope Variable Value Analysis"}],"url":"#variable"},
+"variable": {"dfnID":"variable","dfnText":"variable","external":false,"refSections":[{"refs":[{"id":"ref-for-variable"},{"id":"ref-for-variable\u2460"},{"id":"ref-for-variable\u2461"},{"id":"ref-for-variable\u2462"}],"title":"2.4. Limits"},{"refs":[{"id":"ref-for-variable\u2463"}],"title":"5. Declaration and Scope"},{"refs":[{"id":"ref-for-variable\u2464"}],"title":"6.4.1. Storable Types"},{"refs":[{"id":"ref-for-variable\u2465"}],"title":"6.4.7. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-variable\u2466"},{"id":"ref-for-variable\u2467"},{"id":"ref-for-variable\u2468"},{"id":"ref-for-variable\u2460\u24ea"},{"id":"ref-for-variable\u2460\u2460"},{"id":"ref-for-variable\u2460\u2461"},{"id":"ref-for-variable\u2460\u2462"},{"id":"ref-for-variable\u2460\u2463"},{"id":"ref-for-variable\u2460\u2464"},{"id":"ref-for-variable\u2460\u2465"},{"id":"ref-for-variable\u2460\u2466"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-variable\u2460\u2467"},{"id":"ref-for-variable\u2460\u2468"}],"title":"14.3. Address Spaces"},{"refs":[{"id":"ref-for-variable\u2461\u24ea"}],"title":"15.2. Uniformity"},{"refs":[{"id":"ref-for-variable\u2461\u2460"}],"title":"15.2.5. Function-scope Variable Value Analysis"}],"url":"#variable"},
 "variable-declaration": {"dfnID":"variable-declaration","dfnText":"variable declaration","external":false,"refSections":[{"refs":[{"id":"ref-for-variable-declaration"}],"title":"6.4.3. Reference and Pointer Types"},{"refs":[{"id":"ref-for-variable-declaration\u2460"}],"title":"6.4.9. Comparison with References and Pointers in Other Languages"},{"refs":[{"id":"ref-for-variable-declaration\u2461"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-variable-declaration\u2462"},{"id":"ref-for-variable-declaration\u2463"}],"title":"7.1. Variables vs Values"},{"refs":[{"id":"ref-for-variable-declaration\u2464"}],"title":"8. Expressions"},{"refs":[{"id":"ref-for-variable-declaration\u2465"}],"title":"9.4.2. Switch Statement"},{"refs":[{"id":"ref-for-variable-declaration\u2466"}],"title":"9.4.3. Loop Statement"},{"refs":[{"id":"ref-for-variable-declaration\u2467"}],"title":"14.3. Address Spaces"}],"url":"#variable-declaration"},
 "vec2f": {"dfnID":"vec2f","dfnText":"vec2f","external":false,"refSections":[],"url":"#vec2f"},
 "vec2h": {"dfnID":"vec2h","dfnText":"vec2h","external":false,"refSections":[],"url":"#vec2h"},
