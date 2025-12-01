@@ -837,7 +837,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/shaoboyan091/gpuweb/blob/509ca75701ceb101553147a6134b06a26d8b87f4/wgsl/index.bs">https://github.com/shaoboyan091/gpuweb/blob/509ca75701ceb101553147a6134b06a26d8b87f4/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/shaoboyan091/gpuweb/blob/7d6cd51bb7c93f9fc98cc72d48c60986a73dde7d/wgsl/index.bs">https://github.com/shaoboyan091/gpuweb/blob/7d6cd51bb7c93f9fc98cc72d48c60986a73dde7d/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -3252,7 +3252,7 @@ The token must not be a <a data-link-type="dfn" href="#keyword" id="ref-for-keyw
     <li data-md>
      <p><a data-link-type="dfn" href="#language_extension-subgroup_id" id="ref-for-language_extension-subgroup_id"><code>'subgroup_id'</code></a></p>
     <li data-md>
-     <p><a data-link-type="dfn" href="#language_extension-immediate_data" id="ref-for-language_extension-immediate_data"><code>'immediate_data'</code></a></p>
+     <p><a data-link-type="dfn" href="#language_extension-immediate_address_space" id="ref-for-language_extension-immediate_address_space"><code>'immediate_address_space'</code></a></p>
    </ul>
    <h4 class="heading settled" data-level="3.8.6" id="interpolation-type-names"><span class="secno">3.8.6. </span><span class="content">Interpolation Type Names</span><a class="self-link" href="#interpolation-type-names"></a></h4>
    <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="interpolation-type-name-token">interpolation type name-token</dfn> is a <a data-link-type="dfn" href="#token" id="ref-for-token⑧">token</a> used in the name of an <a data-link-type="dfn" href="#interpolation-type" id="ref-for-interpolation-type">interpolation type</a>
@@ -3968,7 +3968,7 @@ Extension names are not <a data-link-type="dfn" href="#identifier" id="ref-for-i
       extension is enabled.
    
      <tr>
-      <td><dfn class="dfn-paneled" data-dfn-for="language_extension" data-dfn-type="dfn" data-noexport id="language_extension-immediate_data">immediate_data</dfn>
+      <td><dfn class="dfn-paneled" data-dfn-for="language_extension" data-dfn-type="dfn" data-noexport id="language_extension-immediate_address_space">immediate_address_space</dfn>
       
       <td>
       Enables the <a data-link-type="dfn" href="#address-spaces-immediate" id="ref-for-address-spaces-immediate">immediate</a> address space, allowing variables
@@ -8379,58 +8379,8 @@ access mode; the default is read.</p>
 Its <a data-link-type="dfn" href="#store-type" id="ref-for-store-type①⑥">store type</a> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error⑦①">must</a> be a <a data-link-type="dfn" href="#host-shareable" id="ref-for-host-shareable⑥">host-shareable</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①③">constructible</a> type,
 excluding arrays and structures that contain array members.
 Each <a data-link-type="dfn" href="#entry-point" id="ref-for-entry-point⑥">entry point</a> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error⑦②">must</a> <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed⑥">statically access</a> at most one immediate data variable.</p>
-   <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="accessible-slots">accessible slots</dfn> of an immediate data variable are the 4-byte-aligned slots that
-contain the actual data (not padding bytes) of the variable’s <a data-link-type="dfn" href="#store-type" id="ref-for-store-type①⑦">store type</a>.
-Let <var>T</var> be the store type of an immediate data variable.
-The set of accessible slots is computed as follows:</p>
-   <blockquote class="algorithm" data-algorithm="accessible slots">
-    
-    <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="accessibleslots">AccessibleSlots</dfn>(<var>T</var>) computes a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set">set</a> of slot indices (where each slot is 4 bytes):
-
-
-    <ol>
-     <li data-md>
-      <p>Let <var>slots</var> be an empty <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set①">set</a>.</p>
-     <li data-md>
-      <p>Let <var>size</var> = <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof">SizeOf</a>(<var>T</var>).</p>
-     <li data-md>
-      <p>If <var>T</var> is a <a data-link-type="dfn" href="#structure" id="ref-for-structure①①">structure</a> with <var>N</var> members:</p>
-      <ol>
-       <li data-md>
-        <p>For each member index <var>i</var> from 1 to <var>N</var>:</p>
-        <ol>
-         <li data-md>
-          <p>Let <var>offset</var> = <a data-link-type="dfn" href="#offsetofmember" id="ref-for-offsetofmember">OffsetOfMember</a>(<var>T</var>, <var>i</var>).</p>
-         <li data-md>
-          <p>Let <var>memberSize</var> = <a data-link-type="dfn" href="#sizeofmember" id="ref-for-sizeofmember">SizeOfMember</a>(<var>T</var>, <var>i</var>).</p>
-         <li data-md>
-          <p>For each byte offset <var>b</var> from <var>offset</var> to <var>offset</var> + <var>memberSize</var> - 1:</p>
-          <ol>
-           <li data-md>
-            <p>Let <var>slotIndex</var> = floor(<var>b</var> ÷ 4).</p>
-           <li data-md>
-            <p>Add <var>slotIndex</var> to <var>slots</var>.</p>
-          </ol>
-        </ol>
-      </ol>
-     <li data-md>
-      <p>Otherwise (<var>T</var> is not a structure):</p>
-      <ol>
-       <li data-md>
-        <p>For each byte offset <var>b</var> from 0 to <var>size</var> - 1:</p>
-        <ol>
-         <li data-md>
-          <p>Let <var>slotIndex</var> = floor(<var>b</var> ÷ 4).</p>
-         <li data-md>
-          <p>Add <var>slotIndex</var> to <var>slots</var>.</p>
-        </ol>
-      </ol>
-     <li data-md>
-      <p>Return <var>slots</var>.</p>
-    </ol>
-   </blockquote>
    <div class="note" role="note">
-The <a data-link-type="dfn" href="#accessible-slots" id="ref-for-accessible-slots">accessible slots</a> exclude padding bytes between structure members and at the end of structures.
+The <a data-link-type="dfn" href="#accessible-slots" id="ref-for-accessible-slots">AccessibleSlots</a> exclude padding bytes between structure members and at the end of structures.
 Only the accessible slots need to be initialized via the WebGPU API
 before the immediate data variable is accessed in a shader.
 </div>
@@ -8479,7 +8429,7 @@ The initial values are computed as follows:</p>
      <p>For variables in the function address space:</p>
      <ul>
       <li data-md>
-       <p>The <a data-link-type="dfn" href="#zero-value" id="ref-for-zero-value①">zero value</a> of the <a data-link-type="dfn" href="#store-type" id="ref-for-store-type①⑧">store type</a>, if the variable declaration did
+       <p>The <a data-link-type="dfn" href="#zero-value" id="ref-for-zero-value①">zero value</a> of the <a data-link-type="dfn" href="#store-type" id="ref-for-store-type①⑦">store type</a>, if the variable declaration did
 not specify an initializer.</p>
       <li data-md>
        <p>Otherwise it is the result of evaluating the
@@ -8490,7 +8440,7 @@ that point in program execution.</p>
      <p>For variables in the private address space:</p>
      <ul>
       <li data-md>
-       <p>The <a data-link-type="dfn" href="#zero-value" id="ref-for-zero-value②">zero value</a> of the <a data-link-type="dfn" href="#store-type" id="ref-for-store-type①⑨">store type</a>, if the variable declaration did
+       <p>The <a data-link-type="dfn" href="#zero-value" id="ref-for-zero-value②">zero value</a> of the <a data-link-type="dfn" href="#store-type" id="ref-for-store-type①⑧">store type</a>, if the variable declaration did
 not specify an initializer.</p>
       <li data-md>
        <p>Otherwise it is the result of evaluating the <a data-link-type="dfn" href="#concretization-of-a-value" id="ref-for-concretization-of-a-value③">concretized</a> initializer expression.
@@ -8501,13 +8451,13 @@ fixed no later than <a data-link-type="dfn" href="#pipeline-creation" id="ref-fo
      <p>For variables in the workgroup address space:</p>
      <ul>
       <li data-md>
-       <p>When the <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②⓪">store type</a> is <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①④">constructible</a>, the <a data-link-type="dfn" href="#zero-value" id="ref-for-zero-value③">zero value</a> for the
+       <p>When the <a data-link-type="dfn" href="#store-type" id="ref-for-store-type①⑨">store type</a> is <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①④">constructible</a>, the <a data-link-type="dfn" href="#zero-value" id="ref-for-zero-value③">zero value</a> for the
 store type.</p>
       <li data-md>
-       <p>If the <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②①">store type</a> is an <a data-link-type="dfn" href="#atomic-type" id="ref-for-atomic-type⑧">atomic type</a>, the <a data-link-type="dfn" href="#zero-value" id="ref-for-zero-value④">zero value</a> is that
+       <p>If the <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②⓪">store type</a> is an <a data-link-type="dfn" href="#atomic-type" id="ref-for-atomic-type⑧">atomic type</a>, the <a data-link-type="dfn" href="#zero-value" id="ref-for-zero-value④">zero value</a> is that
 of the underlying type (<a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②⑥">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar⑤">integer scalar</a>).</p>
       <li data-md>
-       <p>Otherwise, if the <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②②">store type</a> is not <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①⑤">constructible</a>, the <a data-link-type="dfn" href="#zero-value" id="ref-for-zero-value⑤">zero value</a> is determined by recursively applying these rules to each
+       <p>Otherwise, if the <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②①">store type</a> is not <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①⑤">constructible</a>, the <a data-link-type="dfn" href="#zero-value" id="ref-for-zero-value⑤">zero value</a> is determined by recursively applying these rules to each
 <a data-link-type="dfn" href="#components" id="ref-for-components">component</a> of the <a data-link-type="dfn" href="#composite" id="ref-for-composite③">composite</a> until a <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①⑥">constructible</a> type is
 encountered.</p>
        <ul>
@@ -8682,7 +8632,7 @@ An expression is a const-expression if all its <a data-link-type="dfn" href="#id
     <li data-md>
      <p><a data-link-type="dfn" href="#type-alias" id="ref-for-type-alias⑥">type aliases</a>, or</p>
     <li data-md>
-     <p><a data-link-type="dfn" href="#structure" id="ref-for-structure①②">structure</a> names.</p>
+     <p><a data-link-type="dfn" href="#structure" id="ref-for-structure①①">structure</a> names.</p>
    </ul>
    <p>The type of a <code>const</code> expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error⑦③">must</a> <a data-link-type="dfn" href="#type-rule" id="ref-for-type-rule③">resolve</a> to a type with a
 <a data-link-type="dfn" href="#creation-fixed-footprint" id="ref-for-creation-fixed-footprint①④">creation-fixed footprint</a>.</p>
@@ -8804,7 +8754,7 @@ An expression is an override-expression if all its <a data-link-type="dfn" href=
     <li data-md>
      <p><a data-link-type="dfn" href="#type-alias" id="ref-for-type-alias⑦">type aliases</a>, or</p>
     <li data-md>
-     <p><a data-link-type="dfn" href="#structure" id="ref-for-structure①③">structure</a> names.</p>
+     <p><a data-link-type="dfn" href="#structure" id="ref-for-structure①②">structure</a> names.</p>
    </ul>
    <p class="note" role="note"><span class="marker">Note:</span> All <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions②⓪">const-expressions</a> are also override-expressions.</p>
    <p>Override-expressions other than const-expressions are only validated or evaluated
@@ -9053,7 +9003,7 @@ is known as the <dfn class="dfn-paneled" data-dfn-for="decomposition" data-dfn-t
      <p>The expression for the <a data-link-type="dfn" href="#decomposition-base" id="ref-for-decomposition-base⑤">base</a> <em>B</em> is followed by a period <code>'.'</code> (U+002D), and then the name of the component.</p>
      <ul>
       <li data-md>
-       <p>This is supported when <em>B</em> is of <a data-link-type="dfn" href="#vector" id="ref-for-vector①②">vector</a> or <a data-link-type="dfn" href="#structure" id="ref-for-structure①④">structure</a> type, or a memory view to a vector or structure type.</p>
+       <p>This is supported when <em>B</em> is of <a data-link-type="dfn" href="#vector" id="ref-for-vector①②">vector</a> or <a data-link-type="dfn" href="#structure" id="ref-for-structure①③">structure</a> type, or a memory view to a vector or structure type.</p>
       <li data-md>
        <p>The valid names depend on <em>B</em>'s type.</p>
      </ul>
@@ -10403,7 +10353,7 @@ See <a href="#function-call-statement">§ 9.5 Function Call Statement</a>.</p>
       <td>
           <var>v</var> is an <a data-link-type="dfn" href="#identifier" id="ref-for-identifier①④">identifier</a> <a data-link-type="dfn" href="#resolves" id="ref-for-resolves①②">resolving</a> to
           an <a data-link-type="dfn" href="#in-scope" id="ref-for-in-scope⑦">in-scope</a> variable declared in <a data-link-type="dfn" href="#address-spaces" id="ref-for-address-spaces①④">address space</a> <var>AS</var>
-          with <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②③">store type</a> <var>T</var> and <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode①⑨">access mode</a> <var>AM</var>
+          with <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②②">store type</a> <var>T</var> and <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode①⑨">access mode</a> <var>AM</var>
        
       <td class="nowrap">
           <var>v</var>: ref&lt;<var>AS</var>,<var>T</var>,<var>AM</var>>
@@ -10586,7 +10536,7 @@ See <a href="#function-call-statement">§ 9.5 Function Call Statement</a>.</p>
       <td>Additionally, <var>a</var> denotes the type to which it is aliased.
     
      <tr class="algorithm" data-algorithm="structure type expression">
-      <td><var>s</var> is an <a data-link-type="dfn" href="#identifier" id="ref-for-identifier②②">identifier</a> <a data-link-type="dfn" href="#resolves" id="ref-for-resolves②⓪">resolving</a> to the declaration of a <a data-link-type="dfn" href="#structure" id="ref-for-structure①⑤">structure</a> type.
+      <td><var>s</var> is an <a data-link-type="dfn" href="#identifier" id="ref-for-identifier②②">identifier</a> <a data-link-type="dfn" href="#resolves" id="ref-for-resolves②⓪">resolving</a> to the declaration of a <a data-link-type="dfn" href="#structure" id="ref-for-structure①④">structure</a> type.
         
       <td><var>s</var> : <a data-link-type="dfn" href="#alltypes" id="ref-for-alltypes②">AllTypes</a>
         
@@ -11356,7 +11306,7 @@ A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="decrement-state
 
     <p><span class="choice"></span> <a data-link-type="dfn" href="#syntax-lhs_expression" id="ref-for-syntax-lhs_expression⑤">lhs_expression</a> <a data-link-type="dfn" href="#syntax_sym-minus_minus" id="ref-for-syntax_sym-minus_minus"><code>'--'</code></a></p>
    </div>
-   <p>The expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⓪④">must</a> evaluate to a reference with a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⑤">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar①②">integer scalar</a> <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②④">store type</a> and <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①②">read_write</a> <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②②">access mode</a>.</p>
+   <p>The expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⓪④">must</a> evaluate to a reference with a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⑤">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar①②">integer scalar</a> <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②③">store type</a> and <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①②">read_write</a> <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②②">access mode</a>.</p>
    <table class="data">
     <thead>
      <tr>
@@ -12872,7 +12822,7 @@ function parameter.</p>
      <ul>
       <li data-md>
        <p>In particular, an argument that is a pointer <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①④⑤">must</a> agree with the formal parameter
-on <a data-link-type="dfn" href="#address-spaces" id="ref-for-address-spaces①⑥">address space</a>, <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②⑤">store type</a>, and <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②③">access mode</a>.</p>
+on <a data-link-type="dfn" href="#address-spaces" id="ref-for-address-spaces①⑥">address space</a>, <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②④">store type</a>, and <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②③">access mode</a>.</p>
      </ul>
    </ul>
    <p class="note" role="note"><span class="marker">Note:</span> Recursion is disallowed because cycles are not permitted among any kinds
@@ -13121,14 +13071,14 @@ some attribute parameters are also context-dependent names.</p>
        Constrains the placement of a structure member in memory.
 
 
-       <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①④⑨">Must</a> only be applied to a member of a <a data-link-type="dfn" href="#structure" id="ref-for-structure①⑥">structure</a> type.</p>
+       <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①④⑨">Must</a> only be applied to a member of a <a data-link-type="dfn" href="#structure" id="ref-for-structure①⑤">structure</a> type.</p>
        <p>This attribute influences how a value of the enclosing structure type can appear in memory:
     it constrains the byte addresses at which the structure itself and its component members can appear.</p>
        <div class="algorithm" data-algorithm="constraint on align attribute">
         
     If <code>align(</code><var>n</var><code>)</code> is applied to a member of <var>S</var>
     with type <var>T</var>,
-    and <var>S</var> can be the <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②⑥">store type</a> for a variable in address space <var>AS</var>,
+    and <var>S</var> can be the <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②⑤">store type</a> for a variable in address space <var>AS</var>,
     where <var>AS</var> is not <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform⑤">uniform</a>,
     then <var>n</var> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑤⓪">must</a> satisfy:
     
@@ -13201,7 +13151,7 @@ some attribute parameters are also context-dependent names.</p>
     See <a href="#input-output-locations">§ 13.3.1.3 Input-output Locations</a>.
 
 
-       <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑤⑦">Must</a> only be applied to a member of a <a data-link-type="dfn" href="#structure" id="ref-for-structure①⑦">structure</a> type with a
+       <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑤⑦">Must</a> only be applied to a member of a <a data-link-type="dfn" href="#structure" id="ref-for-structure①⑥">structure</a> type with a
     <a data-link-type="dfn" href="#attribute-location" id="ref-for-attribute-location④">location</a> attribute.
     <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑤⑧">Must</a> only be applied to declarations of objects with <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar②">numeric scalar</a>
     or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector①">numeric vector</a> type.
@@ -13235,7 +13185,7 @@ some attribute parameters are also context-dependent names.</p>
 
 
        <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑥②">Must</a> only be applied to an entry point
-    function parameter, entry point return type, or member of a <a data-link-type="dfn" href="#structure" id="ref-for-structure①⑧">structure</a>.</p>
+    function parameter, entry point return type, or member of a <a data-link-type="dfn" href="#structure" id="ref-for-structure①⑦">structure</a>.</p>
      <tr>
       <td>Parameters
     
@@ -13468,7 +13418,7 @@ some attribute parameters are also context-dependent names.</p>
 
 
        <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑦⑧">Must</a> only be applied to an entry point function parameter, entry point
-    return type, or member of a <a data-link-type="dfn" href="#structure" id="ref-for-structure①⑨">structure</a> type.
+    return type, or member of a <a data-link-type="dfn" href="#structure" id="ref-for-structure①⑧">structure</a> type.
     <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑦⑨">Must</a> only be applied to declarations of objects with <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar③">numeric scalar</a>
     or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector②">numeric vector</a> type.
     <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑧⓪">Must not</a> be included in <a data-link-type="dfn" href="#compute" id="ref-for-compute">compute</a> <a data-link-type="dfn" href="#shader-stage-input" id="ref-for-shader-stage-input④">shader stage inputs</a>.</p>
@@ -13534,10 +13484,10 @@ some attribute parameters are also context-dependent names.</p>
 
        <p>This number <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑧⑥">must</a> be at least the <a data-link-type="dfn" href="#byte-size" id="ref-for-byte-size④">byte-size</a> of the type of the member:</p>
        <p class="algorithm" data-algorithm="byte-size constraint">
-    If <code>size(</code><var>n</var><code>)</code> is applied to a member with type <var>T</var>, then <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①">SizeOf</a>(<var>T</var>) ≤ <var>n</var>.
+    If <code>size(</code><var>n</var><code>)</code> is applied to a member with type <var>T</var>, then <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof">SizeOf</a>(<var>T</var>) ≤ <var>n</var>.
     </p>
        <p>See <a href="#memory-layouts">§ 14.4 Memory Layout</a>.</p>
-       <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑧⑦">Must</a> only be applied to a member of a <a data-link-type="dfn" href="#structure" id="ref-for-structure②⓪">structure</a> type.
+       <p><a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑧⑦">Must</a> only be applied to a member of a <a data-link-type="dfn" href="#structure" id="ref-for-structure①⑨">structure</a> type.
     The member type <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑧⑧">must</a> have <a data-link-type="dfn" href="#creation-fixed-footprint" id="ref-for-creation-fixed-footprint①⑤">creation-fixed footprint</a>.</p>
      <tr>
       <td>Parameters
@@ -13684,7 +13634,7 @@ The entry point’s <a data-link-type="dfn" href="#return-value" id="ref-for-ret
     <li data-md>
      <p>a <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector③">numeric vector</a></p>
     <li data-md>
-     <p>a <a data-link-type="dfn" href="#structure" id="ref-for-structure②①">structure</a> whose member types are any of <a data-link-type="dfn" href="#bool" id="ref-for-bool①⓪">bool</a>, <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar⑤">numeric scalar</a>, or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector④">numeric vector</a>.</p>
+     <p>a <a data-link-type="dfn" href="#structure" id="ref-for-structure②⓪">structure</a> whose member types are any of <a data-link-type="dfn" href="#bool" id="ref-for-bool①⓪">bool</a>, <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar⑤">numeric scalar</a>, or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector④">numeric vector</a>.</p>
    </ul>
    <p>A structure type can be used to group <a data-link-type="dfn" href="#user-defined-input-datum" id="ref-for-user-defined-input-datum">user-defined inputs</a> with each other and optionally with <a data-link-type="dfn" href="#built-in-input-value" id="ref-for-built-in-input-value①">built-in inputs</a>.
 A structure type can be used as the <a data-link-type="dfn" href="#return-type" id="ref-for-return-type⑧">return type</a> to group <a data-link-type="dfn" href="#user-defined-output-datum" id="ref-for-user-defined-output-datum">user-defined outputs</a> with each other and optionally with <a data-link-type="dfn" href="#built-in-output-value" id="ref-for-built-in-output-value②">built-in outputs</a>.</p>
@@ -15193,7 +15143,7 @@ is determined from the size of the corresponding <code class="idl"><a data-link-
    <blockquote class="algorithm" data-algorithm="element count of runtime-sized array">
     <ul>
      <li data-md>
-      <p>Let <var>T</var> be the <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②⑦">store type</a> for a <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer①⑧">storage buffer</a> variable,
+      <p>Let <var>T</var> be the <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②⑥">store type</a> for a <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer①⑧">storage buffer</a> variable,
 where <var>T</var> is a <a data-link-type="dfn" href="#runtime-sized" id="ref-for-runtime-sized⑧">runtime-sized</a> array type or contains a runtime-sized array type.</p>
      <li data-md>
       <p>Let <var>bufferBinding</var> be <a data-link-type="abstract-op" href="https://gpuweb.github.io/gpuweb/#abstract-opdef-get-as-buffer-binding" id="ref-for-abstract-opdef-get-as-buffer-binding">get as buffer binding</a>(<code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpubindgroupentry-resource" id="ref-for-dom-gpubindgroupentry-resource①">resource</a></code>).</p>
@@ -15204,7 +15154,7 @@ for the <var>bufferBinding</var> bound to the pipeline binding address correspon
      <li data-md>
       <p>Then <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="nruntime">NRuntime</dfn>, i.e.
 the number of elements in the runtime-sized array,
-is the largest integer such that <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof②">SizeOf</a>(<var>T</var>) ≤ <var>EBS</var>.</p>
+is the largest integer such that <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①">SizeOf</a>(<var>T</var>) ≤ <var>EBS</var>.</p>
     </ul>
    </blockquote>
    <p>In more detail, the <a data-link-type="dfn" href="#nruntime" id="ref-for-nruntime①">NRuntime</a> for a runtime-size array of type <em>RAT</em> is:</p>
@@ -15222,7 +15172,7 @@ is the largest integer such that <a data-link-type="dfn" href="#sizeof" id="ref-
         <p>It is zero if the store type is <var>RAT</var>, the runtime-sized array type itself.</p>
        <li data-md>
         <p>Otherwise the store type is a structure, and its last member is the runtime-sized array.
-In this case <em>array_offset</em> is the <a data-link-type="dfn" href="#offsetofmember" id="ref-for-offsetofmember①">byte offset of that member</a> within the structure.</p>
+In this case <em>array_offset</em> is the <a data-link-type="dfn" href="#offsetofmember" id="ref-for-offsetofmember">byte offset of that member</a> within the structure.</p>
       </ul>
      <li data-md>
       <p><em>array_stride</em> is the stride of the array type, i.e. <a data-link-type="dfn" href="#strideof" id="ref-for-strideof">StrideOf</a>(<var>RAT</var>).</p>
@@ -15314,7 +15264,7 @@ In the following code sample:
        <li data-md>
         <p>The member is at byte offset 16 in the variable’s storage.</p>
        <li data-md>
-        <p>The array stride is <a data-link-type="dfn" href="#strideof" id="ref-for-strideof②">StrideOf</a>(array&lt;<code>PointLight</code>>) = <a data-link-type="dfn" href="#roundup" id="ref-for-roundup">roundUp</a>(<a data-link-type="dfn" href="#alignof" id="ref-for-alignof">AlignOf</a>(<code>PointLight</code>),<a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof③">SizeOf</a>(<code>PointLight</code>)) = <a data-link-type="dfn" href="#roundup" id="ref-for-roundup①">roundUp</a>(16,32) = 32</p>
+        <p>The array stride is <a data-link-type="dfn" href="#strideof" id="ref-for-strideof②">StrideOf</a>(array&lt;<code>PointLight</code>>) = <a data-link-type="dfn" href="#roundup" id="ref-for-roundup">roundUp</a>(<a data-link-type="dfn" href="#alignof" id="ref-for-alignof">AlignOf</a>(<code>PointLight</code>),<a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof②">SizeOf</a>(<code>PointLight</code>)) = <a data-link-type="dfn" href="#roundup" id="ref-for-roundup①">roundUp</a>(16,32) = 32</p>
       </ul>
     </ul>
     <div class="example wgsl no-marker" id="example-81d0297d">
@@ -15511,7 +15461,7 @@ table.</p>
    <p><a data-link-type="dfn" href="#variable" id="ref-for-variable①⑦">Variables</a> in the <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup①④">workgroup</a> address space
 <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②①⑧">must</a> only be <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed①⑥">statically accessed</a> in a <a data-link-type="dfn" href="#compute-shader-stage" id="ref-for-compute-shader-stage①④">compute shader stage</a>.</p>
    <p><a data-link-type="dfn" href="#variable" id="ref-for-variable①⑧">Variables</a> in the <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage⑨">storage</a> address space (<a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer②②">storage buffers</a>) can only be <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed①⑦">statically accessed</a> by a <a data-link-type="dfn" href="#vertex-shader-stage" id="ref-for-vertex-shader-stage⑥">vertex shader stage</a> if the access mode is <a data-link-type="dfn" href="#access-read" id="ref-for-access-read①②">read</a>.
-Variables whose <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②⑧">store type</a> is a <a data-link-type="dfn" href="#type-storage-texture" id="ref-for-type-storage-texture⑤">storage texture</a> with a
+Variables whose <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②⑦">store type</a> is a <a data-link-type="dfn" href="#type-storage-texture" id="ref-for-type-storage-texture⑤">storage texture</a> with a
 <a data-link-type="dfn" href="#access-write" id="ref-for-access-write④">write</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②⓪">read_write</a> <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②④">access mode</a> cannot be
 <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed①⑧">statically accessed</a> by a <a data-link-type="dfn" href="#vertex-shader-stage" id="ref-for-vertex-shader-stage⑦">vertex shader stage</a>.
 See WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpudevice-createbindgrouplayout" id="ref-for-dom-gpudevice-createbindgrouplayout①">createBindGroupLayout()</a></code>.</p>
@@ -15536,7 +15486,7 @@ in a pipeline, or between different pipelines.</p>
 buffer are organized into typed WGSL values.
 These bytes are <a data-link-type="dfn" href="#memory-locations" id="ref-for-memory-locations①⑥">memory locations</a> of a value relative to a common base
 location.</p>
-   <p>The <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②⑨">store type</a> of a buffer variable <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②⓪">must</a> be
+   <p>The <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②⑧">store type</a> of a buffer variable <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②⓪">must</a> be
 <a data-link-type="dfn" href="#host-shareable" id="ref-for-host-shareable⑨">host-shareable</a>, with fully elaborated memory layout, as described below.</p>
    <p>Each buffer variable <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②①">must</a> be declared in either the
 <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform⑥">uniform</a> or <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage①①">storage</a> address spaces.</p>
@@ -15569,9 +15519,25 @@ and <var>A</var> is a host-shareable or fixed footprint array or runtime-sized a
 as the number of bytes from the start of one array element to the start of the next element.
 It equals the size of the array’s element type, rounded up to the alignment of the element type:</p>
      <p class="algorithm" data-algorithm="array element stride">
-      <a data-link-type="dfn" href="#strideof" id="ref-for-strideof③">StrideOf</a>(array&lt;<var>E</var>, <var>N</var>>) = <a data-link-type="dfn" href="#roundup" id="ref-for-roundup②">roundUp</a>(<a data-link-type="dfn" href="#alignof" id="ref-for-alignof①">AlignOf</a>(E), <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof④">SizeOf</a>(E))<br>
-      <a data-link-type="dfn" href="#strideof" id="ref-for-strideof④">StrideOf</a>(array&lt;<var>E</var>>) = <a data-link-type="dfn" href="#roundup" id="ref-for-roundup③">roundUp</a>(<a data-link-type="dfn" href="#alignof" id="ref-for-alignof②">AlignOf</a>(E), <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof⑤">SizeOf</a>(E))
+      <a data-link-type="dfn" href="#strideof" id="ref-for-strideof③">StrideOf</a>(array&lt;<var>E</var>, <var>N</var>>) = <a data-link-type="dfn" href="#roundup" id="ref-for-roundup②">roundUp</a>(<a data-link-type="dfn" href="#alignof" id="ref-for-alignof①">AlignOf</a>(E), <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof③">SizeOf</a>(E))<br>
+      <a data-link-type="dfn" href="#strideof" id="ref-for-strideof④">StrideOf</a>(array&lt;<var>E</var>>) = <a data-link-type="dfn" href="#roundup" id="ref-for-roundup③">roundUp</a>(<a data-link-type="dfn" href="#alignof" id="ref-for-alignof②">AlignOf</a>(E), <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof④">SizeOf</a>(E))
     </p>
+    <li data-md>
+     <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="accessible-bytes">AccessibleBytes</dfn>(<var>T</var>) is the set of byte offsets within an instance of type <var>T</var> that contain data.</p>
+     <ul>
+      <li data-md>
+       <p>If <var>T</var> is a scalar or vector, then <a data-link-type="dfn" href="#accessible-bytes" id="ref-for-accessible-bytes">AccessibleBytes</a>(<var>T</var>) is the set of integers <code>k</code> such that <code>0 &lt;= k &lt;</code> <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof⑤">SizeOf</a>(<var>T</var>).</p>
+      <li data-md>
+       <p>If <var>T</var> is a matrix with <var>C</var> columns and <var>R</var> rows, then <a data-link-type="dfn" href="#accessible-bytes" id="ref-for-accessible-bytes①">AccessibleBytes</a>(<var>T</var>) is the union of sets <code>{ k + i * Stride | k in AccessibleBytes(vecR) }</code> for <code>i</code> in <code>0..C-1</code>, where <code>Stride</code> is <a data-link-type="dfn" href="#roundup" id="ref-for-roundup④">roundUp</a>(<a data-link-type="dfn" href="#alignof" id="ref-for-alignof③">AlignOf</a>(vec<var>R</var>), <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof⑥">SizeOf</a>(vec<var>R</var>)).</p>
+      <li data-md>
+       <p>If <var>T</var> is an atomic type <code>atomic&lt;T'></code>, then <a data-link-type="dfn" href="#accessible-bytes" id="ref-for-accessible-bytes②">AccessibleBytes</a>(<var>T</var>) is <a data-link-type="dfn" href="#accessible-bytes" id="ref-for-accessible-bytes③">AccessibleBytes</a>(|T'|).</p>
+      <li data-md>
+       <p>If <var>T</var> is an array of <var>N</var> elements of type <var>E</var>, then <a data-link-type="dfn" href="#accessible-bytes" id="ref-for-accessible-bytes④">AccessibleBytes</a>(<var>T</var>) is the union of sets <code>{ k + i * Stride | k in AccessibleBytes(E) }</code> for <code>i</code> in <code>0..N-1</code>, where <code>Stride</code> is <a data-link-type="dfn" href="#strideof" id="ref-for-strideof⑤">StrideOf</a>(<var>T</var>).</p>
+      <li data-md>
+       <p>If <var>T</var> is a structure <var>S</var>, then <a data-link-type="dfn" href="#accessible-bytes" id="ref-for-accessible-bytes⑤">AccessibleBytes</a>(<var>T</var>) is the union of sets <code>{ k + Offset | k in AccessibleBytes(M_i) }</code> for each member <code>M_i</code> at offset <code>Offset</code> = <a data-link-type="dfn" href="#offsetofmember" id="ref-for-offsetofmember①">OffsetOfMember</a>(<var>S</var>, <code>i</code>).</p>
+     </ul>
+    <li data-md>
+     <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="accessible-slots">AccessibleSlots</dfn>(<var>T</var>) is the set of integers <code>i</code> such that the intersection of the interval <code>[4*i, 4*i+4)</code> and <a data-link-type="dfn" href="#accessible-bytes" id="ref-for-accessible-bytes⑥">AccessibleBytes</a>(<var>T</var>) is not empty.</p>
    </ul>
    <h4 class="heading settled" data-level="14.4.1" id="alignment-and-size"><span class="secno">14.4.1. </span><span class="content">Alignment and Size</span><a class="self-link" href="#alignment-and-size"></a></h4>
    <p>Each <a data-link-type="dfn" href="#host-shareable" id="ref-for-host-shareable①②">host-shareable</a> or <a data-link-type="dfn" href="#fixed-footprint" id="ref-for-fixed-footprint⑤">fixed footprint</a> data type <var>T</var> has an alignment and size.</p>
@@ -15599,9 +15565,9 @@ following table:</p>
      <tr>
       <th>Host-shareable or fixed footprint type <var>T</var>
         
-      <th><a data-link-type="dfn" href="#alignof" id="ref-for-alignof③">AlignOf</a>(<var>T</var>)
+      <th><a data-link-type="dfn" href="#alignof" id="ref-for-alignof④">AlignOf</a>(<var>T</var>)
         
-      <th><a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof⑥">SizeOf</a>(<var>T</var>)
+      <th><a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof⑦">SizeOf</a>(<var>T</var>)
   
     <tbody>
      <tr>
@@ -15680,9 +15646,9 @@ following table:</p>
        <a data-link-type="dfn" href="#matrix" id="ref-for-matrix①②">mat</a><var>C</var>x<var>R</var> (col-major)<br>
       
        <p class="small">(General form)</p>
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof④">AlignOf</a>(vec<var>R</var>)
+      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof⑤">AlignOf</a>(vec<var>R</var>)
       
-      <td><a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof⑦">SizeOf</a>(array&lt;vec<var>R</var>, <var>C</var>>)
+      <td><a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof⑧">SizeOf</a>(array&lt;vec<var>R</var>, <var>C</var>>)
   
      <tr>
       <td>mat2x2&lt;f32>
@@ -15811,26 +15777,26 @@ following table:</p>
       <td>32
   
      <tr>
-      <td><a data-link-type="dfn" href="#structure" id="ref-for-structure②②">struct</a> <var>S</var> with members M<sub>1</sub>...M<sub>N</sub>
+      <td><a data-link-type="dfn" href="#structure" id="ref-for-structure②①">struct</a> <var>S</var> with members M<sub>1</sub>...M<sub>N</sub>
       
       <td>max(<a data-link-type="dfn" href="#alignofmember" id="ref-for-alignofmember">AlignOfMember</a>(S,1), ... , <a data-link-type="dfn" href="#alignofmember" id="ref-for-alignofmember①">AlignOfMember</a>(S,N))<br>
       
-      <td><a data-link-type="dfn" href="#roundup" id="ref-for-roundup④">roundUp</a>(<a data-link-type="dfn" href="#alignof" id="ref-for-alignof⑤">AlignOf</a>(<var>S</var>), justPastLastMember)<br><br>
-          where justPastLastMember = <a data-link-type="dfn" href="#offsetofmember" id="ref-for-offsetofmember②">OffsetOfMember</a>(<var>S</var>,N) + <a data-link-type="dfn" href="#sizeofmember" id="ref-for-sizeofmember①">SizeOfMember</a>(<var>S</var>,N)
+      <td><a data-link-type="dfn" href="#roundup" id="ref-for-roundup⑤">roundUp</a>(<a data-link-type="dfn" href="#alignof" id="ref-for-alignof⑥">AlignOf</a>(<var>S</var>), justPastLastMember)<br><br>
+          where justPastLastMember = <a data-link-type="dfn" href="#offsetofmember" id="ref-for-offsetofmember②">OffsetOfMember</a>(<var>S</var>,N) + <a data-link-type="dfn" href="#sizeofmember" id="ref-for-sizeofmember">SizeOfMember</a>(<var>S</var>,N)
   
      <tr>
       <td><a data-link-type="dfn" href="#array" id="ref-for-array①⓪">array</a>&lt;<var>E</var>, <var>N</var>><br>
       
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof⑥">AlignOf</a>(<var>E</var>)
+      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof⑦">AlignOf</a>(<var>E</var>)
       
-      <td><var>N</var> × <a data-link-type="dfn" href="#roundup" id="ref-for-roundup⑤">roundUp</a>(<a data-link-type="dfn" href="#alignof" id="ref-for-alignof⑦">AlignOf</a>(<var>E</var>), <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof⑧">SizeOf</a>(<var>E</var>))
+      <td><var>N</var> × <a data-link-type="dfn" href="#roundup" id="ref-for-roundup⑥">roundUp</a>(<a data-link-type="dfn" href="#alignof" id="ref-for-alignof⑧">AlignOf</a>(<var>E</var>), <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof⑨">SizeOf</a>(<var>E</var>))
   
      <tr>
       <td>array&lt;<var>E</var>><br>
       
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof⑧">AlignOf</a>(<var>E</var>)
+      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof⑨">AlignOf</a>(<var>E</var>)
       
-      <td><a data-link-type="dfn" href="#nruntime" id="ref-for-nruntime⑦">NRuntime</a> × <a data-link-type="dfn" href="#roundup" id="ref-for-roundup⑥">roundUp</a>(<a data-link-type="dfn" href="#alignof" id="ref-for-alignof⑨">AlignOf</a>(<var>E</var>),<a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof⑨">SizeOf</a>(<var>E</var>))<br><br>
+      <td><a data-link-type="dfn" href="#nruntime" id="ref-for-nruntime⑦">NRuntime</a> × <a data-link-type="dfn" href="#roundup" id="ref-for-roundup⑦">roundUp</a>(<a data-link-type="dfn" href="#alignof" id="ref-for-alignof①⓪">AlignOf</a>(<var>E</var>),<a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①⓪">SizeOf</a>(<var>E</var>))<br><br>
           where NRuntime is the runtime-determined number of elements of <var>T</var>
 
    </table>
@@ -15841,7 +15807,7 @@ By specifying that a <code>bool</code> value occupies 4 bytes with 4 byte alignm
 implementations can support adjacent boolean values in memory without introducing data races.
 </div>
    <h4 class="heading settled" data-level="14.4.2" id="structure-member-layout"><span class="secno">14.4.2. </span><span class="content">Structure Member Layout</span><a class="self-link" href="#structure-member-layout"></a></h4>
-   <p>The internal layout of a <a data-link-type="dfn" href="#structure" id="ref-for-structure②③">structure</a> is computed from the sizes and alignments of its members.
+   <p>The internal layout of a <a data-link-type="dfn" href="#structure" id="ref-for-structure②②">structure</a> is computed from the sizes and alignments of its members.
 By default, the members are arranged tightly, in order, without overlap, while satisfying member alignment
 requirements.</p>
    <p>This default internal layout can be overriden by using <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="layout-attributes">layout attributes</dfn>, which are:</p>
@@ -15852,22 +15818,22 @@ requirements.</p>
      <p><a data-link-type="dfn" href="#attribute-align" id="ref-for-attribute-align③">align</a></p>
    </ul>
    <p>The <var>i</var>’th member of structure type <var>S</var> has a size and alignment, denoted
-by <a data-link-type="dfn" href="#sizeofmember" id="ref-for-sizeofmember②">SizeOfMember</a>(<var>S</var>, <var>i</var>) and <a data-link-type="dfn" href="#alignofmember" id="ref-for-alignofmember②">AlignOfMember</a>(<var>S</var>, <var>i</var>), respectively.
+by <a data-link-type="dfn" href="#sizeofmember" id="ref-for-sizeofmember①">SizeOfMember</a>(<var>S</var>, <var>i</var>) and <a data-link-type="dfn" href="#alignofmember" id="ref-for-alignofmember②">AlignOfMember</a>(<var>S</var>, <var>i</var>), respectively.
 The member sizes and alignments are used to calculate each member’s byte offset from the start of the structure,
 as described in <a href="#internal-value-layout">§ 14.4.4 Internal Layout of Values</a>.</p>
    <blockquote class="algorithm" data-algorithm="structure member size">
-  <a data-link-type="dfn" href="#sizeofmember" id="ref-for-sizeofmember③">SizeOfMember</a>(<var>S</var>, <var>i</var>) is <var>k</var> if the <var>i</var>’th member of <var>S</var> has attribute <a data-link-type="dfn" href="#attribute-size" id="ref-for-attribute-size④">size</a>(<var>k</var>).
-  Otherwise, it is <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①⓪">SizeOf</a>(<var>T</var>) where <var>T</var> is the type of the member.
+  <a data-link-type="dfn" href="#sizeofmember" id="ref-for-sizeofmember②">SizeOfMember</a>(<var>S</var>, <var>i</var>) is <var>k</var> if the <var>i</var>’th member of <var>S</var> has attribute <a data-link-type="dfn" href="#attribute-size" id="ref-for-attribute-size④">size</a>(<var>k</var>).
+  Otherwise, it is <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①①">SizeOf</a>(<var>T</var>) where <var>T</var> is the type of the member.
 </blockquote>
    <blockquote class="algorithm" data-algorithm="structure member alignment">
   <a data-link-type="dfn" href="#alignofmember" id="ref-for-alignofmember③">AlignOfMember</a>(<var>S</var>, <var>i</var>) is <var>k</var> if the <var>i</var>’th member of <var>S</var> has attribute <a data-link-type="dfn" href="#attribute-align" id="ref-for-attribute-align④">align</a>(<var>k</var>).
-  Otherwise, it is <a data-link-type="dfn" href="#alignof" id="ref-for-alignof①⓪">AlignOf</a>(<var>T</var>) where <var>T</var> is the type of the member.
+  Otherwise, it is <a data-link-type="dfn" href="#alignof" id="ref-for-alignof①①">AlignOf</a>(<var>T</var>) where <var>T</var> is the type of the member.
 </blockquote>
    <p>If a structure member has the <a data-link-type="dfn" href="#attribute-size" id="ref-for-attribute-size⑤">size</a> attribute applied, the
 value <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②③">must</a> be at least as large as the size of the
 member’s type:</p>
    <blockquote class="algorithm" data-algorithm="member size constraint">
-  <a data-link-type="dfn" href="#sizeofmember" id="ref-for-sizeofmember④">SizeOfMember</a>(<var>S</var>, <var>i</var>) ≥ <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①①">SizeOf</a>(T)<br>
+  <a data-link-type="dfn" href="#sizeofmember" id="ref-for-sizeofmember③">SizeOfMember</a>(<var>S</var>, <var>i</var>) ≥ <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①②">SizeOf</a>(T)<br>
   Where <var>T</var> is the type of the <var>i</var>’th member of <var>S</var>.
 </blockquote>
    <p>The first structure member always has a zero byte offset from the start of the
@@ -15879,7 +15845,7 @@ structure:</p>
 and which avoids overlap with the previous member.
 For each member index <var>i</var> > 1:</p>
    <blockquote class="algorithm" data-algorithm="structure member offset">
-  <a data-link-type="dfn" href="#offsetofmember" id="ref-for-offsetofmember④">OffsetOfMember</a>(<var>S</var>, <var>i</var>) = <a data-link-type="dfn" href="#roundup" id="ref-for-roundup⑦">roundUp</a>(<a data-link-type="dfn" href="#alignofmember" id="ref-for-alignofmember④">AlignOfMember</a>(<var>S</var>, <var>i</var> ), <a data-link-type="dfn" href="#offsetofmember" id="ref-for-offsetofmember⑤">OffsetOfMember</a>(<var>S</var>, <var>i</var>-1) + <a data-link-type="dfn" href="#sizeofmember" id="ref-for-sizeofmember⑤">SizeOfMember</a>(<var>S</var>, <var>i</var>-1))<br>
+  <a data-link-type="dfn" href="#offsetofmember" id="ref-for-offsetofmember④">OffsetOfMember</a>(<var>S</var>, <var>i</var>) = <a data-link-type="dfn" href="#roundup" id="ref-for-roundup⑧">roundUp</a>(<a data-link-type="dfn" href="#alignofmember" id="ref-for-alignofmember④">AlignOfMember</a>(<var>S</var>, <var>i</var> ), <a data-link-type="dfn" href="#offsetofmember" id="ref-for-offsetofmember⑤">OffsetOfMember</a>(<var>S</var>, <var>i</var>-1) + <a data-link-type="dfn" href="#sizeofmember" id="ref-for-sizeofmember④">SizeOfMember</a>(<var>S</var>, <var>i</var>-1))<br>
 </blockquote>
    <div class="example wgsl no-marker" id="example-fc0bb4df">
     <a class="self-link" href="#example-fc0bb4df"></a>
@@ -15986,7 +15952,7 @@ of a buffer, given an assumed placement of the overall value.
 These layouts depend on the value’s type,
 and the <a data-link-type="dfn" href="#attribute-align" id="ref-for-attribute-align⑤">align</a> and <a data-link-type="dfn" href="#attribute-size" id="ref-for-attribute-size⑥">size</a> attributes on structure members.</p>
    <p>The buffer byte offset at which a value is placed <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②④">must</a> satisfy the type alignment requirement: If a value of type <var>T</var> is
-placed at buffer offset <var>k</var>, then <var>k</var> = <var>c</var> × <a data-link-type="dfn" href="#alignof" id="ref-for-alignof①①">AlignOf</a>(<var>T</var>), for some
+placed at buffer offset <var>k</var>, then <var>k</var> = <var>c</var> × <a data-link-type="dfn" href="#alignof" id="ref-for-alignof①②">AlignOf</a>(<var>T</var>), for some
 non-negative integer <var>c</var>.</p>
    <p>The data <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②③">will</a> appear identically regardless of the address space.</p>
    <p class="note" role="note"><span class="marker">Note:</span> The <a data-link-type="dfn" href="#bool" id="ref-for-bool①⑥">bool</a> type is not <a data-link-type="dfn" href="#host-shareable" id="ref-for-host-shareable①⑤">host-shareable</a>.
@@ -16068,25 +16034,25 @@ byte offset <var>k</var> of a host-shared buffer, then:</p>
     <li data-md>
      <p><var>V</var>.x is placed at byte offset <var>k</var></p>
     <li data-md>
-     <p><var>V</var>.y is placed at byte offset <var>k</var> + <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①②">SizeOf</a>(<var>T</var>)</p>
+     <p><var>V</var>.y is placed at byte offset <var>k</var> + <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①③">SizeOf</a>(<var>T</var>)</p>
     <li data-md>
-     <p>If <var>N</var> ≥ 3, then <var>V</var>.z is placed at byte offset <var>k</var> + 2 × <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①③">SizeOf</a>(<var>T</var>)</p>
+     <p>If <var>N</var> ≥ 3, then <var>V</var>.z is placed at byte offset <var>k</var> + 2 × <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①④">SizeOf</a>(<var>T</var>)</p>
     <li data-md>
-     <p>If <var>N</var> ≥ 4, then <var>V</var>.w is placed at byte offset <var>k</var> + 3 × <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①④">SizeOf</a>(<var>T</var>)</p>
+     <p>If <var>N</var> ≥ 4, then <var>V</var>.w is placed at byte offset <var>k</var> + 3 × <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①⑤">SizeOf</a>(<var>T</var>)</p>
    </ul>
    <p>When a value <var>V</var> of <a data-link-type="dfn" href="#matrix" id="ref-for-matrix①③">matrix type</a> mat<var>C</var>x<var>R</var>&lt;<var>T</var>> is placed at
 byte offset <var>k</var> of a host-shared buffer, then:</p>
    <ul>
     <li data-md>
-     <p>Column vector <var>i</var> of <var>V</var> is placed at byte offset <var>k</var> + <var>i</var> × <a data-link-type="dfn" href="#alignof" id="ref-for-alignof①②">AlignOf</a>(vec<var>R</var>&lt;<var>T</var>>)</p>
+     <p>Column vector <var>i</var> of <var>V</var> is placed at byte offset <var>k</var> + <var>i</var> × <a data-link-type="dfn" href="#alignof" id="ref-for-alignof①③">AlignOf</a>(vec<var>R</var>&lt;<var>T</var>>)</p>
    </ul>
    <p>When a value of <a data-link-type="dfn" href="#array" id="ref-for-array①①">array type</a> <var>A</var> is placed at byte offset <var>k</var> of a host-shared memory buffer,
 then:</p>
    <ul>
     <li data-md>
-     <p>Element <var>i</var> of the array is placed at byte offset <var>k</var> + <var>i</var> × <a data-link-type="dfn" href="#strideof" id="ref-for-strideof⑤">StrideOf</a>(<var>A</var>)</p>
+     <p>Element <var>i</var> of the array is placed at byte offset <var>k</var> + <var>i</var> × <a data-link-type="dfn" href="#strideof" id="ref-for-strideof⑥">StrideOf</a>(<var>A</var>)</p>
    </ul>
-   <p>When a value of <a data-link-type="dfn" href="#structure" id="ref-for-structure②④">structure type</a> <var>S</var> is placed at byte offset <var>k</var> of a host-shared memory buffer,
+   <p>When a value of <a data-link-type="dfn" href="#structure" id="ref-for-structure②③">structure type</a> <var>S</var> is placed at byte offset <var>k</var> of a host-shared memory buffer,
 then:</p>
    <ul>
     <li data-md>
@@ -16127,52 +16093,52 @@ used in address space <var>C</var>.</p>
      <tr>
       <td><a data-link-type="dfn" href="#bool" id="ref-for-bool①⑧">bool</a>, <a data-link-type="dfn" href="#i32" id="ref-for-i32③⑦">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32②②">u32</a>, <a data-link-type="dfn" href="#f32" id="ref-for-f32②②">f32</a>, or <a data-link-type="dfn" href="#f16" id="ref-for-f16①⑥">f16</a>
       
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①③">AlignOf</a>(<var>S</var>)
-      
       <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①④">AlignOf</a>(<var>S</var>)
+      
+      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①⑤">AlignOf</a>(<var>S</var>)
   
      <tr>
       <td><a data-link-type="dfn" href="#atomic-type" id="ref-for-atomic-type①②">atomic</a>&lt;T>
       
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①⑤">AlignOf</a>(<var>S</var>)
-      
       <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①⑥">AlignOf</a>(<var>S</var>)
+      
+      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①⑦">AlignOf</a>(<var>S</var>)
   
      <tr>
       <td><a data-link-type="dfn" href="#vector" id="ref-for-vector②①">vec</a>N&lt;T>
       
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①⑦">AlignOf</a>(<var>S</var>)
-      
       <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①⑧">AlignOf</a>(<var>S</var>)
+      
+      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①⑨">AlignOf</a>(<var>S</var>)
   
      <tr class="algorithm" data-algorithm="alignment of a matrix with C columns and R rows">
       <td><a data-link-type="dfn" href="#matrix" id="ref-for-matrix①④">mat</a>CxR&lt;T>
       
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①⑨">AlignOf</a>(<var>S</var>)
-      
       <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②⓪">AlignOf</a>(<var>S</var>)
+      
+      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②①">AlignOf</a>(<var>S</var>)
   
      <tr class="algorithm" data-algorithm="alignment of an array">
       <td><a data-link-type="dfn" href="#array" id="ref-for-array①②">array</a>&lt;T, N>
       
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②①">AlignOf</a>(<var>S</var>)
+      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②②">AlignOf</a>(<var>S</var>)
       
-      <td><a data-link-type="dfn" href="#roundup" id="ref-for-roundup⑧">roundUp</a>(16, <a data-link-type="dfn" href="#alignof" id="ref-for-alignof②②">AlignOf</a>(<var>S</var>))
+      <td><a data-link-type="dfn" href="#roundup" id="ref-for-roundup⑨">roundUp</a>(16, <a data-link-type="dfn" href="#alignof" id="ref-for-alignof②③">AlignOf</a>(<var>S</var>))
   
      <tr class="algorithm" data-algorithm="alignment of an runtime-sized array">
       <td><a data-link-type="dfn" href="#array" id="ref-for-array①③">array</a>&lt;T>
       
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②③">AlignOf</a>(<var>S</var>)<br>
+      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②④">AlignOf</a>(<var>S</var>)<br>
       Disallowed if <var>C</var> is <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform①③">uniform</a>
       
       <td>Disallowed
   
      <tr class="algorithm" data-algorithm="alignment of a structure">
-      <td><a data-link-type="dfn" href="#structure" id="ref-for-structure②⑤">struct</a> <var>S</var>
+      <td><a data-link-type="dfn" href="#structure" id="ref-for-structure②④">struct</a> <var>S</var>
       
-      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②④">AlignOf</a>(<var>S</var>)
+      <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②⑤">AlignOf</a>(<var>S</var>)
       
-      <td><a data-link-type="dfn" href="#roundup" id="ref-for-roundup⑨">roundUp</a>(16, <a data-link-type="dfn" href="#alignof" id="ref-for-alignof②⑤">AlignOf</a>(<var>S</var>))<br>
+      <td><a data-link-type="dfn" href="#roundup" id="ref-for-roundup①⓪">roundUp</a>(16, <a data-link-type="dfn" href="#alignof" id="ref-for-alignof②⑥">AlignOf</a>(<var>S</var>))<br>
 
    </table>
    <p>Structure members of type <var>T</var> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②⑦">must</a> have a byte offset
@@ -16185,8 +16151,8 @@ for the address space <var>C</var>:</p>
    <p>Arrays of element type <var>T</var> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②⑧">must</a> have an <a data-link-type="dfn" href="#element-stride" id="ref-for-element-stride">element stride</a> that is a
 multiple of the <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof⑤">RequiredAlignOf</a>(<var>T</var>, <var>C</var>) for the address space <var>C</var>:</p>
    <blockquote class="algorithm" data-algorithm="array element minimum alignment">
-    <a data-link-type="dfn" href="#strideof" id="ref-for-strideof⑥">StrideOf</a>(array&lt;<var>T</var>, <var>N</var>>) = <var>k</var> × <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof⑥">RequiredAlignOf</a>(<var>T</var>, C)<br>
-    <a data-link-type="dfn" href="#strideof" id="ref-for-strideof⑦">StrideOf</a>(array&lt;<var>T</var>>) = <var>k</var> × <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof⑦">RequiredAlignOf</a>(<var>T</var>, C)<br>
+    <a data-link-type="dfn" href="#strideof" id="ref-for-strideof⑦">StrideOf</a>(array&lt;<var>T</var>, <var>N</var>>) = <var>k</var> × <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof⑥">RequiredAlignOf</a>(<var>T</var>, C)<br>
+    <a data-link-type="dfn" href="#strideof" id="ref-for-strideof⑧">StrideOf</a>(array&lt;<var>T</var>>) = <var>k</var> × <a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof⑦">RequiredAlignOf</a>(<var>T</var>, C)<br>
     Where <var>k</var> is a positive integer
 </blockquote>
    <p>When <a data-link-type="dfn" href="#language_extension-uniform_buffer_standard_layout" id="ref-for-language_extension-uniform_buffer_standard_layout③">uniform_buffer_standard_layout</a> is <strong>not</strong> supported,
@@ -16194,11 +16160,11 @@ the <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-s
    <ul>
     <li data-md>
      <p>Array elements are aligned to 16 byte boundaries.
-That is, <a data-link-type="dfn" href="#strideof" id="ref-for-strideof⑧">StrideOf</a>(array&lt;<var>T</var>,<var>N</var>>) = 16 × <var>k</var>’ for some positive integer <var>k</var>'.</p>
+That is, <a data-link-type="dfn" href="#strideof" id="ref-for-strideof⑨">StrideOf</a>(array&lt;<var>T</var>,<var>N</var>>) = 16 × <var>k</var>’ for some positive integer <var>k</var>'.</p>
     <li data-md>
      <p>If a structure member itself has a structure type <code>S</code>, then the number of
 bytes between the start of that member and the start of any following member
-<a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②⑨">must</a> be at least <a data-link-type="dfn" href="#roundup" id="ref-for-roundup①⓪">roundUp</a>(16, <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①⑤">SizeOf</a>(S)).</p>
+<a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②②⑨">must</a> be at least <a data-link-type="dfn" href="#roundup" id="ref-for-roundup①①">roundUp</a>(16, <a data-link-type="dfn" href="#sizeof" id="ref-for-sizeof①⑥">SizeOf</a>(S)).</p>
    </ul>
    <p class="note" role="note"><span class="marker">Note:</span> The following examples show how to use <a data-link-type="dfn" href="#attribute-align" id="ref-for-attribute-align⑥">align</a> and <a data-link-type="dfn" href="#attribute-size" id="ref-for-attribute-size⑦">size</a> attributes
 on structure members to satisfy layout requirements for uniform buffers.
@@ -16939,7 +16905,7 @@ As such, a partial reference is either:</p>
 for the corresponding <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable②②">originating variable</a>, or</p>
     <li data-md>
      <p>a memory view the with same set of locations as the corresponding
-originating variable, but with a different <a data-link-type="dfn" href="#store-type" id="ref-for-store-type③⓪">store type</a>.</p>
+originating variable, but with a different <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②⑨">store type</a>.</p>
    </ul>
    <div class="note" role="note">
     
@@ -17056,7 +17022,7 @@ notations:</p>
        <p class="note" role="note"><span class="marker">Note:</span> This is a <a data-link-type="dfn" href="#partial-assignment" id="ref-for-partial-assignment①">partial assignment</a> to <em>x</em>.</p>
        <p class="note" role="note"><span class="marker">Note:</span> Partial assignments include the previous value.
           The assignment either writes only a subset of the stored components,
-          or the type of the written value differs from the <a data-link-type="dfn" href="#store-type" id="ref-for-store-type③①">store type</a>
+          or the type of the written value differs from the <a data-link-type="dfn" href="#store-type" id="ref-for-store-type③⓪">store type</a>
           of the <a data-link-type="dfn" href="https://drafts.csswg.org/css-tables-3/#originate" id="ref-for-originate">originating</a> variable.</p>
      <tr>
       <td>
@@ -19962,7 +19928,7 @@ See <a href="#function-calls">§ 11.2 Function Calls</a>.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="value-constructor">value constructor</dfn> built-in function explicitly creates a
 value of a given type.</p>
    <p>WGSL provides value constructors for all <a data-link-type="dfn" href="#predeclared" id="ref-for-predeclared①⑦">predeclared</a> types and all
-<a data-link-type="dfn" href="#constructible" id="ref-for-constructible②③">constructible</a> <a data-link-type="dfn" href="#structure" id="ref-for-structure②⑥">structure</a> types.
+<a data-link-type="dfn" href="#constructible" id="ref-for-constructible②③">constructible</a> <a data-link-type="dfn" href="#structure" id="ref-for-structure②⑤">structure</a> types.
 Such a constructor built-in function has the same spelling as the type, or a <a data-link-type="dfn" href="#type-alias" id="ref-for-type-alias①⓪">type alias</a> for the type.
 Wherever such a built-in function is used, the <a data-link-type="dfn" href="#identifier" id="ref-for-identifier②⑨">identifier</a>
 <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③⑦">must</a> be <a data-link-type="dfn" href="#in-scope" id="ref-for-in-scope①⑥">in scope</a> of the type or the type alias, and the <a data-link-type="dfn" href="#identifier" id="ref-for-identifier③⓪">identifier</a>
@@ -20888,7 +20854,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Description
       
-      <td>Construct a <a data-link-type="dfn" href="#structure" id="ref-for-structure②⑦">structure</a> of type <code>S</code> from members.
+      <td>Construct a <a data-link-type="dfn" href="#structure" id="ref-for-structure②⑥">structure</a> of type <code>S</code> from members.
 
    </table>
    <h5 class="heading settled" data-level="17.1.2.16" id="u32-builtin"><span class="secno">17.1.2.16. </span><span class="content"><code>u32</code></span><a class="self-link" href="#u32-builtin"></a></h5>
@@ -27984,8 +27950,8 @@ registrations, it matches widespread industry conventions.</p>
    <li><a href="#abstractfloat">AbstractFloat</a><span>, in § 6.2.1</span>
    <li><a href="#abstractint">AbstractInt</a><span>, in § 6.2.1</span>
    <li><a href="#abstract-numeric-types">abstract numeric types</a><span>, in § 6.2.1</span>
-   <li><a href="#accessible-slots">accessible slots</a><span>, in § 7.3</span>
-   <li><a href="#accessibleslots">AccessibleSlots</a><span>, in § 7.3</span>
+   <li><a href="#accessible-bytes">AccessibleBytes</a><span>, in § 14.4</span>
+   <li><a href="#accessible-slots">AccessibleSlots</a><span>, in § 14.4</span>
    <li><a href="#access-mode">access mode</a><span>, in § 14.2</span>
    <li><a href="#subgroups-active">active</a><span>, in § 15.5</span>
    <li><a href="#syntax-additive_expression">additive_expression</a><span>, in § 8.18</span>
@@ -28479,8 +28445,8 @@ registrations, it matches widespread industry conventions.</p>
    <li><a href="#syntax-if_clause">if_clause</a><span>, in § 9.4.1</span>
    <li><a href="#syntax-if_statement">if_statement</a><span>, in § 9.4.1</span>
    <li><a href="#address-spaces-immediate">immediate</a><span>, in § 14.3</span>
+   <li><a href="#language_extension-immediate_address_space">immediate_address_space</a><span>, in § 4.1.2</span>
    <li><a href="#immediate-data">immediate data</a><span>, in § 7.3</span>
-   <li><a href="#language_extension-immediate_data">immediate_data</a><span>, in § 4.1.2</span>
    <li><a href="#implied-from-linear-terms">implied from linear terms</a><span>, in § 15.7.7</span>
    <li><a href="#subgroups-inactive">inactive</a><span>, in § 15.5</span>
    <li><a href="#in-bounds-index">in-bounds index</a><span>, in § 8.5</span>
@@ -29143,7 +29109,6 @@ registrations, it matches widespread industry conventions.</p>
    <li>
     <a data-link-type="biblio">[INFRA]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="15e48c39">set</span>
      <li><span class="dfn-paneled" id="984221ca">struct</span>
     </ul>
    <li>
@@ -29276,8 +29241,6 @@ registrations, it matches widespread industry conventions.</p>
    <dd><a href="https://tc39.es/ecma262/multipage/"><cite>ECMAScript Language Specification</cite></a>. URL: <a href="https://tc39.es/ecma262/multipage/">https://tc39.es/ecma262/multipage/</a>
    <dt id="biblio-ieee-754">[IEEE-754]
    <dd><a href="http://ieeexplore.ieee.org/servlet/opac?punumber=4610933"><cite>IEEE Standard for Floating-Point Arithmetic</cite></a>. 29 August 2008. URL: <a href="http://ieeexplore.ieee.org/servlet/opac?punumber=4610933">http://ieeexplore.ieee.org/servlet/opac?punumber=4610933</a>
-   <dt id="biblio-infra">[INFRA]
-   <dd>Anne van Kesteren; Domenic Denicola. <a href="https://infra.spec.whatwg.org/"><cite>Infra Standard</cite></a>. Living Standard. URL: <a href="https://infra.spec.whatwg.org/">https://infra.spec.whatwg.org/</a>
    <dt id="biblio-muller2005">[Muller2005]
    <dd><a href="https://inria.hal.science/inria-00070503"><cite>On the definition of ulp(x)</cite></a>. February 2005. URL: <a href="https://inria.hal.science/inria-00070503">https://inria.hal.science/inria-00070503</a>
    <dt id="biblio-rfc2119">[RFC2119]
@@ -29303,6 +29266,8 @@ registrations, it matches widespread industry conventions.</p>
    <dd>François Remy; Greg Whitworth; David Baron. <a href="https://drafts.csswg.org/css-tables-3/"><cite>CSS Table Module Level 3</cite></a>. URL: <a href="https://drafts.csswg.org/css-tables-3/">https://drafts.csswg.org/css-tables-3/</a>
    <dt id="biblio-iana-media-types">[IANA-MEDIA-TYPES]
    <dd><a href="https://www.iana.org/assignments/media-types/"><cite>Media Types</cite></a>. URL: <a href="https://www.iana.org/assignments/media-types/">https://www.iana.org/assignments/media-types/</a>
+   <dt id="biblio-infra">[INFRA]
+   <dd>Anne van Kesteren; Domenic Denicola. <a href="https://infra.spec.whatwg.org/"><cite>Infra Standard</cite></a>. Living Standard. URL: <a href="https://infra.spec.whatwg.org/">https://infra.spec.whatwg.org/</a>
    <dt id="biblio-jeannerod2013">[Jeannerod2013]
    <dd>Claude-Pierre Jeannerod; Nicolas Louvet; Jean-Michel Muller. <a href="https://www.ams.org/journals/mcom/2013-82-284/S0025-5718-2013-02679-8/S0025-5718-2013-02679-8.pdf"><cite>Further Analysis of Kahan's Algorithm for the Accurate Computation of 2x2 Determinants</cite></a>. URL: <a href="https://www.ams.org/journals/mcom/2013-82-284/S0025-5718-2013-02679-8/S0025-5718-2013-02679-8.pdf">https://www.ams.org/journals/mcom/2013-82-284/S0025-5718-2013-02679-8/S0025-5718-2013-02679-8.pdf</a>
    <dt id="biblio-wasm-core-2">[WASM-CORE-2]
@@ -29513,7 +29478,6 @@ let dfnPanelData = {
 "0bc65b0a": {"dfnID":"0bc65b0a","dfnText":"\"unfilterable-float\"","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gputexturesampletype-unfilterable-float"}],"title":"13.3.3. Resource Layout Compatibility"}],"url":"https://gpuweb.github.io/gpuweb/#dom-gputexturesampletype-unfilterable-float"},
 "0d65c94d": {"dfnID":"0d65c94d","dfnText":"UAX14 Section 6.1 Non-tailorable Line Breaking Rules","external":true,"refSections":[{"refs":[{"id":"ref-for-BreakingRules"}],"title":"3.2. Blankspace and Line Breaks"}],"url":"https://www.unicode.org/reports/tr14#BreakingRules"},
 "123f4f92": {"dfnID":"123f4f92","dfnText":"\"2d\"","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gputextureviewdimension-2d"}],"title":"6.5.2. Sampled Texture Types"},{"refs":[{"id":"ref-for-dom-gputextureviewdimension-2d\u2460"},{"id":"ref-for-dom-gputextureviewdimension-2d\u2461"}],"title":"6.5.3. Multisampled Texture Types"},{"refs":[{"id":"ref-for-dom-gputextureviewdimension-2d\u2462"}],"title":"6.5.4. External Sampled Texture Types"},{"refs":[{"id":"ref-for-dom-gputextureviewdimension-2d\u2463"}],"title":"6.5.5. Storage Texture Types"},{"refs":[{"id":"ref-for-dom-gputextureviewdimension-2d\u2464"}],"title":"6.5.6. Depth Texture Types"}],"url":"https://gpuweb.github.io/gpuweb/#dom-gputextureviewdimension-2d"},
-"15e48c39": {"dfnID":"15e48c39","dfnText":"set","external":true,"refSections":[{"refs":[{"id":"ref-for-ordered-set"},{"id":"ref-for-ordered-set\u2460"}],"title":"7.3. var Declarations"}],"url":"https://infra.spec.whatwg.org/#ordered-set"},
 "189809f1": {"dfnID":"189809f1","dfnText":"GPUDevice","external":true,"refSections":[{"refs":[{"id":"ref-for-gpudevice"}],"title":"4.1.1. Enable Extensions"}],"url":"https://gpuweb.github.io/gpuweb/#gpudevice"},
 "19851768": {"dfnID":"19851768","dfnText":"normalized device coordinates","external":true,"refSections":[{"refs":[{"id":"ref-for-ndc"},{"id":"ref-for-ndc\u2460"}],"title":"13.3.1.1.9. position"}],"url":"https://gpuweb.github.io/gpuweb/#ndc"},
 "1bd77354": {"dfnID":"1bd77354","dfnText":"maxComputeWorkgroupStorageSize","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-supported-limits-maxcomputeworkgroupstoragesize"},{"id":"ref-for-dom-supported-limits-maxcomputeworkgroupstoragesize\u2460"}],"title":"2.4. Limits"}],"url":"https://gpuweb.github.io/gpuweb/#dom-supported-limits-maxcomputeworkgroupstoragesize"},
@@ -29576,8 +29540,8 @@ let dfnPanelData = {
 "access-read": {"dfnID":"access-read","dfnText":"read","external":false,"refSections":[{"refs":[{"id":"ref-for-access-read"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-access-read\u2460"}],"title":"6.1.2. Conversion Rank"},{"refs":[{"id":"ref-for-access-read\u2461"}],"title":"6.3.1. Predeclared enumerants"},{"refs":[{"id":"ref-for-access-read\u2462"}],"title":"6.4.7. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-access-read\u2463"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-access-read\u2464"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-access-read\u2465"}],"title":"13.3.3. Resource Layout Compatibility"},{"refs":[{"id":"ref-for-access-read\u2466"},{"id":"ref-for-access-read\u2467"},{"id":"ref-for-access-read\u2468"},{"id":"ref-for-access-read\u2460\u24ea"},{"id":"ref-for-access-read\u2460\u2460"},{"id":"ref-for-access-read\u2460\u2461"},{"id":"ref-for-access-read\u2460\u2462"}],"title":"14.3. Address Spaces"},{"refs":[{"id":"ref-for-access-read\u2460\u2463"}],"title":"17.4.1. arrayLength"},{"refs":[{"id":"ref-for-access-read\u2460\u2464"},{"id":"ref-for-access-read\u2460\u2465"},{"id":"ref-for-access-read\u2460\u2466"},{"id":"ref-for-access-read\u2460\u2467"}],"title":"17.7.4. textureLoad"}],"url":"#access-read"},
 "access-read_write": {"dfnID":"access-read_write","dfnText":"read_write","external":false,"refSections":[{"refs":[{"id":"ref-for-access-read_write"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-access-read_write\u2460"}],"title":"5. Declaration and Scope"},{"refs":[{"id":"ref-for-access-read_write\u2461"}],"title":"6.1.2. Conversion Rank"},{"refs":[{"id":"ref-for-access-read_write\u2462"}],"title":"6.2.8. Atomic Types"},{"refs":[{"id":"ref-for-access-read_write\u2463"}],"title":"6.3.1. Predeclared enumerants"},{"refs":[{"id":"ref-for-access-read_write\u2464"},{"id":"ref-for-access-read_write\u2465"}],"title":"6.4.7. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-access-read_write\u2466"},{"id":"ref-for-access-read_write\u2467"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-access-read_write\u2468"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-access-read_write\u2460\u24ea"}],"title":"9.2.1. Simple Assignment"},{"refs":[{"id":"ref-for-access-read_write\u2460\u2460"}],"title":"9.2.3. Compound Assignment"},{"refs":[{"id":"ref-for-access-read_write\u2460\u2461"},{"id":"ref-for-access-read_write\u2460\u2462"},{"id":"ref-for-access-read_write\u2460\u2463"}],"title":"9.3. Increment and Decrement Statements"},{"refs":[{"id":"ref-for-access-read_write\u2460\u2464"}],"title":"13.3.3. Resource Layout Compatibility"},{"refs":[{"id":"ref-for-access-read_write\u2460\u2465"},{"id":"ref-for-access-read_write\u2460\u2466"},{"id":"ref-for-access-read_write\u2460\u2467"},{"id":"ref-for-access-read_write\u2460\u2468"},{"id":"ref-for-access-read_write\u2461\u24ea"}],"title":"14.3. Address Spaces"},{"refs":[{"id":"ref-for-access-read_write\u2461\u2460"}],"title":"17.4.1. arrayLength"},{"refs":[{"id":"ref-for-access-read_write\u2461\u2461"},{"id":"ref-for-access-read_write\u2461\u2462"},{"id":"ref-for-access-read_write\u2461\u2463"},{"id":"ref-for-access-read_write\u2461\u2464"}],"title":"17.7.4. textureLoad"},{"refs":[{"id":"ref-for-access-read_write\u2461\u2465"},{"id":"ref-for-access-read_write\u2461\u2466"},{"id":"ref-for-access-read_write\u2461\u2467"},{"id":"ref-for-access-read_write\u2461\u2468"}],"title":"17.7.15. textureStore"}],"url":"#access-read_write"},
 "access-write": {"dfnID":"access-write","dfnText":"write","external":false,"refSections":[{"refs":[{"id":"ref-for-access-write"}],"title":"6.3.1. Predeclared enumerants"},{"refs":[{"id":"ref-for-access-write\u2460"}],"title":"6.4.7. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-access-write\u2461"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-access-write\u2462"}],"title":"9.2.1. Simple Assignment"},{"refs":[{"id":"ref-for-access-write\u2463"}],"title":"14.3. Address Spaces"},{"refs":[{"id":"ref-for-access-write\u2464"},{"id":"ref-for-access-write\u2465"},{"id":"ref-for-access-write\u2466"},{"id":"ref-for-access-write\u2467"}],"title":"17.7.15. textureStore"}],"url":"#access-write"},
-"accessible-slots": {"dfnID":"accessible-slots","dfnText":"accessible slots","external":false,"refSections":[{"refs":[{"id":"ref-for-accessible-slots"}],"title":"7.3. var Declarations"}],"url":"#accessible-slots"},
-"accessibleslots": {"dfnID":"accessibleslots","dfnText":"AccessibleSlots","external":false,"refSections":[],"url":"#accessibleslots"},
+"accessible-bytes": {"dfnID":"accessible-bytes","dfnText":"AccessibleBytes","external":false,"refSections":[{"refs":[{"id":"ref-for-accessible-bytes"},{"id":"ref-for-accessible-bytes\u2460"},{"id":"ref-for-accessible-bytes\u2461"},{"id":"ref-for-accessible-bytes\u2462"},{"id":"ref-for-accessible-bytes\u2463"},{"id":"ref-for-accessible-bytes\u2464"},{"id":"ref-for-accessible-bytes\u2465"}],"title":"14.4. Memory Layout"}],"url":"#accessible-bytes"},
+"accessible-slots": {"dfnID":"accessible-slots","dfnText":"AccessibleSlots","external":false,"refSections":[{"refs":[{"id":"ref-for-accessible-slots"}],"title":"7.3. var Declarations"}],"url":"#accessible-slots"},
 "acf91b1a": {"dfnID":"acf91b1a","dfnText":"\"storage\"","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gpubufferbindingtype-storage"}],"title":"13.3.3. Resource Layout Compatibility"}],"url":"https://gpuweb.github.io/gpuweb/#dom-gpubufferbindingtype-storage"},
 "address-of": {"dfnID":"address-of","dfnText":"address-of","external":false,"refSections":[{"refs":[{"id":"ref-for-address-of"},{"id":"ref-for-address-of\u2460"}],"title":"6.4.7. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-address-of\u2461"}],"title":"6.4.8. Forming Reference and Pointer Values"}],"url":"#address-of"},
 "address-spaces": {"dfnID":"address-spaces","dfnText":"address spaces","external":false,"refSections":[{"refs":[{"id":"ref-for-address-spaces"}],"title":"1.1. Overview"},{"refs":[{"id":"ref-for-address-spaces\u2460"}],"title":"6.1.2. Conversion Rank"},{"refs":[{"id":"ref-for-address-spaces\u2461"}],"title":"6.2.8. Atomic Types"},{"refs":[{"id":"ref-for-address-spaces\u2462"}],"title":"6.3.1. Predeclared enumerants"},{"refs":[{"id":"ref-for-address-spaces\u2463"}],"title":"6.4. Memory Views"},{"refs":[{"id":"ref-for-address-spaces\u2464"},{"id":"ref-for-address-spaces\u2465"},{"id":"ref-for-address-spaces\u2466"},{"id":"ref-for-address-spaces\u2467"}],"title":"6.4.3. Reference and Pointer Types"},{"refs":[{"id":"ref-for-address-spaces\u2468"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-address-spaces\u2460\u24ea"},{"id":"ref-for-address-spaces\u2460\u2460"},{"id":"ref-for-address-spaces\u2460\u2461"},{"id":"ref-for-address-spaces\u2460\u2462"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-address-spaces\u2460\u2463"}],"title":"8.11. Variable Identifier Expression"},{"refs":[{"id":"ref-for-address-spaces\u2460\u2464"}],"title":"9.2.1. Simple Assignment"},{"refs":[{"id":"ref-for-address-spaces\u2460\u2465"}],"title":"11.4. Restrictions on Functions"},{"refs":[{"id":"ref-for-address-spaces\u2460\u2466"}],"title":"14.4. Memory Layout"},{"refs":[{"id":"ref-for-address-spaces\u2460\u2467"}],"title":"14.4.5. Address Space Layout Constraints"},{"refs":[{"id":"ref-for-address-spaces\u2460\u2468"},{"id":"ref-for-address-spaces\u2461\u24ea"},{"id":"ref-for-address-spaces\u2461\u2460"}],"title":"15.2.8. Uniformity Rules for Expressions"}],"url":"#address-spaces"},
@@ -29592,7 +29556,7 @@ let dfnPanelData = {
 "affected-range": {"dfnID":"affected-range","dfnText":"affected range","external":false,"refSections":[{"refs":[{"id":"ref-for-affected-range"}],"title":"2.3.1. Diagnostic Processing"},{"refs":[{"id":"ref-for-affected-range\u2460"}],"title":"2.3.3. Diagnostic Filtering"},{"refs":[{"id":"ref-for-affected-range\u2461"}],"title":"4.2. Global Diagnostic Filter"}],"url":"#affected-range"},
 "alias": {"dfnID":"alias","dfnText":"alias","external":false,"refSections":[],"url":"#alias"},
 "alignment": {"dfnID":"alignment","dfnText":"alignment","external":false,"refSections":[{"refs":[{"id":"ref-for-alignment"}],"title":"14.4. Memory Layout"},{"refs":[{"id":"ref-for-alignment\u2460"}],"title":"14.4.5. Address Space Layout Constraints"}],"url":"#alignment"},
-"alignof": {"dfnID":"alignof","dfnText":"AlignOf","external":false,"refSections":[{"refs":[{"id":"ref-for-alignof"}],"title":"13.3.4. Buffer Binding Determines Runtime-Sized Array Element Count"},{"refs":[{"id":"ref-for-alignof\u2460"},{"id":"ref-for-alignof\u2461"}],"title":"14.4. Memory Layout"},{"refs":[{"id":"ref-for-alignof\u2462"},{"id":"ref-for-alignof\u2463"},{"id":"ref-for-alignof\u2464"},{"id":"ref-for-alignof\u2465"},{"id":"ref-for-alignof\u2466"},{"id":"ref-for-alignof\u2467"},{"id":"ref-for-alignof\u2468"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-alignof\u2460\u24ea"}],"title":"14.4.2. Structure Member Layout"},{"refs":[{"id":"ref-for-alignof\u2460\u2460"},{"id":"ref-for-alignof\u2460\u2461"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-alignof\u2460\u2462"},{"id":"ref-for-alignof\u2460\u2463"},{"id":"ref-for-alignof\u2460\u2464"},{"id":"ref-for-alignof\u2460\u2465"},{"id":"ref-for-alignof\u2460\u2466"},{"id":"ref-for-alignof\u2460\u2467"},{"id":"ref-for-alignof\u2460\u2468"},{"id":"ref-for-alignof\u2461\u24ea"},{"id":"ref-for-alignof\u2461\u2460"},{"id":"ref-for-alignof\u2461\u2461"},{"id":"ref-for-alignof\u2461\u2462"},{"id":"ref-for-alignof\u2461\u2463"},{"id":"ref-for-alignof\u2461\u2464"}],"title":"14.4.5. Address Space Layout Constraints"}],"url":"#alignof"},
+"alignof": {"dfnID":"alignof","dfnText":"AlignOf","external":false,"refSections":[{"refs":[{"id":"ref-for-alignof"}],"title":"13.3.4. Buffer Binding Determines Runtime-Sized Array Element Count"},{"refs":[{"id":"ref-for-alignof\u2460"},{"id":"ref-for-alignof\u2461"},{"id":"ref-for-alignof\u2462"}],"title":"14.4. Memory Layout"},{"refs":[{"id":"ref-for-alignof\u2463"},{"id":"ref-for-alignof\u2464"},{"id":"ref-for-alignof\u2465"},{"id":"ref-for-alignof\u2466"},{"id":"ref-for-alignof\u2467"},{"id":"ref-for-alignof\u2468"},{"id":"ref-for-alignof\u2460\u24ea"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-alignof\u2460\u2460"}],"title":"14.4.2. Structure Member Layout"},{"refs":[{"id":"ref-for-alignof\u2460\u2461"},{"id":"ref-for-alignof\u2460\u2462"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-alignof\u2460\u2463"},{"id":"ref-for-alignof\u2460\u2464"},{"id":"ref-for-alignof\u2460\u2465"},{"id":"ref-for-alignof\u2460\u2466"},{"id":"ref-for-alignof\u2460\u2467"},{"id":"ref-for-alignof\u2460\u2468"},{"id":"ref-for-alignof\u2461\u24ea"},{"id":"ref-for-alignof\u2461\u2460"},{"id":"ref-for-alignof\u2461\u2461"},{"id":"ref-for-alignof\u2461\u2462"},{"id":"ref-for-alignof\u2461\u2463"},{"id":"ref-for-alignof\u2461\u2464"},{"id":"ref-for-alignof\u2461\u2465"}],"title":"14.4.5. Address Space Layout Constraints"}],"url":"#alignof"},
 "alignofmember": {"dfnID":"alignofmember","dfnText":"AlignOfMember","external":false,"refSections":[{"refs":[{"id":"ref-for-alignofmember"},{"id":"ref-for-alignofmember\u2460"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-alignofmember\u2461"},{"id":"ref-for-alignofmember\u2462"},{"id":"ref-for-alignofmember\u2463"}],"title":"14.4.2. Structure Member Layout"}],"url":"#alignofmember"},
 "alltypes": {"dfnID":"alltypes","dfnText":"AllTypes","external":false,"refSections":[{"refs":[{"id":"ref-for-alltypes"},{"id":"ref-for-alltypes\u2460"},{"id":"ref-for-alltypes\u2461"},{"id":"ref-for-alltypes\u2462"},{"id":"ref-for-alltypes\u2463"}],"title":"8.17. Type Expressions"}],"url":"#alltypes"},
 "angles": {"dfnID":"angles","dfnText":"Angles","external":false,"refSections":[{"refs":[{"id":"ref-for-angles"}],"title":"17.5.8. atan2"}],"url":"#angles"},
@@ -29857,7 +29821,7 @@ let dfnPanelData = {
 "iteration": {"dfnID":"iteration","dfnText":"iteration","external":false,"refSections":[{"refs":[{"id":"ref-for-iteration"}],"title":"9.4.3. Loop Statement"},{"refs":[{"id":"ref-for-iteration\u2460"},{"id":"ref-for-iteration\u2461"},{"id":"ref-for-iteration\u2462"}],"title":"9.4.4. For Statement"},{"refs":[{"id":"ref-for-iteration\u2463"},{"id":"ref-for-iteration\u2464"}],"title":"9.4.5. While Statement"},{"refs":[{"id":"ref-for-iteration\u2465"}],"title":"9.4.8. Continue Statement"},{"refs":[{"id":"ref-for-iteration\u2466"}],"title":"9.4.9. Continuing Statement"}],"url":"#iteration"},
 "keyword": {"dfnID":"keyword","dfnText":"keyword","external":false,"refSections":[{"refs":[{"id":"ref-for-keyword"}],"title":"3.4. Tokens"},{"refs":[{"id":"ref-for-keyword\u2460"}],"title":"3.7. Identifiers"},{"refs":[{"id":"ref-for-keyword\u2461"}],"title":"3.8. Context-Dependent Names"}],"url":"#keyword"},
 "language-extension": {"dfnID":"language-extension","dfnText":"language extension","external":false,"refSections":[{"refs":[{"id":"ref-for-language-extension"},{"id":"ref-for-language-extension\u2460"}],"title":"3.8.5. Extension Names"},{"refs":[{"id":"ref-for-language-extension\u2461"}],"title":"4.1. Extensions"},{"refs":[{"id":"ref-for-language-extension\u2462"},{"id":"ref-for-language-extension\u2463"},{"id":"ref-for-language-extension\u2464"},{"id":"ref-for-language-extension\u2465"}],"title":"4.1.2. Language Extensions"}],"url":"#language-extension"},
-"language_extension-immediate_data": {"dfnID":"language_extension-immediate_data","dfnText":"immediate_data","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-immediate_data"}],"title":"3.8.5. Extension Names"}],"url":"#language_extension-immediate_data"},
+"language_extension-immediate_address_space": {"dfnID":"language_extension-immediate_address_space","dfnText":"immediate_address_space","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-immediate_address_space"}],"title":"3.8.5. Extension Names"}],"url":"#language_extension-immediate_address_space"},
 "language_extension-packed_4x8_integer_dot_product": {"dfnID":"language_extension-packed_4x8_integer_dot_product","dfnText":"packed_4x8_integer_dot_product","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-packed_4x8_integer_dot_product"}],"title":"3.8.5. Extension Names"}],"url":"#language_extension-packed_4x8_integer_dot_product"},
 "language_extension-pointer_composite_access": {"dfnID":"language_extension-pointer_composite_access","dfnText":"pointer_composite_access","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-pointer_composite_access"}],"title":"3.8.5. Extension Names"}],"url":"#language_extension-pointer_composite_access"},
 "language_extension-readonly_and_readwrite_storage_textures": {"dfnID":"language_extension-readonly_and_readwrite_storage_textures","dfnText":"readonly_and_readwrite_storage_textures","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-readonly_and_readwrite_storage_textures"}],"title":"3.8.5. Extension Names"}],"url":"#language_extension-readonly_and_readwrite_storage_textures"},
@@ -29919,7 +29883,7 @@ let dfnPanelData = {
 "numeric-scalar": {"dfnID":"numeric-scalar","dfnText":"numeric scalar","external":false,"refSections":[{"refs":[{"id":"ref-for-numeric-scalar"}],"title":"6.2.6. Vector Types"},{"refs":[{"id":"ref-for-numeric-scalar\u2460"}],"title":"6.4.2. Host-shareable Types"},{"refs":[{"id":"ref-for-numeric-scalar\u2461"}],"title":"12.3. blend_src"},{"refs":[{"id":"ref-for-numeric-scalar\u2462"}],"title":"12.11. location"},{"refs":[{"id":"ref-for-numeric-scalar\u2463"},{"id":"ref-for-numeric-scalar\u2464"}],"title":"13.2. Entry Point Declaration"},{"refs":[{"id":"ref-for-numeric-scalar\u2465"}],"title":"13.3.1.2. User-defined Inputs and Outputs"},{"refs":[{"id":"ref-for-numeric-scalar\u2466"}],"title":"15.7.6. Floating Point Conversion"},{"refs":[{"id":"ref-for-numeric-scalar\u2467"}],"title":"17.1.2.3. f16"},{"refs":[{"id":"ref-for-numeric-scalar\u2468"}],"title":"17.1.2.4. f32"},{"refs":[{"id":"ref-for-numeric-scalar\u2460\u24ea"}],"title":"17.2.1. bitcast"},{"refs":[{"id":"ref-for-numeric-scalar\u2460\u2460"}],"title":"17.12.1. subgroupAdd"},{"refs":[{"id":"ref-for-numeric-scalar\u2460\u2461"}],"title":"17.12.1.1. subgroupExclusiveAdd"},{"refs":[{"id":"ref-for-numeric-scalar\u2460\u2462"}],"title":"17.12.1.2. subgroupInclusiveAdd"},{"refs":[{"id":"ref-for-numeric-scalar\u2460\u2463"}],"title":"17.12.6. subgroupBroadcast"},{"refs":[{"id":"ref-for-numeric-scalar\u2460\u2464"}],"title":"17.12.6.1. subgroupBroadcastFirst"},{"refs":[{"id":"ref-for-numeric-scalar\u2460\u2465"}],"title":"17.12.8. subgroupMax"},{"refs":[{"id":"ref-for-numeric-scalar\u2460\u2466"}],"title":"17.12.9. subgroupMin"},{"refs":[{"id":"ref-for-numeric-scalar\u2460\u2467"}],"title":"17.12.10. subgroupMul"},{"refs":[{"id":"ref-for-numeric-scalar\u2460\u2468"}],"title":"17.12.10.1. subgroupExclusiveMul"},{"refs":[{"id":"ref-for-numeric-scalar\u2461\u24ea"}],"title":"17.12.10.2. subgroupInclusiveMul"},{"refs":[{"id":"ref-for-numeric-scalar\u2461\u2460"}],"title":"17.12.12. subgroupShuffle"},{"refs":[{"id":"ref-for-numeric-scalar\u2461\u2461"}],"title":"17.12.12.1. subgroupShuffleDown"},{"refs":[{"id":"ref-for-numeric-scalar\u2461\u2462"}],"title":"17.12.12.2. subgroupShuffleUp"},{"refs":[{"id":"ref-for-numeric-scalar\u2461\u2463"}],"title":"17.12.12.3. subgroupShuffleXor"},{"refs":[{"id":"ref-for-numeric-scalar\u2461\u2464"}],"title":"17.13.1. quadBroadcast"},{"refs":[{"id":"ref-for-numeric-scalar\u2461\u2465"}],"title":"17.13.2. quadSwapDiagonal"},{"refs":[{"id":"ref-for-numeric-scalar\u2461\u2466"}],"title":"17.13.3. quadSwapX"},{"refs":[{"id":"ref-for-numeric-scalar\u2461\u2467"}],"title":"17.13.4. quadSwapY"}],"url":"#numeric-scalar"},
 "numeric-scalar-conversion-to-floating-point": {"dfnID":"numeric-scalar-conversion-to-floating-point","dfnText":"numeric scalar conversion to floating point","external":false,"refSections":[],"url":"#numeric-scalar-conversion-to-floating-point"},
 "numeric-vector": {"dfnID":"numeric-vector","dfnText":"numeric vector","external":false,"refSections":[{"refs":[{"id":"ref-for-numeric-vector"}],"title":"6.4.2. Host-shareable Types"},{"refs":[{"id":"ref-for-numeric-vector\u2460"}],"title":"12.3. blend_src"},{"refs":[{"id":"ref-for-numeric-vector\u2461"}],"title":"12.11. location"},{"refs":[{"id":"ref-for-numeric-vector\u2462"},{"id":"ref-for-numeric-vector\u2463"}],"title":"13.2. Entry Point Declaration"},{"refs":[{"id":"ref-for-numeric-vector\u2464"}],"title":"13.3.1.2. User-defined Inputs and Outputs"},{"refs":[{"id":"ref-for-numeric-vector\u2465"}],"title":"17.2.1. bitcast"},{"refs":[{"id":"ref-for-numeric-vector\u2466"}],"title":"17.12.1. subgroupAdd"},{"refs":[{"id":"ref-for-numeric-vector\u2467"}],"title":"17.12.1.1. subgroupExclusiveAdd"},{"refs":[{"id":"ref-for-numeric-vector\u2468"}],"title":"17.12.1.2. subgroupInclusiveAdd"},{"refs":[{"id":"ref-for-numeric-vector\u2460\u24ea"}],"title":"17.12.6. subgroupBroadcast"},{"refs":[{"id":"ref-for-numeric-vector\u2460\u2460"}],"title":"17.12.6.1. subgroupBroadcastFirst"},{"refs":[{"id":"ref-for-numeric-vector\u2460\u2461"}],"title":"17.12.8. subgroupMax"},{"refs":[{"id":"ref-for-numeric-vector\u2460\u2462"}],"title":"17.12.9. subgroupMin"},{"refs":[{"id":"ref-for-numeric-vector\u2460\u2463"}],"title":"17.12.10. subgroupMul"},{"refs":[{"id":"ref-for-numeric-vector\u2460\u2464"}],"title":"17.12.10.1. subgroupExclusiveMul"},{"refs":[{"id":"ref-for-numeric-vector\u2460\u2465"}],"title":"17.12.10.2. subgroupInclusiveMul"},{"refs":[{"id":"ref-for-numeric-vector\u2460\u2466"}],"title":"17.12.12. subgroupShuffle"},{"refs":[{"id":"ref-for-numeric-vector\u2460\u2467"}],"title":"17.12.12.1. subgroupShuffleDown"},{"refs":[{"id":"ref-for-numeric-vector\u2460\u2468"}],"title":"17.12.12.2. subgroupShuffleUp"},{"refs":[{"id":"ref-for-numeric-vector\u2461\u24ea"}],"title":"17.12.12.3. subgroupShuffleXor"},{"refs":[{"id":"ref-for-numeric-vector\u2461\u2460"}],"title":"17.13.1. quadBroadcast"},{"refs":[{"id":"ref-for-numeric-vector\u2461\u2461"}],"title":"17.13.2. quadSwapDiagonal"},{"refs":[{"id":"ref-for-numeric-vector\u2461\u2462"}],"title":"17.13.3. quadSwapX"},{"refs":[{"id":"ref-for-numeric-vector\u2461\u2463"}],"title":"17.13.4. quadSwapY"}],"url":"#numeric-vector"},
-"offsetofmember": {"dfnID":"offsetofmember","dfnText":"OffsetOfMember","external":false,"refSections":[{"refs":[{"id":"ref-for-offsetofmember"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-offsetofmember\u2460"}],"title":"13.3.4. Buffer Binding Determines Runtime-Sized Array Element Count"},{"refs":[{"id":"ref-for-offsetofmember\u2461"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-offsetofmember\u2462"},{"id":"ref-for-offsetofmember\u2463"},{"id":"ref-for-offsetofmember\u2464"}],"title":"14.4.2. Structure Member Layout"},{"refs":[{"id":"ref-for-offsetofmember\u2465"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-offsetofmember\u2466"}],"title":"14.4.5. Address Space Layout Constraints"}],"url":"#offsetofmember"},
+"offsetofmember": {"dfnID":"offsetofmember","dfnText":"OffsetOfMember","external":false,"refSections":[{"refs":[{"id":"ref-for-offsetofmember"}],"title":"13.3.4. Buffer Binding Determines Runtime-Sized Array Element Count"},{"refs":[{"id":"ref-for-offsetofmember\u2460"}],"title":"14.4. Memory Layout"},{"refs":[{"id":"ref-for-offsetofmember\u2461"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-offsetofmember\u2462"},{"id":"ref-for-offsetofmember\u2463"},{"id":"ref-for-offsetofmember\u2464"}],"title":"14.4.2. Structure Member Layout"},{"refs":[{"id":"ref-for-offsetofmember\u2465"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-offsetofmember\u2466"}],"title":"14.4.5. Address Space Layout Constraints"}],"url":"#offsetofmember"},
 "originating-variable": {"dfnID":"originating-variable","dfnText":"originating variable","external":false,"refSections":[{"refs":[{"id":"ref-for-originating-variable"}],"title":"6.4.5. Originating Variable"},{"refs":[{"id":"ref-for-originating-variable\u2460"},{"id":"ref-for-originating-variable\u2461"},{"id":"ref-for-originating-variable\u2462"},{"id":"ref-for-originating-variable\u2463"}],"title":"6.4.6. Out-of-Bounds Access"},{"refs":[{"id":"ref-for-originating-variable\u2464"},{"id":"ref-for-originating-variable\u2465"}],"title":"6.4.8. Forming Reference and Pointer Values"},{"refs":[{"id":"ref-for-originating-variable\u2466"}],"title":"6.4.9. Comparison with References and Pointers in Other Languages"},{"refs":[{"id":"ref-for-originating-variable\u2467"},{"id":"ref-for-originating-variable\u2468"},{"id":"ref-for-originating-variable\u2460\u24ea"},{"id":"ref-for-originating-variable\u2460\u2460"},{"id":"ref-for-originating-variable\u2460\u2461"}],"title":"8.5.1.3. Component Reference from Vector Memory View"},{"refs":[{"id":"ref-for-originating-variable\u2460\u2462"}],"title":"8.5.2. Matrix Access Expression"},{"refs":[{"id":"ref-for-originating-variable\u2460\u2463"},{"id":"ref-for-originating-variable\u2460\u2464"}],"title":"8.5.3. Array Access Expression"},{"refs":[{"id":"ref-for-originating-variable\u2460\u2465"}],"title":"8.5.4. Structure Access Expression"},{"refs":[{"id":"ref-for-originating-variable\u2460\u2466"}],"title":"11.4.1.1. Root Identifier"},{"refs":[{"id":"ref-for-originating-variable\u2460\u2467"},{"id":"ref-for-originating-variable\u2460\u2468"},{"id":"ref-for-originating-variable\u2461\u24ea"}],"title":"11.4.1.2. Aliasing"},{"refs":[{"id":"ref-for-originating-variable\u2461\u2460"},{"id":"ref-for-originating-variable\u2461\u2461"},{"id":"ref-for-originating-variable\u2461\u2462"}],"title":"15.2.5. Function-scope Variable Value Analysis"}],"url":"#originating-variable"},
 "out-of-bounds-access": {"dfnID":"out-of-bounds-access","dfnText":"out-of-bounds access","external":false,"refSections":[{"refs":[{"id":"ref-for-out-of-bounds-access"}],"title":"6.4.6. Out-of-Bounds Access"}],"url":"#out-of-bounds-access"},
 "out-of-bounds-index": {"dfnID":"out-of-bounds-index","dfnText":"out-of-bounds index","external":false,"refSections":[{"refs":[{"id":"ref-for-out-of-bounds-index"}],"title":"6.4.4. Valid and Invalid Memory References"}],"url":"#out-of-bounds-index"},
@@ -30042,7 +30006,7 @@ let dfnPanelData = {
 "right-hand-side": {"dfnID":"right-hand-side","dfnText":"right-hand side","external":false,"refSections":[{"refs":[{"id":"ref-for-right-hand-side"}],"title":"6.4.7. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-right-hand-side\u2460"}],"title":"9.2.1. Simple Assignment"},{"refs":[{"id":"ref-for-right-hand-side\u2461"}],"title":"9.2.2. Phony Assignment"},{"refs":[{"id":"ref-for-right-hand-side\u2462"}],"title":"15.2.6. Uniformity Rules for Statements"}],"url":"#right-hand-side"},
 "root-identifier": {"dfnID":"root-identifier","dfnText":"root identifier","external":false,"refSections":[{"refs":[{"id":"ref-for-root-identifier"},{"id":"ref-for-root-identifier\u2460"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-root-identifier\u2461"}],"title":"11.4.1.1. Root Identifier"},{"refs":[{"id":"ref-for-root-identifier\u2462"},{"id":"ref-for-root-identifier\u2463"}],"title":"11.4.1.2. Aliasing"},{"refs":[{"id":"ref-for-root-identifier\u2464"},{"id":"ref-for-root-identifier\u2465"}],"title":"15.2.4. Pointer Desugaring"},{"refs":[{"id":"ref-for-root-identifier\u2466"},{"id":"ref-for-root-identifier\u2467"},{"id":"ref-for-root-identifier\u2468"},{"id":"ref-for-root-identifier\u2460\u24ea"},{"id":"ref-for-root-identifier\u2460\u2460"},{"id":"ref-for-root-identifier\u2460\u2461"},{"id":"ref-for-root-identifier\u2460\u2462"}],"title":"15.2.8. Uniformity Rules for Expressions"}],"url":"#root-identifier"},
 "rounding": {"dfnID":"rounding","dfnText":"Rounding","external":false,"refSections":[{"refs":[{"id":"ref-for-rounding"}],"title":"15.7.1. Overview of IEEE-754"},{"refs":[{"id":"ref-for-rounding\u2460"},{"id":"ref-for-rounding\u2461"}],"title":"15.7.4. Floating Point Accuracy"},{"refs":[{"id":"ref-for-rounding\u2462"}],"title":"17.1.2.5. i32"},{"refs":[{"id":"ref-for-rounding\u2463"}],"title":"17.1.2.16. u32"},{"refs":[{"id":"ref-for-rounding\u2464"}],"title":"17.5.32. fma"}],"url":"#rounding"},
-"roundup": {"dfnID":"roundup","dfnText":"roundUp","external":false,"refSections":[{"refs":[{"id":"ref-for-roundup"},{"id":"ref-for-roundup\u2460"}],"title":"13.3.4. Buffer Binding Determines Runtime-Sized Array Element Count"},{"refs":[{"id":"ref-for-roundup\u2461"},{"id":"ref-for-roundup\u2462"}],"title":"14.4. Memory Layout"},{"refs":[{"id":"ref-for-roundup\u2463"},{"id":"ref-for-roundup\u2464"},{"id":"ref-for-roundup\u2465"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-roundup\u2466"}],"title":"14.4.2. Structure Member Layout"},{"refs":[{"id":"ref-for-roundup\u2467"},{"id":"ref-for-roundup\u2468"},{"id":"ref-for-roundup\u2460\u24ea"}],"title":"14.4.5. Address Space Layout Constraints"}],"url":"#roundup"},
+"roundup": {"dfnID":"roundup","dfnText":"roundUp","external":false,"refSections":[{"refs":[{"id":"ref-for-roundup"},{"id":"ref-for-roundup\u2460"}],"title":"13.3.4. Buffer Binding Determines Runtime-Sized Array Element Count"},{"refs":[{"id":"ref-for-roundup\u2461"},{"id":"ref-for-roundup\u2462"},{"id":"ref-for-roundup\u2463"}],"title":"14.4. Memory Layout"},{"refs":[{"id":"ref-for-roundup\u2464"},{"id":"ref-for-roundup\u2465"},{"id":"ref-for-roundup\u2466"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-roundup\u2467"}],"title":"14.4.2. Structure Member Layout"},{"refs":[{"id":"ref-for-roundup\u2468"},{"id":"ref-for-roundup\u2460\u24ea"},{"id":"ref-for-roundup\u2460\u2460"}],"title":"14.4.5. Address Space Layout Constraints"}],"url":"#roundup"},
 "runtime-expression": {"dfnID":"runtime-expression","dfnText":"runtime expression","external":false,"refSections":[{"refs":[{"id":"ref-for-runtime-expression"},{"id":"ref-for-runtime-expression\u2460"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-runtime-expression\u2461"}],"title":"8.2. Indeterminate values"},{"refs":[{"id":"ref-for-runtime-expression\u2462"},{"id":"ref-for-runtime-expression\u2463"}],"title":"15.7.2. Differences from IEEE-754"},{"refs":[{"id":"ref-for-runtime-expression\u2464"}],"title":"15.7.3. Floating Point Rounding and Overflow"}],"url":"#runtime-expression"},
 "runtime-sized": {"dfnID":"runtime-sized","dfnText":"runtime-sized","external":false,"refSections":[{"refs":[{"id":"ref-for-runtime-sized"},{"id":"ref-for-runtime-sized\u2460"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-runtime-sized\u2461"},{"id":"ref-for-runtime-sized\u2462"}],"title":"6.2.13. Fixed-Footprint Types"},{"refs":[{"id":"ref-for-runtime-sized\u2463"}],"title":"6.4.2. Host-shareable Types"},{"refs":[{"id":"ref-for-runtime-sized\u2464"},{"id":"ref-for-runtime-sized\u2465"}],"title":"8.5. Composite Value Decomposition Expressions"},{"refs":[{"id":"ref-for-runtime-sized\u2466"},{"id":"ref-for-runtime-sized\u2467"}],"title":"13.3.4. Buffer Binding Determines Runtime-Sized Array Element Count"},{"refs":[{"id":"ref-for-runtime-sized\u2468"}],"title":"17.1.1. Zero Value Built-in Functions"},{"refs":[{"id":"ref-for-runtime-sized\u2460\u24ea"},{"id":"ref-for-runtime-sized\u2460\u2460"}],"title":"17.4.1. arrayLength"}],"url":"#runtime-sized"},
 "sampled-type": {"dfnID":"sampled-type","dfnText":"sampled type","external":false,"refSections":[{"refs":[{"id":"ref-for-sampled-type"},{"id":"ref-for-sampled-type\u2460"}],"title":"6.5.2. Sampled Texture Types"},{"refs":[{"id":"ref-for-sampled-type\u2461"},{"id":"ref-for-sampled-type\u2462"},{"id":"ref-for-sampled-type\u2463"}],"title":"6.5.3. Multisampled Texture Types"}],"url":"#sampled-type"},
@@ -30069,8 +30033,8 @@ let dfnPanelData = {
 "shader-stages": {"dfnID":"shader-stages","dfnText":"shader stages","external":false,"refSections":[{"refs":[{"id":"ref-for-shader-stages"}],"title":"1.1. Overview"},{"refs":[{"id":"ref-for-shader-stages\u2460"},{"id":"ref-for-shader-stages\u2461"}],"title":"2.1. Shader Lifecycle"},{"refs":[{"id":"ref-for-shader-stages\u2462"}],"title":"11. Functions"},{"refs":[{"id":"ref-for-shader-stages\u2463"}],"title":"12.15. Shader Stage Attributes"},{"refs":[{"id":"ref-for-shader-stages\u2464"}],"title":"13. Entry Points"},{"refs":[{"id":"ref-for-shader-stages\u2465"}],"title":"13.3. Shader Interface"},{"refs":[{"id":"ref-for-shader-stages\u2466"},{"id":"ref-for-shader-stages\u2467"}],"title":"13.3.1.1. Built-in Inputs and Outputs"},{"refs":[{"id":"ref-for-shader-stages\u2468"}],"title":"13.3.2. Resource Interface"},{"refs":[{"id":"ref-for-shader-stages\u2460\u24ea"},{"id":"ref-for-shader-stages\u2460\u2460"},{"id":"ref-for-shader-stages\u2460\u2461"}],"title":"14.3. Address Spaces"}],"url":"#shader-stages"},
 "significand-significant": {"dfnID":"significand-significant","dfnText":"significant","external":false,"refSections":[{"refs":[{"id":"ref-for-significand-significant"},{"id":"ref-for-significand-significant\u2460"}],"title":"3.5.2. Numeric Literals"}],"url":"#significand-significant"},
 "simple-assignment": {"dfnID":"simple-assignment","dfnText":"simple assignment","external":false,"refSections":[{"refs":[{"id":"ref-for-simple-assignment"}],"title":"6.4.7. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-simple-assignment\u2460"}],"title":"9.2.3. Compound Assignment"},{"refs":[{"id":"ref-for-simple-assignment\u2461"}],"title":"14.5.1. Memory Operation"}],"url":"#simple-assignment"},
-"sizeof": {"dfnID":"sizeof","dfnText":"SizeOf","external":false,"refSections":[{"refs":[{"id":"ref-for-sizeof"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-sizeof\u2460"}],"title":"12.13. size"},{"refs":[{"id":"ref-for-sizeof\u2461"},{"id":"ref-for-sizeof\u2462"}],"title":"13.3.4. Buffer Binding Determines Runtime-Sized Array Element Count"},{"refs":[{"id":"ref-for-sizeof\u2463"},{"id":"ref-for-sizeof\u2464"}],"title":"14.4. Memory Layout"},{"refs":[{"id":"ref-for-sizeof\u2465"},{"id":"ref-for-sizeof\u2466"},{"id":"ref-for-sizeof\u2467"},{"id":"ref-for-sizeof\u2468"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-sizeof\u2460\u24ea"},{"id":"ref-for-sizeof\u2460\u2460"}],"title":"14.4.2. Structure Member Layout"},{"refs":[{"id":"ref-for-sizeof\u2460\u2461"},{"id":"ref-for-sizeof\u2460\u2462"},{"id":"ref-for-sizeof\u2460\u2463"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-sizeof\u2460\u2464"}],"title":"14.4.5. Address Space Layout Constraints"}],"url":"#sizeof"},
-"sizeofmember": {"dfnID":"sizeofmember","dfnText":"SizeOfMember","external":false,"refSections":[{"refs":[{"id":"ref-for-sizeofmember"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-sizeofmember\u2460"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-sizeofmember\u2461"},{"id":"ref-for-sizeofmember\u2462"},{"id":"ref-for-sizeofmember\u2463"},{"id":"ref-for-sizeofmember\u2464"}],"title":"14.4.2. Structure Member Layout"}],"url":"#sizeofmember"},
+"sizeof": {"dfnID":"sizeof","dfnText":"SizeOf","external":false,"refSections":[{"refs":[{"id":"ref-for-sizeof"}],"title":"12.13. size"},{"refs":[{"id":"ref-for-sizeof\u2460"},{"id":"ref-for-sizeof\u2461"}],"title":"13.3.4. Buffer Binding Determines Runtime-Sized Array Element Count"},{"refs":[{"id":"ref-for-sizeof\u2462"},{"id":"ref-for-sizeof\u2463"},{"id":"ref-for-sizeof\u2464"},{"id":"ref-for-sizeof\u2465"}],"title":"14.4. Memory Layout"},{"refs":[{"id":"ref-for-sizeof\u2466"},{"id":"ref-for-sizeof\u2467"},{"id":"ref-for-sizeof\u2468"},{"id":"ref-for-sizeof\u2460\u24ea"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-sizeof\u2460\u2460"},{"id":"ref-for-sizeof\u2460\u2461"}],"title":"14.4.2. Structure Member Layout"},{"refs":[{"id":"ref-for-sizeof\u2460\u2462"},{"id":"ref-for-sizeof\u2460\u2463"},{"id":"ref-for-sizeof\u2460\u2464"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-sizeof\u2460\u2465"}],"title":"14.4.5. Address Space Layout Constraints"}],"url":"#sizeof"},
+"sizeofmember": {"dfnID":"sizeofmember","dfnText":"SizeOfMember","external":false,"refSections":[{"refs":[{"id":"ref-for-sizeofmember"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-sizeofmember\u2460"},{"id":"ref-for-sizeofmember\u2461"},{"id":"ref-for-sizeofmember\u2462"},{"id":"ref-for-sizeofmember\u2463"}],"title":"14.4.2. Structure Member Layout"}],"url":"#sizeofmember"},
 "statement": {"dfnID":"statement","dfnText":"statement","external":false,"refSections":[{"refs":[{"id":"ref-for-statement"}],"title":"3.9. Template Lists"},{"refs":[{"id":"ref-for-statement\u2460"}],"title":"10.1. Const Assertion Statement"}],"url":"#statement"},
 "statement-assignment": {"dfnID":"statement-assignment","dfnText":"assignment","external":false,"refSections":[{"refs":[{"id":"ref-for-statement-assignment"}],"title":"3.9. Template Lists"},{"refs":[{"id":"ref-for-statement-assignment\u2460"}],"title":"6.4.6. Out-of-Bounds Access"},{"refs":[{"id":"ref-for-statement-assignment\u2461"}],"title":"8.5.1.2. Vector Multiple Component Selection"},{"refs":[{"id":"ref-for-statement-assignment\u2462"}],"title":"8.5.1.3. Component Reference from Vector Memory View"},{"refs":[{"id":"ref-for-statement-assignment\u2463"}],"title":"9.2.1. Simple Assignment"},{"refs":[{"id":"ref-for-statement-assignment\u2464"}],"title":"9.2.2. Phony Assignment"},{"refs":[{"id":"ref-for-statement-assignment\u2465"}],"title":"9.2.3. Compound Assignment"},{"refs":[{"id":"ref-for-statement-assignment\u2466"}],"title":"14.5.1. Memory Operation"},{"refs":[{"id":"ref-for-statement-assignment\u2467"},{"id":"ref-for-statement-assignment\u2468"},{"id":"ref-for-statement-assignment\u2460\u24ea"}],"title":"15.2.6. Uniformity Rules for Statements"}],"url":"#statement-assignment"},
 "statement-break": {"dfnID":"statement-break","dfnText":"break","external":false,"refSections":[{"refs":[{"id":"ref-for-statement-break"}],"title":"9.4.3. Loop Statement"}],"url":"#statement-break"},
@@ -30091,9 +30055,9 @@ let dfnPanelData = {
 "storable": {"dfnID":"storable","dfnText":"storable","external":false,"refSections":[{"refs":[{"id":"ref-for-storable"}],"title":"6.2.13. Fixed-Footprint Types"},{"refs":[{"id":"ref-for-storable\u2460"}],"title":"6.4.1. Storable Types"},{"refs":[{"id":"ref-for-storable\u2461"},{"id":"ref-for-storable\u2462"}],"title":"6.4.3. Reference and Pointer Types"},{"refs":[{"id":"ref-for-storable\u2463"}],"title":"6.4.9. Comparison with References and Pointers in Other Languages"},{"refs":[{"id":"ref-for-storable\u2464"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-storable\u2465"}],"title":"14. Memory"}],"url":"#storable"},
 "storage-buffer": {"dfnID":"storage-buffer","dfnText":"storage buffer","external":false,"refSections":[{"refs":[{"id":"ref-for-storage-buffer"}],"title":"6.2.8. Atomic Types"},{"refs":[{"id":"ref-for-storage-buffer\u2460"}],"title":"6.2.9. Array Types"},{"refs":[{"id":"ref-for-storage-buffer\u2461"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-storage-buffer\u2462"},{"id":"ref-for-storage-buffer\u2463"}],"title":"6.4.2. Host-shareable Types"},{"refs":[{"id":"ref-for-storage-buffer\u2464"},{"id":"ref-for-storage-buffer\u2465"},{"id":"ref-for-storage-buffer\u2466"},{"id":"ref-for-storage-buffer\u2467"}],"title":"6.4.6. Out-of-Bounds Access"},{"refs":[{"id":"ref-for-storage-buffer\u2468"},{"id":"ref-for-storage-buffer\u2460\u24ea"},{"id":"ref-for-storage-buffer\u2460\u2460"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-storage-buffer\u2460\u2461"},{"id":"ref-for-storage-buffer\u2460\u2462"}],"title":"13.3. Shader Interface"},{"refs":[{"id":"ref-for-storage-buffer\u2460\u2463"}],"title":"13.3.2. Resource Interface"},{"refs":[{"id":"ref-for-storage-buffer\u2460\u2464"},{"id":"ref-for-storage-buffer\u2460\u2465"}],"title":"13.3.3. Resource Layout Compatibility"},{"refs":[{"id":"ref-for-storage-buffer\u2460\u2466"},{"id":"ref-for-storage-buffer\u2460\u2467"},{"id":"ref-for-storage-buffer\u2460\u2468"},{"id":"ref-for-storage-buffer\u2461\u24ea"}],"title":"13.3.4. Buffer Binding Determines Runtime-Sized Array Element Count"},{"refs":[{"id":"ref-for-storage-buffer\u2461\u2460"},{"id":"ref-for-storage-buffer\u2461\u2461"}],"title":"14.3. Address Spaces"},{"refs":[{"id":"ref-for-storage-buffer\u2461\u2462"}],"title":"14.4. Memory Layout"}],"url":"#storage-buffer"},
 "storage-texel-formats": {"dfnID":"storage-texel-formats","dfnText":"Texel Formats for Storage Textures","external":false,"refSections":[{"refs":[{"id":"ref-for-storage-texel-formats"},{"id":"ref-for-storage-texel-formats\u2460"}],"title":"6.5.5. Storage Texture Types"},{"refs":[{"id":"ref-for-storage-texel-formats"},{"id":"ref-for-storage-texel-formats"},{"id":"ref-for-storage-texel-formats"},{"id":"ref-for-storage-texel-formats"}],"title":"17.7.4. textureLoad"},{"refs":[{"id":"ref-for-storage-texel-formats"},{"id":"ref-for-storage-texel-formats"},{"id":"ref-for-storage-texel-formats"},{"id":"ref-for-storage-texel-formats"}],"title":"17.7.15. textureStore"}],"url":"#storage-texel-formats"},
-"store-type": {"dfnID":"store-type","dfnText":"store type","external":false,"refSections":[{"refs":[{"id":"ref-for-store-type"}],"title":"6.2.9. Array Types"},{"refs":[{"id":"ref-for-store-type\u2460"},{"id":"ref-for-store-type\u2461"}],"title":"6.2.13. Fixed-Footprint Types"},{"refs":[{"id":"ref-for-store-type\u2462"}],"title":"6.3. Enumeration Types"},{"refs":[{"id":"ref-for-store-type\u2463"}],"title":"6.4.2. Host-shareable Types"},{"refs":[{"id":"ref-for-store-type\u2464"},{"id":"ref-for-store-type\u2465"},{"id":"ref-for-store-type\u2466"},{"id":"ref-for-store-type\u2467"}],"title":"6.4.3. Reference and Pointer Types"},{"refs":[{"id":"ref-for-store-type\u2468"},{"id":"ref-for-store-type\u2460\u24ea"}],"title":"6.4.6. Out-of-Bounds Access"},{"refs":[{"id":"ref-for-store-type\u2460\u2460"}],"title":"6.5. Texture and Sampler Types"},{"refs":[{"id":"ref-for-store-type\u2460\u2461"},{"id":"ref-for-store-type\u2460\u2462"},{"id":"ref-for-store-type\u2460\u2463"},{"id":"ref-for-store-type\u2460\u2464"},{"id":"ref-for-store-type\u2460\u2465"},{"id":"ref-for-store-type\u2460\u2466"},{"id":"ref-for-store-type\u2460\u2467"},{"id":"ref-for-store-type\u2460\u2468"},{"id":"ref-for-store-type\u2461\u24ea"},{"id":"ref-for-store-type\u2461\u2460"},{"id":"ref-for-store-type\u2461\u2461"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-store-type\u2461\u2462"}],"title":"8.11. Variable Identifier Expression"},{"refs":[{"id":"ref-for-store-type\u2461\u2463"}],"title":"9.3. Increment and Decrement Statements"},{"refs":[{"id":"ref-for-store-type\u2461\u2464"}],"title":"11.4. Restrictions on Functions"},{"refs":[{"id":"ref-for-store-type\u2461\u2465"}],"title":"12.1. align"},{"refs":[{"id":"ref-for-store-type\u2461\u2466"}],"title":"13.3.4. Buffer Binding Determines Runtime-Sized Array Element Count"},{"refs":[{"id":"ref-for-store-type\u2461\u2467"}],"title":"14.3. Address Spaces"},{"refs":[{"id":"ref-for-store-type\u2461\u2468"}],"title":"14.4. Memory Layout"},{"refs":[{"id":"ref-for-store-type\u2462\u24ea"},{"id":"ref-for-store-type\u2462\u2460"}],"title":"15.2.5. Function-scope Variable Value Analysis"}],"url":"#store-type"},
-"strideof": {"dfnID":"strideof","dfnText":"StrideOf","external":false,"refSections":[{"refs":[{"id":"ref-for-strideof"},{"id":"ref-for-strideof\u2460"},{"id":"ref-for-strideof\u2461"}],"title":"13.3.4. Buffer Binding Determines Runtime-Sized Array Element Count"},{"refs":[{"id":"ref-for-strideof\u2462"},{"id":"ref-for-strideof\u2463"}],"title":"14.4. Memory Layout"},{"refs":[{"id":"ref-for-strideof\u2464"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-strideof\u2465"},{"id":"ref-for-strideof\u2466"},{"id":"ref-for-strideof\u2467"}],"title":"14.4.5. Address Space Layout Constraints"}],"url":"#strideof"},
-"structure": {"dfnID":"structure","dfnText":"structure","external":false,"refSections":[{"refs":[{"id":"ref-for-structure"}],"title":"2.4. Limits"},{"refs":[{"id":"ref-for-structure\u2460"}],"title":"3.7. Identifiers"},{"refs":[{"id":"ref-for-structure\u2461"}],"title":"5. Declaration and Scope"},{"refs":[{"id":"ref-for-structure\u2462"}],"title":"6.2.9. Array Types"},{"refs":[{"id":"ref-for-structure\u2463"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-structure\u2464"}],"title":"6.2.11. Composite Types"},{"refs":[{"id":"ref-for-structure\u2465"}],"title":"6.2.12. Constructible Types"},{"refs":[{"id":"ref-for-structure\u2466"}],"title":"6.2.13. Fixed-Footprint Types"},{"refs":[{"id":"ref-for-structure\u2467"}],"title":"6.4.1. Storable Types"},{"refs":[{"id":"ref-for-structure\u2468"}],"title":"6.4.2. Host-shareable Types"},{"refs":[{"id":"ref-for-structure\u2460\u24ea"}],"title":"6.4.8. Forming Reference and Pointer Values"},{"refs":[{"id":"ref-for-structure\u2460\u2460"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-structure\u2460\u2461"}],"title":"8.1.1. const Expressions"},{"refs":[{"id":"ref-for-structure\u2460\u2462"}],"title":"8.1.2. override Expressions"},{"refs":[{"id":"ref-for-structure\u2460\u2463"}],"title":"8.5. Composite Value Decomposition Expressions"},{"refs":[{"id":"ref-for-structure\u2460\u2464"}],"title":"8.17. Type Expressions"},{"refs":[{"id":"ref-for-structure\u2460\u2465"}],"title":"12.1. align"},{"refs":[{"id":"ref-for-structure\u2460\u2466"}],"title":"12.3. blend_src"},{"refs":[{"id":"ref-for-structure\u2460\u2467"}],"title":"12.4. builtin"},{"refs":[{"id":"ref-for-structure\u2460\u2468"}],"title":"12.11. location"},{"refs":[{"id":"ref-for-structure\u2461\u24ea"}],"title":"12.13. size"},{"refs":[{"id":"ref-for-structure\u2461\u2460"}],"title":"13.2. Entry Point Declaration"},{"refs":[{"id":"ref-for-structure\u2461\u2461"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-structure\u2461\u2462"}],"title":"14.4.2. Structure Member Layout"},{"refs":[{"id":"ref-for-structure\u2461\u2463"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-structure\u2461\u2464"}],"title":"14.4.5. Address Space Layout Constraints"},{"refs":[{"id":"ref-for-structure\u2461\u2465"}],"title":"17.1. Constructor Built-in Functions"},{"refs":[{"id":"ref-for-structure\u2461\u2466"}],"title":"17.1.2.15. Structures"}],"url":"#structure"},
+"store-type": {"dfnID":"store-type","dfnText":"store type","external":false,"refSections":[{"refs":[{"id":"ref-for-store-type"}],"title":"6.2.9. Array Types"},{"refs":[{"id":"ref-for-store-type\u2460"},{"id":"ref-for-store-type\u2461"}],"title":"6.2.13. Fixed-Footprint Types"},{"refs":[{"id":"ref-for-store-type\u2462"}],"title":"6.3. Enumeration Types"},{"refs":[{"id":"ref-for-store-type\u2463"}],"title":"6.4.2. Host-shareable Types"},{"refs":[{"id":"ref-for-store-type\u2464"},{"id":"ref-for-store-type\u2465"},{"id":"ref-for-store-type\u2466"},{"id":"ref-for-store-type\u2467"}],"title":"6.4.3. Reference and Pointer Types"},{"refs":[{"id":"ref-for-store-type\u2468"},{"id":"ref-for-store-type\u2460\u24ea"}],"title":"6.4.6. Out-of-Bounds Access"},{"refs":[{"id":"ref-for-store-type\u2460\u2460"}],"title":"6.5. Texture and Sampler Types"},{"refs":[{"id":"ref-for-store-type\u2460\u2461"},{"id":"ref-for-store-type\u2460\u2462"},{"id":"ref-for-store-type\u2460\u2463"},{"id":"ref-for-store-type\u2460\u2464"},{"id":"ref-for-store-type\u2460\u2465"},{"id":"ref-for-store-type\u2460\u2466"},{"id":"ref-for-store-type\u2460\u2467"},{"id":"ref-for-store-type\u2460\u2468"},{"id":"ref-for-store-type\u2461\u24ea"},{"id":"ref-for-store-type\u2461\u2460"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-store-type\u2461\u2461"}],"title":"8.11. Variable Identifier Expression"},{"refs":[{"id":"ref-for-store-type\u2461\u2462"}],"title":"9.3. Increment and Decrement Statements"},{"refs":[{"id":"ref-for-store-type\u2461\u2463"}],"title":"11.4. Restrictions on Functions"},{"refs":[{"id":"ref-for-store-type\u2461\u2464"}],"title":"12.1. align"},{"refs":[{"id":"ref-for-store-type\u2461\u2465"}],"title":"13.3.4. Buffer Binding Determines Runtime-Sized Array Element Count"},{"refs":[{"id":"ref-for-store-type\u2461\u2466"}],"title":"14.3. Address Spaces"},{"refs":[{"id":"ref-for-store-type\u2461\u2467"}],"title":"14.4. Memory Layout"},{"refs":[{"id":"ref-for-store-type\u2461\u2468"},{"id":"ref-for-store-type\u2462\u24ea"}],"title":"15.2.5. Function-scope Variable Value Analysis"}],"url":"#store-type"},
+"strideof": {"dfnID":"strideof","dfnText":"StrideOf","external":false,"refSections":[{"refs":[{"id":"ref-for-strideof"},{"id":"ref-for-strideof\u2460"},{"id":"ref-for-strideof\u2461"}],"title":"13.3.4. Buffer Binding Determines Runtime-Sized Array Element Count"},{"refs":[{"id":"ref-for-strideof\u2462"},{"id":"ref-for-strideof\u2463"},{"id":"ref-for-strideof\u2464"}],"title":"14.4. Memory Layout"},{"refs":[{"id":"ref-for-strideof\u2465"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-strideof\u2466"},{"id":"ref-for-strideof\u2467"},{"id":"ref-for-strideof\u2468"}],"title":"14.4.5. Address Space Layout Constraints"}],"url":"#strideof"},
+"structure": {"dfnID":"structure","dfnText":"structure","external":false,"refSections":[{"refs":[{"id":"ref-for-structure"}],"title":"2.4. Limits"},{"refs":[{"id":"ref-for-structure\u2460"}],"title":"3.7. Identifiers"},{"refs":[{"id":"ref-for-structure\u2461"}],"title":"5. Declaration and Scope"},{"refs":[{"id":"ref-for-structure\u2462"}],"title":"6.2.9. Array Types"},{"refs":[{"id":"ref-for-structure\u2463"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-structure\u2464"}],"title":"6.2.11. Composite Types"},{"refs":[{"id":"ref-for-structure\u2465"}],"title":"6.2.12. Constructible Types"},{"refs":[{"id":"ref-for-structure\u2466"}],"title":"6.2.13. Fixed-Footprint Types"},{"refs":[{"id":"ref-for-structure\u2467"}],"title":"6.4.1. Storable Types"},{"refs":[{"id":"ref-for-structure\u2468"}],"title":"6.4.2. Host-shareable Types"},{"refs":[{"id":"ref-for-structure\u2460\u24ea"}],"title":"6.4.8. Forming Reference and Pointer Values"},{"refs":[{"id":"ref-for-structure\u2460\u2460"}],"title":"8.1.1. const Expressions"},{"refs":[{"id":"ref-for-structure\u2460\u2461"}],"title":"8.1.2. override Expressions"},{"refs":[{"id":"ref-for-structure\u2460\u2462"}],"title":"8.5. Composite Value Decomposition Expressions"},{"refs":[{"id":"ref-for-structure\u2460\u2463"}],"title":"8.17. Type Expressions"},{"refs":[{"id":"ref-for-structure\u2460\u2464"}],"title":"12.1. align"},{"refs":[{"id":"ref-for-structure\u2460\u2465"}],"title":"12.3. blend_src"},{"refs":[{"id":"ref-for-structure\u2460\u2466"}],"title":"12.4. builtin"},{"refs":[{"id":"ref-for-structure\u2460\u2467"}],"title":"12.11. location"},{"refs":[{"id":"ref-for-structure\u2460\u2468"}],"title":"12.13. size"},{"refs":[{"id":"ref-for-structure\u2461\u24ea"}],"title":"13.2. Entry Point Declaration"},{"refs":[{"id":"ref-for-structure\u2461\u2460"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-structure\u2461\u2461"}],"title":"14.4.2. Structure Member Layout"},{"refs":[{"id":"ref-for-structure\u2461\u2462"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-structure\u2461\u2463"}],"title":"14.4.5. Address Space Layout Constraints"},{"refs":[{"id":"ref-for-structure\u2461\u2464"}],"title":"17.1. Constructor Built-in Functions"},{"refs":[{"id":"ref-for-structure\u2461\u2465"}],"title":"17.1.2.15. Structures"}],"url":"#structure"},
 "subexpressions": {"dfnID":"subexpressions","dfnText":"subexpressions","external":false,"refSections":[{"refs":[{"id":"ref-for-subexpressions"}],"title":"6.1.3. Overload Resolution"},{"refs":[{"id":"ref-for-subexpressions\u2460"},{"id":"ref-for-subexpressions\u2461"},{"id":"ref-for-subexpressions\u2462"},{"id":"ref-for-subexpressions\u2463"}],"title":"8.1.1. const Expressions"},{"refs":[{"id":"ref-for-subexpressions\u2464"},{"id":"ref-for-subexpressions\u2465"}],"title":"8.1.2. override Expressions"},{"refs":[{"id":"ref-for-subexpressions\u2466"}],"title":"8.2. Indeterminate values"}],"url":"#subexpressions"},
 "subgroup": {"dfnID":"subgroup","dfnText":"subgroup","external":false,"refSections":[{"refs":[{"id":"ref-for-subgroup"}],"title":"13.3.1.1.17. subgroup_id"},{"refs":[{"id":"ref-for-subgroup\u2460"}],"title":"13.3.1.1.18. num_subgroups"},{"refs":[{"id":"ref-for-subgroup\u2461"}],"title":"15.6.3. Subgroup Operations"},{"refs":[{"id":"ref-for-subgroup\u2462"}],"title":"17.12. Subgroup Built-in Functions"},{"refs":[{"id":"ref-for-subgroup\u2463"}],"title":"17.12.1. subgroupAdd"},{"refs":[{"id":"ref-for-subgroup\u2464"}],"title":"17.12.1.1. subgroupExclusiveAdd"},{"refs":[{"id":"ref-for-subgroup\u2465"}],"title":"17.12.1.2. subgroupInclusiveAdd"},{"refs":[{"id":"ref-for-subgroup\u2466"}],"title":"17.12.2. subgroupAll"},{"refs":[{"id":"ref-for-subgroup\u2467"}],"title":"17.12.3. subgroupAnd"},{"refs":[{"id":"ref-for-subgroup\u2468"}],"title":"17.12.4. subgroupAny"},{"refs":[{"id":"ref-for-subgroup\u2460\u24ea"}],"title":"17.12.5. subgroupBallot"},{"refs":[{"id":"ref-for-subgroup\u2460\u2460"}],"title":"17.12.6. subgroupBroadcast"},{"refs":[{"id":"ref-for-subgroup\u2460\u2461"}],"title":"17.12.6.1. subgroupBroadcastFirst"},{"refs":[{"id":"ref-for-subgroup\u2460\u2462"}],"title":"17.12.7. subgroupElect"},{"refs":[{"id":"ref-for-subgroup\u2460\u2463"}],"title":"17.12.8. subgroupMax"},{"refs":[{"id":"ref-for-subgroup\u2460\u2464"}],"title":"17.12.9. subgroupMin"},{"refs":[{"id":"ref-for-subgroup\u2460\u2465"}],"title":"17.12.10. subgroupMul"},{"refs":[{"id":"ref-for-subgroup\u2460\u2466"}],"title":"17.12.10.1. subgroupExclusiveMul"},{"refs":[{"id":"ref-for-subgroup\u2460\u2467"}],"title":"17.12.10.2. subgroupInclusiveMul"},{"refs":[{"id":"ref-for-subgroup\u2460\u2468"}],"title":"17.12.11. subgroupOr"},{"refs":[{"id":"ref-for-subgroup\u2461\u24ea"}],"title":"17.12.13. subgroupXor"}],"url":"#subgroup"},
 "subgroup-id": {"dfnID":"subgroup-id","dfnText":"subgroup ID","external":false,"refSections":[{"refs":[{"id":"ref-for-subgroup-id"}],"title":"13.3.1.1.17. subgroup_id"}],"url":"#subgroup-id"},
@@ -30856,7 +30820,8 @@ let refsData = {
 "#access-read": {"displayText":"read","export":true,"for_":["access"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"read","type":"dfn","url":"#access-read"},
 "#access-read_write": {"displayText":"read_write","export":true,"for_":["access"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"read_write","type":"dfn","url":"#access-read_write"},
 "#access-write": {"displayText":"write","export":true,"for_":["access"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"write","type":"dfn","url":"#access-write"},
-"#accessible-slots": {"displayText":"accessible slots","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"accessible slots","type":"dfn","url":"#accessible-slots"},
+"#accessible-bytes": {"displayText":"accessiblebytes","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"accessiblebytes","type":"dfn","url":"#accessible-bytes"},
+"#accessible-slots": {"displayText":"accessibleslots","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"accessibleslots","type":"dfn","url":"#accessible-slots"},
 "#address-of": {"displayText":"address-of","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"address-of","type":"dfn","url":"#address-of"},
 "#address-spaces": {"displayText":"address spaces","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"address spaces","type":"dfn","url":"#address-spaces"},
 "#address-spaces-function": {"displayText":"function","export":true,"for_":["address spaces"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"function","type":"dfn","url":"#address-spaces-function"},
@@ -31082,7 +31047,7 @@ let refsData = {
 "#iteration": {"displayText":"iteration","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"iteration","type":"dfn","url":"#iteration"},
 "#keyword": {"displayText":"keyword","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"keyword","type":"dfn","url":"#keyword"},
 "#language-extension": {"displayText":"language extension","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"language extension","type":"dfn","url":"#language-extension"},
-"#language_extension-immediate_data": {"displayText":"immediate_data","export":true,"for_":["language_extension"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"immediate_data","type":"dfn","url":"#language_extension-immediate_data"},
+"#language_extension-immediate_address_space": {"displayText":"immediate_address_space","export":true,"for_":["language_extension"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"immediate_address_space","type":"dfn","url":"#language_extension-immediate_address_space"},
 "#language_extension-packed_4x8_integer_dot_product": {"displayText":"packed_4x8_integer_dot_product","export":true,"for_":["language_extension"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"packed_4x8_integer_dot_product","type":"dfn","url":"#language_extension-packed_4x8_integer_dot_product"},
 "#language_extension-pointer_composite_access": {"displayText":"pointer_composite_access","export":true,"for_":["language_extension"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"pointer_composite_access","type":"dfn","url":"#language_extension-pointer_composite_access"},
 "#language_extension-readonly_and_readwrite_storage_textures": {"displayText":"readonly_and_readwrite_storage_textures","export":true,"for_":["language_extension"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"readonly_and_readwrite_storage_textures","type":"dfn","url":"#language_extension-readonly_and_readwrite_storage_textures"},
@@ -31679,7 +31644,6 @@ let refsData = {
 "https://gpuweb.github.io/gpuweb/#rasterizationpoint-perspectivedivisor": {"displayText":"rasterizationpoint-perspectivedivisor","export":true,"for_":[],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"anchor-block","text":"rasterizationpoint-perspectivedivisor","type":"dfn","url":"https://gpuweb.github.io/gpuweb/#rasterizationpoint-perspectivedivisor"},
 "https://gpuweb.github.io/gpuweb/#shader-output-mask": {"displayText":"shader-output mask","export":true,"for_":[],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"anchor-block","text":"shader-output mask","type":"dfn","url":"https://gpuweb.github.io/gpuweb/#shader-output-mask"},
 "https://gpuweb.github.io/gpuweb/#subgroups": {"displayText":"subgroups-feature","export":true,"for_":[],"level":"","normative":true,"shortname":"webgpu","spec":"webgpu","status":"anchor-block","text":"subgroups-feature","type":"dfn","url":"https://gpuweb.github.io/gpuweb/#subgroups"},
-"https://infra.spec.whatwg.org/#ordered-set": {"displayText":"set","export":true,"for_":[],"level":"1","normative":true,"shortname":"infra","spec":"infra","status":"current","text":"set","type":"dfn","url":"https://infra.spec.whatwg.org/#ordered-set"},
 "https://infra.spec.whatwg.org/#struct": {"displayText":"struct","export":true,"for_":[],"level":"1","normative":true,"shortname":"infra","spec":"infra","status":"current","text":"struct","type":"dfn","url":"https://infra.spec.whatwg.org/#struct"},
 "https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#memory-model-atomic-operation": {"displayText":"memory model atomic operation","export":true,"for_":[],"level":"","normative":true,"shortname":"vulkan","spec":"vulkan","status":"anchor-block","text":"memory model atomic operation","type":"dfn","url":"https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#memory-model-atomic-operation"},
 "https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#memory-model-memory-operation": {"displayText":"memory model memory operation","export":true,"for_":[],"level":"","normative":true,"shortname":"vulkan","spec":"vulkan","status":"anchor-block","text":"memory model memory operation","type":"dfn","url":"https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#memory-model-memory-operation"},

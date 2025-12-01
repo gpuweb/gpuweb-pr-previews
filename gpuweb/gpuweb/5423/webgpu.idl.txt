@@ -1028,7 +1028,7 @@ interface mixin GPUBindingCommandsMixin {
         GPUSize64 dynamicOffsetsDataStart,
         GPUSize32 dynamicOffsetsDataLength);
 
-    undefined setImmediateData(GPUSize32 rangeOffset, AllowSharedBufferSource data,
+    undefined setImmediates(GPUSize32 rangeOffset, AllowSharedBufferSource data,
         optional GPUSize64 dataOffset = 0, optional GPUSize64 size);
 };
 
