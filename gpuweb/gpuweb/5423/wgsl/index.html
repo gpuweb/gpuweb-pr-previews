@@ -837,7 +837,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/shaoboyan091/gpuweb/blob/2a33c9b4aadd0c13716d04eee5fcb2a9fdbb7b17/wgsl/index.bs">https://github.com/shaoboyan091/gpuweb/blob/2a33c9b4aadd0c13716d04eee5fcb2a9fdbb7b17/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/shaoboyan091/gpuweb/blob/5b70abd4d734c227d9f336e326405f167fc19053/wgsl/index.bs">https://github.com/shaoboyan091/gpuweb/blob/5b70abd4d734c227d9f336e326405f167fc19053/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -8053,7 +8053,7 @@ effective-value-type.</p>
     
       <td><a data-link-type="dfn" href="#module-scope" id="ref-for-module-scope①⑤">Module</a>
     
-      <td><a data-link-type="dfn" href="#constructible" id="ref-for-constructible⑦">constructible</a> <a data-link-type="dfn" href="#host-shareable" id="ref-for-host-shareable③">host-shareable</a>, excluding arrays and structures containing array members
+      <td><a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete①⑨">Concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible⑦">constructible</a> <a data-link-type="dfn" href="#host-shareable" id="ref-for-host-shareable③">host-shareable</a>, excluding arrays and structures containing array members
     
       <td>Disallowed
     
@@ -8098,7 +8098,7 @@ effective-value-type.</p>
     
       <td><a data-link-type="dfn" href="#module-scope" id="ref-for-module-scope①⑧">Module</a>
     
-      <td><a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete①⑨">Concrete</a> <a data-link-type="dfn" href="#plain-type" id="ref-for-plain-type⑦">plain type</a> with a <a data-link-type="dfn" href="#fixed-footprint" id="ref-for-fixed-footprint③">fixed footprint</a><sup>9</sup>
+      <td><a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②⓪">Concrete</a> <a data-link-type="dfn" href="#plain-type" id="ref-for-plain-type⑦">plain type</a> with a <a data-link-type="dfn" href="#fixed-footprint" id="ref-for-fixed-footprint③">fixed footprint</a><sup>9</sup>
     
       <td>Disallowed<sup>10</sup>
     
@@ -8113,7 +8113,7 @@ effective-value-type.</p>
     
       <td><a data-link-type="dfn" href="#module-scope" id="ref-for-module-scope①⑨">Module</a>
     
-      <td><a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②⓪">Concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible⑧">constructible</a>
+      <td><a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②①">Concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible⑧">constructible</a>
     
       <td>Optional<sup>10</sup>
     
@@ -8130,7 +8130,7 @@ effective-value-type.</p>
     
       <td><a data-link-type="dfn" href="#function-scope" id="ref-for-function-scope②">Function</a>
     
-      <td><a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②①">Concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible⑨">constructible</a>
+      <td><a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②②">Concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible⑨">constructible</a>
     
       <td>Optional<sup>10</sup>
     
@@ -8221,7 +8221,7 @@ Each const-declaration requires an initializer.
 A const-declaration can be declared in <a data-link-type="dfn" href="#module-scope" id="ref-for-module-scope②⓪">module</a> or <a data-link-type="dfn" href="#function-scope" id="ref-for-function-scope③">function</a> scope.
 The initializer expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error⑥⑤">must</a> be a
 <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions①④">const-expression</a>.
-The type of a const-declaration must be a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②②">concrete</a> or
+The type of a const-declaration must be a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②③">concrete</a> or
 <a data-link-type="dfn" href="#type-abstract" id="ref-for-type-abstract⑤">abstract</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①⓪">constructible</a> type.
 const-declarations are the only declarations where the <a data-link-type="dfn" href="#effective-value-type" id="ref-for-effective-value-type③">effective-value-type</a>
 may be <a data-link-type="dfn" href="#type-abstract" id="ref-for-type-abstract⑥">abstract</a>.</p>
@@ -8253,7 +8253,7 @@ The value of a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="pi
 <a data-link-type="dfn" href="#pipeline-creation" id="ref-for-pipeline-creation⑨">pipeline-creation time</a>.
 The value is one provided by the WebGPU pipeline-creation method, if
 specified, and otherwise is the value of its <a data-link-type="dfn" href="#concretization-of-a-value" id="ref-for-concretization-of-a-value">concretized</a> initializer expression.
-The <a data-link-type="dfn" href="#effective-value-type" id="ref-for-effective-value-type④">effective-value-type</a> of an override-declaration must be a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②③">concrete</a>
+The <a data-link-type="dfn" href="#effective-value-type" id="ref-for-effective-value-type④">effective-value-type</a> of an override-declaration must be a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②④">concrete</a>
 <a data-link-type="dfn" href="#scalar" id="ref-for-scalar①①">scalar</a> type.</p>
    <p>An initializer expression is optional.
 If present, it must be an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions⑦">override-expression</a> and represents the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="pipeline-overridable-constant-default-value">pipeline-overridable constant default value</dfn>.
@@ -8294,7 +8294,7 @@ A let-declaration must only be declared in <a data-link-type="dfn" href="#functi
 a <a data-link-type="dfn" href="#dynamic-context" id="ref-for-dynamic-context①">dynamic context</a>.
 A let-declaration must have an initializer expression.
 The value is the <a data-link-type="dfn" href="#concretization-of-a-value" id="ref-for-concretization-of-a-value①">concretized</a> value of the initializer.
-The <a data-link-type="dfn" href="#effective-value-type" id="ref-for-effective-value-type⑤">effective-value-type</a> of a let-declaration must be either a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②④">concrete</a>
+The <a data-link-type="dfn" href="#effective-value-type" id="ref-for-effective-value-type⑤">effective-value-type</a> of a let-declaration must be either a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②⑤">concrete</a>
 <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①①">constructible</a> type or a <a data-link-type="dfn" href="#pointer-type" id="ref-for-pointer-type③">pointer type</a>.</p>
    <div class="example wgsl let-declaration at function-scope no-marker" id="example-4662849a">
     <a class="self-link" href="#example-4662849a"></a>
@@ -8314,7 +8314,7 @@ that may be placed in the referenced memory) and its <a data-link-type="dfn" hre
 of the variable itself).
 If a variable has store type <code>T</code>, <a data-link-type="dfn" href="#address-spaces" id="ref-for-address-spaces①⓪">address space</a> <code>AS</code>, and <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode①④">access mode</a>
 <code>AM</code>, then its reference type is <code>ref&lt;AS,T,AM></code>.
-The store type of a variable is always <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②⑤">concrete</a>.</p>
+The store type of a variable is always <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②⑥">concrete</a>.</p>
    <p>A variable declaration:</p>
    <ul>
     <li data-md>
@@ -8456,7 +8456,7 @@ fixed no later than <a data-link-type="dfn" href="#pipeline-creation" id="ref-fo
 store type.</p>
       <li data-md>
        <p>If the <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②⓪">store type</a> is an <a data-link-type="dfn" href="#atomic-type" id="ref-for-atomic-type⑧">atomic type</a>, the <a data-link-type="dfn" href="#zero-value" id="ref-for-zero-value④">zero value</a> is that
-of the underlying type (<a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②⑥">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar⑤">integer scalar</a>).</p>
+of the underlying type (<a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②⑦">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar⑤">integer scalar</a>).</p>
       <li data-md>
        <p>Otherwise, if the <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②①">store type</a> is not <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①⑤">constructible</a>, the <a data-link-type="dfn" href="#zero-value" id="ref-for-zero-value⑤">zero value</a> is determined by recursively applying these rules to each
 <a data-link-type="dfn" href="#components" id="ref-for-components">component</a> of the <a data-link-type="dfn" href="#composite" id="ref-for-composite③">composite</a> until a <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①⑥">constructible</a> type is
@@ -8660,7 +8660,7 @@ a <a data-link-type="dfn" href="#static-type" id="ref-for-static-type②">static
    <p>A const-expression may be evaluated by the CPU implementing the WebGPU API methods.
 Therefore accuracy requirements for operations on <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②①">AbstractFloat</a> values are <em>no more strict</em> than
 required for common WebGPU runtime environments, such as WebAssembly <a data-link-type="biblio" href="#biblio-wasm-core-2" title="WebAssembly Core Specification">[WASM-CORE-2]</a> and ECMAScript <a data-link-type="biblio" href="#biblio-ecmascript" title="ECMAScript Language Specification">[ECMASCRIPT]</a>.
-Accuracy requirements for <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②⑦">concrete</a> floating point types (such as f32) are specified in <a href="#concrete-float-accuracy">§ 15.7.4.1 Accuracy of Concrete Floating Point Expressions</a>.</p>
+Accuracy requirements for <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②⑧">concrete</a> floating point types (such as f32) are specified in <a href="#concrete-float-accuracy">§ 15.7.4.1 Accuracy of Concrete Floating Point Expressions</a>.</p>
    <p>Example:  <code>(42)</code> is analyzed as follows:</p>
    <ul>
     <li data-md>
@@ -8700,7 +8700,7 @@ of type <a data-link-type="dfn" href="#abstractint" id="ref-for-abstractint②�
     <li data-md>
      <p>As above, <code>-2147483648</code> evaluates to a <a data-link-type="dfn" href="#abstractint" id="ref-for-abstractint③⓪">AbstractInt</a> value -2147483648.</p>
     <li data-md>
-     <p>A <a data-link-type="dfn" href="#let-declaration" id="ref-for-let-declaration⑤">let-declaration</a> requires the initializer to be a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②⑧">concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①⑦">constructible</a> type or a pointer type.</p>
+     <p>A <a data-link-type="dfn" href="#let-declaration" id="ref-for-let-declaration⑤">let-declaration</a> requires the initializer to be a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②⑨">concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①⑦">constructible</a> type or a pointer type.</p>
     <li data-md>
      <p>The let-declaration does not have an explicit type, so <a data-link-type="dfn" href="#overload-resolution" id="ref-for-overload-resolution①">overload resolution</a> is used.
 The overload candidates that apply use <a data-link-type="dfn" href="#feasible-automatic-conversion" id="ref-for-feasible-automatic-conversion⑨">feasible automatic conversions</a> from <a data-link-type="dfn" href="#abstractint" id="ref-for-abstractint③①">AbstractInt</a> to either <a data-link-type="dfn" href="#i32" id="ref-for-i32①④">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32⑧">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32①⑤">f32</a>.
@@ -8785,13 +8785,13 @@ requires <var>E</var> to be evaluated, or</p>
    </ul>
    <p class="note" role="note"><span class="marker">Note:</span> Not all override-expressions may be usable as the initializer for an
 <a data-link-type="dfn" href="#override-declaration" id="ref-for-override-declaration⑧">override-declaration</a>, because such initializers must <a data-link-type="dfn" href="#type-rule" id="ref-for-type-rule④">resolve</a>
-to a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete②⑨">concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar①②">scalar</a> type.</p>
+to a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⓪">concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar①②">scalar</a> type.</p>
    <p>Example: <code>override x = 42;</code> is analyzed as follows:</p>
    <ul>
     <li data-md>
      <p>The term <code>42</code> is the <a data-link-type="dfn" href="#abstractint" id="ref-for-abstractint③④">AbstractInt</a> value 42.</p>
     <li data-md>
-     <p>An <a data-link-type="dfn" href="#override-declaration" id="ref-for-override-declaration⑨">override-declaration</a> requires a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⓪">concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar①③">scalar</a> type.</p>
+     <p>An <a data-link-type="dfn" href="#override-declaration" id="ref-for-override-declaration⑨">override-declaration</a> requires a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③①">concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar①③">scalar</a> type.</p>
     <li data-md>
      <p><code>42</code> is converted to <a data-link-type="dfn" href="#i32" id="ref-for-i32①⑧">i32</a> via a <a data-link-type="dfn" href="#feasible-automatic-conversion" id="ref-for-feasible-automatic-conversion①⓪">feasible automatic conversion</a>.</p>
    </ul>
@@ -9156,7 +9156,7 @@ That is, using convenience letters can only produce a scalar type or a valid vec
      <tr class="algorithm" data-algorithm="vector indexed component selection concrete">
       <td><var>e</var>: vec<var>N</var>&lt;<var>T</var>><br>
            <var>i</var>: i32 or u32<br>
-           <var>T</var> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③①">concrete</a>
+           <var>T</var> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③②">concrete</a>
        
       <td class="nowrap">
            <var>e</var>[<var>i</var>]: <var>T</var>
@@ -9420,7 +9420,7 @@ See <a href="#sync-builtin-functions">§ 17.11 Synchronization Built-in Functi
       <td class="nowrap">
           <var>e</var>: mat<var>C</var>x<var>R</var>&lt;<var>T</var>><br>
           <var>i</var>: i32 or u32<br>
-          <var>T</var> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③②">concrete</a>
+          <var>T</var> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③③">concrete</a>
        
       <td class="nowrap">
            <var>e</var>[<var>i</var>]: vec<var>R</var>&lt;<var>T</var>>
@@ -9506,7 +9506,7 @@ See <a href="#sync-builtin-functions">§ 17.11 Synchronization Built-in Functi
       <td class="nowrap">
           <var>e</var>: array&lt;<var>T</var>,<var>N</var>><br>
           <var>i</var>: i32 or u32<br>
-          <var>T</var> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③③">concrete</a>
+          <var>T</var> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③④">concrete</a>
        
       <td class="nowrap">
            <var>e</var>[<var>i</var>] : <var>T</var>
@@ -11013,7 +11013,7 @@ In this case the value of the <a data-link-type="dfn" href="#right-hand-side" id
     <tbody>
      <tr class="algorithm" data-algorithm="updating assignment">
       <td><var>e</var>: <var>T</var>,<br>
-        <var>T</var> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③④">concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①⑧">constructible</a> type,<br>
+        <var>T</var> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⑤">concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①⑧">constructible</a> type,<br>
         <var>r</var>: ref&lt;<var>AS</var>,<var>T</var>,<var>AM</var>>,<br>
         <var>AS</var> is a writable <a data-link-type="dfn" href="#address-spaces" id="ref-for-address-spaces①⑤">address space</a>,<br>
         <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②⓪">access mode</a> <var>AM</var> is <a data-link-type="dfn" href="#access-write" id="ref-for-access-write③">write</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①⓪">read_write</a><br>
@@ -11307,7 +11307,7 @@ A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="decrement-state
 
     <p><span class="choice"></span> <a data-link-type="dfn" href="#syntax-lhs_expression" id="ref-for-syntax-lhs_expression⑤">lhs_expression</a> <a data-link-type="dfn" href="#syntax_sym-minus_minus" id="ref-for-syntax_sym-minus_minus"><code>'--'</code></a></p>
    </div>
-   <p>The expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⓪④">must</a> evaluate to a reference with a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⑤">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar①②">integer scalar</a> <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②③">store type</a> and <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①②">read_write</a> <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②②">access mode</a>.</p>
+   <p>The expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⓪④">must</a> evaluate to a reference with a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⑥">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar①②">integer scalar</a> <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②③">store type</a> and <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①②">read_write</a> <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②②">access mode</a>.</p>
    <table class="data">
     <thead>
      <tr>
@@ -11318,7 +11318,7 @@ A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="decrement-state
     <tbody>
      <tr class="algorithm" data-algorithm="increment statement">
       <td class="nowrap"><var>r</var> : ref&lt;<var>AS</var>,<var>T</var>,<a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①③">read_write</a>>,<br>
-        <var>T</var> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⑥">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar①③">integer scalar</a><br>
+        <var>T</var> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⑦">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar①③">integer scalar</a><br>
     
       <td class="nowrap"><var>r</var><code>++</code>
     
@@ -11327,7 +11327,7 @@ A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="decrement-state
   
      <tr class="algorithm" data-algorithm="decrement statement">
       <td class="nowrap"><var>r</var> : ref&lt;<var>AS</var>,<var>T</var>,<a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①④">read_write</a>>,<br>
-        <var>T</var> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⑦">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar①④">integer scalar</a><br>
+        <var>T</var> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⑧">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar①④">integer scalar</a><br>
     
       <td class="nowrap"><var>r</var><code>--</code>
     
@@ -11467,7 +11467,7 @@ body in the form of a <a data-link-type="dfn" href="#compound-statement" id="ref
    <p>Each switch statement <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⓪⑥">must</a> have exactly one <a data-link-type="dfn" href="#default-clause" id="ref-for-default-clause②">default clause</a>.</p>
    <p>The <a data-link-type="dfn" href="#syntax_kw-default" id="ref-for-syntax_kw-default②"><code>'default'</code></a> token <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⓪⑦">must</a> not appear more than once in a single <a data-link-type="dfn" href="#syntax-case_selector" id="ref-for-syntax-case_selector③">case_selector</a> list.</p>
    <p><a data-link-type="dfn" href="#type-rule-preconditions" id="ref-for-type-rule-preconditions②">Type rule precondition</a>:
-For a single switch statement, the selector expression and all case selector expressions <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⓪⑧">must</a> be of the same <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⑧">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar①⑤">integer scalar</a> type.</p>
+For a single switch statement, the selector expression and all case selector expressions <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⓪⑧">must</a> be of the same <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⑨">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar①⑤">integer scalar</a> type.</p>
    <p>The expressions in the <a data-link-type="dfn" href="#syntax-case_selectors" id="ref-for-syntax-case_selectors①">case_selectors</a> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⓪⑨">must</a>
 be <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions④⑤">const-expressions</a>.</p>
    <p>Two different case selector expressions in the same switch statement <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①①⓪">must not</a> have the same value.</p>
@@ -15994,7 +15994,7 @@ offset <var>k</var> of a host-shared buffer, then:</p>
     <li data-md>
      <p>Byte <var>k</var>+7 contains bits 56 through 63 of <var>V</var></p>
    </ul>
-   <p class="note" role="note"><span class="marker">Note:</span> WGSL does not have a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⑨">concrete</a> <a data-link-type="dfn" href="#64-bit-integer" id="ref-for-64-bit-integer">64-bit integer</a> type.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> WGSL does not have a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④⓪">concrete</a> <a data-link-type="dfn" href="#64-bit-integer" id="ref-for-64-bit-integer">64-bit integer</a> type.</p>
    <p>A value <var>V</var> of type <a data-link-type="dfn" href="#f32" id="ref-for-f32②①">f32</a> is represented in <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> <a data-link-type="dfn" href="#ieee754-binary32" id="ref-for-ieee754-binary32②">binary32</a> format.
 It has one sign bit, 8 exponent bits, and 23 fraction bits.
 When <var>V</var> is placed at byte offset <var>k</var> of host-shared buffer, then:</p>
@@ -19947,7 +19947,7 @@ the WGSL text.</p>
      <p><a href="#value-constructor-builtin-function">value constructors</a> (which also provide conversion)</p>
    </ul>
    <h4 class="heading settled" data-level="17.1.1" id="zero-value-builtin-function"><span class="secno">17.1.1. </span><span class="content">Zero Value Built-in Functions</span><a class="self-link" href="#zero-value-builtin-function"></a></h4>
-   <p>Each <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④⓪">concrete</a>, <a data-link-type="dfn" href="#constructible" id="ref-for-constructible②④">constructible</a> <em>T</em> has a unique <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="zero-value">zero value</dfn>,
+   <p>Each <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④①">concrete</a>, <a data-link-type="dfn" href="#constructible" id="ref-for-constructible②④">constructible</a> <em>T</em> has a unique <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="zero-value">zero value</dfn>,
 and a corresponding built-in function written in WGSL as the type followed by an empty pair of parentheses: <em>T</em> <code>()</code>.
 <a data-link-type="dfn" href="#abstract-numeric-types" id="ref-for-abstract-numeric-types⑦">Abstract numeric types</a> also have zero values, but there are no built-in functions to access them.</p>
    <p>The zero values are as follows:</p>
@@ -19987,7 +19987,7 @@ and a corresponding built-in function written in WGSL as the type followed by an
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④①">concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible②⑧">constructible</a> type.<br>
+      <td><code>T</code> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④②">concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible②⑧">constructible</a> type.<br>
   
      <tr>
       <td>Description
@@ -20063,7 +20063,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④②">concrete</a> and <a data-link-type="dfn" href="#constructible" id="ref-for-constructible③⓪">constructible</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④③">concrete</a> and <a data-link-type="dfn" href="#constructible" id="ref-for-constructible③⓪">constructible</a>
   
      <tr>
       <td>Description
@@ -20158,7 +20158,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④③">concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar①⑧">scalar</a> type
+      <td><code>T</code> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④④">concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar①⑧">scalar</a> type
   
      <tr>
       <td>Description
@@ -20901,7 +20901,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④④">concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar②①">scalar</a><br>
+      <td><code>T</code> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④⑤">concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar②①">scalar</a><br>
       <code>S</code> is <a data-link-type="dfn" href="#scalar" id="ref-for-scalar②②">scalar</a>
   
      <tr>
@@ -20922,7 +20922,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④⑤">concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar②③">scalar</a><br>
+      <td><code>T</code> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④⑥">concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar②③">scalar</a><br>
       <code>S</code> is <a data-link-type="dfn" href="#scalar" id="ref-for-scalar②④">scalar</a>
   
      <tr>
@@ -20986,7 +20986,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④⑥">concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar②⑥">scalar</a><br>
+      <td><code>T</code> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④⑦">concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar②⑥">scalar</a><br>
       <code>S</code> is <a data-link-type="dfn" href="#scalar" id="ref-for-scalar②⑦">scalar</a>
   
      <tr>
@@ -21007,7 +21007,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④⑦">concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar②⑧">scalar</a><br>
+      <td><code>T</code> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④⑧">concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar②⑧">scalar</a><br>
       <code>S</code> is <a data-link-type="dfn" href="#scalar" id="ref-for-scalar②⑨">scalar</a>
   
      <tr>
@@ -21111,7 +21111,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④⑧">concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar③③">scalar</a><br>
+      <td><code>T</code> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④⑨">concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar③③">scalar</a><br>
       <code>S</code> is <a data-link-type="dfn" href="#scalar" id="ref-for-scalar③④">scalar</a>
   
      <tr>
@@ -21132,7 +21132,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete④⑨">concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar③⑤">scalar</a><br>
+      <td><code>T</code> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑤⓪">concrete</a> <a data-link-type="dfn" href="#scalar" id="ref-for-scalar③⑤">scalar</a><br>
       <code>S</code> is <a data-link-type="dfn" href="#scalar" id="ref-for-scalar③⑥">scalar</a>
   
      <tr>
@@ -21318,7 +21318,7 @@ a value in one type as a value in another type.</p>
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑤⓪">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar①⓪">numeric scalar</a> or <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑤①">concrete</a> <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector⑥">numeric vector</a>
+      <td><code>T</code> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑤①">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar①⓪">numeric scalar</a> or <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑤②">concrete</a> <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector⑥">numeric vector</a>
   
      <tr>
       <td>Description
@@ -22926,10 +22926,10 @@ but a value may infer the type.</p>
         <code>T</code> can only be <a data-link-type="dfn" href="#type-abstract" id="ref-for-type-abstract①①">abstract</a> if <code>I</code> is also <a data-link-type="dfn" href="#type-abstract" id="ref-for-type-abstract①②">abstract</a> and vice versa
 
 
-       <p class="note" role="note"><span class="marker">Note:</span> If either parameter is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑤②">concrete</a> then the other parameter
+       <p class="note" role="note"><span class="marker">Note:</span> If either parameter is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑤③">concrete</a> then the other parameter
         will undergo <a data-link-type="dfn" href="#feasible-automatic-conversion" id="ref-for-feasible-automatic-conversion①①">automatic conversion</a> to
-        a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑤③">concrete</a> type (if applicable) and the result will be a
-        <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑤④">concrete</a> type.</p>
+        a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑤④">concrete</a> type (if applicable) and the result will be a
+        <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑤⑤">concrete</a> type.</p>
      <tr>
       <td>Description
     
@@ -26577,7 +26577,7 @@ All synchronization functions <a data-link-type="dfn" href="#shader-creation-err
      <tr>
       <td>Parameterization
     
-      <td><code>T</code> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑤⑤">concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible③④">constructible</a> type.
+      <td><code>T</code> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑤⑥">concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible③④">constructible</a> type.
   
      <tr>
       <td>Description
@@ -26640,7 +26640,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
      <tr>
       <td>Preconditions
     
-      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑤⑥">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar①①">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector⑦">numeric vector</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑤⑦">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar①①">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector⑦">numeric vector</a>
   
      <tr>
       <td>Description
@@ -26663,7 +26663,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
      <tr>
       <td>Preconditions
     
-      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑤⑦">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar①②">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector⑧">numeric vector</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑤⑧">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar①②">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector⑧">numeric vector</a>
   
      <tr>
       <td>Description
@@ -26689,7 +26689,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
      <tr>
       <td>Preconditions
     
-      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑤⑧">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar①③">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector⑨">numeric vector</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑤⑨">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar①③">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector⑨">numeric vector</a>
   
      <tr>
       <td>Description
@@ -26793,7 +26793,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
      <tr>
       <td>Preconditions
     
-      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑤⑨">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar①④">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector①⓪">numeric vector</a><br>
+      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑥⓪">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar①④">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector①⓪">numeric vector</a><br>
         <code>I</code> is <a data-link-type="dfn" href="#u32" id="ref-for-u32①③⑦">u32</a> or <a data-link-type="dfn" href="#i32" id="ref-for-i32①④⑥">i32</a>
   
      <tr>
@@ -26822,7 +26822,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
      <tr>
       <td>Preconditions
     
-      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑥⓪">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar①⑤">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector①①">numeric vector</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑥①">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar①⑤">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector①①">numeric vector</a>
   
      <tr>
       <td>Description
@@ -26860,7 +26860,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
      <tr>
       <td>Preconditions
     
-      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑥①">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar①⑥">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector①②">numeric vector</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑥②">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar①⑥">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector①②">numeric vector</a>
   
      <tr>
       <td>Description
@@ -26883,7 +26883,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
      <tr>
       <td>Preconditions
     
-      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑥②">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar①⑦">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector①③">numeric vector</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑥③">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar①⑦">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector①③">numeric vector</a>
   
      <tr>
       <td>Description
@@ -26906,7 +26906,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
      <tr>
       <td>Preconditions
     
-      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑥③">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar①⑧">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector①④">numeric vector</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑥④">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar①⑧">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector①④">numeric vector</a>
   
      <tr>
       <td>Description
@@ -26929,7 +26929,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
      <tr>
       <td>Preconditions
     
-      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑥④">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar①⑨">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector①⑤">numeric vector</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑥⑤">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar①⑨">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector①⑤">numeric vector</a>
   
      <tr>
       <td>Description
@@ -26955,7 +26955,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
      <tr>
       <td>Preconditions
     
-      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑥⑤">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar②⓪">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector①⑥">numeric vector</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑥⑥">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar②⓪">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector①⑥">numeric vector</a>
   
      <tr>
       <td>Description
@@ -27005,7 +27005,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
      <tr>
       <td>Preconditions
     
-      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑥⑥">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar②①">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector①⑦">numeric vector</a><br>
+      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑥⑦">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar②①">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector①⑦">numeric vector</a><br>
         <code>I</code> is <a data-link-type="dfn" href="#u32" id="ref-for-u32①③⑧">u32</a> or <a data-link-type="dfn" href="#i32" id="ref-for-i32①④⑦">i32</a>
   
      <tr>
@@ -27037,7 +27037,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
      <tr>
       <td>Preconditions
     
-      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑥⑦">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar②②">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector①⑧">numeric vector</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑥⑧">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar②②">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector①⑧">numeric vector</a>
   
      <tr>
       <td>Description
@@ -27072,7 +27072,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
      <tr>
       <td>Preconditions
     
-      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑥⑧">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar②③">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector①⑨">numeric vector</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑥⑨">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar②③">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector①⑨">numeric vector</a>
   
      <tr>
       <td>Description
@@ -27107,7 +27107,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#subgroup" id
      <tr>
       <td>Preconditions
     
-      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑥⑨">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar②④">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector②⓪">numeric vector</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑦⓪">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar②④">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector②⓪">numeric vector</a>
   
      <tr>
       <td>Description
@@ -27181,7 +27181,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#quad" id="re
      <tr>
       <td>Preconditions
     
-      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑦⓪">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar②⑤">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector②①">numeric vector</a><br>
+      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑦①">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar②⑤">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector②①">numeric vector</a><br>
         <code>I</code> is <a data-link-type="dfn" href="#u32" id="ref-for-u32①③⑨">u32</a> or <a data-link-type="dfn" href="#i32" id="ref-for-i32①④⑧">i32</a>
   
      <tr>
@@ -27210,7 +27210,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#quad" id="re
      <tr>
       <td>Preconditions
     
-      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑦①">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar②⑥">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector②②">numeric vector</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑦②">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar②⑥">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector②②">numeric vector</a>
   
      <tr>
       <td>Description
@@ -27238,7 +27238,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#quad" id="re
      <tr>
       <td>Preconditions
     
-      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑦②">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar②⑦">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector②③">numeric vector</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑦③">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar②⑦">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector②③">numeric vector</a>
   
      <tr>
       <td>Description
@@ -27266,7 +27266,7 @@ Both of these scopes are larger than <a data-link-type="dfn" href="#quad" id="re
      <tr>
       <td>Preconditions
     
-      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑦③">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar②⑧">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector②④">numeric vector</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑦④">concrete</a> <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar②⑧">numeric scalar</a> or <a data-link-type="dfn" href="#numeric-vector" id="ref-for-numeric-vector②④">numeric vector</a>
   
      <tr>
       <td>Description
@@ -30348,7 +30348,7 @@ let dfnPanelData = {
 "type-alias": {"dfnID":"type-alias","dfnText":"type alias","external":false,"refSections":[{"refs":[{"id":"ref-for-type-alias"}],"title":"6.2.6. Vector Types"},{"refs":[{"id":"ref-for-type-alias\u2460"}],"title":"6.2.7. Matrix Types"},{"refs":[{"id":"ref-for-type-alias\u2461"}],"title":"6.4.3. Reference and Pointer Types"},{"refs":[{"id":"ref-for-type-alias\u2462"}],"title":"6.7. Type Aliases"},{"refs":[{"id":"ref-for-type-alias\u2463"},{"id":"ref-for-type-alias\u2464"}],"title":"6.9. Predeclared Types and Type-Generators Summary"},{"refs":[{"id":"ref-for-type-alias\u2465"}],"title":"8.1.1. const Expressions"},{"refs":[{"id":"ref-for-type-alias\u2466"}],"title":"8.1.2. override Expressions"},{"refs":[{"id":"ref-for-type-alias\u2467"}],"title":"8.17. Type Expressions"},{"refs":[{"id":"ref-for-type-alias\u2468"}],"title":"13.3. Shader Interface"},{"refs":[{"id":"ref-for-type-alias\u2460\u24ea"}],"title":"17.1. Constructor Built-in Functions"}],"url":"#type-alias"},
 "type-assertion": {"dfnID":"type-assertion","dfnText":"type assertion","external":false,"refSections":[{"refs":[{"id":"ref-for-type-assertion"},{"id":"ref-for-type-assertion\u2460"},{"id":"ref-for-type-assertion\u2461"}],"title":"6.1. Type Checking"},{"refs":[{"id":"ref-for-type-assertion\u2462"}],"title":"6.1.3. Overload Resolution"}],"url":"#type-assertion"},
 "type-checking": {"dfnID":"type-checking","dfnText":"Type checking","external":false,"refSections":[{"refs":[{"id":"ref-for-type-checking"}],"title":"6.2.1. Abstract Numeric Types"},{"refs":[{"id":"ref-for-type-checking\u2460"}],"title":"6.6. AllTypes Type"},{"refs":[{"id":"ref-for-type-checking\u2461"}],"title":"8.18. Expression Grammar Summary"},{"refs":[{"id":"ref-for-type-checking\u2462"},{"id":"ref-for-type-checking\u2463"}],"title":"15.2.4. Pointer Desugaring"},{"refs":[{"id":"ref-for-type-checking\u2464"},{"id":"ref-for-type-checking\u2465"},{"id":"ref-for-type-checking\u2466"},{"id":"ref-for-type-checking\u2467"},{"id":"ref-for-type-checking\u2468"},{"id":"ref-for-type-checking\u2460\u24ea"},{"id":"ref-for-type-checking\u2460\u2460"}],"title":"15.2.8. Uniformity Rules for Expressions"}],"url":"#type-checking"},
-"type-concrete": {"dfnID":"type-concrete","dfnText":"concrete","external":false,"refSections":[{"refs":[{"id":"ref-for-type-concrete"},{"id":"ref-for-type-concrete\u2460"}],"title":"1.1. Overview"},{"refs":[{"id":"ref-for-type-concrete\u2461"}],"title":"3.5.2. Numeric Literals"},{"refs":[{"id":"ref-for-type-concrete\u2462"}],"title":"6.1.2. Conversion Rank"},{"refs":[{"id":"ref-for-type-concrete\u2463"}],"title":"6.1.3. Overload Resolution"},{"refs":[{"id":"ref-for-type-concrete\u2464"}],"title":"6.2.3. Integer Types"},{"refs":[{"id":"ref-for-type-concrete\u2465"}],"title":"6.2.8. Atomic Types"},{"refs":[{"id":"ref-for-type-concrete\u2466"}],"title":"6.2.9. Array Types"},{"refs":[{"id":"ref-for-type-concrete\u2467"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-type-concrete\u2468"}],"title":"6.2.13. Fixed-Footprint Types"},{"refs":[{"id":"ref-for-type-concrete\u2460\u24ea"},{"id":"ref-for-type-concrete\u2460\u2460"}],"title":"6.4.1. Storable Types"},{"refs":[{"id":"ref-for-type-concrete\u2460\u2461"}],"title":"6.4.2. Host-shareable Types"},{"refs":[{"id":"ref-for-type-concrete\u2460\u2462"},{"id":"ref-for-type-concrete\u2460\u2463"},{"id":"ref-for-type-concrete\u2460\u2464"},{"id":"ref-for-type-concrete\u2460\u2465"},{"id":"ref-for-type-concrete\u2460\u2466"},{"id":"ref-for-type-concrete\u2460\u2467"},{"id":"ref-for-type-concrete\u2460\u2468"},{"id":"ref-for-type-concrete\u2461\u24ea"},{"id":"ref-for-type-concrete\u2461\u2460"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-type-concrete\u2461\u2461"}],"title":"7.2.1. const Declarations"},{"refs":[{"id":"ref-for-type-concrete\u2461\u2462"}],"title":"7.2.2. override Declarations"},{"refs":[{"id":"ref-for-type-concrete\u2461\u2463"}],"title":"7.2.3. let Declarations"},{"refs":[{"id":"ref-for-type-concrete\u2461\u2464"},{"id":"ref-for-type-concrete\u2461\u2465"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-type-concrete\u2461\u2466"},{"id":"ref-for-type-concrete\u2461\u2467"}],"title":"8.1.1. const Expressions"},{"refs":[{"id":"ref-for-type-concrete\u2461\u2468"},{"id":"ref-for-type-concrete\u2462\u24ea"}],"title":"8.1.2. override Expressions"},{"refs":[{"id":"ref-for-type-concrete\u2462\u2460"}],"title":"8.5.1.1. Vector Single Component Selection"},{"refs":[{"id":"ref-for-type-concrete\u2462\u2461"}],"title":"8.5.2. Matrix Access Expression"},{"refs":[{"id":"ref-for-type-concrete\u2462\u2462"}],"title":"8.5.3. Array Access Expression"},{"refs":[{"id":"ref-for-type-concrete\u2462\u2463"}],"title":"9.2.1. Simple Assignment"},{"refs":[{"id":"ref-for-type-concrete\u2462\u2464"},{"id":"ref-for-type-concrete\u2462\u2465"},{"id":"ref-for-type-concrete\u2462\u2466"}],"title":"9.3. Increment and Decrement Statements"},{"refs":[{"id":"ref-for-type-concrete\u2462\u2467"}],"title":"9.4.2. Switch Statement"},{"refs":[{"id":"ref-for-type-concrete\u2462\u2468"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-type-concrete\u2463\u24ea"},{"id":"ref-for-type-concrete\u2463\u2460"}],"title":"17.1.1. Zero Value Built-in Functions"},{"refs":[{"id":"ref-for-type-concrete\u2463\u2461"}],"title":"17.1.2.1. array"},{"refs":[{"id":"ref-for-type-concrete\u2463\u2462"}],"title":"17.1.2.4. f32"},{"refs":[{"id":"ref-for-type-concrete\u2463\u2463"},{"id":"ref-for-type-concrete\u2463\u2464"}],"title":"17.1.2.17. vec2"},{"refs":[{"id":"ref-for-type-concrete\u2463\u2465"},{"id":"ref-for-type-concrete\u2463\u2466"}],"title":"17.1.2.18. vec3"},{"refs":[{"id":"ref-for-type-concrete\u2463\u2467"},{"id":"ref-for-type-concrete\u2463\u2468"}],"title":"17.1.2.19. vec4"},{"refs":[{"id":"ref-for-type-concrete\u2464\u24ea"},{"id":"ref-for-type-concrete\u2464\u2460"}],"title":"17.2.1. bitcast"},{"refs":[{"id":"ref-for-type-concrete\u2464\u2461"},{"id":"ref-for-type-concrete\u2464\u2462"},{"id":"ref-for-type-concrete\u2464\u2463"}],"title":"17.5.37. ldexp"},{"refs":[{"id":"ref-for-type-concrete\u2464\u2464"}],"title":"17.11.4. workgroupUniformLoad"},{"refs":[{"id":"ref-for-type-concrete\u2464\u2465"}],"title":"17.12.1. subgroupAdd"},{"refs":[{"id":"ref-for-type-concrete\u2464\u2466"}],"title":"17.12.1.1. subgroupExclusiveAdd"},{"refs":[{"id":"ref-for-type-concrete\u2464\u2467"}],"title":"17.12.1.2. subgroupInclusiveAdd"},{"refs":[{"id":"ref-for-type-concrete\u2464\u2468"}],"title":"17.12.6. subgroupBroadcast"},{"refs":[{"id":"ref-for-type-concrete\u2465\u24ea"}],"title":"17.12.6.1. subgroupBroadcastFirst"},{"refs":[{"id":"ref-for-type-concrete\u2465\u2460"}],"title":"17.12.8. subgroupMax"},{"refs":[{"id":"ref-for-type-concrete\u2465\u2461"}],"title":"17.12.9. subgroupMin"},{"refs":[{"id":"ref-for-type-concrete\u2465\u2462"}],"title":"17.12.10. subgroupMul"},{"refs":[{"id":"ref-for-type-concrete\u2465\u2463"}],"title":"17.12.10.1. subgroupExclusiveMul"},{"refs":[{"id":"ref-for-type-concrete\u2465\u2464"}],"title":"17.12.10.2. subgroupInclusiveMul"},{"refs":[{"id":"ref-for-type-concrete\u2465\u2465"}],"title":"17.12.12. subgroupShuffle"},{"refs":[{"id":"ref-for-type-concrete\u2465\u2466"}],"title":"17.12.12.1. subgroupShuffleDown"},{"refs":[{"id":"ref-for-type-concrete\u2465\u2467"}],"title":"17.12.12.2. subgroupShuffleUp"},{"refs":[{"id":"ref-for-type-concrete\u2465\u2468"}],"title":"17.12.12.3. subgroupShuffleXor"},{"refs":[{"id":"ref-for-type-concrete\u2466\u24ea"}],"title":"17.13.1. quadBroadcast"},{"refs":[{"id":"ref-for-type-concrete\u2466\u2460"}],"title":"17.13.2. quadSwapDiagonal"},{"refs":[{"id":"ref-for-type-concrete\u2466\u2461"}],"title":"17.13.3. quadSwapX"},{"refs":[{"id":"ref-for-type-concrete\u2466\u2462"}],"title":"17.13.4. quadSwapY"}],"url":"#type-concrete"},
+"type-concrete": {"dfnID":"type-concrete","dfnText":"concrete","external":false,"refSections":[{"refs":[{"id":"ref-for-type-concrete"},{"id":"ref-for-type-concrete\u2460"}],"title":"1.1. Overview"},{"refs":[{"id":"ref-for-type-concrete\u2461"}],"title":"3.5.2. Numeric Literals"},{"refs":[{"id":"ref-for-type-concrete\u2462"}],"title":"6.1.2. Conversion Rank"},{"refs":[{"id":"ref-for-type-concrete\u2463"}],"title":"6.1.3. Overload Resolution"},{"refs":[{"id":"ref-for-type-concrete\u2464"}],"title":"6.2.3. Integer Types"},{"refs":[{"id":"ref-for-type-concrete\u2465"}],"title":"6.2.8. Atomic Types"},{"refs":[{"id":"ref-for-type-concrete\u2466"}],"title":"6.2.9. Array Types"},{"refs":[{"id":"ref-for-type-concrete\u2467"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-type-concrete\u2468"}],"title":"6.2.13. Fixed-Footprint Types"},{"refs":[{"id":"ref-for-type-concrete\u2460\u24ea"},{"id":"ref-for-type-concrete\u2460\u2460"}],"title":"6.4.1. Storable Types"},{"refs":[{"id":"ref-for-type-concrete\u2460\u2461"}],"title":"6.4.2. Host-shareable Types"},{"refs":[{"id":"ref-for-type-concrete\u2460\u2462"},{"id":"ref-for-type-concrete\u2460\u2463"},{"id":"ref-for-type-concrete\u2460\u2464"},{"id":"ref-for-type-concrete\u2460\u2465"},{"id":"ref-for-type-concrete\u2460\u2466"},{"id":"ref-for-type-concrete\u2460\u2467"},{"id":"ref-for-type-concrete\u2460\u2468"},{"id":"ref-for-type-concrete\u2461\u24ea"},{"id":"ref-for-type-concrete\u2461\u2460"},{"id":"ref-for-type-concrete\u2461\u2461"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-type-concrete\u2461\u2462"}],"title":"7.2.1. const Declarations"},{"refs":[{"id":"ref-for-type-concrete\u2461\u2463"}],"title":"7.2.2. override Declarations"},{"refs":[{"id":"ref-for-type-concrete\u2461\u2464"}],"title":"7.2.3. let Declarations"},{"refs":[{"id":"ref-for-type-concrete\u2461\u2465"},{"id":"ref-for-type-concrete\u2461\u2466"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-type-concrete\u2461\u2467"},{"id":"ref-for-type-concrete\u2461\u2468"}],"title":"8.1.1. const Expressions"},{"refs":[{"id":"ref-for-type-concrete\u2462\u24ea"},{"id":"ref-for-type-concrete\u2462\u2460"}],"title":"8.1.2. override Expressions"},{"refs":[{"id":"ref-for-type-concrete\u2462\u2461"}],"title":"8.5.1.1. Vector Single Component Selection"},{"refs":[{"id":"ref-for-type-concrete\u2462\u2462"}],"title":"8.5.2. Matrix Access Expression"},{"refs":[{"id":"ref-for-type-concrete\u2462\u2463"}],"title":"8.5.3. Array Access Expression"},{"refs":[{"id":"ref-for-type-concrete\u2462\u2464"}],"title":"9.2.1. Simple Assignment"},{"refs":[{"id":"ref-for-type-concrete\u2462\u2465"},{"id":"ref-for-type-concrete\u2462\u2466"},{"id":"ref-for-type-concrete\u2462\u2467"}],"title":"9.3. Increment and Decrement Statements"},{"refs":[{"id":"ref-for-type-concrete\u2462\u2468"}],"title":"9.4.2. Switch Statement"},{"refs":[{"id":"ref-for-type-concrete\u2463\u24ea"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-type-concrete\u2463\u2460"},{"id":"ref-for-type-concrete\u2463\u2461"}],"title":"17.1.1. Zero Value Built-in Functions"},{"refs":[{"id":"ref-for-type-concrete\u2463\u2462"}],"title":"17.1.2.1. array"},{"refs":[{"id":"ref-for-type-concrete\u2463\u2463"}],"title":"17.1.2.4. f32"},{"refs":[{"id":"ref-for-type-concrete\u2463\u2464"},{"id":"ref-for-type-concrete\u2463\u2465"}],"title":"17.1.2.17. vec2"},{"refs":[{"id":"ref-for-type-concrete\u2463\u2466"},{"id":"ref-for-type-concrete\u2463\u2467"}],"title":"17.1.2.18. vec3"},{"refs":[{"id":"ref-for-type-concrete\u2463\u2468"},{"id":"ref-for-type-concrete\u2464\u24ea"}],"title":"17.1.2.19. vec4"},{"refs":[{"id":"ref-for-type-concrete\u2464\u2460"},{"id":"ref-for-type-concrete\u2464\u2461"}],"title":"17.2.1. bitcast"},{"refs":[{"id":"ref-for-type-concrete\u2464\u2462"},{"id":"ref-for-type-concrete\u2464\u2463"},{"id":"ref-for-type-concrete\u2464\u2464"}],"title":"17.5.37. ldexp"},{"refs":[{"id":"ref-for-type-concrete\u2464\u2465"}],"title":"17.11.4. workgroupUniformLoad"},{"refs":[{"id":"ref-for-type-concrete\u2464\u2466"}],"title":"17.12.1. subgroupAdd"},{"refs":[{"id":"ref-for-type-concrete\u2464\u2467"}],"title":"17.12.1.1. subgroupExclusiveAdd"},{"refs":[{"id":"ref-for-type-concrete\u2464\u2468"}],"title":"17.12.1.2. subgroupInclusiveAdd"},{"refs":[{"id":"ref-for-type-concrete\u2465\u24ea"}],"title":"17.12.6. subgroupBroadcast"},{"refs":[{"id":"ref-for-type-concrete\u2465\u2460"}],"title":"17.12.6.1. subgroupBroadcastFirst"},{"refs":[{"id":"ref-for-type-concrete\u2465\u2461"}],"title":"17.12.8. subgroupMax"},{"refs":[{"id":"ref-for-type-concrete\u2465\u2462"}],"title":"17.12.9. subgroupMin"},{"refs":[{"id":"ref-for-type-concrete\u2465\u2463"}],"title":"17.12.10. subgroupMul"},{"refs":[{"id":"ref-for-type-concrete\u2465\u2464"}],"title":"17.12.10.1. subgroupExclusiveMul"},{"refs":[{"id":"ref-for-type-concrete\u2465\u2465"}],"title":"17.12.10.2. subgroupInclusiveMul"},{"refs":[{"id":"ref-for-type-concrete\u2465\u2466"}],"title":"17.12.12. subgroupShuffle"},{"refs":[{"id":"ref-for-type-concrete\u2465\u2467"}],"title":"17.12.12.1. subgroupShuffleDown"},{"refs":[{"id":"ref-for-type-concrete\u2465\u2468"}],"title":"17.12.12.2. subgroupShuffleUp"},{"refs":[{"id":"ref-for-type-concrete\u2466\u24ea"}],"title":"17.12.12.3. subgroupShuffleXor"},{"refs":[{"id":"ref-for-type-concrete\u2466\u2460"}],"title":"17.13.1. quadBroadcast"},{"refs":[{"id":"ref-for-type-concrete\u2466\u2461"}],"title":"17.13.2. quadSwapDiagonal"},{"refs":[{"id":"ref-for-type-concrete\u2466\u2462"}],"title":"17.13.3. quadSwapX"},{"refs":[{"id":"ref-for-type-concrete\u2466\u2463"}],"title":"17.13.4. quadSwapY"}],"url":"#type-concrete"},
 "type-depth-texture": {"dfnID":"type-depth-texture","dfnText":"depth texture","external":false,"refSections":[{"refs":[{"id":"ref-for-type-depth-texture"},{"id":"ref-for-type-depth-texture\u2460"}],"title":"6.5. Texture and Sampler Types"},{"refs":[{"id":"ref-for-type-depth-texture\u2461"},{"id":"ref-for-type-depth-texture\u2462"},{"id":"ref-for-type-depth-texture\u2463"}],"title":"6.5.7. Sampler Type"},{"refs":[{"id":"ref-for-type-depth-texture\u2464"}],"title":"13.3.3. Resource Layout Compatibility"},{"refs":[{"id":"ref-for-type-depth-texture\u2465"}],"title":"17.7.2. textureGather"},{"refs":[{"id":"ref-for-type-depth-texture\u2466"}],"title":"17.7.4. textureLoad"},{"refs":[{"id":"ref-for-type-depth-texture\u2467"}],"title":"17.7.5. textureNumLayers"},{"refs":[{"id":"ref-for-type-depth-texture\u2468"}],"title":"17.7.6. textureNumLevels"},{"refs":[{"id":"ref-for-type-depth-texture\u2460\u24ea"}],"title":"17.7.8. textureSample"},{"refs":[{"id":"ref-for-type-depth-texture\u2460\u2460"},{"id":"ref-for-type-depth-texture\u2460\u2461"}],"title":"17.7.10. textureSampleCompare"},{"refs":[{"id":"ref-for-type-depth-texture\u2460\u2462"},{"id":"ref-for-type-depth-texture\u2460\u2463"}],"title":"17.7.11. textureSampleCompareLevel"},{"refs":[{"id":"ref-for-type-depth-texture\u2460\u2464"}],"title":"17.7.13. textureSampleLevel"}],"url":"#type-depth-texture"},
 "type-error": {"dfnID":"type-error","dfnText":"type error","external":false,"refSections":[{"refs":[{"id":"ref-for-type-error"},{"id":"ref-for-type-error\u2460"},{"id":"ref-for-type-error\u2461"}],"title":"6.1. Type Checking"}],"url":"#type-error"},
 "type-external-texture": {"dfnID":"type-external-texture","dfnText":"External texture","external":false,"refSections":[{"refs":[{"id":"ref-for-type-external-texture"}],"title":"13.3.3. Resource Layout Compatibility"},{"refs":[{"id":"ref-for-type-external-texture\u2460"}],"title":"17.7.4. textureLoad"},{"refs":[{"id":"ref-for-type-external-texture\u2461"}],"title":"17.7.14. textureSampleBaseClampToEdge"}],"url":"#type-external-texture"},
