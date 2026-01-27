@@ -831,13 +831,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
 </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
-    <time class="dt-updated" datetime="2026-01-26">26 January 2026</time></p>
+    <time class="dt-updated" datetime="2026-01-27">27 January 2026</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/Jiawei-Shao/gpuweb/blob/16c9483e363549f351f8eb5e6efd91b0cec5fa00/wgsl/index.bs">https://github.com/Jiawei-Shao/gpuweb/blob/16c9483e363549f351f8eb5e6efd91b0cec5fa00/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/Jiawei-Shao/gpuweb/blob/99d5c9526cc62d24fda0f4cee766070e97fdf399/wgsl/index.bs">https://github.com/Jiawei-Shao/gpuweb/blob/99d5c9526cc62d24fda0f4cee766070e97fdf399/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -5880,7 +5880,7 @@ The enumeration types exist, but cannot be spelled in WGSL source.</p>
   
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-rgba16uint" id="ref-for-texel-format-rgba16uint">rgba16uint</a>
-      <td rowspan="7">
+      <td rowspan="3">
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-rgba16sint" id="ref-for-texel-format-rgba16sint">rgba16sint</a>
   
@@ -5889,36 +5889,43 @@ The enumeration types exist, but cannot be spelled in WGSL source.</p>
   
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-rg8unorm" id="ref-for-texel-format-rg8unorm">rg8unorm</a>
-  
-     <tr>
-      <td><a data-link-type="dfn" href="#texel-format-rg8snorm" id="ref-for-texel-format-rg8snorm">rg8snorm</a>
-  
-     <tr>
-      <td><a data-link-type="dfn" href="#texel-format-rg8uint" id="ref-for-texel-format-rg8uint">rg8uint</a>
-  
-     <tr>
-      <td><a data-link-type="dfn" href="#texel-format-rg8sint" id="ref-for-texel-format-rg8sint">rg8sint</a>
-  
-     <tr>
-      <td><a data-link-type="dfn" href="#texel-format-rg16unorm" id="ref-for-texel-format-rg16unorm①">rg16unorm</a>
       <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1③">texture_formats_tier1</a>
   
      <tr>
-      <td><a data-link-type="dfn" href="#texel-format-rg16snorm" id="ref-for-texel-format-rg16snorm①">rg16snorm</a>
+      <td><a data-link-type="dfn" href="#texel-format-rg8snorm" id="ref-for-texel-format-rg8snorm">rg8snorm</a>
       <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1④">texture_formats_tier1</a>
   
      <tr>
+      <td><a data-link-type="dfn" href="#texel-format-rg8uint" id="ref-for-texel-format-rg8uint">rg8uint</a>
+      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1⑤">texture_formats_tier1</a>
+  
+     <tr>
+      <td><a data-link-type="dfn" href="#texel-format-rg8sint" id="ref-for-texel-format-rg8sint">rg8sint</a>
+      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1⑥">texture_formats_tier1</a>
+  
+     <tr>
+      <td><a data-link-type="dfn" href="#texel-format-rg16unorm" id="ref-for-texel-format-rg16unorm①">rg16unorm</a>
+      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1⑦">texture_formats_tier1</a>
+  
+     <tr>
+      <td><a data-link-type="dfn" href="#texel-format-rg16snorm" id="ref-for-texel-format-rg16snorm①">rg16snorm</a>
+      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1⑧">texture_formats_tier1</a>
+  
+     <tr>
       <td><a data-link-type="dfn" href="#texel-format-rg16uint" id="ref-for-texel-format-rg16uint">rg16uint</a>
-      <td rowspan="17">
+      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1⑨">texture_formats_tier1</a>
+  
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-rg16sint" id="ref-for-texel-format-rg16sint">rg16sint</a>
+      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1①⓪">texture_formats_tier1</a>
   
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-rg16float" id="ref-for-texel-format-rg16float">rg16float</a>
+      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1①①">texture_formats_tier1</a>
   
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-r32uint" id="ref-for-texel-format-r32uint">r32uint</a>
-  
+      <td rowspan="10">
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-r32sint" id="ref-for-texel-format-r32sint">r32sint</a>
   
@@ -5948,41 +5955,51 @@ The enumeration types exist, but cannot be spelled in WGSL source.</p>
   
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-r8unorm" id="ref-for-texel-format-r8unorm">r8unorm</a>
+      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1①②">texture_formats_tier1</a>
   
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-r8snorm" id="ref-for-texel-format-r8snorm">r8snorm</a>
+      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1①③">texture_formats_tier1</a>
   
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-r8uint" id="ref-for-texel-format-r8uint">r8uint</a>
+      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1①④">texture_formats_tier1</a>
   
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-r8sint" id="ref-for-texel-format-r8sint">r8sint</a>
+      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1①⑤">texture_formats_tier1</a>
   
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-r16unorm" id="ref-for-texel-format-r16unorm①">r16unorm</a>
-      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1⑤">texture_formats_tier1</a>
+      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1①⑥">texture_formats_tier1</a>
   
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-r16snorm" id="ref-for-texel-format-r16snorm①">r16snorm</a>
-      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1⑥">texture_formats_tier1</a>
+      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1①⑦">texture_formats_tier1</a>
   
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-r16uint" id="ref-for-texel-format-r16uint">r16uint</a>
-      <td rowspan="6">
+      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1①⑧">texture_formats_tier1</a>
+  
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-r16sint" id="ref-for-texel-format-r16sint">r16sint</a>
+      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1①⑨">texture_formats_tier1</a>
   
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-r16float" id="ref-for-texel-format-r16float">r16float</a>
+      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1②⓪">texture_formats_tier1</a>
   
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-rgb10a2unorm" id="ref-for-texel-format-rgb10a2unorm">rgb10a2unorm</a>
+      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1②①">texture_formats_tier1</a>
   
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-rgb10a2uint" id="ref-for-texel-format-rgb10a2uint">rgb10a2uint</a>
+      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1②②">texture_formats_tier1</a>
   
      <tr>
       <td><a data-link-type="dfn" href="#texel-format-rg11b10ufloat" id="ref-for-texel-format-rg11b10ufloat">rg11b10ufloat</a>
+      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1②③">texture_formats_tier1</a>
 
    </table>
    <h3 class="heading settled" data-level="6.4" id="memory-views"><span class="secno">6.4. </span><span class="content">Memory Views</span><a class="self-link" href="#memory-views"></a></h3>
@@ -7191,14 +7208,14 @@ and shader value components for missing channels are ignored.</p>
       <td>16unorm
       <td>r, g, b, a
       <td>vec4&lt;f32>(CTF(r), CTF(g), CTF(b), CTF(a))
-      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1⑦">texture_formats_tier1</a>
+      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1②④">texture_formats_tier1</a>
   
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-for="texel format" data-dfn-type="dfn" data-noexport id="texel-format-rgba16snorm">rgba16snorm</dfn>
       <td>16snorm
       <td>r, g, b, a
       <td>vec4&lt;f32>(CTF(r), CTF(g), CTF(b), CTF(a))
-      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1⑧">texture_formats_tier1</a>
+      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1②⑤">texture_formats_tier1</a>
   
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-for="texel format" data-dfn-type="dfn" data-noexport id="texel-format-rgba16uint">rgba16uint</dfn>
@@ -7247,14 +7264,14 @@ and shader value components for missing channels are ignored.</p>
       <td>16unorm
       <td>r, g
       <td>vec4&lt;f32>(CTF(r), CTF(g), 0.0, 1.0)
-      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1⑨">texture_formats_tier1</a>
+      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1②⑥">texture_formats_tier1</a>
   
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-for="texel format" data-dfn-type="dfn" data-noexport id="texel-format-rg16snorm">rg16snorm</dfn>
       <td>16snorm
       <td>r, g
       <td>vec4&lt;f32>(CTF(r), CTF(g), 0.0, 1.0)
-      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1①⓪">texture_formats_tier1</a>
+      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1②⑦">texture_formats_tier1</a>
   
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-for="texel format" data-dfn-type="dfn" data-noexport id="texel-format-rg16uint">rg16uint</dfn>
@@ -7363,14 +7380,14 @@ and shader value components for missing channels are ignored.</p>
       <td>16unorm
       <td>r
       <td>vec4&lt;f32>(CTF(r), 0.0, 0.0, 1.0)
-      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1①①">texture_formats_tier1</a>
+      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1②⑧">texture_formats_tier1</a>
   
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-for="texel format" data-dfn-type="dfn" data-noexport id="texel-format-r16snorm">r16snorm</dfn>
       <td>16snorm
       <td>r
       <td>vec4&lt;f32>(CTF(r), 0.0, 0.0, 1.0)
-      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1①②">texture_formats_tier1</a>
+      <td><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1②⑨">texture_formats_tier1</a>
   
      <tr>
       <td><dfn class="dfn-paneled" data-dfn-for="texel format" data-dfn-type="dfn" data-noexport id="texel-format-r16uint">r16uint</dfn>
@@ -29991,7 +30008,7 @@ let dfnPanelData = {
 "language_extension-subgroup_id": {"dfnID":"language_extension-subgroup_id","dfnText":"subgroup_id","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-subgroup_id"}],"title":"3.8.5. Extension Names"},{"refs":[{"id":"ref-for-language_extension-subgroup_id\u2460"},{"id":"ref-for-language_extension-subgroup_id\u2461"}],"title":"13.3.1.1. Built-in Inputs and Outputs"},{"refs":[{"id":"ref-for-language_extension-subgroup_id\u2462"}],"title":"15.5. Subgroups"}],"url":"#language_extension-subgroup_id"},
 "language_extension-subgroup_uniformity": {"dfnID":"language_extension-subgroup_uniformity","dfnText":"subgroup_uniformity","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-subgroup_uniformity"}],"title":"3.8.5. Extension Names"},{"refs":[{"id":"ref-for-language_extension-subgroup_uniformity\u2460"}],"title":"15.2.1. Terminology and Concepts"},{"refs":[{"id":"ref-for-language_extension-subgroup_uniformity\u2461"}],"title":"15.2.2. Uniformity Analysis Overview"},{"refs":[{"id":"ref-for-language_extension-subgroup_uniformity\u2462"},{"id":"ref-for-language_extension-subgroup_uniformity\u2463"},{"id":"ref-for-language_extension-subgroup_uniformity\u2464"},{"id":"ref-for-language_extension-subgroup_uniformity\u2465"},{"id":"ref-for-language_extension-subgroup_uniformity\u2466"},{"id":"ref-for-language_extension-subgroup_uniformity\u2467"}],"title":"15.2.7. Uniformity Rules for Function Calls"}],"url":"#language_extension-subgroup_uniformity"},
 "language_extension-texture_and_sampler_let": {"dfnID":"language_extension-texture_and_sampler_let","dfnText":"texture_and_sampler_let","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-texture_and_sampler_let"}],"title":"3.8.5. Extension Names"},{"refs":[{"id":"ref-for-language_extension-texture_and_sampler_let\u2460"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-language_extension-texture_and_sampler_let\u2461"}],"title":"7.2.3. let Declarations"}],"url":"#language_extension-texture_and_sampler_let"},
-"language_extension-texture_formats_tier1": {"dfnID":"language_extension-texture_formats_tier1","dfnText":"texture_formats_tier1","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-texture_formats_tier1"}],"title":"3.8.5. Extension Names"},{"refs":[{"id":"ref-for-language_extension-texture_formats_tier1\u2460"},{"id":"ref-for-language_extension-texture_formats_tier1\u2461"},{"id":"ref-for-language_extension-texture_formats_tier1\u2462"},{"id":"ref-for-language_extension-texture_formats_tier1\u2463"},{"id":"ref-for-language_extension-texture_formats_tier1\u2464"},{"id":"ref-for-language_extension-texture_formats_tier1\u2465"}],"title":"6.3.1. Predeclared enumerants"},{"refs":[{"id":"ref-for-language_extension-texture_formats_tier1\u2466"},{"id":"ref-for-language_extension-texture_formats_tier1\u2467"},{"id":"ref-for-language_extension-texture_formats_tier1\u2468"},{"id":"ref-for-language_extension-texture_formats_tier1\u2460\u24ea"},{"id":"ref-for-language_extension-texture_formats_tier1\u2460\u2460"},{"id":"ref-for-language_extension-texture_formats_tier1\u2460\u2461"}],"title":"6.5.1. Texel Formats"}],"url":"#language_extension-texture_formats_tier1"},
+"language_extension-texture_formats_tier1": {"dfnID":"language_extension-texture_formats_tier1","dfnText":"texture_formats_tier1","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-texture_formats_tier1"}],"title":"3.8.5. Extension Names"},{"refs":[{"id":"ref-for-language_extension-texture_formats_tier1\u2460"},{"id":"ref-for-language_extension-texture_formats_tier1\u2461"},{"id":"ref-for-language_extension-texture_formats_tier1\u2462"},{"id":"ref-for-language_extension-texture_formats_tier1\u2463"},{"id":"ref-for-language_extension-texture_formats_tier1\u2464"},{"id":"ref-for-language_extension-texture_formats_tier1\u2465"},{"id":"ref-for-language_extension-texture_formats_tier1\u2466"},{"id":"ref-for-language_extension-texture_formats_tier1\u2467"},{"id":"ref-for-language_extension-texture_formats_tier1\u2468"},{"id":"ref-for-language_extension-texture_formats_tier1\u2460\u24ea"},{"id":"ref-for-language_extension-texture_formats_tier1\u2460\u2460"},{"id":"ref-for-language_extension-texture_formats_tier1\u2460\u2461"},{"id":"ref-for-language_extension-texture_formats_tier1\u2460\u2462"},{"id":"ref-for-language_extension-texture_formats_tier1\u2460\u2463"},{"id":"ref-for-language_extension-texture_formats_tier1\u2460\u2464"},{"id":"ref-for-language_extension-texture_formats_tier1\u2460\u2465"},{"id":"ref-for-language_extension-texture_formats_tier1\u2460\u2466"},{"id":"ref-for-language_extension-texture_formats_tier1\u2460\u2467"},{"id":"ref-for-language_extension-texture_formats_tier1\u2460\u2468"},{"id":"ref-for-language_extension-texture_formats_tier1\u2461\u24ea"},{"id":"ref-for-language_extension-texture_formats_tier1\u2461\u2460"},{"id":"ref-for-language_extension-texture_formats_tier1\u2461\u2461"},{"id":"ref-for-language_extension-texture_formats_tier1\u2461\u2462"}],"title":"6.3.1. Predeclared enumerants"},{"refs":[{"id":"ref-for-language_extension-texture_formats_tier1\u2461\u2463"},{"id":"ref-for-language_extension-texture_formats_tier1\u2461\u2464"},{"id":"ref-for-language_extension-texture_formats_tier1\u2461\u2465"},{"id":"ref-for-language_extension-texture_formats_tier1\u2461\u2466"},{"id":"ref-for-language_extension-texture_formats_tier1\u2461\u2467"},{"id":"ref-for-language_extension-texture_formats_tier1\u2461\u2468"}],"title":"6.5.1. Texel Formats"}],"url":"#language_extension-texture_formats_tier1"},
 "language_extension-uniform_buffer_standard_layout": {"dfnID":"language_extension-uniform_buffer_standard_layout","dfnText":"uniform_buffer_standard_layout","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-uniform_buffer_standard_layout"}],"title":"3.8.5. Extension Names"},{"refs":[{"id":"ref-for-language_extension-uniform_buffer_standard_layout\u2460"},{"id":"ref-for-language_extension-uniform_buffer_standard_layout\u2461"},{"id":"ref-for-language_extension-uniform_buffer_standard_layout\u2462"}],"title":"14.4.5. Address Space Layout Constraints"}],"url":"#language_extension-uniform_buffer_standard_layout"},
 "language_extension-unrestricted_pointer_parameters": {"dfnID":"language_extension-unrestricted_pointer_parameters","dfnText":"unrestricted_pointer_parameters","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-unrestricted_pointer_parameters"}],"title":"3.8.5. Extension Names"}],"url":"#language_extension-unrestricted_pointer_parameters"},
 "layout-attributes": {"dfnID":"layout-attributes","dfnText":"layout attributes","external":false,"refSections":[{"refs":[{"id":"ref-for-layout-attributes"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-layout-attributes\u2460"}],"title":"6.4.2. Host-shareable Types"}],"url":"#layout-attributes"},
