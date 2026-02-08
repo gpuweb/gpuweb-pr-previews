@@ -837,7 +837,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/0c225ce633a712814cf218bf9ae68b1774a6f6df/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/0c225ce633a712814cf218bf9ae68b1774a6f6df/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/d5d210395db4372be898f5741b6014157699bb0b/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/d5d210395db4372be898f5741b6014157699bb0b/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -3282,7 +3282,7 @@ The token must not be a <a data-link-type="dfn" href="#keyword" id="ref-for-keyw
     <li data-md>
      <p><a data-link-type="dfn" href="#language_extension-texture_formats_tier1" id="ref-for-language_extension-texture_formats_tier1"><code>'texture_formats_tier1'</code></a></p>
     <li data-md>
-     <p><a data-link-type="dfn" href="#language_extension-linear_indexes" id="ref-for-language_extension-linear_indexes"><code>'linear_indexes'</code></a></p>
+     <p><a data-link-type="dfn" href="#language_extension-linear_indexing" id="ref-for-language_extension-linear_indexing"><code>'linear_indexing'</code></a></p>
    </ul>
    <h4 class="heading settled" data-level="3.8.6" id="interpolation-type-names"><span class="secno">3.8.6. </span><span class="content">Interpolation Type Names</span><a class="self-link" href="#interpolation-type-names"></a></h4>
    <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="interpolation-type-name-token">interpolation type name-token</dfn> is a <a data-link-type="dfn" href="#token" id="ref-for-token⑧">token</a> used in the name of an <a data-link-type="dfn" href="#interpolation-type" id="ref-for-interpolation-type">interpolation type</a>
@@ -4032,7 +4032,7 @@ Extension names are not <a data-link-type="dfn" href="#identifier" id="ref-for-i
       <a data-link-type="dfn" href="#texel-format-rgb10a2uint" id="ref-for-texel-format-rgb10a2uint">rgb10a2uint</a>, <a data-link-type="dfn" href="#texel-format-rg11b10ufloat" id="ref-for-texel-format-rg11b10ufloat">rg11b10ufloat</a>
   
      <tr>
-      <td><dfn class="dfn-paneled" data-dfn-for="language_extension" data-dfn-type="dfn" data-noexport id="language_extension-linear_indexes">linear_indexes</dfn>
+      <td><dfn class="dfn-paneled" data-dfn-for="language_extension" data-dfn-type="dfn" data-noexport id="language_extension-linear_indexing">linear_indexing</dfn>
       
       <td>
       Supports the <a data-link-type="dfn" href="#built-in-values-global_invocation_index" id="ref-for-built-in-values-global_invocation_index①">global_invocation_index</a> and
@@ -14066,7 +14066,7 @@ Each is described in detail in subsequent sections.</p>
       
       <td>u32
       
-      <td><a data-link-type="dfn" href="#language_extension-linear_indexes" id="ref-for-language_extension-linear_indexes①">linear_indexes</a>
+      <td><a data-link-type="dfn" href="#language_extension-linear_indexing" id="ref-for-language_extension-linear_indexing①">linear_indexing</a>
 
   
      <tr>
@@ -14088,7 +14088,7 @@ Each is described in detail in subsequent sections.</p>
       
       <td>u32
       
-      <td><a data-link-type="dfn" href="#language_extension-linear_indexes" id="ref-for-language_extension-linear_indexes②">linear_indexes</a>
+      <td><a data-link-type="dfn" href="#language_extension-linear_indexing" id="ref-for-language_extension-linear_indexing②">linear_indexing</a>
 
   
      <tr>
@@ -18545,13 +18545,13 @@ a single workgroup, identified by <dfn class="dfn-paneled" data-dfn-type="dfn" d
      <em>CSj</em> mod workgroup_size_y ,
      <em>CSk</em> mod workgroup_size_z ).</p>
    <p class="note" role="note"><span class="marker">Note:</span> Workgroup IDs span from (0,0,0) to (<a data-link-type="dfn" href="#group_count_x" id="ref-for-group_count_x①">group_count_x</a> - 1, <a data-link-type="dfn" href="#group_count_y" id="ref-for-group_count_y①">group_count_y</a> - 1, <a data-link-type="dfn" href="#group_count_z" id="ref-for-group_count_z①">group_count_z</a> - 1).</p>
-   <p>If the <a data-link-type="dfn" href="#language_extension-linear_indexes" id="ref-for-language_extension-linear_indexes③">linear_indexes</a> feature is supported, then when a
+   <p>If the <a data-link-type="dfn" href="#language_extension-linear_indexing" id="ref-for-language_extension-linear_indexing③">linear_indexing</a> feature is supported, then when a
 workgroup has a <a data-link-type="dfn" href="#workgroup-id" id="ref-for-workgroup-id①">workgroup ID</a> (<em>WGi</em>, <em>WGj</em>, <em>WGk</em>), then its
 <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="workgroup-index">workgroup index</dfn> is:</p>
    <p><em>WGi</em> +
   ( <em>WGj</em> × group_count_x ) +
   ( <em>WGk</em> × group_count_x × group_count_y )</p>
-   <p>If the <a data-link-type="dfn" href="#language_extension-linear_indexes" id="ref-for-language_extension-linear_indexes④">linear_indexes</a> feature is supported, then when an
+   <p>If the <a data-link-type="dfn" href="#language_extension-linear_indexing" id="ref-for-language_extension-linear_indexing④">linear_indexing</a> feature is supported, then when an
 invocation has <a data-link-type="dfn" href="#local-invocation-index" id="ref-for-local-invocation-index①">local invocation index</a>, then its
 <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="global-invocation-index">global invocation index</dfn> is:</p>
    <p>local_invocation_index +
@@ -28852,7 +28852,7 @@ registrations, it matches widespread industry conventions.</p>
    <li><a href="#lhsvalue">LHSValue</a><span>, in § 15.2.6</span>
    <li><a href="#lifetime">lifetime</a><span>, in § 7.3</span>
    <li><a href="#interpolation-type-linear">linear</a><span>, in § 13.3.1.4</span>
-   <li><a href="#language_extension-linear_indexes">linear_indexes</a><span>, in § 4.1.2</span>
+   <li><a href="#language_extension-linear_indexing">linear_indexing</a><span>, in § 4.1.2</span>
    <li><a href="#line-break">line break</a><span>, in § 3.2</span>
    <li><a href="#line-ending-comment">line-ending comment</a><span>, in § 3.3</span>
    <li>
@@ -30164,7 +30164,7 @@ let dfnPanelData = {
 "iteration": {"dfnID":"iteration","dfnText":"iteration","external":false,"refSections":[{"refs":[{"id":"ref-for-iteration"}],"title":"9.4.3. Loop Statement"},{"refs":[{"id":"ref-for-iteration\u2460"},{"id":"ref-for-iteration\u2461"},{"id":"ref-for-iteration\u2462"}],"title":"9.4.4. For Statement"},{"refs":[{"id":"ref-for-iteration\u2463"},{"id":"ref-for-iteration\u2464"}],"title":"9.4.5. While Statement"},{"refs":[{"id":"ref-for-iteration\u2465"}],"title":"9.4.8. Continue Statement"},{"refs":[{"id":"ref-for-iteration\u2466"}],"title":"9.4.9. Continuing Statement"},{"refs":[{"id":"ref-for-iteration\u2467"}],"title":"15.2.6. Uniformity Rules for Statements"}],"url":"#iteration"},
 "keyword": {"dfnID":"keyword","dfnText":"keyword","external":false,"refSections":[{"refs":[{"id":"ref-for-keyword"}],"title":"3.4. Tokens"},{"refs":[{"id":"ref-for-keyword\u2460"}],"title":"3.7. Identifiers"},{"refs":[{"id":"ref-for-keyword\u2461"}],"title":"3.8. Context-Dependent Names"}],"url":"#keyword"},
 "language-extension": {"dfnID":"language-extension","dfnText":"language extension","external":false,"refSections":[{"refs":[{"id":"ref-for-language-extension"},{"id":"ref-for-language-extension\u2460"}],"title":"3.8.5. Extension Names"},{"refs":[{"id":"ref-for-language-extension\u2461"}],"title":"4.1. Extensions"},{"refs":[{"id":"ref-for-language-extension\u2462"},{"id":"ref-for-language-extension\u2463"},{"id":"ref-for-language-extension\u2464"},{"id":"ref-for-language-extension\u2465"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-language-extension\u2466"}],"title":"6.3.1. Predeclared enumerants"},{"refs":[{"id":"ref-for-language-extension\u2467"}],"title":"6.5.1. Texel Formats"}],"url":"#language-extension"},
-"language_extension-linear_indexes": {"dfnID":"language_extension-linear_indexes","dfnText":"linear_indexes","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-linear_indexes"}],"title":"3.8.5. Extension Names"},{"refs":[{"id":"ref-for-language_extension-linear_indexes\u2460"},{"id":"ref-for-language_extension-linear_indexes\u2461"}],"title":"13.3.1.1. Built-in Inputs and Outputs"},{"refs":[{"id":"ref-for-language_extension-linear_indexes\u2462"},{"id":"ref-for-language_extension-linear_indexes\u2463"}],"title":"15.3. Compute Shaders and Workgroups"}],"url":"#language_extension-linear_indexes"},
+"language_extension-linear_indexing": {"dfnID":"language_extension-linear_indexing","dfnText":"linear_indexing","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-linear_indexing"}],"title":"3.8.5. Extension Names"},{"refs":[{"id":"ref-for-language_extension-linear_indexing\u2460"},{"id":"ref-for-language_extension-linear_indexing\u2461"}],"title":"13.3.1.1. Built-in Inputs and Outputs"},{"refs":[{"id":"ref-for-language_extension-linear_indexing\u2462"},{"id":"ref-for-language_extension-linear_indexing\u2463"}],"title":"15.3. Compute Shaders and Workgroups"}],"url":"#language_extension-linear_indexing"},
 "language_extension-packed_4x8_integer_dot_product": {"dfnID":"language_extension-packed_4x8_integer_dot_product","dfnText":"packed_4x8_integer_dot_product","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-packed_4x8_integer_dot_product"}],"title":"3.8.5. Extension Names"}],"url":"#language_extension-packed_4x8_integer_dot_product"},
 "language_extension-pointer_composite_access": {"dfnID":"language_extension-pointer_composite_access","dfnText":"pointer_composite_access","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-pointer_composite_access"}],"title":"3.8.5. Extension Names"}],"url":"#language_extension-pointer_composite_access"},
 "language_extension-readonly_and_readwrite_storage_textures": {"dfnID":"language_extension-readonly_and_readwrite_storage_textures","dfnText":"readonly_and_readwrite_storage_textures","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-readonly_and_readwrite_storage_textures"}],"title":"3.8.5. Extension Names"}],"url":"#language_extension-readonly_and_readwrite_storage_textures"},
@@ -31397,7 +31397,7 @@ let refsData = {
 "#iteration": {"displayText":"iteration","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"iteration","type":"dfn","url":"#iteration"},
 "#keyword": {"displayText":"keyword","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"keyword","type":"dfn","url":"#keyword"},
 "#language-extension": {"displayText":"language extension","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"language extension","type":"dfn","url":"#language-extension"},
-"#language_extension-linear_indexes": {"displayText":"linear_indexes","export":true,"for_":["language_extension"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"linear_indexes","type":"dfn","url":"#language_extension-linear_indexes"},
+"#language_extension-linear_indexing": {"displayText":"linear_indexing","export":true,"for_":["language_extension"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"linear_indexing","type":"dfn","url":"#language_extension-linear_indexing"},
 "#language_extension-packed_4x8_integer_dot_product": {"displayText":"packed_4x8_integer_dot_product","export":true,"for_":["language_extension"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"packed_4x8_integer_dot_product","type":"dfn","url":"#language_extension-packed_4x8_integer_dot_product"},
 "#language_extension-pointer_composite_access": {"displayText":"pointer_composite_access","export":true,"for_":["language_extension"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"pointer_composite_access","type":"dfn","url":"#language_extension-pointer_composite_access"},
 "#language_extension-readonly_and_readwrite_storage_textures": {"displayText":"readonly_and_readwrite_storage_textures","export":true,"for_":["language_extension"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"readonly_and_readwrite_storage_textures","type":"dfn","url":"#language_extension-readonly_and_readwrite_storage_textures"},
