@@ -831,13 +831,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
 </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
-    <time class="dt-updated" datetime="2026-02-26">26 February 2026</time></p>
+    <time class="dt-updated" datetime="2026-02-27">27 February 2026</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/9a0cd0e3ffb68e7e1913a354d12b935c2f11ef42/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/9a0cd0e3ffb68e7e1913a354d12b935c2f11ef42/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/608924495fd285ff17edcae1d9aaafb8b957a854/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/608924495fd285ff17edcae1d9aaafb8b957a854/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -6253,7 +6253,7 @@ Using <a href="#vector-single-component">indexing syntax</a>:
     </blockquote>
     <blockquote class="algorithm" data-algorithm="writing via a swizzle view">
      <p><strong>Algorithm:</strong> <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="swizzle view write" data-noexport id="swizzle-view-write">SwizzleViewWrite</dfn>(<var>p</var>, <var>IndexSeq</var>, <var>old_contents</var>, <var>update</var>)</p>
-     <p>Write components of an <var>update</var> vector into specified components the vector in memory referenced by pointer <var>p</var>.</p>
+     <p>Write components of an <var>update</var> vector into specified components of the vector in memory referenced by pointer <var>p</var>.</p>
      <p class="note" role="note"><span class="marker">Note:</span> Writing via a swizzle view writes the entire vector in memory,
 even if component values are unchanged by the process.</p>
      <p><strong>Input</strong>:</p>
@@ -12234,7 +12234,7 @@ this must occur before the evaluation of <var>e2</var>.</p>
 
     </table>
     <p class="note" role="note"><span class="marker">Note:</span> The syntax does not allow a <a data-link-type="dfn" href="#compound-assignment" id="ref-for-compound-assignment">compound assignment</a> to also be a <a data-link-type="dfn" href="#phony-assignment" id="ref-for-phony-assignment">phony assignment</a>.</p>
-    <p class="note" role="note"><span class="marker">Note:</span> Even though the reference <var>e1</var> is evaluated once, its underlying memory is accessed twice:
+    <p class="note" role="note"><span class="marker">Note:</span> When <var>e1</var> is a <a data-link-type="dfn" href="#reference-type" id="ref-for-reference-type①④">reference</a>, it is evaluated once, but its underlying memory is accessed twice:
 first a <a data-link-type="dfn" href="#read-access" id="ref-for-read-access⑦">read access</a> gets the old value, and then a <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑥">write access</a> stores the updated value.</p>
     <div class="example wgsl global-scope no-marker" id="example-2d1abb49">
      <a class="self-link" href="#example-2d1abb49"></a>
@@ -12261,6 +12261,25 @@ first a <a data-link-type="dfn" href="#read-access" id="ref-for-read-access⑦">
   <c- c1>// 'value' now holds 5.</c->
 <c- p>}</c->
 </pre>
+    </div>
+    <div class="note" role="note">
+     <span class="marker">Note:</span>
+When <var>e1</var> is a <a data-link-type="dfn" href="#swizzle-view" id="ref-for-swizzle-view④⑤">swizzle view</a>, then as specified, <var>e1</var>
+is evaluated once to compute its corresponding pointer, but its underlying memory
+is accessed three times:
+
+     <ul>
+      <li data-md>
+       <p>A first <a data-link-type="dfn" href="#read-access" id="ref-for-read-access⑧">read access</a> gets the old vector, to get the components used in the binary operator expression.</p>
+      <li data-md>
+       <p>A second <a data-link-type="dfn" href="#read-access" id="ref-for-read-access⑨">read access</a> gets the vector after evaluation of <var>e2</var>.
+The evaluation of <var>e2</var> may modify vector components that will <em>not</em> be affected by the final swizzle write.
+This read gets those components so they can be preserved.</p>
+      <li data-md>
+       <p>Finally, a <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑦">write access</a> stores the updated vector.
+This may consist of updated components taken from the result of the binary operation, and preserved components
+taken from the second read.</p>
+     </ul>
     </div>
     <div class="example wgsl no-marker" id="example-d6c95bb4">
      <a class="self-link" href="#example-d6c95bb4"></a>
@@ -12310,7 +12329,7 @@ first a <a data-link-type="dfn" href="#read-access" id="ref-for-read-access⑦">
     </div>
     <div class="note" role="note">
      <span class="marker">Note:</span>
-A compound assignment to a <a data-link-type="dfn" href="#reference-type" id="ref-for-reference-type①④">reference</a>
+A compound assignment to a <a data-link-type="dfn" href="#reference-type" id="ref-for-reference-type①⑤">reference</a>
 can be rewritten as different WGSL code that uses a <a data-link-type="dfn" href="#simple-assignment" id="ref-for-simple-assignment①">simple assignment</a> instead.
 The idea is to use a pointer to hold the result of evaluating the reference once.
 
@@ -13961,12 +13980,12 @@ of declarations.</p>
     <p><a data-link-type="dfn" href="#memory-locations" id="ref-for-memory-locations①④">Memory locations</a> can be accessed during the execution of a function using <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view②⑧">memory views</a>.
 Within a function, each <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view②⑨">memory view</a> has a particular <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="root-identifier">root identifier</dfn>, which names
 the variable or formal parameter that first provides access to that memory in that function.
-Similarly, the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier②">root identifier</a> of a <a data-link-type="dfn" href="#swizzle-view" id="ref-for-swizzle-view④⑤">swizzle view</a> is the root identifier for the swizzle view’s pointer.</p>
-    <p>Locally derived expressions of <a data-link-type="dfn" href="#reference-type" id="ref-for-reference-type①⑤">reference</a> or
+Similarly, the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier②">root identifier</a> of a <a data-link-type="dfn" href="#swizzle-view" id="ref-for-swizzle-view④⑥">swizzle view</a> is the root identifier for the swizzle view’s pointer.</p>
+    <p>Locally derived expressions of <a data-link-type="dfn" href="#reference-type" id="ref-for-reference-type①⑥">reference</a> or
 <a data-link-type="dfn" href="#pointer-type" id="ref-for-pointer-type⑤">pointer</a> type may introduce new names for a particular root identifier,
 but each expression has a statically determinable root identifier.</p>
     <p class="algorithm" data-algorithm="finding a root identifier">
-Given an expression <var>E</var> of <a data-link-type="dfn" href="#pointer-type" id="ref-for-pointer-type⑥">pointer</a> or <a data-link-type="dfn" href="#reference-type" id="ref-for-reference-type①⑥">reference type</a>, the
+Given an expression <var>E</var> of <a data-link-type="dfn" href="#pointer-type" id="ref-for-pointer-type⑥">pointer</a> or <a data-link-type="dfn" href="#reference-type" id="ref-for-reference-type①⑦">reference type</a>, the
 <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier③">root identifier</a> is the <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable①⑧">originating variable</a> or <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter①③">formal parameter</a> of <a data-link-type="dfn" href="#pointer-type" id="ref-for-pointer-type⑦">pointer type</a>
 found as follows:
 </p>
@@ -13999,15 +14018,15 @@ upwards (i.e. topological order).
 For each function the analysis records the following sets:</p>
     <ul>
      <li data-md>
-      <p><a data-link-type="dfn" href="#module-scope" id="ref-for-module-scope②⑦">Module-scope</a> variables that are <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑦">written</a>.
+      <p><a data-link-type="dfn" href="#module-scope" id="ref-for-module-scope②⑦">Module-scope</a> variables that are <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑧">written</a>.
 This includes any module-scope variables that are written in functions called from this function.</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="#module-scope" id="ref-for-module-scope②⑧">Module-scope</a> variables that are <a data-link-type="dfn" href="#read-access" id="ref-for-read-access⑧">read</a>.
+      <p><a data-link-type="dfn" href="#module-scope" id="ref-for-module-scope②⑧">Module-scope</a> variables that are <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①⓪">read</a>.
 This includes any module-scope variables that are read in functions called from this function.</p>
      <li data-md>
-      <p>Pointer parameters used as root identifiers of memory views that are <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑧">written</a> in this function or in called functions.</p>
+      <p>Pointer parameters used as root identifiers of memory views that are <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑨">written</a> in this function or in called functions.</p>
      <li data-md>
-      <p>Pointer parameters used as root identifiers of memory views that are <a data-link-type="dfn" href="#read-access" id="ref-for-read-access⑨">read</a> in this function or in called functions.</p>
+      <p>Pointer parameters used as root identifiers of memory views that are <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①①">read</a> in this function or in called functions.</p>
     </ul>
     <p>At each <a data-link-type="dfn" href="#call-site" id="ref-for-call-site⑧">call site</a> of a function, it is a <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①⑧⑦">shader-creation error</a> if any
 of the following occur:</p>
@@ -17248,11 +17267,11 @@ Vulkan Memory Model.</p>
     <p class="note" role="note"><span class="marker">Note:</span> The Vulkan Memory Model is a textual version of a <a href="https://github.com/KhronosGroup/Vulkan-MemoryModel/blob/master/alloy/spirv.als">formal Alloy
 model</a>.</p>
     <h4 class="heading settled" data-level="14.5.1" id="memory-operation"><span class="secno">14.5.1. </span><span class="content">Memory Operation</span><a class="self-link" href="#memory-operation"></a></h4>
-    <p>In WGSL, a <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①⓪">read access</a> is equivalent to a memory read operation in
+    <p>In WGSL, a <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①②">read access</a> is equivalent to a memory read operation in
 the Vulkan Memory Model.
-In WGSL, a <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑨">write access</a> is equivalent to a memory write operation in
+In WGSL, a <a data-link-type="dfn" href="#write-access" id="ref-for-write-access①⓪">write access</a> is equivalent to a memory write operation in
 the Vulkan Memory Model.</p>
-    <p>A <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①①">read access</a> occurs when an invocation executes one of the following:</p>
+    <p>A <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①③">read access</a> occurs when an invocation executes one of the following:</p>
     <ul>
      <li data-md>
       <p>An evaluation of the <a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule①①">Load Rule</a></p>
@@ -17279,7 +17298,7 @@ the Vulkan Memory Model.</p>
      <li data-md>
       <p>A <a data-link-type="dfn" href="#compound-assignment" id="ref-for-compound-assignment①">compound assignment</a> statement (for the <a data-link-type="dfn" href="#left-hand-side" id="ref-for-left-hand-side⑥">left-hand side</a> expression)</p>
     </ul>
-    <p>A <a data-link-type="dfn" href="#write-access" id="ref-for-write-access①⓪">write access</a> occurs when an invocation executes one of the following:</p>
+    <p>A <a data-link-type="dfn" href="#write-access" id="ref-for-write-access①①">write access</a> occurs when an invocation executes one of the following:</p>
     <ul>
      <li data-md>
       <p>An <a data-link-type="dfn" href="#statement-assignment" id="ref-for-statement-assignment⑧">assignment</a> statement (<a data-link-type="dfn" href="#simple-assignment" id="ref-for-simple-assignment②">simple</a> or
@@ -17295,7 +17314,7 @@ the Vulkan Memory Model.</p>
       </ul>
     </ul>
     <p><a href="#atomic-rmw">Atomic read-modify-write</a> built-in functions perform a single
-memory operation that is both a <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①②">read access</a> and a <a data-link-type="dfn" href="#write-access" id="ref-for-write-access①①">write access</a>.</p>
+memory operation that is both a <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①④">read access</a> and a <a data-link-type="dfn" href="#write-access" id="ref-for-write-access①②">write access</a>.</p>
     <p>Read and write accesses do not occur under any other circumstances.
 Read and write accesses are collectively known as <a data-link-type="dfn" href="https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#memory-model-memory-operation" id="ref-for-memory-model-memory-operation">memory operations</a> in the Vulkan Memory Model.</p>
     <p>A memory operation accesses exactly the set of <a data-link-type="dfn" href="#memory-locations" id="ref-for-memory-locations①⑧">locations</a>
@@ -17368,21 +17387,21 @@ semantics.</p>
     <p class="note" role="note"><span class="marker">Note:</span> No atomic or synchronization built-in functions use <code>MakeAvailable</code> or
 <code>MakeVisible</code> semantics.</p>
     <h4 class="heading settled" data-level="14.5.5" id="private-vs-non-private"><span class="secno">14.5.5. </span><span class="content">Private vs Non-private</span><a class="self-link" href="#private-vs-non-private"></a></h4>
-    <p>All non-atomic <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①③">read accesses</a> in the <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage①⑦">storage</a> or
+    <p>All non-atomic <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①⑤">read accesses</a> in the <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage①⑦">storage</a> or
 <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup①⑦">workgroup</a> address spaces are considered
 <a data-link-type="dfn" href="https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#memory-model-non-private" id="ref-for-memory-model-non-private">non-private</a> and correspond to read operations with
 <code>NonPrivatePointer | MakePointerVisible</code> memory operands with the <code>Workgroup</code>
 scope.</p>
-    <p>All non-atomic <a data-link-type="dfn" href="#write-access" id="ref-for-write-access①②">write accesses</a> in the <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage①⑧">storage</a> or
+    <p>All non-atomic <a data-link-type="dfn" href="#write-access" id="ref-for-write-access①③">write accesses</a> in the <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage①⑧">storage</a> or
 <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup①⑧">workgroup</a> address spaces are considered
 <a data-link-type="dfn" href="https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#memory-model-non-private" id="ref-for-memory-model-non-private①">non-private</a> and correspond to write operations
 with <code>NonPrivatePointer | MakePointerAvailable</code> memory operands with the
 <code>Workgroup</code> scope.</p>
-    <p>All non-atomic <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①④">read accesses</a> in the the <a data-link-type="dfn" href="#address-spaces-handle" id="ref-for-address-spaces-handle⑤">handle</a> address
+    <p>All non-atomic <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①⑥">read accesses</a> in the the <a data-link-type="dfn" href="#address-spaces-handle" id="ref-for-address-spaces-handle⑤">handle</a> address
 space are considered <a data-link-type="dfn" href="https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#memory-model-non-private" id="ref-for-memory-model-non-private②">non-private</a> and correspond to
 read operations with <code>NonPrivateTexel | MakeTexelVisible</code> memory operands with
 the <code>Workgroup</code> scope.</p>
-    <p>All non-atomic <a data-link-type="dfn" href="#write-access" id="ref-for-write-access①③">write accesses</a> in the <a data-link-type="dfn" href="#address-spaces-handle" id="ref-for-address-spaces-handle⑥">handle</a> address
+    <p>All non-atomic <a data-link-type="dfn" href="#write-access" id="ref-for-write-access①④">write accesses</a> in the <a data-link-type="dfn" href="#address-spaces-handle" id="ref-for-address-spaces-handle⑥">handle</a> address
 space are considered <a data-link-type="dfn" href="https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#memory-model-non-private" id="ref-for-memory-model-non-private③">non-private</a> and correspond to
 write operations with <code>NonPrivateTexel | MakeTexelAvailable</code> memory operands
 with the <code>Workgroup</code> scope.</p>
@@ -17869,7 +17888,7 @@ The initial value assignment produces an edge to <a data-link-type="dfn" href="#
       <ul>
        <li data-md>
         <p>If  <em>SE</em> invokes the <a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule①②">load rule</a> or the <a data-link-type="dfn" href="#swizzle-view-load-rule" id="ref-for-swizzle-view-load-rule③">swizzle view load rule</a> during <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking③">type checking</a>,
-and the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier⑥">root identifier</a> for the <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view③②">memory view</a> or <a data-link-type="dfn" href="#swizzle-view" id="ref-for-swizzle-view④⑥">swizzle view</a>
+and the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier⑥">root identifier</a> for the <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view③②">memory view</a> or <a data-link-type="dfn" href="#swizzle-view" id="ref-for-swizzle-view④⑦">swizzle view</a>
 is a mutable variable then:</p>
         <ul>
          <li data-md>
@@ -17927,7 +17946,7 @@ and, potentially, its initial value.</p>
 <a data-link-type="dfn" href="#components" id="ref-for-components③">component</a> of the composite is assigned a value.</p>
     </ul>
     <p>Otherwise, an assignment is a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="partial-assignment">partial assignment</dfn>.</p>
-    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="full-reference">full reference</dfn> is an expression of <a data-link-type="dfn" href="#reference-type" id="ref-for-reference-type①⑦">reference type</a> that is one of:</p>
+    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="full-reference">full reference</dfn> is an expression of <a data-link-type="dfn" href="#reference-type" id="ref-for-reference-type①⑧">reference type</a> that is one of:</p>
     <ul>
      <li data-md>
       <p>an identifier <em>x</em> that <a data-link-type="dfn" href="#resolves" id="ref-for-resolves③②">resolves</a> to a variable, or</p>
@@ -19483,7 +19502,7 @@ compute <a href="#derivatives">derivatives</a>.
 As such, helper invocations are subject to the following restrictions:</p>
     <ul>
      <li data-md>
-      <p>No <a data-link-type="dfn" href="#write-access" id="ref-for-write-access①④">write accesses</a> (see also <a href="#memory-operation">§ 14.5.1 Memory Operation</a>)
+      <p>No <a data-link-type="dfn" href="#write-access" id="ref-for-write-access①⑤">write accesses</a> (see also <a href="#memory-operation">§ 14.5.1 Memory Operation</a>)
 <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements②⑨">will</a> be performed on the <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage②①">storage</a> or <a data-link-type="dfn" href="#address-spaces-handle" id="ref-for-address-spaces-handle⑦">handle</a> address spaces.</p>
      <li data-md>
       <p><a href="#atomic-builtin-functions">Atomic built-in functions</a> <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements③⓪">will</a>
@@ -31154,7 +31173,7 @@ let dfnPanelData = {
 "quad": {"dfnID":"quad","dfnText":"quad","external":false,"refSections":[{"refs":[{"id":"ref-for-quad"}],"title":"11.2. Function Calls"},{"refs":[{"id":"ref-for-quad\u2460"}],"title":"14.5.3. Scoped Operations"},{"refs":[{"id":"ref-for-quad\u2461"}],"title":"15.5. Subgroups"},{"refs":[{"id":"ref-for-quad\u2462"}],"title":"15.6.2. Derivatives"},{"refs":[{"id":"ref-for-quad\u2463"},{"id":"ref-for-quad\u2464"}],"title":"15.6.4. Quad Operations"},{"refs":[{"id":"ref-for-quad\u2465"}],"title":"17.13. Quad Operations"},{"refs":[{"id":"ref-for-quad\u2466"}],"title":"17.13.2. quadSwapDiagonal"},{"refs":[{"id":"ref-for-quad\u2467"}],"title":"17.13.3. quadSwapX"},{"refs":[{"id":"ref-for-quad\u2468"}],"title":"17.13.4. quadSwapY"}],"url":"#quad"},
 "quad-invocation-id": {"dfnID":"quad-invocation-id","dfnText":"quad invocation ID","external":false,"refSections":[{"refs":[{"id":"ref-for-quad-invocation-id"}],"title":"17.13.1. quadBroadcast"}],"url":"#quad-invocation-id"},
 "range-diagnostic-filter": {"dfnID":"range-diagnostic-filter","dfnText":"range diagnostic filter","external":false,"refSections":[{"refs":[{"id":"ref-for-range-diagnostic-filter"}],"title":"2.3.3. Diagnostic Filtering"},{"refs":[{"id":"ref-for-range-diagnostic-filter\u2460"}],"title":"12.6. diagnostic"}],"url":"#range-diagnostic-filter"},
-"read-access": {"dfnID":"read-access","dfnText":"read access","external":false,"refSections":[{"refs":[{"id":"ref-for-read-access"},{"id":"ref-for-read-access\u2460"}],"title":"6.4.8. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-read-access\u2461"}],"title":"6.5.2. Sampled Texture Types"},{"refs":[{"id":"ref-for-read-access\u2462"},{"id":"ref-for-read-access\u2463"}],"title":"6.5.5. Storage Texture Types"},{"refs":[{"id":"ref-for-read-access\u2464"}],"title":"6.5.6. Depth Texture Types"},{"refs":[{"id":"ref-for-read-access\u2465"}],"title":"7.1. Variables vs Values"},{"refs":[{"id":"ref-for-read-access\u2466"}],"title":"9.2.4. Compound Assignment"},{"refs":[{"id":"ref-for-read-access\u2467"},{"id":"ref-for-read-access\u2468"}],"title":"11.4.1.2. Aliasing"},{"refs":[{"id":"ref-for-read-access\u2460\u24ea"},{"id":"ref-for-read-access\u2460\u2460"},{"id":"ref-for-read-access\u2460\u2461"}],"title":"14.5.1. Memory Operation"},{"refs":[{"id":"ref-for-read-access\u2460\u2462"},{"id":"ref-for-read-access\u2460\u2463"}],"title":"14.5.5. Private vs Non-private"}],"url":"#read-access"},
+"read-access": {"dfnID":"read-access","dfnText":"read access","external":false,"refSections":[{"refs":[{"id":"ref-for-read-access"},{"id":"ref-for-read-access\u2460"}],"title":"6.4.8. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-read-access\u2461"}],"title":"6.5.2. Sampled Texture Types"},{"refs":[{"id":"ref-for-read-access\u2462"},{"id":"ref-for-read-access\u2463"}],"title":"6.5.5. Storage Texture Types"},{"refs":[{"id":"ref-for-read-access\u2464"}],"title":"6.5.6. Depth Texture Types"},{"refs":[{"id":"ref-for-read-access\u2465"}],"title":"7.1. Variables vs Values"},{"refs":[{"id":"ref-for-read-access\u2466"},{"id":"ref-for-read-access\u2467"},{"id":"ref-for-read-access\u2468"}],"title":"9.2.4. Compound Assignment"},{"refs":[{"id":"ref-for-read-access\u2460\u24ea"},{"id":"ref-for-read-access\u2460\u2460"}],"title":"11.4.1.2. Aliasing"},{"refs":[{"id":"ref-for-read-access\u2460\u2461"},{"id":"ref-for-read-access\u2460\u2462"},{"id":"ref-for-read-access\u2460\u2463"}],"title":"14.5.1. Memory Operation"},{"refs":[{"id":"ref-for-read-access\u2460\u2464"},{"id":"ref-for-read-access\u2460\u2465"}],"title":"14.5.5. Private vs Non-private"}],"url":"#read-access"},
 "reassociation": {"dfnID":"reassociation","dfnText":"Reassociation","external":false,"refSections":[{"refs":[{"id":"ref-for-reassociation"}],"title":"15.7.4. Floating Point Accuracy"}],"url":"#reassociation"},
 "recursive-descent-syntax-additive_operator": {"dfnID":"recursive-descent-syntax-additive_operator","dfnText":"additive_operator","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-additive_operator"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-additive_operator"},
 "recursive-descent-syntax-argument_expression_list": {"dfnID":"recursive-descent-syntax-argument_expression_list","dfnText":"argument_expression_list","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-argument_expression_list"},{"id":"ref-for-recursive-descent-syntax-argument_expression_list\u2460"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-argument_expression_list"},
@@ -31213,7 +31232,7 @@ let dfnPanelData = {
 "recursive-descent-syntax-variable_updating_statement": {"dfnID":"recursive-descent-syntax-variable_updating_statement","dfnText":"variable_updating_statement","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-variable_updating_statement"},{"id":"ref-for-recursive-descent-syntax-variable_updating_statement\u2460"},{"id":"ref-for-recursive-descent-syntax-variable_updating_statement\u2461"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-variable_updating_statement"},
 "recursive-descent-syntax-vertex_attr": {"dfnID":"recursive-descent-syntax-vertex_attr","dfnText":"vertex_attr","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-vertex_attr"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-vertex_attr"},
 "recursive-descent-syntax-workgroup_size_attr": {"dfnID":"recursive-descent-syntax-workgroup_size_attr","dfnText":"workgroup_size_attr","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-workgroup_size_attr"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-workgroup_size_attr"},
-"reference-type": {"dfnID":"reference-type","dfnText":"reference type","external":false,"refSections":[{"refs":[{"id":"ref-for-reference-type"}],"title":"6. Types"},{"refs":[{"id":"ref-for-reference-type\u2460"}],"title":"6.4.3. Reference and Pointer Types"},{"refs":[{"id":"ref-for-reference-type\u2461"}],"title":"6.4.5. Valid and Invalid Memory References"},{"refs":[{"id":"ref-for-reference-type\u2462"}],"title":"7.1. Variables vs Values"},{"refs":[{"id":"ref-for-reference-type\u2463"},{"id":"ref-for-reference-type\u2464"},{"id":"ref-for-reference-type\u2465"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-reference-type\u2466"}],"title":"8.5. Composite Value Decomposition Expressions"},{"refs":[{"id":"ref-for-reference-type\u2467"},{"id":"ref-for-reference-type\u2468"}],"title":"8.5.1.2. Vector Multiple Component Selection"},{"refs":[{"id":"ref-for-reference-type\u2460\u24ea"}],"title":"9.2.1. Simple Assignment"},{"refs":[{"id":"ref-for-reference-type\u2460\u2460"},{"id":"ref-for-reference-type\u2460\u2461"},{"id":"ref-for-reference-type\u2460\u2462"},{"id":"ref-for-reference-type\u2460\u2463"}],"title":"9.2.4. Compound Assignment"},{"refs":[{"id":"ref-for-reference-type\u2460\u2464"},{"id":"ref-for-reference-type\u2460\u2465"}],"title":"11.4.1.1. Root Identifier"},{"refs":[{"id":"ref-for-reference-type\u2460\u2466"}],"title":"15.2.5. Function-scope Variable Value Analysis"}],"url":"#reference-type"},
+"reference-type": {"dfnID":"reference-type","dfnText":"reference type","external":false,"refSections":[{"refs":[{"id":"ref-for-reference-type"}],"title":"6. Types"},{"refs":[{"id":"ref-for-reference-type\u2460"}],"title":"6.4.3. Reference and Pointer Types"},{"refs":[{"id":"ref-for-reference-type\u2461"}],"title":"6.4.5. Valid and Invalid Memory References"},{"refs":[{"id":"ref-for-reference-type\u2462"}],"title":"7.1. Variables vs Values"},{"refs":[{"id":"ref-for-reference-type\u2463"},{"id":"ref-for-reference-type\u2464"},{"id":"ref-for-reference-type\u2465"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-reference-type\u2466"}],"title":"8.5. Composite Value Decomposition Expressions"},{"refs":[{"id":"ref-for-reference-type\u2467"},{"id":"ref-for-reference-type\u2468"}],"title":"8.5.1.2. Vector Multiple Component Selection"},{"refs":[{"id":"ref-for-reference-type\u2460\u24ea"}],"title":"9.2.1. Simple Assignment"},{"refs":[{"id":"ref-for-reference-type\u2460\u2460"},{"id":"ref-for-reference-type\u2460\u2461"},{"id":"ref-for-reference-type\u2460\u2462"},{"id":"ref-for-reference-type\u2460\u2463"},{"id":"ref-for-reference-type\u2460\u2464"}],"title":"9.2.4. Compound Assignment"},{"refs":[{"id":"ref-for-reference-type\u2460\u2465"},{"id":"ref-for-reference-type\u2460\u2466"}],"title":"11.4.1.1. Root Identifier"},{"refs":[{"id":"ref-for-reference-type\u2460\u2467"}],"title":"15.2.5. Function-scope Variable Value Analysis"}],"url":"#reference-type"},
 "requiredalignof": {"dfnID":"requiredalignof","dfnText":"RequiredAlignOf","external":false,"refSections":[{"refs":[{"id":"ref-for-requiredalignof"}],"title":"12.1. align"},{"refs":[{"id":"ref-for-requiredalignof\u2460"},{"id":"ref-for-requiredalignof\u2461"},{"id":"ref-for-requiredalignof\u2462"},{"id":"ref-for-requiredalignof\u2463"},{"id":"ref-for-requiredalignof\u2464"},{"id":"ref-for-requiredalignof\u2465"},{"id":"ref-for-requiredalignof\u2466"}],"title":"14.4.5. Address Space Layout Constraints"}],"url":"#requiredalignof"},
 "requiredtobeuniformerror": {"dfnID":"requiredtobeuniformerror","dfnText":"RequiredToBeUniform.error","external":false,"refSections":[{"refs":[{"id":"ref-for-requiredtobeuniformerror"},{"id":"ref-for-requiredtobeuniformerror\u2460"},{"id":"ref-for-requiredtobeuniformerror\u2461"},{"id":"ref-for-requiredtobeuniformerror\u2462"},{"id":"ref-for-requiredtobeuniformerror\u2463"},{"id":"ref-for-requiredtobeuniformerror\u2464"}],"title":"15.2.3. Analyzing the Uniformity Requirements of a Function"}],"url":"#requiredtobeuniformerror"},
 "requiredtobeuniforminfo": {"dfnID":"requiredtobeuniforminfo","dfnText":"RequiredToBeUniform.info","external":false,"refSections":[{"refs":[{"id":"ref-for-requiredtobeuniforminfo"},{"id":"ref-for-requiredtobeuniforminfo\u2460"},{"id":"ref-for-requiredtobeuniforminfo\u2461"}],"title":"15.2.3. Analyzing the Uniformity Requirements of a Function"}],"url":"#requiredtobeuniforminfo"},
@@ -31297,7 +31316,7 @@ let dfnPanelData = {
 "swizzle": {"dfnID":"swizzle","dfnText":"swizzle","external":false,"refSections":[{"refs":[{"id":"ref-for-swizzle"}],"title":"3.8.8. Swizzle Names"},{"refs":[{"id":"ref-for-swizzle\u2460"},{"id":"ref-for-swizzle\u2461"}],"title":"6.4.4. Swizzle View Types"},{"refs":[{"id":"ref-for-swizzle\u2462"}],"title":"8.5. Composite Value Decomposition Expressions"},{"refs":[{"id":"ref-for-swizzle\u2463"},{"id":"ref-for-swizzle\u2464"},{"id":"ref-for-swizzle\u2465"},{"id":"ref-for-swizzle\u2466"}],"title":"8.5.1.1. Vector Single Component Selection"},{"refs":[{"id":"ref-for-swizzle\u2467"},{"id":"ref-for-swizzle\u2468"}],"title":"8.5.1.2. Vector Multiple Component Selection"},{"refs":[{"id":"ref-for-swizzle\u2460\u24ea"},{"id":"ref-for-swizzle\u2460\u2460"}],"title":"8.15. Swizzle View Expression"},{"refs":[{"id":"ref-for-swizzle\u2460\u2461"}],"title":"11.4.1.1. Root Identifier"},{"refs":[{"id":"ref-for-swizzle\u2460\u2462"}],"title":"15.2.8. Uniformity Rules for Expressions"}],"url":"#swizzle"},
 "swizzle-assignment": {"dfnID":"swizzle-assignment","dfnText":"swizzle assignment","external":false,"refSections":[{"refs":[{"id":"ref-for-swizzle-assignment"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-swizzle-assignment\u2460"}],"title":"9.2.4. Compound Assignment"}],"url":"#swizzle-assignment"},
 "swizzle-index-function": {"dfnID":"swizzle-index-function","dfnText":"swizzle index function","external":false,"refSections":[],"url":"#swizzle-index-function"},
-"swizzle-view": {"dfnID":"swizzle-view","dfnText":"swizzle view","external":false,"refSections":[{"refs":[{"id":"ref-for-swizzle-view"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-swizzle-view\u2460"}],"title":"6.1.2. Conversion Rank"},{"refs":[{"id":"ref-for-swizzle-view\u2461"},{"id":"ref-for-swizzle-view\u2462"},{"id":"ref-for-swizzle-view\u2463"},{"id":"ref-for-swizzle-view\u2464"},{"id":"ref-for-swizzle-view\u2465"}],"title":"6.4.4. Swizzle View Types"},{"refs":[{"id":"ref-for-swizzle-view\u2466"},{"id":"ref-for-swizzle-view\u2467"}],"title":"6.4.5. Valid and Invalid Memory References"},{"refs":[{"id":"ref-for-swizzle-view\u2468"}],"title":"6.4.6. Originating Variable"},{"refs":[{"id":"ref-for-swizzle-view\u2460\u24ea"}],"title":"6.4.8. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-swizzle-view\u2460\u2460"},{"id":"ref-for-swizzle-view\u2460\u2461"},{"id":"ref-for-swizzle-view\u2460\u2462"},{"id":"ref-for-swizzle-view\u2460\u2463"},{"id":"ref-for-swizzle-view\u2460\u2464"}],"title":"8.5.1.3. Component Reference from Vector Memory View or Swizzle View"},{"refs":[{"id":"ref-for-swizzle-view\u2460\u2465"},{"id":"ref-for-swizzle-view\u2460\u2466"},{"id":"ref-for-swizzle-view\u2460\u2467"},{"id":"ref-for-swizzle-view\u2460\u2468"},{"id":"ref-for-swizzle-view\u2461\u24ea"},{"id":"ref-for-swizzle-view\u2461\u2460"},{"id":"ref-for-swizzle-view\u2461\u2461"},{"id":"ref-for-swizzle-view\u2461\u2462"},{"id":"ref-for-swizzle-view\u2461\u2463"},{"id":"ref-for-swizzle-view\u2461\u2464"},{"id":"ref-for-swizzle-view\u2461\u2465"},{"id":"ref-for-swizzle-view\u2461\u2466"},{"id":"ref-for-swizzle-view\u2461\u2467"},{"id":"ref-for-swizzle-view\u2461\u2468"},{"id":"ref-for-swizzle-view\u2462\u24ea"},{"id":"ref-for-swizzle-view\u2462\u2460"},{"id":"ref-for-swizzle-view\u2462\u2461"},{"id":"ref-for-swizzle-view\u2462\u2462"},{"id":"ref-for-swizzle-view\u2462\u2463"},{"id":"ref-for-swizzle-view\u2462\u2464"},{"id":"ref-for-swizzle-view\u2462\u2465"},{"id":"ref-for-swizzle-view\u2462\u2466"},{"id":"ref-for-swizzle-view\u2462\u2467"},{"id":"ref-for-swizzle-view\u2462\u2468"},{"id":"ref-for-swizzle-view\u2463\u24ea"}],"title":"8.15. Swizzle View Expression"},{"refs":[{"id":"ref-for-swizzle-view\u2463\u2460"}],"title":"9.2.2. Swizzle Assignment"},{"refs":[{"id":"ref-for-swizzle-view\u2463\u2461"},{"id":"ref-for-swizzle-view\u2463\u2462"},{"id":"ref-for-swizzle-view\u2463\u2463"}],"title":"9.2.4. Compound Assignment"},{"refs":[{"id":"ref-for-swizzle-view\u2463\u2464"}],"title":"11.4.1.1. Root Identifier"},{"refs":[{"id":"ref-for-swizzle-view\u2463\u2465"}],"title":"15.2.4. Pointer Desugaring"}],"url":"#swizzle-view"},
+"swizzle-view": {"dfnID":"swizzle-view","dfnText":"swizzle view","external":false,"refSections":[{"refs":[{"id":"ref-for-swizzle-view"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-swizzle-view\u2460"}],"title":"6.1.2. Conversion Rank"},{"refs":[{"id":"ref-for-swizzle-view\u2461"},{"id":"ref-for-swizzle-view\u2462"},{"id":"ref-for-swizzle-view\u2463"},{"id":"ref-for-swizzle-view\u2464"},{"id":"ref-for-swizzle-view\u2465"}],"title":"6.4.4. Swizzle View Types"},{"refs":[{"id":"ref-for-swizzle-view\u2466"},{"id":"ref-for-swizzle-view\u2467"}],"title":"6.4.5. Valid and Invalid Memory References"},{"refs":[{"id":"ref-for-swizzle-view\u2468"}],"title":"6.4.6. Originating Variable"},{"refs":[{"id":"ref-for-swizzle-view\u2460\u24ea"}],"title":"6.4.8. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-swizzle-view\u2460\u2460"},{"id":"ref-for-swizzle-view\u2460\u2461"},{"id":"ref-for-swizzle-view\u2460\u2462"},{"id":"ref-for-swizzle-view\u2460\u2463"},{"id":"ref-for-swizzle-view\u2460\u2464"}],"title":"8.5.1.3. Component Reference from Vector Memory View or Swizzle View"},{"refs":[{"id":"ref-for-swizzle-view\u2460\u2465"},{"id":"ref-for-swizzle-view\u2460\u2466"},{"id":"ref-for-swizzle-view\u2460\u2467"},{"id":"ref-for-swizzle-view\u2460\u2468"},{"id":"ref-for-swizzle-view\u2461\u24ea"},{"id":"ref-for-swizzle-view\u2461\u2460"},{"id":"ref-for-swizzle-view\u2461\u2461"},{"id":"ref-for-swizzle-view\u2461\u2462"},{"id":"ref-for-swizzle-view\u2461\u2463"},{"id":"ref-for-swizzle-view\u2461\u2464"},{"id":"ref-for-swizzle-view\u2461\u2465"},{"id":"ref-for-swizzle-view\u2461\u2466"},{"id":"ref-for-swizzle-view\u2461\u2467"},{"id":"ref-for-swizzle-view\u2461\u2468"},{"id":"ref-for-swizzle-view\u2462\u24ea"},{"id":"ref-for-swizzle-view\u2462\u2460"},{"id":"ref-for-swizzle-view\u2462\u2461"},{"id":"ref-for-swizzle-view\u2462\u2462"},{"id":"ref-for-swizzle-view\u2462\u2463"},{"id":"ref-for-swizzle-view\u2462\u2464"},{"id":"ref-for-swizzle-view\u2462\u2465"},{"id":"ref-for-swizzle-view\u2462\u2466"},{"id":"ref-for-swizzle-view\u2462\u2467"},{"id":"ref-for-swizzle-view\u2462\u2468"},{"id":"ref-for-swizzle-view\u2463\u24ea"}],"title":"8.15. Swizzle View Expression"},{"refs":[{"id":"ref-for-swizzle-view\u2463\u2460"}],"title":"9.2.2. Swizzle Assignment"},{"refs":[{"id":"ref-for-swizzle-view\u2463\u2461"},{"id":"ref-for-swizzle-view\u2463\u2462"},{"id":"ref-for-swizzle-view\u2463\u2463"},{"id":"ref-for-swizzle-view\u2463\u2464"}],"title":"9.2.4. Compound Assignment"},{"refs":[{"id":"ref-for-swizzle-view\u2463\u2465"}],"title":"11.4.1.1. Root Identifier"},{"refs":[{"id":"ref-for-swizzle-view\u2463\u2466"}],"title":"15.2.4. Pointer Desugaring"}],"url":"#swizzle-view"},
 "swizzle-view-load-rule": {"dfnID":"swizzle-view-load-rule","dfnText":"Swizzle View Load Rule","external":false,"refSections":[{"refs":[{"id":"ref-for-swizzle-view-load-rule"}],"title":"6.1.2. Conversion Rank"},{"refs":[{"id":"ref-for-swizzle-view-load-rule\u2460"}],"title":"8.5.1.3. Component Reference from Vector Memory View or Swizzle View"},{"refs":[{"id":"ref-for-swizzle-view-load-rule\u2461"}],"title":"14.5.1. Memory Operation"},{"refs":[{"id":"ref-for-swizzle-view-load-rule\u2462"}],"title":"15.2.4. Pointer Desugaring"},{"refs":[{"id":"ref-for-swizzle-view-load-rule\u2463"},{"id":"ref-for-swizzle-view-load-rule\u2464"},{"id":"ref-for-swizzle-view-load-rule\u2465"},{"id":"ref-for-swizzle-view-load-rule\u2466"},{"id":"ref-for-swizzle-view-load-rule\u2467"},{"id":"ref-for-swizzle-view-load-rule\u2468"},{"id":"ref-for-swizzle-view-load-rule\u2460\u24ea"}],"title":"15.2.8. Uniformity Rules for Expressions"}],"url":"#swizzle-view-load-rule"},
 "swizzle-view-read": {"dfnID":"swizzle-view-read","dfnText":"SwizzleViewRead","external":false,"refSections":[{"refs":[{"id":"ref-for-swizzle-view-read"}],"title":"6.4.4. Swizzle View Types"},{"refs":[{"id":"ref-for-swizzle-view-read\u2460"},{"id":"ref-for-swizzle-view-read\u2461"}],"title":"6.4.8. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-swizzle-view-read\u2462"}],"title":"9.2.4. Compound Assignment"}],"url":"#swizzle-view-read"},
 "swizzle-view-type": {"dfnID":"swizzle-view-type","dfnText":"swizzle view type","external":false,"refSections":[],"url":"#swizzle-view-type"},
@@ -31660,7 +31679,7 @@ let dfnPanelData = {
 "workgroup-grid": {"dfnID":"workgroup-grid","dfnText":"workgroup grid","external":false,"refSections":[{"refs":[{"id":"ref-for-workgroup-grid"}],"title":"12.14. workgroup_size"},{"refs":[{"id":"ref-for-workgroup-grid\u2460"}],"title":"13.3.1.1.6. local_invocation_id"},{"refs":[{"id":"ref-for-workgroup-grid\u2461"}],"title":"13.3.1.1.7. local_invocation_index"}],"url":"#workgroup-grid"},
 "workgroup-id": {"dfnID":"workgroup-id","dfnText":"workgroup ID","external":false,"refSections":[{"refs":[{"id":"ref-for-workgroup-id"}],"title":"13.3.1.1.14. workgroup_id"}],"url":"#workgroup-id"},
 "workgroup-uniformity-scope": {"dfnID":"workgroup-uniformity-scope","dfnText":"Workgroup uniformity scope","external":false,"refSections":[{"refs":[{"id":"ref-for-workgroup-uniformity-scope"}],"title":"15.2.2. Uniformity Analysis Overview"}],"url":"#workgroup-uniformity-scope"},
-"write-access": {"dfnID":"write-access","dfnText":"write access","external":false,"refSections":[{"refs":[{"id":"ref-for-write-access"}],"title":"6.4.8. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-write-access\u2460"},{"id":"ref-for-write-access\u2461"}],"title":"6.5.5. Storage Texture Types"},{"refs":[{"id":"ref-for-write-access\u2462"}],"title":"7.1. Variables vs Values"},{"refs":[{"id":"ref-for-write-access\u2463"},{"id":"ref-for-write-access\u2464"}],"title":"8.5.1.3. Component Reference from Vector Memory View or Swizzle View"},{"refs":[{"id":"ref-for-write-access\u2465"}],"title":"9.2.4. Compound Assignment"},{"refs":[{"id":"ref-for-write-access\u2466"},{"id":"ref-for-write-access\u2467"}],"title":"11.4.1.2. Aliasing"},{"refs":[{"id":"ref-for-write-access\u2468"},{"id":"ref-for-write-access\u2460\u24ea"},{"id":"ref-for-write-access\u2460\u2460"}],"title":"14.5.1. Memory Operation"},{"refs":[{"id":"ref-for-write-access\u2460\u2461"},{"id":"ref-for-write-access\u2460\u2462"}],"title":"14.5.5. Private vs Non-private"},{"refs":[{"id":"ref-for-write-access\u2460\u2463"}],"title":"15.4. Fragment Shaders and Helper Invocations"}],"url":"#write-access"},
+"write-access": {"dfnID":"write-access","dfnText":"write access","external":false,"refSections":[{"refs":[{"id":"ref-for-write-access"}],"title":"6.4.8. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-write-access\u2460"},{"id":"ref-for-write-access\u2461"}],"title":"6.5.5. Storage Texture Types"},{"refs":[{"id":"ref-for-write-access\u2462"}],"title":"7.1. Variables vs Values"},{"refs":[{"id":"ref-for-write-access\u2463"},{"id":"ref-for-write-access\u2464"}],"title":"8.5.1.3. Component Reference from Vector Memory View or Swizzle View"},{"refs":[{"id":"ref-for-write-access\u2465"},{"id":"ref-for-write-access\u2466"}],"title":"9.2.4. Compound Assignment"},{"refs":[{"id":"ref-for-write-access\u2467"},{"id":"ref-for-write-access\u2468"}],"title":"11.4.1.2. Aliasing"},{"refs":[{"id":"ref-for-write-access\u2460\u24ea"},{"id":"ref-for-write-access\u2460\u2460"},{"id":"ref-for-write-access\u2460\u2461"}],"title":"14.5.1. Memory Operation"},{"refs":[{"id":"ref-for-write-access\u2460\u2462"},{"id":"ref-for-write-access\u2460\u2463"}],"title":"14.5.5. Private vs Non-private"},{"refs":[{"id":"ref-for-write-access\u2460\u2464"}],"title":"15.4. Fragment Shaders and Helper Invocations"}],"url":"#write-access"},
 "zero-value": {"dfnID":"zero-value","dfnText":"zero value","external":false,"refSections":[{"refs":[{"id":"ref-for-zero-value"}],"title":"6.4.7. Out-of-Bounds Access"},{"refs":[{"id":"ref-for-zero-value\u2460"},{"id":"ref-for-zero-value\u2461"},{"id":"ref-for-zero-value\u2462"},{"id":"ref-for-zero-value\u2463"},{"id":"ref-for-zero-value\u2464"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-zero-value\u2465"}],"title":"17.1.1. Zero Value Built-in Functions"},{"refs":[{"id":"ref-for-zero-value\u2466"}],"title":"17.1.2.2. bool"}],"url":"#zero-value"},
 };
 
