@@ -427,7 +427,7 @@ dfn > a.self-link::before      { content: "#"; }
 </p>
    <h1 class="p-name no-ref" id="title">WebGPU Correspondence Reference</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#UD">Unofficial Proposal Draft</a>,
-    <time class="dt-updated" datetime="2026-03-11">11 March 2026</time></p>
+    <time class="dt-updated" datetime="2026-03-13">13 March 2026</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -899,11 +899,14 @@ User agents are not required to use these formulas and may expose whatever they 
      <tr>
       <th><code>maxComputeInvocationsPerWorkgroup</code>
         
-      <td><a href="https://github.com/gpuweb/gpuweb/issues/1863">#1863</a>
+      <td><a href="https://github.com/gpuweb/gpuweb/issues/1863">#1863</a>,
+            <a href="https://github.com/gpuweb/gpuweb/issues/5315">#5315</a>
         
       <td><code>maxComputeWorkGroupInvocations</code>
         
-      <td rowspan="4"><code>Maximum threads per threadgroup</code> (but actually <code>maxTotalThreadsPerThreadgroup</code> for a given pipeline)
+      <td rowspan="4"><code>Maximum threads per threadgroup</code> (but the
+            <code>max_total_threads_per_threadgroup</code> attribute must be emitted
+            in shaders to guarantee dispatches execute)
         
       <td>1024 = <code>D3D12_CS_THREAD_GROUP_MAX_THREADS_PER_GROUP</code>
     
