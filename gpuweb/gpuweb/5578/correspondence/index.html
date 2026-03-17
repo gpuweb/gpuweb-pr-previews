@@ -427,7 +427,7 @@ dfn > a.self-link::before      { content: "#"; }
 </p>
    <h1 class="p-name no-ref" id="title">WebGPU Correspondence Reference</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#UD">Unofficial Proposal Draft</a>,
-    <time class="dt-updated" datetime="2026-03-04">4 March 2026</time></p>
+    <time class="dt-updated" datetime="2026-03-17">17 March 2026</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -476,6 +476,7 @@ Learn more about
      <a href="#limits"><span class="secno">2</span> <span class="content">Limits</span></a>
      <ol class="toc">
       <li><a href="#vulkan-maxFragmentCombinedOutputResources"><span class="secno">2.1</span> <span class="content">Vulkan <code>maxFragmentCombinedOutputResources</code></span></a>
+      <li><a href="#explicitComputeSubgroupMinSize-explicitComputeSubgroupMaxSize"><span class="secno">2.2</span> <span class="content"><code>explicitComputeSubgroupMinSize</code> and <code>explicitComputeSubgroupMaxSize</code></span></a>
      </ol>
     <li>
      <a href="#w3c-conformance"><span class="secno"></span> <span class="content">Conformance</span></a>
@@ -982,6 +983,60 @@ Warning:
 <a href="https://github.com/gpuweb/gpuweb/issues/3631#issuecomment-1498747606">Imagination</a> drivers.
 On these drivers, the combined limit may need to be ignored.
 </p>
+   <h3 class="heading settled" data-level="2.2" id="explicitComputeSubgroupMinSize-explicitComputeSubgroupMaxSize"><span class="secno">2.2. </span><span class="content"><code>explicitComputeSubgroupMinSize</code> and <code>explicitComputeSubgroupMaxSize</code></span><a class="self-link" href="#explicitComputeSubgroupMinSize-explicitComputeSubgroupMaxSize"></a></h3>
+   <p>These values are used when the <code>subgroup-size-control</code> feature is supported,
+to specify the range of valid values for the WGSL <code>subgroup_size</code> attribute in compute shaders.</p>
+   <table class="data">
+    <thead>
+     <tr>
+      <th>Limit
+            
+      <th>Issue
+            
+      <th>Vulkan
+            
+      <th>Metal
+            
+      <th>D3D12
+    
+    <tbody>
+     <tr>
+      <th><code>explicitComputeSubgroupMinSize</code>
+        
+      <td><a href="https://github.com/gpuweb/gpuweb/issues/5545">#5545</a>
+        
+      <td><code>VkPhysicalDeviceSubgroupSizeControlPropertiesEXT::minSubgroupSize</code>
+        
+      <td>Not supported
+        
+      <td><code>D3D12_FEATURE_DATA_D3D12_OPTIONS1::waveLaneCountMin</code>
+    
+     <tr>
+      <th><code>explicitComputeSubgroupMaxSize</code>
+        
+      <td><a href="https://github.com/gpuweb/gpuweb/issues/5545">#5545</a>
+        
+      <td><code>VkPhysicalDeviceSubgroupSizeControlPropertiesEXT::maxSubgroupSize</code>
+        
+      <td>Not supported
+        
+      <td><code>D3D12_FEATURE_DATA_D3D12_OPTIONS1::waveLaneCountMax</code>
+
+   </table>
+   <p class="note" role="note"><span class="marker">Note:</span>
+<code>explicitComputeSubgroupMinSize</code> and <code>explicitComputeSubgroupMaxSize</code> are introduced because of
+D3D12:</p>
+   <ul>
+    <li data-md>
+     <p>D3D12 runtime validates the HLSL attribute <code>[WaveSize]</code> with <code>waveLaneCountMin</code> and <code>waveLaneCountMax</code>.</p>
+    <li data-md>
+     <p><code>waveLaneCountMax</code> is reserved for future expansion, and is not expected to be used by applications according to <a href="https://github.com/microsoft/DirectXShaderCompiler/wiki/Wave-Intrinsics/#caps-flags">DirectXShaderCompiler Wiki</a>.</p>
+    <li data-md>
+     <p><code>waveLaneCountMin</code> may differ from the actual minimum subgroup sizes used in fragment shaders on some Intel GPUs.</p>
+   </ul>
+   <p>Metal does not support explicit subgroup size control. According to the
+<a href="https://developer.apple.com/documentation/apple-silicon/porting-your-metal-code-to-apple-silicon#Determine-the-SIMD-Group-Size-at-Runtime">Metal documentation</a>:
+"The size of a SIMD group varies between different GPUs, particularly Mac GPUs. Don’t assume the size of SIMD groups."</p>
   </main>
   <div data-fill-with="conformance">
    <h2 class="no-ref no-num heading settled" id="w3c-conformance"><span class="content">Conformance</span><a class="self-link" href="#w3c-conformance"></a></h2>
