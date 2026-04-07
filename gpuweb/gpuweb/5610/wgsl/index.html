@@ -831,13 +831,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
 </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
-    <time class="dt-updated" datetime="2026-04-04">4 April 2026</time></p>
+    <time class="dt-updated" datetime="2026-04-07">7 April 2026</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/petermcneeleychromium/gpuweb/blob/3bc45e43095eb117437969e5be542d6e78e2cb12/wgsl/index.bs">https://github.com/petermcneeleychromium/gpuweb/blob/3bc45e43095eb117437969e5be542d6e78e2cb12/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/petermcneeleychromium/gpuweb/blob/55929212da96e67a10821562508bdda9fbb44418/wgsl/index.bs">https://github.com/petermcneeleychromium/gpuweb/blob/55929212da96e67a10821562508bdda9fbb44418/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -5447,7 +5447,7 @@ In this interpretation, the vectors of a matrix are treated as column vectors.</
    <p>An expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error③⑧">must not</a> evaluate to an atomic type.</p>
    <p>Atomic types may only be instantiated by variables in the <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup③">workgroup</a>
 address space or by <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer">storage buffer</a> variables with a <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write③">read_write</a> access mode.
-<a data-link-type="dfn" href="#atomic-t" id="ref-for-atomic-t">T</a> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error③⑨">must not</a> be <a data-link-type="dfn" href="#vec2u" id="ref-for-vec2u③">vec2u</a> if the <a data-link-type="dfn" href="#address-spaces" id="ref-for-address-spaces②">address space</a> is <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup④">workgroup</a>.
+The encapsulated type <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error③⑨">must not</a> be <a data-link-type="dfn" href="#vec2u" id="ref-for-vec2u③">vec2u</a> if the <a data-link-type="dfn" href="#address-spaces" id="ref-for-address-spaces②">address space</a> is <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup④">workgroup</a>.
 The <a data-link-type="dfn" href="#memory-scope" id="ref-for-memory-scope">memory scope</a> of operations on the type is determined by the <a data-link-type="dfn" href="#address-spaces" id="ref-for-address-spaces③">address space</a>
 it is instantiated in.
 Atomic types in the <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup⑤">workgroup</a> address space have a
@@ -26572,7 +26572,8 @@ name with the value <var>v</var>.</p>
      <p><code>AS</code> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②⑨⓪">must</a> be <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage②④">storage</a>.</p>
    </ul>
    <h5 class="heading settled" data-level="17.8.6.1" id="atomic-store-min"><span class="secno">17.8.6.1. </span><span class="content"><code>atomicStoreMin</code></span><a class="self-link" href="#atomic-store-min"></a></h5>
-<pre class="language-wgsl highlight"><c- k>fn</c-> <c- n>atomicStoreMin</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c->storage<c- p>,</c-> atomic<c- o>&lt;</c->vec2<c- o>&lt;</c->u32<c- o>>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-><c- p>:</c-> vec2<c- o>&lt;</c->u32<c- o>></c-><c- p>)</c->
+<pre class="language-wgsl highlight"><c- k>fn</c-> <c- n>atomicStoreMin</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c->storage<c- p>,</c-> atomic<c- o>&lt;</c->vec2<c- o>&lt;</c->u32<c- o>>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c->
+                  <c- n>v</c-><c- p>:</c-> vec2<c- o>&lt;</c->u32<c- o>></c-><c- p>)</c->
 </pre>
    <p>Atomically performs a minimum operation on the atomic object pointed to by <code>atomic_ptr</code>
 with the value <code>v</code>.</p>
@@ -26580,7 +26581,8 @@ with the value <code>v</code>.</p>
     <a class="self-link" href="#example-82a84777"></a>
     <div class="marker">EXAMPLE: Operation of atomic store min as a function</div>
 <pre class="highlight"><c- c1>// All operations are performed atomically</c->
-<c- k>fn</c-> <c- n>atomicStoreMin</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c->storage<c- p>,</c-> atomic<c- o>&lt;</c->vec2<c- o>&lt;</c->u32<c- o>>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c-> <c- n>v</c-> <c- p>:</c-> vec2<c- o>&lt;</c->u32<c- o>></c-><c- p>)</c-> <c- p>{</c->
+<c- k>fn</c-> <c- n>atomicStoreMin</c-><c- p>(</c-><c- n>atomic_ptr</c-><c- p>:</c-> ptr<c- o>&lt;</c->storage<c- p>,</c-> atomic<c- o>&lt;</c->vec2<c- o>&lt;</c->u32<c- o>>></c-><c- p>,</c-> read_write<c- o>></c-><c- p>,</c->
+                  <c- n>v</c-> <c- p>:</c-> vec2<c- o>&lt;</c->u32<c- o>></c-><c- p>)</c-> <c- p>{</c->
   <c- c1>// both 'old' and 'v' behave operationally as 64-bit unsigned integer scalars</c->
   <c- a>let</c-> <c- n>old</c-> <c- o>=</c-> <c- o>*</c-><c- n>atomic_ptr</c-><c- p>;</c->
   <c- o>*</c-><c- n>atomic_ptr</c-> <c- o>=</c-> <c- n>min</c-><c- p>(</c-><c- n>old</c-><c- p>,</c-> <c- n>v</c-><c- p>);</c->
@@ -30017,7 +30019,7 @@ let dfnPanelData = {
 "array": {"dfnID":"array","dfnText":"array","external":false,"refSections":[{"refs":[{"id":"ref-for-array"}],"title":"2.4. Limits"},{"refs":[{"id":"ref-for-array\u2460"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-array\u2461"}],"title":"6.2.9. Array Types"},{"refs":[{"id":"ref-for-array\u2462"}],"title":"6.2.11. Composite Types"},{"refs":[{"id":"ref-for-array\u2463"}],"title":"6.4.1. Storable Types"},{"refs":[{"id":"ref-for-array\u2464"}],"title":"6.4.8. Forming Reference and Pointer Values"},{"refs":[{"id":"ref-for-array\u2465"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-array\u2466"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-array\u2467"}],"title":"8. Expressions"},{"refs":[{"id":"ref-for-array\u2468"}],"title":"13.3. Shader Interface"},{"refs":[{"id":"ref-for-array\u2460\u24ea"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-array\u2460\u2460"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-array\u2460\u2461"},{"id":"ref-for-array\u2460\u2462"}],"title":"14.4.5. Address Space Layout Constraints"},{"refs":[{"id":"ref-for-array\u2460\u2463"},{"id":"ref-for-array\u2460\u2464"}],"title":"17.1.2.1. array"}],"url":"#array"},
 "assertion": {"dfnID":"assertion","dfnText":"assertion","external":false,"refSections":[{"refs":[{"id":"ref-for-assertion"}],"title":"2. WGSL Module"},{"refs":[{"id":"ref-for-assertion\u2460"}],"title":"10. Assertions"},{"refs":[{"id":"ref-for-assertion\u2461"}],"title":"10.1. Const Assertion Statement"}],"url":"#assertion"},
 "atomic-modification": {"dfnID":"atomic-modification","dfnText":"atomic modification","external":false,"refSections":[{"refs":[{"id":"ref-for-atomic-modification"}],"title":"17.8.1. atomicLoad"}],"url":"#atomic-modification"},
-"atomic-t": {"dfnID":"atomic-t","dfnText":"T","external":false,"refSections":[{"refs":[{"id":"ref-for-atomic-t"}],"title":"6.2.8. Atomic Types"}],"url":"#atomic-t"},
+"atomic-t": {"dfnID":"atomic-t","dfnText":"T","external":false,"refSections":[],"url":"#atomic-t"},
 "atomic-type": {"dfnID":"atomic-type","dfnText":"atomic type","external":false,"refSections":[{"refs":[{"id":"ref-for-atomic-type"}],"title":"6.2. Plain Types"},{"refs":[{"id":"ref-for-atomic-type\u2460"}],"title":"6.2.9. Array Types"},{"refs":[{"id":"ref-for-atomic-type\u2461"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-atomic-type\u2462"},{"id":"ref-for-atomic-type\u2463"}],"title":"6.2.13. Fixed-Footprint Types"},{"refs":[{"id":"ref-for-atomic-type\u2464"}],"title":"6.4.1. Storable Types"},{"refs":[{"id":"ref-for-atomic-type\u2465"}],"title":"6.4.2. Host-shareable Types"},{"refs":[{"id":"ref-for-atomic-type\u2466"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-atomic-type\u2467"},{"id":"ref-for-atomic-type\u2468"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-atomic-type\u2460\u24ea"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-atomic-type\u2460\u2460"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-atomic-type\u2460\u2461"}],"title":"14.4.5. Address Space Layout Constraints"},{"refs":[{"id":"ref-for-atomic-type\u2460\u2462"}],"title":"17.1.1. Zero Value Built-in Functions"}],"url":"#atomic-type"},
 "attribute": {"dfnID":"attribute","dfnText":"attribute","external":false,"refSections":[{"refs":[{"id":"ref-for-attribute"}],"title":"2.3.3. Diagnostic Filtering"},{"refs":[{"id":"ref-for-attribute\u2460"}],"title":"11.1. Declaring a User-defined Function"}],"url":"#attribute"},
 "attribute-align": {"dfnID":"attribute-align","dfnText":"align","external":false,"refSections":[{"refs":[{"id":"ref-for-attribute-align"}],"title":"3.8.1. Attribute Names"},{"refs":[{"id":"ref-for-attribute-align\u2460"},{"id":"ref-for-attribute-align\u2461"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-attribute-align\u2462"},{"id":"ref-for-attribute-align\u2463"}],"title":"14.4.2. Structure Member Layout"},{"refs":[{"id":"ref-for-attribute-align\u2464"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-attribute-align\u2465"}],"title":"14.4.5. Address Space Layout Constraints"}],"url":"#attribute-align"},
@@ -31306,7 +31308,6 @@ let refsData = {
 "#array": {"displayText":"array","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"array","type":"dfn","url":"#array"},
 "#assertion": {"displayText":"assertion","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"assertion","type":"dfn","url":"#assertion"},
 "#atomic-modification": {"displayText":"atomic modification","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"atomic modification","type":"dfn","url":"#atomic-modification"},
-"#atomic-t": {"displayText":"t","export":true,"for_":["atomic"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"t","type":"dfn","url":"#atomic-t"},
 "#atomic-type": {"displayText":"atomic type","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"atomic type","type":"dfn","url":"#atomic-type"},
 "#attribute": {"displayText":"attribute","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"attribute","type":"dfn","url":"#attribute"},
 "#attribute-align": {"displayText":"align","export":true,"for_":["attribute"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"align","type":"dfn","url":"#attribute-align"},
