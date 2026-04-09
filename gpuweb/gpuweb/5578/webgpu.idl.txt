@@ -76,9 +76,6 @@ interface GPUAdapterInfo {
     readonly attribute DOMString description;
     readonly attribute unsigned long subgroupMinSize;
     readonly attribute unsigned long subgroupMaxSize;
-    readonly attribute unsigned long explicitComputeSubgroupMinSize;
-    readonly attribute unsigned long explicitComputeSubgroupMaxSize;
-    readonly attribute unsigned long maxComputeWorkgroupSubgroups;
     readonly attribute boolean isFallbackAdapter;
 };
 
