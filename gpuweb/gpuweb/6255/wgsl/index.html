@@ -837,7 +837,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/jrprice/gpuweb/blob/75b490d742a901694b853a9eb9cdcf8659239b14/wgsl/index.bs">https://github.com/jrprice/gpuweb/blob/75b490d742a901694b853a9eb9cdcf8659239b14/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/jrprice/gpuweb/blob/bea9070faecca270149b0c65b968569937b3f946/wgsl/index.bs">https://github.com/jrprice/gpuweb/blob/bea9070faecca270149b0c65b968569937b3f946/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -18201,7 +18201,7 @@ of a <a data-link-type="dfn" href="#composite" id="ref-for-composite⑧">composi
       <th>Expression
       <th>New nodes
       <th>Recursive analyses
-      <th>Resulting control flow node, variable node
+      <th>Resulting variable node
       <th>New edges
   
     <tbody>
@@ -18212,7 +18212,7 @@ of a <a data-link-type="dfn" href="#composite" id="ref-for-composite⑧">composi
       
       <td><em>X</em> is the node corresponding to the value of "x" at the output of the statement containing this expression.
       
-      <td class="nowrap"><em>CF</em>, <em>Result</em>
+      <td class="nowrap"><em>Result</em>
       
       <td class>
        <em>Result</em> -> {<em>CF</em>, <em>X</em>}
@@ -18227,7 +18227,7 @@ of a <a data-link-type="dfn" href="#composite" id="ref-for-composite⑧">composi
       <td>
       <td><em>X</em> is the node corresponding to "x"
       
-      <td class="nowrap"><em>CF</em>, <em>X</em>
+      <td class="nowrap"><em>X</em>
       
       <td>
      <tr>
@@ -18235,17 +18235,16 @@ of a <a data-link-type="dfn" href="#composite" id="ref-for-composite⑧">composi
       
       <td>
       <td>
-      <td class="nowrap"><em>CF</em>,<br>
-      <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①⑥">MayBeNonUniform</a>
+      <td class="nowrap"><a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①⑥">MayBeNonUniform</a>
       
       <td>
      <tr>
       <td class="nowrap"><em>e</em>.field
       
       <td rowspan="3">
-      <td class="nowrap" rowspan="3"><a data-link-type="dfn" href="#lhsvalue" id="ref-for-lhsvalue④">LHSValue</a>: (<em>CF</em>, <em>e</em>) => (<em>CF1</em>, <em>L1</em>)
+      <td class="nowrap" rowspan="3"><a data-link-type="dfn" href="#lhsvalue" id="ref-for-lhsvalue④">LHSValue</a>: (<em>CF</em>, <em>e</em>) => <em>L1</em>
       
-      <td class="nowrap" rowspan="3"><em>CF1</em>, <em>L1</em>
+      <td class="nowrap" rowspan="3"><em>L1</em>
       
       <td rowspan="3">
      <tr>
@@ -18258,10 +18257,10 @@ of a <a data-link-type="dfn" href="#composite" id="ref-for-composite⑧">composi
       <td class="nowrap"><em>e1</em>[<em>e2</em>]
       
       <td>
-      <td class="nowrap"><a data-link-type="dfn" href="#lhsvalue" id="ref-for-lhsvalue⑤">LHSValue</a>: (<em>CF</em>, <em>e1</em>) => (<em>CF1</em>, <em>L1</em>)<br>
-          (<em>CF1</em>, <em>e2</em>) => (<em>CF2</em>, <em>V2</em>)
+      <td class="nowrap"><a data-link-type="dfn" href="#lhsvalue" id="ref-for-lhsvalue⑤">LHSValue</a>: (<em>CF</em>, <em>e1</em>) => <em>L1</em><br>
+          (<em>CF1</em>, <em>e2</em>) => <em>V2</em>
       
-      <td class="nowrap"><em>CF2</em>, <em>L1</em>
+      <td class="nowrap"><em>L1</em>
       
       <td class="nowrap"><em>L1</em> -> <em>V2</em>
 
