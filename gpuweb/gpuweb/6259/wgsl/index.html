@@ -831,13 +831,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
 </p>
    <h1 class="p-name no-ref" id="title">WebGPU Shading Language</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
-    <time class="dt-updated" datetime="2026-05-11">11 May 2026</time></p>
+    <time class="dt-updated" datetime="2026-05-20">20 May 2026</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/jrprice/gpuweb/blob/39878bdd6f80364ee4f9cf4f7f636ef4170a28e8/wgsl/index.bs">https://github.com/jrprice/gpuweb/blob/39878bdd6f80364ee4f9cf4f7f636ef4170a28e8/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/jrprice/gpuweb/blob/fd2290b27c20f031b8912be3854716ac8939a423/wgsl/index.bs">https://github.com/jrprice/gpuweb/blob/fd2290b27c20f031b8912be3854716ac8939a423/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -10806,6 +10806,7 @@ as part of a <a data-link-type="dfn" href="#value-constructor" id="ref-for-value
 
     <p><span class="choice"></span> <a data-link-type="dfn" href="#syntax-ident" id="ref-for-syntax-ident⑦">ident</a> <a data-link-type="dfn" href="#syntax_sym-_disambiguate_template" id="ref-for-syntax_sym-_disambiguate_template⑥">_disambiguate_template</a></p>
     <p><span class="choice">|</span> <a data-link-type="dfn" href="#syntax_sym-paren_left" id="ref-for-syntax_sym-paren_left②"><code>'('</code></a> <a data-link-type="dfn" href="#syntax-lhs_expression" id="ref-for-syntax-lhs_expression②">lhs_expression</a> <a data-link-type="dfn" href="#syntax_sym-paren_right" id="ref-for-syntax_sym-paren_right②"><code>')'</code></a></p>
+    <p><span class="choice">|</span> <a data-link-type="dfn" href="#syntax-call_expression" id="ref-for-syntax-call_expression②">call_expression</a></p>
    </div>
    <div class="syntax">
     
@@ -16365,14 +16366,14 @@ used in address space <var>C</var>.</p>
             assuming <var>S</var> can appear in <var>C</var>
         
       <th><a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof①">RequiredAlignOf</a>(<var>S</var>, <var>C</var>),<br>
-            <var>C</var> is not <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform①①">uniform</a> or
             <a data-link-type="dfn" href="#language_extension-uniform_buffer_standard_layout" id="ref-for-language_extension-uniform_buffer_standard_layout①">uniform_buffer_standard_layout</a>
-            is supported
+            is supported or
+            <var>C</var> is not <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform①①">uniform</a>
         
       <th><a data-link-type="dfn" href="#requiredalignof" id="ref-for-requiredalignof②">RequiredAlignOf</a>(<var>S</var>, <var>C</var>),<br>
-            <var>C</var> is <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform①②">uniform</a> and
             <a data-link-type="dfn" href="#language_extension-uniform_buffer_standard_layout" id="ref-for-language_extension-uniform_buffer_standard_layout②">uniform_buffer_standard_layout</a>
-            is <strong>not</strong> supported
+            is <strong>not</strong> supported and
+            <var>C</var> is <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform①②">uniform</a>
   
     <tbody>
      <tr>
@@ -17430,15 +17431,14 @@ to <em>Vout</em>(<em>prev</em>).</p>
    <p>In the table below, <code>(CF1, S) => CF2</code> means "run the analysis on S starting
 with control flow CF1, apply the required changes to the graph, and name the
 resulting control flow CF2".
-Similarly, <code>(CF1, E) => (CF2, V)</code> means "run the analysis on expression E,
-starting with control flow CF1, apply the required changes to the graph, and
-name the resulting control flow node CF2 and the resulting value node V" (see
-next section for the analysis of expressions).
+Similarly, <code>(CF1, E) => V</code> means "run the analysis on expression E, starting
+with control flow CF1, apply the required changes to the graph, and name the
+resulting value node V" (see next section for the analysis of expressions).
 This evaluation of expressions is used for any expression that is not part of
 the <a data-link-type="dfn" href="#left-hand-side" id="ref-for-left-hand-side⑥">left-hand side</a> of an <a data-link-type="dfn" href="#statement-assignment" id="ref-for-statement-assignment⑧">assignment</a> and is called an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="rhsvalue">RHSValue</dfn>.</p>
    <p>There is a similar set of rules for expressions that are part of the
 <a data-link-type="dfn" href="#left-hand-side" id="ref-for-left-hand-side⑦">left-hand side</a> of an <a data-link-type="dfn" href="#statement-assignment" id="ref-for-statement-assignment⑨">assignment</a>, the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="lhsvalue">LHSValue</dfn>,
-that we denote by <code>LHSValue: (CF, E) => (CF, L)</code>. Instead of computing the node
+that we denote by <code>LHSValue: (CF, E) => L</code>. Instead of computing the node
 which corresponds to the uniformity of the value, it computes the node which
 corresponds to the uniformity of the variable we are addressing.</p>
    <p class="note" role="note"><span class="marker">Note:</span> <a data-link-type="dfn" href="#lhsvalue" id="ref-for-lhsvalue①">LHSValues</a> include expressions in <a data-link-type="dfn" href="#increment-statement" id="ref-for-increment-statement">increment</a> and
@@ -17538,7 +17538,7 @@ behavior of a loop is one of {Next}, {Return}, or {Next,Return}.</p>
       <td class="nowrap">if <em>e</em> <em>s1</em> else <em>s2</em><br> with behavior {Next}
       
       <td>
-      <td class="nowrap" rowspan="2">(<em>CF</em>, <em>e</em>) => (<em>CF'</em>, <em>V</em>)<br>
+      <td class="nowrap" rowspan="2">(<em>CF</em>, <em>e</em>) => <em>V</em><br>
           (<em>V</em>, <em>s1</em>) => <em>CF1</em><br>
           (<em>V</em>, <em>s2</em>) => <em>CF2</em>
       
@@ -17632,7 +17632,7 @@ behavior of a loop is one of {Next}, {Return}, or {Next,Return}.</p>
       <td class="nowrap">switch <em>e</em> case _: <em>s_1</em> .. case _: <em>s_n</em><br> with behavior {Next}
       
       <td>
-      <td class="nowrap" rowspan="2">(<em>CF</em>, <em>e</em>) => (<em>CF'</em>, <em>V</em>)<br>
+      <td class="nowrap" rowspan="2">(<em>CF</em>, <em>e</em>) => <em>V</em><br>
         (<em>V</em>, <em>s_1</em>) => <em>CF_1</em><br>
         ...<br>
         (<em>V</em>, <em>s_n</em>) => <em>CF_n</em>
@@ -17671,12 +17671,12 @@ behavior of a loop is one of {Next}, {Return}, or {Next,Return}.</p>
       
       <td><em>CFend</em>
       
-      <td class="nowrap">(<em>CF</em>, <em>e</em>) => (<em>CF'</em>, <em>V</em>)
+      <td class="nowrap">(<em>CF</em>, <em>e</em>) => <em>V</em>
       
       <td><em>CFend</em>
       
       <td>
-       <em>CFend</em> -> {<em>CF'</em>, <em>V</em>}
+       <em>CFend</em> -> <em>V</em>
 
 
        <p class="note" role="note"><span class="marker">Note:</span> The edge from <em>CFend</em> to <em>V</em> captures the fact that when
@@ -17697,9 +17697,9 @@ behavior of a loop is one of {Next}, {Return}, or {Next,Return}.</p>
       <td class="nowrap">return <em>e</em>;
       
       <td>
-      <td class="nowrap">(<em>CF</em>, <em>e</em>) => (<em>CF'</em>, <em>V</em>)
+      <td class="nowrap">(<em>CF</em>, <em>e</em>) => <em>V</em>
       
-      <td><em>CF'</em>
+      <td><em>CF</em>
       
       <td>
        <a data-link-type="dfn" href="#value_return" id="ref-for-value_return②">Value_return</a> -> <em>V</em>
@@ -17711,10 +17711,10 @@ behavior of a loop is one of {Next}, {Return}, or {Next,Return}.</p>
       <td class="nowrap"><em>e1</em> = <em>e2</em>;
       
       <td>
-      <td class="nowrap"><a data-link-type="dfn" href="#lhsvalue" id="ref-for-lhsvalue②">LHSValue</a>: (<em>CF</em>, <em>e1</em>) => (<em>CF1</em>, <em>LV</em>)<br>
-          (<em>CF1</em>, <em>e2</em>) => (<em>CF2</em>, <em>RV</em>)
+      <td class="nowrap"><a data-link-type="dfn" href="#lhsvalue" id="ref-for-lhsvalue②">LHSValue</a>: (<em>CF</em>, <em>e1</em>) => <em>LV</em><br>
+          (<em>CF</em>, <em>e2</em>) => <em>RV</em>
       
-      <td><em>CF2</em>
+      <td><em>CF</em>
       
       <td>
        <em>LV</em> -> <em>RV</em>
@@ -17725,27 +17725,27 @@ behavior of a loop is one of {Next}, {Return}, or {Next,Return}.</p>
       <td class="nowrap">_ = <em>e</em>
       
       <td>
-      <td class="nowrap">(<em>CF</em>, <em>e</em>) => (<em>CF'</em>, <em>V</em>)
+      <td class="nowrap">(<em>CF</em>, <em>e</em>) => <em>V</em>
       
-      <td><em>CF'</em>
+      <td><em>CF</em>
       
       <td>
      <tr>
       <td class="nowrap">let x = <em>e</em>;
       
       <td>
-      <td>(<em>CF</em>, <em>e</em>) => (<em>CF'</em>, <em>V</em>)
+      <td>(<em>CF</em>, <em>e</em>) => <em>V</em>
       
-      <td><em>CF'</em>
+      <td><em>CF</em>
       
       <td>
      <tr>
       <td class="nowrap">var x = <em>e</em>;
       
       <td>
-      <td>(<em>CF</em>, <em>e</em>) => (<em>CF'</em>, <em>V</em>)
+      <td>(<em>CF</em>, <em>e</em>) => <em>V</em>
       
-      <td><em>CF'</em>
+      <td><em>CF</em>
       
       <td>
        <p class="note" role="note"><span class="marker">Note:</span> If x is a <a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function①⑦">function</a> address space variable,
@@ -17755,9 +17755,9 @@ behavior of a loop is one of {Next}, {Return}, or {Next,Return}.</p>
       
       <td>
       <td>Invoke <a href="#uniformity-function-calls">function call analysis</a>:
-                (<em>CF</em>, <em>f</em>()) => (<a data-link-type="dfn" href="#cf_after" id="ref-for-cf_after">CF_after</a>, <a data-link-type="dfn" href="#result" id="ref-for-result">Result</a>)
+                (<em>CF</em>, <em>f</em>()) => <a data-link-type="dfn" href="#result" id="ref-for-result">Result</a>
       
-      <td><em>CF_after</em>
+      <td><em>CF</em>
       
       <td>
      <tr>
@@ -17765,9 +17765,9 @@ behavior of a loop is one of {Next}, {Return}, or {Next,Return}.</p>
       
       <td>
       <td>Invoke <a href="#uniformity-function-calls">function call analysis</a>:
-                (<em>CF</em>, <em>f</em>(<em>e1</em>,...,<em>eN</em>)) => (<a data-link-type="dfn" href="#cf_after" id="ref-for-cf_after①">CF_after</a>, <a data-link-type="dfn" href="#result" id="ref-for-result①">Result</a>)
+                (<em>CF</em>, <em>f</em>(<em>e1</em>,...,<em>eN</em>)) => <a data-link-type="dfn" href="#result" id="ref-for-result①">Result</a>
       
-      <td><em>CF_after</em>
+      <td><em>CF</em>
       
       <td>
    </table>
@@ -17799,23 +17799,25 @@ being the same as input control flow node.</p>
    <p>The most complex rule is for function calls:</p>
    <ul>
     <li data-md>
-     <p>For each argument, apply the corresponding expression rule, with the control flow at the exit of the previous argument (using the control flow at the beginning of the function call for the first argument). Name the corresponding value nodes <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="arg_i">arg_i</dfn> and the corresponding control flow nodes <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="cf_i">CF_i</dfn></p>
+     <p>Let <em>CF</em> be the control flow at the beginning of the function call expression.</p>
     <li data-md>
-     <p>Create two new nodes, named <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="result">Result</dfn> and <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="cf_after">CF_after</dfn></p>
+     <p>For each argument, apply the corresponding expression rule with <em>CF</em>. Name the corresponding value nodes <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="arg_i">arg_i</dfn></p>
+    <li data-md>
+     <p>Create a new node named <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="result">Result</dfn></p>
+     <ul>
+      <li data-md>
+       <p>Add an edge from <a data-link-type="dfn" href="#result" id="ref-for-result②">Result</a> to <em>CF</em></p>
+     </ul>
     <li data-md>
      <p>If the <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag④">call site tag</a> of the function is <a data-link-type="dfn" href="#callsiterequiredtobeuniforms" id="ref-for-callsiterequiredtobeuniforms①">CallSiteRequiredToBeUniform.S</a>, then:</p>
      <ul>
       <li data-md>
-       <p>Add an edge from <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms②">RequiredToBeUniform.S</a> to the last <a data-link-type="dfn" href="#cf_i" id="ref-for-cf_i">CF_i</a>.</p>
+       <p>Add an edge from <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms②">RequiredToBeUniform.S</a> to <em>CF</em></p>
       <li data-md>
        <p>Add the members of the <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set⑧">potential-trigger-set</a> of the <a data-link-type="dfn" href="#call-site-tag" id="ref-for-call-site-tag⑤">call site tag</a> to the potential-trigger-set associated with <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms③">RequiredToBeUniform.S</a>.</p>
      </ul>
     <li data-md>
-     <p>Add an edge from <a data-link-type="dfn" href="#cf_after" id="ref-for-cf_after②">CF_after</a> to the last <a data-link-type="dfn" href="#cf_i" id="ref-for-cf_i①">CF_i</a></p>
-    <li data-md>
-     <p>If the <a data-link-type="dfn" href="#function-tag" id="ref-for-function-tag③">function tag</a> is <a data-link-type="dfn" href="#returnvaluemaybenonuniform" id="ref-for-returnvaluemaybenonuniform①">ReturnValueMayBeNonUniform</a>, then add an edge from <a data-link-type="dfn" href="#result" id="ref-for-result②">Result</a> to <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①①">MayBeNonUniform</a></p>
-    <li data-md>
-     <p>Add an edge from <a data-link-type="dfn" href="#result" id="ref-for-result③">Result</a> to <a data-link-type="dfn" href="#cf_after" id="ref-for-cf_after③">CF_after</a></p>
+     <p>If the <a data-link-type="dfn" href="#function-tag" id="ref-for-function-tag③">function tag</a> is <a data-link-type="dfn" href="#returnvaluemaybenonuniform" id="ref-for-returnvaluemaybenonuniform①">ReturnValueMayBeNonUniform</a>, then add an edge from <a data-link-type="dfn" href="#result" id="ref-for-result③">Result</a> to <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①①">MayBeNonUniform</a></p>
     <li data-md>
      <p>For each argument <em>i</em>:</p>
      <ul>
@@ -18051,8 +18053,6 @@ will also be uniform after the function call.</p>
    <p>The rules for analyzing expressions take as argument both the expression itself and the node corresponding to control flow at the beginning of it (which we’ll note "CF" below) and return the following:</p>
    <ul>
     <li data-md>
-     <p>A node corresponding to control flow at the exit of it</p>
-    <li data-md>
      <p>A node corresponding to its value</p>
     <li data-md>
      <p>A set of new nodes and edges to add to the graph</p>
@@ -18064,7 +18064,7 @@ will also be uniform after the function call.</p>
       <th>Expression
       <th>New nodes
       <th>Recursive analyses
-      <th>Resulting control flow node, value node
+      <th>Resulting value node
       <th>New edges
   
     <tbody>
@@ -18072,10 +18072,10 @@ will also be uniform after the function call.</p>
       <td class="nowrap"><em>e1</em> || <em>e2</em>
       
       <td rowspan="2">
-      <td class="nowrap" rowspan="2">(<em>CF</em>, <em>e1</em>) => (<em>CF1</em>, <em>V1</em>)<br>
-          (<em>V1</em>, <em>e2</em>) => (<em>CF2</em>, <em>V2</em>)
+      <td class="nowrap" rowspan="2">(<em>CF</em>, <em>e1</em>) => <em>V1</em><br>
+          (<em>V1</em>, <em>e2</em>) => <em>V2</em>
       
-      <td class="nowrap" rowspan="2"><em>CF</em>, <em>V2</em>
+      <td class="nowrap" rowspan="2"><em>V2</em>
       
       <td rowspan="2">
      <tr>
@@ -18086,7 +18086,7 @@ will also be uniform after the function call.</p>
       
       <td>
       <td>
-      <td class="nowrap"><em>CF</em>, <em>CF</em>
+      <td class="nowrap"><em>CF</em>
       
       <td>
      <tr>
@@ -18099,7 +18099,7 @@ will also be uniform after the function call.</p>
       
       <td class><em>X</em> is the node corresponding to the value of "x" at the input to the statement containing this expression
       
-      <td class="nowrap"><em>CF</em>, <em>Result</em>
+      <td class="nowrap"><em>Result</em>
       
       <td class>
        <em>Result</em> -> {<em>CF</em>, <em>X</em>}
@@ -18116,7 +18116,7 @@ will also be uniform after the function call.</p>
       
       <td>
       <td class>
-      <td class="nowrap"><em>CF</em>, <a data-link-type="dfn" href="#param_i" id="ref-for-param_i⑤">param_i</a>
+      <td class="nowrap"><a data-link-type="dfn" href="#param_i" id="ref-for-param_i⑤">param_i</a>
       
       <td class>
      <tr>
@@ -18127,7 +18127,7 @@ will also be uniform after the function call.</p>
       
       <td>
       <td class>
-      <td class="nowrap"><em>CF</em>, <em>CF</em>
+      <td class="nowrap"><em>CF</em>
       
       <td class>
      <tr>
@@ -18138,7 +18138,7 @@ will also be uniform after the function call.</p>
       
       <td><em>X</em> is the node corresponding to "x"
       
-      <td class="nowrap"><em>CF</em>, <em>Result</em>
+      <td class="nowrap"><em>Result</em>
       
       <td class="nowrap"><em>Result</em> -> {<em>CF</em>, <em>X</em>}
    
@@ -18152,7 +18152,7 @@ will also be uniform after the function call.</p>
       
       <td>
       <td>
-      <td><em>CF</em>, <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①③">MayBeNonUniform</a>
+      <td><a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①③">MayBeNonUniform</a>
       
       <td>
      <tr>
@@ -18165,7 +18165,7 @@ will also be uniform after the function call.</p>
       
       <td>
       <td>
-      <td><em>CF</em>, <em>CF</em>
+      <td><em>CF</em>
       
       <td>
      <tr>
@@ -18174,7 +18174,7 @@ will also be uniform after the function call.</p>
       
       <td>
       <td>
-      <td><em>CF</em>, <em>CF</em>
+      <td><em>CF</em>
       
       <td>
      <tr>
@@ -18182,7 +18182,7 @@ will also be uniform after the function call.</p>
       
       <td>
       <td>
-      <td class="nowrap"><em>CF</em>, <em>CF</em>
+      <td class="nowrap"><em>CF</em>
       
       <td>
      <tr>
@@ -18190,8 +18190,7 @@ will also be uniform after the function call.</p>
       
       <td>
       <td>
-      <td class="nowrap"><em>CF</em>,<br>
-      <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①④">MayBeNonUniform</a>
+      <td class="nowrap"><a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①④">MayBeNonUniform</a>
       
       <td>
      <tr>
@@ -18199,7 +18198,7 @@ will also be uniform after the function call.</p>
       
       <td>
       <td>
-      <td class="nowrap"><em>CF</em>, <em>CF</em>
+      <td class="nowrap"><em>CF</em>
       
       <td>
      <tr>
@@ -18210,8 +18209,7 @@ will also be uniform after the function call.</p>
       
       <td>
       <td>
-      <td class="nowrap"><em>CF</em>,<br>
-      <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①⑤">MayBeNonUniform</a>
+      <td class="nowrap"><a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①⑤">MayBeNonUniform</a>
       
       <td>
      <tr>
@@ -18222,16 +18220,16 @@ will also be uniform after the function call.</p>
       
       <td>
       <td>
-      <td class="nowrap"><em>CF</em>,<em>CF</em>
+      <td class="nowrap"><em>CF</em>
       
       <td>
      <tr>
       <td class="nowrap">( <em>e</em> )
       
       <td rowspan="3">
-      <td class="nowrap" rowspan="3">(<em>CF</em>, <em>e</em>) => (<em>CF'</em>, <em>V</em>)
+      <td class="nowrap" rowspan="3">(<em>CF</em>, <em>e</em>) => <em>V</em>
       
-      <td class="nowrap" rowspan="3"><em>CF'</em>, <em>V</em>
+      <td class="nowrap" rowspan="3"><em>V</em>
       
       <td rowspan="3">
      <tr>
@@ -18245,10 +18243,10 @@ will also be uniform after the function call.</p>
       
       <td rowspan="2"> <em>Result</em>
       
-      <td class="nowrap" rowspan="2">(<em>CF</em>, <em>e1</em>) => (<em>CF1</em>, <em>V1</em>)<br>
-          (<em>CF1</em>, <em>e2</em>) => (<em>CF2</em>, <em>V2</em>)
+      <td class="nowrap" rowspan="2">(<em>CF</em>, <em>e1</em>) => <em>V1</em><br>
+          (<em>CF</em>, <em>e2</em>) => <em>V2</em>
       
-      <td class="nowrap" rowspan="2"><em>CF2</em>, <em>Result</em>
+      <td class="nowrap" rowspan="2"><em>Result</em>
       
       <td class="nowrap" rowspan="2"><em>Result</em> -> {<em>V1</em>, <em>V2</em>}
    
@@ -18260,9 +18258,9 @@ will also be uniform after the function call.</p>
        
       <td>
       <td>Invoke <a href="#uniformity-function-calls">function call analysis</a>:<br>
-                (<em>CF</em>, <em>f</em>()) => (<a data-link-type="dfn" href="#cf_after" id="ref-for-cf_after④">CF_after</a>, <a data-link-type="dfn" href="#result" id="ref-for-result⑤">Result</a>)
+                (<em>CF</em>, <em>f</em>()) => <a data-link-type="dfn" href="#result" id="ref-for-result⑤">Result</a>
        
-      <td><em>CF_after</em>, <em>Result</em>
+      <td><em>Result</em>
        
       <td>
      <tr>
@@ -18270,9 +18268,9 @@ will also be uniform after the function call.</p>
        
       <td>
       <td>Invoke <a href="#uniformity-function-calls">function call analysis</a>:
-                (<em>CF</em>, <em>f</em>(<em>e1</em>,...,<em>eN</em>)) => (<a data-link-type="dfn" href="#cf_after" id="ref-for-cf_after⑤">CF_after</a>, <a data-link-type="dfn" href="#result" id="ref-for-result⑥">Result</a>)
+                (<em>CF</em>, <em>f</em>(<em>e1</em>,...,<em>eN</em>)) => <a data-link-type="dfn" href="#result" id="ref-for-result⑥">Result</a>
        
-      <td><em>CF_after</em>, <em>Result</em>
+      <td><em>Result</em>
        
       <td>
    </table>
@@ -18304,7 +18302,7 @@ of a <a data-link-type="dfn" href="#composite" id="ref-for-composite⑧">composi
       <th>Expression
       <th>New nodes
       <th>Recursive analyses
-      <th>Resulting control flow node, variable node
+      <th>Resulting variable node
       <th>New edges
   
     <tbody>
@@ -18315,7 +18313,7 @@ of a <a data-link-type="dfn" href="#composite" id="ref-for-composite⑧">composi
       
       <td><em>X</em> is the node corresponding to the value of "x" at the output of the statement containing this expression.
       
-      <td class="nowrap"><em>CF</em>, <em>Result</em>
+      <td class="nowrap"><em>Result</em>
       
       <td class>
        <em>Result</em> -> {<em>CF</em>, <em>X</em>}
@@ -18330,7 +18328,7 @@ of a <a data-link-type="dfn" href="#composite" id="ref-for-composite⑧">composi
       <td>
       <td><em>X</em> is the node corresponding to "x"
       
-      <td class="nowrap"><em>CF</em>, <em>X</em>
+      <td class="nowrap"><em>X</em>
       
       <td>
      <tr>
@@ -18338,17 +18336,16 @@ of a <a data-link-type="dfn" href="#composite" id="ref-for-composite⑧">composi
       
       <td>
       <td>
-      <td class="nowrap"><em>CF</em>,<br>
-      <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①⑥">MayBeNonUniform</a>
+      <td class="nowrap"><a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①⑥">MayBeNonUniform</a>
       
       <td>
      <tr>
       <td class="nowrap"><em>e</em>.field
       
       <td rowspan="3">
-      <td class="nowrap" rowspan="3"><a data-link-type="dfn" href="#lhsvalue" id="ref-for-lhsvalue④">LHSValue</a>: (<em>CF</em>, <em>e</em>) => (<em>CF1</em>, <em>L1</em>)
+      <td class="nowrap" rowspan="3"><a data-link-type="dfn" href="#lhsvalue" id="ref-for-lhsvalue④">LHSValue</a>: (<em>CF</em>, <em>e</em>) => <em>L1</em>
       
-      <td class="nowrap" rowspan="3"><em>CF1</em>, <em>L1</em>
+      <td class="nowrap" rowspan="3"><em>L1</em>
       
       <td rowspan="3">
      <tr>
@@ -18361,10 +18358,10 @@ of a <a data-link-type="dfn" href="#composite" id="ref-for-composite⑧">composi
       <td class="nowrap"><em>e2</em>[<em>e1</em>]
       
       <td>
-      <td class="nowrap">(<em>CF</em>, <em>e1</em>) => (<em>CF1</em>, <em>V1</em>)<br>
-          <a data-link-type="dfn" href="#lhsvalue" id="ref-for-lhsvalue⑤">LHSValue</a>: (<em>CF1</em>, <em>e2</em>) => (<em>CF2</em>, <em>L2</em>)
+      <td class="nowrap">(<em>CF</em>, <em>e1</em>) => <em>V1</em><br>
+          <a data-link-type="dfn" href="#lhsvalue" id="ref-for-lhsvalue⑤">LHSValue</a>: (<em>CF</em>, <em>e2</em>) => <em>L2</em>
       
-      <td class="nowrap"><em>CF2</em>, <em>L2</em>
+      <td class="nowrap"><em>L2</em>
       
       <td class="nowrap"><em>L2</em> -> <em>V1</em>
 
@@ -27838,10 +27835,17 @@ Use token definitions from the main part of the specification.</p>
 </div>
    <div class="syntax">
     
+  <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-call_expressionpostident">call_expression.post.ident</dfn>:
+
+
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident">template_elaborated_ident.post.ident</a> <code>'('</code> ( <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①①">expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①②">expression</a> )* <code>','</code> ? )? <code>')'</code></p>
+   </div>
+   <div class="syntax">
+    
   <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-case_selector">case_selector</dfn>:
 
 
-    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①①">expression</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①③">expression</a></p>
     <p>| <code>'default'</code></p>
    </div>
    <div class="syntax">
@@ -27851,7 +27855,7 @@ Use token definitions from the main part of the specification.</p>
 
     <p>| <code>'.'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-member_ident" id="ref-for-recursive-descent-syntax-member_ident">member_ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-component_or_swizzle_specifier" id="ref-for-recursive-descent-syntax-component_or_swizzle_specifier">component_or_swizzle_specifier</a> ?</p>
     <p>| <code>'.'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-swizzle_name" id="ref-for-recursive-descent-syntax-swizzle_name">swizzle_name</a> <a data-link-type="dfn" href="#recursive-descent-syntax-component_or_swizzle_specifier" id="ref-for-recursive-descent-syntax-component_or_swizzle_specifier①">component_or_swizzle_specifier</a> ?</p>
-    <p>| <code>'['</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①②">expression</a> <code>']'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-component_or_swizzle_specifier" id="ref-for-recursive-descent-syntax-component_or_swizzle_specifier②">component_or_swizzle_specifier</a> ?</p>
+    <p>| <code>'['</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①④">expression</a> <code>']'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-component_or_swizzle_specifier" id="ref-for-recursive-descent-syntax-component_or_swizzle_specifier②">component_or_swizzle_specifier</a> ?</p>
    </div>
    <div class="syntax">
     
@@ -27896,6 +27900,7 @@ Use token definitions from the main part of the specification.</p>
 
 
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident">ident</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-call_expressionpostident" id="ref-for-recursive-descent-syntax-call_expressionpostident">call_expression.post.ident</a></p>
     <p>| <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-lhs_expression" id="ref-for-recursive-descent-syntax-lhs_expression">lhs_expression</a> <code>')'</code></p>
    </div>
    <div class="syntax">
@@ -27955,7 +27960,7 @@ Use token definitions from the main part of the specification.</p>
   <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-for_init">for_init</dfn>:
 
 
-    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-func_call_statementpostident" id="ref-for-recursive-descent-syntax-func_call_statementpostident">func_call_statement.post.ident</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident②">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-call_expressionpostident" id="ref-for-recursive-descent-syntax-call_expressionpostident①">call_expression.post.ident</a></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-variable_or_value_statement" id="ref-for-recursive-descent-syntax-variable_or_value_statement">variable_or_value_statement</a></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-variable_updating_statement" id="ref-for-recursive-descent-syntax-variable_updating_statement">variable_updating_statement</a></p>
    </div>
@@ -27964,7 +27969,7 @@ Use token definitions from the main part of the specification.</p>
   <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-for_update">for_update</dfn>:
 
 
-    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident②">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-func_call_statementpostident" id="ref-for-recursive-descent-syntax-func_call_statementpostident①">func_call_statement.post.ident</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident③">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-call_expressionpostident" id="ref-for-recursive-descent-syntax-call_expressionpostident②">call_expression.post.ident</a></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-variable_updating_statement" id="ref-for-recursive-descent-syntax-variable_updating_statement①">variable_updating_statement</a></p>
    </div>
    <div class="syntax">
@@ -27973,13 +27978,6 @@ Use token definitions from the main part of the specification.</p>
 
 
     <p>| <code>'@'</code> <code>'fragment'</code></p>
-   </div>
-   <div class="syntax">
-    
-  <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-func_call_statementpostident">func_call_statement.post.ident</dfn>:
-
-
-    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident">template_elaborated_ident.post.ident</a> <code>'('</code> ( <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①③">expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①④">expression</a> )* <code>','</code> ? )? <code>')'</code></p>
    </div>
    <div class="syntax">
     
@@ -27993,11 +27991,11 @@ Use token definitions from the main part of the specification.</p>
   <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-global_decl">global_decl</dfn>:
 
 
-    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute①">attribute</a> * <code>'fn'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident③">ident</a> <code>'('</code> ( <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute②">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident④">ident</a> <code>':'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier">type_specifier</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-param" id="ref-for-recursive-descent-syntax-param">param</a> )* <code>','</code> ? )? <code>')'</code> ( <code>'->'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute③">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑤">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident①">template_elaborated_ident.post.ident</a> )? <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute④">attribute</a> * <code>'{'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-statement" id="ref-for-recursive-descent-syntax-statement①">statement</a> * <code>'}'</code></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute①">attribute</a> * <code>'fn'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident④">ident</a> <code>'('</code> ( <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute②">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑤">ident</a> <code>':'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier">type_specifier</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-param" id="ref-for-recursive-descent-syntax-param">param</a> )* <code>','</code> ? )? <code>')'</code> ( <code>'->'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute③">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑥">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident①">template_elaborated_ident.post.ident</a> )? <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute④">attribute</a> * <code>'{'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-statement" id="ref-for-recursive-descent-syntax-statement①">statement</a> * <code>'}'</code></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute⑤">attribute</a> * <code>'var'</code> ( <a data-link-type="dfn" href="#syntax_sym-_template_args_start" id="ref-for-syntax_sym-_template_args_start⑥">_template_args_start</a> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①⑤">expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①⑥">expression</a> )* <code>','</code> ? <a data-link-type="dfn" href="#syntax_sym-_template_args_end" id="ref-for-syntax_sym-_template_args_end⑥">_template_args_end</a> )? <a data-link-type="dfn" href="#recursive-descent-syntax-optionally_typed_ident" id="ref-for-recursive-descent-syntax-optionally_typed_ident">optionally_typed_ident</a> ( <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression①⑦">expression</a> )? <code>';'</code></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-global_value_decl" id="ref-for-recursive-descent-syntax-global_value_decl">global_value_decl</a> <code>';'</code></p>
-    <p>| <code>'alias'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑥">ident</a> <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑦">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident②">template_elaborated_ident.post.ident</a> <code>';'</code></p>
-    <p>| <code>'struct'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑧">ident</a> <code>'{'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute⑥">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-member_ident" id="ref-for-recursive-descent-syntax-member_ident①">member_ident</a> <code>':'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier①">type_specifier</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute⑦">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-member_ident" id="ref-for-recursive-descent-syntax-member_ident②">member_ident</a> <code>':'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier②">type_specifier</a> )* <code>','</code> ? <code>'}'</code></p>
+    <p>| <code>'alias'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑦">ident</a> <code>'='</code> <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑧">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident②">template_elaborated_ident.post.ident</a> <code>';'</code></p>
+    <p>| <code>'struct'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑨">ident</a> <code>'{'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute⑥">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-member_ident" id="ref-for-recursive-descent-syntax-member_ident①">member_ident</a> <code>':'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier①">type_specifier</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute⑦">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-member_ident" id="ref-for-recursive-descent-syntax-member_ident②">member_ident</a> <code>':'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier②">type_specifier</a> )* <code>','</code> ? <code>'}'</code></p>
    </div>
    <div class="syntax">
     
@@ -28098,22 +28096,22 @@ Use token definitions from the main part of the specification.</p>
   <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-optionally_typed_ident">optionally_typed_ident</dfn>:
 
 
-    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident⑨">ident</a> ( <code>':'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier③">type_specifier</a> )?</p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①⓪">ident</a> ( <code>':'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier③">type_specifier</a> )?</p>
    </div>
    <div class="syntax">
     
   <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-param">param</dfn>:
 
 
-    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute⑨">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①⓪">ident</a> <code>':'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier④">type_specifier</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute⑨">attribute</a> * <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①①">ident</a> <code>':'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-type_specifier" id="ref-for-recursive-descent-syntax-type_specifier④">type_specifier</a></p>
    </div>
    <div class="syntax">
     
   <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-primary_expression">primary_expression</dfn>:
 
 
-    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①①">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident③">template_elaborated_ident.post.ident</a></p>
-    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①②">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident④">template_elaborated_ident.post.ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-argument_expression_list" id="ref-for-recursive-descent-syntax-argument_expression_list">argument_expression_list</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①②">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident③">template_elaborated_ident.post.ident</a></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①③">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident④">template_elaborated_ident.post.ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-argument_expression_list" id="ref-for-recursive-descent-syntax-argument_expression_list">argument_expression_list</a></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-literal" id="ref-for-recursive-descent-syntax-literal">literal</a></p>
     <p>| <code>'('</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②⓪">expression</a> <code>')'</code></p>
    </div>
@@ -28150,7 +28148,7 @@ Use token definitions from the main part of the specification.</p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute①⑤">attribute</a> * <code>'switch'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②⑤">expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute①⑥">attribute</a> * <code>'{'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-switch_clause" id="ref-for-recursive-descent-syntax-switch_clause">switch_clause</a> * <code>'}'</code></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-attribute" id="ref-for-recursive-descent-syntax-attribute①⑦">attribute</a> * <code>'while'</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression②⑥">expression</a> <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement④">compound_statement</a></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-compound_statement" id="ref-for-recursive-descent-syntax-compound_statement⑤">compound_statement</a></p>
-    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①③">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident⑤">template_elaborated_ident.post.ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-argument_expression_list" id="ref-for-recursive-descent-syntax-argument_expression_list①">argument_expression_list</a> <code>';'</code></p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①④">ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_elaborated_identpostident" id="ref-for-recursive-descent-syntax-template_elaborated_identpostident⑤">template_elaborated_ident.post.ident</a> <a data-link-type="dfn" href="#recursive-descent-syntax-argument_expression_list" id="ref-for-recursive-descent-syntax-argument_expression_list①">argument_expression_list</a> <code>';'</code></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-variable_or_value_statement" id="ref-for-recursive-descent-syntax-variable_or_value_statement①">variable_or_value_statement</a> <code>';'</code></p>
     <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-variable_updating_statement" id="ref-for-recursive-descent-syntax-variable_updating_statement②">variable_updating_statement</a> <code>';'</code></p>
     <p>| <a data-link-type="dfn" href="#syntax-assert_statement" id="ref-for-syntax-assert_statement①">assert_statement</a> <code>';'</code></p>
@@ -28214,7 +28212,7 @@ Use token definitions from the main part of the specification.</p>
   <dfn class="dfn-paneled" data-dfn-for="recursive descent syntax" data-dfn-type="dfn" data-noexport id="recursive-descent-syntax-type_specifier">type_specifier</dfn>:
 
 
-    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①④">ident</a> ( <a data-link-type="dfn" href="#syntax_sym-_template_args_start" id="ref-for-syntax_sym-_template_args_start⑧">_template_args_start</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_arg_expression" id="ref-for-recursive-descent-syntax-template_arg_expression①">template_arg_expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③⓪">expression</a> )* <code>','</code> ? <a data-link-type="dfn" href="#syntax_sym-_template_args_end" id="ref-for-syntax_sym-_template_args_end⑧">_template_args_end</a> )?</p>
+    <p>| <a data-link-type="dfn" href="#recursive-descent-syntax-ident" id="ref-for-recursive-descent-syntax-ident①⑤">ident</a> ( <a data-link-type="dfn" href="#syntax_sym-_template_args_start" id="ref-for-syntax_sym-_template_args_start⑧">_template_args_start</a> <a data-link-type="dfn" href="#recursive-descent-syntax-template_arg_expression" id="ref-for-recursive-descent-syntax-template_arg_expression①">template_arg_expression</a> ( <code>','</code> <a data-link-type="dfn" href="#recursive-descent-syntax-expression" id="ref-for-recursive-descent-syntax-expression③⓪">expression</a> )* <code>','</code> ? <a data-link-type="dfn" href="#syntax_sym-_template_args_end" id="ref-for-syntax_sym-_template_args_end⑧">_template_args_end</a> )?</p>
    </div>
    <div class="syntax">
     
@@ -28528,6 +28526,7 @@ registrations, it matches widespread industry conventions.</p>
    <li><a href="#callee">callee</a><span>, in § 11.2</span>
    <li><a href="#caller">caller</a><span>, in § 11.2</span>
    <li><a href="#syntax-call_expression">call_expression</a><span>, in § 8.18</span>
+   <li><a href="#recursive-descent-syntax-call_expressionpostident">call_expression.post.ident</a><span>, in § 18</span>
    <li><a href="#calling-function">calling function</a><span>, in § 11.2</span>
    <li><a href="#syntax-call_phrase">call_phrase</a><span>, in § 8.18</span>
    <li><a href="#call-site">call site</a><span>, in § 11.2</span>
@@ -28547,8 +28546,6 @@ registrations, it matches widespread industry conventions.</p>
    <li><a href="#ceiling-expression">ceiling expression</a><span>, in § 1.3</span>
    <li><a href="#interpolation-sampling-center">center</a><span>, in § 13.3.1.4</span>
    <li><a href="#interpolation-sampling-centroid">centroid</a><span>, in § 13.3.1.4</span>
-   <li><a href="#cf_after">CF_after</a><span>, in § 15.2.7</span>
-   <li><a href="#cf_i">CF_i</a><span>, in § 15.2.7</span>
    <li><a href="#cf_start">CF_start</a><span>, in § 15.2.3</span>
    <li><a href="#channel-format">channel format</a><span>, in § 6.5.1</span>
    <li><a href="#channel-formats">Channel Formats</a><span>, in § 6.5.1</span>
@@ -28823,7 +28820,6 @@ registrations, it matches widespread industry conventions.</p>
    <li><a href="#full-reference">full reference</a><span>, in § 15.2.5</span>
    <li><a href="#fully-elaborated">fully elaborated</a><span>, in § 6.1</span>
    <li><a href="#syntax-func_call_statement">func_call_statement</a><span>, in § 9.5</span>
-   <li><a href="#recursive-descent-syntax-func_call_statementpostident">func_call_statement.post.ident</a><span>, in § 18</span>
    <li>
     function
     <ul>
@@ -30123,8 +30119,6 @@ let dfnPanelData = {
 "case-clause": {"dfnID":"case-clause","dfnText":"case clause","external":false,"refSections":[{"refs":[{"id":"ref-for-case-clause"}],"title":"2.3.3. Diagnostic Filtering"},{"refs":[{"id":"ref-for-case-clause\u2460"},{"id":"ref-for-case-clause\u2461"},{"id":"ref-for-case-clause\u2462"}],"title":"9.4.2. Switch Statement"}],"url":"#case-clause"},
 "cdca3919": {"dfnID":"cdca3919","dfnText":"rasterizationpoint-depth","external":true,"refSections":[{"refs":[{"id":"ref-for-rasterizationpoint-depth"}],"title":"13.3.1.1.10. position"}],"url":"https://gpuweb.github.io/gpuweb/#rasterizationpoint-depth"},
 "ceiling-expression": {"dfnID":"ceiling-expression","dfnText":"ceiling expression","external":false,"refSections":[{"refs":[{"id":"ref-for-ceiling-expression"}],"title":"17.5.9. ceil"}],"url":"#ceiling-expression"},
-"cf_after": {"dfnID":"cf_after","dfnText":"CF_after","external":false,"refSections":[{"refs":[{"id":"ref-for-cf_after"},{"id":"ref-for-cf_after\u2460"}],"title":"15.2.6. Uniformity Rules for Statements"},{"refs":[{"id":"ref-for-cf_after\u2461"},{"id":"ref-for-cf_after\u2462"}],"title":"15.2.7. Uniformity Rules for Function Calls"},{"refs":[{"id":"ref-for-cf_after\u2463"},{"id":"ref-for-cf_after\u2464"}],"title":"15.2.8. Uniformity Rules for Expressions"}],"url":"#cf_after"},
-"cf_i": {"dfnID":"cf_i","dfnText":"CF_i","external":false,"refSections":[{"refs":[{"id":"ref-for-cf_i"},{"id":"ref-for-cf_i\u2460"}],"title":"15.2.7. Uniformity Rules for Function Calls"}],"url":"#cf_i"},
 "cf_start": {"dfnID":"cf_start","dfnText":"CF_start","external":false,"refSections":[{"refs":[{"id":"ref-for-cf_start"},{"id":"ref-for-cf_start\u2460"}],"title":"15.2.3. Analyzing the Uniformity Requirements of a Function"},{"refs":[{"id":"ref-for-cf_start\u2461"}],"title":"15.2.9. Annotating the Uniformity of Every Point in the Control-flow"},{"refs":[{"id":"ref-for-cf_start\u2462"}],"title":"15.2.10.1. Invalid textureSample Function Call"}],"url":"#cf_start"},
 "channel-format": {"dfnID":"channel-format","dfnText":"channel format","external":false,"refSections":[],"url":"#channel-format"},
 "channel-formats": {"dfnID":"channel-formats","dfnText":"Channel Formats","external":false,"refSections":[{"refs":[{"id":"ref-for-channel-formats"}],"title":"6.5.1. Texel Formats"}],"url":"#channel-formats"},
@@ -30431,6 +30425,7 @@ let dfnPanelData = {
 "recursive-descent-syntax-bitwise_expressionpostunary_expression": {"dfnID":"recursive-descent-syntax-bitwise_expressionpostunary_expression","dfnText":"bitwise_expression.post.unary_expression","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-bitwise_expressionpostunary_expression"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-bitwise_expressionpostunary_expression"},
 "recursive-descent-syntax-bool_literal": {"dfnID":"recursive-descent-syntax-bool_literal","dfnText":"bool_literal","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-bool_literal"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-bool_literal"},
 "recursive-descent-syntax-builtin_value_name": {"dfnID":"recursive-descent-syntax-builtin_value_name","dfnText":"builtin_value_name","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-builtin_value_name"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-builtin_value_name"},
+"recursive-descent-syntax-call_expressionpostident": {"dfnID":"recursive-descent-syntax-call_expressionpostident","dfnText":"call_expression.post.ident","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-call_expressionpostident"},{"id":"ref-for-recursive-descent-syntax-call_expressionpostident\u2460"},{"id":"ref-for-recursive-descent-syntax-call_expressionpostident\u2461"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-call_expressionpostident"},
 "recursive-descent-syntax-case_selector": {"dfnID":"recursive-descent-syntax-case_selector","dfnText":"case_selector","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-case_selector"},{"id":"ref-for-recursive-descent-syntax-case_selector\u2460"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-case_selector"},
 "recursive-descent-syntax-component_or_swizzle_specifier": {"dfnID":"recursive-descent-syntax-component_or_swizzle_specifier","dfnText":"component_or_swizzle_specifier","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-component_or_swizzle_specifier"},{"id":"ref-for-recursive-descent-syntax-component_or_swizzle_specifier\u2460"},{"id":"ref-for-recursive-descent-syntax-component_or_swizzle_specifier\u2461"},{"id":"ref-for-recursive-descent-syntax-component_or_swizzle_specifier\u2462"},{"id":"ref-for-recursive-descent-syntax-component_or_swizzle_specifier\u2463"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-component_or_swizzle_specifier"},
 "recursive-descent-syntax-compound_assignment_operator": {"dfnID":"recursive-descent-syntax-compound_assignment_operator","dfnText":"compound_assignment_operator","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-compound_assignment_operator"},{"id":"ref-for-recursive-descent-syntax-compound_assignment_operator\u2460"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-compound_assignment_operator"},
@@ -30447,13 +30442,12 @@ let dfnPanelData = {
 "recursive-descent-syntax-for_init": {"dfnID":"recursive-descent-syntax-for_init","dfnText":"for_init","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-for_init"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-for_init"},
 "recursive-descent-syntax-for_update": {"dfnID":"recursive-descent-syntax-for_update","dfnText":"for_update","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-for_update"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-for_update"},
 "recursive-descent-syntax-fragment_attr": {"dfnID":"recursive-descent-syntax-fragment_attr","dfnText":"fragment_attr","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-fragment_attr"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-fragment_attr"},
-"recursive-descent-syntax-func_call_statementpostident": {"dfnID":"recursive-descent-syntax-func_call_statementpostident","dfnText":"func_call_statement.post.ident","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-func_call_statementpostident"},{"id":"ref-for-recursive-descent-syntax-func_call_statementpostident\u2460"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-func_call_statementpostident"},
 "recursive-descent-syntax-global_assert": {"dfnID":"recursive-descent-syntax-global_assert","dfnText":"global_assert","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-global_assert"},{"id":"ref-for-recursive-descent-syntax-global_assert\u2460"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-global_assert"},
 "recursive-descent-syntax-global_decl": {"dfnID":"recursive-descent-syntax-global_decl","dfnText":"global_decl","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-global_decl"},{"id":"ref-for-recursive-descent-syntax-global_decl\u2460"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-global_decl"},
 "recursive-descent-syntax-global_directive": {"dfnID":"recursive-descent-syntax-global_directive","dfnText":"global_directive","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-global_directive"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-global_directive"},
 "recursive-descent-syntax-global_value_decl": {"dfnID":"recursive-descent-syntax-global_value_decl","dfnText":"global_value_decl","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-global_value_decl"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-global_value_decl"},
 "recursive-descent-syntax-hex_float_literal": {"dfnID":"recursive-descent-syntax-hex_float_literal","dfnText":"hex_float_literal","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-hex_float_literal"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-hex_float_literal"},
-"recursive-descent-syntax-ident": {"dfnID":"recursive-descent-syntax-ident","dfnText":"ident","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-ident"},{"id":"ref-for-recursive-descent-syntax-ident\u2460"},{"id":"ref-for-recursive-descent-syntax-ident\u2461"},{"id":"ref-for-recursive-descent-syntax-ident\u2462"},{"id":"ref-for-recursive-descent-syntax-ident\u2463"},{"id":"ref-for-recursive-descent-syntax-ident\u2464"},{"id":"ref-for-recursive-descent-syntax-ident\u2465"},{"id":"ref-for-recursive-descent-syntax-ident\u2466"},{"id":"ref-for-recursive-descent-syntax-ident\u2467"},{"id":"ref-for-recursive-descent-syntax-ident\u2468"},{"id":"ref-for-recursive-descent-syntax-ident\u2460\u24ea"},{"id":"ref-for-recursive-descent-syntax-ident\u2460\u2460"},{"id":"ref-for-recursive-descent-syntax-ident\u2460\u2461"},{"id":"ref-for-recursive-descent-syntax-ident\u2460\u2462"},{"id":"ref-for-recursive-descent-syntax-ident\u2460\u2463"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-ident"},
+"recursive-descent-syntax-ident": {"dfnID":"recursive-descent-syntax-ident","dfnText":"ident","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-ident"},{"id":"ref-for-recursive-descent-syntax-ident\u2460"},{"id":"ref-for-recursive-descent-syntax-ident\u2461"},{"id":"ref-for-recursive-descent-syntax-ident\u2462"},{"id":"ref-for-recursive-descent-syntax-ident\u2463"},{"id":"ref-for-recursive-descent-syntax-ident\u2464"},{"id":"ref-for-recursive-descent-syntax-ident\u2465"},{"id":"ref-for-recursive-descent-syntax-ident\u2466"},{"id":"ref-for-recursive-descent-syntax-ident\u2467"},{"id":"ref-for-recursive-descent-syntax-ident\u2468"},{"id":"ref-for-recursive-descent-syntax-ident\u2460\u24ea"},{"id":"ref-for-recursive-descent-syntax-ident\u2460\u2460"},{"id":"ref-for-recursive-descent-syntax-ident\u2460\u2461"},{"id":"ref-for-recursive-descent-syntax-ident\u2460\u2462"},{"id":"ref-for-recursive-descent-syntax-ident\u2460\u2463"},{"id":"ref-for-recursive-descent-syntax-ident\u2460\u2464"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-ident"},
 "recursive-descent-syntax-int_literal": {"dfnID":"recursive-descent-syntax-int_literal","dfnText":"int_literal","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-int_literal"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-int_literal"},
 "recursive-descent-syntax-interpolate_attr": {"dfnID":"recursive-descent-syntax-interpolate_attr","dfnText":"interpolate_attr","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-interpolate_attr"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-interpolate_attr"},
 "recursive-descent-syntax-invariant_attr": {"dfnID":"recursive-descent-syntax-invariant_attr","dfnText":"invariant_attr","external":false,"refSections":[{"refs":[{"id":"ref-for-recursive-descent-syntax-invariant_attr"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#recursive-descent-syntax-invariant_attr"},
@@ -30584,7 +30578,7 @@ let dfnPanelData = {
 "syntax-break_statement": {"dfnID":"syntax-break_statement","dfnText":"break_statement","external":false,"refSections":[{"refs":[{"id":"ref-for-syntax-break_statement"}],"title":"9.6. Statements Grammar Summary"},{"refs":[{"id":"ref-for-syntax-break_statement\u2460"}],"title":"18. Grammar for Recursive Descent Parsing"}],"url":"#syntax-break_statement"},
 "syntax-builtin_attr": {"dfnID":"syntax-builtin_attr","dfnText":"builtin_attr","external":false,"refSections":[{"refs":[{"id":"ref-for-syntax-builtin_attr"}],"title":"12. Attributes"}],"url":"#syntax-builtin_attr"},
 "syntax-builtin_value_name": {"dfnID":"syntax-builtin_value_name","dfnText":"builtin_value_name","external":false,"refSections":[{"refs":[{"id":"ref-for-syntax-builtin_value_name"}],"title":"12.4. builtin"}],"url":"#syntax-builtin_value_name"},
-"syntax-call_expression": {"dfnID":"syntax-call_expression","dfnText":"call_expression","external":false,"refSections":[{"refs":[{"id":"ref-for-syntax-call_expression"},{"id":"ref-for-syntax-call_expression\u2460"}],"title":"8.18. Expression Grammar Summary"}],"url":"#syntax-call_expression"},
+"syntax-call_expression": {"dfnID":"syntax-call_expression","dfnText":"call_expression","external":false,"refSections":[{"refs":[{"id":"ref-for-syntax-call_expression"},{"id":"ref-for-syntax-call_expression\u2460"},{"id":"ref-for-syntax-call_expression\u2461"}],"title":"8.18. Expression Grammar Summary"}],"url":"#syntax-call_expression"},
 "syntax-call_phrase": {"dfnID":"syntax-call_phrase","dfnText":"call_phrase","external":false,"refSections":[{"refs":[{"id":"ref-for-syntax-call_phrase"},{"id":"ref-for-syntax-call_phrase\u2460"}],"title":"8.18. Expression Grammar Summary"},{"refs":[{"id":"ref-for-syntax-call_phrase\u2461"}],"title":"9.5. Function Call Statement"},{"refs":[{"id":"ref-for-syntax-call_phrase\u2462"}],"title":"11.2. Function Calls"}],"url":"#syntax-call_phrase"},
 "syntax-case_clause": {"dfnID":"syntax-case_clause","dfnText":"case_clause","external":false,"refSections":[{"refs":[{"id":"ref-for-syntax-case_clause"}],"title":"9.4.2. Switch Statement"}],"url":"#syntax-case_clause"},
 "syntax-case_selector": {"dfnID":"syntax-case_selector","dfnText":"case_selector","external":false,"refSections":[{"refs":[{"id":"ref-for-syntax-case_selector"},{"id":"ref-for-syntax-case_selector\u2460"},{"id":"ref-for-syntax-case_selector\u2461"},{"id":"ref-for-syntax-case_selector\u2462"},{"id":"ref-for-syntax-case_selector\u2463"}],"title":"9.4.2. Switch Statement"}],"url":"#syntax-case_selector"},
@@ -31399,8 +31393,6 @@ let refsData = {
 "#callsiterequiredtobeuniforms": {"displayText":"callsiterequiredtobeuniform.s","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"callsiterequiredtobeuniform.s","type":"dfn","url":"#callsiterequiredtobeuniforms"},
 "#case-clause": {"displayText":"case clause","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"case clause","type":"dfn","url":"#case-clause"},
 "#ceiling-expression": {"displayText":"ceiling expression","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"ceiling expression","type":"dfn","url":"#ceiling-expression"},
-"#cf_after": {"displayText":"cf_after","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"cf_after","type":"dfn","url":"#cf_after"},
-"#cf_i": {"displayText":"cf_i","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"cf_i","type":"dfn","url":"#cf_i"},
 "#cf_start": {"displayText":"cf_start","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"cf_start","type":"dfn","url":"#cf_start"},
 "#channel-formats": {"displayText":"channel formats","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"channel formats","type":"dfn","url":"#channel-formats"},
 "#channel-transfer-function": {"displayText":"channel transfer function","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"channel transfer function","type":"dfn","url":"#channel-transfer-function"},
@@ -31642,6 +31634,7 @@ let refsData = {
 "#recursive-descent-syntax-bitwise_expressionpostunary_expression": {"displayText":"bitwise_expression.post.unary_expression","export":true,"for_":["recursive descent syntax"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"bitwise_expression.post.unary_expression","type":"dfn","url":"#recursive-descent-syntax-bitwise_expressionpostunary_expression"},
 "#recursive-descent-syntax-bool_literal": {"displayText":"bool_literal","export":true,"for_":["recursive descent syntax"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"bool_literal","type":"dfn","url":"#recursive-descent-syntax-bool_literal"},
 "#recursive-descent-syntax-builtin_value_name": {"displayText":"builtin_value_name","export":true,"for_":["recursive descent syntax"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"builtin_value_name","type":"dfn","url":"#recursive-descent-syntax-builtin_value_name"},
+"#recursive-descent-syntax-call_expressionpostident": {"displayText":"call_expression.post.ident","export":true,"for_":["recursive descent syntax"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"call_expression.post.ident","type":"dfn","url":"#recursive-descent-syntax-call_expressionpostident"},
 "#recursive-descent-syntax-case_selector": {"displayText":"case_selector","export":true,"for_":["recursive descent syntax"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"case_selector","type":"dfn","url":"#recursive-descent-syntax-case_selector"},
 "#recursive-descent-syntax-component_or_swizzle_specifier": {"displayText":"component_or_swizzle_specifier","export":true,"for_":["recursive descent syntax"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"component_or_swizzle_specifier","type":"dfn","url":"#recursive-descent-syntax-component_or_swizzle_specifier"},
 "#recursive-descent-syntax-compound_assignment_operator": {"displayText":"compound_assignment_operator","export":true,"for_":["recursive descent syntax"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"compound_assignment_operator","type":"dfn","url":"#recursive-descent-syntax-compound_assignment_operator"},
@@ -31658,7 +31651,6 @@ let refsData = {
 "#recursive-descent-syntax-for_init": {"displayText":"for_init","export":true,"for_":["recursive descent syntax"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"for_init","type":"dfn","url":"#recursive-descent-syntax-for_init"},
 "#recursive-descent-syntax-for_update": {"displayText":"for_update","export":true,"for_":["recursive descent syntax"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"for_update","type":"dfn","url":"#recursive-descent-syntax-for_update"},
 "#recursive-descent-syntax-fragment_attr": {"displayText":"fragment_attr","export":true,"for_":["recursive descent syntax"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"fragment_attr","type":"dfn","url":"#recursive-descent-syntax-fragment_attr"},
-"#recursive-descent-syntax-func_call_statementpostident": {"displayText":"func_call_statement.post.ident","export":true,"for_":["recursive descent syntax"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"func_call_statement.post.ident","type":"dfn","url":"#recursive-descent-syntax-func_call_statementpostident"},
 "#recursive-descent-syntax-global_assert": {"displayText":"global_assert","export":true,"for_":["recursive descent syntax"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"global_assert","type":"dfn","url":"#recursive-descent-syntax-global_assert"},
 "#recursive-descent-syntax-global_decl": {"displayText":"global_decl","export":true,"for_":["recursive descent syntax"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"global_decl","type":"dfn","url":"#recursive-descent-syntax-global_decl"},
 "#recursive-descent-syntax-global_directive": {"displayText":"global_directive","export":true,"for_":["recursive descent syntax"],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"global_directive","type":"dfn","url":"#recursive-descent-syntax-global_directive"},
