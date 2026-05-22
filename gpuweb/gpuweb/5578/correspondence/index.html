@@ -952,9 +952,11 @@ User agents are not required to use these formulas and may expose whatever they 
       <td>
        <p class="issue" id="issue-81390f61⑤"><a class="self-link" href="#issue-81390f61⑤"></a><em>No documented limit?</em>
         </p>
-      <td>-32768 = <code>D3D12_VIEWPORT_BOUNDS_MIN</code>
-        Note: equal to -2 × <code>maxTextureDimension2D</code>
-    
+      <td>
+       -32768 = <code>D3D12_VIEWPORT_BOUNDS_MIN</code>
+
+
+       <p class="note" role="note"><span class="marker">Note:</span> equal to -2 × <code>maxTextureDimension2D</code></p>
      <tr>
       <th>Max Viewport Bounds (implied)
         
@@ -965,9 +967,11 @@ User agents are not required to use these formulas and may expose whatever they 
       <td>
        <p class="issue" id="issue-81390f61⑥"><a class="self-link" href="#issue-81390f61⑥"></a><em>No documented limit?</em>
         </p>
-      <td>32767 = <code>D3D12_VIEWPORT_BOUNDS_MAX</code>
-        Note: equal to 2 × <code>maxTextureDimension2D</code> - 1
+      <td>
+       32767 = <code>D3D12_VIEWPORT_BOUNDS_MAX</code>
 
+
+       <p class="note" role="note"><span class="marker">Note:</span> equal to 2 × <code>maxTextureDimension2D</code> - 1</p>
    </table>
    <h3 class="heading settled" data-level="2.1" id="vulkan-maxFragmentCombinedOutputResources"><span class="secno">2.1. </span><span class="content">Vulkan <code>maxFragmentCombinedOutputResources</code></span><a class="self-link" href="#vulkan-maxFragmentCombinedOutputResources"></a></h3>
    <p>Choose <code>maxStorageBuffersPerShaderStage</code>, <code>maxStorageTexturesPerShaderStage</code>, and <code>maxColorAttachments</code>
