@@ -868,7 +868,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dj2/gpuweb/blob/a385f5b6dff676c9b97e4d5c939a6875ab5172ec/wgsl/index.bs">https://github.com/dj2/gpuweb/blob/a385f5b6dff676c9b97e4d5c939a6875ab5172ec/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dj2/gpuweb/blob/69a829b807e82935150ec3ec72af65059a4a5e54/wgsl/index.bs">https://github.com/dj2/gpuweb/blob/69a829b807e82935150ec3ec72af65059a4a5e54/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -8218,7 +8218,8 @@ effective-value-type.</p>
     
       <td><a data-link-type="dfn" href="#module-scope" id="ref-for-module-scope①⑤">Module</a>
     
-      <td><a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete①⑨">Concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible⑦">constructible</a> <a data-link-type="dfn" href="#host-shareable" id="ref-for-host-shareable③">host-shareable</a>, excluding arrays and structures containing array members
+      <td><a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete①⑨">Concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible⑦">constructible</a> <a data-link-type="dfn" href="#host-shareable" id="ref-for-host-shareable③">host-shareable</a>, excluding any type that is
+        or contains an <a data-link-type="dfn" href="#array" id="ref-for-array⑥">array</a> or <a data-link-type="dfn" href="#f16" id="ref-for-f16①④">f16</a>
     
       <td>Disallowed
     
@@ -8333,7 +8334,7 @@ The variable itself cannot be modified.</p>
      <p>Variables in the <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup①⓪">workgroup</a> address space can only be
 <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed④">statically accessed</a> in a <a data-link-type="dfn" href="#compute-shader-stage" id="ref-for-compute-shader-stage①">compute shader stage</a>.</p>
     <li data-md>
-     <p>The <a data-link-type="dfn" href="#element-count" id="ref-for-element-count②">element count</a> of the outermost <a data-link-type="dfn" href="#array" id="ref-for-array⑥">array</a> may be an
+     <p>The <a data-link-type="dfn" href="#element-count" id="ref-for-element-count②">element count</a> of the outermost <a data-link-type="dfn" href="#array" id="ref-for-array⑦">array</a> may be an
 <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions⑥">override-expression</a>.</p>
     <li data-md>
      <p>If there is no initializer, the variable is <a data-link-type="dfn" href="#default-initial-value" id="ref-for-default-initial-value">default
@@ -8545,17 +8546,7 @@ The variable may be declared with a <a data-link-type="dfn" href="#access-read" 
 access mode; the default is read.</p>
    <p>A variable in the <a data-link-type="dfn" href="#address-spaces-immediate" id="ref-for-address-spaces-immediate②">immediate</a> address space is an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="immediate-data">immediate data</dfn> variable.
 Its <a data-link-type="dfn" href="#store-type" id="ref-for-store-type①⑥">store type</a> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error⑦②">must</a> be a <a data-link-type="dfn" href="#host-shareable" id="ref-for-host-shareable⑥">host-shareable</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①③">constructible</a> type,
-excluding:</p>
-   <ul>
-    <li data-md>
-     <p>arrays</p>
-    <li data-md>
-     <p>f16</p>
-    <li data-md>
-     <p>any type with an f16 component</p>
-    <li data-md>
-     <p>structures which include, or nest, any of the exclusions</p>
-   </ul>
+excluding any type that is or contains an <a data-link-type="dfn" href="#array" id="ref-for-array⑧">array</a> or <a data-link-type="dfn" href="#f16" id="ref-for-f16①⑤">f16</a>.</p>
    <p>Each <a data-link-type="dfn" href="#entry-point" id="ref-for-entry-point⑥">entry point</a> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error⑦③">must</a> <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed⑤">statically access</a> at most one immediate data variable.
 The value of an immediate variable is set via <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/#dom-gpubindingcommandsmixin-setimmediates" id="ref-for-dom-gpubindingcommandsmixin-setimmediates">setImmediates</a> commands recorded by the WebGPU API command encoder,
 and remains constant during shader execution.
@@ -8643,7 +8634,7 @@ of the underlying type (<a data-link-type="dfn" href="#type-concrete" id="ref-fo
 encountered.</p>
        <ul>
         <li data-md>
-         <p class="note" role="note"><span class="marker">Note:</span> This commonly occurs when using an <a data-link-type="dfn" href="#array" id="ref-for-array⑦">array</a> with a
+         <p class="note" role="note"><span class="marker">Note:</span> This commonly occurs when using an <a data-link-type="dfn" href="#array" id="ref-for-array⑨">array</a> with a
 <a data-link-type="dfn" href="#pipeline-overridable" id="ref-for-pipeline-overridable②">pipeline-overridable</a> <a data-link-type="dfn" href="#element-count" id="ref-for-element-count③">element count</a> or a <a data-link-type="dfn" href="#composite" id="ref-for-composite④">composite</a> that
 contains an <a data-link-type="dfn" href="#atomic-type" id="ref-for-atomic-type⑨">atomic type</a>.</p>
        </ul>
@@ -8786,7 +8777,7 @@ flexibility with each kind of value declaration.
 execution on the GPU, so only the result of the computation of the expression
 is necessary in the final GPU code.
 Additionally, because <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions①⑦">const-expressions</a> are evaluated at <a data-link-type="dfn" href="#shader-module-creation" id="ref-for-shader-module-creation①①">shader-creation time</a> they can be used in more situations than
-<a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions①①">override-expressions</a>, for example, to size <a data-link-type="dfn" href="#array" id="ref-for-array⑧">arrays</a> in <a data-link-type="dfn" href="#function-scope" id="ref-for-function-scope⑦">function scope</a>
+<a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions①①">override-expressions</a>, for example, to size <a data-link-type="dfn" href="#array" id="ref-for-array①⓪">arrays</a> in <a data-link-type="dfn" href="#function-scope" id="ref-for-function-scope⑦">function scope</a>
 <a data-link-type="dfn" href="#variable-declaration" id="ref-for-variable-declaration⑤">variables</a>.
 A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="runtime-expression">runtime expression</dfn> is an expression that is neither a
 <a data-link-type="dfn" href="#const-expressions" id="ref-for-const-expressions①⑧">const-expression</a> nor an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions①②">override-expression</a>.
@@ -13926,7 +13917,7 @@ of any of the <a data-link-type="dfn" href="#functions-in-a-shader-stage" id="re
      <li data-md>
       <p>As a particular case of helping to define a type,
 any <a data-link-type="dfn" href="#override-declaration" id="ref-for-override-declaration①⑤">override-declaration</a> used in an <a data-link-type="dfn" href="#override-expressions" id="ref-for-override-expressions③②">override-expression</a> that is the <a data-link-type="dfn" href="#element-count" id="ref-for-element-count⑤">element count</a>
-of an <a data-link-type="dfn" href="#array" id="ref-for-array⑨">array</a> type for a variable in the <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup①③">workgroup</a> address space,
+of an <a data-link-type="dfn" href="#array" id="ref-for-array①①">array</a> type for a variable in the <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup①③">workgroup</a> address space,
 when that variable itself is statically accessed.</p>
      <li data-md>
       <p>Any override declarations used to support the evaluation of override-expressions in any of the above.</p>
@@ -15917,7 +15908,7 @@ following table:</p>
       <td>4
   
      <tr>
-      <td><a data-link-type="dfn" href="#f16" id="ref-for-f16①④">f16</a>
+      <td><a data-link-type="dfn" href="#f16" id="ref-for-f16①⑥">f16</a>
       
       <td>2
       
@@ -16116,7 +16107,7 @@ following table:</p>
           where justPastLastMember = <a data-link-type="dfn" href="#offsetofmember" id="ref-for-offsetofmember②">OffsetOfMember</a>(<var>S</var>,N) + <a data-link-type="dfn" href="#sizeofmember" id="ref-for-sizeofmember">SizeOfMember</a>(<var>S</var>,N)
   
      <tr>
-      <td><a data-link-type="dfn" href="#array" id="ref-for-array①⓪">array</a>&lt;<var>E</var>, <var>N</var>><br>
+      <td><a data-link-type="dfn" href="#array" id="ref-for-array①②">array</a>&lt;<var>E</var>, <var>N</var>><br>
       
       <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof⑦">AlignOf</a>(<var>E</var>)
       
@@ -16342,7 +16333,7 @@ When <var>V</var> is placed at byte offset <var>k</var> of host-shared buffer, t
     <li data-md>
      <p>Bit 7 of byte <var>k</var>+3 contains the sign bit.</p>
    </ul>
-   <p>A value <var>V</var> of type <a data-link-type="dfn" href="#f16" id="ref-for-f16①⑤">f16</a> is represented in <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> <a data-link-type="dfn" href="#ieee754-binary16" id="ref-for-ieee754-binary16②">binary16</a> format.
+   <p>A value <var>V</var> of type <a data-link-type="dfn" href="#f16" id="ref-for-f16①⑦">f16</a> is represented in <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a> <a data-link-type="dfn" href="#ieee754-binary16" id="ref-for-ieee754-binary16②">binary16</a> format.
 It has one sign bit, 5 exponent bits, and 10 fraction bits.
 When <var>V</var> is placed at byte offset <var>k</var> of host-shared buffer, then:</p>
    <ul>
@@ -16377,7 +16368,7 @@ byte offset <var>k</var> of a host-shared buffer, then:</p>
     <li data-md>
      <p>Column vector <var>i</var> of <var>V</var> is placed at byte offset <var>k</var> + <var>i</var> × <a data-link-type="dfn" href="#alignof" id="ref-for-alignof①③">AlignOf</a>(vec<var>R</var>&lt;<var>T</var>>)</p>
    </ul>
-   <p>When a value of <a data-link-type="dfn" href="#array" id="ref-for-array①①">array type</a> <var>A</var> is placed at byte offset <var>k</var> of a host-shared memory buffer,
+   <p>When a value of <a data-link-type="dfn" href="#array" id="ref-for-array①③">array type</a> <var>A</var> is placed at byte offset <var>k</var> of a host-shared memory buffer,
 then:</p>
    <ul>
     <li data-md>
@@ -16422,7 +16413,7 @@ used in address space <var>C</var>.</p>
   
     <tbody>
      <tr>
-      <td><a data-link-type="dfn" href="#bool" id="ref-for-bool①⑤">bool</a>, <a data-link-type="dfn" href="#i32" id="ref-for-i32③⑦">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32②④">u32</a>, <a data-link-type="dfn" href="#f32" id="ref-for-f32②②">f32</a>, or <a data-link-type="dfn" href="#f16" id="ref-for-f16①⑥">f16</a>
+      <td><a data-link-type="dfn" href="#bool" id="ref-for-bool①⑤">bool</a>, <a data-link-type="dfn" href="#i32" id="ref-for-i32③⑦">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32②④">u32</a>, <a data-link-type="dfn" href="#f32" id="ref-for-f32②②">f32</a>, or <a data-link-type="dfn" href="#f16" id="ref-for-f16①⑧">f16</a>
       
       <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①④">AlignOf</a>(<var>S</var>)
       
@@ -16450,14 +16441,14 @@ used in address space <var>C</var>.</p>
       <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②①">AlignOf</a>(<var>S</var>)
   
      <tr class="algorithm" data-algorithm="alignment of an array">
-      <td><a data-link-type="dfn" href="#array" id="ref-for-array①②">array</a>&lt;T, N>
+      <td><a data-link-type="dfn" href="#array" id="ref-for-array①④">array</a>&lt;T, N>
       
       <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②②">AlignOf</a>(<var>S</var>)
       
       <td><a data-link-type="dfn" href="#roundup" id="ref-for-roundup⑨">roundUp</a>(16, <a data-link-type="dfn" href="#alignof" id="ref-for-alignof②③">AlignOf</a>(<var>S</var>))
   
      <tr class="algorithm" data-algorithm="alignment of an runtime-sized array">
-      <td><a data-link-type="dfn" href="#array" id="ref-for-array①③">array</a>&lt;T>
+      <td><a data-link-type="dfn" href="#array" id="ref-for-array①⑤">array</a>&lt;T>
       
       <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof②④">AlignOf</a>(<var>S</var>)<br>
       Disallowed if <var>C</var> is <a data-link-type="dfn" href="#address-spaces-uniform" id="ref-for-address-spaces-uniform①③">uniform</a>
@@ -19195,7 +19186,7 @@ The outcome depends on the magnitude of the overflowing <a data-link-type="dfn" 
 evaluation occurs during <a data-link-type="dfn" href="#shader-module-creation" id="ref-for-shader-module-creation①⑥">shader module creation</a>, <a data-link-type="dfn" href="#pipeline-creation" id="ref-for-pipeline-creation①⑥">pipeline creation</a>, or during <a data-link-type="dfn" href="#shader-execution-start" id="ref-for-shader-execution-start④">shader execution</a>.</p>
    <p>For a floating point type <em>T</em>, define <em>MAX(T)</em> as the largest positive finite value of <em>T</em>,
 and 2<sup><em>EMAX(T)</em></sup> as the largest power of 2 representable by <em>T</em>.
-In particular, EMAX(<a data-link-type="dfn" href="#f32" id="ref-for-f32②③">f32</a>) = 127, and EMAX(<a data-link-type="dfn" href="#f16" id="ref-for-f16①⑦">f16</a>) = 15.</p>
+In particular, EMAX(<a data-link-type="dfn" href="#f32" id="ref-for-f32②③">f32</a>) = 127, and EMAX(<a data-link-type="dfn" href="#f16" id="ref-for-f16①⑨">f16</a>) = 15.</p>
    <p>Let <em>X</em> be an infinitely precise <a data-link-type="dfn" href="#intermediate-result" id="ref-for-intermediate-result①⓪">intermediate result</a> from a floating point computation.
 The final value of the expression is determined in two stages, via <a data-link-type="dfn" href="#intermediate-result" id="ref-for-intermediate-result①①">intermediate result</a> values <em>X'</em> and <em>X''</em> as follows:</p>
    <p>From <em>X</em>, compute <em>X'</em> in <em>T</em> by rounding:</p>
@@ -19886,12 +19877,12 @@ than performing a multiply followed by an addition.</p>
    <p>In this section, a floating point type may be any of:</p>
    <ul>
     <li data-md>
-     <p>The <a data-link-type="dfn" href="#f32" id="ref-for-f32②⑧">f32</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16①⑧">f16</a>, and <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②⑦">AbstractFloat</a> types in WGSL.</p>
+     <p>The <a data-link-type="dfn" href="#f32" id="ref-for-f32②⑧">f32</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16②⓪">f16</a>, and <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②⑦">AbstractFloat</a> types in WGSL.</p>
     <li data-md>
      <p>A hypothetical type corresponding to a binary format defined by the <a data-link-type="biblio" href="#biblio-ieee-754" title="IEEE Standard for Floating-Point Arithmetic">IEEE-754</a>
 floating point standard.</p>
    </ul>
-   <p class="note" role="note"><span class="marker">Note:</span> Recall that the <a data-link-type="dfn" href="#f32" id="ref-for-f32②⑨">f32</a> WGSL type corresponds to the IEEE-754 <a data-link-type="dfn" href="#ieee754-binary32" id="ref-for-ieee754-binary32③">binary32</a> format, and the <a data-link-type="dfn" href="#f16" id="ref-for-f16①⑨">f16</a> WGSL type corresponds to the IEEE-754 <a data-link-type="dfn" href="#ieee754-binary16" id="ref-for-ieee754-binary16③">binary16</a> format.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> Recall that the <a data-link-type="dfn" href="#f32" id="ref-for-f32②⑨">f32</a> WGSL type corresponds to the IEEE-754 <a data-link-type="dfn" href="#ieee754-binary32" id="ref-for-ieee754-binary32③">binary32</a> format, and the <a data-link-type="dfn" href="#f16" id="ref-for-f16②①">f16</a> WGSL type corresponds to the IEEE-754 <a data-link-type="dfn" href="#ieee754-binary16" id="ref-for-ieee754-binary16③">binary16</a> format.</p>
    <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="scalar-floating-point-to-integral-conversion">scalar floating point to integral conversion</dfn> algorithm is:</p>
    <blockquote class="algorithm" data-algorithm="convert a float value to an integral value">
     
@@ -20567,7 +20558,7 @@ specify the component type; the component type is inferred from the constructor 
       <td>Description
       
       <td>
-       Construction of an <a data-link-type="dfn" href="#array" id="ref-for-array①④">array</a> from elements.
+       Construction of an <a data-link-type="dfn" href="#array" id="ref-for-array①⑥">array</a> from elements.
 
 
        <p class="note" role="note"><span class="marker">Note:</span> array&lt;<var>T</var>,<var>N</var>> is <a data-link-type="dfn" href="#constructible" id="ref-for-constructible③⓪">constructible</a> because its <a data-link-type="dfn" href="#element-count" id="ref-for-element-count⑦">element count</a>
@@ -20591,7 +20582,7 @@ specify the component type; the component type is inferred from the constructor 
       <td>Description
       
       <td>
-       Construction of an <a data-link-type="dfn" href="#array" id="ref-for-array①⑤">array</a> from elements.
+       Construction of an <a data-link-type="dfn" href="#array" id="ref-for-array①⑦">array</a> from elements.
 
 
        <p>The component type is inferred from the elements' type.
@@ -20638,11 +20629,11 @@ specify the component type; the component type is inferred from the constructor 
       <td>Description
       
       <td>
-       Construct an <a data-link-type="dfn" href="#f16" id="ref-for-f16②⓪">f16</a> value.
+       Construct an <a data-link-type="dfn" href="#f16" id="ref-for-f16②②">f16</a> value.
 
 
-       <p>If <code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16②①">f16</a>, this is an identity operation.<br>
-      If <code>T</code> is a <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar⑥">numeric scalar</a> (other than <a data-link-type="dfn" href="#f16" id="ref-for-f16②②">f16</a>), <code>e</code> is converted to <a data-link-type="dfn" href="#f16" id="ref-for-f16②③">f16</a> (including invalid conversions).<br>
+       <p>If <code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16②③">f16</a>, this is an identity operation.<br>
+      If <code>T</code> is a <a data-link-type="dfn" href="#numeric-scalar" id="ref-for-numeric-scalar⑥">numeric scalar</a> (other than <a data-link-type="dfn" href="#f16" id="ref-for-f16②④">f16</a>), <code>e</code> is converted to <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑤">f16</a> (including invalid conversions).<br>
       If <code>T</code> is <a data-link-type="dfn" href="#bool" id="ref-for-bool①⑧">bool</a>, the result is <code>1.0h</code> if <code>e</code> is <code>true</code> and <code>0.0h</code> otherwise.</p>
    </table>
    <h5 class="heading settled" data-level="17.1.2.4" id="f32-builtin"><span class="secno">17.1.2.4. </span><span class="content"><code>f32</code></span><a class="self-link" href="#f32-builtin"></a></h5>
@@ -20708,8 +20699,8 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16②④">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑥">f32</a><br>
-      <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②⑨">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑤">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑦">f32</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑥">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑥">f32</a><br>
+      <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat②⑨">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑦">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑦">f32</a>
   
      <tr>
       <td>Description
@@ -20732,7 +20723,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⓪">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑥">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑧">f32</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⓪">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑧">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑧">f32</a>
   
      <tr>
       <td>Description
@@ -20752,7 +20743,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③①">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑦">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑨">f32</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③①">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑨">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32③⑨">f32</a>
   
      <tr>
       <td>Description
@@ -20776,8 +20767,8 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑧">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⓪">f32</a><br>
-      <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③②">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16②⑨">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④①">f32</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16③⓪">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⓪">f32</a><br>
+      <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③②">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③①">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④①">f32</a>
   
      <tr>
       <td>Description
@@ -20800,7 +20791,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③③">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③⓪">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④②">f32</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③③">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③②">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④②">f32</a>
   
      <tr>
       <td>Description
@@ -20820,7 +20811,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③④">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③①">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④③">f32</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③④">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③③">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④③">f32</a>
   
      <tr>
       <td>Description
@@ -20844,8 +20835,8 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16③②">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32④④">f32</a><br>
-      <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑤">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③③">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑤">f32</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16③④">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32④④">f32</a><br>
+      <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑤">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑤">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑤">f32</a>
   
      <tr>
       <td>Description
@@ -20868,7 +20859,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑥">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③④">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑥">f32</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑥">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑥">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑥">f32</a>
   
      <tr>
       <td>Description
@@ -20888,7 +20879,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑦">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑤">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑦">f32</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑦">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑦">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑦">f32</a>
   
      <tr>
       <td>Description
@@ -20912,8 +20903,8 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑥">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑧">f32</a><br>
-      <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑧">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑦">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑨">f32</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑧">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑧">f32</a><br>
+      <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑧">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑨">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32④⑨">f32</a>
   
      <tr>
       <td>Description
@@ -20940,7 +20931,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑨">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑧">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⓪">f32</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat③⑨">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④⓪">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⓪">f32</a>
   
      <tr>
       <td>Description
@@ -20960,7 +20951,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⓪">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16③⑨">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤①">f32</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⓪">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④①">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤①">f32</a>
   
      <tr>
       <td>Description
@@ -20984,8 +20975,8 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16④⓪">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤②">f32</a><br>
-      <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④①">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④①">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤③">f32</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16④②">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤②">f32</a><br>
+      <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④①">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④③">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤③">f32</a>
   
      <tr>
       <td>Description
@@ -21012,7 +21003,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④②">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④②">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤④">f32</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④②">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④④">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤④">f32</a>
   
      <tr>
       <td>Description
@@ -21032,7 +21023,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④③">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④③">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑤">f32</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④③">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑤">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑤">f32</a>
   
      <tr>
       <td>Description
@@ -21056,8 +21047,8 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16④④">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑥">f32</a><br>
-      <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④④">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑤">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑦">f32</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑥">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑥">f32</a><br>
+      <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④④">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑦">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑦">f32</a>
   
      <tr>
       <td>Description
@@ -21084,7 +21075,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑤">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑥">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑧">f32</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑤">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑧">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑧">f32</a>
   
      <tr>
       <td>Description
@@ -21104,7 +21095,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑥">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑦">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑨">f32</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑥">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑨">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑤⑨">f32</a>
   
      <tr>
       <td>Description
@@ -21128,8 +21119,8 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑧">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⓪">f32</a><br>
-      <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑦">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16④⑨">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥①">f32</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⓪">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⓪">f32</a><br>
+      <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑦">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤①">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥①">f32</a>
   
      <tr>
       <td>Description
@@ -21158,7 +21149,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑧">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⓪">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥②">f32</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑧">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤②">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥②">f32</a>
   
      <tr>
       <td>Description
@@ -21178,7 +21169,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑨">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤①">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥③">f32</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat④⑨">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤③">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥③">f32</a>
   
      <tr>
       <td>Description
@@ -21202,8 +21193,8 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤②">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥④">f32</a><br>
-      <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat⑤⓪">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤③">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑤">f32</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤④">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥④">f32</a><br>
+      <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat⑤⓪">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⑤">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑤">f32</a>
   
      <tr>
       <td>Description
@@ -21232,7 +21223,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat⑤①">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤④">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑥">f32</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat⑤①">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⑥">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑥">f32</a>
   
      <tr>
       <td>Description
@@ -21252,7 +21243,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat⑤②">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⑤">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑦">f32</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat⑤②">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⑦">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑦">f32</a>
   
      <tr>
       <td>Description
@@ -21276,8 +21267,8 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⑥">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑧">f32</a><br>
-      <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat⑤③">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⑦">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑨">f32</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⑧">f16</a> or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑧">f32</a><br>
+      <code>S</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat⑤③">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⑨">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑥⑨">f32</a>
   
      <tr>
       <td>Description
@@ -21306,7 +21297,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat⑤④">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⑧">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦⓪">f32</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat⑤④">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑥⓪">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦⓪">f32</a>
   
      <tr>
       <td>Description
@@ -21326,7 +21317,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Parameterization
       
-      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat⑤⑤">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑤⑨">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦①">f32</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat⑤⑤">AbstractFloat</a>, <a data-link-type="dfn" href="#f16" id="ref-for-f16⑥①">f16</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32⑦①">f32</a>
   
      <tr>
       <td>Description
@@ -30088,7 +30079,7 @@ let dfnPanelData = {
 "alltypes": {"dfnID":"alltypes","dfnText":"AllTypes","external":false,"refSections":[{"refs":[{"id":"ref-for-alltypes"},{"id":"ref-for-alltypes\u2460"},{"id":"ref-for-alltypes\u2461"},{"id":"ref-for-alltypes\u2462"},{"id":"ref-for-alltypes\u2463"}],"title":"8.17. Type Expressions"}],"url":"#alltypes"},
 "angles": {"dfnID":"angles","dfnText":"Angles","external":false,"refSections":[{"refs":[{"id":"ref-for-angles"}],"title":"17.5.8. atan2"}],"url":"#angles"},
 "arg_i": {"dfnID":"arg_i","dfnText":"arg_i","external":false,"refSections":[{"refs":[{"id":"ref-for-arg_i"},{"id":"ref-for-arg_i\u2460"},{"id":"ref-for-arg_i\u2461"}],"title":"15.2.7. Uniformity Rules for Function Calls"}],"url":"#arg_i"},
-"array": {"dfnID":"array","dfnText":"array","external":false,"refSections":[{"refs":[{"id":"ref-for-array"}],"title":"2.4. Limits"},{"refs":[{"id":"ref-for-array\u2460"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-array\u2461"}],"title":"6.2.9. Array Types"},{"refs":[{"id":"ref-for-array\u2462"}],"title":"6.2.11. Composite Types"},{"refs":[{"id":"ref-for-array\u2463"}],"title":"6.4.1. Storable Types"},{"refs":[{"id":"ref-for-array\u2464"}],"title":"6.4.8. Forming Reference and Pointer Values"},{"refs":[{"id":"ref-for-array\u2465"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-array\u2466"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-array\u2467"}],"title":"8. Expressions"},{"refs":[{"id":"ref-for-array\u2468"}],"title":"13.3. Shader Interface"},{"refs":[{"id":"ref-for-array\u2460\u24ea"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-array\u2460\u2460"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-array\u2460\u2461"},{"id":"ref-for-array\u2460\u2462"}],"title":"14.4.5. Address Space Layout Constraints"},{"refs":[{"id":"ref-for-array\u2460\u2463"},{"id":"ref-for-array\u2460\u2464"}],"title":"17.1.2.1. array"}],"url":"#array"},
+"array": {"dfnID":"array","dfnText":"array","external":false,"refSections":[{"refs":[{"id":"ref-for-array"}],"title":"2.4. Limits"},{"refs":[{"id":"ref-for-array\u2460"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-array\u2461"}],"title":"6.2.9. Array Types"},{"refs":[{"id":"ref-for-array\u2462"}],"title":"6.2.11. Composite Types"},{"refs":[{"id":"ref-for-array\u2463"}],"title":"6.4.1. Storable Types"},{"refs":[{"id":"ref-for-array\u2464"}],"title":"6.4.8. Forming Reference and Pointer Values"},{"refs":[{"id":"ref-for-array\u2465"},{"id":"ref-for-array\u2466"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-array\u2467"},{"id":"ref-for-array\u2468"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-array\u2460\u24ea"}],"title":"8. Expressions"},{"refs":[{"id":"ref-for-array\u2460\u2460"}],"title":"13.3. Shader Interface"},{"refs":[{"id":"ref-for-array\u2460\u2461"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-array\u2460\u2462"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-array\u2460\u2463"},{"id":"ref-for-array\u2460\u2464"}],"title":"14.4.5. Address Space Layout Constraints"},{"refs":[{"id":"ref-for-array\u2460\u2465"},{"id":"ref-for-array\u2460\u2466"}],"title":"17.1.2.1. array"}],"url":"#array"},
 "assertion": {"dfnID":"assertion","dfnText":"assertion","external":false,"refSections":[{"refs":[{"id":"ref-for-assertion"}],"title":"2. WGSL Module"},{"refs":[{"id":"ref-for-assertion\u2460"}],"title":"10. Assertions"},{"refs":[{"id":"ref-for-assertion\u2461"}],"title":"10.1. Const Assertion Statement"}],"url":"#assertion"},
 "atomic-modification": {"dfnID":"atomic-modification","dfnText":"atomic modification","external":false,"refSections":[{"refs":[{"id":"ref-for-atomic-modification"}],"title":"17.8.1. atomicLoad"}],"url":"#atomic-modification"},
 "atomic-type": {"dfnID":"atomic-type","dfnText":"atomic type","external":false,"refSections":[{"refs":[{"id":"ref-for-atomic-type"}],"title":"6.2. Plain Types"},{"refs":[{"id":"ref-for-atomic-type\u2460"}],"title":"6.2.9. Array Types"},{"refs":[{"id":"ref-for-atomic-type\u2461"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-atomic-type\u2462"},{"id":"ref-for-atomic-type\u2463"}],"title":"6.2.13. Fixed-Footprint Types"},{"refs":[{"id":"ref-for-atomic-type\u2464"}],"title":"6.4.1. Storable Types"},{"refs":[{"id":"ref-for-atomic-type\u2465"}],"title":"6.4.2. Host-shareable Types"},{"refs":[{"id":"ref-for-atomic-type\u2466"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-atomic-type\u2467"},{"id":"ref-for-atomic-type\u2468"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-atomic-type\u2460\u24ea"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-atomic-type\u2460\u2460"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-atomic-type\u2460\u2461"}],"title":"14.4.5. Address Space Layout Constraints"},{"refs":[{"id":"ref-for-atomic-type\u2460\u2462"}],"title":"17.1.1. Zero Value Built-in Functions"}],"url":"#atomic-type"},
@@ -30252,7 +30243,7 @@ let dfnPanelData = {
 "extension-subgroups": {"dfnID":"extension-subgroups","dfnText":"subgroups","external":false,"refSections":[{"refs":[{"id":"ref-for-extension-subgroups"}],"title":"3.8.5. Extension Names"},{"refs":[{"id":"ref-for-extension-subgroups\u2460"},{"id":"ref-for-extension-subgroups\u2461"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-extension-subgroups\u2462"},{"id":"ref-for-extension-subgroups\u2463"},{"id":"ref-for-extension-subgroups\u2464"},{"id":"ref-for-extension-subgroups\u2465"}],"title":"13.3.1.1. Built-in Inputs and Outputs"},{"refs":[{"id":"ref-for-extension-subgroups\u2466"}],"title":"15.6.2. Derivatives"}],"url":"#extension-subgroups"},
 "f10f0d86": {"dfnID":"f10f0d86","dfnText":"sampler","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gpubindgrouplayoutentry-sampler"}],"title":"13.3.3. Resource Layout Compatibility"}],"url":"https://gpuweb.github.io/gpuweb/#dom-gpubindgrouplayoutentry-sampler"},
 "f15e3e59": {"dfnID":"f15e3e59","dfnText":"GPUComputePassEncoder","external":true,"refSections":[{"refs":[{"id":"ref-for-gpucomputepassencoder"}],"title":"13.3.1.1.5. global_invocation_index"},{"refs":[{"id":"ref-for-gpucomputepassencoder\u2460"}],"title":"13.3.1.1.16. workgroup_index"}],"url":"https://gpuweb.github.io/gpuweb/#gpucomputepassencoder"},
-"f16": {"dfnID":"f16","dfnText":"f16","external":false,"refSections":[{"refs":[{"id":"ref-for-f16"}],"title":"3.5.2. Numeric Literals"},{"refs":[{"id":"ref-for-f16\u2460"},{"id":"ref-for-f16\u2461"}],"title":"4.1.1. Enable Extensions"},{"refs":[{"id":"ref-for-f16\u2462"},{"id":"ref-for-f16\u2463"}],"title":"6.1.2. Conversion Rank"},{"refs":[{"id":"ref-for-f16\u2464"},{"id":"ref-for-f16\u2465"},{"id":"ref-for-f16\u2466"},{"id":"ref-for-f16\u2467"}],"title":"6.2.1. Abstract Numeric Types"},{"refs":[{"id":"ref-for-f16\u2468"}],"title":"6.2.4. Floating Point Types"},{"refs":[{"id":"ref-for-f16\u2460\u24ea"},{"id":"ref-for-f16\u2460\u2460"}],"title":"6.2.5. Scalar Types"},{"refs":[{"id":"ref-for-f16\u2460\u2461"}],"title":"6.2.7. Matrix Types"},{"refs":[{"id":"ref-for-f16\u2460\u2462"}],"title":"6.9. Predeclared Types and Type-Generators Summary"},{"refs":[{"id":"ref-for-f16\u2460\u2463"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-f16\u2460\u2464"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-f16\u2460\u2465"}],"title":"14.4.5. Address Space Layout Constraints"},{"refs":[{"id":"ref-for-f16\u2460\u2466"}],"title":"15.7.3. Floating Point Rounding and Overflow"},{"refs":[{"id":"ref-for-f16\u2460\u2467"},{"id":"ref-for-f16\u2460\u2468"}],"title":"15.7.6. Floating Point Conversion"},{"refs":[{"id":"ref-for-f16\u2461\u24ea"},{"id":"ref-for-f16\u2461\u2460"},{"id":"ref-for-f16\u2461\u2461"},{"id":"ref-for-f16\u2461\u2462"}],"title":"17.1.2.3. f16"},{"refs":[{"id":"ref-for-f16\u2461\u2463"},{"id":"ref-for-f16\u2461\u2464"},{"id":"ref-for-f16\u2461\u2465"},{"id":"ref-for-f16\u2461\u2466"}],"title":"17.1.2.6. mat2x2"},{"refs":[{"id":"ref-for-f16\u2461\u2467"},{"id":"ref-for-f16\u2461\u2468"},{"id":"ref-for-f16\u2462\u24ea"},{"id":"ref-for-f16\u2462\u2460"}],"title":"17.1.2.7. mat2x3"},{"refs":[{"id":"ref-for-f16\u2462\u2461"},{"id":"ref-for-f16\u2462\u2462"},{"id":"ref-for-f16\u2462\u2463"},{"id":"ref-for-f16\u2462\u2464"}],"title":"17.1.2.8. mat2x4"},{"refs":[{"id":"ref-for-f16\u2462\u2465"},{"id":"ref-for-f16\u2462\u2466"},{"id":"ref-for-f16\u2462\u2467"},{"id":"ref-for-f16\u2462\u2468"}],"title":"17.1.2.9. mat3x2"},{"refs":[{"id":"ref-for-f16\u2463\u24ea"},{"id":"ref-for-f16\u2463\u2460"},{"id":"ref-for-f16\u2463\u2461"},{"id":"ref-for-f16\u2463\u2462"}],"title":"17.1.2.10. mat3x3"},{"refs":[{"id":"ref-for-f16\u2463\u2463"},{"id":"ref-for-f16\u2463\u2464"},{"id":"ref-for-f16\u2463\u2465"},{"id":"ref-for-f16\u2463\u2466"}],"title":"17.1.2.11. mat3x4"},{"refs":[{"id":"ref-for-f16\u2463\u2467"},{"id":"ref-for-f16\u2463\u2468"},{"id":"ref-for-f16\u2464\u24ea"},{"id":"ref-for-f16\u2464\u2460"}],"title":"17.1.2.12. mat4x2"},{"refs":[{"id":"ref-for-f16\u2464\u2461"},{"id":"ref-for-f16\u2464\u2462"},{"id":"ref-for-f16\u2464\u2463"},{"id":"ref-for-f16\u2464\u2464"}],"title":"17.1.2.13. mat4x3"},{"refs":[{"id":"ref-for-f16\u2464\u2465"},{"id":"ref-for-f16\u2464\u2466"},{"id":"ref-for-f16\u2464\u2467"},{"id":"ref-for-f16\u2464\u2468"}],"title":"17.1.2.14. mat4x4"}],"url":"#f16"},
+"f16": {"dfnID":"f16","dfnText":"f16","external":false,"refSections":[{"refs":[{"id":"ref-for-f16"}],"title":"3.5.2. Numeric Literals"},{"refs":[{"id":"ref-for-f16\u2460"},{"id":"ref-for-f16\u2461"}],"title":"4.1.1. Enable Extensions"},{"refs":[{"id":"ref-for-f16\u2462"},{"id":"ref-for-f16\u2463"}],"title":"6.1.2. Conversion Rank"},{"refs":[{"id":"ref-for-f16\u2464"},{"id":"ref-for-f16\u2465"},{"id":"ref-for-f16\u2466"},{"id":"ref-for-f16\u2467"}],"title":"6.2.1. Abstract Numeric Types"},{"refs":[{"id":"ref-for-f16\u2468"}],"title":"6.2.4. Floating Point Types"},{"refs":[{"id":"ref-for-f16\u2460\u24ea"},{"id":"ref-for-f16\u2460\u2460"}],"title":"6.2.5. Scalar Types"},{"refs":[{"id":"ref-for-f16\u2460\u2461"}],"title":"6.2.7. Matrix Types"},{"refs":[{"id":"ref-for-f16\u2460\u2462"}],"title":"6.9. Predeclared Types and Type-Generators Summary"},{"refs":[{"id":"ref-for-f16\u2460\u2463"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-f16\u2460\u2464"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-f16\u2460\u2465"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-f16\u2460\u2466"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-f16\u2460\u2467"}],"title":"14.4.5. Address Space Layout Constraints"},{"refs":[{"id":"ref-for-f16\u2460\u2468"}],"title":"15.7.3. Floating Point Rounding and Overflow"},{"refs":[{"id":"ref-for-f16\u2461\u24ea"},{"id":"ref-for-f16\u2461\u2460"}],"title":"15.7.6. Floating Point Conversion"},{"refs":[{"id":"ref-for-f16\u2461\u2461"},{"id":"ref-for-f16\u2461\u2462"},{"id":"ref-for-f16\u2461\u2463"},{"id":"ref-for-f16\u2461\u2464"}],"title":"17.1.2.3. f16"},{"refs":[{"id":"ref-for-f16\u2461\u2465"},{"id":"ref-for-f16\u2461\u2466"},{"id":"ref-for-f16\u2461\u2467"},{"id":"ref-for-f16\u2461\u2468"}],"title":"17.1.2.6. mat2x2"},{"refs":[{"id":"ref-for-f16\u2462\u24ea"},{"id":"ref-for-f16\u2462\u2460"},{"id":"ref-for-f16\u2462\u2461"},{"id":"ref-for-f16\u2462\u2462"}],"title":"17.1.2.7. mat2x3"},{"refs":[{"id":"ref-for-f16\u2462\u2463"},{"id":"ref-for-f16\u2462\u2464"},{"id":"ref-for-f16\u2462\u2465"},{"id":"ref-for-f16\u2462\u2466"}],"title":"17.1.2.8. mat2x4"},{"refs":[{"id":"ref-for-f16\u2462\u2467"},{"id":"ref-for-f16\u2462\u2468"},{"id":"ref-for-f16\u2463\u24ea"},{"id":"ref-for-f16\u2463\u2460"}],"title":"17.1.2.9. mat3x2"},{"refs":[{"id":"ref-for-f16\u2463\u2461"},{"id":"ref-for-f16\u2463\u2462"},{"id":"ref-for-f16\u2463\u2463"},{"id":"ref-for-f16\u2463\u2464"}],"title":"17.1.2.10. mat3x3"},{"refs":[{"id":"ref-for-f16\u2463\u2465"},{"id":"ref-for-f16\u2463\u2466"},{"id":"ref-for-f16\u2463\u2467"},{"id":"ref-for-f16\u2463\u2468"}],"title":"17.1.2.11. mat3x4"},{"refs":[{"id":"ref-for-f16\u2464\u24ea"},{"id":"ref-for-f16\u2464\u2460"},{"id":"ref-for-f16\u2464\u2461"},{"id":"ref-for-f16\u2464\u2462"}],"title":"17.1.2.12. mat4x2"},{"refs":[{"id":"ref-for-f16\u2464\u2463"},{"id":"ref-for-f16\u2464\u2464"},{"id":"ref-for-f16\u2464\u2465"},{"id":"ref-for-f16\u2464\u2466"}],"title":"17.1.2.13. mat4x3"},{"refs":[{"id":"ref-for-f16\u2464\u2467"},{"id":"ref-for-f16\u2464\u2468"},{"id":"ref-for-f16\u2465\u24ea"},{"id":"ref-for-f16\u2465\u2460"}],"title":"17.1.2.14. mat4x4"}],"url":"#f16"},
 "f1e8cef5": {"dfnID":"f1e8cef5","dfnText":"\"depth\"","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gputexturesampletype-depth"}],"title":"13.3.3. Resource Layout Compatibility"}],"url":"https://gpuweb.github.io/gpuweb/#dom-gputexturesampletype-depth"},
 "f32": {"dfnID":"f32","dfnText":"f32","external":false,"refSections":[{"refs":[{"id":"ref-for-f32"},{"id":"ref-for-f32\u2460"}],"title":"3.5.2. Numeric Literals"},{"refs":[{"id":"ref-for-f32\u2461"}],"title":"3.9. Template Lists"},{"refs":[{"id":"ref-for-f32\u2462"}],"title":"5. Declaration and Scope"},{"refs":[{"id":"ref-for-f32\u2463"}],"title":"6.1.2. Conversion Rank"},{"refs":[{"id":"ref-for-f32\u2464"},{"id":"ref-for-f32\u2465"},{"id":"ref-for-f32\u2466"},{"id":"ref-for-f32\u2467"},{"id":"ref-for-f32\u2468"}],"title":"6.2.1. Abstract Numeric Types"},{"refs":[{"id":"ref-for-f32\u2460\u24ea"},{"id":"ref-for-f32\u2460\u2460"}],"title":"6.2.5. Scalar Types"},{"refs":[{"id":"ref-for-f32\u2460\u2461"}],"title":"6.2.7. Matrix Types"},{"refs":[{"id":"ref-for-f32\u2460\u2462"}],"title":"6.4.6. Out-of-Bounds Access"},{"refs":[{"id":"ref-for-f32\u2460\u2463"}],"title":"6.9. Predeclared Types and Type-Generators Summary"},{"refs":[{"id":"ref-for-f32\u2460\u2464"}],"title":"8.1.1. const Expressions"},{"refs":[{"id":"ref-for-f32\u2460\u2465"}],"title":"8.17. Type Expressions"},{"refs":[{"id":"ref-for-f32\u2460\u2466"},{"id":"ref-for-f32\u2460\u2467"},{"id":"ref-for-f32\u2460\u2468"},{"id":"ref-for-f32\u2461\u24ea"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-f32\u2461\u2460"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-f32\u2461\u2461"}],"title":"14.4.5. Address Space Layout Constraints"},{"refs":[{"id":"ref-for-f32\u2461\u2462"}],"title":"15.7.3. Floating Point Rounding and Overflow"},{"refs":[{"id":"ref-for-f32\u2461\u2463"},{"id":"ref-for-f32\u2461\u2464"},{"id":"ref-for-f32\u2461\u2465"},{"id":"ref-for-f32\u2461\u2466"}],"title":"15.7.4.2. Accuracy of AbstractFloat Expressions"},{"refs":[{"id":"ref-for-f32\u2461\u2467"},{"id":"ref-for-f32\u2461\u2468"},{"id":"ref-for-f32\u2462\u24ea"},{"id":"ref-for-f32\u2462\u2460"}],"title":"15.7.6. Floating Point Conversion"},{"refs":[{"id":"ref-for-f32\u2462\u2461"},{"id":"ref-for-f32\u2462\u2462"},{"id":"ref-for-f32\u2462\u2463"},{"id":"ref-for-f32\u2462\u2464"}],"title":"17.1.2.4. f32"},{"refs":[{"id":"ref-for-f32\u2462\u2465"},{"id":"ref-for-f32\u2462\u2466"},{"id":"ref-for-f32\u2462\u2467"},{"id":"ref-for-f32\u2462\u2468"}],"title":"17.1.2.6. mat2x2"},{"refs":[{"id":"ref-for-f32\u2463\u24ea"},{"id":"ref-for-f32\u2463\u2460"},{"id":"ref-for-f32\u2463\u2461"},{"id":"ref-for-f32\u2463\u2462"}],"title":"17.1.2.7. mat2x3"},{"refs":[{"id":"ref-for-f32\u2463\u2463"},{"id":"ref-for-f32\u2463\u2464"},{"id":"ref-for-f32\u2463\u2465"},{"id":"ref-for-f32\u2463\u2466"}],"title":"17.1.2.8. mat2x4"},{"refs":[{"id":"ref-for-f32\u2463\u2467"},{"id":"ref-for-f32\u2463\u2468"},{"id":"ref-for-f32\u2464\u24ea"},{"id":"ref-for-f32\u2464\u2460"}],"title":"17.1.2.9. mat3x2"},{"refs":[{"id":"ref-for-f32\u2464\u2461"},{"id":"ref-for-f32\u2464\u2462"},{"id":"ref-for-f32\u2464\u2463"},{"id":"ref-for-f32\u2464\u2464"}],"title":"17.1.2.10. mat3x3"},{"refs":[{"id":"ref-for-f32\u2464\u2465"},{"id":"ref-for-f32\u2464\u2466"},{"id":"ref-for-f32\u2464\u2467"},{"id":"ref-for-f32\u2464\u2468"}],"title":"17.1.2.11. mat3x4"},{"refs":[{"id":"ref-for-f32\u2465\u24ea"},{"id":"ref-for-f32\u2465\u2460"},{"id":"ref-for-f32\u2465\u2461"},{"id":"ref-for-f32\u2465\u2462"}],"title":"17.1.2.12. mat4x2"},{"refs":[{"id":"ref-for-f32\u2465\u2463"},{"id":"ref-for-f32\u2465\u2464"},{"id":"ref-for-f32\u2465\u2465"},{"id":"ref-for-f32\u2465\u2466"}],"title":"17.1.2.13. mat4x3"},{"refs":[{"id":"ref-for-f32\u2465\u2467"},{"id":"ref-for-f32\u2465\u2468"},{"id":"ref-for-f32\u2466\u24ea"},{"id":"ref-for-f32\u2466\u2460"}],"title":"17.1.2.14. mat4x4"},{"refs":[{"id":"ref-for-f32\u2466\u2461"},{"id":"ref-for-f32\u2466\u2462"},{"id":"ref-for-f32\u2466\u2463"},{"id":"ref-for-f32\u2466\u2464"},{"id":"ref-for-f32\u2466\u2465"},{"id":"ref-for-f32\u2466\u2466"}],"title":"17.7.1. textureDimensions"},{"refs":[{"id":"ref-for-f32\u2466\u2467"},{"id":"ref-for-f32\u2466\u2468"},{"id":"ref-for-f32\u2467\u24ea"},{"id":"ref-for-f32\u2467\u2460"},{"id":"ref-for-f32\u2467\u2461"},{"id":"ref-for-f32\u2467\u2462"}],"title":"17.7.2. textureGather"},{"refs":[{"id":"ref-for-f32\u2467\u2463"},{"id":"ref-for-f32\u2467\u2464"},{"id":"ref-for-f32\u2467\u2465"},{"id":"ref-for-f32\u2467\u2466"},{"id":"ref-for-f32\u2467\u2467"}],"title":"17.7.4. textureLoad"},{"refs":[{"id":"ref-for-f32\u2467\u2468"}],"title":"17.7.5. textureNumLayers"},{"refs":[{"id":"ref-for-f32\u2468\u24ea"}],"title":"17.7.6. textureNumLevels"},{"refs":[{"id":"ref-for-f32\u2468\u2460"}],"title":"17.7.7. textureNumSamples"}],"url":"#f32"},
 "f708cfc6": {"dfnID":"f708cfc6","dfnText":"createComputePipeline(descriptor)","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gpudevice-createcomputepipeline"}],"title":"2.1. Shader Lifecycle"}],"url":"https://gpuweb.github.io/gpuweb/#dom-gpudevice-createcomputepipeline"},
