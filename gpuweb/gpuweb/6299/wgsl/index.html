@@ -868,7 +868,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dj2/gpuweb/blob/1559e5cd6db6f5d2d63e1e8539afd352c76e788a/wgsl/index.bs">https://github.com/dj2/gpuweb/blob/1559e5cd6db6f5d2d63e1e8539afd352c76e788a/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dj2/gpuweb/blob/5a29ead1c6f07e719880a532d6aa3b3679b8b604/wgsl/index.bs">https://github.com/dj2/gpuweb/blob/5a29ead1c6f07e719880a532d6aa3b3679b8b604/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -3383,7 +3383,7 @@ for <a data-link-type="dfn" href="#syntax-interpolate_type_name" id="ref-for-syn
    </div>
    <h4 class="heading settled" data-level="3.8.9" id="depth-mode-names"><span class="secno">3.8.9. </span><span class="content">Depth Mode Names</span><a class="self-link" href="#depth-mode-names"></a></h4>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="depth-mode-name-token">depth mode name-token</dfn> is a <a data-link-type="dfn" href="#token" id="ref-for-token①⓪">token</a> used in the <a data-link-type="dfn" href="#built-in-values-frag_depth" id="ref-for-built-in-values-frag_depth①">frag_depth</a> builtin when the <a data-link-type="dfn" href="#language_extension-fragment_depth" id="ref-for-language_extension-fragment_depth①">fragment_depth</a> feature is
-available.</p>
+supported.</p>
    <ul>
     <li data-md>
      <p><a data-link-type="dfn" href="#depth_mode-less" id="ref-for-depth_mode-less"><code>'less'</code></a></p>
@@ -14384,8 +14384,8 @@ original depth of the <a data-link-type="dfn" href="#fragment" id="ref-for-fragm
        </ul>
        <p>The original depth of the <a data-link-type="dfn" href="#fragment" id="ref-for-fragment①⓪">fragment</a> is the depth property of the fragment’s
       <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/#rasterizationpoint" id="ref-for-rasterizationpoint">RasterizationPoint</a>.</p>
-       <p>Violating the specified semantics may cause indeterminate values to be written to the depth
-      buffer.</p>
+       <p>If the shader writes a depth value that violates the depth mode promise, then an
+      indeterminate depth value may be used instead.</p>
 <pre class="highlight language-wgsl"><c- nd>@fragment</c->
 <c- k>fn</c-> <c- n>main</c-><c- p>()</c-> <c- p>-></c-> <c- nd>@builtin</c-><c- p>(</c->frag_depth<c- p>,</c-> <c- n>greater</c-><c- p>)</c-> f32 <c- p>{</c->
     <c- k>return</c-> <c- mf>1.0f</c-><c- p>;</c->
