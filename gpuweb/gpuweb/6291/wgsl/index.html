@@ -862,13 +862,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
 </p>
    <h1 class="no-ref p-name" id="title">WebGPU Shading Language</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
-    <time class="dt-updated" datetime="2026-06-16">16 June 2026</time></p>
+    <time class="dt-updated" datetime="2026-06-19">19 June 2026</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/ab43bc6be358ead28a1461d569c1dd4398f71f19/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/ab43bc6be358ead28a1461d569c1dd4398f71f19/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/d735a03a01c594f3bd2a3996071b8d1a7f4b2cea/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/d735a03a01c594f3bd2a3996071b8d1a7f4b2cea/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -3841,7 +3841,7 @@ set of modifications to the WGSL specification, consisting of any combination of
     <li data-md>
      <p>The corresponding WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#gpufeaturename" id="ref-for-gpufeaturename">GPUFeatureName</a></code> was one of the required features requested when creating the <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#gpudevice" id="ref-for-gpudevice">GPUDevice</a></code>.</p>
    </ul>
-   <p><a data-link-type="dfn" href="#enable-extension" id="ref-for-enable-extension③">Enable-extensions</a> are intended to expose hardware functionality that is not universally available.</p>
+   <p><a data-link-type="dfn" href="#enable-extension" id="ref-for-enable-extension③">Enable-extensions</a> are intended to expose hardware functionality that is not universally supported.</p>
    <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="enable-directive">enable directive</dfn> is a <a data-link-type="dfn" href="#directive" id="ref-for-directive①">directive</a> that turns on support for one or more enable-extensions.
 A <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①④">shader-creation error</a> results if the implementation does not support all the listed enable-extensions.</p>
    <div class="syntax">
@@ -3943,7 +3943,7 @@ Extension names are not <a data-link-type="dfn" href="#identifier" id="ref-for-i
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="language-extension">language extension</dfn> is an <a data-link-type="dfn" href="#extension" id="ref-for-extension①">extension</a> which is automatically available if the implementation supports it.
 The program does not have to explicitly request it.</p>
    <p><a data-link-type="dfn" href="#language-extension" id="ref-for-language-extension③">Language extensions</a> embody functionality which could reasonably be supported on any WebGPU implementation.
-If the feature is not universally available, that it is because some WebGPU implementation has not yet implemented it.</p>
+If the feature is not universally supported, that it is because some WebGPU implementation has not yet implemented it.</p>
    <p class="note" role="note"><span class="marker">Note:</span> For example, do-while loops could be a language extension.</p>
    <p>The <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#gpuwgsllanguagefeatures" id="ref-for-gpuwgsllanguagefeatures">wgslLanguageFeatures</a></code> member of the WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#gpu" id="ref-for-gpu">GPU</a></code> object lists the set of
 <a data-link-type="dfn" href="#language-extension" id="ref-for-language-extension④">language extensions</a> supported by the implementation.</p>
@@ -4346,6 +4346,8 @@ A value’s type determines the syntax and semantics of operations that can be p
      <p>the <a data-link-type="dfn" href="#abstractfloat" id="ref-for-abstractfloat①">AbstractFloat</a> value 1.0</p>
    </ul>
    <p>WGSL treats these as different because their machine representation and operations differ.</p>
+   <p>Some types are <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="opaque">opaque</dfn>, meaning their values have an implementation-defined representation
+that cannot be directly inspected, decomposed, or manipulated within a WGSL program.</p>
    <p>A type is either <a data-link-type="dfn" href="#predeclared" id="ref-for-predeclared②">predeclared</a>, or created in WGSL source via a <a data-link-type="dfn" href="#declaration" id="ref-for-declaration⑨">declaration</a>.</p>
    <p>Some types are expressed as <a data-link-type="dfn" href="#template-parameterization" id="ref-for-template-parameterization">template parameterizations</a>.
 A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="type-generator">type-generator</dfn> is a <a data-link-type="dfn" href="#predeclared" id="ref-for-predeclared③">predeclared</a> object which, when parameterized with a <a data-link-type="dfn" href="#template-list" id="ref-for-template-list⑤">template list</a>, denotes a type.
@@ -6215,7 +6217,7 @@ Each memory access is performed via a <a data-link-type="dfn" href="#memory-view
    <p>The value contained in a <a data-link-type="dfn" href="#variable" id="ref-for-variable⑥">variable</a> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error⑤⑤">must</a> be of a <a data-link-type="dfn" href="#storable" id="ref-for-storable①">storable</a> type.
 A storable type may have an explicit representation defined by WGSL,
 as described in <a href="#internal-value-layout">§ 14.4.4 Internal Layout of Values</a>,
-or it may be opaque, such as for <a data-link-type="dfn" href="#texture-resource" id="ref-for-texture-resource">textures</a> and <a data-link-type="dfn" href="#sampler-resource" id="ref-for-sampler-resource">samplers</a>.</p>
+or it may be <a data-link-type="dfn" href="#opaque" id="ref-for-opaque">opaque</a>, such as for <a data-link-type="dfn" href="#texture-resource" id="ref-for-texture-resource">textures</a> and <a data-link-type="dfn" href="#sampler-resource" id="ref-for-sampler-resource">samplers</a>.</p>
    <p>A type is <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="storable">storable</dfn> if it is both <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑨">concrete</a> and one of:</p>
    <ul>
     <li data-md>
@@ -6268,7 +6270,7 @@ variables <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shad
 described in <a href="#stage-inputs-outputs">§ 13.3.1 Inter-stage Input and Output Interface</a> and subsequent sections.
 Those types are also sized, but the counting differs.</p>
    <p class="note" role="note"><span class="marker">Note:</span> <a href="#texture-sampler-types">Textures and samplers</a> can also be shared
-between the host and the GPU, but their contents are opaque.
+between the host and the GPU, but their contents are <a data-link-type="dfn" href="#opaque" id="ref-for-opaque①">opaque</a>.
 The host-shareable types in this section are specifically for use in <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer④">storage</a> and <a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer②">uniform</a> buffers.</p>
    <h4 class="heading settled" data-level="6.5.3" id="ref-ptr-types"><span class="secno">6.5.3. </span><span class="content">Reference and Pointer Types</span><a class="self-link" href="#ref-ptr-types"></a></h4>
    <p>WGSL has two kinds of types for representing <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view⑤">memory views</a>:
@@ -7081,7 +7083,7 @@ Note that <a data-link-type="dfn" href="#texture-size" id="ref-for-texture-size�
 To achieve this, many details are hidden from the programmer, including data layouts, data types, and
 internal operations that cannot be expressed directly in the shader language.</p>
    <p>As a consequence, a shader does not have direct access to the texel memory within a <a data-link-type="dfn" href="#texture-resource" id="ref-for-texture-resource①">texture variable</a>.
-Instead, access is mediated through an opaque handle:</p>
+Instead, access is mediated through an <a data-link-type="dfn" href="#opaque" id="ref-for-opaque②">opaque</a> handle:</p>
    <ul>
     <li data-md>
      <p>Within the shader:</p>
@@ -7119,7 +7121,7 @@ access may be mutable (e.g. a write-only <a data-link-type="dfn" href="#type-sto
     <li data-md>
      <p><a href="#texture-depth">§ 6.6.6 Depth Texture Types</a></p>
    </ul>
-   <p>A <a data-link-type="dfn" href="#sampler" id="ref-for-sampler①">sampler</a> is an opaque handle that controls how <a data-link-type="dfn" href="#texel" id="ref-for-texel">texels</a> are accessed
+   <p>A <a data-link-type="dfn" href="#sampler" id="ref-for-sampler①">sampler</a> is an <a data-link-type="dfn" href="#opaque" id="ref-for-opaque③">opaque</a> handle that controls how <a data-link-type="dfn" href="#texel" id="ref-for-texel">texels</a> are accessed
 from a <a data-link-type="dfn" href="#type-sampled-texture" id="ref-for-type-sampled-texture①">sampled texture</a> or a <a data-link-type="dfn" href="#type-depth-texture" id="ref-for-type-depth-texture①">depth texture</a>.</p>
    <p>A WGSL sampler maps to a WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#gpusampler" id="ref-for-gpusampler">GPUSampler</a></code>.</p>
    <p>Texel access is controlled via several properties of the sampler:</p>
@@ -7759,7 +7761,7 @@ and the <a data-link-type="dfn" href="#sampled-type" id="ref-for-sampled-type②
      <p><em>T</em> is the <a data-link-type="dfn" href="#sampled-type" id="ref-for-sampled-type④">sampled type</a>.</p>
    </ul>
    <h4 class="heading settled" data-level="6.6.4" id="external-texture-type"><span class="secno">6.6.4. </span><span class="content">External Sampled Texture Types</span><a class="self-link" href="#external-texture-type"></a></h4>
-   <p>An <dfn class="dfn-paneled" data-dfn-for="type" data-dfn-type="dfn" data-noexport id="type-external-texture">External texture</dfn> is an opaque
+   <p>An <dfn class="dfn-paneled" data-dfn-for="type" data-dfn-type="dfn" data-noexport id="type-external-texture">External texture</dfn> is an <a data-link-type="dfn" href="#opaque" id="ref-for-opaque④">opaque</a>
 two-dimensional float-<a data-link-type="dfn" href="#type-sampled-texture" id="ref-for-type-sampled-texture②">sampled texture</a> type similar to <code>texture_2d&lt;f32></code> but
 potentially with a different representation.
 It can be read using <a href="#textureload">textureLoad</a> or
@@ -8690,7 +8692,7 @@ before the immediate data variable is accessed in a shader.
 </div>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="texture-resource">texture resource</dfn> is a variable whose <a data-link-type="dfn" href="#effective-value-type" id="ref-for-effective-value-type⑧">effective-value-type</a> is a <a data-link-type="dfn" href="#texture-types" id="ref-for-texture-types④">texture type</a>.
 It is declared at <a data-link-type="dfn" href="#module-scope" id="ref-for-module-scope②③">module scope</a>.
-It holds an opaque handle which is used to access the underlying grid of <a data-link-type="dfn" href="#texel" id="ref-for-texel②">texels</a> in a <a data-link-type="dfn" href="#texture" id="ref-for-texture②">texture</a>.
+It holds an <a data-link-type="dfn" href="#opaque" id="ref-for-opaque⑤">opaque</a> handle which is used to access the underlying grid of <a data-link-type="dfn" href="#texel" id="ref-for-texel②">texels</a> in a <a data-link-type="dfn" href="#texture" id="ref-for-texture②">texture</a>.
 The handle itself is in the <a data-link-type="dfn" href="#address-spaces-handle" id="ref-for-address-spaces-handle②">handle</a> address space and is always read-only.
 In many cases the underlying texels are read-only, and we say the texture variable immutable.
 For <a data-link-type="dfn" href="#type-write-only-storage-texture" id="ref-for-type-write-only-storage-texture">write-only storage textures</a> and <a data-link-type="dfn" href="#type-read-write-storage-texture" id="ref-for-type-read-write-storage-texture">read-write storage textures</a>, the underlying texels are mutable, and by convention
@@ -29803,6 +29805,7 @@ registrations, it matches widespread industry conventions.</p>
    <li><a href="#built-in-values-num_workgroups">num_workgroups</a><span>, in § 13.3.1.1.9</span>
    <li><a href="#severity-off">off</a><span>, in § 2.3</span>
    <li><a href="#offsetofmember">OffsetOfMember</a><span>, in § 14.4</span>
+   <li><a href="#opaque">opaque</a><span>, in § 6</span>
    <li>
     optionally_typed_ident
     <ul>
@@ -31098,6 +31101,7 @@ let dfnPanelData = {
 "numeric-scalar-conversion-to-floating-point": {"dfnID":"numeric-scalar-conversion-to-floating-point","dfnText":"numeric scalar conversion to floating point","external":false,"refSections":[],"url":"#numeric-scalar-conversion-to-floating-point"},
 "numeric-vector": {"dfnID":"numeric-vector","dfnText":"numeric vector","external":false,"refSections":[{"refs":[{"id":"ref-for-numeric-vector"}],"title":"6.5.2. Host-shareable Types"},{"refs":[{"id":"ref-for-numeric-vector\u2460"}],"title":"12.3. blend_src"},{"refs":[{"id":"ref-for-numeric-vector\u2461"}],"title":"12.11. location"},{"refs":[{"id":"ref-for-numeric-vector\u2462"}],"title":"13.3.1.2. User-defined Inputs and Outputs"},{"refs":[{"id":"ref-for-numeric-vector\u2463"}],"title":"17.2.1. bitcast"},{"refs":[{"id":"ref-for-numeric-vector\u2464"}],"title":"17.12.1. subgroupAdd"},{"refs":[{"id":"ref-for-numeric-vector\u2465"}],"title":"17.12.1.1. subgroupExclusiveAdd"},{"refs":[{"id":"ref-for-numeric-vector\u2466"}],"title":"17.12.1.2. subgroupInclusiveAdd"},{"refs":[{"id":"ref-for-numeric-vector\u2467"}],"title":"17.12.6. subgroupBroadcast"},{"refs":[{"id":"ref-for-numeric-vector\u2468"}],"title":"17.12.6.1. subgroupBroadcastFirst"},{"refs":[{"id":"ref-for-numeric-vector\u2460\u24ea"}],"title":"17.12.8. subgroupMax"},{"refs":[{"id":"ref-for-numeric-vector\u2460\u2460"}],"title":"17.12.9. subgroupMin"},{"refs":[{"id":"ref-for-numeric-vector\u2460\u2461"}],"title":"17.12.10. subgroupMul"},{"refs":[{"id":"ref-for-numeric-vector\u2460\u2462"}],"title":"17.12.10.1. subgroupExclusiveMul"},{"refs":[{"id":"ref-for-numeric-vector\u2460\u2463"}],"title":"17.12.10.2. subgroupInclusiveMul"},{"refs":[{"id":"ref-for-numeric-vector\u2460\u2464"}],"title":"17.12.12. subgroupShuffle"},{"refs":[{"id":"ref-for-numeric-vector\u2460\u2465"}],"title":"17.12.12.1. subgroupShuffleDown"},{"refs":[{"id":"ref-for-numeric-vector\u2460\u2466"}],"title":"17.12.12.2. subgroupShuffleUp"},{"refs":[{"id":"ref-for-numeric-vector\u2460\u2467"}],"title":"17.12.12.3. subgroupShuffleXor"},{"refs":[{"id":"ref-for-numeric-vector\u2460\u2468"}],"title":"17.13.1. quadBroadcast"},{"refs":[{"id":"ref-for-numeric-vector\u2461\u24ea"}],"title":"17.13.2. quadSwapDiagonal"},{"refs":[{"id":"ref-for-numeric-vector\u2461\u2460"}],"title":"17.13.3. quadSwapX"},{"refs":[{"id":"ref-for-numeric-vector\u2461\u2461"}],"title":"17.13.4. quadSwapY"}],"url":"#numeric-vector"},
 "offsetofmember": {"dfnID":"offsetofmember","dfnText":"OffsetOfMember","external":false,"refSections":[{"refs":[{"id":"ref-for-offsetofmember"}],"title":"13.3.4. Buffer Binding Determines Runtime-Sized Array Element Count"},{"refs":[{"id":"ref-for-offsetofmember\u2460"}],"title":"14.4. Memory Layout"},{"refs":[{"id":"ref-for-offsetofmember\u2461"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-offsetofmember\u2462"},{"id":"ref-for-offsetofmember\u2463"},{"id":"ref-for-offsetofmember\u2464"}],"title":"14.4.2. Structure Member Layout"},{"refs":[{"id":"ref-for-offsetofmember\u2465"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-offsetofmember\u2466"}],"title":"14.4.5. Address Space Layout Constraints"},{"refs":[{"id":"ref-for-offsetofmember\u2467"}],"title":"17.14. Buffer View Built-in Functions"}],"url":"#offsetofmember"},
+"opaque": {"dfnID":"opaque","dfnText":"opaque","external":false,"refSections":[{"refs":[{"id":"ref-for-opaque"}],"title":"6.5.1. Storable Types"},{"refs":[{"id":"ref-for-opaque\u2460"}],"title":"6.5.2. Host-shareable Types"},{"refs":[{"id":"ref-for-opaque\u2461"},{"id":"ref-for-opaque\u2462"}],"title":"6.6. Texture and Sampler Types"},{"refs":[{"id":"ref-for-opaque\u2463"}],"title":"6.6.4. External Sampled Texture Types"},{"refs":[{"id":"ref-for-opaque\u2464"}],"title":"7.3. var Declarations"}],"url":"#opaque"},
 "originating-variable": {"dfnID":"originating-variable","dfnText":"originating variable","external":false,"refSections":[{"refs":[{"id":"ref-for-originating-variable"}],"title":"6.5.5. Originating Variable"},{"refs":[{"id":"ref-for-originating-variable\u2460"},{"id":"ref-for-originating-variable\u2461"},{"id":"ref-for-originating-variable\u2462"},{"id":"ref-for-originating-variable\u2463"}],"title":"6.5.6. Out-of-Bounds Access"},{"refs":[{"id":"ref-for-originating-variable\u2464"},{"id":"ref-for-originating-variable\u2465"}],"title":"6.5.8. Forming Reference and Pointer Values"},{"refs":[{"id":"ref-for-originating-variable\u2466"}],"title":"6.5.9. Comparison with References and Pointers in Other Languages"},{"refs":[{"id":"ref-for-originating-variable\u2467"},{"id":"ref-for-originating-variable\u2468"},{"id":"ref-for-originating-variable\u2460\u24ea"},{"id":"ref-for-originating-variable\u2460\u2460"},{"id":"ref-for-originating-variable\u2460\u2461"}],"title":"8.5.1.3. Component Reference from Vector Memory View"},{"refs":[{"id":"ref-for-originating-variable\u2460\u2462"}],"title":"8.5.2. Matrix Access Expression"},{"refs":[{"id":"ref-for-originating-variable\u2460\u2463"},{"id":"ref-for-originating-variable\u2460\u2464"}],"title":"8.5.3. Array Access Expression"},{"refs":[{"id":"ref-for-originating-variable\u2460\u2465"}],"title":"8.5.4. Structure Access Expression"},{"refs":[{"id":"ref-for-originating-variable\u2460\u2466"}],"title":"11.4.1.1. Root Identifier"},{"refs":[{"id":"ref-for-originating-variable\u2460\u2467"},{"id":"ref-for-originating-variable\u2460\u2468"},{"id":"ref-for-originating-variable\u2461\u24ea"}],"title":"11.4.1.2. Aliasing"},{"refs":[{"id":"ref-for-originating-variable\u2461\u2460"},{"id":"ref-for-originating-variable\u2461\u2461"},{"id":"ref-for-originating-variable\u2461\u2462"}],"title":"15.2.5. Function-scope Variable Value Analysis"},{"refs":[{"id":"ref-for-originating-variable\u2461\u2463"},{"id":"ref-for-originating-variable\u2461\u2464"},{"id":"ref-for-originating-variable\u2461\u2465"}],"title":"17.14. Buffer View Built-in Functions"}],"url":"#originating-variable"},
 "out-of-bounds-access": {"dfnID":"out-of-bounds-access","dfnText":"out-of-bounds access","external":false,"refSections":[{"refs":[{"id":"ref-for-out-of-bounds-access"}],"title":"6.5.6. Out-of-Bounds Access"}],"url":"#out-of-bounds-access"},
 "out-of-bounds-index": {"dfnID":"out-of-bounds-index","dfnText":"out-of-bounds index","external":false,"refSections":[{"refs":[{"id":"ref-for-out-of-bounds-index"}],"title":"6.5.4. Valid and Invalid Memory References"}],"url":"#out-of-bounds-index"},
@@ -32318,6 +32322,7 @@ let refsData = {
 "#numeric-scalar": {"displayText":"numeric scalar","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"numeric scalar","type":"dfn","url":"#numeric-scalar"},
 "#numeric-vector": {"displayText":"numeric vector","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"numeric vector","type":"dfn","url":"#numeric-vector"},
 "#offsetofmember": {"displayText":"offsetofmember","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"offsetofmember","type":"dfn","url":"#offsetofmember"},
+"#opaque": {"displayText":"opaque","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"opaque","type":"dfn","url":"#opaque"},
 "#originating-variable": {"displayText":"originating variable","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"originating variable","type":"dfn","url":"#originating-variable"},
 "#out-of-bounds-access": {"displayText":"out-of-bounds access","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"out-of-bounds access","type":"dfn","url":"#out-of-bounds-access"},
 "#out-of-bounds-index": {"displayText":"out-of-bounds index","export":true,"for_":[],"level":"","normative":true,"shortname":"wgsl","spec":"wgsl","status":"local","text":"out-of-bounds index","type":"dfn","url":"#out-of-bounds-index"},
