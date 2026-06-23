@@ -862,13 +862,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
 </p>
    <h1 class="no-ref p-name" id="title">WebGPU Shading Language</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
-    <time class="dt-updated" datetime="2026-06-19">19 June 2026</time></p>
+    <time class="dt-updated" datetime="2026-06-23">23 June 2026</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/a82b039f906b54a5ac404062e3df18b63e58d863/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/a82b039f906b54a5ac404062e3df18b63e58d863/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/908e68ccf3e9256ef24845be3a2c52b8fe4033f1/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/908e68ccf3e9256ef24845be3a2c52b8fe4033f1/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -5734,7 +5734,7 @@ See <a href="#declaration-and-scope">§ 5 Declaration and Scope</a>.</p>
     <li data-md>
      <p>a <a data-link-type="dfn" href="#structure" id="ref-for-structure④">structure</a> type that has a <a data-link-type="dfn" href="#creation-fixed-footprint" id="ref-for-creation-fixed-footprint⑤">creation-fixed footprint</a></p>
    </ul>
-   <p>Not: A structure member type cannot be a <a data-link-type="dfn" href="#buffer" id="ref-for-buffer③">buffer</a> type.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> A structure member type cannot be a <a data-link-type="dfn" href="#buffer" id="ref-for-buffer③">buffer</a> type.</p>
    <p class="note" role="note"><span class="marker">Note:</span> All user-declared structure types are <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete⑦">concrete</a>.</p>
    <p class="note" role="note"><span class="marker">Note:</span> Each member type must be a <a data-link-type="dfn" href="#plain-type" id="ref-for-plain-type②">plain type</a>.</p>
    <p>Some consequences of the restrictions structure member and array element types are:</p>
@@ -8011,7 +8011,7 @@ type specifier name, when the type alias is <a data-link-type="dfn" href="#in-sc
   <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-template_elaborated_ident">template_elaborated_ident</dfn> :
 
 
-    <p><span class="choice"></span> <a data-link-type="dfn" href="#syntax-ident" id="ref-for-syntax-ident⑤">ident</a> <a data-link-type="dfn" href="#syntax_sym-_disambiguate_template" id="ref-for-syntax_sym-_disambiguate_template④">_disambiguate_template</a> <a data-link-type="dfn" href="#syntax-template_list" id="ref-for-syntax-template_list①">template_list</a> ?</p>
+    <p><span class="choice"></span> <a data-link-type="dfn" href="#syntax-ident" id="ref-for-syntax-ident⑤">ident</a> <a data-link-type="dfn" href="#syntax-template_list" id="ref-for-syntax-template_list①">template_list</a> ?</p>
    </div>
    <p class="note" role="note"><span class="marker">Note:</span> An <a data-link-type="dfn" href="#expression" id="ref-for-expression④">expression</a> can also denote a type, by expanding via the <a data-link-type="dfn" href="#syntax-primary_expression" id="ref-for-syntax-primary_expression">primary_expression</a> grammar rule to <a data-link-type="dfn" href="#syntax-template_elaborated_ident" id="ref-for-syntax-template_elaborated_ident①">template_elaborated_ident</a>,
 and via <a href="#parenthesized-expressions">parenthesization</a>.</p>
@@ -8885,7 +8885,7 @@ such that the redundant loads are eliminated.
   <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-variable_decl">variable_decl</dfn> :
 
 
-    <p><span class="choice"></span> <code>'var'</code> <a data-link-type="dfn" href="#syntax_sym-_disambiguate_template" id="ref-for-syntax_sym-_disambiguate_template⑤">_disambiguate_template</a> <a data-link-type="dfn" href="#syntax-template_list" id="ref-for-syntax-template_list②">template_list</a> ? <a data-link-type="dfn" href="#syntax-optionally_typed_ident" id="ref-for-syntax-optionally_typed_ident②">optionally_typed_ident</a></p>
+    <p><span class="choice"></span> <code>'var'</code> <a data-link-type="dfn" href="#syntax_sym-_disambiguate_template" id="ref-for-syntax_sym-_disambiguate_template④">_disambiguate_template</a> <a data-link-type="dfn" href="#syntax-template_list" id="ref-for-syntax-template_list②">template_list</a> ? <a data-link-type="dfn" href="#syntax-optionally_typed_ident" id="ref-for-syntax-optionally_typed_ident②">optionally_typed_ident</a></p>
    </div>
    <div class="syntax">
     
@@ -10983,7 +10983,7 @@ Note: The <a data-link-type="dfn" href="#syntax-call_expression" id="ref-for-syn
   <dfn class="dfn-paneled" data-dfn-for="syntax" data-dfn-type="dfn" data-noexport id="syntax-core_lhs_expression">core_lhs_expression</dfn> :
 
 
-    <p><span class="choice"></span> <a data-link-type="dfn" href="#syntax-ident" id="ref-for-syntax-ident⑦">ident</a> <a data-link-type="dfn" href="#syntax_sym-_disambiguate_template" id="ref-for-syntax_sym-_disambiguate_template⑥">_disambiguate_template</a></p>
+    <p><span class="choice"></span> <a data-link-type="dfn" href="#syntax-ident" id="ref-for-syntax-ident⑦">ident</a></p>
     <p><span class="choice">|</span> <a data-link-type="dfn" href="#syntax_sym-paren_left" id="ref-for-syntax_sym-paren_left②"><code>'('</code></a> <a data-link-type="dfn" href="#syntax-lhs_expression" id="ref-for-syntax-lhs_expression②">lhs_expression</a> <a data-link-type="dfn" href="#syntax_sym-paren_right" id="ref-for-syntax_sym-paren_right②"><code>')'</code></a></p>
     <p><span class="choice">|</span> <a data-link-type="dfn" href="#syntax-call_expression" id="ref-for-syntax-call_expression②">call_expression</a></p>
    </div>
@@ -16435,7 +16435,7 @@ For each member index <var>i</var> > 1:</p>
 of a buffer, given an assumed placement of the overall value.
 These layouts depend on the value’s type,
 and the <a data-link-type="dfn" href="#attribute-align" id="ref-for-attribute-align⑤">align</a> and <a data-link-type="dfn" href="#attribute-size" id="ref-for-attribute-size⑥">size</a> attributes on structure members.
-These rules apply to <a data-link-type="dfn" href="#opaque" id="ref-for-opaque⑦">non-opque</a> types as described below; values of
+These rules apply to <a data-link-type="dfn" href="#opaque" id="ref-for-opaque⑦">non-opaque</a> types as described below; values of
 <a data-link-type="dfn" href="#buffer" id="ref-for-buffer①③">buffer</a> type do not have an internal structure, and are not constrained by
 these rules.</p>
    <p>The buffer byte offset at which a value is placed <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③②">must</a> satisfy the type alignment requirement: If a value of type <var>T</var> is
@@ -31451,7 +31451,7 @@ let dfnPanelData = {
 "syntax_kw-true": {"dfnID":"syntax_kw-true","dfnText":"true","external":false,"refSections":[],"url":"#syntax_kw-true"},
 "syntax_kw-var": {"dfnID":"syntax_kw-var","dfnText":"var","external":false,"refSections":[],"url":"#syntax_kw-var"},
 "syntax_kw-while": {"dfnID":"syntax_kw-while","dfnText":"while","external":false,"refSections":[],"url":"#syntax_kw-while"},
-"syntax_sym-_disambiguate_template": {"dfnID":"syntax_sym-_disambiguate_template","dfnText":"_disambiguate_template","external":false,"refSections":[{"refs":[{"id":"ref-for-syntax_sym-_disambiguate_template"},{"id":"ref-for-syntax_sym-_disambiguate_template\u2460"},{"id":"ref-for-syntax_sym-_disambiguate_template\u2461"}],"title":"3.1. Parsing"},{"refs":[{"id":"ref-for-syntax_sym-_disambiguate_template\u2462"}],"title":"3.7. Identifiers"},{"refs":[{"id":"ref-for-syntax_sym-_disambiguate_template\u2463"}],"title":"6.9. Type Specifier Grammar"},{"refs":[{"id":"ref-for-syntax_sym-_disambiguate_template\u2464"}],"title":"7.4. Variable and Value Declaration Grammar Summary"},{"refs":[{"id":"ref-for-syntax_sym-_disambiguate_template\u2465"}],"title":"8.18. Expression Grammar Summary"}],"url":"#syntax_sym-_disambiguate_template"},
+"syntax_sym-_disambiguate_template": {"dfnID":"syntax_sym-_disambiguate_template","dfnText":"_disambiguate_template","external":false,"refSections":[{"refs":[{"id":"ref-for-syntax_sym-_disambiguate_template"},{"id":"ref-for-syntax_sym-_disambiguate_template\u2460"},{"id":"ref-for-syntax_sym-_disambiguate_template\u2461"}],"title":"3.1. Parsing"},{"refs":[{"id":"ref-for-syntax_sym-_disambiguate_template\u2462"}],"title":"3.7. Identifiers"},{"refs":[{"id":"ref-for-syntax_sym-_disambiguate_template\u2463"}],"title":"7.4. Variable and Value Declaration Grammar Summary"}],"url":"#syntax_sym-_disambiguate_template"},
 "syntax_sym-_greater_than": {"dfnID":"syntax_sym-_greater_than","dfnText":"_greater_than","external":false,"refSections":[{"refs":[{"id":"ref-for-syntax_sym-_greater_than"}],"title":"8.18. Expression Grammar Summary"}],"url":"#syntax_sym-_greater_than"},
 "syntax_sym-_greater_than_equal": {"dfnID":"syntax_sym-_greater_than_equal","dfnText":"_greater_than_equal","external":false,"refSections":[{"refs":[{"id":"ref-for-syntax_sym-_greater_than_equal"}],"title":"8.18. Expression Grammar Summary"}],"url":"#syntax_sym-_greater_than_equal"},
 "syntax_sym-_less_than": {"dfnID":"syntax_sym-_less_than","dfnText":"_less_than","external":false,"refSections":[{"refs":[{"id":"ref-for-syntax_sym-_less_than"}],"title":"8.18. Expression Grammar Summary"}],"url":"#syntax_sym-_less_than"},
