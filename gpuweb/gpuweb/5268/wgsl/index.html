@@ -868,7 +868,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/687f2f70a679a1734d6ca005f62a8a8742910144/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/687f2f70a679a1734d6ca005f62a8a8742910144/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/2b704a03362fea50b23cb2338b5bb2739ece7c54/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/2b704a03362fea50b23cb2338b5bb2739ece7c54/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -6420,7 +6420,6 @@ guarantees that Step 3 updates each component of <var>new</var> at most once.</p
         and vec<var>K</var>&lt;<var>S</var>> are valid <a data-link-type="dfn" href="#vector" id="ref-for-vector①⓪">vector</a> types.<br>
         ptr&lt;<var>AS</var>,vec<var>N</var>&lt;<var>S</var>>,<var>AM</var>> is a valid pointer type,
         where <var>AM</var> is <a data-link-type="dfn" href="#access-read" id="ref-for-access-read⑤">read</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write⑧">read_write</a>.<br>
-        If <var>AM</var> is <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write⑨">read_write</a> then additionally <var>K</var> ≤ <var>N</var>.
     
       <td>swizzle&lt;<var>AS</var>,<var>S</var>,<var>AM</var>,<var>N</var>,<var>K</var>>
     
@@ -6439,7 +6438,7 @@ yielding a vector of type vec<var>K</var>&lt;<var>S</var>>.</p>
         <li data-md>
          <p>(<var>p</var>,<var>IndexList</var>) supports a <a data-link-type="dfn" href="#swizzle-view-write" id="ref-for-swizzle-view-write">swizzle view write</a> operation
 that writes a vector of type vec<var>K</var>&lt;<var>S</var>>,
-if <var>AM</var> is <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①⓪">read_write</a>.</p>
+if <var>AM</var> is <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write⑨">read_write</a>.</p>
        </ul>
        <p>Swizzle view types are not written in WGSL source;
         instead they are used to analyze a WGSL module.</p>
@@ -6755,14 +6754,14 @@ and derivatives may yield invalid results.</p>
      <p>A <a data-link-type="dfn" href="#simple-assignment" id="ref-for-simple-assignment">simple assignment</a> statement performs a <a data-link-type="dfn" href="#write-access" id="ref-for-write-access">write access</a> to update the contents of memory via a reference, where:</p>
      <ul>
       <li data-md>
-       <p>The <a data-link-type="dfn" href="#left-hand-side" id="ref-for-left-hand-side">left-hand side</a> of the simple assignment statement <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error⑤⑥">must</a> be of reference type, with access mode <a data-link-type="dfn" href="#access-write" id="ref-for-access-write①">write</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①①">read_write</a>.</p>
+       <p>The <a data-link-type="dfn" href="#left-hand-side" id="ref-for-left-hand-side">left-hand side</a> of the simple assignment statement <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error⑤⑥">must</a> be of reference type, with access mode <a data-link-type="dfn" href="#access-write" id="ref-for-access-write①">write</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①⓪">read_write</a>.</p>
       <li data-md>
        <p>The <a data-link-type="dfn" href="#right-hand-side" id="ref-for-right-hand-side">right-hand side</a> of the simple assignment statement <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error⑤⑦">must</a> evaluate to the store type of the left-hand side.</p>
      </ul>
     <li data-md>
      <p>A <a data-link-type="dfn" href="#swizzle-assignment" id="ref-for-swizzle-assignment①">swizzle assignment</a> statement updates two or
 more components of a vector in memory via a <a data-link-type="dfn" href="#swizzle-view" id="ref-for-swizzle-view①①">swizzle view</a> that has
-a <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①②">read_write</a> access mode.</p>
+a <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①①">read_write</a> access mode.</p>
     <li data-md>
      <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="load-rule">Load Rule</dfn>: Inside a function, a reference is automatically dereferenced (read from) to satisfy type rules:</p>
      <ul>
@@ -6770,7 +6769,7 @@ a <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_writ
        <p>In a function, when a reference expression <var>r</var> with store type <var>T</var> is used in a statement or an expression, where:</p>
        <ul>
         <li data-md>
-         <p><var>r</var> has an access mode of <a data-link-type="dfn" href="#access-read" id="ref-for-access-read⑥">read</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①③">read_write</a>, and</p>
+         <p><var>r</var> has an access mode of <a data-link-type="dfn" href="#access-read" id="ref-for-access-read⑥">read</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①②">read_write</a>, and</p>
         <li data-md>
          <p>The only potentially matching type rules require <var>r</var> to have a value of type <var>T</var>,</p>
        </ul>
@@ -6791,7 +6790,7 @@ Inside a function, a <a data-link-type="dfn" href="#swizzle-view-read" id="ref-f
         <li data-md>
          <p><var>sv</var> is (<var>p</var>, <var>IndexList</var>) and of type swizzle&lt;<var>AS</var>,<var>S</var>,<var>AM</var>,<var>N</var>,<var>K</var>>, and</p>
         <li data-md>
-         <p>Access mode <var>AM</var> is <a data-link-type="dfn" href="#access-read" id="ref-for-access-read⑦">read</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①④">read_write</a>, and</p>
+         <p>Access mode <var>AM</var> is <a data-link-type="dfn" href="#access-read" id="ref-for-access-read⑦">read</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①③">read_write</a>, and</p>
         <li data-md>
          <p>The only potentially matching type rules require <var>sv</var> to have a value of type vec<var>K</var>&lt;<var>S</var>>,</p>
        </ul>
@@ -8388,7 +8387,7 @@ The four kinds of value declarations are <code>const</code>, <code>override</cod
 further described below (see <a href="#value-decls">§ 7.2 Value Declarations</a>).</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="variable-declaration">variable declaration</dfn> creates a name for <a data-link-type="dfn" href="#memory-locations" id="ref-for-memory-locations⑧">memory locations</a>
 for storing a value; the value stored there may be updated, if the variable has
-a <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①⑤">read_write</a> access mode.
+a <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①④">read_write</a> access mode.
 There is one kind of variable declaration, <code>var</code>, but it has options for
 <a data-link-type="dfn" href="#address-spaces" id="ref-for-address-spaces⑨">address space</a> and <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode①②">access modes</a> in various combinations, described
 below (see <a href="#var-decls">§ 7.3 var Declarations</a>).</p>
@@ -8688,7 +8687,7 @@ See WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github
 variables.</p>
     <li data-md>
      <p>The data in <a href="#texture-storage">storage textures</a> with a <a data-link-type="dfn" href="#access-write" id="ref-for-access-write②">write</a>
-or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①⑥">read_write</a> <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode①③">access mode</a> is mutable, but can only be
+or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①⑤">read_write</a> <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode①③">access mode</a> is mutable, but can only be
 modified via <a href="#texturestore">textureStore</a> built-in function.
 The variable itself cannot be modified.</p>
     <li data-md>
@@ -8903,7 +8902,7 @@ constraints</a>.</p>
    <p>A variable in the <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage⑦">storage</a> address space is a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="storage-buffer">storage buffer</dfn> variable.
 Its <a data-link-type="dfn" href="#store-type" id="ref-for-store-type①⑥">store type</a> must be a <a data-link-type="dfn" href="#host-shareable" id="ref-for-host-shareable⑤">host-shareable</a> type and must satisfy the
 <a href="#address-space-layout-constraints">address space layout constraints</a>.
-The variable may be declared with a <a data-link-type="dfn" href="#access-read" id="ref-for-access-read⑨">read</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①⑦">read_write</a>
+The variable may be declared with a <a data-link-type="dfn" href="#access-read" id="ref-for-access-read⑨">read</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①⑥">read_write</a>
 access mode; the default is read.</p>
    <p>A variable in the <a data-link-type="dfn" href="#address-spaces-immediate" id="ref-for-address-spaces-immediate②">immediate</a> address space is an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="immediate-data">immediate data</dfn> variable.
 Its <a data-link-type="dfn" href="#store-type" id="ref-for-store-type①⑦">store type</a> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error⑦⑥">must</a> be a <a data-link-type="dfn" href="#host-shareable" id="ref-for-host-shareable⑥">host-shareable</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①③">constructible</a> type,
@@ -11912,7 +11911,7 @@ In this case the value of the <a data-link-type="dfn" href="#right-hand-side" id
         <var>T</var> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⑥">concrete</a> <a data-link-type="dfn" href="#constructible" id="ref-for-constructible①⑧">constructible</a> type,<br>
         <var>r</var>: ref&lt;<var>AS</var>,<var>T</var>,<var>AM</var>>,<br>
         <var>AS</var> is a writable <a data-link-type="dfn" href="#address-spaces" id="ref-for-address-spaces①⑤">address space</a>,<br>
-        <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②⓪">access mode</a> <var>AM</var> is <a data-link-type="dfn" href="#access-write" id="ref-for-access-write③">write</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①⑧">read_write</a><br>
+        <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②⓪">access mode</a> <var>AM</var> is <a data-link-type="dfn" href="#access-write" id="ref-for-access-write③">write</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①⑦">read_write</a><br>
     
       <td class="nowrap"><var>r</var> = <var>e</var>
     
@@ -11974,7 +11973,7 @@ using the value of the <a data-link-type="dfn" href="#right-hand-side" id="ref-f
         <var>sv</var> : swizzle&lt;<var>AS</var>,<var>S</var>,<var>AM</var>,<var>N</var>,<var>K</var>><br>
         <var>e</var> : vec<var>K</var>&lt;<var>S</var>><br>
         <a data-link-type="dfn" href="#address-spaces" id="ref-for-address-spaces①⑥">Address space</a> <var>AS</var> is writable,<br>
-        <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②①">Access mode</a> <var>AM</var> is <a data-link-type="dfn" href="#access-write" id="ref-for-access-write④">write</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①⑨">read_write</a>
+        <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②①">Access mode</a> <var>AM</var> is <a data-link-type="dfn" href="#access-write" id="ref-for-access-write④">write</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①⑧">read_write</a>
     
       <td class="nowrap"><var>sv</var> = <var>e</var>
     
@@ -12148,7 +12147,7 @@ the compound assignment expands as in the following table, except that:</p>
      <p>If the expression <var>e1</var> is a <a data-link-type="dfn" href="#reference-type" id="ref-for-reference-type①⑥">reference</a> expression:</p>
      <ul>
       <li data-md>
-       <p>The <a data-link-type="dfn" href="#reference-type" id="ref-for-reference-type①⑦">reference type</a> for <var>e1</var> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①①③">must</a> have a <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②⓪">read_write</a> <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②②">access mode</a>.</p>
+       <p>The <a data-link-type="dfn" href="#reference-type" id="ref-for-reference-type①⑦">reference type</a> for <var>e1</var> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①①③">must</a> have a <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write①⑨">read_write</a> <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②②">access mode</a>.</p>
       <li data-md>
        <p>Perform the following steps.</p>
        <ol>
@@ -12173,7 +12172,7 @@ the compound assignment expands as in the following table, except that:</p>
      <p>If the expression <var>e1</var> is a <a data-link-type="dfn" href="#swizzle-view" id="ref-for-swizzle-view②⑦">swizzle view</a> expression:</p>
      <ul>
       <li data-md>
-       <p>The <a data-link-type="dfn" href="#swizzle-view" id="ref-for-swizzle-view②⑧">swizzle view</a> type for <var>e1</var> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①①④">must</a> have a <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②①">read_write</a> <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②③">access mode</a>.</p>
+       <p>The <a data-link-type="dfn" href="#swizzle-view" id="ref-for-swizzle-view②⑧">swizzle view</a> type for <var>e1</var> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①①④">must</a> have a <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②⓪">read_write</a> <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②③">access mode</a>.</p>
       <li data-md>
        <p>By convention swizzle view <var>e1</var> can be written (<var>p</var>, <var>IndexList</var>)</p>
       <li data-md>
@@ -12424,7 +12423,7 @@ A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="decrement-state
 
     <p><span class="choice"></span> <a data-link-type="dfn" href="#syntax-lhs_expression" id="ref-for-syntax-lhs_expression⑤">lhs_expression</a> <a data-link-type="dfn" href="#syntax_sym-minus_minus" id="ref-for-syntax_sym-minus_minus"><code>'--'</code></a></p>
    </div>
-   <p>The expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①①⑦">must</a> evaluate to a reference with a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⑦">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar①②">integer scalar</a> <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②⑥">store type</a> and <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②②">read_write</a> <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②④">access mode</a>.</p>
+   <p>The expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error①①⑦">must</a> evaluate to a reference with a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⑦">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar①②">integer scalar</a> <a data-link-type="dfn" href="#store-type" id="ref-for-store-type②⑥">store type</a> and <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②①">read_write</a> <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②④">access mode</a>.</p>
    <table class="data">
     <thead>
      <tr>
@@ -12434,7 +12433,7 @@ A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="decrement-state
   
     <tbody>
      <tr class="algorithm" data-algorithm="increment statement">
-      <td class="nowrap"><var>r</var> : ref&lt;<var>AS</var>,<var>T</var>,<a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②③">read_write</a>>,<br>
+      <td class="nowrap"><var>r</var> : ref&lt;<var>AS</var>,<var>T</var>,<a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②②">read_write</a>>,<br>
         <var>T</var> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⑧">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar①③">integer scalar</a><br>
     
       <td class="nowrap"><var>r</var><code>++</code>
@@ -12443,7 +12442,7 @@ A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="decrement-state
         <br>Same as <var>r</var> += <var>T</var>(1)
   
      <tr class="algorithm" data-algorithm="decrement statement">
-      <td class="nowrap"><var>r</var> : ref&lt;<var>AS</var>,<var>T</var>,<a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②④">read_write</a>>,<br>
+      <td class="nowrap"><var>r</var> : ref&lt;<var>AS</var>,<var>T</var>,<a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②③">read_write</a>>,<br>
         <var>T</var> is a <a data-link-type="dfn" href="#type-concrete" id="ref-for-type-concrete③⑨">concrete</a> <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar①④">integer scalar</a><br>
     
       <td class="nowrap"><var>r</var><code>--</code>
@@ -16387,7 +16386,7 @@ where compatibility is defined by the following table.</p>
       <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpubufferbindingtype-uniform" id="ref-for-dom-gpubufferbindingtype-uniform">"uniform"</a></code>
   
      <tr>
-      <td><a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer①⑤">storage buffer</a> with <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②⑤">read_write</a> access
+      <td><a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer①⑤">storage buffer</a> with <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②④">read_write</a> access
       
       <td><code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpubufferbindingtype-storage" id="ref-for-dom-gpubufferbindingtype-storage">"storage"</a></code>
   
@@ -16704,7 +16703,7 @@ and how to use variables with it.
 See <a href="#var-and-value">§ 7 Variable and Value Declarations</a> for more details.</p>
    <p>The access mode of a given <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view③⓪">memory view</a> is often determined by context:</p>
    <p>The <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage⑧">storage</a> address space supports both <a data-link-type="dfn" href="#access-read" id="ref-for-access-read①①">read</a> and
-<a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②⑥">read_write</a> access modes.
+<a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②⑤">read_write</a> access modes.
 Each other address space supports only one access mode.
 The default access mode for each address space is described in the following
 table.</p>
@@ -16729,7 +16728,7 @@ See <a href="#swizzle-view-expr">§ 8.15 Swizzle View Expression</a>.</p>
       
       <td>Same invocation only
       
-      <td><a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②⑦">read_write</a>
+      <td><a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②⑥">read_write</a>
       
       <td>
      <tr>
@@ -16737,7 +16736,7 @@ See <a href="#swizzle-view-expr">§ 8.15 Swizzle View Expression</a>.</p>
       
       <td>Same invocation only
       
-      <td><a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②⑧">read_write</a>
+      <td><a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②⑦">read_write</a>
       
       <td>
      <tr>
@@ -16745,7 +16744,7 @@ See <a href="#swizzle-view-expr">§ 8.15 Swizzle View Expression</a>.</p>
       
       <td>Invocations in the same <a data-link-type="dfn" href="#compute-shader-stage" id="ref-for-compute-shader-stage①⑦">compute shader</a> <a data-link-type="dfn" href="#compute-shader-stage-workgroup" id="ref-for-compute-shader-stage-workgroup④">workgroup</a>
       
-      <td><a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②⑨">read_write</a>
+      <td><a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②⑧">read_write</a>
       
       <td>The <a data-link-type="dfn" href="#element-count" id="ref-for-element-count⑥">element count</a> of an outermost array may be a <a data-link-type="dfn" href="#pipeline-overridable" id="ref-for-pipeline-overridable⑤">pipeline-overridable</a> constant.
   
@@ -16792,7 +16791,7 @@ See <a href="#swizzle-view-expr">§ 8.15 Swizzle View Expression</a>.</p>
 <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error②③⑧">must</a> only be <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed①⑥">statically accessed</a> in a <a data-link-type="dfn" href="#compute-shader-stage" id="ref-for-compute-shader-stage①⑧">compute shader stage</a>.</p>
    <p><a data-link-type="dfn" href="#variable" id="ref-for-variable①⑨">Variables</a> in the <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage⑨">storage</a> address space (<a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer②②">storage buffers</a>) can only be <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed①⑦">statically accessed</a> by a <a data-link-type="dfn" href="#vertex-shader-stage" id="ref-for-vertex-shader-stage⑥">vertex shader stage</a> if the access mode is <a data-link-type="dfn" href="#access-read" id="ref-for-access-read①⑥">read</a>.
 Variables whose <a data-link-type="dfn" href="#store-type" id="ref-for-store-type③⓪">store type</a> is a <a data-link-type="dfn" href="#type-storage-texture" id="ref-for-type-storage-texture⑤">storage texture</a> with a
-<a data-link-type="dfn" href="#access-write" id="ref-for-access-write⑤">write</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write③⓪">read_write</a> <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②⑥">access mode</a> cannot be
+<a data-link-type="dfn" href="#access-write" id="ref-for-access-write⑤">write</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write②⑨">read_write</a> <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②⑥">access mode</a> cannot be
 <a data-link-type="dfn" href="#statically-accessed" id="ref-for-statically-accessed①⑧">statically accessed</a> by a <a data-link-type="dfn" href="#vertex-shader-stage" id="ref-for-vertex-shader-stage⑦">vertex shader stage</a>.
 See WebGPU <code class="idl"><a data-link-type="idl" href="https://gpuweb.github.io/gpuweb/#dom-gpudevice-createbindgrouplayout" id="ref-for-dom-gpudevice-createbindgrouplayout①">createBindGroupLayout()</a></code>.</p>
    <p class="note" role="note"><span class="marker">Note:</span> Each address space may have different performance characteristics.</p>
@@ -23190,7 +23189,7 @@ a value in one type as a value in another type.</p>
       <td style="width:10%">Parameterization
     
       <td><code>E</code> is an element type for a <a data-link-type="dfn" href="#runtime-sized" id="ref-for-runtime-sized①⓪">runtime-sized</a> array,<br>
-        <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode③②">access mode</a> <code>AM</code> is <a data-link-type="dfn" href="#access-read" id="ref-for-access-read①⑧">read</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write③①">read_write</a>
+        <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode③②">access mode</a> <code>AM</code> is <a data-link-type="dfn" href="#access-read" id="ref-for-access-read①⑧">read</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write③⓪">read_write</a>
   
      <tr>
       <td>Description
@@ -26364,7 +26363,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
 </pre>
      <tr class="algorithm" data-algorithm="textureLoad 1d storage">
       <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①⓪③">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑨②">u32</a><br>
-        <var>AM</var> is <a data-link-type="dfn" href="#access-read" id="ref-for-access-read①⑨">read</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write③②">read_write</a><br>
+        <var>AM</var> is <a data-link-type="dfn" href="#access-read" id="ref-for-access-read①⑨">read</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write③①">read_write</a><br>
         <var>CF</var> depends on the storage texel format <var>F</var>.
         <a href="#storage-texel-formats" id="ref-for-storage-texel-formats②">See the texel format table</a> for the mapping of texel
         format to channel format.
@@ -26375,7 +26374,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
 </pre>
      <tr class="algorithm" data-algorithm="textureLoad 2d storage">
       <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①⓪④">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑨③">u32</a><br>
-        <var>AM</var> is <a data-link-type="dfn" href="#access-read" id="ref-for-access-read②⓪">read</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write③③">read_write</a><br>
+        <var>AM</var> is <a data-link-type="dfn" href="#access-read" id="ref-for-access-read②⓪">read</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write③②">read_write</a><br>
         <var>CF</var> depends on the storage texel format <var>F</var>.
         <a href="#storage-texel-formats" id="ref-for-storage-texel-formats③">See the texel format table</a> for the mapping of texel
         format to channel format.
@@ -26386,7 +26385,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
 </pre>
      <tr class="algorithm" data-algorithm="textureLoad 2d array storage">
       <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①⓪⑤">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑨④">u32</a><br>
-        <var>AM</var> is <a data-link-type="dfn" href="#access-read" id="ref-for-access-read②①">read</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write③④">read_write</a><br>
+        <var>AM</var> is <a data-link-type="dfn" href="#access-read" id="ref-for-access-read②①">read</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write③③">read_write</a><br>
         <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①⓪⑥">i32</a> or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑨⑤">u32</a><br>
         <var>CF</var> depends on the storage texel format <var>F</var>.
         <a href="#storage-texel-formats" id="ref-for-storage-texel-formats④">See the texel format table</a> for the mapping of texel
@@ -26399,7 +26398,7 @@ yielding a 0.0 or 1.0 value, as controlled by the comparison sampler parameters.
 </pre>
      <tr class="algorithm" data-algorithm="textureLoad 3d storage">
       <td><var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①⓪⑦">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32⑨⑥">u32</a><br>
-        <var>AM</var> is <a data-link-type="dfn" href="#access-read" id="ref-for-access-read②②">read</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write③⑤">read_write</a><br>
+        <var>AM</var> is <a data-link-type="dfn" href="#access-read" id="ref-for-access-read②②">read</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write③④">read_write</a><br>
         <var>CF</var> depends on the storage texel format <var>F</var>.
         <a href="#storage-texel-formats" id="ref-for-storage-texel-formats⑤">See the texel format table</a> for the mapping of texel
         format to channel format.
@@ -27484,7 +27483,7 @@ with texture coordinates clamped to the edge as described below.</p>
      <tr class="algorithm" data-algorithm="textureStore 1d">
       <td><var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format①①">texel format</a><br>
         <var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①④①">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①③⓪">u32</a><br>
-        <var>AM</var> is <a data-link-type="dfn" href="#access-write" id="ref-for-access-write⑥">write</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write③⑥">read_write</a><br>
+        <var>AM</var> is <a data-link-type="dfn" href="#access-write" id="ref-for-access-write⑥">write</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write③⑤">read_write</a><br>
         <var>CF</var> depends on the storage texel format <var>F</var>.
         <a href="#storage-texel-formats" id="ref-for-storage-texel-formats⑥">See the texel format table</a> for the mapping of texel
         format to channel format.
@@ -27497,7 +27496,7 @@ with texture coordinates clamped to the edge as described below.</p>
      <tr class="algorithm" data-algorithm="textureStore 2d">
       <td><var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format①②">texel format</a><br>
         <var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①④②">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①③①">u32</a><br>
-        <var>AM</var> is <a data-link-type="dfn" href="#access-write" id="ref-for-access-write⑦">write</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write③⑦">read_write</a><br>
+        <var>AM</var> is <a data-link-type="dfn" href="#access-write" id="ref-for-access-write⑦">write</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write③⑥">read_write</a><br>
         <var>CF</var> depends on the storage texel format <var>F</var>.
         <a href="#storage-texel-formats" id="ref-for-storage-texel-formats⑦">See the texel format table</a> for the mapping of texel
         format to channel format.
@@ -27510,7 +27509,7 @@ with texture coordinates clamped to the edge as described below.</p>
      <tr class="algorithm" data-algorithm="textureStore 2d array">
       <td><var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format①③">texel format</a><br>
         <var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①④③">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①③②">u32</a><br>
-        <var>AM</var> is <a data-link-type="dfn" href="#access-write" id="ref-for-access-write⑧">write</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write③⑧">read_write</a><br>
+        <var>AM</var> is <a data-link-type="dfn" href="#access-write" id="ref-for-access-write⑧">write</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write③⑦">read_write</a><br>
         <var>A</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①④④">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①③③">u32</a><br>
         <var>CF</var> depends on the storage texel format <var>F</var>.
         <a href="#storage-texel-formats" id="ref-for-storage-texel-formats⑧">See the texel format table</a> for the mapping of texel
@@ -27525,7 +27524,7 @@ with texture coordinates clamped to the edge as described below.</p>
      <tr class="algorithm" data-algorithm="textureStore 3d">
       <td><var>F</var> is a <a data-link-type="dfn" href="#texel-format" id="ref-for-texel-format①④">texel format</a><br>
         <var>C</var> is <a data-link-type="dfn" href="#i32" id="ref-for-i32①④⑤">i32</a>, or <a data-link-type="dfn" href="#u32" id="ref-for-u32①③④">u32</a><br>
-        <var>AM</var> is <a data-link-type="dfn" href="#access-write" id="ref-for-access-write⑨">write</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write③⑨">read_write</a><br>
+        <var>AM</var> is <a data-link-type="dfn" href="#access-write" id="ref-for-access-write⑨">write</a> or <a data-link-type="dfn" href="#access-read_write" id="ref-for-access-read_write③⑧">read_write</a><br>
         <var>CF</var> depends on the storage texel format <var>F</var>.
         <a href="#storage-texel-formats" id="ref-for-storage-texel-formats⑨">See the texel format table</a> for the mapping of texel
         format to channel format.
@@ -31175,7 +31174,7 @@ let dfnPanelData = {
 "abstractint": {"dfnID":"abstractint","dfnText":"AbstractInt","external":false,"refSections":[{"refs":[{"id":"ref-for-abstractint"}],"title":"3.5.2. Numeric Literals"},{"refs":[{"id":"ref-for-abstractint\u2460"}],"title":"6. Types"},{"refs":[{"id":"ref-for-abstractint\u2461"},{"id":"ref-for-abstractint\u2462"},{"id":"ref-for-abstractint\u2463"},{"id":"ref-for-abstractint\u2464"},{"id":"ref-for-abstractint\u2465"},{"id":"ref-for-abstractint\u2466"},{"id":"ref-for-abstractint\u2467"}],"title":"6.1.2. Conversion Rank"},{"refs":[{"id":"ref-for-abstractint\u2468"},{"id":"ref-for-abstractint\u2460\u24ea"},{"id":"ref-for-abstractint\u2460\u2460"},{"id":"ref-for-abstractint\u2460\u2461"},{"id":"ref-for-abstractint\u2460\u2462"},{"id":"ref-for-abstractint\u2460\u2463"},{"id":"ref-for-abstractint\u2460\u2464"},{"id":"ref-for-abstractint\u2460\u2465"},{"id":"ref-for-abstractint\u2460\u2466"}],"title":"6.2.1. Abstract Numeric Types"},{"refs":[{"id":"ref-for-abstractint\u2460\u2467"}],"title":"6.2.3. Integer Types"},{"refs":[{"id":"ref-for-abstractint\u2460\u2468"},{"id":"ref-for-abstractint\u2461\u24ea"},{"id":"ref-for-abstractint\u2461\u2460"}],"title":"6.2.5. Scalar Types"},{"refs":[{"id":"ref-for-abstractint\u2461\u2461"},{"id":"ref-for-abstractint\u2461\u2462"},{"id":"ref-for-abstractint\u2461\u2463"},{"id":"ref-for-abstractint\u2461\u2464"},{"id":"ref-for-abstractint\u2461\u2465"},{"id":"ref-for-abstractint\u2461\u2466"},{"id":"ref-for-abstractint\u2461\u2467"},{"id":"ref-for-abstractint\u2461\u2468"},{"id":"ref-for-abstractint\u2462\u24ea"},{"id":"ref-for-abstractint\u2462\u2460"},{"id":"ref-for-abstractint\u2462\u2461"},{"id":"ref-for-abstractint\u2462\u2462"}],"title":"8.1.1. const Expressions"},{"refs":[{"id":"ref-for-abstractint\u2462\u2463"}],"title":"8.1.2. override Expressions"},{"refs":[{"id":"ref-for-abstractint\u2462\u2464"}],"title":"17.1.1. Zero Value Built-in Functions"},{"refs":[{"id":"ref-for-abstractint\u2462\u2465"}],"title":"17.1.2.5. i32"},{"refs":[{"id":"ref-for-abstractint\u2462\u2466"},{"id":"ref-for-abstractint\u2462\u2467"}],"title":"17.1.2.16. u32"}],"url":"#abstractint"},
 "access-mode": {"dfnID":"access-mode","dfnText":"access mode","external":false,"refSections":[{"refs":[{"id":"ref-for-access-mode"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-access-mode\u2460"}],"title":"6.1.2. Conversion Rank"},{"refs":[{"id":"ref-for-access-mode\u2461"}],"title":"6.3.1. Predeclared enumerants"},{"refs":[{"id":"ref-for-access-mode\u2462"}],"title":"6.4. Memory Views"},{"refs":[{"id":"ref-for-access-mode\u2463"},{"id":"ref-for-access-mode\u2464"},{"id":"ref-for-access-mode\u2465"},{"id":"ref-for-access-mode\u2466"}],"title":"6.4.3. Reference and Pointer Types"},{"refs":[{"id":"ref-for-access-mode\u2467"},{"id":"ref-for-access-mode\u2468"}],"title":"6.4.9. Forming Reference and Pointer Values"},{"refs":[{"id":"ref-for-access-mode\u2460\u24ea"}],"title":"6.5.1. Texel Formats"},{"refs":[{"id":"ref-for-access-mode\u2460\u2460"}],"title":"6.5.5. Storage Texture Types"},{"refs":[{"id":"ref-for-access-mode\u2460\u2461"},{"id":"ref-for-access-mode\u2460\u2462"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-access-mode\u2460\u2463"},{"id":"ref-for-access-mode\u2460\u2464"},{"id":"ref-for-access-mode\u2460\u2465"},{"id":"ref-for-access-mode\u2460\u2466"},{"id":"ref-for-access-mode\u2460\u2467"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-access-mode\u2460\u2468"}],"title":"8.11. Variable Identifier Expression"},{"refs":[{"id":"ref-for-access-mode\u2461\u24ea"}],"title":"9.2.1. Simple Assignment"},{"refs":[{"id":"ref-for-access-mode\u2461\u2460"}],"title":"9.2.2. Swizzle Assignment"},{"refs":[{"id":"ref-for-access-mode\u2461\u2461"},{"id":"ref-for-access-mode\u2461\u2462"}],"title":"9.2.4. Compound Assignment"},{"refs":[{"id":"ref-for-access-mode\u2461\u2463"}],"title":"9.3. Increment and Decrement Statements"},{"refs":[{"id":"ref-for-access-mode\u2461\u2464"}],"title":"11.4. Restrictions on Functions"},{"refs":[{"id":"ref-for-access-mode\u2461\u2465"}],"title":"14.3. Address Spaces"},{"refs":[{"id":"ref-for-access-mode\u2461\u2466"},{"id":"ref-for-access-mode\u2461\u2467"},{"id":"ref-for-access-mode\u2461\u2468"},{"id":"ref-for-access-mode\u2462\u24ea"},{"id":"ref-for-access-mode\u2462\u2460"}],"title":"15.2.8. Uniformity Rules for Expressions"},{"refs":[{"id":"ref-for-access-mode\u2462\u2461"}],"title":"17.4.1. arrayLength"},{"refs":[{"id":"ref-for-access-mode\u2462\u2462"},{"id":"ref-for-access-mode\u2462\u2463"},{"id":"ref-for-access-mode\u2462\u2464"}],"title":"17.7.1. textureDimensions"},{"refs":[{"id":"ref-for-access-mode\u2462\u2465"}],"title":"17.7.5. textureNumLayers"}],"url":"#access-mode"},
 "access-read": {"dfnID":"access-read","dfnText":"read","external":false,"refSections":[{"refs":[{"id":"ref-for-access-read"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-access-read\u2460"},{"id":"ref-for-access-read\u2461"}],"title":"6.1.2. Conversion Rank"},{"refs":[{"id":"ref-for-access-read\u2462"}],"title":"6.3.1. Predeclared enumerants"},{"refs":[{"id":"ref-for-access-read\u2463"},{"id":"ref-for-access-read\u2464"}],"title":"6.4.4. Swizzle View Types"},{"refs":[{"id":"ref-for-access-read\u2465"},{"id":"ref-for-access-read\u2466"}],"title":"6.4.8. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-access-read\u2467"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-access-read\u2468"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-access-read\u2460\u24ea"}],"title":"13.3.3. Resource Layout Compatibility"},{"refs":[{"id":"ref-for-access-read\u2460\u2460"},{"id":"ref-for-access-read\u2460\u2461"},{"id":"ref-for-access-read\u2460\u2462"},{"id":"ref-for-access-read\u2460\u2463"},{"id":"ref-for-access-read\u2460\u2464"},{"id":"ref-for-access-read\u2460\u2465"},{"id":"ref-for-access-read\u2460\u2466"}],"title":"14.3. Address Spaces"},{"refs":[{"id":"ref-for-access-read\u2460\u2467"}],"title":"17.4.1. arrayLength"},{"refs":[{"id":"ref-for-access-read\u2460\u2468"},{"id":"ref-for-access-read\u2461\u24ea"},{"id":"ref-for-access-read\u2461\u2460"},{"id":"ref-for-access-read\u2461\u2461"}],"title":"17.7.4. textureLoad"}],"url":"#access-read"},
-"access-read_write": {"dfnID":"access-read_write","dfnText":"read_write","external":false,"refSections":[{"refs":[{"id":"ref-for-access-read_write"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-access-read_write\u2460"}],"title":"5. Declaration and Scope"},{"refs":[{"id":"ref-for-access-read_write\u2461"},{"id":"ref-for-access-read_write\u2462"}],"title":"6.1.2. Conversion Rank"},{"refs":[{"id":"ref-for-access-read_write\u2463"}],"title":"6.2.8. Atomic Types"},{"refs":[{"id":"ref-for-access-read_write\u2464"}],"title":"6.3.1. Predeclared enumerants"},{"refs":[{"id":"ref-for-access-read_write\u2465"},{"id":"ref-for-access-read_write\u2466"},{"id":"ref-for-access-read_write\u2467"},{"id":"ref-for-access-read_write\u2468"},{"id":"ref-for-access-read_write\u2460\u24ea"}],"title":"6.4.4. Swizzle View Types"},{"refs":[{"id":"ref-for-access-read_write\u2460\u2460"},{"id":"ref-for-access-read_write\u2460\u2461"},{"id":"ref-for-access-read_write\u2460\u2462"},{"id":"ref-for-access-read_write\u2460\u2463"}],"title":"6.4.8. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-access-read_write\u2460\u2464"},{"id":"ref-for-access-read_write\u2460\u2465"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-access-read_write\u2460\u2466"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-access-read_write\u2460\u2467"}],"title":"9.2.1. Simple Assignment"},{"refs":[{"id":"ref-for-access-read_write\u2460\u2468"}],"title":"9.2.2. Swizzle Assignment"},{"refs":[{"id":"ref-for-access-read_write\u2461\u24ea"},{"id":"ref-for-access-read_write\u2461\u2460"}],"title":"9.2.4. Compound Assignment"},{"refs":[{"id":"ref-for-access-read_write\u2461\u2461"},{"id":"ref-for-access-read_write\u2461\u2462"},{"id":"ref-for-access-read_write\u2461\u2463"}],"title":"9.3. Increment and Decrement Statements"},{"refs":[{"id":"ref-for-access-read_write\u2461\u2464"}],"title":"13.3.3. Resource Layout Compatibility"},{"refs":[{"id":"ref-for-access-read_write\u2461\u2465"},{"id":"ref-for-access-read_write\u2461\u2466"},{"id":"ref-for-access-read_write\u2461\u2467"},{"id":"ref-for-access-read_write\u2461\u2468"},{"id":"ref-for-access-read_write\u2462\u24ea"}],"title":"14.3. Address Spaces"},{"refs":[{"id":"ref-for-access-read_write\u2462\u2460"}],"title":"17.4.1. arrayLength"},{"refs":[{"id":"ref-for-access-read_write\u2462\u2461"},{"id":"ref-for-access-read_write\u2462\u2462"},{"id":"ref-for-access-read_write\u2462\u2463"},{"id":"ref-for-access-read_write\u2462\u2464"}],"title":"17.7.4. textureLoad"},{"refs":[{"id":"ref-for-access-read_write\u2462\u2465"},{"id":"ref-for-access-read_write\u2462\u2466"},{"id":"ref-for-access-read_write\u2462\u2467"},{"id":"ref-for-access-read_write\u2462\u2468"}],"title":"17.7.15. textureStore"}],"url":"#access-read_write"},
+"access-read_write": {"dfnID":"access-read_write","dfnText":"read_write","external":false,"refSections":[{"refs":[{"id":"ref-for-access-read_write"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-access-read_write\u2460"}],"title":"5. Declaration and Scope"},{"refs":[{"id":"ref-for-access-read_write\u2461"},{"id":"ref-for-access-read_write\u2462"}],"title":"6.1.2. Conversion Rank"},{"refs":[{"id":"ref-for-access-read_write\u2463"}],"title":"6.2.8. Atomic Types"},{"refs":[{"id":"ref-for-access-read_write\u2464"}],"title":"6.3.1. Predeclared enumerants"},{"refs":[{"id":"ref-for-access-read_write\u2465"},{"id":"ref-for-access-read_write\u2466"},{"id":"ref-for-access-read_write\u2467"},{"id":"ref-for-access-read_write\u2468"}],"title":"6.4.4. Swizzle View Types"},{"refs":[{"id":"ref-for-access-read_write\u2460\u24ea"},{"id":"ref-for-access-read_write\u2460\u2460"},{"id":"ref-for-access-read_write\u2460\u2461"},{"id":"ref-for-access-read_write\u2460\u2462"}],"title":"6.4.8. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-access-read_write\u2460\u2463"},{"id":"ref-for-access-read_write\u2460\u2464"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-access-read_write\u2460\u2465"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-access-read_write\u2460\u2466"}],"title":"9.2.1. Simple Assignment"},{"refs":[{"id":"ref-for-access-read_write\u2460\u2467"}],"title":"9.2.2. Swizzle Assignment"},{"refs":[{"id":"ref-for-access-read_write\u2460\u2468"},{"id":"ref-for-access-read_write\u2461\u24ea"}],"title":"9.2.4. Compound Assignment"},{"refs":[{"id":"ref-for-access-read_write\u2461\u2460"},{"id":"ref-for-access-read_write\u2461\u2461"},{"id":"ref-for-access-read_write\u2461\u2462"}],"title":"9.3. Increment and Decrement Statements"},{"refs":[{"id":"ref-for-access-read_write\u2461\u2463"}],"title":"13.3.3. Resource Layout Compatibility"},{"refs":[{"id":"ref-for-access-read_write\u2461\u2464"},{"id":"ref-for-access-read_write\u2461\u2465"},{"id":"ref-for-access-read_write\u2461\u2466"},{"id":"ref-for-access-read_write\u2461\u2467"},{"id":"ref-for-access-read_write\u2461\u2468"}],"title":"14.3. Address Spaces"},{"refs":[{"id":"ref-for-access-read_write\u2462\u24ea"}],"title":"17.4.1. arrayLength"},{"refs":[{"id":"ref-for-access-read_write\u2462\u2460"},{"id":"ref-for-access-read_write\u2462\u2461"},{"id":"ref-for-access-read_write\u2462\u2462"},{"id":"ref-for-access-read_write\u2462\u2463"}],"title":"17.7.4. textureLoad"},{"refs":[{"id":"ref-for-access-read_write\u2462\u2464"},{"id":"ref-for-access-read_write\u2462\u2465"},{"id":"ref-for-access-read_write\u2462\u2466"},{"id":"ref-for-access-read_write\u2462\u2467"}],"title":"17.7.15. textureStore"}],"url":"#access-read_write"},
 "access-write": {"dfnID":"access-write","dfnText":"write","external":false,"refSections":[{"refs":[{"id":"ref-for-access-write"}],"title":"6.3.1. Predeclared enumerants"},{"refs":[{"id":"ref-for-access-write\u2460"}],"title":"6.4.8. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-access-write\u2461"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-access-write\u2462"}],"title":"9.2.1. Simple Assignment"},{"refs":[{"id":"ref-for-access-write\u2463"}],"title":"9.2.2. Swizzle Assignment"},{"refs":[{"id":"ref-for-access-write\u2464"}],"title":"14.3. Address Spaces"},{"refs":[{"id":"ref-for-access-write\u2465"},{"id":"ref-for-access-write\u2466"},{"id":"ref-for-access-write\u2467"},{"id":"ref-for-access-write\u2468"}],"title":"17.7.15. textureStore"}],"url":"#access-write"},
 "accessible-bytes": {"dfnID":"accessible-bytes","dfnText":"AccessibleBytes","external":false,"refSections":[{"refs":[{"id":"ref-for-accessible-bytes"},{"id":"ref-for-accessible-bytes\u2460"},{"id":"ref-for-accessible-bytes\u2461"},{"id":"ref-for-accessible-bytes\u2462"},{"id":"ref-for-accessible-bytes\u2463"},{"id":"ref-for-accessible-bytes\u2464"}],"title":"14.4. Memory Layout"}],"url":"#accessible-bytes"},
 "accessible-slots": {"dfnID":"accessible-slots","dfnText":"AccessibleSlots","external":false,"refSections":[{"refs":[{"id":"ref-for-accessible-slots"}],"title":"7.3. var Declarations"}],"url":"#accessible-slots"},
