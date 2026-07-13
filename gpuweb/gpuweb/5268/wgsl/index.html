@@ -862,13 +862,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
 </p>
    <h1 class="no-ref p-name" id="title">WebGPU Shading Language</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
-    <time class="dt-updated" datetime="2026-07-10">10 July 2026</time></p>
+    <time class="dt-updated" datetime="2026-07-13">13 July 2026</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/38d0aa8355084cd442849e6681d178851b8ef519/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/38d0aa8355084cd442849e6681d178851b8ef519/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/dneto0/gpuweb/blob/592687201416595bc1a3037695689e53a839647d/wgsl/index.bs">https://github.com/dneto0/gpuweb/blob/592687201416595bc1a3037695689e53a839647d/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -10191,7 +10191,7 @@ See <a href="#sync-builtin-functions">§ 17.11 Synchronization Built-in Functi
           <var>i</var> : i32 or u32
        
       <td class="nowrap">
-          <var>sv</var>.[<var>i</var>] : ref&lt;<var>AS</var>,<var>S</var>,read_write><br>
+          <var>sv</var>[<var>i</var>] : ref&lt;<var>AS</var>,<var>S</var>,read_write><br>
        
       <td>
        Let <var>sv</var> be the <a data-link-type="dfn" href="#swizzle-view" id="ref-for-swizzle-view②①">swizzle view</a> (<var>p</var>,
@@ -10202,7 +10202,7 @@ See <a href="#sync-builtin-functions">§ 17.11 Synchronization Built-in Functi
        <blockquote>
           (*p)[ <var>Idx</var><sub><var>i</var></sub> ]
           </blockquote>
-       <p class="note" role="note"><span class="marker">Note:</span> The is an invalid memory reference if <var>sv</var>
+       <p class="note" role="note"><span class="marker">Note:</span> The result is an invalid memory reference if <var>sv</var>
           is an <a data-link-type="dfn" href="#invalid-swizzle-view" id="ref-for-invalid-swizzle-view①">invalid swizzle view</a>.</p>
        <p>If <var>i</var> is outside [0,<var>K</var>):<br></p>
        <ul>
