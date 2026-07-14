@@ -862,13 +862,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
 </p>
    <h1 class="no-ref p-name" id="title">WebGPU Shading Language</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
-    <time class="dt-updated" datetime="2026-07-13">13 July 2026</time></p>
+    <time class="dt-updated" datetime="2026-07-14">14 July 2026</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/petermcneeleychromium/gpuweb/blob/d561e5b908515ce3ebc419ca9e16da9ce3a1ac4a/wgsl/index.bs">https://github.com/petermcneeleychromium/gpuweb/blob/d561e5b908515ce3ebc419ca9e16da9ce3a1ac4a/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/petermcneeleychromium/gpuweb/blob/a9040a29146809d4e9fe75c09843b4a849d3bd95/wgsl/index.bs">https://github.com/petermcneeleychromium/gpuweb/blob/a9040a29146809d4e9fe75c09843b4a849d3bd95/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -5506,10 +5506,10 @@ In this interpretation, the vectors of a matrix are treated as column vectors.</
       <td>Atomic of type <var>T</var>. Unless otherwise specified, <var>T</var> <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error④⓪">must</a> be either <a data-link-type="dfn" href="#u32" id="ref-for-u32⑥">u32</a> or <a data-link-type="dfn" href="#i32" id="ref-for-i32①①">i32</a>.
   
      <tr class="algorithm" data-algorithm="atomic type vecu">
-      <td>atomic&lt;<a data-link-type="dfn" href="#vec2u" id="ref-for-vec2u①">vec2u</a>>
+      <td>atomic&lt;<a data-link-type="dfn" href="#vector" id="ref-for-vector③">vec2</a>&lt;u32>>
     
       <td>
-       Atomic of type <a data-link-type="dfn" href="#vec2u" id="ref-for-vec2u②">vec2u</a>, equivalently <code>vec2</code>&lt;<code>u32</code>>.
+       Atomic of type <code>vec2</code>&lt;<code>u32</code>>.
     A value of this type denotes an unsigned <a data-link-type="dfn" href="#64-bit-integer" id="ref-for-64-bit-integer">64-bit integer</a> type, with the 32 least significant bits in vector
     component 0, and the 32 most significant bits in vector component 1.
 
@@ -5592,7 +5592,7 @@ See <a href="#buffer-binding-determines-runtime-sized-array-element-count">§ 
     <li data-md>
      <p>a <a data-link-type="dfn" href="#scalar" id="ref-for-scalar⑤">scalar</a> type</p>
     <li data-md>
-     <p>a <a data-link-type="dfn" href="#vector" id="ref-for-vector③">vector</a> type</p>
+     <p>a <a data-link-type="dfn" href="#vector" id="ref-for-vector④">vector</a> type</p>
     <li data-md>
      <p>a <a data-link-type="dfn" href="#matrix" id="ref-for-matrix②">matrix</a> type</p>
     <li data-md>
@@ -5709,7 +5709,7 @@ See <a href="#declaration-and-scope">§ 5 Declaration and Scope</a>.</p>
     <li data-md>
      <p>a <a data-link-type="dfn" href="#scalar" id="ref-for-scalar⑥">scalar</a> type</p>
     <li data-md>
-     <p>a <a data-link-type="dfn" href="#vector" id="ref-for-vector④">vector</a> type</p>
+     <p>a <a data-link-type="dfn" href="#vector" id="ref-for-vector⑤">vector</a> type</p>
     <li data-md>
      <p>a <a data-link-type="dfn" href="#matrix" id="ref-for-matrix③">matrix</a> type</p>
     <li data-md>
@@ -5822,7 +5822,7 @@ A composite value may be decomposed into its components. See <a href="#composite
    <p>The composite types are:</p>
    <ul>
     <li data-md>
-     <p><a data-link-type="dfn" href="#vector" id="ref-for-vector⑤">vector</a> type</p>
+     <p><a data-link-type="dfn" href="#vector" id="ref-for-vector⑥">vector</a> type</p>
     <li data-md>
      <p><a data-link-type="dfn" href="#matrix" id="ref-for-matrix④">matrix</a> type</p>
     <li data-md>
@@ -5851,7 +5851,7 @@ We call these <a data-link-type="dfn" href="#constructible" id="ref-for-construc
     <li data-md>
      <p>a <a data-link-type="dfn" href="#scalar" id="ref-for-scalar⑦">scalar</a> type</p>
     <li data-md>
-     <p>a <a data-link-type="dfn" href="#vector" id="ref-for-vector⑥">vector</a> type</p>
+     <p>a <a data-link-type="dfn" href="#vector" id="ref-for-vector⑦">vector</a> type</p>
     <li data-md>
      <p>a <a data-link-type="dfn" href="#matrix" id="ref-for-matrix⑤">matrix</a> type</p>
     <li data-md>
@@ -5880,7 +5880,7 @@ at <a data-link-type="dfn" href="#pipeline-creation" id="ref-for-pipeline-creati
     <li data-md>
      <p>a <a data-link-type="dfn" href="#scalar" id="ref-for-scalar⑧">scalar</a> type</p>
     <li data-md>
-     <p>a <a data-link-type="dfn" href="#vector" id="ref-for-vector⑦">vector</a> type</p>
+     <p>a <a data-link-type="dfn" href="#vector" id="ref-for-vector⑧">vector</a> type</p>
     <li data-md>
      <p>a <a data-link-type="dfn" href="#matrix" id="ref-for-matrix⑥">matrix</a> type</p>
     <li data-md>
@@ -6144,7 +6144,7 @@ or it may be <a data-link-type="dfn" href="#opaque" id="ref-for-opaque">opaque</
     <li data-md>
      <p>a <a data-link-type="dfn" href="#scalar" id="ref-for-scalar⑨">scalar</a> type</p>
     <li data-md>
-     <p>a <a data-link-type="dfn" href="#vector" id="ref-for-vector⑧">vector</a> type</p>
+     <p>a <a data-link-type="dfn" href="#vector" id="ref-for-vector⑨">vector</a> type</p>
     <li data-md>
      <p>a <a data-link-type="dfn" href="#matrix" id="ref-for-matrix⑦">matrix</a> type</p>
     <li data-md>
@@ -6620,7 +6620,7 @@ This often requires using an <a data-link-type="dfn" href="#address-of" id="ref-
      <p>Use a <a data-link-type="dfn" href="#named-component-expression" id="ref-for-named-component-expression③">named component expression</a> on a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view①①">memory view</a> to a composite:</p>
      <ul>
       <li data-md>
-       <p>Given a memory view with a <a data-link-type="dfn" href="#vector" id="ref-for-vector⑨">vector</a> store type, appending a single-letter vector access phrase
+       <p>Given a memory view with a <a data-link-type="dfn" href="#vector" id="ref-for-vector①⓪">vector</a> store type, appending a single-letter vector access phrase
 results in a reference to the named component of the vector.
 See <a href="#component-reference-from-vector-memory-view">§ 8.5.1.3 Component Reference from Vector Memory View</a>.</p>
       <li data-md>
@@ -6632,7 +6632,7 @@ See <a href="#struct-access-expr">§ 8.5.4 Structure Access Expression</a>.</p
      <p>Use an <a data-link-type="dfn" href="#indexing-expression" id="ref-for-indexing-expression④">indexing expression</a> on a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view①②">memory view</a> to a composite:</p>
      <ul>
       <li data-md>
-       <p>Given a memory view with a <a data-link-type="dfn" href="#vector" id="ref-for-vector①⓪">vector</a> store type, appending an array index access phrase
+       <p>Given a memory view with a <a data-link-type="dfn" href="#vector" id="ref-for-vector①①">vector</a> store type, appending an array index access phrase
 results in a reference to the indexed component of the vector.
 See <a href="#component-reference-from-vector-memory-view">§ 8.5.1.3 Component Reference from Vector Memory View</a>.</p>
       <li data-md>
@@ -9030,7 +9030,7 @@ time.</p>
      <p><code>vec3(x,x,x)</code> is an override-expression because the only identifiers
 <a data-link-type="dfn" href="#resolves" id="ref-for-resolves①①">resolve</a> to override-declarations.</p>
     <li data-md>
-     <p>The type of the expression is a <a data-link-type="dfn" href="#vector" id="ref-for-vector①①">vector</a> of 3 components
+     <p>The type of the expression is a <a data-link-type="dfn" href="#vector" id="ref-for-vector①②">vector</a> of 3 components
 of <a data-link-type="dfn" href="#i32" id="ref-for-i32②②">i32</a> (<code>vec3&lt;i32></code>).</p>
    </ul>
    <div class="errors example no-marker override-expression" id="example-c47acfbe">
@@ -9219,7 +9219,7 @@ is known as the <dfn class="dfn-paneled" data-dfn-for="decomposition" data-dfn-t
      <p>The expression for the <a data-link-type="dfn" href="#decomposition-base" id="ref-for-decomposition-base⑤">base</a> <em>B</em> is followed by a period <code>'.'</code> (U+002D), and then the name of the component.</p>
      <ul>
       <li data-md>
-       <p>This is supported when <em>B</em> is of <a data-link-type="dfn" href="#vector" id="ref-for-vector①②">vector</a> or <a data-link-type="dfn" href="#structure" id="ref-for-structure①④">structure</a> type, or a memory view to a vector or structure type.</p>
+       <p>This is supported when <em>B</em> is of <a data-link-type="dfn" href="#vector" id="ref-for-vector①③">vector</a> or <a data-link-type="dfn" href="#structure" id="ref-for-structure①④">structure</a> type, or a memory view to a vector or structure type.</p>
       <li data-md>
        <p>The valid names depend on <em>B</em>'s type.</p>
      </ul>
@@ -9228,7 +9228,7 @@ is known as the <dfn class="dfn-paneled" data-dfn-for="decomposition" data-dfn-t
      <p>The expression for the base is followed by <code>'['</code> (U+005B), then the expression for an index then <code>']'</code> (U+005D).</p>
      <ul>
       <li data-md>
-       <p>The base may be a <a data-link-type="dfn" href="#vector" id="ref-for-vector①③">vector</a>, <a data-link-type="dfn" href="#matrix" id="ref-for-matrix①⓪">matrix</a>, or <a data-link-type="dfn" href="#fixed-size-array" id="ref-for-fixed-size-array⑥">fixed-size array</a> type, or
+       <p>The base may be a <a data-link-type="dfn" href="#vector" id="ref-for-vector①④">vector</a>, <a data-link-type="dfn" href="#matrix" id="ref-for-matrix①⓪">matrix</a>, or <a data-link-type="dfn" href="#fixed-size-array" id="ref-for-fixed-size-array⑥">fixed-size array</a> type, or
 or a memory view to a vector, matrix, fixed-size array, or <a data-link-type="dfn" href="#runtime-sized" id="ref-for-runtime-sized⑤">runtime-sized</a> array type.</p>
       <li data-md>
        <p>The index expression <a data-link-type="dfn" href="#shader-creation-error" id="ref-for-shader-creation-error⑧②">must</a> be of <a data-link-type="dfn" href="#integer-scalar" id="ref-for-integer-scalar⑤">integer scalar</a> type.</p>
@@ -9241,7 +9241,7 @@ The index value <var>i</var> of an <a data-link-type="dfn" href="#indexing-expre
 
     <ul>
      <li data-md>
-      <p><var>N</var> is the number of components of the <a data-link-type="dfn" href="#vector" id="ref-for-vector①④">vector</a> type, when the base is a vector or a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view①⑥">memory view</a> to a vector.</p>
+      <p><var>N</var> is the number of components of the <a data-link-type="dfn" href="#vector" id="ref-for-vector①⑤">vector</a> type, when the base is a vector or a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view①⑥">memory view</a> to a vector.</p>
      <li data-md>
       <p><var>N</var> is the number of columns of the <a data-link-type="dfn" href="#matrix" id="ref-for-matrix①①">matrix</a> type, when the base is a matrix or a memory view to a matrix.</p>
      <li data-md>
@@ -9411,10 +9411,10 @@ That is, using convenience letters can only produce a scalar type or a valid vec
    </table>
    <h5 class="heading settled" data-level="8.5.1.2" id="vector-multi-component"><span class="secno">8.5.1.2. </span><span class="content">Vector Multiple Component Selection</span><a class="self-link" href="#vector-multi-component"></a></h5>
    <p>The expressions in this section are all multi-letter <a data-link-type="dfn" href="#swizzle" id="ref-for-swizzle⑥">swizzles</a>.
-Each forms a <a data-link-type="dfn" href="#vector" id="ref-for-vector①⑤">vector</a> from the components of another vector.</p>
+Each forms a <a data-link-type="dfn" href="#vector" id="ref-for-vector①⑥">vector</a> from the components of another vector.</p>
    <p>A multi-letter <a data-link-type="dfn" href="#swizzle" id="ref-for-swizzle⑦">swizzle</a> cannot appear on the left-hand side of an <a data-link-type="dfn" href="#statement-assignment" id="ref-for-statement-assignment②">assignment</a>:
 The left-hand side of an assignment must be of <a data-link-type="dfn" href="#reference-type" id="ref-for-reference-type⑧">reference type</a>,
-but a multi-letter swizzle expression always yields a value of <a data-link-type="dfn" href="#vector" id="ref-for-vector①⑥">vector</a> type.</p>
+but a multi-letter swizzle expression always yields a value of <a data-link-type="dfn" href="#vector" id="ref-for-vector①⑦">vector</a> type.</p>
    <table class="data">
     <caption>Vector decomposition: multiple component selection
   </caption>
@@ -9524,7 +9524,7 @@ but a multi-letter swizzle expression always yields a value of <a data-link-type
    </table>
    <p class="note" role="note"><span class="marker">Note:</span> In the table above, <a data-link-type="dfn" href="#reference-type" id="ref-for-reference-type⑨">reference types</a> are implicitly handled via the <a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule⑧">load rule</a>.</p>
    <h5 class="heading settled" data-level="8.5.1.3" id="component-reference-from-vector-memory-view"><span class="secno">8.5.1.3. </span><span class="content">Component Reference from Vector Memory View</span><a class="self-link" href="#component-reference-from-vector-memory-view"></a></h5>
-   <p>The expressions in this section form a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view①⑦">memory view</a> of a single component of a <a data-link-type="dfn" href="#vector" id="ref-for-vector①⑦">vector</a> from
+   <p>The expressions in this section form a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view①⑦">memory view</a> of a single component of a <a data-link-type="dfn" href="#vector" id="ref-for-vector①⑧">vector</a> from
 the memory view of the whole vector.</p>
    <p>The WGSL <a data-link-type="dfn" href="#type-rule" id="ref-for-type-rule⑤">type rules</a> imply that such expressions can appear:</p>
    <ul>
@@ -10774,7 +10774,7 @@ See <a href="#function-call-statement">§ 9.5 Function Call Statement</a>.</p>
 
 
        <p>The expressions <var>e1</var> through <var>eN</var> are the <a data-link-type="dfn" href="#template-parameters" id="ref-for-template-parameters⑤">template parameters</a> for the type-generator.</p>
-       <p>For example, the type expression <code>vec2&lt;f32></code> is the <a data-link-type="dfn" href="#vector" id="ref-for-vector①⑧">vector</a> of two <a data-link-type="dfn" href="#f32" id="ref-for-f32①⑥">f32</a> elements.</p>
+       <p>For example, the type expression <code>vec2&lt;f32></code> is the <a data-link-type="dfn" href="#vector" id="ref-for-vector①⑨">vector</a> of two <a data-link-type="dfn" href="#f32" id="ref-for-f32①⑥">f32</a> elements.</p>
        <p>See <a href="#predeclared-types">§ 6.9 Predeclared Types and Type-Generators Summary</a> for the list of predeclared type-generators.</p>
        <p class="note" role="note"><span class="marker">Note:</span> The two variants here differ only in whether they have a trailing comma after <var>eN</var>.</p>
      <tr class="algorithm" data-algorithm="predeclared type generator expression trailing comma">
@@ -16051,7 +16051,7 @@ following table:</p>
       <td>4
   
      <tr>
-      <td><a data-link-type="dfn" href="#vector" id="ref-for-vector①⑨">vec</a>2&lt;<var>T</var>>, <var>T</var> is <a data-link-type="dfn" href="#bool" id="ref-for-bool①⓪">bool</a>, <a data-link-type="dfn" href="#i32" id="ref-for-i32③③">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32②①">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32①⑧">f32</a>
+      <td><a data-link-type="dfn" href="#vector" id="ref-for-vector②⓪">vec</a>2&lt;<var>T</var>>, <var>T</var> is <a data-link-type="dfn" href="#bool" id="ref-for-bool①⓪">bool</a>, <a data-link-type="dfn" href="#i32" id="ref-for-i32③③">i32</a>, <a data-link-type="dfn" href="#u32" id="ref-for-u32②①">u32</a>, or <a data-link-type="dfn" href="#f32" id="ref-for-f32①⑧">f32</a>
       
       <td>8
       
@@ -16479,7 +16479,7 @@ When <var>V</var> is placed at byte offset <var>k</var> of host-shared buffer, t
 are stored in little-endian format.</p>
    <p>When a value <var>V</var> of <a data-link-type="dfn" href="#atomic-type" id="ref-for-atomic-type①②">atomic type</a> <code>atomic</code>&lt;<var>T</var>> is placed in a host-shared buffer,
 it has the same internal layout as a value of the underlying type <var>T</var>.</p>
-   <p>When a value <var>V</var> of <a data-link-type="dfn" href="#vector" id="ref-for-vector②⓪">vector type</a> vec<var>N</var>&lt;<var>T</var>> is placed at
+   <p>When a value <var>V</var> of <a data-link-type="dfn" href="#vector" id="ref-for-vector②①">vector type</a> vec<var>N</var>&lt;<var>T</var>> is placed at
 byte offset <var>k</var> of a host-shared buffer, then:</p>
    <ul>
     <li data-md>
@@ -16556,7 +16556,7 @@ used in address space <var>C</var>.</p>
       <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①⑦">AlignOf</a>(<var>S</var>)
   
      <tr>
-      <td><a data-link-type="dfn" href="#vector" id="ref-for-vector②①">vec</a>N&lt;T>
+      <td><a data-link-type="dfn" href="#vector" id="ref-for-vector②②">vec</a>N&lt;T>
       
       <td><a data-link-type="dfn" href="#alignof" id="ref-for-alignof①⑧">AlignOf</a>(<var>S</var>)
       
@@ -21525,7 +21525,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Description
       
-      <td>Construction of a two-component <a data-link-type="dfn" href="#vector" id="ref-for-vector②②">vector</a> with <code>e</code> as both components.
+      <td>Construction of a two-component <a data-link-type="dfn" href="#vector" id="ref-for-vector②③">vector</a> with <code>e</code> as both components.
 
    </table>
    <table class="builtin data">
@@ -21547,7 +21547,7 @@ specify the component type; the component type is inferred from the constructor 
       <td>Description
       
       <td>
-       <a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise③⓪">Component-wise</a> construction of a two-component <a data-link-type="dfn" href="#vector" id="ref-for-vector②③">vector</a> with <code>e.x</code> and <code>e.y</code> as components.
+       <a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise③⓪">Component-wise</a> construction of a two-component <a data-link-type="dfn" href="#vector" id="ref-for-vector②④">vector</a> with <code>e.x</code> and <code>e.y</code> as components.
 
 
        <p>If <code>T</code> does not match <code>S</code> a conversion is used and the components are <code>T(e.x)</code> and <code>T(e.y)</code>.</p>
@@ -21569,7 +21569,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Description
       
-      <td><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise③①">Component-wise</a> construction of a two-component <a data-link-type="dfn" href="#vector" id="ref-for-vector②④">vector</a> with <code>e1</code> and <code>e2</code> as components.
+      <td><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise③①">Component-wise</a> construction of a two-component <a data-link-type="dfn" href="#vector" id="ref-for-vector②⑤">vector</a> with <code>e1</code> and <code>e2</code> as components.
 
    </table>
    <table class="builtin data">
@@ -21610,7 +21610,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Description
       
-      <td>Construction of a three-component <a data-link-type="dfn" href="#vector" id="ref-for-vector②⑤">vector</a> with <code>e</code> as all components.
+      <td>Construction of a three-component <a data-link-type="dfn" href="#vector" id="ref-for-vector②⑥">vector</a> with <code>e</code> as all components.
 
    </table>
    <table class="builtin data">
@@ -21632,7 +21632,7 @@ specify the component type; the component type is inferred from the constructor 
       <td>Description
       
       <td>
-       <a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise③②">Component-wise</a> construction of a three-component <a data-link-type="dfn" href="#vector" id="ref-for-vector②⑥">vector</a> with <code>e.x</code>, <code>e.y</code>, and <code>e.z</code> as components.
+       <a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise③②">Component-wise</a> construction of a three-component <a data-link-type="dfn" href="#vector" id="ref-for-vector②⑦">vector</a> with <code>e.x</code>, <code>e.y</code>, and <code>e.z</code> as components.
 
 
        <p>If <code>T</code> does not match <code>S</code> a conversion is used and the components are <code>T(e.x)</code>, <code>T(e.y)</code>, and  <code>T(e.z)</code>.</p>
@@ -21654,7 +21654,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Description
       
-      <td><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise③③">Component-wise</a> construction of a three-component <a data-link-type="dfn" href="#vector" id="ref-for-vector②⑦">vector</a> with <code>e1</code>, <code>e2</code>, and <code>e3</code> as components.
+      <td><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise③③">Component-wise</a> construction of a three-component <a data-link-type="dfn" href="#vector" id="ref-for-vector②⑧">vector</a> with <code>e1</code>, <code>e2</code>, and <code>e3</code> as components.
 
    </table>
    <table class="builtin data">
@@ -21674,7 +21674,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Description
       
-      <td><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise③④">Component-wise</a> construction of a three-component <a data-link-type="dfn" href="#vector" id="ref-for-vector②⑧">vector</a> with <code>v1.x</code>, <code>v1.y</code>, and <code>e1</code> as components.
+      <td><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise③④">Component-wise</a> construction of a three-component <a data-link-type="dfn" href="#vector" id="ref-for-vector②⑨">vector</a> with <code>v1.x</code>, <code>v1.y</code>, and <code>e1</code> as components.
 
    </table>
    <table class="builtin data">
@@ -21694,7 +21694,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Description
       
-      <td><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise③⑤">Component-wise</a> construction of a three-component <a data-link-type="dfn" href="#vector" id="ref-for-vector②⑨">vector</a> with <code>e1</code>, <code>v1.x</code>, and <code>v1.y</code> as components.
+      <td><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise③⑤">Component-wise</a> construction of a three-component <a data-link-type="dfn" href="#vector" id="ref-for-vector③⓪">vector</a> with <code>e1</code>, <code>v1.x</code>, and <code>v1.y</code> as components.
 
    </table>
    <table class="builtin data">
@@ -21735,7 +21735,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Description
       
-      <td>Construction of a four-component <a data-link-type="dfn" href="#vector" id="ref-for-vector③⓪">vector</a> with <code>e</code> as all components.
+      <td>Construction of a four-component <a data-link-type="dfn" href="#vector" id="ref-for-vector③①">vector</a> with <code>e</code> as all components.
 
    </table>
    <table class="builtin data">
@@ -21757,7 +21757,7 @@ specify the component type; the component type is inferred from the constructor 
       <td>Description
       
       <td>
-       <a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise③⑥">Component-wise</a> construction of a four-component <a data-link-type="dfn" href="#vector" id="ref-for-vector③①">vector</a> with <code>e.x</code>, <code>e.y</code>, <code>e.z</code>, and <code>e.w</code> as components.
+       <a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise③⑥">Component-wise</a> construction of a four-component <a data-link-type="dfn" href="#vector" id="ref-for-vector③②">vector</a> with <code>e.x</code>, <code>e.y</code>, <code>e.z</code>, and <code>e.w</code> as components.
 
 
        <p>If <code>T</code> does not match <code>S</code> a conversion is used and the components are <code>T(e.x)</code>, <code>T(e.y)</code>, <code>T(e.z)</code> and  <code>T(e.w)</code>.</p>
@@ -21779,7 +21779,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Description
       
-      <td><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise③⑦">Component-wise</a> construction of a four-component <a data-link-type="dfn" href="#vector" id="ref-for-vector③②">vector</a> with <code>e1</code>, <code>e2</code>, <code>e3</code>, and <code>e4</code> as components.
+      <td><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise③⑦">Component-wise</a> construction of a four-component <a data-link-type="dfn" href="#vector" id="ref-for-vector③③">vector</a> with <code>e1</code>, <code>e2</code>, <code>e3</code>, and <code>e4</code> as components.
 
    </table>
    <table class="builtin data">
@@ -21799,7 +21799,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Description
       
-      <td><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise③⑧">Component-wise</a> construction of a four-component <a data-link-type="dfn" href="#vector" id="ref-for-vector③③">vector</a> with <code>e1</code>, <code>v1.x</code>, <code>v1.y</code>, and <code>e2</code> as components.
+      <td><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise③⑧">Component-wise</a> construction of a four-component <a data-link-type="dfn" href="#vector" id="ref-for-vector③④">vector</a> with <code>e1</code>, <code>v1.x</code>, <code>v1.y</code>, and <code>e2</code> as components.
 
    </table>
    <table class="builtin data">
@@ -21819,7 +21819,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Description
       
-      <td><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise③⑨">Component-wise</a> construction of a four-component <a data-link-type="dfn" href="#vector" id="ref-for-vector③④">vector</a> with <code>e1</code>, <code>e2</code>, <code>v1.x</code>, and <code>v1.y</code> as components.
+      <td><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise③⑨">Component-wise</a> construction of a four-component <a data-link-type="dfn" href="#vector" id="ref-for-vector③⑤">vector</a> with <code>e1</code>, <code>e2</code>, <code>v1.x</code>, and <code>v1.y</code> as components.
 
    </table>
    <table class="builtin data">
@@ -21839,7 +21839,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Description
       
-      <td><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise④⓪">Component-wise</a> construction of a four-component <a data-link-type="dfn" href="#vector" id="ref-for-vector③⑤">vector</a> with <code>v1.x</code>, <code>v1.y</code>, <code>v2.x</code>, and <code>v2.y</code> as components.
+      <td><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise④⓪">Component-wise</a> construction of a four-component <a data-link-type="dfn" href="#vector" id="ref-for-vector③⑥">vector</a> with <code>v1.x</code>, <code>v1.y</code>, <code>v2.x</code>, and <code>v2.y</code> as components.
 
    </table>
    <table class="builtin data">
@@ -21859,7 +21859,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Description
       
-      <td><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise④①">Component-wise</a> construction of a four-component <a data-link-type="dfn" href="#vector" id="ref-for-vector③⑥">vector</a> with <code>v1.x</code>, <code>v1.y</code>, <code>e1</code>, and <code>e2</code> as components.
+      <td><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise④①">Component-wise</a> construction of a four-component <a data-link-type="dfn" href="#vector" id="ref-for-vector③⑦">vector</a> with <code>v1.x</code>, <code>v1.y</code>, <code>e1</code>, and <code>e2</code> as components.
 
    </table>
    <table class="builtin data">
@@ -21879,7 +21879,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Description
       
-      <td><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise④②">Component-wise</a> construction of a four-component <a data-link-type="dfn" href="#vector" id="ref-for-vector③⑦">vector</a> with <code>v1.x</code>, <code>v1.y</code>, <code>v1.z</code>, and <code>e1</code> as components.
+      <td><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise④②">Component-wise</a> construction of a four-component <a data-link-type="dfn" href="#vector" id="ref-for-vector③⑧">vector</a> with <code>v1.x</code>, <code>v1.y</code>, <code>v1.z</code>, and <code>e1</code> as components.
 
    </table>
    <table class="builtin data">
@@ -21899,7 +21899,7 @@ specify the component type; the component type is inferred from the constructor 
      <tr>
       <td>Description
       
-      <td><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise④③">Component-wise</a> construction of a four-component <a data-link-type="dfn" href="#vector" id="ref-for-vector③⑧">vector</a> with <code>e1</code>, <code>v1.x</code>, <code>v1.y</code>, and <code>v1.z</code> as components.
+      <td><a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise④③">Component-wise</a> construction of a four-component <a data-link-type="dfn" href="#vector" id="ref-for-vector③⑨">vector</a> with <code>e1</code>, <code>v1.x</code>, <code>v1.y</code>, and <code>v1.z</code> as components.
 
    </table>
    <table class="builtin data">
@@ -21942,7 +21942,7 @@ a value in one type as a value in another type.</p>
       <td>Description
       
       <td>Identity transform.<br>
-      <a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise④④">Component-wise</a> when <code>T</code> is a <a data-link-type="dfn" href="#vector" id="ref-for-vector③⑨">vector</a>.<br>
+      <a data-link-type="dfn" href="#component-wise" id="ref-for-component-wise④④">Component-wise</a> when <code>T</code> is a <a data-link-type="dfn" href="#vector" id="ref-for-vector④⓪">vector</a>.<br>
       The result is <code>e</code>.
 
    </table>
@@ -22156,7 +22156,7 @@ a value in one type as a value in another type.</p>
      <tr>
       <td style="width:10%">Parameterization
     
-      <td><code>T</code> is <a data-link-type="dfn" href="#scalar" id="ref-for-scalar④④">scalar</a> or <a data-link-type="dfn" href="#vector" id="ref-for-vector④⓪">vector</a>
+      <td><code>T</code> is <a data-link-type="dfn" href="#scalar" id="ref-for-scalar④④">scalar</a> or <a data-link-type="dfn" href="#vector" id="ref-for-vector④①">vector</a>
   
      <tr>
       <td>Description
@@ -26789,7 +26789,7 @@ is, the <code>exchanged</code> member of the result structure may be <code>false
 <code>old_value</code> member equals <code>cmp</code>.</p>
    <h4 class="heading settled" data-level="17.8.6" id="atomic-store-min-max"><span class="secno">17.8.6. </span><span class="content">Atomic Store Min and Max Functions</span><a class="self-link" href="#atomic-store-min-max"></a></h4>
    <p>The functions in this section <a data-link-type="dfn" href="#behavioral-requirements" id="ref-for-behavioral-requirements④⑦">will</a> be available only if
-the <a data-link-type="dfn" href="#extension-atomic_vec2u_min_max" id="ref-for-extension-atomic_vec2u_min_max①">atomic_vec2u_min_max</a> <a data-link-type="dfn" href="#enable-extension" id="ref-for-enable-extension⑤">enable-extension</a> is enabled.</p>
+the <a data-link-type="dfn" href="#extension-atomic_vec2u_min_max" id="ref-for-extension-atomic_vec2u_min_max①">atomic_vec2u_min_max</a> <a data-link-type="dfn" href="#enable-extension" id="ref-for-enable-extension⑤">extension</a> is enabled.</p>
    <p>Each function performs the following steps atomically:</p>
    <ol>
     <li data-md>
@@ -26807,11 +26807,11 @@ name with the value <var>v</var>.</p>
 </pre>
    <p>Atomically performs a 64-bit unsigned integer minimum operation on the atomic object pointed to by <code>atomic_ptr</code>
 with the value <code>v</code>.</p>
-   <p>Performs the following steps as a single indivisible operation:</p>
+   <p>Performs the following steps atomically:</p>
    <div class="algorithm" data-algorithm="atomic-store-min-vec2u">
     <ol>
      <li data-md>
-      <p>Load the original <a data-link-type="dfn" href="#vec2u" id="ref-for-vec2u③">vec2u</a> value <var>old</var> in the memory referenced by <var>atomic_ptr</var>.</p>
+      <p>Load the original <a data-link-type="dfn" href="#vec2u" id="ref-for-vec2u①">vec2u</a> value <var>old</var> in the memory referenced by <var>atomic_ptr</var>.</p>
      <li data-md>
       <p>Compute the 64-bit unsigned integer values:</p>
       <ul>
@@ -26839,7 +26839,7 @@ with the value <code>v</code>.</p>
    <div class="algorithm" data-algorithm="atomic-store-max-vec2u">
     <ol>
      <li data-md>
-      <p>Load the original <a data-link-type="dfn" href="#vec2u" id="ref-for-vec2u④">vec2u</a> value <var>old</var> in the memory referenced by <var>atomic_ptr</var>.</p>
+      <p>Load the original <a data-link-type="dfn" href="#vec2u" id="ref-for-vec2u②">vec2u</a> value <var>old</var> in the memory referenced by <var>atomic_ptr</var>.</p>
      <li data-md>
       <p>Compute the 64-bit unsigned integer values:</p>
       <ul>
@@ -31122,7 +31122,7 @@ let dfnPanelData = {
 "vec2f": {"dfnID":"vec2f","dfnText":"vec2f","external":false,"refSections":[],"url":"#vec2f"},
 "vec2h": {"dfnID":"vec2h","dfnText":"vec2h","external":false,"refSections":[],"url":"#vec2h"},
 "vec2i": {"dfnID":"vec2i","dfnText":"vec2i","external":false,"refSections":[],"url":"#vec2i"},
-"vec2u": {"dfnID":"vec2u","dfnText":"vec2u","external":false,"refSections":[{"refs":[{"id":"ref-for-vec2u"}],"title":"4.1.1. Enable Extensions"},{"refs":[{"id":"ref-for-vec2u\u2460"},{"id":"ref-for-vec2u\u2461"}],"title":"6.2.8. Atomic Types"},{"refs":[{"id":"ref-for-vec2u\u2462"}],"title":"17.8.6.1. atomicStoreMin"},{"refs":[{"id":"ref-for-vec2u\u2463"}],"title":"17.8.6.2. atomicStoreMax"}],"url":"#vec2u"},
+"vec2u": {"dfnID":"vec2u","dfnText":"vec2u","external":false,"refSections":[{"refs":[{"id":"ref-for-vec2u"}],"title":"4.1.1. Enable Extensions"},{"refs":[{"id":"ref-for-vec2u\u2460"}],"title":"17.8.6.1. atomicStoreMin"},{"refs":[{"id":"ref-for-vec2u\u2461"}],"title":"17.8.6.2. atomicStoreMax"}],"url":"#vec2u"},
 "vec3f": {"dfnID":"vec3f","dfnText":"vec3f","external":false,"refSections":[],"url":"#vec3f"},
 "vec3h": {"dfnID":"vec3h","dfnText":"vec3h","external":false,"refSections":[],"url":"#vec3h"},
 "vec3i": {"dfnID":"vec3i","dfnText":"vec3i","external":false,"refSections":[],"url":"#vec3i"},
@@ -31131,7 +31131,7 @@ let dfnPanelData = {
 "vec4h": {"dfnID":"vec4h","dfnText":"vec4h","external":false,"refSections":[],"url":"#vec4h"},
 "vec4i": {"dfnID":"vec4i","dfnText":"vec4i","external":false,"refSections":[],"url":"#vec4i"},
 "vec4u": {"dfnID":"vec4u","dfnText":"vec4u","external":false,"refSections":[],"url":"#vec4u"},
-"vector": {"dfnID":"vector","dfnText":"vector","external":false,"refSections":[{"refs":[{"id":"ref-for-vector"}],"title":"1.1. Overview"},{"refs":[{"id":"ref-for-vector\u2460"}],"title":"3.9. Template Lists"},{"refs":[{"id":"ref-for-vector\u2461"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-vector\u2462"}],"title":"6.2.9. Array Types"},{"refs":[{"id":"ref-for-vector\u2463"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-vector\u2464"}],"title":"6.2.11. Composite Types"},{"refs":[{"id":"ref-for-vector\u2465"}],"title":"6.2.12. Constructible Types"},{"refs":[{"id":"ref-for-vector\u2466"}],"title":"6.2.13. Fixed-Footprint Types"},{"refs":[{"id":"ref-for-vector\u2467"}],"title":"6.4.1. Storable Types"},{"refs":[{"id":"ref-for-vector\u2468"},{"id":"ref-for-vector\u2460\u24ea"}],"title":"6.4.8. Forming Reference and Pointer Values"},{"refs":[{"id":"ref-for-vector\u2460\u2460"}],"title":"8.1.2. override Expressions"},{"refs":[{"id":"ref-for-vector\u2460\u2461"},{"id":"ref-for-vector\u2460\u2462"},{"id":"ref-for-vector\u2460\u2463"}],"title":"8.5. Composite Value Decomposition Expressions"},{"refs":[{"id":"ref-for-vector\u2460\u2464"},{"id":"ref-for-vector\u2460\u2465"}],"title":"8.5.1.2. Vector Multiple Component Selection"},{"refs":[{"id":"ref-for-vector\u2460\u2466"}],"title":"8.5.1.3. Component Reference from Vector Memory View"},{"refs":[{"id":"ref-for-vector\u2460\u2467"}],"title":"8.17. Type Expressions"},{"refs":[{"id":"ref-for-vector\u2460\u2468"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-vector\u2461\u24ea"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-vector\u2461\u2460"}],"title":"14.4.5. Address Space Layout Constraints"},{"refs":[{"id":"ref-for-vector\u2461\u2461"},{"id":"ref-for-vector\u2461\u2462"},{"id":"ref-for-vector\u2461\u2463"}],"title":"17.1.2.17. vec2"},{"refs":[{"id":"ref-for-vector\u2461\u2464"},{"id":"ref-for-vector\u2461\u2465"},{"id":"ref-for-vector\u2461\u2466"},{"id":"ref-for-vector\u2461\u2467"},{"id":"ref-for-vector\u2461\u2468"}],"title":"17.1.2.18. vec3"},{"refs":[{"id":"ref-for-vector\u2462\u24ea"},{"id":"ref-for-vector\u2462\u2460"},{"id":"ref-for-vector\u2462\u2461"},{"id":"ref-for-vector\u2462\u2462"},{"id":"ref-for-vector\u2462\u2463"},{"id":"ref-for-vector\u2462\u2464"},{"id":"ref-for-vector\u2462\u2465"},{"id":"ref-for-vector\u2462\u2466"},{"id":"ref-for-vector\u2462\u2467"}],"title":"17.1.2.19. vec4"},{"refs":[{"id":"ref-for-vector\u2462\u2468"}],"title":"17.2.1. bitcast"},{"refs":[{"id":"ref-for-vector\u2463\u24ea"}],"title":"17.3.3. select"}],"url":"#vector"},
+"vector": {"dfnID":"vector","dfnText":"vector","external":false,"refSections":[{"refs":[{"id":"ref-for-vector"}],"title":"1.1. Overview"},{"refs":[{"id":"ref-for-vector\u2460"}],"title":"3.9. Template Lists"},{"refs":[{"id":"ref-for-vector\u2461"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-vector\u2462"}],"title":"6.2.8. Atomic Types"},{"refs":[{"id":"ref-for-vector\u2463"}],"title":"6.2.9. Array Types"},{"refs":[{"id":"ref-for-vector\u2464"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-vector\u2465"}],"title":"6.2.11. Composite Types"},{"refs":[{"id":"ref-for-vector\u2466"}],"title":"6.2.12. Constructible Types"},{"refs":[{"id":"ref-for-vector\u2467"}],"title":"6.2.13. Fixed-Footprint Types"},{"refs":[{"id":"ref-for-vector\u2468"}],"title":"6.4.1. Storable Types"},{"refs":[{"id":"ref-for-vector\u2460\u24ea"},{"id":"ref-for-vector\u2460\u2460"}],"title":"6.4.8. Forming Reference and Pointer Values"},{"refs":[{"id":"ref-for-vector\u2460\u2461"}],"title":"8.1.2. override Expressions"},{"refs":[{"id":"ref-for-vector\u2460\u2462"},{"id":"ref-for-vector\u2460\u2463"},{"id":"ref-for-vector\u2460\u2464"}],"title":"8.5. Composite Value Decomposition Expressions"},{"refs":[{"id":"ref-for-vector\u2460\u2465"},{"id":"ref-for-vector\u2460\u2466"}],"title":"8.5.1.2. Vector Multiple Component Selection"},{"refs":[{"id":"ref-for-vector\u2460\u2467"}],"title":"8.5.1.3. Component Reference from Vector Memory View"},{"refs":[{"id":"ref-for-vector\u2460\u2468"}],"title":"8.17. Type Expressions"},{"refs":[{"id":"ref-for-vector\u2461\u24ea"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-vector\u2461\u2460"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-vector\u2461\u2461"}],"title":"14.4.5. Address Space Layout Constraints"},{"refs":[{"id":"ref-for-vector\u2461\u2462"},{"id":"ref-for-vector\u2461\u2463"},{"id":"ref-for-vector\u2461\u2464"}],"title":"17.1.2.17. vec2"},{"refs":[{"id":"ref-for-vector\u2461\u2465"},{"id":"ref-for-vector\u2461\u2466"},{"id":"ref-for-vector\u2461\u2467"},{"id":"ref-for-vector\u2461\u2468"},{"id":"ref-for-vector\u2462\u24ea"}],"title":"17.1.2.18. vec3"},{"refs":[{"id":"ref-for-vector\u2462\u2460"},{"id":"ref-for-vector\u2462\u2461"},{"id":"ref-for-vector\u2462\u2462"},{"id":"ref-for-vector\u2462\u2463"},{"id":"ref-for-vector\u2462\u2464"},{"id":"ref-for-vector\u2462\u2465"},{"id":"ref-for-vector\u2462\u2466"},{"id":"ref-for-vector\u2462\u2467"},{"id":"ref-for-vector\u2462\u2468"}],"title":"17.1.2.19. vec4"},{"refs":[{"id":"ref-for-vector\u2463\u24ea"}],"title":"17.2.1. bitcast"},{"refs":[{"id":"ref-for-vector\u2463\u2460"}],"title":"17.3.3. select"}],"url":"#vector"},
 "vertex": {"dfnID":"vertex","dfnText":"vertex","external":false,"refSections":[{"refs":[{"id":"ref-for-vertex"}],"title":"11.4. Restrictions on Functions"},{"refs":[{"id":"ref-for-vertex\u2460"}],"title":"12.9. interpolate"},{"refs":[{"id":"ref-for-vertex\u2461"}],"title":"13.3.1.4. Interpolation"},{"refs":[{"id":"ref-for-vertex\u2462"}],"title":"17.8. Atomic Built-in Functions"}],"url":"#vertex"},
 "vertex-shader-stage": {"dfnID":"vertex-shader-stage","dfnText":"vertex shader stage","external":false,"refSections":[{"refs":[{"id":"ref-for-vertex-shader-stage"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-vertex-shader-stage\u2460"}],"title":"12.16.1. vertex"},{"refs":[{"id":"ref-for-vertex-shader-stage\u2461"}],"title":"13.3.1.1.1. clip_distances"},{"refs":[{"id":"ref-for-vertex-shader-stage\u2462"}],"title":"13.3.1.1.6. instance_index"},{"refs":[{"id":"ref-for-vertex-shader-stage\u2463"}],"title":"13.3.1.1.10. position"},{"refs":[{"id":"ref-for-vertex-shader-stage\u2464"}],"title":"13.3.1.1.14. vertex_index"},{"refs":[{"id":"ref-for-vertex-shader-stage\u2465"},{"id":"ref-for-vertex-shader-stage\u2466"}],"title":"14.3. Address Spaces"}],"url":"#vertex-shader-stage"},
 "well-typed": {"dfnID":"well-typed","dfnText":"well-typed","external":false,"refSections":[],"url":"#well-typed"},
