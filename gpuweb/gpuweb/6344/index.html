@@ -1163,7 +1163,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/d406f19cdb78b3e22527a254776dceb0bc1158e1/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/d406f19cdb78b3e22527a254776dceb0bc1158e1/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/780004c10ff946b0e5021779395f08901c9936b6/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/780004c10ff946b0e5021779395f08901c9936b6/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -3010,15 +3010,15 @@ No <a data-link-type="dfn" href="#limit-better" id="ref-for-limit-better②">bet
       <p>Let <var>features</var> be the <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set" id="ref-for-ordered-set②">set</a> of values in
 <var>descriptor</var>.<code class="idl"><a data-link-type="idl" href="#dom-gpudevicedescriptor-requiredfeatures" id="ref-for-dom-gpudevicedescriptor-requiredfeatures">requiredFeatures</a></code>.</p>
      <li data-md>
+      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-extend" id="ref-for-set-extend">Extend</a> <var>features</var> with any default <code class="idl"><a data-link-type="idl" href="#gpufeaturename" id="ref-for-gpufeaturename②">GPUFeatureName</a></code>s
+as defined by the <var>adapter</var>.<code class="idl"><a data-link-type="idl" href="#dom-adapter-default-feature-level-slot" id="ref-for-dom-adapter-default-feature-level-slot">[[default feature level]]</a></code>.</p>
+     <li data-md>
       <p>For each <var>feature</var> in <var>features</var>:</p>
       <ol>
        <li data-md>
-        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-extend" id="ref-for-set-extend">Extend</a> <var>features</var> with the set of features required (directly or indirectly)
+        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-extend" id="ref-for-set-extend①">Extend</a> <var>features</var> with the set of features required (directly or indirectly)
 by <var>feature</var>, as defined in <a href="#feature-dependencies">§ 3.6.1.2 Feature Dependencies</a>.</p>
       </ol>
-     <li data-md>
-      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-extend" id="ref-for-set-extend①">Extend</a> <var>features</var> with any default <code class="idl"><a data-link-type="idl" href="#gpufeaturename" id="ref-for-gpufeaturename②">GPUFeatureName</a></code>s
-as defined by the <var>adapter</var>.<code class="idl"><a data-link-type="idl" href="#dom-adapter-default-feature-level-slot" id="ref-for-dom-adapter-default-feature-level-slot">[[default feature level]]</a></code>.</p>
      <li data-md>
       <p>Let <var>limits</var> be a new <a data-link-type="dfn" href="#supported-limits" id="ref-for-supported-limits③">supported limits</a> object with the default limits
 as defined by the <var>adapter</var>.<code class="idl"><a data-link-type="idl" href="#dom-adapter-default-feature-level-slot" id="ref-for-dom-adapter-default-feature-level-slot①">[[default feature level]]</a></code>.</p>
