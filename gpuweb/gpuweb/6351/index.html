@@ -1157,13 +1157,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
 </p>
    <h1 class="no-ref p-name" id="title">WebGPU</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
-    <time class="dt-updated" datetime="2026-08-10">10 August 2026</time></p>
+    <time class="dt-updated" datetime="2026-08-12">12 August 2026</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/a866b2388242c052fb66ada088c6a0e8bab1dab1/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/a866b2388242c052fb66ada088c6a0e8bab1dab1/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/d0493d97779af0c1e5237c6f80d7bcd957a5a85d/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/d0493d97779af0c1e5237c6f80d7bcd957a5a85d/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -23491,15 +23491,18 @@ Normative behavior is found in the relevant spec sections.</p>
 <a href="#adapter-capability-guarantees">§ 4.2.1 Adapter Capability Guarantees</a> and <a data-link-type="dfn" href="#a-new-device" id="ref-for-a-new-device⑧">a new device</a>.</p>
    <h3 class="dfn-paneled heading idl-code settled" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.1" data-lt="&quot;core-features-and-limits&quot;" id="core-features-and-limits"><span class="secno">25.1. </span><span class="content"><code>"core-features-and-limits"</code>
 </span><a class="self-link" href="#core-features-and-limits" id="ref-for-core-features-and-limits④⑤"></a></h3>
+   <p>When enabled:</p>
    <ul>
     <li data-md>
      <p>Allows all Core WebGPU features and limits to be used.</p>
    </ul>
-   <p>This is always available unless <code class="idl"><a data-link-type="idl" href="#dom-gpurequestadapteroptions-featurelevel" id="ref-for-dom-gpurequestadapteroptions-featurelevel⑤">featureLevel</a></code> is set to <a data-link-type="dfn" href="#feature-level-string-compatibility" id="ref-for-feature-level-string-compatibility②">"compatibility"</a>,
+   <p class="note" role="note"><span class="marker">Note:</span>
+This is always available unless <code class="idl"><a data-link-type="idl" href="#dom-gpurequestadapteroptions-featurelevel" id="ref-for-dom-gpurequestadapteroptions-featurelevel⑤">featureLevel</a></code> is set to <a data-link-type="dfn" href="#feature-level-string-compatibility" id="ref-for-feature-level-string-compatibility②">"compatibility"</a>,
 in which case it may or may not be available (see those definitions for information).</p>
    <h3 class="dfn-paneled heading idl-code settled" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.2" data-lt="&quot;depth-clip-control&quot;" id="depth-clip-control"><span class="secno">25.2. </span><span class="content"><code>"depth-clip-control"</code>
 <span id="dom-gpufeaturename-depth-clip-control"></span>
 </span><a class="self-link" href="#depth-clip-control" id="ref-for-depth-clip-control④"></a></h3>
+   <p>When enabled:</p>
    <ul>
     <li data-md>
      <p>Allows <a data-link-type="dfn" href="#depth-clipping" id="ref-for-depth-clipping②">depth clipping</a> to be disabled.</p>
@@ -23512,6 +23515,7 @@ in which case it may or may not be available (see those definitions for informat
    <h3 class="dfn-paneled heading idl-code settled" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.3" data-lt="&quot;depth32float-stencil8&quot;" id="depth32float-stencil8"><span class="secno">25.3. </span><span class="content"><code>"depth32float-stencil8"</code>
 <span id="dom-gpufeaturename-depth32float-stencil8"></span>
 </span><a class="self-link" href="#depth32float-stencil8" id="ref-for-depth32float-stencil8①"></a></h3>
+   <p>When enabled:</p>
    <ul>
     <li data-md>
      <p>Allows for explicit creation of textures of format <code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-depth32float-stencil8" id="ref-for-dom-gputextureformat-depth32float-stencil8">"depth32float-stencil8"</a></code>.</p>
@@ -23524,12 +23528,14 @@ in which case it may or may not be available (see those definitions for informat
    <h3 class="dfn-paneled heading idl-code settled" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.4" data-lt="&quot;texture-compression-bc&quot;" id="texture-compression-bc"><span class="secno">25.4. </span><span class="content"><code>"texture-compression-bc"</code>
 <span id="dom-gpufeaturename-texture-compression-bc"></span>
 </span><a class="self-link" href="#texture-compression-bc" id="ref-for-texture-compression-bc④"></a></h3>
+   <p>When enabled:</p>
    <ul>
     <li data-md>
      <p>Allows for explicit creation of textures of <a data-link-type="dfn" href="https://registry.khronos.org/DataFormat/specs/1.3/dataformat.1.3.html#_compressed_texture_image_formats" id="ref-for-_compressed_texture_image_formats">BC compressed formats</a> which include the "S3TC",
 "RGTC", and "BPTC" formats.</p>
    </ul>
-   <p>This feature only supports 2D textures. If 3D textures are needed, use
+   <p class="note" role="note"><span class="marker">Note:</span>
+This feature only supports 2D textures. If 3D textures are needed, use
 <code class="idl"><a data-link-type="idl" href="#texture-compression-bc-sliced-3d" id="ref-for-texture-compression-bc-sliced-3d②">"texture-compression-bc-sliced-3d"</a></code>.</p>
    <p>New <code class="idl"><a data-link-type="idl" href="#enumdef-gputextureformat" id="ref-for-enumdef-gputextureformat④⑨">GPUTextureFormat</a></code> enum values:</p>
    <ul>
@@ -23565,6 +23571,7 @@ in which case it may or may not be available (see those definitions for informat
    <h3 class="dfn-paneled heading idl-code settled" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.5" data-lt="&quot;texture-compression-bc-sliced-3d&quot;" id="texture-compression-bc-sliced-3d"><span class="secno">25.5. </span><span class="content"><code>"texture-compression-bc-sliced-3d"</code>
 <span id="dom-gpufeaturename-texture-compression-bc-sliced-3d"></span>
 </span><a class="self-link" href="#texture-compression-bc-sliced-3d" id="ref-for-texture-compression-bc-sliced-3d④"></a></h3>
+   <p>When enabled:</p>
    <ul>
     <li data-md>
      <p>Allows the <code class="idl"><a data-link-type="idl" href="#dom-gputexturedimension-3d" id="ref-for-dom-gputexturedimension-3d①⑧">3d</a></code> dimension for textures with <a data-link-type="dfn" href="https://registry.khronos.org/DataFormat/specs/1.3/dataformat.1.3.html#_compressed_texture_image_formats" id="ref-for-_compressed_texture_image_formats①">BC compressed formats</a>.</p>
@@ -23573,11 +23580,13 @@ in which case it may or may not be available (see those definitions for informat
 <span id="texture-compression-etc"></span>
 <span id="dom-gpufeaturename-texture-compression-etc2"></span>
 </span><a class="self-link" href="#texture-compression-etc2" id="ref-for-texture-compression-etc2③"></a></h3>
+   <p>When enabled:</p>
    <ul>
     <li data-md>
      <p>Allows for explicit creation of textures of <a data-link-type="dfn" href="https://registry.khronos.org/DataFormat/specs/1.3/dataformat.1.3.html#ETC2" id="ref-for-ETC2">ETC2 compressed formats</a>.</p>
    </ul>
-   <p>This feature only supports 2D textures.</p>
+   <p class="note" role="note"><span class="marker">Note:</span>
+This feature only supports 2D textures.</p>
    <p>New <code class="idl"><a data-link-type="idl" href="#enumdef-gputextureformat" id="ref-for-enumdef-gputextureformat⑤⓪">GPUTextureFormat</a></code> enum values:</p>
    <ul>
     <li data-md>
@@ -23604,11 +23613,13 @@ in which case it may or may not be available (see those definitions for informat
    <h3 class="dfn-paneled heading idl-code settled" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.7" data-lt="&quot;texture-compression-astc&quot;" id="texture-compression-astc"><span class="secno">25.7. </span><span class="content"><code>"texture-compression-astc"</code>
 <span id="dom-gpufeaturename-texture-compression-astc"></span>
 </span><a class="self-link" href="#texture-compression-astc" id="ref-for-texture-compression-astc⑤"></a></h3>
+   <p>When enabled:</p>
    <ul>
     <li data-md>
      <p>Allows for explicit creation of textures of <a data-link-type="dfn" href="https://registry.khronos.org/DataFormat/specs/1.3/dataformat.1.3.html#ASTC" id="ref-for-ASTC">ASTC compressed formats</a>.</p>
    </ul>
-   <p>This feature only supports 2D textures. If 3D textures are needed, use
+   <p class="note" role="note"><span class="marker">Note:</span>
+This feature only supports 2D textures. If 3D textures are needed, use
 <code class="idl"><a data-link-type="idl" href="#texture-compression-astc-sliced-3d" id="ref-for-texture-compression-astc-sliced-3d②">"texture-compression-astc-sliced-3d"</a></code>.</p>
    <p>New <code class="idl"><a data-link-type="idl" href="#enumdef-gputextureformat" id="ref-for-enumdef-gputextureformat⑤①">GPUTextureFormat</a></code> enum values:</p>
    <ul>
@@ -23672,6 +23683,7 @@ in which case it may or may not be available (see those definitions for informat
    <h3 class="dfn-paneled heading idl-code settled" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.8" data-lt="&quot;texture-compression-astc-sliced-3d&quot;" id="texture-compression-astc-sliced-3d"><span class="secno">25.8. </span><span class="content"><code>"texture-compression-astc-sliced-3d"</code>
 <span id="dom-gpufeaturename-texture-compression-astc-sliced-3d"></span>
 </span><a class="self-link" href="#texture-compression-astc-sliced-3d" id="ref-for-texture-compression-astc-sliced-3d④"></a></h3>
+   <p>When enabled:</p>
    <ul>
     <li data-md>
      <p>Allows the <code class="idl"><a data-link-type="idl" href="#dom-gputexturedimension-3d" id="ref-for-dom-gputexturedimension-3d①⑨">3d</a></code> dimension for textures with <a data-link-type="dfn" href="https://registry.khronos.org/DataFormat/specs/1.3/dataformat.1.3.html#ASTC" id="ref-for-ASTC①">ASTC compressed formats</a>.</p>
@@ -23679,6 +23691,7 @@ in which case it may or may not be available (see those definitions for informat
    <h3 class="dfn-paneled heading idl-code settled" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.9" data-lt="&quot;timestamp-query&quot;" id="timestamp-query"><span class="secno">25.9. </span><span class="content"><code>"timestamp-query"</code>
 <span id="dom-gpufeaturename-timestamp-query"></span>
 </span><a class="self-link" href="#timestamp-query" id="ref-for-timestamp-query④"></a></h3>
+   <p>When enabled:</p>
    <ul>
     <li data-md>
      <p>Adds the ability to query timestamps from GPU command buffers. See <a href="#timestamp">§ 20.4 Timestamp Query</a>.</p>
@@ -23701,6 +23714,7 @@ in which case it may or may not be available (see those definitions for informat
    <h3 class="dfn-paneled heading idl-code settled" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.10" data-lt="&quot;indirect-first-instance&quot;" id="indirect-first-instance"><span class="secno">25.10. </span><span class="content"><code>"indirect-first-instance"</code>
 <span id="dom-gpufeaturename-indirect-first-instance"></span>
 </span><a class="self-link" href="#indirect-first-instance" id="ref-for-indirect-first-instance⑤"></a></h3>
+   <p>When enabled:</p>
    <ul>
     <li data-md>
      <p>Allows the use of non-zero <code>firstInstance</code> values in <a data-link-type="dfn" href="#indirect-draw-parameters" id="ref-for-indirect-draw-parameters②">indirect draw parameters</a> and <a data-link-type="dfn" href="#indirect-drawindexed-parameters" id="ref-for-indirect-drawindexed-parameters②">indirect drawIndexed parameters</a>.</p>
@@ -23708,6 +23722,7 @@ in which case it may or may not be available (see those definitions for informat
    <h3 class="dfn-paneled heading idl-code settled" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.11" data-lt="&quot;shader-f16&quot;" id="shader-f16"><span class="secno">25.11. </span><span class="content"><code>"shader-f16"</code>
 <span id="dom-gpufeaturename-shader-f16"></span>
 </span><a class="self-link" href="#shader-f16" id="ref-for-shader-f16①"></a></h3>
+   <p>When enabled:</p>
    <ul>
     <li data-md>
      <p>Allows the use of the half-precision floating-point type <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#f16" id="ref-for-f16">f16</a> in WGSL.</p>
@@ -23720,6 +23735,7 @@ in which case it may or may not be available (see those definitions for informat
    <h3 class="dfn-paneled heading idl-code settled" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.12" data-lt="&quot;rg11b10ufloat-renderable&quot;" id="rg11b10ufloat-renderable"><span class="secno">25.12. </span><span class="content"><code>"rg11b10ufloat-renderable"</code>
 <span id="dom-gpufeaturename-rg11b10ufloat-renderable"></span>
 </span><a class="self-link" href="#rg11b10ufloat-renderable" id="ref-for-rg11b10ufloat-renderable④"></a></h3>
+   <p>When enabled:</p>
    <ul>
     <li data-md>
      <p>Allows the <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-render_attachment" id="ref-for-dom-gputextureusage-render_attachment①⑦">RENDER_ATTACHMENT</a></code> usage on textures with format <code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-rg11b10ufloat" id="ref-for-dom-gputextureformat-rg11b10ufloat">"rg11b10ufloat"</a></code>,
@@ -23729,12 +23745,14 @@ and also allows textures of that format to be blended, multisampled, and resolve
    </ul>
    <h3 class="dfn-paneled heading idl-code settled" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.13" data-lt="&quot;bgra8unorm-storage&quot;" id="bgra8unorm-storage"><span class="secno">25.13. </span><span class="content"><code>"bgra8unorm-storage"</code>
 </span><a class="self-link" href="#bgra8unorm-storage" id="ref-for-bgra8unorm-storage②"></a></h3>
+   <p>When enabled:</p>
    <ul>
     <li data-md>
      <p>Allows the <code class="idl"><a data-link-type="idl" href="#dom-gputextureusage-storage_binding" id="ref-for-dom-gputextureusage-storage_binding①②">STORAGE_BINDING</a></code> usage on textures with format <code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-bgra8unorm" id="ref-for-dom-gputextureformat-bgra8unorm⑤">"bgra8unorm"</a></code>.</p>
    </ul>
    <h3 class="dfn-paneled heading idl-code settled" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.14" data-lt="&quot;float32-filterable&quot;" id="float32-filterable"><span class="secno">25.14. </span><span class="content"><code>"float32-filterable"</code>
 </span><a class="self-link" href="#float32-filterable" id="ref-for-float32-filterable④"></a></h3>
+   <p>When enabled:</p>
    <ul>
     <li data-md>
      <p>Makes textures with the following formats <a data-link-type="dfn" href="#filterable" id="ref-for-filterable">filterable</a>:</p>
@@ -23749,6 +23767,7 @@ and also allows textures of that format to be blended, multisampled, and resolve
    </ul>
    <h3 class="dfn-paneled heading idl-code settled" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.15" data-lt="&quot;float32-blendable&quot;" id="float32-blendable"><span class="secno">25.15. </span><span class="content"><code>"float32-blendable"</code>
 </span><a class="self-link" href="#float32-blendable" id="ref-for-float32-blendable④"></a></h3>
+   <p>When enabled:</p>
    <ul>
     <li data-md>
      <p>Makes textures with the following formats <a data-link-type="dfn" href="#blendable" id="ref-for-blendable②">blendable</a>:</p>
@@ -23763,6 +23782,7 @@ and also allows textures of that format to be blended, multisampled, and resolve
    </ul>
    <h3 class="dfn-paneled heading idl-code settled" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.16" data-lt="&quot;clip-distances&quot;" id="dom-gpufeaturename-clip-distances"><span class="secno">25.16. </span><span class="content"><code>"clip-distances"</code>
 </span><a class="self-link" href="#dom-gpufeaturename-clip-distances" id="ref-for-dom-gpufeaturename-clip-distances②"></a></h3>
+   <p>When enabled:</p>
    <ul>
     <li data-md>
      <p>Allows the use of <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#built-in-values-clip_distances" id="ref-for-built-in-values-clip_distances④">clip_distances</a> in WGSL.</p>
@@ -23774,6 +23794,7 @@ and also allows textures of that format to be blended, multisampled, and resolve
    </ul>
    <h3 class="dfn-paneled heading idl-code settled" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.17" data-lt="&quot;dual-source-blending&quot;" id="dom-gpufeaturename-dual-source-blending"><span class="secno">25.17. </span><span class="content"><code>"dual-source-blending"</code>
 </span><a class="self-link" href="#dom-gpufeaturename-dual-source-blending" id="ref-for-dom-gpufeaturename-dual-source-blending②"></a></h3>
+   <p>When enabled:</p>
    <ul>
     <li data-md>
      <p>Allows the use of <a data-link-type="dfn" data-refhint-key="0f212aab" href="https://gpuweb.github.io/gpuweb/wgsl/#input-output-locations" id="ref-for-input-output-locations⑨">blend_src</a> in WGSL and simultaneously using both pixel shader outputs
@@ -23799,6 +23820,7 @@ attachment at <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl
    <h3 class="dfn-paneled heading idl-code settled" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.18" data-lt="&quot;subgroups&quot;" id="subgroups"><span class="secno">25.18. </span><span class="content"><code>"subgroups"</code>
 <span id="dom-gpufeaturename-subgroups"></span>
 </span><a class="self-link" href="#subgroups" id="ref-for-subgroups⑦"></a></h3>
+   <p>When enabled:</p>
    <ul>
     <li data-md>
      <p>Allows the use of the subgroup and quad operations in WGSL.</p>
@@ -23819,6 +23841,7 @@ expose real values whenever the feature is available on the adapter:</p>
    </ul>
    <h3 class="dfn-paneled heading idl-code settled" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.19" data-lt="&quot;texture-formats-tier1&quot;" id="texture-formats-tier1"><span class="secno">25.19. </span><span class="content"><code>"texture-formats-tier1"</code>
 </span><a class="self-link" href="#texture-formats-tier1" id="ref-for-texture-formats-tier1②⑧"></a></h3>
+   <p>When enabled:</p>
    <ul>
     <li data-md>
      <p>Enables <code class="idl"><a data-link-type="idl" href="#rg11b10ufloat-renderable" id="ref-for-rg11b10ufloat-renderable②">"rg11b10ufloat-renderable"</a></code>.</p>
@@ -23904,6 +23927,7 @@ capabilities on below <code class="idl"><a data-link-type="idl" href="#enumdef-g
    </ul>
    <h3 class="dfn-paneled heading idl-code settled" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.20" data-lt="&quot;texture-formats-tier2&quot;" id="texture-formats-tier2"><span class="secno">25.20. </span><span class="content"><code>"texture-formats-tier2"</code>
 </span><a class="self-link" href="#texture-formats-tier2" id="ref-for-texture-formats-tier2①⑦"></a></h3>
+   <p>When enabled:</p>
    <ul>
     <li data-md>
      <p>Enables <code class="idl"><a data-link-type="idl" href="#texture-formats-tier1" id="ref-for-texture-formats-tier1③">"texture-formats-tier1"</a></code>.</p>
@@ -23945,6 +23969,7 @@ capabilities on below <code class="idl"><a data-link-type="idl" href="#enumdef-g
    </ul>
    <h3 class="dfn-paneled heading idl-code settled" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.21" data-lt="&quot;primitive-index&quot;" id="dom-gpufeaturename-primitive-index"><span class="secno">25.21. </span><span class="content"><code>"primitive-index"</code>
 </span><a class="self-link" href="#dom-gpufeaturename-primitive-index" id="ref-for-dom-gpufeaturename-primitive-index①"></a></h3>
+   <p>When enabled:</p>
    <ul>
     <li data-md>
      <p>Allows the use of <a data-link-type="dfn" href="https://gpuweb.github.io/gpuweb/wgsl/#built-in-values-primitive_index" id="ref-for-built-in-values-primitive_index">primitive_index</a> in WGSL.</p>
@@ -23956,6 +23981,7 @@ capabilities on below <code class="idl"><a data-link-type="idl" href="#enumdef-g
    </ul>
    <h3 class="dfn-paneled heading idl-code settled" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.22" data-lt="&quot;texture-component-swizzle&quot;" id="dom-gpufeaturename-texture-component-swizzle"><span class="secno">25.22. </span><span class="content"><code>"texture-component-swizzle"</code>
 </span><a class="self-link" href="#dom-gpufeaturename-texture-component-swizzle" id="ref-for-dom-gpufeaturename-texture-component-swizzle⑤"></a></h3>
+   <p>When enabled:</p>
    <ul>
     <li data-md>
      <p>Allows <code class="idl"><a data-link-type="idl" href="#gputextureview" id="ref-for-gputextureview④①">GPUTextureView</a></code>s to rearrange or replace the color components from texture’s red/green/blue/alpha channels
@@ -23970,6 +23996,7 @@ when used as a <code class="idl"><a data-link-type="idl" href="#dom-gputextureus
    </ul>
    <h3 class="dfn-paneled heading idl-code settled" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.23" data-lt="&quot;subgroup-size-control&quot;" id="dom-gpufeaturename-subgroup-size-control"><span class="secno">25.23. </span><span class="content"><code>"subgroup-size-control"</code>
 </span><a class="self-link" href="#dom-gpufeaturename-subgroup-size-control" id="ref-for-dom-gpufeaturename-subgroup-size-control②"></a></h3>
+   <p>When enabled:</p>
    <ul>
     <li data-md>
      <p>Enables <code class="idl"><a data-link-type="idl" href="#subgroups" id="ref-for-subgroups⑥">"subgroups"</a></code>.</p>
