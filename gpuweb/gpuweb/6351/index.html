@@ -1163,7 +1163,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/0a5880c8aa3cb9697306bfc665854c433899fd4f/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/0a5880c8aa3cb9697306bfc665854c433899fd4f/spec/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/">https://gpuweb.github.io/gpuweb/</a><br><a href="https://github.com/kainino0x/gpuweb/blob/1c6f4bf98ca0f16eb5877e0273e36e314e007c0b/spec/index.bs">https://github.com/kainino0x/gpuweb/blob/1c6f4bf98ca0f16eb5877e0273e36e314e007c0b/spec/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/webgpu/">https://www.w3.org/TR/webgpu/</a>
       <dt>Feedback:
@@ -23490,15 +23490,19 @@ Normative behavior is found in the relevant spec sections.</p>
    <p>Dependencies between features are described in <a href="#feature-dependencies">§ 3.6.1.2 Feature Dependencies</a> and enforced in
 <a href="#adapter-capability-guarantees">§ 4.2.1 Adapter Capability Guarantees</a> and <a data-link-type="dfn" href="#a-new-device" id="ref-for-a-new-device⑧">a new device</a>.</p>
    <h3 class="dfn-paneled heading idl-code settled" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.1" data-lt="&quot;core-features-and-limits&quot;" id="core-features-and-limits"><span class="secno">25.1. </span><span class="content"><code>"core-features-and-limits"</code>
-</span><a class="self-link" href="#core-features-and-limits" id="ref-for-core-features-and-limits④⑤"></a></h3>
+</span><a class="self-link" href="#core-features-and-limits" id="ref-for-core-features-and-limits④⑥"></a></h3>
    <p>When enabled:</p>
    <ul>
     <li data-md>
-     <p>Allows all Core WebGPU features and limits to be used.</p>
+     <p>Lifts extra validation rules that are specific to WebGPU <a data-link-type="dfn" href="#feature-level-string-compatibility" id="ref-for-feature-level-string-compatibility②">"compatibility"</a> mode.
+These are not enumerated here; see references to <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits②⑥">"core-features-and-limits"</a></code> throughout the spec.</p>
+    <li data-md>
+     <p>Ensures all limits are set to their <a data-link-type="dfn" href="#limit-default" id="ref-for-limit-default⑧">default</a> value
+(rather than their <a data-link-type="dfn" href="#limit-compatibility-mode-default" id="ref-for-limit-compatibility-mode-default②">compatibility mode default</a> value), or <a data-link-type="dfn" href="#limit-better" id="ref-for-limit-better①①">better</a> if requested.</p>
    </ul>
    <p class="note" role="note"><span class="marker">Note:</span>
 This feature is always available when calling <code class="idl"><a data-link-type="idl" href="#dom-gpu-requestadapter" id="ref-for-dom-gpu-requestadapter①⑥">requestAdapter()</a></code> with no arguments.
-It may only be unavailable if <code class="idl"><a data-link-type="idl" href="#dom-gpurequestadapteroptions-featurelevel" id="ref-for-dom-gpurequestadapteroptions-featurelevel⑤">featureLevel</a></code> is set to <a data-link-type="dfn" href="#feature-level-string-compatibility" id="ref-for-feature-level-string-compatibility②">"compatibility"</a>,
+It may only be unavailable if <code class="idl"><a data-link-type="idl" href="#dom-gpurequestadapteroptions-featurelevel" id="ref-for-dom-gpurequestadapteroptions-featurelevel⑤">featureLevel</a></code> is set to <a data-link-type="dfn" href="#feature-level-string-compatibility" id="ref-for-feature-level-string-compatibility③">"compatibility"</a>,
 in which case its availability depends on the system. See those definitions for details.</p>
    <h3 class="dfn-paneled heading idl-code settled" data-dfn-for="GPUFeatureName" data-dfn-type="enum-value" data-export data-level="25.2" data-lt="&quot;depth-clip-control&quot;" id="depth-clip-control"><span class="secno">25.2. </span><span class="content"><code>"depth-clip-control"</code>
 <span id="dom-gpufeaturename-depth-clip-control"></span>
@@ -24096,7 +24100,7 @@ The <a data-link-type="dfn" href="#texel-block-memory-cost" id="ref-for-texel-bl
       <td>✓
         
       <td>
-      <td>If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits②⑥">"core-features-and-limits"</a></code> is enabled
+      <td>If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits②⑦">"core-features-and-limits"</a></code> is enabled
         
       <td>
       <td colspan="2">If <code class="idl"><a data-link-type="idl" href="#texture-formats-tier1" id="ref-for-texture-formats-tier1⑥">"texture-formats-tier1"</a></code> is enabled
@@ -24114,7 +24118,7 @@ The <a data-link-type="dfn" href="#texel-block-memory-cost" id="ref-for-texel-bl
       <td>✓
         
       <td>
-      <td>If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits②⑦">"core-features-and-limits"</a></code> is enabled
+      <td>If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits②⑧">"core-features-and-limits"</a></code> is enabled
         
       <td>
       <td colspan="2">If <code class="idl"><a data-link-type="idl" href="#texture-formats-tier1" id="ref-for-texture-formats-tier1⑦">"texture-formats-tier1"</a></code> is enabled
@@ -24162,7 +24166,7 @@ The <a data-link-type="dfn" href="#texel-block-memory-cost" id="ref-for-texel-bl
       <td>✓
         
       <td>
-      <td>If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits②⑧">"core-features-and-limits"</a></code> is enabled
+      <td>If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits②⑨">"core-features-and-limits"</a></code> is enabled
         
       <td>
       <td colspan="2">If <code class="idl"><a data-link-type="idl" href="#texture-formats-tier1" id="ref-for-texture-formats-tier1①⓪">"texture-formats-tier1"</a></code> is enabled
@@ -24179,7 +24183,7 @@ The <a data-link-type="dfn" href="#texel-block-memory-cost" id="ref-for-texel-bl
       <td>✓
         
       <td>
-      <td>If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits②⑨">"core-features-and-limits"</a></code> is enabled
+      <td>If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits③⓪">"core-features-and-limits"</a></code> is enabled
         
       <td>
       <td colspan="2">If <code class="idl"><a data-link-type="idl" href="#texture-formats-tier1" id="ref-for-texture-formats-tier1①①">"texture-formats-tier1"</a></code> is enabled
@@ -24258,7 +24262,7 @@ The <a data-link-type="dfn" href="#texel-block-memory-cost" id="ref-for-texel-bl
       <td>✓
         
       <td>
-      <td>If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits③⓪">"core-features-and-limits"</a></code> is enabled
+      <td>If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits③①">"core-features-and-limits"</a></code> is enabled
         
       <td>
       <td>✓
@@ -24278,7 +24282,7 @@ The <a data-link-type="dfn" href="#texel-block-memory-cost" id="ref-for-texel-bl
       <td>✓
         
       <td>
-      <td>If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits③①">"core-features-and-limits"</a></code> is enabled
+      <td>If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits③②">"core-features-and-limits"</a></code> is enabled
         
       <td>
       <td>✓
@@ -24314,7 +24318,7 @@ The <a data-link-type="dfn" href="#texel-block-memory-cost" id="ref-for-texel-bl
      <tr>
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputextureformat-bgra8unorm-srgb" id="ref-for-dom-gputextureformat-bgra8unorm-srgb①">bgra8unorm-srgb</a></code>
         
-      <td><code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits③②">"core-features-and-limits"</a></code>
+      <td><code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits③③">"core-features-and-limits"</a></code>
         
       <td><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-float" id="ref-for-dom-gputexturesampletype-float①⑧">"float"</a></code>,<br><code class="idl"><a data-link-type="idl" href="#dom-gputexturesampletype-unfilterable-float" id="ref-for-dom-gputexturesampletype-unfilterable-float①⑤">"unfilterable-float"</a></code>
         
@@ -24387,7 +24391,7 @@ The <a data-link-type="dfn" href="#texel-block-memory-cost" id="ref-for-texel-bl
       <td>✓
         
       <td>
-      <td>If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits③③">"core-features-and-limits"</a></code> is enabled
+      <td>If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits③④">"core-features-and-limits"</a></code> is enabled
         
       <td>
       <td colspan="2">If <code class="idl"><a data-link-type="idl" href="#texture-formats-tier1" id="ref-for-texture-formats-tier1①⑤">"texture-formats-tier1"</a></code> is enabled
@@ -24405,7 +24409,7 @@ The <a data-link-type="dfn" href="#texel-block-memory-cost" id="ref-for-texel-bl
       <td>✓
         
       <td>
-      <td>If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits③④">"core-features-and-limits"</a></code> is enabled
+      <td>If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits③⑤">"core-features-and-limits"</a></code> is enabled
         
       <td>
       <td colspan="2">If <code class="idl"><a data-link-type="idl" href="#texture-formats-tier1" id="ref-for-texture-formats-tier1①⑥">"texture-formats-tier1"</a></code> is enabled
@@ -24485,7 +24489,7 @@ The <a data-link-type="dfn" href="#texel-block-memory-cost" id="ref-for-texel-bl
       <td>✓
         
       <td>
-      <td>If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits③⑤">"core-features-and-limits"</a></code> is enabled
+      <td>If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits③⑥">"core-features-and-limits"</a></code> is enabled
         
       <td>
       <td colspan="2">If <code class="idl"><a data-link-type="idl" href="#texture-formats-tier1" id="ref-for-texture-formats-tier1②⓪">"texture-formats-tier1"</a></code> is enabled
@@ -24502,7 +24506,7 @@ The <a data-link-type="dfn" href="#texel-block-memory-cost" id="ref-for-texel-bl
       <td>✓
         
       <td>
-      <td>If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits③⑥">"core-features-and-limits"</a></code> is enabled
+      <td>If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits③⑦">"core-features-and-limits"</a></code> is enabled
         
       <td>
       <td colspan="2">If <code class="idl"><a data-link-type="idl" href="#texture-formats-tier1" id="ref-for-texture-formats-tier1②①">"texture-formats-tier1"</a></code> is enabled
@@ -24580,7 +24584,7 @@ The <a data-link-type="dfn" href="#texel-block-memory-cost" id="ref-for-texel-bl
       <td>✓
         
       <td>
-      <td>If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits③⑦">"core-features-and-limits"</a></code> is enabled
+      <td>If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits③⑧">"core-features-and-limits"</a></code> is enabled
         
       <td>
       <td>✓
@@ -24600,7 +24604,7 @@ The <a data-link-type="dfn" href="#texel-block-memory-cost" id="ref-for-texel-bl
       <td>✓
         
       <td>
-      <td>If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits③⑧">"core-features-and-limits"</a></code> is enabled
+      <td>If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits③⑨">"core-features-and-limits"</a></code> is enabled
         
       <td>
       <td>✓
@@ -24621,7 +24625,7 @@ The <a data-link-type="dfn" href="#texel-block-memory-cost" id="ref-for-texel-bl
         
       <td>✓
         
-      <td colspan="2">If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits③⑨">"core-features-and-limits"</a></code> is enabled
+      <td colspan="2">If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits④⓪">"core-features-and-limits"</a></code> is enabled
         
       <td>✓
         
@@ -24685,7 +24689,7 @@ The <a data-link-type="dfn" href="#texel-block-memory-cost" id="ref-for-texel-bl
         
       <td>If <code class="idl"><a data-link-type="idl" href="#float32-blendable" id="ref-for-float32-blendable①">"float32-blendable"</a></code> is enabled
         
-      <td>If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits④⓪">"core-features-and-limits"</a></code> is enabled
+      <td>If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits④①">"core-features-and-limits"</a></code> is enabled
         
       <td>
       <td>✓
@@ -24707,7 +24711,7 @@ The <a data-link-type="dfn" href="#texel-block-memory-cost" id="ref-for-texel-bl
       <td>
       <td>
       <td>
-      <td colspan="2">If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits④①">"core-features-and-limits"</a></code> is enabled
+      <td colspan="2">If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits④②">"core-features-and-limits"</a></code> is enabled
         
       <td>
       <td colspan="2">8
@@ -24723,7 +24727,7 @@ The <a data-link-type="dfn" href="#texel-block-memory-cost" id="ref-for-texel-bl
       <td>
       <td>
       <td>
-      <td colspan="2">If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits④②">"core-features-and-limits"</a></code> is enabled
+      <td colspan="2">If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits④③">"core-features-and-limits"</a></code> is enabled
         
       <td>
       <td colspan="2">8
@@ -24743,7 +24747,7 @@ The <a data-link-type="dfn" href="#texel-block-memory-cost" id="ref-for-texel-bl
         
       <td>
       <td>
-      <td colspan="2">If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits④③">"core-features-and-limits"</a></code> is enabled
+      <td colspan="2">If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits④④">"core-features-and-limits"</a></code> is enabled
         
       <td>
       <td colspan="2">8
@@ -24821,7 +24825,7 @@ The <a data-link-type="dfn" href="#texel-block-memory-cost" id="ref-for-texel-bl
       <td>✓
         
       <td>
-      <td>If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits④④">"core-features-and-limits"</a></code> is enabled
+      <td>If <code class="idl"><a data-link-type="idl" href="#core-features-and-limits" id="ref-for-core-features-and-limits④⑤">"core-features-and-limits"</a></code> is enabled
         
       <td>
       <td colspan="2">If <code class="idl"><a data-link-type="idl" href="#texture-formats-tier1" id="ref-for-texture-formats-tier1②⑤">"texture-formats-tier1"</a></code> is enabled
@@ -29557,7 +29561,7 @@ let dfnPanelData = {
 "content-timeline-example-term": {"dfnID":"content-timeline-example-term","dfnText":"Content-timeline example term","external":false,"refSections":[{"refs":[{"id":"ref-for-content-timeline-example-term"}],"title":"3.4.1. Timelines"}],"url":"#content-timeline-example-term"},
 "content-timeline-property": {"dfnID":"content-timeline-property","dfnText":"content timeline property","external":false,"refSections":[{"refs":[{"id":"ref-for-content-timeline-property"}],"title":"3.1.2. WebGPU Objects"},{"refs":[{"id":"ref-for-content-timeline-property\u2460"}],"title":"3.5.2. Devices"},{"refs":[{"id":"ref-for-content-timeline-property\u2461"}],"title":"5.1. GPUBuffer"},{"refs":[{"id":"ref-for-content-timeline-property\u2462"}],"title":"21.2. GPUCanvasContext"},{"refs":[{"id":"ref-for-content-timeline-property\u2463"}],"title":"22.4. Telemetry"}],"url":"#content-timeline-property"},
 "copy-compatible": {"dfnID":"copy-compatible","dfnText":"copy-compatible","external":false,"refSections":[{"refs":[{"id":"ref-for-copy-compatible"}],"title":"13.5. Texel Copy Commands"}],"url":"#copy-compatible"},
-"core-features-and-limits": {"dfnID":"core-features-and-limits","dfnText":"25.1. \"core-features-and-limits\"\n","external":false,"refSections":[{"refs":[{"id":"ref-for-core-features-and-limits"}],"title":"3.5.2. Devices"},{"refs":[{"id":"ref-for-core-features-and-limits\u2460"}],"title":"3.6.1.1. GPUFeatureName"},{"refs":[{"id":"ref-for-core-features-and-limits\u2461"},{"id":"ref-for-core-features-and-limits\u2462"}],"title":"4.2.2. Adapter Selection"},{"refs":[{"id":"ref-for-core-features-and-limits\u2463"},{"id":"ref-for-core-features-and-limits\u2464"}],"title":"6.1. GPUTexture"},{"refs":[{"id":"ref-for-core-features-and-limits\u2465"},{"id":"ref-for-core-features-and-limits\u2466"},{"id":"ref-for-core-features-and-limits\u2467"}],"title":"6.1.1. GPUTextureDescriptor"},{"refs":[{"id":"ref-for-core-features-and-limits\u2468"},{"id":"ref-for-core-features-and-limits\u2460\u24ea"}],"title":"6.1.3. Texture Creation"},{"refs":[{"id":"ref-for-core-features-and-limits\u2460\u2460"}],"title":"6.2.1. Texture View Creation"},{"refs":[{"id":"ref-for-core-features-and-limits\u2460\u2461"},{"id":"ref-for-core-features-and-limits\u2460\u2462"},{"id":"ref-for-core-features-and-limits\u2460\u2463"}],"title":"8.2.1. Bind Group Creation"},{"refs":[{"id":"ref-for-core-features-and-limits\u2460\u2464"},{"id":"ref-for-core-features-and-limits\u2460\u2465"}],"title":"10.1.2. GPUProgrammableStage"},{"refs":[{"id":"ref-for-core-features-and-limits\u2460\u2466"},{"id":"ref-for-core-features-and-limits\u2460\u2467"},{"id":"ref-for-core-features-and-limits\u2460\u2468"}],"title":"10.3.1. Render Pipeline Creation"},{"refs":[{"id":"ref-for-core-features-and-limits\u2461\u24ea"}],"title":"10.3.4. Fragment State"},{"refs":[{"id":"ref-for-core-features-and-limits\u2461\u2460"}],"title":"10.3.6. Depth/Stencil State"},{"refs":[{"id":"ref-for-core-features-and-limits\u2461\u2461"}],"title":"10.3.7.1. Vertex Formats"},{"refs":[{"id":"ref-for-core-features-and-limits\u2461\u2462"},{"id":"ref-for-core-features-and-limits\u2461\u2463"}],"title":"13.5. Texel Copy Commands"},{"refs":[{"id":"ref-for-core-features-and-limits\u2461\u2464"}],"title":"14.1. Bind Groups"},{"refs":[{"id":"ref-for-core-features-and-limits"}],"title":"25.1. \"core-features-and-limits\""},{"refs":[{"id":"ref-for-core-features-and-limits\u2461\u2465"},{"id":"ref-for-core-features-and-limits\u2461\u2466"},{"id":"ref-for-core-features-and-limits\u2461\u2467"},{"id":"ref-for-core-features-and-limits\u2461\u2468"},{"id":"ref-for-core-features-and-limits\u2462\u24ea"},{"id":"ref-for-core-features-and-limits\u2462\u2460"},{"id":"ref-for-core-features-and-limits\u2462\u2461"},{"id":"ref-for-core-features-and-limits\u2462\u2462"},{"id":"ref-for-core-features-and-limits\u2462\u2463"},{"id":"ref-for-core-features-and-limits\u2462\u2464"},{"id":"ref-for-core-features-and-limits\u2462\u2465"},{"id":"ref-for-core-features-and-limits\u2462\u2466"},{"id":"ref-for-core-features-and-limits\u2462\u2467"},{"id":"ref-for-core-features-and-limits\u2462\u2468"},{"id":"ref-for-core-features-and-limits\u2463\u24ea"},{"id":"ref-for-core-features-and-limits\u2463\u2460"},{"id":"ref-for-core-features-and-limits\u2463\u2461"},{"id":"ref-for-core-features-and-limits\u2463\u2462"},{"id":"ref-for-core-features-and-limits\u2463\u2463"}],"title":"26.1.1. Plain color formats"}],"url":"#core-features-and-limits"},
+"core-features-and-limits": {"dfnID":"core-features-and-limits","dfnText":"25.1. \"core-features-and-limits\"\n","external":false,"refSections":[{"refs":[{"id":"ref-for-core-features-and-limits"}],"title":"3.5.2. Devices"},{"refs":[{"id":"ref-for-core-features-and-limits\u2460"}],"title":"3.6.1.1. GPUFeatureName"},{"refs":[{"id":"ref-for-core-features-and-limits\u2461"},{"id":"ref-for-core-features-and-limits\u2462"}],"title":"4.2.2. Adapter Selection"},{"refs":[{"id":"ref-for-core-features-and-limits\u2463"},{"id":"ref-for-core-features-and-limits\u2464"}],"title":"6.1. GPUTexture"},{"refs":[{"id":"ref-for-core-features-and-limits\u2465"},{"id":"ref-for-core-features-and-limits\u2466"},{"id":"ref-for-core-features-and-limits\u2467"}],"title":"6.1.1. GPUTextureDescriptor"},{"refs":[{"id":"ref-for-core-features-and-limits\u2468"},{"id":"ref-for-core-features-and-limits\u2460\u24ea"}],"title":"6.1.3. Texture Creation"},{"refs":[{"id":"ref-for-core-features-and-limits\u2460\u2460"}],"title":"6.2.1. Texture View Creation"},{"refs":[{"id":"ref-for-core-features-and-limits\u2460\u2461"},{"id":"ref-for-core-features-and-limits\u2460\u2462"},{"id":"ref-for-core-features-and-limits\u2460\u2463"}],"title":"8.2.1. Bind Group Creation"},{"refs":[{"id":"ref-for-core-features-and-limits\u2460\u2464"},{"id":"ref-for-core-features-and-limits\u2460\u2465"}],"title":"10.1.2. GPUProgrammableStage"},{"refs":[{"id":"ref-for-core-features-and-limits\u2460\u2466"},{"id":"ref-for-core-features-and-limits\u2460\u2467"},{"id":"ref-for-core-features-and-limits\u2460\u2468"}],"title":"10.3.1. Render Pipeline Creation"},{"refs":[{"id":"ref-for-core-features-and-limits\u2461\u24ea"}],"title":"10.3.4. Fragment State"},{"refs":[{"id":"ref-for-core-features-and-limits\u2461\u2460"}],"title":"10.3.6. Depth/Stencil State"},{"refs":[{"id":"ref-for-core-features-and-limits\u2461\u2461"}],"title":"10.3.7.1. Vertex Formats"},{"refs":[{"id":"ref-for-core-features-and-limits\u2461\u2462"},{"id":"ref-for-core-features-and-limits\u2461\u2463"}],"title":"13.5. Texel Copy Commands"},{"refs":[{"id":"ref-for-core-features-and-limits\u2461\u2464"}],"title":"14.1. Bind Groups"},{"refs":[{"id":"ref-for-core-features-and-limits"},{"id":"ref-for-core-features-and-limits\u2461\u2465"}],"title":"25.1. \"core-features-and-limits\""},{"refs":[{"id":"ref-for-core-features-and-limits\u2461\u2466"},{"id":"ref-for-core-features-and-limits\u2461\u2467"},{"id":"ref-for-core-features-and-limits\u2461\u2468"},{"id":"ref-for-core-features-and-limits\u2462\u24ea"},{"id":"ref-for-core-features-and-limits\u2462\u2460"},{"id":"ref-for-core-features-and-limits\u2462\u2461"},{"id":"ref-for-core-features-and-limits\u2462\u2462"},{"id":"ref-for-core-features-and-limits\u2462\u2463"},{"id":"ref-for-core-features-and-limits\u2462\u2464"},{"id":"ref-for-core-features-and-limits\u2462\u2465"},{"id":"ref-for-core-features-and-limits\u2462\u2466"},{"id":"ref-for-core-features-and-limits\u2462\u2467"},{"id":"ref-for-core-features-and-limits\u2462\u2468"},{"id":"ref-for-core-features-and-limits\u2463\u24ea"},{"id":"ref-for-core-features-and-limits\u2463\u2460"},{"id":"ref-for-core-features-and-limits\u2463\u2461"},{"id":"ref-for-core-features-and-limits\u2463\u2462"},{"id":"ref-for-core-features-and-limits\u2463\u2463"},{"id":"ref-for-core-features-and-limits\u2463\u2464"}],"title":"26.1.1. Plain color formats"}],"url":"#core-features-and-limits"},
 "d0b4a948": {"dfnID":"d0b4a948","dfnText":"a promise rejected with","external":true,"refSections":[{"refs":[{"id":"ref-for-a-promise-rejected-with"}],"title":"5.2. Buffer Mapping"}],"url":"https://webidl.spec.whatwg.org/#a-promise-rejected-with"},
 "d210f680": {"dfnID":"d210f680","dfnText":"message","external":true,"refSections":[{"refs":[{"id":"ref-for-domexception-message"}],"title":"10. Pipelines"}],"url":"https://webidl.spec.whatwg.org/#domexception-message"},
 "d25dfb2c": {"dfnID":"d25dfb2c","dfnText":"AbortError","external":true,"refSections":[{"refs":[{"id":"ref-for-aborterror"},{"id":"ref-for-aborterror\u2460"}],"title":"5.2. Buffer Mapping"}],"url":"https://webidl.spec.whatwg.org/#aborterror"},
@@ -30605,7 +30609,7 @@ let dfnPanelData = {
 "feature": {"dfnID":"feature","dfnText":"feature","external":false,"refSections":[{"refs":[{"id":"ref-for-feature"}],"title":"3.5.1. Adapters"},{"refs":[{"id":"ref-for-feature\u2460"}],"title":"3.5.2. Devices"},{"refs":[{"id":"ref-for-feature\u2461"}],"title":"3.6. Optional Capabilities"},{"refs":[{"id":"ref-for-feature\u2462"}],"title":"3.6.1. Features"},{"refs":[{"id":"ref-for-feature\u2463"}],"title":"3.6.2.2. GPUSupportedFeatures"},{"refs":[{"id":"ref-for-feature\u2464"}],"title":"3.8. Extension Documents"},{"refs":[{"id":"ref-for-feature\u2465"}],"title":"4.3. GPUAdapter"},{"refs":[{"id":"ref-for-feature\u2466"}],"title":"4.3.1. GPUDeviceDescriptor"},{"refs":[{"id":"ref-for-feature\u2467"}],"title":"6.3. Texture Formats"},{"refs":[{"id":"ref-for-feature\u2468"}],"title":"10.3.5.1. Blend State"},{"refs":[{"id":"ref-for-feature\u2460\u24ea"},{"id":"ref-for-feature\u2460\u2460"},{"id":"ref-for-feature\u2460\u2461"},{"id":"ref-for-feature\u2460\u2462"}],"title":"17.2.1. Drawing"},{"refs":[{"id":"ref-for-feature\u2460\u2463"}],"title":"26.1.1. Plain color formats"},{"refs":[{"id":"ref-for-feature\u2460\u2464"}],"title":"26.1.3. Packed formats"}],"url":"#feature"},
 "feature-detection": {"dfnID":"feature-detection","dfnText":"3.7. Feature Detection\n","external":false,"refSections":[{"refs":[{"id":"ref-for-feature-detection"}],"title":"3.7. Feature Detection"},{"refs":[{"id":"ref-for-feature-detection"},{"id":"ref-for-feature-detection\u2460"},{"id":"ref-for-feature-detection\u2461"}],"title":"21.2. GPUCanvasContext"},{"refs":[{"id":"ref-for-feature-detection\u2462"}],"title":"21.4. GPUCanvasConfiguration"}],"url":"#feature-detection"},
 "feature-level-string": {"dfnID":"feature-level-string","dfnText":"feature level string","external":false,"refSections":[{"refs":[{"id":"ref-for-feature-level-string"}],"title":"3.5.1. Adapters"},{"refs":[{"id":"ref-for-feature-level-string\u2460"}],"title":"4.2. GPU"}],"url":"#feature-level-string"},
-"feature-level-string-compatibility": {"dfnID":"feature-level-string-compatibility","dfnText":"\"compatibility\"","external":false,"refSections":[{"refs":[{"id":"ref-for-feature-level-string-compatibility"},{"id":"ref-for-feature-level-string-compatibility\u2460"}],"title":"4.2. GPU"},{"refs":[{"id":"ref-for-feature-level-string-compatibility\u2461"}],"title":"25.1. \"core-features-and-limits\""}],"url":"#feature-level-string-compatibility"},
+"feature-level-string-compatibility": {"dfnID":"feature-level-string-compatibility","dfnText":"\"compatibility\"","external":false,"refSections":[{"refs":[{"id":"ref-for-feature-level-string-compatibility"},{"id":"ref-for-feature-level-string-compatibility\u2460"}],"title":"4.2. GPU"},{"refs":[{"id":"ref-for-feature-level-string-compatibility\u2461"},{"id":"ref-for-feature-level-string-compatibility\u2462"}],"title":"25.1. \"core-features-and-limits\""}],"url":"#feature-level-string-compatibility"},
 "feature-level-string-core": {"dfnID":"feature-level-string-core","dfnText":"\"core\"","external":false,"refSections":[{"refs":[{"id":"ref-for-feature-level-string-core"}],"title":"4.2. GPU"},{"refs":[{"id":"ref-for-feature-level-string-core\u2460"}],"title":"4.2.2. Adapter Selection"}],"url":"#feature-level-string-core"},
 "fefe0433": {"dfnID":"fefe0433","dfnText":"preventDefault()","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-event-preventdefault"}],"title":"22.3. Error Scopes"}],"url":"https://dom.spec.whatwg.org/#dom-event-preventdefault"},
 "ff1d5441": {"dfnID":"ff1d5441","dfnText":"primitive_index (for builtin)","external":true,"refSections":[{"refs":[{"id":"ref-for-built-in-values-primitive_index"}],"title":"25.21. \"primitive-index\"\n"}],"url":"https://gpuweb.github.io/gpuweb/wgsl/#built-in-values-primitive_index"},
@@ -30726,12 +30730,12 @@ let dfnPanelData = {
 "internal-usage-storage-read": {"dfnID":"internal-usage-storage-read","dfnText":"storage-read","external":false,"refSections":[{"refs":[{"id":"ref-for-internal-usage-storage-read"}],"title":"3.4.3. Resource Usages"},{"refs":[{"id":"ref-for-internal-usage-storage-read\u2460"},{"id":"ref-for-internal-usage-storage-read\u2461"}],"title":"8.1.1. Bind Group Layout Creation"}],"url":"#internal-usage-storage-read"},
 "levels-of-detail": {"dfnID":"levels-of-detail","dfnText":"Level of detail","external":false,"refSections":[{"refs":[{"id":"ref-for-levels-of-detail"}],"title":"6.1. GPUTexture"},{"refs":[{"id":"ref-for-levels-of-detail\u2460"}],"title":"7.1.1. GPUSamplerDescriptor"}],"url":"#levels-of-detail"},
 "limit": {"dfnID":"limit","dfnText":"limit","external":false,"refSections":[{"refs":[{"id":"ref-for-limit"}],"title":"3.6. Optional Capabilities"},{"refs":[{"id":"ref-for-limit\u2460"}],"title":"4.3. GPUAdapter"},{"refs":[{"id":"ref-for-limit\u2461"}],"title":"4.3.1. GPUDeviceDescriptor"}],"url":"#limit"},
-"limit-better": {"dfnID":"limit-better","dfnText":"better","external":false,"refSections":[{"refs":[{"id":"ref-for-limit-better"},{"id":"ref-for-limit-better\u2460"}],"title":"3.5.1. Adapters"},{"refs":[{"id":"ref-for-limit-better\u2461"},{"id":"ref-for-limit-better\u2462"}],"title":"3.5.2. Devices"},{"refs":[{"id":"ref-for-limit-better\u2463"},{"id":"ref-for-limit-better\u2464"},{"id":"ref-for-limit-better\u2465"},{"id":"ref-for-limit-better\u2466"},{"id":"ref-for-limit-better\u2467"}],"title":"3.6.2. Limits"},{"refs":[{"id":"ref-for-limit-better\u2468"}],"title":"4.2.1. Adapter Capability Guarantees"},{"refs":[{"id":"ref-for-limit-better\u2460\u24ea"}],"title":"4.3. GPUAdapter"}],"url":"#limit-better"},
+"limit-better": {"dfnID":"limit-better","dfnText":"better","external":false,"refSections":[{"refs":[{"id":"ref-for-limit-better"},{"id":"ref-for-limit-better\u2460"}],"title":"3.5.1. Adapters"},{"refs":[{"id":"ref-for-limit-better\u2461"},{"id":"ref-for-limit-better\u2462"}],"title":"3.5.2. Devices"},{"refs":[{"id":"ref-for-limit-better\u2463"},{"id":"ref-for-limit-better\u2464"},{"id":"ref-for-limit-better\u2465"},{"id":"ref-for-limit-better\u2466"},{"id":"ref-for-limit-better\u2467"}],"title":"3.6.2. Limits"},{"refs":[{"id":"ref-for-limit-better\u2468"}],"title":"4.2.1. Adapter Capability Guarantees"},{"refs":[{"id":"ref-for-limit-better\u2460\u24ea"}],"title":"4.3. GPUAdapter"},{"refs":[{"id":"ref-for-limit-better\u2460\u2460"}],"title":"25.1. \"core-features-and-limits\""}],"url":"#limit-better"},
 "limit-class": {"dfnID":"limit-class","dfnText":"limit classes","external":false,"refSections":[{"refs":[{"id":"ref-for-limit-class"},{"id":"ref-for-limit-class\u2460"}],"title":"3.6.2. Limits"},{"refs":[{"id":"ref-for-limit-class\u2461"}],"title":"4.3. GPUAdapter"}],"url":"#limit-class"},
 "limit-class-alignment": {"dfnID":"limit-class-alignment","dfnText":"alignment","external":false,"refSections":[{"refs":[{"id":"ref-for-limit-class-alignment"},{"id":"ref-for-limit-class-alignment\u2460"}],"title":"3.6.2. Limits"},{"refs":[{"id":"ref-for-limit-class-alignment\u2461"}],"title":"4.2.1. Adapter Capability Guarantees"},{"refs":[{"id":"ref-for-limit-class-alignment\u2462"}],"title":"4.3. GPUAdapter"}],"url":"#limit-class-alignment"},
 "limit-class-maximum": {"dfnID":"limit-class-maximum","dfnText":"maximum","external":false,"refSections":[{"refs":[{"id":"ref-for-limit-class-maximum"},{"id":"ref-for-limit-class-maximum\u2460"},{"id":"ref-for-limit-class-maximum\u2461"},{"id":"ref-for-limit-class-maximum\u2462"},{"id":"ref-for-limit-class-maximum\u2463"},{"id":"ref-for-limit-class-maximum\u2464"},{"id":"ref-for-limit-class-maximum\u2465"},{"id":"ref-for-limit-class-maximum\u2466"},{"id":"ref-for-limit-class-maximum\u2467"},{"id":"ref-for-limit-class-maximum\u2468"},{"id":"ref-for-limit-class-maximum\u2460\u24ea"},{"id":"ref-for-limit-class-maximum\u2460\u2460"},{"id":"ref-for-limit-class-maximum\u2460\u2461"},{"id":"ref-for-limit-class-maximum\u2460\u2462"},{"id":"ref-for-limit-class-maximum\u2460\u2463"},{"id":"ref-for-limit-class-maximum\u2460\u2464"},{"id":"ref-for-limit-class-maximum\u2460\u2465"},{"id":"ref-for-limit-class-maximum\u2460\u2466"},{"id":"ref-for-limit-class-maximum\u2460\u2467"},{"id":"ref-for-limit-class-maximum\u2460\u2468"},{"id":"ref-for-limit-class-maximum\u2461\u24ea"},{"id":"ref-for-limit-class-maximum\u2461\u2460"},{"id":"ref-for-limit-class-maximum\u2461\u2461"},{"id":"ref-for-limit-class-maximum\u2461\u2462"},{"id":"ref-for-limit-class-maximum\u2461\u2463"},{"id":"ref-for-limit-class-maximum\u2461\u2464"},{"id":"ref-for-limit-class-maximum\u2461\u2465"},{"id":"ref-for-limit-class-maximum\u2461\u2466"},{"id":"ref-for-limit-class-maximum\u2461\u2467"},{"id":"ref-for-limit-class-maximum\u2461\u2468"},{"id":"ref-for-limit-class-maximum\u2462\u24ea"},{"id":"ref-for-limit-class-maximum\u2462\u2460"},{"id":"ref-for-limit-class-maximum\u2462\u2461"},{"id":"ref-for-limit-class-maximum\u2462\u2462"}],"title":"3.6.2. Limits"}],"url":"#limit-class-maximum"},
-"limit-compatibility-mode-default": {"dfnID":"limit-compatibility-mode-default","dfnText":"compatibility mode default","external":false,"refSections":[{"refs":[{"id":"ref-for-limit-compatibility-mode-default"}],"title":"3.6.2. Limits"},{"refs":[{"id":"ref-for-limit-compatibility-mode-default\u2460"}],"title":"4.2.2. Adapter Selection"}],"url":"#limit-compatibility-mode-default"},
-"limit-default": {"dfnID":"limit-default","dfnText":"default","external":false,"refSections":[{"refs":[{"id":"ref-for-limit-default"}],"title":"2.2.1. Machine-specific features and limits"},{"refs":[{"id":"ref-for-limit-default\u2460"},{"id":"ref-for-limit-default\u2461"},{"id":"ref-for-limit-default\u2462"},{"id":"ref-for-limit-default\u2463"},{"id":"ref-for-limit-default\u2464"}],"title":"3.6.2. Limits"},{"refs":[{"id":"ref-for-limit-default\u2465"}],"title":"4.2.1. Adapter Capability Guarantees"},{"refs":[{"id":"ref-for-limit-default\u2466"}],"title":"4.2.2. Adapter Selection"}],"url":"#limit-default"},
+"limit-compatibility-mode-default": {"dfnID":"limit-compatibility-mode-default","dfnText":"compatibility mode default","external":false,"refSections":[{"refs":[{"id":"ref-for-limit-compatibility-mode-default"}],"title":"3.6.2. Limits"},{"refs":[{"id":"ref-for-limit-compatibility-mode-default\u2460"}],"title":"4.2.2. Adapter Selection"},{"refs":[{"id":"ref-for-limit-compatibility-mode-default\u2461"}],"title":"25.1. \"core-features-and-limits\""}],"url":"#limit-compatibility-mode-default"},
+"limit-default": {"dfnID":"limit-default","dfnText":"default","external":false,"refSections":[{"refs":[{"id":"ref-for-limit-default"}],"title":"2.2.1. Machine-specific features and limits"},{"refs":[{"id":"ref-for-limit-default\u2460"},{"id":"ref-for-limit-default\u2461"},{"id":"ref-for-limit-default\u2462"},{"id":"ref-for-limit-default\u2463"},{"id":"ref-for-limit-default\u2464"}],"title":"3.6.2. Limits"},{"refs":[{"id":"ref-for-limit-default\u2465"}],"title":"4.2.1. Adapter Capability Guarantees"},{"refs":[{"id":"ref-for-limit-default\u2466"}],"title":"4.2.2. Adapter Selection"},{"refs":[{"id":"ref-for-limit-default\u2467"}],"title":"25.1. \"core-features-and-limits\""}],"url":"#limit-default"},
 "logical-miplevel-specific-texture-extent": {"dfnID":"logical-miplevel-specific-texture-extent","dfnText":"logical miplevel-specific texture extent","external":false,"refSections":[{"refs":[{"id":"ref-for-logical-miplevel-specific-texture-extent"},{"id":"ref-for-logical-miplevel-specific-texture-extent\u2460"}],"title":"6.1. GPUTexture"},{"refs":[{"id":"ref-for-logical-miplevel-specific-texture-extent\u2461"}],"title":"17.1.1.1. Color Attachments"}],"url":"#logical-miplevel-specific-texture-extent"},
 "lose-the-device": {"dfnID":"lose-the-device","dfnText":"lose the device","external":false,"refSections":[{"refs":[{"id":"ref-for-lose-the-device"}],"title":"3.2.1. Invalid Internal Objects & Contagious Invalidity"},{"refs":[{"id":"ref-for-lose-the-device\u2460"},{"id":"ref-for-lose-the-device\u2461"}],"title":"3.5.2. Devices"},{"refs":[{"id":"ref-for-lose-the-device\u2462"}],"title":"4.3. GPUAdapter"},{"refs":[{"id":"ref-for-lose-the-device\u2463"}],"title":"4.4. GPUDevice"},{"refs":[{"id":"ref-for-lose-the-device\u2464"}],"title":"22. Errors & Debugging"},{"refs":[{"id":"ref-for-lose-the-device\u2465"}],"title":"23.1. Computing"},{"refs":[{"id":"ref-for-lose-the-device\u2466"}],"title":"23.2.2. Vertex Processing"},{"refs":[{"id":"ref-for-lose-the-device\u2467"}],"title":"23.2.6. Fragment Processing"}],"url":"#lose-the-device"},
 "max-bindings-per-shader-stage": {"dfnID":"max-bindings-per-shader-stage","dfnText":"max bindings per shader stage","external":false,"refSections":[{"refs":[{"id":"ref-for-max-bindings-per-shader-stage"}],"title":"4.2.1. Adapter Capability Guarantees"}],"url":"#max-bindings-per-shader-stage"},
