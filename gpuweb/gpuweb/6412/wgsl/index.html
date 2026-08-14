@@ -862,13 +862,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
 </p>
    <h1 class="no-ref p-name" id="title">WebGPU Shading Language</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
-    <time class="dt-updated" datetime="2026-08-13">13 August 2026</time></p>
+    <time class="dt-updated" datetime="2026-08-14">14 August 2026</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/2ebf0217934efaf0f3e33d1afd59a0808d9b8b63/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/2ebf0217934efaf0f3e33d1afd59a0808d9b8b63/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/cc06d62c7c985358202762d436057cae7d8eed7c/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/cc06d62c7c985358202762d436057cae7d8eed7c/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -13439,10 +13439,11 @@ some attribute parameters are also context-dependent names.</p>
     However, the above constraint is well defined because it depends on the required alignment of a
     <em>nested</em> type, and types have bounded <a data-link-type="dfn" href="#nesting-depth" id="ref-for-nesting-depth①">nesting depth</a>.
     </p>
-       <p class="note" role="note">If the <a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer⑥">uniform</a> or <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer①②">storage</a> buffer has a
-    lower alignment than the value specified in the attribute, the resulting alignment will be the
-    minimum of the two.
-    An implementation will only satisfy the attribute relative to the base address of the variable.
+       <p class="note" role="note">If the start address of the memory bound to the <a data-link-type="dfn" href="#uniform-buffer" id="ref-for-uniform-buffer⑥">uniform</a> or <a data-link-type="dfn" href="#storage-buffer" id="ref-for-storage-buffer①②">storage</a> buffer has a lower alignment
+    than the value specified in the attribute, the resulting alignment will be
+    the minimum of the two.
+    An implementation will only satisfy the attribute relative to the base
+    address of the variable.
     </p>
        <p>See <a href="#memory-layouts">§ 14.4 Memory Layout</a>.</p>
      <tr>
