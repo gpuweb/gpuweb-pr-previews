@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<!-- Deploy as index.html in any directory, or open a local .html/.htm copy (any filename).
+Renamed files and query routes also work on HTTP(S) hosts.
+Query routes need no fallback. For clean paths,
+copy this file to the Pages publishing root as 404.html. Never add allow-same-origin
+or allow-top-navigation to the preview iframe. -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:,">
+<title>GPUWeb previews</title>
+<style>
+  :root {
+    font: 15px/1.5 system-ui, sans-serif;
+    color-scheme: light dark
+  }
+
+  * {
+    box-sizing: border-box
+  }
+
+  body {
+    margin: 0;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex: none;
+    gap: .5rem;
+    padding: .2rem .5rem;
+    font-size: .875rem;
+    min-height: 2.75rem;
+    border-bottom: 1px solid GrayText
+  }
+
+  a {
+    color: LinkText
+  }
+
+  header a,
+  header nav,
+  header button {
+    flex: none;
+    white-space: nowrap
+  }
+
+  header small {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis
+  }
+
+  button,
+  input {
+    font: inherit;
+    padding: .35rem .65rem
+  }
+
+  button {
+    cursor: pointer
+  }
+
+  main {
+    width: min(50rem, 100%);
+    padding: clamp(1rem, 4vw, 2rem);
+    min-height: 0;
+    flex-shrink: 1;
+    margin: auto;
+    overflow: auto
+  }
+
+  input {
+    width: 100%;
+    font-size: 16px;
+    margin: .5rem 0
+  }
+
+  code {
+    overflow-wrap: anywhere
+  }
+
+  iframe {
+    border: 0;
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    min-width: 0;
+    background: Canvas
+  }
+
+  h1 {
+    line-height: 1.2
+  }
+
+  p {
+    overflow-wrap: anywhere
+  }
+
+  [hidden] {
+    display: none !important
+  }
+
+  #status {
+    white-space: pre-wrap
+  }
+
+  #source {
+    font-size: .9em
+  }
+
+  #panel.rendering {
+    flex: none;
+    width: 100%;
+    margin: 0;
+    padding: .25rem .75rem
+  }
+
+  #panel.rendering h1 {
+    display: none
+  }
+
+  #panel.rendering p {
+    margin: 0
+  }
+
+  @media (max-width: 30rem) {
+    header {
+      gap: .4rem
+    }
+
+    #summary {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      clip-path: inset(50%)
+    }
+
+    #stop {
+      margin-left: auto
+    }
+  }
+
+  @media print {
+
+    header,
+    main {
+      display: none
+    }
+
+    iframe {
+      height: 100vh
+    }
+  }
+</style>
+<header>
+  <a id="home" aria-label="GPUWeb previews" title="GPUWeb previews">Previews</a>
+  <nav id="specs" hidden><a id="webgpu">WebGPU</a> · <a id="wgsl">WGSL</a></nav>
+  <a id="source" target="_blank" rel="noopener noreferrer" hidden>Source</a>
+  <small id="summary" role="status"></small>
+  <button id="stop" hidden>Cancel</button>
+</header>
+<main id="panel">
+  <h1 id="heading">WebGPU / WGSL previews</h1>
+  <form id="form">
+    <label for="request">Commit-pinned preview URL or repository path</label>
+    <input id="request" required spellcheck="false" autocomplete="off" maxlength="8192"
+      placeholder="gpuweb/gpuweb-pr-previews/COMMIT/gpuweb/gpuweb/PR/wgsl/">
+    <button>Open preview</button>
+    <p>Only <code>gpuweb/gpuweb-pr-previews/&lt;40-hex-digit SHA&gt;/gpuweb/gpuweb/&lt;PR&gt;/</code> and its
+      <code>wgsl/</code> document are accepted.
+    </p>
+    <p>This viewer has no libraries or proxy service. The specifications retain their own W3C styles and scripts.
+      Preview scripts run in an isolated frame without access to this site's storage.</p>
+  </form>
+  <p id="status" role="status" aria-live="polite"></p>
+  <button id="retry" hidden>Retry preview</button>
+  <button id="render" hidden>Render large preview</button>
+  <noscript>JavaScript is required to render raw GitHub HTML.</noscript>
+</main>
+<script type="module">
+  const MAX_HTML = 64 * 1024 * 1024, AUTO_RENDER = 16 * 1024 * 1024;
+  const pathname = location.pathname, route = pathname.lastIndexOf('/gpuweb/gpuweb-pr-previews/');
+  const MOUNT = location.protocol === 'file:' ? pathname : route >= 0 && parse(pathname.slice(route + 1), location.href) ? pathname.slice(0, route + 1) : pathname.replace(/\/index\.html$/, '/');
+  const base = new URL(location.href); base.pathname = MOUNT; base.search = base.hash = ''; const home = base.href;
+  const RAW = 'https://raw.githubusercontent.com/'; const $ = id => document.getElementById(id); const link = (p, h = '') => home + '?' + p + h; $('home').href = home; function parse(input, home) {
+    if (typeof input !== 'string' || input.length > 8192 || /[\x00-\x20\x7f\\]/.test(input)) return null;
+    let s = input, hash = '', query = false, i = s.indexOf('#');
+    if (i >= 0) { hash = s.slice(i); s = s.slice(0, i); }
+    if (/^(?:https?|file):\/\//.test(s)) {
+      let u, h; try { u = new URL(s); h = new URL(home); } catch { return null; }
+      if (u.href !== s || u.username || u.password) return null;
+      if (u.protocol === 'file:' && (h.protocol !== 'file:' || u.host || u.pathname !== h.pathname || h.pathname.endsWith('/'))) return null;
+      if (u.protocol === h.protocol && u.host === h.host) {
+        if (h.pathname.endsWith('/')) {
+          if (!u.pathname.startsWith(h.pathname)) return null;
+          const tail = u.pathname.slice(h.pathname.length);
+          if (!tail || tail === 'index.html') { s = u.search.slice(1); query = true; }
+          else { if (s.includes('?')) return null; s = tail; }
+        } else {
+          if (u.pathname !== h.pathname) return null;
+          s = u.search.slice(1); query = true;
+        }
+      } else {
+        if (u.protocol !== 'https:' || u.port || s.includes('?')) return null;
+        if (!['raw.githubusercontent.com', 'raw.githack.com', 'rawcdn.githack.com', 'github.com'].includes(u.hostname)) return null;
+        s = u.pathname;
+        if (u.hostname === 'github.com') {
+          if (!/^\/gpuweb\/gpuweb-pr-previews\/(blob|tree)\//.test(s)) return null;
+          s = s.replace(/\/(blob|tree)\//, '/');
+        }
+      }
+    } else if (s.startsWith('?')) { s = s.slice(1); query = true; }
+    else if (s.startsWith('path=')) query = true;
+    if (query && s.startsWith('path=')) {
+      if (s.includes('&')) return null;
+      try { s = decodeURIComponent(s.slice(5)); } catch { return null; }
+    }
+    s = s.replace(/^\//, '');
+    const m = /^gpuweb\/gpuweb-pr-previews\/([0-9a-f]{40})\/gpuweb\/gpuweb\/([1-9]\d{0,9})(?:\/(wgsl))?(?:\/(?:index\.html)?)?$/.exec(s);
+    if (!m || m[0] !== s) return null;
+    const root = `gpuweb/gpuweb-pr-previews/${m[1]}/gpuweb/gpuweb/${m[2]}/`;
+    hash = new URL(hash || '#', 'https://invalid.test/').hash;
+    if (hash.length > 8192) return null;
+    return { root, path: root + (m[3] ? 'wgsl/' : ''), sha: m[1], pr: m[2], wgsl: !!m[3], hash };
+  }
+  async function fetchBlob(url, limit, controller, progress = () => { }, retry = () => { }) {
+    const signal = controller.signal;
+    let transferred = 0;
+    for (let attempt = 0; ; attempt++) {
+      signal.throwIfAborted();
+      const request = new AbortController();
+      const abort = () => request.abort(signal.reason);
+      signal.addEventListener('abort', abort, { once: true });
+      let timer, size = 0, delay = 1000 * (attempt + 1), serverDelay = false;
+      const touch = () => {
+        clearTimeout(timer);
+        timer = setTimeout(() => request.abort(new DOMException('No data received for 30 seconds.', 'TimeoutError')), 30000);
+      };
+      touch();
+      try {
+        const r = await fetch(url, { signal: request.signal, mode: 'cors', credentials: 'omit', redirect: 'error', referrerPolicy: 'no-referrer' });
+        if (!r.ok) {
+          const e = new Error(`GitHub returned HTTP ${r.status}. The preview may not exist at this commit.`);
+          const after = r.headers.get('retry-after');
+          if (after) { serverDelay = true; delay = Math.max(delay, /^\d+$/.test(after) ? Number(after) * 1000 : Date.parse(after) - Date.now() || 0); }
+          e.retryable = [408, 429, 500, 502, 503, 504].includes(r.status) && delay <= 30000;
+          throw e;
+        }
+        if (!r.body) throw new Error('This browser did not provide a readable response stream.');
+        const total = Number(r.headers.get('content-length')) || 0;
+        if (total > limit) throw new Error(`Download exceeds the ${limit / 1048576} MiB limit.`);
+        const stream = r.body.pipeThrough(new TransformStream({
+          transform(bytes, out) {
+            size += bytes.byteLength;
+            transferred += bytes.byteLength;
+            if (size > limit) throw new Error(`Download exceeds the ${limit / 1048576} MiB limit.`);
+            touch();
+            progress(transferred, total);
+            out.enqueue(bytes);
+          }
+        }));
+        const blob = await new Response(stream).blob();
+        signal.throwIfAborted();
+        return blob;
+      } catch (error) {
+        const e = signal.aborted ? signal.reason : request.signal.aborted ? request.signal.reason : error;
+        request.abort(e);
+        if (signal.aborted || attempt >= 2 || !(e instanceof TypeError || e?.name === 'TimeoutError' || e?.retryable)) throw e;
+      } finally {
+        clearTimeout(timer);
+        signal.removeEventListener('abort', abort);
+      }
+      retry(attempt + 1);
+      await new Promise((resolve, reject) => {
+        const offline = navigator.onLine === false && !serverDelay;
+        const done = () => {
+          clearTimeout(wait);
+          signal.removeEventListener('abort', done);
+          removeEventListener('online', done);
+          signal.aborted ? reject(signal.reason) : resolve();
+        };
+        const wait = setTimeout(done, offline ? Math.max(delay, 10000) : delay);
+        signal.addEventListener('abort', done, { once: true });
+        if (offline) addEventListener('online', done, { once: true });
+        if (signal.aborted) done();
+      });
+    }
+  }
+  async function canonicalAssets(blob, signal) {
+    // Avoid content-negotiation aliases that can return challenge pages instead of assets.
+    const rewrite = text => text.replace(/https:\/\/www\.w3\.org\/StyleSheets\/TR\/(?:\d{4}\/)?(?:W3C-[A-Z-]{1,24}|logos\/W3C)(?=["'])/g,
+      url => url + (url.endsWith('/W3C') ? '.svg' : '.css'));
+    let tail = '';
+    const stream = blob.stream().pipeThrough(new TextDecoderStream('utf-8', { ignoreBOM: true }), { signal })
+      .pipeThrough(new TransformStream({
+        transform(text, out) {
+          tail = rewrite(tail + text);
+          const end = Math.max(0, tail.length - 128);
+          out.enqueue(tail.slice(0, end)); tail = tail.slice(end);
+        },
+        flush(out) { out.enqueue(rewrite(tail)); }
+      })).pipeThrough(new TextEncoderStream());
+    return new Response(stream).blob();
+  }
+  function bridge(cfg, parse, fetchBlob) {
+    // W3C controls need preferences, but an opaque frame must never use site storage.
+    try { void localStorage; } catch {
+      const values = new Map();
+      const memory = {
+        get length() { return values.size; },
+        key(index) { return [...values.keys()][index >>> 0] ?? null; },
+        getItem(key) { return values.get(String(key)) ?? null; },
+        setItem(key, value) { values.set(String(key), String(value)); },
+        removeItem(key) { values.delete(String(key)); },
+        clear() { values.clear(); }
+      };
+      try { Object.defineProperty(window, 'localStorage', { value: memory }); } catch { }
+    }
+    const host = cfg.origin, target = host === 'null' || new URL(cfg.home).protocol === 'file:' ? '*' : host, self = location.href.split('#')[0]; const send = (type, data = {}) => parent.postMessage({ gpuweb: 1, type, ...data }, target); const urlFor = p => cfg.home + '?' + p.path + p.hash; const blobs = new Set(), controllers = new Set(); let initial = true; function jump(hash) { if (!hash) { scrollTo(0, 0); return; } try { document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView(); } catch { } } addEventListener('message', e => { if (e.source !== parent || e.origin !== host || e.data?.gpuweb !== 1 || e.data.type !== 'hash') return; const h = e.data.hash; if (typeof h === 'string' && h.length < 8192 && (!h || h.startsWith('#'))) jump(h); }); addEventListener('hashchange', () => send('hash', { hash: location.hash })); addEventListener('pointerdown', () => { initial = false; }, { once: true }); addEventListener('keydown', () => { initial = false; }, { once: true }); addEventListener('wheel', () => { initial = false; }, { once: true, passive: true }); function destination(a) { const value = a.getAttribute('href'); if (!value) return null; let u; try { u = new URL(value, cfg.source); } catch { return null; } if (u.href.split('#')[0] === self) return parse(cfg.path + u.hash, cfg.home); return parse(u.href, cfg.home); } const originals = new WeakMap(); function restore(e) { const a = e.target.closest?.('a[href]'); if (a && originals.has(a)) { a.setAttribute('href', originals.get(a)); originals.delete(a); } } document.addEventListener('pointerdown', restore, true); document.addEventListener('focus', restore, true); function prepare(e) { const a = e.target.closest?.('a[href]'); if (!a) return; const p = destination(a); a.rel = 'noopener noreferrer'; if (e.type === 'click' && p && e.button === 0 && !e.ctrlKey && !e.metaKey && !e.shiftKey && !e.altKey && a.target !== '_blank' && !a.hasAttribute('download')) { e.preventDefault(); send('nav', { path: p.path, hash: p.hash }); return; } if (p) { if (!originals.has(a)) originals.set(a, a.getAttribute('href')); a.href = urlFor(p); } else { let u; try { u = new URL(a.getAttribute('href'), cfg.source); } catch { e.preventDefault(); return; } if (!['https:', 'http:', 'mailto:'].includes(u.protocol)) { e.preventDefault(); return; } a.href = u.href; a.target = '_blank'; } } for (const name of ['contextmenu', 'click', 'auxclick']) document.addEventListener(name, prepare, true); function diagrams() { const queue = [], pending = new WeakMap(); let active = 0, bytes = 0, count = 0; const observer = new IntersectionObserver(entries => { for (const e of entries) if (e.isIntersecting) { observer.unobserve(e.target); queue.push([e.target, pending.get(e.target)]); } pump(); }, { rootMargin: '1200px' }); async function load(img, url) { const c = new AbortController(); controllers.add(c); let previous = 0; try { const b = await fetchBlob(url, 8 * 1048576, c, n => { bytes += n - previous; previous = n; if (bytes > 32 * 1048576) throw new Error('Diagram downloads exceeded 32 MiB.'); }); const objectURL = URL.createObjectURL(b.slice(0, b.size, 'image/svg+xml')); blobs.add(objectURL); img.src = objectURL; } catch (e) { img.alt = 'Diagram unavailable'; img.title = String(e.message || e); send('asset-error'); } finally { controllers.delete(c); } } function pump() { while (active < 3 && queue.length) { const [img, url] = queue.shift(); active++; load(img, url).finally(() => { active--; pump(); }); } } for (let el of document.querySelectorAll('object[data],img[src]')) { let u; try { u = new URL(el.getAttribute(el.localName === 'object' ? 'data' : 'src'), cfg.source); } catch { continue; } if (!u.href.startsWith(cfg.assets) || !u.pathname.endsWith('.svg') || u.search || u.hash) continue; if (++count > 256) { send('asset-error'); break; } if (el.localName === 'object') { const img = document.createElement('img'); for (const name of ['id', 'class', 'style', 'width', 'height', 'title']) if (el.hasAttribute(name)) img.setAttribute(name, el.getAttribute(name)); img.alt = el.getAttribute('aria-label') || el.closest('figure')?.querySelector('figcaption')?.textContent || 'Specification diagram'; img.style.maxWidth = '100%'; img.style.height = 'auto'; el.replaceWith(img); el = img; } else el.removeAttribute('src'); el.loading = 'lazy'; el.decoding = 'async'; pending.set(el, u.href); observer.observe(el); } } addEventListener('DOMContentLoaded', () => { try { diagrams(); } catch { send('asset-error'); } jump(cfg.hash); send('ready'); }, { once: true }); addEventListener('load', () => { if (initial) jump(location.hash); }, { once: true }); addEventListener('pagehide', e => { if (!e.persisted) { for (const c of controllers) c.abort(); for (const url of blobs) URL.revokeObjectURL(url); } });
+  } let controller, frame, objectURL, renderTimer, current, frameHash, failures = 0; function dispose() { controller?.abort(new Error('Cancelled.')); clearTimeout(renderTimer); $('render').onclick = null; if (frame) { frame.remove(); frame = null; } if (objectURL) { URL.revokeObjectURL(objectURL); objectURL = null; } } function failure(message) { dispose(); $('panel').classList.remove('rendering'); $('retry').hidden = !current; $('panel').hidden = false; $('form').hidden = false; $('heading').textContent = 'Preview not loaded'; $('status').textContent = message; $('stop').hidden = true; $('render').hidden = true; $('summary').textContent = ''; } $('retry').onclick = () => location.reload(); $('stop').onclick = () => failure('Cancelled. No preview is running.'); $('form').onsubmit = e => { e.preventDefault(); const p = parse($('request').value, home); if (!p) { $('status').textContent = 'Ignored: not an allowed commit-pinned WebGPU or WGSL preview.'; return; } location.href = link(p.path, p.hash); }; function syncHash() { if (!frame) return; if (frameHash !== location.hash) { frameHash = location.hash; frame.contentWindow.location.replace(objectURL + (frameHash || '#')); } frame.contentWindow.postMessage({ gpuweb: 1, type: 'hash', hash: location.hash }, '*'); } addEventListener('hashchange', syncHash); addEventListener('popstate', syncHash); addEventListener('message', e => { if (!frame || e.source !== frame.contentWindow || e.origin !== 'null' || e.data?.gpuweb !== 1) return; const d = e.data; if (d.type === 'ready') { clearTimeout(renderTimer); $('panel').hidden = true; $('stop').textContent = 'Unload'; $('summary').textContent = `PR #${current.pr} · ${current.sha.slice(0, 12)}${failures ? ` · ${failures} diagram errors` : ''}`; syncHash(); } else if (d.type === 'nav') { if (typeof d.path !== 'string' || typeof d.hash !== 'string' || d.path.length + d.hash.length > 8192) return; const p = parse(d.path + d.hash, home); if (!p || p.path !== d.path || p.hash !== d.hash) return; if (p.path !== current.path) location.href = link(p.path, p.hash); else { if (location.hash !== p.hash) history.pushState(null, '', location.href.split('#')[0] + p.hash); syncHash(); } } else if (d.type === 'hash' && typeof d.hash === 'string' && d.hash.length < 8192 && (!d.hash || d.hash.startsWith('#'))) { frameHash = d.hash; if (location.hash !== d.hash) history.replaceState(null, '', location.href.split('#')[0] + d.hash); } else if (d.type === 'asset-error') { failures = Math.min(failures + 1, 257); $('summary').textContent = `${failures} diagram(s) unavailable; the specification remains readable.`; } }); addEventListener('pagehide', e => { if (!e.persisted) dispose(); }); async function open(p) { current = p; controller = new AbortController(); const source = RAW + p.path + 'index.html', assets = RAW + p.root; $('specs').hidden = false; $('webgpu').href = link(p.root); $('wgsl').href = link(p.root + 'wgsl/'); $(p.wgsl ? 'wgsl' : 'webgpu').setAttribute('aria-current', 'page'); $('source').hidden = false; $('source').href = source; $('form').hidden = true; $('stop').hidden = false; document.title = `${p.wgsl ? 'WGSL' : 'WebGPU'} · PR #${p.pr} · GPUWeb preview`; $('heading').textContent = `Loading ${p.wgsl ? 'WGSL' : 'WebGPU'} preview`; $('request').value = p.path; let last = 0; try { const blob = await fetchBlob(source, MAX_HTML, controller, n => { const now = performance.now(); if (now - last > 150) { $('status').textContent = `Downloaded ${(n / 1048576).toFixed(1)} MiB…`; last = now; } }, n => { $('status').textContent = `Connection interrupted. Retrying (${n}/2)…`; }); if (blob.size > AUTO_RENDER) { $('status').textContent = `Large preview: ${(blob.size / 1048576).toFixed(1)} MiB. Rendering creates a full browser DOM and can use much more memory. Continue only on a device with sufficient memory.`; $('render').hidden = false; await new Promise((resolve, reject) => { const abort = () => reject(controller.signal.reason); controller.signal.addEventListener('abort', abort, { once: true }); $('render').onclick = () => { controller.signal.removeEventListener('abort', abort); resolve(); }; }); $('render').onclick = null; $('render').hidden = true; } controller.signal.throwIfAborted(); const text = new TextDecoder('utf-8', { ignoreBOM: true }).decode(await blob.slice(0, 4096).arrayBuffer()); controller.signal.throwIfAborted(); const head = /^\uFEFF?\s*<!doctype\s+html\s*>\s*<html\b[^>]*>\s*<head\s*>/i.exec(text); if (!head) throw new Error('Expected a generated UTF-8 specification with <!doctype html>, <html> and <head> in its first 4 KiB.'); const offset = new TextEncoder().encode(head[0]).length; const cfg = JSON.stringify({ home, origin: window.origin, path: p.path, source, assets, hash: location.hash }).replaceAll('<', '\\u003c'); const csp = `default-src 'none'; script-src 'unsafe-inline' https://www.w3.org; style-src 'unsafe-inline' https://www.w3.org; img-src data: blob: ${assets} https://www.w3.org; connect-src ${assets}; font-src data: https://www.w3.org; object-src 'none'; frame-src 'none'; worker-src 'none'; base-uri ${RAW}; form-action 'none'`; const insert = `<meta charset="utf-8"><meta name="referrer" content="no-referrer"><meta http-equiv="Content-Security-Policy" content="${csp}"><base href="${source}" target="_self"><script>(${bridge})(${cfg},${parse},${fetchBlob});<\/script>`; const content = await canonicalAssets(blob.slice(offset), controller.signal); controller.signal.throwIfAborted(); objectURL = URL.createObjectURL(new Blob([blob.slice(0, offset), insert, content], { type: 'text/html;charset=utf-8' })); frame = document.createElement('iframe'); frame.title = `${p.wgsl ? 'WGSL' : 'WebGPU'} pull request ${p.pr} specification`; frame.setAttribute('sandbox', 'allow-scripts allow-popups allow-popups-to-escape-sandbox'); frameHash = location.hash; frame.referrerPolicy = 'no-referrer'; frame.src = objectURL + frameHash; $('status').textContent = `Rendering ${(blob.size / 1048576).toFixed(1)} MiB…`; $('panel').classList.add('rendering'); document.body.append(frame); renderTimer = setTimeout(() => { $('status').textContent = 'Rendering is taking unusually long. You can cancel, or keep waiting. A blocked W3C script or a very large DOM can delay completion.'; }, 60000); } catch (e) { failure(String(e?.message || e)); } } const tail = location.pathname === MOUNT ? '' : MOUNT.endsWith('/') && location.pathname.startsWith(MOUNT) ? location.pathname.slice(MOUNT.length) : null; if (tail === null) { $('heading').textContent = 'Not found'; $('form').hidden = true; $('status').textContent = 'This path is not handled by the GPUWeb preview viewer.'; } else if (tail && tail !== 'index.html' || location.search) { const p = parse(location.href, home); if (p) await open(p); else { $('heading').textContent = 'Preview ignored'; $('status').textContent = 'Not an allowed commit-pinned WebGPU or WGSL preview. No source was fetched.'; } }
+</script>
+
+</html>
