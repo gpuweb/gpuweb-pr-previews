@@ -862,13 +862,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
 </p>
    <h1 class="no-ref p-name" id="title">WebGPU Shading Language</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
-    <time class="dt-updated" datetime="2026-11-13">13 November 2026</time></p>
+    <time class="dt-updated" datetime="2026-11-17">17 November 2026</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/274669bbf8f6e38dcb7687908e9e273984f8105e/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/274669bbf8f6e38dcb7687908e9e273984f8105e/wgsl/index.bs</a>
+      <dd><a class="u-url" href="https://gpuweb.github.io/gpuweb/wgsl/">https://gpuweb.github.io/gpuweb/wgsl/</a><br><a href="https://github.com/alan-baker/gpuweb/blob/4cf32652908d0f05b447f016f4e0a18b06cc4f70/wgsl/index.bs">https://github.com/alan-baker/gpuweb/blob/4cf32652908d0f05b447f016f4e0a18b06cc4f70/wgsl/index.bs</a>
       <dt>Latest published version:
       <dd><a href="https://www.w3.org/TR/WGSL/">https://www.w3.org/TR/WGSL/</a>
       <dt>Feedback:
@@ -19239,18 +19239,18 @@ being the same as input control flow node.</p>
     <li data-md>
      <p>If the <a data-link-type="dfn" href="#function-tag" id="ref-for-function-tag③">function tag</a> is <a data-link-type="dfn" href="#returnvaluemaybenonuniform" id="ref-for-returnvaluemaybenonuniform①">ReturnValueMayBeNonUniform</a>, then add an edge from <a data-link-type="dfn" href="#result" id="ref-for-result③">Result</a> to <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①①">MayBeNonUniform</a></p>
     <li data-md>
-     <p>For each argument <em>i</em>:</p>
+     <p>For each argument with an index <em>i</em>:</p>
      <ul>
       <li data-md>
-       <p>If the <a data-link-type="dfn" href="#language_extension-unrestricted_aliasing" id="ref-for-language_extension-unrestricted_aliasing②">unrestricted_aliasing</a> feature is supported and <em>i</em> is
-pointer in the <a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function①⑧">function</a> address space, then:</p>
+       <p>If the <a data-link-type="dfn" href="#language_extension-unrestricted_aliasing" id="ref-for-language_extension-unrestricted_aliasing②">unrestricted_aliasing</a> feature is supported and the argument is
+a pointer in the <a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function①⑧">function</a> address space, then:</p>
        <ul>
         <li data-md>
-         <p>For each argument <em>j</em> that is a pointer in the <a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function①⑨">function</a> address
-space and where <em>j</em> is not equal to <em>i</em>:</p>
+         <p>For each argument with an index <em>j</em> that is a pointer in the <a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function①⑨">function</a> address
+space and where <em>j</em> > <em>i</em>:</p>
          <ul>
           <li data-md>
-           <p>If <em>i</em> and <em>j</em> have the same <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier⑧">root identifier</a> and one of them is written in the function, then:</p>
+           <p>If argument <em>i</em> and argument <em>j</em> have the same <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier⑧">root identifier</a> and one of them is written in the function or one of its callees, then:</p>
            <ul>
             <li data-md>
              <p>Add an edge from <a data-link-type="dfn" href="#arg_i" id="ref-for-arg_i">arg_i</a> to arg_j and vice versa.</p>
@@ -19268,23 +19268,24 @@ space and where <em>j</em> is not equal to <em>i</em>:</p>
          <p>Add the members of the <a data-link-type="dfn" href="#potential-trigger-set" id="ref-for-potential-trigger-set⑨">potential-trigger-set</a> of the <a data-link-type="dfn" href="#parameter-tag" id="ref-for-parameter-tag⑤">parameter tag</a> to the potential-trigger-set associated with <a data-link-type="dfn" href="#requiredtobeuniforms" id="ref-for-requiredtobeuniforms⑤">RequiredToBeUniform.S</a>.</p>
        </ul>
       <li data-md>
-       <p>If the <a data-link-type="dfn" href="#parameter-return-tag" id="ref-for-parameter-return-tag③">parameter return tag</a> is <a data-link-type="dfn" href="#parameterreturncontentsrequiredtobeuniform" id="ref-for-parameterreturncontentsrequiredtobeuniform①">ParameterReturnContentsRequiredToBeUniform</a>, then add an edge from <a data-link-type="dfn" href="#result" id="ref-for-result④">Result</a> to <a data-link-type="dfn" href="#arg_i" id="ref-for-arg_i③">arg_i</a></p>
+       <p>If the corresponding <a data-link-type="dfn" href="#parameter-return-tag" id="ref-for-parameter-return-tag③">parameter return tag</a> is <a data-link-type="dfn" href="#parameterreturncontentsrequiredtobeuniform" id="ref-for-parameterreturncontentsrequiredtobeuniform①">ParameterReturnContentsRequiredToBeUniform</a>, then add an edge from <a data-link-type="dfn" href="#result" id="ref-for-result④">Result</a> to <a data-link-type="dfn" href="#arg_i" id="ref-for-arg_i③">arg_i</a></p>
       <li data-md>
-       <p>If the corresponding parameter has a <a data-link-type="dfn" href="#pointer-parameter-tag" id="ref-for-pointer-parameter-tag③">pointer parameter tag</a> of <a data-link-type="dfn" href="#pointerparametermaybenonuniform" id="ref-for-pointerparametermaybenonuniform①">PointerParameterMayBeNonUniform</a>, then add an edge from <em>Vout</em>(<em>call</em>) to <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①③">MayBeNonUniform</a></p>
+       <p>If the corresponding parameter for argument <em>i</em> has a <a data-link-type="dfn" href="#pointer-parameter-tag" id="ref-for-pointer-parameter-tag③">pointer parameter tag</a> of <a data-link-type="dfn" href="#pointerparametermaybenonuniform" id="ref-for-pointerparametermaybenonuniform①">PointerParameterMayBeNonUniform</a>,
+then add an edge from <em>Vout</em>(<em>call</em>) for the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier⑨">root identifier</a> of argument <em>i</em> to <a data-link-type="dfn" href="#maybenonuniform" id="ref-for-maybenonuniform①③">MayBeNonUniform</a></p>
       <li data-md>
-       <p>If the parameter is a pointer in the <a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function②⓪">function</a> address space, then:</p>
+       <p>If the corresponding parameter is a pointer in the <a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function②⓪">function</a> address space, then:</p>
        <ul>
         <li data-md>
-         <p>add an edge from <em>Vout</em>(<em>call</em>) to each corresponding <a data-link-type="dfn" href="#arg_i" id="ref-for-arg_i④">arg_i</a> for the reachable parameters recorded previously</p>
+         <p>add an edge from <em>Vout</em>(<em>call</em>) for the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier①⓪">root identifier</a> of the argument to each corresponding <a data-link-type="dfn" href="#arg_i" id="ref-for-arg_i④">arg_i</a> for the reachable parameters recorded previously</p>
         <li data-md>
          <p>If the <a data-link-type="dfn" href="#language_extension-unrestricted_aliasing" id="ref-for-language_extension-unrestricted_aliasing③">unrestricted_aliasing</a> feature is supported, then:</p>
          <ul>
           <li data-md>
-           <p>For each argument <em>j</em> that is a pointer in the <a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function②①">function</a> address
-space and where <em>j</em> is not equal to <em>i</em>:</p>
+           <p>For each argument with an index <em>j</em> that is a pointer in the <a data-link-type="dfn" href="#address-spaces-function" id="ref-for-address-spaces-function②①">function</a> address
+space and where <em>j</em> > <em>i</em>:</p>
            <ul>
             <li data-md>
-             <p>If <em>i</em> and <em>j</em> have the same <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier⑨">root identifier</a>, add an edge from arg_j to <a data-link-type="dfn" href="#arg_i" id="ref-for-arg_i⑤">arg_i</a>.</p>
+             <p>If argument <em>i</em> and argument <em>j</em> have the same <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier①①">root identifier</a>, add an edge from <em>Vout</em>(<em>call</em>) for the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier①②">root identifier</a> of the argument to <em>arg_j</em>.</p>
            </ul>
          </ul>
         <li data-md>
@@ -19292,10 +19293,6 @@ space and where <em>j</em> is not equal to <em>i</em>:</p>
        </ul>
      </ul>
    </ul>
-   <p class="note" role="note"><span class="marker">Note:</span> For parts of the analysis dependent on the
-<a data-link-type="dfn" href="#language_extension-unrestricted_aliasing" id="ref-for-language_extension-unrestricted_aliasing④">unrestricted_aliasing</a> feature, an implementation only
-needs to consider arguments it has not yet visited in the outer argument loop.
-That is, if <em>i</em> iterates the range [0, n), then <em>j</em> only needs to iterate the range [i+1, n).</p>
    <p class="note" role="note"><span class="marker">Note:</span> Refer to <a href="#func-var-value-analysis">§ 15.2.5 Function-scope Variable Value Analysis</a> for the definition of <em>Vout</em>(<em>call</em>).</p>
    <p>Most built-in functions have tags of:</p>
    <ul>
@@ -19546,7 +19543,7 @@ will also be uniform after the function call.</p>
       <td>
      <tr>
       <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves③④">resolving</a> to function-scope variable "x",
-      where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier①⓪">root identifier</a> of a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view③⑨">memory view</a>
+      where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier①③">root identifier</a> of a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view③⑨">memory view</a>
       expression, <em>MVE</em>, and the <a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule⑤">load rule</a> is invoked on <em>MVE</em> during
       <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking⑤">type checking</a>
       
@@ -19564,14 +19561,14 @@ will also be uniform after the function call.</p>
       (see <a href="#func-var-value-analysis">§ 15.2.5 Function-scope Variable Value Analysis</a>)</p>
      <tr>
       <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves③⑤">resolving</a> to function-scope variable "x",
-      where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier①①">root identifier</a> of a <a href="#swizzle-view-expr">swizzle view expression</a>,
+      where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier①④">root identifier</a> of a <a href="#swizzle-view-expr">swizzle view expression</a>,
       <em>SVE</em>, and the <a data-link-type="dfn" href="#swizzle-view-load-rule" id="ref-for-swizzle-view-load-rule③">swizzle view load rule</a> is invoked on <em>SVE</em> during
       <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking⑥">type checking</a>
    
      <tr>
       <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves③⑥">resolving</a> to function-scope variable "x",
       where "x" is the desugared pointer parameter <em>i</em>, and
-      where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier①②">root identifier</a> of a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view④⓪">memory view</a>
+      where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier①⑤">root identifier</a> of a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view④⓪">memory view</a>
       expression, <em>MVE</em>, and the <a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule⑥">load rule</a> is not invoked on <em>MVE</em> during
       <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking⑦">type checking</a>
       
@@ -19583,13 +19580,13 @@ will also be uniform after the function call.</p>
      <tr>
       <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves③⑦">resolving</a> to function-scope variable "x",
       where "x" is the desugared pointer parameter <em>i</em>, and
-      where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier①③">root identifier</a> of a <a href="#swizzle-view-expr">swizzle view expression</a>,
+      where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier①⑥">root identifier</a> of a <a href="#swizzle-view-expr">swizzle view expression</a>,
       <em>SVE</em>, and the <a data-link-type="dfn" href="#swizzle-view-load-rule" id="ref-for-swizzle-view-load-rule④">swizzle view load rule</a> is invoked on <em>SVE</em> during
       <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking⑧">type checking</a>
    
      <tr>
       <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves③⑧">resolving</a> to function-scope variable "x",
-      where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier①④">root identifier</a> of a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view④①">memory view</a>
+      where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier①⑦">root identifier</a> of a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view④①">memory view</a>
       expression, <em>MVE</em>, and the <a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule⑦">load rule</a> is not invoked on <em>MVE</em> during
       <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking⑨">type checking</a>
       
@@ -19600,7 +19597,7 @@ will also be uniform after the function call.</p>
       <td class rowspan="2">
      <tr>
       <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves③⑨">resolving</a> to function-scope variable "x",
-      where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier①⑤">root identifier</a> of a <a href="#swizzle-view-expr">swizzle view expression</a>,
+      where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier①⑧">root identifier</a> of a <a href="#swizzle-view-expr">swizzle view expression</a>,
       <em>SVE</em>, and the <a data-link-type="dfn" href="#swizzle-view-load-rule" id="ref-for-swizzle-view-load-rule⑤">swizzle view load rule</a> is not invoked on <em>SVE</em> during
       <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking①⓪">type checking</a>
    
@@ -19620,7 +19617,7 @@ will also be uniform after the function call.</p>
       <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves④①">resolving</a> to a <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter②③">formal parameter</a> of
       <a data-link-type="dfn" href="#pointer-type" id="ref-for-pointer-type①⑤">pointer type</a> in the <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage②②">storage</a>, <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup②⓪">workgroup</a>,
       or <a data-link-type="dfn" href="#address-spaces-private" id="ref-for-address-spaces-private①②">private</a> <a data-link-type="dfn" href="#address-spaces" id="ref-for-address-spaces②①">address spaces</a> with a non-read-only
-      <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②⑥">access mode</a> where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier①⑥">root identifier</a>
+      <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②⑥">access mode</a> where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier①⑨">root identifier</a>
       of a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view④②">memory view</a> expression, <em>MVE</em>, and the <a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule⑧">load rule</a> is invoked
       on <em>MVE</em> during <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking①①">type checking</a>
       
@@ -19633,7 +19630,7 @@ will also be uniform after the function call.</p>
       <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves④②">resolving</a> to a <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter②④">formal parameter</a> of
       <a data-link-type="dfn" href="#pointer-type" id="ref-for-pointer-type①⑥">pointer type</a> in the <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage②③">storage</a>, <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup②①">workgroup</a>,
       or <a data-link-type="dfn" href="#address-spaces-private" id="ref-for-address-spaces-private①③">private</a> <a data-link-type="dfn" href="#address-spaces" id="ref-for-address-spaces②②">address spaces</a> with a non-read-only
-      <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②⑦">access mode</a> where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier①⑦">root identifier</a>
+      <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②⑦">access mode</a> where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier②⓪">root identifier</a>
       of a <a href="#swizzle-view-expr">swizzle view expression</a>, <em>SVE</em>, and the <a data-link-type="dfn" href="#swizzle-view-load-rule" id="ref-for-swizzle-view-load-rule⑥">swizzle view load rule</a> is invoked
       on <em>SVE</em> during <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking①②">type checking</a>
    
@@ -19641,7 +19638,7 @@ will also be uniform after the function call.</p>
       <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves④③">resolving</a> to a <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter②⑤">formal parameter</a> of
       <a data-link-type="dfn" href="#pointer-type" id="ref-for-pointer-type①⑦">pointer type</a> in the <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage②④">storage</a>, <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup②②">workgroup</a>,
       or <a data-link-type="dfn" href="#address-spaces-private" id="ref-for-address-spaces-private①④">private</a> <a data-link-type="dfn" href="#address-spaces" id="ref-for-address-spaces②③">address spaces</a> with a non-read-only
-      <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②⑧">access mode</a> where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier①⑧">root identifier</a>
+      <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②⑧">access mode</a> where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier②①">root identifier</a>
       of a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view④③">memory view</a> expression, <em>MVE</em>, and the <a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule⑨">load rule</a> is not
       invoked on <em>MVE</em> during <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking①③">type checking</a>
       
@@ -19654,7 +19651,7 @@ will also be uniform after the function call.</p>
       <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves④④">resolving</a> to a <a data-link-type="dfn" href="#formal-parameter" id="ref-for-formal-parameter②⑥">formal parameter</a> of
       <a data-link-type="dfn" href="#pointer-type" id="ref-for-pointer-type①⑧">pointer type</a> in the <a data-link-type="dfn" href="#address-spaces-storage" id="ref-for-address-spaces-storage②⑤">storage</a>, <a data-link-type="dfn" href="#address-spaces-workgroup" id="ref-for-address-spaces-workgroup②③">workgroup</a>,
       or <a data-link-type="dfn" href="#address-spaces-private" id="ref-for-address-spaces-private①⑤">private</a> <a data-link-type="dfn" href="#address-spaces" id="ref-for-address-spaces②④">address spaces</a> with a non-read-only
-      <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②⑨">access mode</a> where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier①⑨">root identifier</a>
+      <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②⑨">access mode</a> where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier②②">root identifier</a>
       of a <a href="#swizzle-view-expr">swizzle view expression</a>, <em>SVE</em>, and the <a data-link-type="dfn" href="#swizzle-view-load-rule" id="ref-for-swizzle-view-load-rule⑦">swizzle view load rule</a> is not invoked
       on <em>SVE</em> during <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking①④">type checking</a>
    
@@ -19693,7 +19690,7 @@ will also be uniform after the function call.</p>
       <td>
      <tr>
       <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves④⑨">resolving</a> to non-read-only module-scope
-      variable "x" where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier②⓪">root identifier</a> of a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view④④">memory view</a>
+      variable "x" where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier②③">root identifier</a> of a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view④④">memory view</a>
       expression, <em>MVE</em>, and the <a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule①⓪">load rule</a> is invoked on <em>MVE</em> during
       <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking①⑤">type checking</a>
       
@@ -19704,13 +19701,13 @@ will also be uniform after the function call.</p>
       <td rowspan="2">
      <tr>
       <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves⑤⓪">resolving</a> to non-read-only module-scope
-      variable "x" where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier②①">root identifier</a> of a <a href="#swizzle-view-expr">swizzle view expression</a>,
+      variable "x" where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier②④">root identifier</a> of a <a href="#swizzle-view-expr">swizzle view expression</a>,
       <em>SVE</em>, and the <a data-link-type="dfn" href="#swizzle-view-load-rule" id="ref-for-swizzle-view-load-rule⑧">swizzle view load rule</a> is invoked on <em>SVE</em> during
       <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking①⑥">type checking</a>
    
      <tr>
       <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves⑤①">resolving</a> to non-read-only module-scope
-      variable "x" where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier②②">root identifier</a> of a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view④⑤">memory view</a>
+      variable "x" where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier②⑤">root identifier</a> of a <a data-link-type="dfn" href="#memory-view" id="ref-for-memory-view④⑤">memory view</a>
       expression, <em>MVE</em>, and the <a data-link-type="dfn" href="#load-rule" id="ref-for-load-rule①①">load rule</a> is not invoked on <em>MVE</em> during
       <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking①⑦">type checking</a>
       
@@ -19721,7 +19718,7 @@ will also be uniform after the function call.</p>
       <td rowspan="2">
      <tr>
       <td>identifier <a data-link-type="dfn" href="#resolves" id="ref-for-resolves⑤②">resolving</a> to non-read-only module-scope
-      variable "x" where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier②③">root identifier</a> of a <a href="#swizzle-view-expr">swizzle view expression</a>,
+      variable "x" where the identifier appears as the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier②⑥">root identifier</a> of a <a href="#swizzle-view-expr">swizzle view expression</a>,
       <em>SVE</em>, and the <a data-link-type="dfn" href="#swizzle-view-load-rule" id="ref-for-swizzle-view-load-rule⑨">swizzle view load rule</a> is not invoked on <em>SVE</em> during
       <a data-link-type="dfn" href="#type-checking" id="ref-for-type-checking①⑧">type checking</a>
    
@@ -29411,7 +29408,7 @@ the call stack.</p>
    </ul>
    <p class="note" role="note"><span class="marker">Note:</span> If the implementation does not support the
 <a data-link-type="dfn" href="#language_extension-unrestricted_pointer_parameters" id="ref-for-language_extension-unrestricted_pointer_parameters②">unrestricted_pointer_parameters</a> language feature then
-the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier②④">root identifier</a> of the argument to the built-in function must be the
+the <a data-link-type="dfn" href="#root-identifier" id="ref-for-root-identifier②⑦">root identifier</a> of the argument to the built-in function must be the
 <a data-link-type="dfn" href="#originating-variable" id="ref-for-originating-variable③③">originating variable</a>.</p>
    <p class="note" role="note"><span class="marker">Note:</span> Buffer sizes cannot be made larger as they are passed to functions.</p>
    <h4 class="heading settled" data-level="17.14.1" id="bufferview-builtin"><span class="secno">17.14.1. </span><span class="content"><code>bufferView</code></span><a class="self-link" href="#bufferview-builtin"></a></h4>
@@ -32165,7 +32162,7 @@ let dfnPanelData = {
 "alignofmember": {"dfnID":"alignofmember","dfnText":"AlignOfMember","external":false,"refSections":[{"refs":[{"id":"ref-for-alignofmember"},{"id":"ref-for-alignofmember\u2460"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-alignofmember\u2461"},{"id":"ref-for-alignofmember\u2462"},{"id":"ref-for-alignofmember\u2463"}],"title":"14.4.2. Structure Member Layout"}],"url":"#alignofmember"},
 "alltypes": {"dfnID":"alltypes","dfnText":"AllTypes","external":false,"refSections":[{"refs":[{"id":"ref-for-alltypes"},{"id":"ref-for-alltypes\u2460"},{"id":"ref-for-alltypes\u2461"},{"id":"ref-for-alltypes\u2462"},{"id":"ref-for-alltypes\u2463"}],"title":"8.18. Type Expressions"}],"url":"#alltypes"},
 "angles": {"dfnID":"angles","dfnText":"Angles","external":false,"refSections":[{"refs":[{"id":"ref-for-angles"}],"title":"17.5.8. atan2"}],"url":"#angles"},
-"arg_i": {"dfnID":"arg_i","dfnText":"arg_i","external":false,"refSections":[{"refs":[{"id":"ref-for-arg_i"},{"id":"ref-for-arg_i\u2460"},{"id":"ref-for-arg_i\u2461"},{"id":"ref-for-arg_i\u2462"},{"id":"ref-for-arg_i\u2463"},{"id":"ref-for-arg_i\u2464"}],"title":"15.2.7. Uniformity Rules for Function Calls"}],"url":"#arg_i"},
+"arg_i": {"dfnID":"arg_i","dfnText":"arg_i","external":false,"refSections":[{"refs":[{"id":"ref-for-arg_i"},{"id":"ref-for-arg_i\u2460"},{"id":"ref-for-arg_i\u2461"},{"id":"ref-for-arg_i\u2462"},{"id":"ref-for-arg_i\u2463"}],"title":"15.2.7. Uniformity Rules for Function Calls"}],"url":"#arg_i"},
 "array": {"dfnID":"array","dfnText":"array","external":false,"refSections":[{"refs":[{"id":"ref-for-array"}],"title":"2.4. Limits"},{"refs":[{"id":"ref-for-array\u2460"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-array\u2461"}],"title":"6.2.9. Array Types"},{"refs":[{"id":"ref-for-array\u2462"}],"title":"6.2.11. Composite Types"},{"refs":[{"id":"ref-for-array\u2463"}],"title":"6.5.1. Storable Types"},{"refs":[{"id":"ref-for-array\u2464"}],"title":"6.5.9. Forming Reference and Pointer Values"},{"refs":[{"id":"ref-for-array\u2465"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-array\u2466"}],"title":"7.3. var Declarations"},{"refs":[{"id":"ref-for-array\u2467"}],"title":"8. Expressions"},{"refs":[{"id":"ref-for-array\u2468"}],"title":"13.3. Shader Interface"},{"refs":[{"id":"ref-for-array\u2460\u24ea"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-array\u2460\u2460"}],"title":"14.4.4. Internal Layout of Values"},{"refs":[{"id":"ref-for-array\u2460\u2461"},{"id":"ref-for-array\u2460\u2462"}],"title":"14.4.5. Address Space Layout Constraints"},{"refs":[{"id":"ref-for-array\u2460\u2463"},{"id":"ref-for-array\u2460\u2464"}],"title":"17.1.2.1. array"}],"url":"#array"},
 "arrayoffset": {"dfnID":"arrayoffset","dfnText":"ArrayOffset","external":false,"refSections":[{"refs":[{"id":"ref-for-arrayoffset"}],"title":"17.14. Buffer View Built-in Functions"},{"refs":[{"id":"ref-for-arrayoffset\u2460"},{"id":"ref-for-arrayoffset\u2461"},{"id":"ref-for-arrayoffset\u2462"},{"id":"ref-for-arrayoffset\u2463"},{"id":"ref-for-arrayoffset\u2464"},{"id":"ref-for-arrayoffset\u2465"}],"title":"17.14.2. bufferArrayView"}],"url":"#arrayoffset"},
 "assertion": {"dfnID":"assertion","dfnText":"assertion","external":false,"refSections":[{"refs":[{"id":"ref-for-assertion"}],"title":"2. WGSL Module"},{"refs":[{"id":"ref-for-assertion\u2460"}],"title":"10. Assertions"},{"refs":[{"id":"ref-for-assertion\u2461"}],"title":"10.1. Const Assertion Statement"}],"url":"#assertion"},
@@ -32454,7 +32451,7 @@ let dfnPanelData = {
 "language_extension-texture_and_sampler_let": {"dfnID":"language_extension-texture_and_sampler_let","dfnText":"texture_and_sampler_let","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-texture_and_sampler_let"}],"title":"3.8.5. Extension Names"},{"refs":[{"id":"ref-for-language_extension-texture_and_sampler_let\u2460"}],"title":"7. Variable and Value Declarations"},{"refs":[{"id":"ref-for-language_extension-texture_and_sampler_let\u2461"}],"title":"7.2.3. let Declarations"}],"url":"#language_extension-texture_and_sampler_let"},
 "language_extension-texture_formats_tier1": {"dfnID":"language_extension-texture_formats_tier1","dfnText":"texture_formats_tier1","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-texture_formats_tier1"}],"title":"3.8.5. Extension Names"},{"refs":[{"id":"ref-for-language_extension-texture_formats_tier1\u2460"},{"id":"ref-for-language_extension-texture_formats_tier1\u2461"},{"id":"ref-for-language_extension-texture_formats_tier1\u2462"},{"id":"ref-for-language_extension-texture_formats_tier1\u2463"},{"id":"ref-for-language_extension-texture_formats_tier1\u2464"},{"id":"ref-for-language_extension-texture_formats_tier1\u2465"},{"id":"ref-for-language_extension-texture_formats_tier1\u2466"},{"id":"ref-for-language_extension-texture_formats_tier1\u2467"},{"id":"ref-for-language_extension-texture_formats_tier1\u2468"},{"id":"ref-for-language_extension-texture_formats_tier1\u2460\u24ea"},{"id":"ref-for-language_extension-texture_formats_tier1\u2460\u2460"},{"id":"ref-for-language_extension-texture_formats_tier1\u2460\u2461"},{"id":"ref-for-language_extension-texture_formats_tier1\u2460\u2462"},{"id":"ref-for-language_extension-texture_formats_tier1\u2460\u2463"},{"id":"ref-for-language_extension-texture_formats_tier1\u2460\u2464"},{"id":"ref-for-language_extension-texture_formats_tier1\u2460\u2465"},{"id":"ref-for-language_extension-texture_formats_tier1\u2460\u2466"},{"id":"ref-for-language_extension-texture_formats_tier1\u2460\u2467"},{"id":"ref-for-language_extension-texture_formats_tier1\u2460\u2468"},{"id":"ref-for-language_extension-texture_formats_tier1\u2461\u24ea"},{"id":"ref-for-language_extension-texture_formats_tier1\u2461\u2460"},{"id":"ref-for-language_extension-texture_formats_tier1\u2461\u2461"},{"id":"ref-for-language_extension-texture_formats_tier1\u2461\u2462"}],"title":"6.4.1. Predeclared enumerants"},{"refs":[{"id":"ref-for-language_extension-texture_formats_tier1\u2461\u2463"},{"id":"ref-for-language_extension-texture_formats_tier1\u2461\u2464"},{"id":"ref-for-language_extension-texture_formats_tier1\u2461\u2465"},{"id":"ref-for-language_extension-texture_formats_tier1\u2461\u2466"},{"id":"ref-for-language_extension-texture_formats_tier1\u2461\u2467"},{"id":"ref-for-language_extension-texture_formats_tier1\u2461\u2468"},{"id":"ref-for-language_extension-texture_formats_tier1\u2462\u24ea"},{"id":"ref-for-language_extension-texture_formats_tier1\u2462\u2460"},{"id":"ref-for-language_extension-texture_formats_tier1\u2462\u2461"},{"id":"ref-for-language_extension-texture_formats_tier1\u2462\u2462"},{"id":"ref-for-language_extension-texture_formats_tier1\u2462\u2463"},{"id":"ref-for-language_extension-texture_formats_tier1\u2462\u2464"},{"id":"ref-for-language_extension-texture_formats_tier1\u2462\u2465"},{"id":"ref-for-language_extension-texture_formats_tier1\u2462\u2466"},{"id":"ref-for-language_extension-texture_formats_tier1\u2462\u2467"},{"id":"ref-for-language_extension-texture_formats_tier1\u2462\u2468"},{"id":"ref-for-language_extension-texture_formats_tier1\u2463\u24ea"},{"id":"ref-for-language_extension-texture_formats_tier1\u2463\u2460"},{"id":"ref-for-language_extension-texture_formats_tier1\u2463\u2461"},{"id":"ref-for-language_extension-texture_formats_tier1\u2463\u2462"},{"id":"ref-for-language_extension-texture_formats_tier1\u2463\u2463"},{"id":"ref-for-language_extension-texture_formats_tier1\u2463\u2464"},{"id":"ref-for-language_extension-texture_formats_tier1\u2463\u2465"}],"title":"6.6.1. Texel Formats"}],"url":"#language_extension-texture_formats_tier1"},
 "language_extension-uniform_buffer_standard_layout": {"dfnID":"language_extension-uniform_buffer_standard_layout","dfnText":"uniform_buffer_standard_layout","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-uniform_buffer_standard_layout"}],"title":"3.8.5. Extension Names"},{"refs":[{"id":"ref-for-language_extension-uniform_buffer_standard_layout\u2460"},{"id":"ref-for-language_extension-uniform_buffer_standard_layout\u2461"},{"id":"ref-for-language_extension-uniform_buffer_standard_layout\u2462"}],"title":"14.4.5. Address Space Layout Constraints"},{"refs":[{"id":"ref-for-language_extension-uniform_buffer_standard_layout\u2463"},{"id":"ref-for-language_extension-uniform_buffer_standard_layout\u2464"}],"title":"17.14.1. bufferView"},{"refs":[{"id":"ref-for-language_extension-uniform_buffer_standard_layout\u2465"},{"id":"ref-for-language_extension-uniform_buffer_standard_layout\u2466"}],"title":"17.14.2. bufferArrayView"}],"url":"#language_extension-uniform_buffer_standard_layout"},
-"language_extension-unrestricted_aliasing": {"dfnID":"language_extension-unrestricted_aliasing","dfnText":"unrestricted_aliasing","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-unrestricted_aliasing"}],"title":"3.8.5. Extension Names"},{"refs":[{"id":"ref-for-language_extension-unrestricted_aliasing\u2460"}],"title":"11.4.1.2. Aliasing"},{"refs":[{"id":"ref-for-language_extension-unrestricted_aliasing\u2461"},{"id":"ref-for-language_extension-unrestricted_aliasing\u2462"},{"id":"ref-for-language_extension-unrestricted_aliasing\u2463"}],"title":"15.2.7. Uniformity Rules for Function Calls"}],"url":"#language_extension-unrestricted_aliasing"},
+"language_extension-unrestricted_aliasing": {"dfnID":"language_extension-unrestricted_aliasing","dfnText":"unrestricted_aliasing","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-unrestricted_aliasing"}],"title":"3.8.5. Extension Names"},{"refs":[{"id":"ref-for-language_extension-unrestricted_aliasing\u2460"}],"title":"11.4.1.2. Aliasing"},{"refs":[{"id":"ref-for-language_extension-unrestricted_aliasing\u2461"},{"id":"ref-for-language_extension-unrestricted_aliasing\u2462"}],"title":"15.2.7. Uniformity Rules for Function Calls"}],"url":"#language_extension-unrestricted_aliasing"},
 "language_extension-unrestricted_pointer_parameters": {"dfnID":"language_extension-unrestricted_pointer_parameters","dfnText":"unrestricted_pointer_parameters","external":false,"refSections":[{"refs":[{"id":"ref-for-language_extension-unrestricted_pointer_parameters"}],"title":"3.8.5. Extension Names"},{"refs":[{"id":"ref-for-language_extension-unrestricted_pointer_parameters\u2460"}],"title":"6.1.2. Conversion Rank"},{"refs":[{"id":"ref-for-language_extension-unrestricted_pointer_parameters\u2461"}],"title":"17.14. Buffer View Built-in Functions"}],"url":"#language_extension-unrestricted_pointer_parameters"},
 "layout-attributes": {"dfnID":"layout-attributes","dfnText":"layout attributes","external":false,"refSections":[{"refs":[{"id":"ref-for-layout-attributes"}],"title":"6.2.10. Structure Types"},{"refs":[{"id":"ref-for-layout-attributes\u2460"}],"title":"6.5.2. Host-shareable Types"}],"url":"#layout-attributes"},
 "left-hand-side": {"dfnID":"left-hand-side","dfnText":"left-hand side","external":false,"refSections":[{"refs":[{"id":"ref-for-left-hand-side"}],"title":"6.5.8. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-left-hand-side\u2460"}],"title":"9.2.1. Simple Assignment"},{"refs":[{"id":"ref-for-left-hand-side\u2461"},{"id":"ref-for-left-hand-side\u2462"}],"title":"9.2.2. Swizzle Assignment"},{"refs":[{"id":"ref-for-left-hand-side\u2463"}],"title":"9.2.3. Phony Assignment"},{"refs":[{"id":"ref-for-left-hand-side\u2464"}],"title":"9.2.4. Compound Assignment"},{"refs":[{"id":"ref-for-left-hand-side\u2465"},{"id":"ref-for-left-hand-side\u2466"},{"id":"ref-for-left-hand-side\u2467"}],"title":"14.5.1. Memory Operation"},{"refs":[{"id":"ref-for-left-hand-side\u2468"},{"id":"ref-for-left-hand-side\u2460\u24ea"}],"title":"15.2.6. Uniformity Rules for Statements"}],"url":"#left-hand-side"},
@@ -32634,7 +32631,7 @@ let dfnPanelData = {
 "returnvaluemaybenonuniform": {"dfnID":"returnvaluemaybenonuniform","dfnText":"ReturnValueMayBeNonUniform","external":false,"refSections":[{"refs":[{"id":"ref-for-returnvaluemaybenonuniform"}],"title":"15.2.3. Analyzing the Uniformity Requirements of a Function"},{"refs":[{"id":"ref-for-returnvaluemaybenonuniform\u2460"},{"id":"ref-for-returnvaluemaybenonuniform\u2461"},{"id":"ref-for-returnvaluemaybenonuniform\u2462"},{"id":"ref-for-returnvaluemaybenonuniform\u2463"}],"title":"15.2.7. Uniformity Rules for Function Calls"}],"url":"#returnvaluemaybenonuniform"},
 "rhsvalue": {"dfnID":"rhsvalue","dfnText":"RHSValue","external":false,"refSections":[{"refs":[{"id":"ref-for-rhsvalue"}],"title":"15.2.5. Function-scope Variable Value Analysis"},{"refs":[{"id":"ref-for-rhsvalue\u2460"}],"title":"15.2.6. Uniformity Rules for Statements"},{"refs":[{"id":"ref-for-rhsvalue\u2461"}],"title":"15.2.8. Uniformity Rules for Expressions"}],"url":"#rhsvalue"},
 "right-hand-side": {"dfnID":"right-hand-side","dfnText":"right-hand side","external":false,"refSections":[{"refs":[{"id":"ref-for-right-hand-side"}],"title":"6.5.8. Use Cases for References and Pointers"},{"refs":[{"id":"ref-for-right-hand-side\u2460"}],"title":"9.2.1. Simple Assignment"},{"refs":[{"id":"ref-for-right-hand-side\u2461"}],"title":"9.2.2. Swizzle Assignment"},{"refs":[{"id":"ref-for-right-hand-side\u2462"}],"title":"9.2.3. Phony Assignment"},{"refs":[{"id":"ref-for-right-hand-side\u2463"}],"title":"15.2.6. Uniformity Rules for Statements"}],"url":"#right-hand-side"},
-"root-identifier": {"dfnID":"root-identifier","dfnText":"root identifier","external":false,"refSections":[{"refs":[{"id":"ref-for-root-identifier"},{"id":"ref-for-root-identifier\u2460"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-root-identifier\u2461"},{"id":"ref-for-root-identifier\u2462"}],"title":"11.4.1.1. Root Identifier"},{"refs":[{"id":"ref-for-root-identifier\u2463"},{"id":"ref-for-root-identifier\u2464"}],"title":"11.4.1.2. Aliasing"},{"refs":[{"id":"ref-for-root-identifier\u2465"},{"id":"ref-for-root-identifier\u2466"}],"title":"15.2.4. Pointer Desugaring"},{"refs":[{"id":"ref-for-root-identifier\u2467"},{"id":"ref-for-root-identifier\u2468"}],"title":"15.2.7. Uniformity Rules for Function Calls"},{"refs":[{"id":"ref-for-root-identifier\u2460\u24ea"},{"id":"ref-for-root-identifier\u2460\u2460"},{"id":"ref-for-root-identifier\u2460\u2461"},{"id":"ref-for-root-identifier\u2460\u2462"},{"id":"ref-for-root-identifier\u2460\u2463"},{"id":"ref-for-root-identifier\u2460\u2464"},{"id":"ref-for-root-identifier\u2460\u2465"},{"id":"ref-for-root-identifier\u2460\u2466"},{"id":"ref-for-root-identifier\u2460\u2467"},{"id":"ref-for-root-identifier\u2460\u2468"},{"id":"ref-for-root-identifier\u2461\u24ea"},{"id":"ref-for-root-identifier\u2461\u2460"},{"id":"ref-for-root-identifier\u2461\u2461"},{"id":"ref-for-root-identifier\u2461\u2462"}],"title":"15.2.8. Uniformity Rules for Expressions"},{"refs":[{"id":"ref-for-root-identifier\u2461\u2463"}],"title":"17.14. Buffer View Built-in Functions"}],"url":"#root-identifier"},
+"root-identifier": {"dfnID":"root-identifier","dfnText":"root identifier","external":false,"refSections":[{"refs":[{"id":"ref-for-root-identifier"},{"id":"ref-for-root-identifier\u2460"}],"title":"4.1.2. Language Extensions"},{"refs":[{"id":"ref-for-root-identifier\u2461"},{"id":"ref-for-root-identifier\u2462"}],"title":"11.4.1.1. Root Identifier"},{"refs":[{"id":"ref-for-root-identifier\u2463"},{"id":"ref-for-root-identifier\u2464"}],"title":"11.4.1.2. Aliasing"},{"refs":[{"id":"ref-for-root-identifier\u2465"},{"id":"ref-for-root-identifier\u2466"}],"title":"15.2.4. Pointer Desugaring"},{"refs":[{"id":"ref-for-root-identifier\u2467"},{"id":"ref-for-root-identifier\u2468"},{"id":"ref-for-root-identifier\u2460\u24ea"},{"id":"ref-for-root-identifier\u2460\u2460"},{"id":"ref-for-root-identifier\u2460\u2461"}],"title":"15.2.7. Uniformity Rules for Function Calls"},{"refs":[{"id":"ref-for-root-identifier\u2460\u2462"},{"id":"ref-for-root-identifier\u2460\u2463"},{"id":"ref-for-root-identifier\u2460\u2464"},{"id":"ref-for-root-identifier\u2460\u2465"},{"id":"ref-for-root-identifier\u2460\u2466"},{"id":"ref-for-root-identifier\u2460\u2467"},{"id":"ref-for-root-identifier\u2460\u2468"},{"id":"ref-for-root-identifier\u2461\u24ea"},{"id":"ref-for-root-identifier\u2461\u2460"},{"id":"ref-for-root-identifier\u2461\u2461"},{"id":"ref-for-root-identifier\u2461\u2462"},{"id":"ref-for-root-identifier\u2461\u2463"},{"id":"ref-for-root-identifier\u2461\u2464"},{"id":"ref-for-root-identifier\u2461\u2465"}],"title":"15.2.8. Uniformity Rules for Expressions"},{"refs":[{"id":"ref-for-root-identifier\u2461\u2466"}],"title":"17.14. Buffer View Built-in Functions"}],"url":"#root-identifier"},
 "rounddown": {"dfnID":"rounddown","dfnText":"roundDown","external":false,"refSections":[{"refs":[{"id":"ref-for-rounddown"},{"id":"ref-for-rounddown\u2460"}],"title":"17.14.2. bufferArrayView"}],"url":"#rounddown"},
 "rounding": {"dfnID":"rounding","dfnText":"Rounding","external":false,"refSections":[{"refs":[{"id":"ref-for-rounding"}],"title":"15.7.1. Overview of IEEE-754"},{"refs":[{"id":"ref-for-rounding\u2460"},{"id":"ref-for-rounding\u2461"}],"title":"15.7.4. Floating Point Accuracy"},{"refs":[{"id":"ref-for-rounding\u2462"}],"title":"17.1.2.5. i32"},{"refs":[{"id":"ref-for-rounding\u2463"}],"title":"17.1.2.16. u32"},{"refs":[{"id":"ref-for-rounding\u2464"}],"title":"17.5.32. fma"}],"url":"#rounding"},
 "roundup": {"dfnID":"roundup","dfnText":"roundUp","external":false,"refSections":[{"refs":[{"id":"ref-for-roundup"},{"id":"ref-for-roundup\u2460"}],"title":"13.3.4. Buffer Binding Determines Runtime-Sized Array Element Count"},{"refs":[{"id":"ref-for-roundup\u2461"},{"id":"ref-for-roundup\u2462"},{"id":"ref-for-roundup\u2463"}],"title":"14.4. Memory Layout"},{"refs":[{"id":"ref-for-roundup\u2464"},{"id":"ref-for-roundup\u2465"},{"id":"ref-for-roundup\u2466"}],"title":"14.4.1. Alignment and Size"},{"refs":[{"id":"ref-for-roundup\u2467"}],"title":"14.4.2. Structure Member Layout"},{"refs":[{"id":"ref-for-roundup\u2468"},{"id":"ref-for-roundup\u2460\u24ea"},{"id":"ref-for-roundup\u2460\u2460"},{"id":"ref-for-roundup\u2460\u2461"}],"title":"14.4.5. Address Space Layout Constraints"}],"url":"#roundup"},
